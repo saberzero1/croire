@@ -2,7 +2,9 @@
 let
   nixosModule = { config, lib, pkgs, ... }: {
     imports = [
+      inputs.self.nixosModules.git
       inputs.self.nixosModules.neovim
+      inputs.self.nixosModules.utils
     ];
   };
 in
