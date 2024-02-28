@@ -42,5 +42,16 @@
         "nl_NL/ISO-8859-1"
       ];
     };
+    system = {
+      nixos = {
+        release = "23.11";
+      };
+      switch = {
+        enable = true;
+      };
+    };
+    time = {
+      timeZone = "Europe/Brussels";
+    };
   };
 }
