@@ -13,6 +13,8 @@
         pkgs.wget2
         pkgs.gnumake
         pkgs._7zz
+        pkgs.jq
+        pkgs.parallel
       ];
     };
   };

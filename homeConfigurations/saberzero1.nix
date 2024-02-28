@@ -1,6 +1,17 @@
 { inputs, ... }@flakeContext:
 let
   homeModule = { config, lib, pkgs, ... }: {
+    imports = [
+      inputs.self.homeModules.browser
+      inputs.self.homeModules.console
+      inputs.self.homeModules.desktop
+      inputs.self.homeModules.development
+      inputs.self.homeModules.git
+      inputs.self.homeModules.programming_languages
+      inputs.self.homeModules.security
+      inputs.self.homeModules.system
+      inputs.self.homeModules.utils
+    ];
     config = {
       programs = {
         home-manager = {
