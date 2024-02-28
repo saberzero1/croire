@@ -1,6 +1,11 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
   config = {
+    home = {
+      packages = [
+        pkgs.wine64Packages.waylandFull
+      ];
+    };
     programs = {
       waybar = {
         enable = true;

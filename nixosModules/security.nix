@@ -4,7 +4,18 @@
     environment = {
       systemPackages = [
         pkgs.sudo
+        pkgs.gnupg
       ];
+    };
+    programs = {
+      gnupg = {
+        agent = {
+          enable = true;
+          enableSSHSupport = true;
+          settings = { };
+        };
+        package = pkgs.gnupg;
+      };
     };
     security = {
       doas = {

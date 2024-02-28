@@ -4,6 +4,7 @@
     environment = {
       systemPackages = [
         pkgs.git
+        pkgs.diff-so-fancy
       ];
     };
     programs = {

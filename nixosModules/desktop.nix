@@ -5,6 +5,7 @@
       systemPackages = [
         pkgs.hyprland
         pkgs.waybar
+        pkgs.wine64Packages.waylandFull
       ];
     };
   };

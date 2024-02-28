@@ -18,6 +18,7 @@
       };
       homeModules = {
         browser = import ./homeModules/browser.nix flakeContext;
+        console = import ./homeModules/console.nix flakeContext;
         desktop = import ./homeModules/desktop.nix flakeContext;
         development = import ./homeModules/development.nix flakeContext;
         git = import ./homeModules/git.nix flakeContext;
@@ -29,12 +30,14 @@
         security = import ./homeModules/security.nix flakeContext;
         system = import ./homeModules/system.nix flakeContext;
         utils = import ./homeModules/utils.nix flakeContext;
+        vscodium = import ./homeModules/vscodium.nix flakeContext;
       };
       nixosConfigurations = {
         croire = import ./nixosConfigurations/croire.nix flakeContext;
       };
       nixosModules = {
         browser = import ./nixosModules/browser.nix flakeContext;
+        console = import ./nixosModules/console.nix flakeContext;
         desktop = import ./nixosModules/desktop.nix flakeContext;
         development = import ./nixosModules/development.nix flakeContext;
         git = import ./nixosModules/git.nix flakeContext;

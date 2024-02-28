@@ -12,6 +12,7 @@
         pkgs.uget
         pkgs.wget2
         pkgs.gnumake
+        pkgs._7zz
       ];
     };
   };
