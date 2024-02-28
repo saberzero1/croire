@@ -4,6 +4,7 @@ let
     imports = [
       inputs.self.nixosModules.git
       inputs.self.nixosModules.neovim
+      inputs.self.nixosModules.system
       inputs.self.nixosModules.utils
     ];
   };

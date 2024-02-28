@@ -16,6 +16,7 @@
       nixosModules = {
         git = import ./nixosModules/git.nix flakeContext;
         neovim = import ./nixosModules/neovim.nix flakeContext;
+        system = import ./nixosModules/system.nix flakeContext;
         utils = import ./nixosModules/utils.nix flakeContext;
       };
     };
