@@ -77,32 +77,31 @@ let
           allowUnfree = true;
         };
         hostPlatform = lib.mkDefault "x86_64-linux";
-        ;
+      };
+      powerManagement = {
+        cpuFreqGovernor = "performance";
+      };
+      services = {
+        printing = {
+          enable = true;
         };
-        powerManagement = {
-          cpuFreqGovernor = "performance";
-        };
-        services = {
-          printing = {
-            enable = true;
-          };
-        };
-        system = {
-          stateVersion = "23.11";
-        };
+      };
+      system = {
+        stateVersion = "23.11";
+      };
+      users = {
         users = {
-          users = {
-            saberzero1 = {
-              name = "Emile Bangma";
-            };
+          saberzero1 = {
+            name = "Emile Bangma";
           };
         };
       };
     };
-    in
-    inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      nixosModule
-    ];
-    system = "x86_64-linux";
-  }
+  };
+in
+inputs.nixpkgs.lib.nixosSystem {
+  modules = [
+    nixosModule
+  ];
+  system = "x86_64-linux";
+}
