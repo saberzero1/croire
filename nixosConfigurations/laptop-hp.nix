@@ -50,6 +50,11 @@ let
           };
         };
       };
+      environment = {
+        systemPackages = [
+          pkgs.dhcpcd
+        ];
+      };
       fileSystems = {
         "/" = {
           device = "/dev/disk/by-uuid/dd0b28e1-cb2d-463e-b921-493bedeee5ca";
@@ -61,8 +66,12 @@ let
         };
       };
       networking = {
+        dhcpcd = {
+          enable = true;
+        };
         hostName = "nixos";
         networkmanager = {
+          dhcp = "dhcpcd";
           enable = true;
         };
         useDHCP = true;

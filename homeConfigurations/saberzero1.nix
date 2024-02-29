@@ -16,6 +16,9 @@ let
     ];
     config = {
       home = {
+        packages = [
+          pkgs.dhcpcd
+        ];
         stateVersion = "23.11";
       };
       nixpkgs = {
