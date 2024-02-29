@@ -23,6 +23,13 @@ let
     config = {
       boot = {
         initrd = {
+          availableKernelModules = [
+            "xhci_pci"
+            "ahci"
+            "usbhid"
+            "usb_storage"
+            "sd_mod"
+          ];
           luks = {
             devices = {
               luks-f3bc2b0a-5f98-4731-88c3-3999097ff40a = {
@@ -31,6 +38,9 @@ let
             };
           };
         };
+        kernelModules = [
+          "kvm_intel"
+        ];
         loader = {
           efi = {
             canTouchEfiVariables = true;
@@ -40,11 +50,22 @@ let
           };
         };
       };
+      fileSystems = {
+        "/" = {
+          device = "/dev/disk/by-uuid/dd0b28e1-cb2d-463e-b921-493bedeee5ca";
+          fsType = "ext4";
+        };
+        "/boot" = {
+          device = "/dev/disk/by-uuid/AEDC-A59F";
+          fsType = "vfat";
+        };
+      };
       networking = {
         hostName = "nixos";
         networkmanager = {
           enable = true;
         };
+        useDHCP = true;
       };
       nix = {
         settings = {
@@ -55,28 +76,33 @@ let
         config = {
           allowUnfree = true;
         };
-      };
-      services = {
-        printing = {
-          enable = true;
+        hostPlatform = lib.mkDefault "x86_64-linux";
+        ;
         };
-      };
-      system = {
-        stateVersion = "23.11";
-      };
-      users = {
+        powerManagement = {
+          cpuFreqGovernor = "performance";
+        };
+        services = {
+          printing = {
+            enable = true;
+          };
+        };
+        system = {
+          stateVersion = "23.11";
+        };
         users = {
-          saberzero1 = {
-            name = "Emile Bangma";
+          users = {
+            saberzero1 = {
+              name = "Emile Bangma";
+            };
           };
         };
       };
     };
-  };
-in
-inputs.nixpkgs.lib.nixosSystem {
-  modules = [
-    nixosModule
-  ];
-  system = "x86_64-linux";
-}
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+    modules = [
+      nixosModule
+    ];
+    system = "x86_64-linux";
+  }
