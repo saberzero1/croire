@@ -21,6 +21,49 @@ let
       }
     ];
     config = {
+      boot = {
+        initrd = {
+          luks = {
+            devices = {
+              luks-f3bc2b0a-5f98-4731-88c3-3999097ff40a = {
+                device = "/dev/disk/by-uuid/f3bc2b0a-5f98-4731-88c3-3999097ff40a";
+              };
+            };
+          };
+        };
+        loader = {
+          efi = {
+            canTouchEfiVariables = true;
+          };
+          systemd-boot = {
+            enable = true;
+          };
+        };
+      };
+      networking = {
+        hostName = "nixos";
+        networkmanager = {
+          enable = true;
+        };
+      };
+      nix = {
+        settings = {
+          experimental-features = [ "nix-command" "flakes" ];
+        };
+      };
+      nixpkgs = {
+        config = {
+          allowBroken = true;
+        };
+      };
+      services = {
+        printing = {
+          enable = true;
+        };
+      };
+      system = {
+        stateVersion = "23.11";
+      };
       users = {
         users = {
           saberzero1 = {

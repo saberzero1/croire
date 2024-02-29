@@ -19,6 +19,11 @@
         enable = true;
       };
     };
+    hardware = {
+      pulseaudio = {
+        enable = false;
+      };
+    };
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {
@@ -46,6 +51,21 @@
       nano = {
         enable = false;
       };
+    };
+    services = {
+      pipewire = {
+        alsa = {
+          enable = true;
+          support32Bit = true;
+        };
+        enable = true;
+        pulse = {
+          enable = true;
+        };
+      };
+    };
+    sound = {
+      enable = true;
     };
     system = {
       nixos = {

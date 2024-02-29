@@ -15,6 +15,11 @@ let
       inputs.self.homeModules.workflow
     ];
     config = {
+      nixpkgs = {
+        config = {
+          allowUnfree = true;
+        };
+      };
       programs = {
         home-manager = {
           enable = true;
