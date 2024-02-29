@@ -2,9 +2,8 @@
   description = "NixOS Configuration.";
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
     sops-nix.url = "github:Mic92/sops-nix";
-    home-manager-2.url = "flake:home-manager";
+    home-manager.url = "flake:home-manager";
   };
   outputs = inputs:
     let

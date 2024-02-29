@@ -20,11 +20,20 @@ let
         home-manager.useUserPackages = true;
       }
     ];
-  };
-in
-inputs.nixpkgs.lib.nixosSystem {
-  modules = [
-    nixosModule
-  ];
-  system = "x86_64-linux";
-}
+    config = {
+      users = {
+        users = {
+          saberzero1 = {
+            name = ;
+              };
+          };
+        };
+      };
+    };
+    in
+    inputs.nixpkgs.lib.nixosSystem {
+    modules = [
+      nixosModule
+    ];
+    system = "x86_64-linux";
+  }

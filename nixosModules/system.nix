@@ -58,5 +58,16 @@
     time = {
       timeZone = "Europe/Brussels";
     };
+    users = {
+      mutableUsers = true;
+      users = {
+        saberzero1 = {
+          expires = null;
+          isNormalUser = true;
+          linger = true;
+          useDefaultShell = true;
+        };
+      };
+    };
   };
 }
