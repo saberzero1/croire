@@ -89,6 +89,11 @@ let
       powerManagement = {
         cpuFreqGovernor = "performance";
       };
+      programs = {
+        hyprland = {
+          enable = true;
+        };
+      };
       services = {
         printing = {
           enable = true;
