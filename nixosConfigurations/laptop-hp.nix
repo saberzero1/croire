@@ -67,7 +67,7 @@ let
       users = {
         users = {
           saberzero1 = {
-            name = Emile Bangma;
+            name = "Emile Bangma";
           };
         };
       };
