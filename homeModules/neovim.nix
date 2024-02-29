@@ -3,8 +3,6 @@
   config = {
     home = {
       packages = [
-        pkgs.vimPlugins.coc-nvim
-        pkgs.vimPlugins.nvim-treesitter-parsers.bash
         pkgs.vimPlugins.nvim-treesitter-parsers.c
         pkgs.vimPlugins.nvim-treesitter-parsers.c_sharp
         pkgs.vimPlugins.nvim-treesitter-parsers.cpp
@@ -29,6 +27,7 @@
         pkgs.vimPlugins.nvim-treesitter-parsers.zig
         pkgs.vimPlugins.nvim-cmp
         pkgs.python311Packages.pynvim
+        pkgs.neovim-unwrapped
       ];
     };
     programs = {

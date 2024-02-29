@@ -28,13 +28,14 @@
         pkgs.vimPlugins.nvim-treesitter-parsers.yaml
         pkgs.vimPlugins.nvim-treesitter-parsers.zig
         pkgs.vimPlugins.nvim-cmp
+        pkgs.neovim-unwrapped
       ];
     };
     programs = {
       neovim = {
         defaultEditor = true;
         enable = true;
-        package = pkgs.neovim;
+        package = pkgs.neovim-unwrapped;
         viAlias = true;
         vimAlias = true;
         withNodeJs = true;
