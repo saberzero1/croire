@@ -12,6 +12,7 @@ let
       inputs.self.homeModules.security
       inputs.self.homeModules.system
       inputs.self.homeModules.utils
+      inputs.self.homeModules.workflow
     ];
     config = {
       programs = {

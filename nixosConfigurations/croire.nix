@@ -14,6 +14,7 @@ let
       inputs.self.nixosModules.security
       inputs.self.nixosModules.system
       inputs.self.nixosModules.utils
+      inputs.self.nixosModules.workflow
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

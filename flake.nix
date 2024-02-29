@@ -32,6 +32,7 @@
         system = import ./homeModules/system.nix flakeContext;
         utils = import ./homeModules/utils.nix flakeContext;
         vscodium = import ./homeModules/vscodium.nix flakeContext;
+        workflow = import ./homeModules/workflow.nix flakeContext;
       };
       nixosConfigurations = {
         croire = import ./nixosConfigurations/croire.nix flakeContext;
@@ -52,6 +53,7 @@
         system = import ./nixosModules/system.nix flakeContext;
         utils = import ./nixosModules/utils.nix flakeContext;
         vscodium = import ./nixosModules/vscodium.nix flakeContext;
+        workflow = import ./nixosModules/workflow.nix flakeContext;
       };
     };
 }
