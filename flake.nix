@@ -17,6 +17,7 @@
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
       };
       homeModules = {
+        applications = import ./homeModules/applications.nix flakeContext;
         browser = import ./homeModules/browser.nix flakeContext;
         console = import ./homeModules/console.nix flakeContext;
         desktop = import ./homeModules/desktop.nix flakeContext;
@@ -36,6 +37,7 @@
         croire = import ./nixosConfigurations/croire.nix flakeContext;
       };
       nixosModules = {
+        applications = import ./nixosModules/applications.nix flakeContext;
         browser = import ./nixosModules/browser.nix flakeContext;
         console = import ./nixosModules/console.nix flakeContext;
         desktop = import ./nixosModules/desktop.nix flakeContext;

@@ -2,6 +2,7 @@
 let
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
+      inputs.self.homeModules.applications
       inputs.self.homeModules.browser
       inputs.self.homeModules.console
       inputs.self.homeModules.desktop

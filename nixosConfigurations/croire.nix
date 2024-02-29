@@ -2,6 +2,9 @@
 let
   nixosModule = { config, lib, pkgs, ... }: {
     imports = [
+      inputs.home-manager.nixosModules.home-manager
+      inputs.self.homeConfigurations.saberzero1.nixosModule
+      inputs.self.nixosModules.applications
       inputs.self.nixosModules.browser
       inputs.self.nixosModules.console
       inputs.self.nixosModules.desktop
@@ -11,6 +14,10 @@ let
       inputs.self.nixosModules.security
       inputs.self.nixosModules.system
       inputs.self.nixosModules.utils
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
     ];
   };
 in
