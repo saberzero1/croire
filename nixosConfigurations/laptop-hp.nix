@@ -71,10 +71,9 @@ let
         };
         hostName = "nixos";
         networkmanager = {
-          dhcp = "dhcpcd";
+          dhcp = "internal";
           enable = true;
         };
-        useDHCP = true;
       };
       nix = {
         settings = {
