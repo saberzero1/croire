@@ -15,6 +15,9 @@ let
       inputs.self.homeModules.workflow
     ];
     config = {
+      home = {
+        stateVersion = "23.11";
+      };
       nixpkgs = {
         config = {
           allowUnfree = true;
