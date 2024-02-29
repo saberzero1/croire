@@ -23,7 +23,6 @@
       windowManager = {
         hyprland = {
           enable = true;
-          enableNvidiaPatches = true;
           package = pkgs.hyprland;
           systemd = {
             enable = true;
