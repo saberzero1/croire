@@ -61,9 +61,6 @@ let
           enable = true;
         };
       };
-      system = {
-        stateVersion = "23.11";
-      };
       users = {
         users = {
           saberzero1 = {

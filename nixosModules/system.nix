@@ -68,9 +68,6 @@
       enable = true;
     };
     system = {
-      nixos = {
-        release = "23.11";
-      };
       switch = {
         enable = true;
       };
