@@ -100,7 +100,7 @@ let
         };
       };
       system = {
-        stateVersion = "23.11";
+        stateVersion = "23.05";
       };
       users = {
         users = {
