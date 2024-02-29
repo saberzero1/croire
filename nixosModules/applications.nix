@@ -4,7 +4,14 @@
     environment = {
       systemPackages = [
         pkgs.vlc
+        pkgs.steam
       ];
+    };
+    programs = {
+      steam = {
+        enable = true;
+        package = pkgs.steam;
+      };
     };
   };
 }

@@ -4,6 +4,7 @@
     home = {
       packages = [
         pkgs.gnupg
+        pkgs.sshpass
       ];
     };
     programs = {

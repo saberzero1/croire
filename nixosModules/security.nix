@@ -5,6 +5,7 @@
       systemPackages = [
         pkgs.sudo
         pkgs.gnupg
+        pkgs.sshpass
       ];
     };
     programs = {
@@ -15,6 +16,9 @@
           settings = { };
         };
         package = pkgs.gnupg;
+      };
+      ssh = {
+        package = pkgs.openssh;
       };
     };
     security = {
@@ -27,6 +31,11 @@
         execWheelOnly = true;
         package = pkgs.sudo;
         wheelNeedsPassword = true;
+      };
+    };
+    services = {
+      openssh = {
+        enable = true;
       };
     };
   };

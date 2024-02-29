@@ -42,6 +42,11 @@
         "nl_NL/ISO-8859-1"
       ];
     };
+    programs = {
+      nano = {
+        enable = false;
+      };
+    };
     system = {
       nixos = {
         release = "23.11";

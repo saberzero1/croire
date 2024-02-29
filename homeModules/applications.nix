@@ -4,6 +4,7 @@
     home = {
       packages = [
         pkgs.vlc
+        pkgs.steam
       ];
     };
   };
