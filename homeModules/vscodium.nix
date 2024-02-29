@@ -9,7 +9,7 @@
     };
     programs = {
       vscode = {
-        enable = true;
+        enable = false;
         enableExtensionUpdateCheck = true;
         mutableExtensionsDir = true;
         package = pkgs.vscodium;
