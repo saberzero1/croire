@@ -67,16 +67,16 @@ let
       users = {
         users = {
           saberzero1 = {
-            name = ;
-              };
+            name = Emile Bangma;
           };
         };
       };
     };
-    in
-    inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      nixosModule
-    ];
-    system = "x86_64-linux";
-  }
+  };
+in
+inputs.nixpkgs.lib.nixosSystem {
+  modules = [
+    nixosModule
+  ];
+  system = "x86_64-linux";
+}
