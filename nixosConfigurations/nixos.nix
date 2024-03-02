@@ -58,6 +58,7 @@ let
         };
       };
       hardware = {
+        enableRedistributableFirmware = true;
         pulseaudio = {
           enable = false;
         };
