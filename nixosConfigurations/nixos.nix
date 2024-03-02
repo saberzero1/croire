@@ -22,6 +22,7 @@ let
     ];
     config = {
       boot = {
+        extraModulePackages = [ ];
         hardwareScan = true;
         initrd = {
           availableKernelModules = [
@@ -31,7 +32,11 @@ let
             "usb_storage"
             "sd_mod"
           ];
+          kernelModules = [ ];
         };
+        kernelModules = [
+          "kvm-intel"
+        ];
         loader = {
           efi = {
             canTouchEfiVariables = true;
@@ -41,7 +46,22 @@ let
           };
         };
       };
+      fileSystems = {
+        "/" = {
+          device = "/dev/disk/by-uuid/951a61f8-b425-4bfe-8eae-44b0986c1fc1";
+          fsType = "ext4";
+        };
+        "/boot" = {
+          device = "/dev/disk/by-uuid/812D-2A15";
+          fsType = "vfat";
+        };
+      };
       hardware = {
+        cpu = {
+          intel = {
+            updateMicrocode = false;
+          };
+        };
         pulseaudio = {
           enable = false;
         };
@@ -53,6 +73,7 @@ let
         networkmanager = {
           enable = true;
         };
+        useDHCP = true;
       };
       nix = {
         settings = {
@@ -112,6 +133,11 @@ let
       sound = {
         enable = true;
       };
+      swapDevices = [
+        {
+          device = "/dev/disk/by-uuid/abb6997f-138e-42ad-a312-00c225b1-8520";
+        }
+      ];
       system = {
         stateVersion = "23.11";
       };
