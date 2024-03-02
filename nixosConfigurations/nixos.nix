@@ -147,7 +147,7 @@ let
       };
       swapDevices = [
         {
-          device = "/dev/disk/by-uuid/abb6997f-138e-42ad-a312-00c225b1-8520";
+          device = "/dev/disk/by-uuid/abb6997f-138e-42ad-a312-00c225b18520";
         }
       ];
       system = {
