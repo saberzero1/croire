@@ -60,10 +60,6 @@
       users = {
         saberzero1 = {
           expires = null;
-          extraGroups = [
-            "wheel"
-            "networkmanager"
-          ];
           isNormalUser = true;
           useDefaultShell = true;
         };
