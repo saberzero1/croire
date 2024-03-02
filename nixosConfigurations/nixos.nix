@@ -46,6 +46,11 @@ let
           };
         };
       };
+      environment = {
+        systemPackages = [
+          pkgs.dhcpcd
+        ];
+      };
       fileSystems = {
         "/" = {
           device = "/dev/disk/by-uuid/951a61f8-b425-4bfe-8eae-44b0986c1fc1";
@@ -71,9 +76,16 @@ let
           enable = true;
         };
         networkmanager = {
+          dhcp = "dhcpcd";
           enable = true;
+          unmanaged = [
+            "dhcpcd"
+          ];
         };
         useDHCP = true;
+        wireless = {
+          enable = true;
+        };
       };
       nix = {
         settings = {
