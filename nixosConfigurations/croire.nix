@@ -46,6 +46,8 @@ let
           };
         };
         wireless = {
+          allowAuxiliaryImperativeNetworks = true;
+          dbusControlled = true;
           userControlled = {
             enable = true;
             group = "networkmanager";

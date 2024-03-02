@@ -58,11 +58,6 @@ let
         };
       };
       hardware = {
-        cpu = {
-          intel = {
-            updateMicrocode = false;
-          };
-        };
         pulseaudio = {
           enable = false;
         };
@@ -76,6 +71,8 @@ let
         };
         useDHCP = false;
         wireless = {
+          allowAuxiliaryImperativeNetworks = true;
+          dbusControlled = true;
           userControlled = {
             enable = true;
             group = "networkmanager";
