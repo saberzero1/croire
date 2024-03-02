@@ -70,8 +70,17 @@ let
       networking = {
         networkmanager = {
           enable = true;
+          wifi = {
+            backend = "wpa_supplicant";
+          };
         };
         useDHCP = false;
+        wireless = {
+          userControlled = {
+            enable = true;
+            group = "networkmanager";
+          };
+        };
       };
       nix = {
         settings = {

@@ -41,6 +41,15 @@ let
         hostName = "nixos";
         networkmanager = {
           enable = true;
+          wifi = {
+            backend = "wpa_supplicant";
+          };
+        };
+        wireless = {
+          userControlled = {
+            enable = true;
+            group = "networkmanager";
+          };
         };
       };
       nix = {

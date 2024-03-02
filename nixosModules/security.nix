@@ -6,6 +6,8 @@
         pkgs.sudo
         pkgs.gnupg
         pkgs.sshpass
+        pkgs.wpa_supplicant
+        pkgs.wpa_supplicant_gui
       ];
     };
     programs = {
