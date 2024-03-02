@@ -37,6 +37,7 @@ let
         kernelModules = [
           "kvm-intel"
         ];
+        kernelPackages = pkgs.linuxPackages_latest;
         loader = {
           efi = {
             canTouchEfiVariables = true;
