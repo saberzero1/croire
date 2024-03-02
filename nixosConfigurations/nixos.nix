@@ -72,9 +72,6 @@ let
           enable = true;
         };
         useDHCP = false;
-        wireless = {
-          enable = false;
-        };
       };
       nix = {
         settings = {
