@@ -19,11 +19,6 @@
         enable = true;
       };
     };
-    hardware = {
-      pulseaudio = {
-        enable = false;
-      };
-    };
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {
@@ -52,21 +47,6 @@
         enable = false;
       };
     };
-    services = {
-      pipewire = {
-        alsa = {
-          enable = true;
-          support32Bit = true;
-        };
-        enable = true;
-        pulse = {
-          enable = true;
-        };
-      };
-    };
-    sound = {
-      enable = true;
-    };
     system = {
       switch = {
         enable = true;
@@ -80,8 +60,11 @@
       users = {
         saberzero1 = {
           expires = null;
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+          ];
           isNormalUser = true;
-          linger = true;
           useDefaultShell = true;
         };
       };

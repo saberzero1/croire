@@ -22,6 +22,7 @@ let
     ];
     config = {
       boot = {
+        hardwareScan = true;
         initrd = {
           availableKernelModules = [
             "xhci_pci"
@@ -30,17 +31,7 @@ let
             "usb_storage"
             "sd_mod"
           ];
-          luks = {
-            devices = {
-              luks-f3bc2b0a-5f98-4731-88c3-3999097ff40a = {
-                device = "/dev/disk/by-uuid/f3bc2b0a-5f98-4731-88c3-3999097ff40a";
-              };
-            };
-          };
         };
-        kernelModules = [
-          "kvm_intel"
-        ];
         loader = {
           efi = {
             canTouchEfiVariables = true;
@@ -50,28 +41,16 @@ let
           };
         };
       };
-      environment = {
-        systemPackages = [
-          pkgs.dhcpcd
-        ];
-      };
-      fileSystems = {
-        "/" = {
-          device = "/dev/disk/by-uuid/dd0b28e1-cb2d-463e-b921-493bedeee5ca";
-          fsType = "ext4";
-        };
-        "/boot" = {
-          device = "/dev/disk/by-uuid/AEDC-A59F";
-          fsType = "vfat";
+      hardware = {
+        pulseaudio = {
+          enable = false;
         };
       };
       networking = {
         dhcpcd = {
           enable = true;
         };
-        hostName = "nixos";
         networkmanager = {
-          dhcp = "internal";
           enable = true;
         };
       };
@@ -89,18 +68,62 @@ let
       powerManagement = {
         cpuFreqGovernor = "performance";
       };
-      programs = {
-        hyprland = {
+      security = {
+        rtkit = {
           enable = true;
         };
       };
       services = {
+        pipewire = {
+          alsa = {
+            enable = true;
+            support32Bit = true;
+          };
+          enable = true;
+          pulse = {
+            enable = true;
+          };
+        };
         printing = {
           enable = true;
         };
+        xserver = {
+          desktopManager = {
+            gnome = {
+              enable = true;
+            };
+          };
+          displayManager = {
+            autoLogin = {
+              enable = true;
+              user = "saberzero1";
+            };
+            gdm = {
+              enable = true;
+            };
+          };
+          enable = true;
+          xkb = {
+            layout = "us";
+            variant = "";
+          };
+        };
+      };
+      sound = {
+        enable = true;
       };
       system = {
-        stateVersion = "23.05";
+        stateVersion = "23.11";
+      };
+      systemd = {
+        services = {
+          "autovt@tty1" = {
+            enable = false;
+          };
+          "getty@tty1" = {
+            enable = false;
+          };
+        };
       };
       users = {
         users = {

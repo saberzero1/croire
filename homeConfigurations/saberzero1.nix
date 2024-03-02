@@ -19,7 +19,7 @@ let
         packages = [
           pkgs.dhcpcd
         ];
-        stateVersion = "23.05";
+        stateVersion = "23.11";
       };
       nixpkgs = {
         config = {

@@ -22,15 +22,7 @@ let
     ];
     config = {
       boot = {
-        initrd = {
-          luks = {
-            devices = {
-              luks-f3bc2b0a-5f98-4731-88c3-3999097ff40a = {
-                device = "/dev/disk/by-uuid/f3bc2b0a-5f98-4731-88c3-3999097ff40a";
-              };
-            };
-          };
-        };
+        hardwareScan = true;
         loader = {
           efi = {
             canTouchEfiVariables = true;
@@ -38,6 +30,11 @@ let
           systemd-boot = {
             enable = true;
           };
+        };
+      };
+      hardware = {
+        pulseaudio = {
+          enable = false;
         };
       };
       networking = {
@@ -56,9 +53,58 @@ let
           allowUnfree = true;
         };
       };
+      security = {
+        rtkit = {
+          enable = true;
+        };
+      };
       services = {
+        pipewire = {
+          alsa = {
+            enable = true;
+            support32Bit = true;
+          };
+          enable = true;
+          pulse = {
+            enable = true;
+          };
+        };
         printing = {
           enable = true;
+        };
+        xserver = {
+          desktopManager = {
+            gnome = {
+              enable = true;
+            };
+          };
+          displayManager = {
+            autoLogin = {
+              enable = true;
+              user = "saberzero1";
+            };
+            gdm = {
+              enable = true;
+            };
+          };
+          enable = true;
+          xkb = {
+            layout = "us";
+            variant = "";
+          };
+        };
+      };
+      sound = {
+        enable = true;
+      };
+      systemd = {
+        services = {
+          "autovt@tty1" = {
+            enable = false;
+          };
+          "getty@tty1" = {
+            enable = false;
+          };
         };
       };
       users = {

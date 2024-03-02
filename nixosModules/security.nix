@@ -38,5 +38,12 @@
         enable = true;
       };
     };
+    users = {
+      users = {
+        saberzero1 = {
+          initialPassword = "changeme";
+        };
+      };
+    };
   };
 }

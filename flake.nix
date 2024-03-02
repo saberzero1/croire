@@ -36,7 +36,7 @@
       };
       nixosConfigurations = {
         croire = import ./nixosConfigurations/croire.nix flakeContext;
-        laptop-hp = import ./nixosConfigurations/laptop-hp.nix flakeContext;
+        nixos = import ./nixosConfigurations/nixos.nix flakeContext;
       };
       nixosModules = {
         applications = import ./nixosModules/applications.nix flakeContext;
