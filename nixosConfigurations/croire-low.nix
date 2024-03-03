@@ -63,6 +63,7 @@ let
         };
       };
       networking = {
+        hostName = "croire-low";
         networkmanager = {
           enable = true;
           wifi = {
