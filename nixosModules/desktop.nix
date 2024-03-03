@@ -1,22 +1,15 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
   config = {
-    environment = {
-      systemPackages = [
-        pkgs.enlightenment.enlightenment
-        pkgs.enlightenment.econnman
-        pkgs.enlightenment.efl
-        pkgs.enlightenment.evisum
-      ];
-    };
     services = {
       xserver = {
         desktopManager = {
-          enlightenment = {
+          gnome = {
             enable = true;
           };
           wallpaper = {
             combineScreens = false;
+            mode = "fill";
           };
         };
       };

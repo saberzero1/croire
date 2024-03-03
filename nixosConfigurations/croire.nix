@@ -91,7 +91,7 @@ let
               user = "saberzero1";
             };
             gdm = {
-              enable = false;
+              enable = true;
             };
           };
           enable = true;
@@ -107,10 +107,10 @@ let
       systemd = {
         services = {
           "autovt@tty1" = {
-            enable = false;
+            enable = true;
           };
           "getty@tty1" = {
-            enable = false;
+            enable = true;
           };
         };
       };
