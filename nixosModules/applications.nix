@@ -8,6 +8,7 @@
       systemPackages = [
         pkgs.vlc
         pkgs.steam
+        pkgs.obsidian
       ];
     };
     programs = {
