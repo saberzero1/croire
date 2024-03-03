@@ -32,7 +32,7 @@
         nvim = {
           enable = true;
           recursive = true;
-          source = ../../shelter;
+          source = /home/saberzero1/Documents/Repos/dotfiles/shelter;
         };
       };
     };
