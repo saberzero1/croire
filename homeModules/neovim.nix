@@ -30,10 +30,11 @@
     xdg = {
       configFile = {
         nvim = {
-          source = ../shelter;
+          enable = true;
+          recursive = true;
+          source = ./shelter;
         };
       };
-      enable = true;
     };
   };
 }
