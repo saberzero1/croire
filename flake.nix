@@ -5,6 +5,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
     home-manager-2.url = "flake:home-manager";
+    stylix.url = "github:danth/stylix";
   };
   outputs = inputs:
     let

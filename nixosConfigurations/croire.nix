@@ -87,7 +87,7 @@ let
         xserver = {
           desktopManager = {
             gnome = {
-              enable = true;
+              enable = false;
             };
           };
           displayManager = {
@@ -96,7 +96,7 @@ let
               user = "saberzero1";
             };
             gdm = {
-              enable = true;
+              enable = false;
             };
           };
           enable = true;
