@@ -9,6 +9,7 @@
         pkgs.vlc
         pkgs.steam
         pkgs.obsidian
+        pkgs.discord
       ];
     };
     programs = {
