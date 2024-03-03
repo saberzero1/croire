@@ -38,6 +38,7 @@
       };
       nixosConfigurations = {
         croire = import ./nixosConfigurations/croire.nix flakeContext;
+        croire-low = import ./nixosConfigurations/croire-low.nix flakeContext;
         nixos = import ./nixosConfigurations/nixos.nix flakeContext;
       };
       nixosModules = {
