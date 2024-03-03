@@ -31,10 +31,9 @@
       configFile = {
         nvim = {
           source = ../nvim;
-          ;
-          };
-          };
-          enable = true;
         };
       };
-    }
+      enable = true;
+    };
+  };
+}
