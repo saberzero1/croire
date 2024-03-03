@@ -114,11 +114,6 @@ let
           enable = true;
         };
         xserver = {
-          desktopManager = {
-            gnome = {
-              enable = true;
-            };
-          };
           displayManager = {
             autoLogin = {
               enable = true;
