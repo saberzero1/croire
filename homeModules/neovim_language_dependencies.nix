@@ -5,6 +5,7 @@
       packages = [
         pkgs.nodePackages_latest.nodejs
         pkgs.lua
+        pkgs.luajit
       ];
     };
   };
