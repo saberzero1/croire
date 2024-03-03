@@ -32,7 +32,7 @@
         nvim = {
           enable = true;
           recursive = true;
-          source = ./shelter;
+          source = ../../shelter;
         };
       };
     };
