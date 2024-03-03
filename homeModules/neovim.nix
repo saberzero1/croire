@@ -13,6 +13,7 @@
         pkgs.unzip
         pkgs.gcc
         pkgs.ripgrep
+        pkgs.fd
       ];
     };
     programs = {
