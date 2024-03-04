@@ -19,9 +19,10 @@
           # nixvim.nixDarwinModules.nixvim
         ];
       };
-    programs = nixvim = {
-    enable = true;
+    programs = {
+      nixvim = {
+        enable = true;
+      };
+    };
   };
-  ;
-  };
-  }
+}
