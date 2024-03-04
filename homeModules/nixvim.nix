@@ -28,45 +28,43 @@
             enable = true;
             style = "storm";
             styles = {
-              comments =
-                {
-                  italic = true;
-                }
-                  floats = "dark";
+              comments = {
+                italic = true;
+              };
+              floats = "dark";
               functions = { };
-              keywords =
-                {
-                  italic = true;
-                }
-                  sidebars = "dark";
+              keywords = {
+                italic = true;
+              };
+              sidebars = "dark";
               variables = { };
-            }
-              }
-              };
-            plugins = {
-              lightline = {
-                enable = true;
-              }
-                };
-              extraPlugins = with pkgs.vimPlugins; [
-                vim-nix
-              ];
-              globals = {
-                mapleader = " ";
-              };
-              # https://github.com/nix-community/nixvim?tab=readme-ov-file#key-mappings
-              keymaps = [
-                {
-                  mode = "n";
-                  key = ";";
-                  action = ":";
-                }
-              ];
-              extraConfigLua = ''
-                -- Print a little welcome message when nvim is opened!
-                print("Hello world!")
-              '';
             };
           };
         };
-      }
+        plugins = {
+          lightline = {
+            enable = true;
+          }
+            };
+          extraPlugins = with pkgs.vimPlugins; [
+            vim-nix
+          ];
+          globals = {
+            mapleader = " ";
+          };
+          # https://github.com/nix-community/nixvim?tab=readme-ov-file#key-mappings
+          keymaps = [
+            {
+              mode = "n";
+              key = ";";
+              action = ":";
+            }
+          ];
+          extraConfigLua = ''
+            -- Print a little welcome message when nvim is opened!
+            print("Hello world!")
+          '';
+        };
+      };
+    };
+  }
