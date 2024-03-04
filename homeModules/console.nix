@@ -15,8 +15,8 @@
         enable = true;
         enableZshIntegration = true;
         package = pkgs.oh-my-posh;
-        settings = ;
-          useTheme = "tokyonight_storm";
+        settings = { };
+        useTheme = "tokyonight_storm";
       };
       zsh = {
         dotDir = ".config/zsh";
