@@ -27,10 +27,14 @@
         };
         oh-my-zsh = { };
         package = pkgs.zsh;
-        plugins = ;
-          profileExtra = "";
-        syntaxHighlighting = ;
-          };
+        plugins = { };
+        profileExtra = ''
+          '''
+
+          '''
+        '';
+        syntaxHighlighting = { };
       };
     };
-  }
+  };
+}
