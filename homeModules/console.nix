@@ -27,7 +27,7 @@
         };
         oh-my-zsh = { };
         package = pkgs.zsh;
-        plugins = { };
+        plugins = [ ];
         profileExtra = ''
           '''
 
