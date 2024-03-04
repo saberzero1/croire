@@ -16,61 +16,57 @@
         enable = true;
         clipboard = {
           register = "unnamedplus";
-          providers =
-            { null
+          providers = { };
+        };
+        options = {
+          number = true; # Show line numbers
+          relativenumber = true; # Show relative line numbers
+          shiftwidth = 4; # Tab width should be 2
+        };
+        colorschemes = {
+          tokyonight = {
+            enable = true;
+            style = "storm";
+            styles = {
+              comments =
+                {
+                  italic = true;
+                }
+                  floats = "dark";
+              functions = { };
+              keywords =
+                {
+                  italic = true;
+                }
+                  sidebars = "dark";
+              variables = { };
             }
-              };
-              options = {
-              number = true;         # Show line numbers
-              relativenumber = true; # Show relative line numbers
-              shiftwidth = 4;        # Tab width should be 2
-              };
-              colorschemes = {
-              tokyonight = {
-              enable = true;
-              style = "storm";
-              styles = {
-              comments = {
-              italic = true;
-              }
-              floats = "dark";
-              functions = {
-              null
-              }
-              keywords = {
-              italic = true;
-              }
-              sidebars = "dark";
-              variables = {
-              null
-              }
-              }
               }
               };
-              plugins = {
+            plugins = {
               lightline = {
-              enable = true;
+                enable = true;
               }
-              };
+                };
               extraPlugins = with pkgs.vimPlugins; [
-              vim-nix
+                vim-nix
               ];
               globals = {
-              mapleader = " ";
+                mapleader = " ";
               };
               # https://github.com/nix-community/nixvim?tab=readme-ov-file#key-mappings
               keymaps = [
-              {
-              mode = "n";
-              key = ";";
-              action = ":";
-              }
+                {
+                  mode = "n";
+                  key = ";";
+                  action = ":";
+                }
               ];
               extraConfigLua = ''
-      -- Print a little welcome message when nvim is opened!
-      print("Hello world!")
-    '';
-              };
-              };
-              };
-              }
+                -- Print a little welcome message when nvim is opened!
+                print("Hello world!")
+              '';
+            };
+          };
+        };
+      }
