@@ -3,7 +3,8 @@
   config = {
     home = {
       packages = [
-        pkgs.nixvim
+        # pkgs.nixvim
+        pkgs.nixvim.homeManagerModules.nixvim
         # For home-manager
         # nixvim.homeManagerModules.nixvim
         # For NixOS
