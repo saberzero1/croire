@@ -113,6 +113,36 @@
             action = vim.diagnostic.setloclist;
             desc = "Open diagnostic [Q]uickfix list";
           }
+          {
+            mode = "t";
+            key = "<Esc><Esc>";
+            action = "<C-\\><C-n>";
+            desc = "Exit terminal mode";
+          }
+          {
+            mode = "n";
+            key = "<C-h>";
+            action = "<C-w><C-h>";
+            desc = "Move focus to the left window";
+          }
+          {
+            mode = "n";
+            key = "<C-l>";
+            action = "<C-w><C-l>";
+            desc = "Move focus to the right window";
+          }
+          {
+            mode = "n";
+            key = "<C-j>";
+            action = "<C-w><C-j>";
+            desc = "Move focus to the lower window";
+          }
+          {
+            mode = "n";
+            key = "<C-k>";
+            action = "<C-w><C-k>";
+            desc = "Move focus to the upper window";
+          }
         ];
         extraConfigLua = ''
           -- Print a little welcome message when nvim is opened!
