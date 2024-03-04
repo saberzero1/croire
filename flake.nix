@@ -1,11 +1,11 @@
 {
-  description = "NixOS Configuration.";
+  description = "";
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
     home-manager-2.url = "flake:home-manager";
-    stylix.url = "github:danth/stylix";
+    nixvim.url = "github:nix-community/nixvim/nixos-23.11";
   };
   outputs = inputs:
     let
