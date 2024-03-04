@@ -155,14 +155,14 @@
             group = "kickstart-highlight-yank";
             callback = {
               __raw = "function() vim.highlight.on_yank() end";
+            }
+              }
+              ];
+            extraConfigLua = ''
+              -- Print a little welcome message when nvim is opened!
+              print("Hello world!")
+            '';
+          };
             };
-          }
-          ];
-          extraConfigLua = ''
-            -- Print a little welcome message when nvim is opened!
-            print("Hello world!")
-          '';
-        };
-      };
-    };
-  }
+            };
+            }
