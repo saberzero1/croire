@@ -16,57 +16,106 @@
     programs = {
       nixvim = {
         enable = true;
-        clipboard = {
-          register = "unnamedplus";
-          providers = { };
-        };
+        # clipboard = {
+        #   register = "unnamedplus";
+        #   providers = {};
+        # };
         options = {
           number = true; # Show line numbers
           relativenumber = true; # Show relative line numbers
           shiftwidth = 4; # Tab width should be 4
-        };
-        colorschemes = {
-          tokyonight = {
-            enable = true;
-            style = "storm";
-            styles = {
-              comments = {
-                italic = true;
+          mouse = "a";
+          showmode = false;
+          clipboard = "unnamedplus";
+          breakindent = true;
+          undofile = true;
+          ignorecase = true;
+          smartcase = true;
+          signcolumn = "yes";
+          updatetime = 250;
+          timeoutlen = 300;
+          splitright = true;
+          splitbelow = true;
+          list = true;
+          listchars = {
+            tab = "» ", trail = "·", nbsp = "␣" };
+            inccommand = "split";
+            cursorline = true;
+            scrolloff = 10;
+            hlsearch = true;
+          };
+          colorschemes = {
+            tokyonight = {
+              enable = true;
+              style = "storm";
+              styles = {
+                comments = {
+                  italic = true;
+                };
+                floats = "dark";
+                functions = { };
+                keywords = {
+                  italic = true;
+                };
+                sidebars = "dark";
+                variables = { };
               };
-              floats = "dark";
-              functions = { };
-              keywords = {
-                italic = true;
-              };
-              sidebars = "dark";
-              variables = { };
             };
           };
-        };
-        plugins = {
-          lightline = {
-            enable = true;
+          plugins = {
+            lightline = {
+              enable = true;
+            };
           };
+          extraPlugins = with pkgs.vimPlugins; [
+            vim-nix
+          ];
+          globals = {
+            mapleader = " ";
+            maplocalleader = " ";
+          };
+          # https://github.com/nix-community/nixvim?tab=readme-ov-file#key-mappings
+          keymaps = [
+            {
+              mode = "n";
+              key = ";";
+              action = ":";
+            }
+            {
+              mode = "n";
+              key = "<Esc>";
+              action = "<cmd>nohlsearch<CR>";
+            }
+            {
+              mode = "n";
+              key = "[d";
+              action = vim.diagnostic.goto_prev;
+              desc = "Go to previous [D]iagnostic message";
+            }
+            {
+              mode = "n";
+              key = "]d";
+              action = vim.diagnostic.goto_next;
+              desc = "Go to next [D]iagnostic message";
+            }
+            {
+              mode = "n";
+              key = "<leader>e";
+              action = vim.diagnostic.open_float;
+              desc = "Show diagnostic [E]rror messages";
+            }
+            {
+              mode = "n";
+              key = "<leader>q";
+              action = vim.diagnostic.setloclist;
+              desc = "Open diagnostic [Q]uickfix list";
+            }
+          ];
+          extraConfigLua = ''
+            -- Print a little welcome message when nvim is opened!
+            print("Hello world!")
+          '';
         };
-        extraPlugins = with pkgs.vimPlugins; [
-          vim-nix
-        ];
-        globals = {
-          mapleader = " ";
-        };
-        # https://github.com/nix-community/nixvim?tab=readme-ov-file#key-mappings
-        keymaps = [
-          {
-            mode = "n";
-            key = ";";
-            action = ":";
-          }
-        ];
-        extraConfigLua = ''
-          -- Print a little welcome message when nvim is opened!
-          print("Hello world!")
-        '';
       };
     };
-  };
-}
+  }
