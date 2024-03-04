@@ -1,7 +1,7 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
   config = {
-    nixvim-import = { pkgs, lib, ... }:
+    home =
       let
         nixvim = import (builtins.fetchGit {
           url = "https://github.com/nix-community/nixvim";
@@ -10,16 +10,18 @@
         });
       in
       {
-        imports = [
+        packages = [
           # For home-manager
           nixvim.homeManagerModules.nixvim
           # For NixOS
-          nixvim.nixosModules.nixvim
+          # nixvim.nixosModules.nixvim
           # For nix-darwin
-          nixvim.nixDarwinModules.nixvim
+          # nixvim.nixDarwinModules.nixvim
         ];
-
-        programs.nixvim.enable = true;
       };
+    programs = nixvim = {
+    enable = true;
   };
-}
+  ;
+  };
+  }
