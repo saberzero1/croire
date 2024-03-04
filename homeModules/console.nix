@@ -7,21 +7,30 @@
         pkgs.zsh
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
+        pkgs.oh-my-posh
       ];
     };
     programs = {
-      zsh = {
+      oh-my-posh = {
         enable = true;
+        enableZshIntegration = true;
+        package = pkgs.oh-my-posh;
+        settings = ;
+          useTheme = "tokyonight_storm";
+      };
+      zsh = {
+        dotDir = ".config/zsh";
+        enable = true;
+        enableCompletion = true;
+        history = {
+          save = 100000;
+        };
         oh-my-zsh = { };
         package = pkgs.zsh;
-        syntaxHighlighting = {
-          enable = true;
-          package = pkgs.zsh-syntax-highlighting;
-        };
-        zplug = {
-          enable = true;
-        };
+        plugins = ;
+          profileExtra = "";
+        syntaxHighlighting = ;
+          };
       };
     };
-  };
-}
+  }
