@@ -4,6 +4,7 @@
     environment = {
       systemPackages = [
         pkgs.ulauncher
+        pkgs.freerdp
       ];
     };
   };
