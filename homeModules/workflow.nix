@@ -6,5 +6,17 @@
         pkgs.ulauncher
       ];
     };
+    services = {
+      espanso = {
+        configs = default = { };
+        ;
+        enable = true;
+        matches = default = {
+        matches = [ ];
+      };
+      ;
+      package = pkgs.espanso;
+    };
   };
+};
 }
