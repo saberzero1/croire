@@ -15,7 +15,6 @@
         matches = {
           matches = [ ];
         };
-        ;
         package = pkgs.espanso;
       };
     };
