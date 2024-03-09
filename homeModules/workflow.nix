@@ -8,8 +8,9 @@
     };
     services = {
       espanso = {
-        configs = default = { };
-        ;
+        configs = {
+          default = { };
+        };
         enable = true;
         matches = default = {
         matches = [ ];
