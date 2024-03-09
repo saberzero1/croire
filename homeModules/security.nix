@@ -5,6 +5,7 @@
       packages = [
         pkgs.gnupg
         pkgs.sshpass
+        pkgs.pika-backup
       ];
     };
     programs = {
