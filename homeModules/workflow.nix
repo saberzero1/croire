@@ -12,12 +12,12 @@
           default = { };
         };
         enable = true;
-        matches = default = {
-        matches = [ ];
+        matches = {
+          matches = [ ];
+        };
+        ;
+        package = pkgs.espanso;
       };
-      ;
-      package = pkgs.espanso;
     };
   };
-};
 }
