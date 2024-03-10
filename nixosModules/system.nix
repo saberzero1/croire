@@ -7,8 +7,8 @@
     environment = {
       systemPackages = [
         pkgs.libusb
-        pkgs.zsa-udev-rules
         pkgs.wally-cli
+        pkgs.zsa-udev-rules
       ];
     };
     fonts = {
