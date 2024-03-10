@@ -158,6 +158,7 @@ let
             extraGroups = [
               "wheel"
               "networkmanager"
+              "plugdev"
             ];
             name = "saberzero1";
           };

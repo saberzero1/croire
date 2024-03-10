@@ -117,16 +117,16 @@ let
       users = {
         users = {
           saberzero1 = {
-            name = ;
-              };
+            name = "saberzero1";
           };
         };
       };
     };
-    in
-    inputs.nixpkgs.lib.nixosSystem {
-    modules = [
-      nixosModule
-    ];
-    system = "x86_64-linux";
-  }
+  };
+in
+inputs.nixpkgs.lib.nixosSystem {
+  modules = [
+    nixosModule
+  ];
+  system = "x86_64-linux";
+}
