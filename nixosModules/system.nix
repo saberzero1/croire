@@ -76,18 +76,16 @@
     };
     users = {
       groups = {
-        plugdev = {
-          name = ;
-            };
-        };
-        mutableUsers = true;
-        users = {
-          saberzero1 = {
-            expires = null;
-            isNormalUser = true;
-            useDefaultShell = true;
-          };
+        plugdev = { };
+      };
+      mutableUsers = true;
+      users = {
+        saberzero1 = {
+          expires = null;
+          isNormalUser = true;
+          useDefaultShell = true;
         };
       };
     };
-  }
+  };
+}
