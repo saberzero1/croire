@@ -1,9 +1,9 @@
 {
   description = "";
   inputs = {
+    home-manager.url = "github:nix-community/home-manager/d579633ff9915a8f4058d5c439281097e92380a8";
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
-    home-manager.url = "flake:home-manager";
     home-manager-2.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
   };

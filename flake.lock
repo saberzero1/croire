@@ -110,8 +110,10 @@
         "type": "github"
       },
       "original": {
-        "id": "home-manager",
-        "type": "indirect"
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "d579633ff9915a8f4058d5c439281097e92380a8",
+        "type": "github"
       }
     },
     "home-manager-2": {

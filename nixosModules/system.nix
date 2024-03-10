@@ -9,6 +9,9 @@
         pkgs.libusb
         pkgs.wally-cli
         pkgs.zsa-udev-rules
+        pkgs.qmk
+        pkgs.gtk3
+        pkgs.webkitgtk
       ];
     };
     fonts = {
@@ -28,6 +31,9 @@
     };
     hardware = {
       keyboard = {
+        qmk = {
+          enable = true;
+        };
         zsa = {
           enable = true;
         };
@@ -55,6 +61,11 @@
         "nl_NL.UTF-8/UTF-8"
         "nl_NL/ISO-8859-1"
       ];
+    };
+    nix = {
+      channel = {
+        enable = true;
+      };
     };
     programs = {
       nano = {
