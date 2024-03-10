@@ -58,7 +58,7 @@
     };
     nixpkgs = {
       overlays = [
-        super: self: {
+        (super: self: {
           zsa-udev-rules = super.zsa-udev-rules.overrideAttrs (final: prev: {
             version = "2.1.3";
             src = self.fetchFromGitHub {
@@ -68,7 +68,7 @@
               sha256 = "sha256-meR2V7T4hrJFXFPLENHoAgmOILxxynDBk0BLqzsAZvQ=";
             };
           });
-        }
+        })
       ];
     };
     programs = {
