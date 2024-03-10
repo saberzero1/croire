@@ -64,6 +64,9 @@
     services = {
       udev = {
         enable = true;
+        packages = [
+          pkgs.zsa-udev-rules
+        ];
       };
     };
     system = {
