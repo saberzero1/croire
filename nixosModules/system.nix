@@ -75,14 +75,19 @@
       timeZone = "Europe/Brussels";
     };
     users = {
-      mutableUsers = true;
-      users = {
-        saberzero1 = {
-          expires = null;
-          isNormalUser = true;
-          useDefaultShell = true;
+      groups = {
+        plugdev = {
+          name = ;
+            };
+        };
+        mutableUsers = true;
+        users = {
+          saberzero1 = {
+            expires = null;
+            isNormalUser = true;
+            useDefaultShell = true;
+          };
         };
       };
     };
-  };
-}
+  }
