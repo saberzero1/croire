@@ -56,6 +56,21 @@
         "nl_NL/ISO-8859-1"
       ];
     };
+    nixpkgs = {
+      overlays = [
+        super: self: {
+          zsa-udev-rules = super.zsa-udev-rules.overrideAttrs (final: prev: {
+            version = "2.1.3";
+            src = self.fetchFromGitHub {
+              owner = "zsa";
+              repo = "wally";
+              rev = "623a50d0e0b90486e42ad8ad42b0a7313f7a37b3";
+              sha256 = "sha256-meR2V7T4hrJFXFPLENHoAgmOILxxynDBk0BLqzsAZvQ=";
+            };
+          });
+        }
+      ];
+    };
     programs = {
       nano = {
         enable = false;
