@@ -6,7 +6,7 @@
         pkgs.ulauncher
         pkgs.freerdp
         pkgs.espanso
-        appflowy = pkgs.appflowy.overrideDerivation (oldAttrs: {
+        pkgs.appflowy.overrideDerivation (oldAttrs: {
           version = "0.5.1";
           src = fetchzip {
             url = "https://github.com/AppFlowy-IO/appflowy/releases/download/0.5.1/AppFlowy-0.5.1-linux-x86_64.tar.gz";
