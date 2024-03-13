@@ -1,4 +1,8 @@
-{ stdenv
+{ inputs, ... }@flakeContext:
+{ config
+, lib
+, pkgs
+, stdenv
 , lib
 , fetchzip
 , autoPatchelfHook
