@@ -1,5 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, fetchzip, ... }: {
   config = {
     environment = {
       systemPackages = [
