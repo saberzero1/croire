@@ -6,7 +6,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
-    nixos-modules-overrides.url = "path:nixosModules/overrides";
   };
   outputs = inputs:
     let
@@ -60,9 +59,6 @@
         utils = import ./nixosModules/utils.nix flakeContext;
         vscodium = import ./nixosModules/vscodium.nix flakeContext;
         workflow = import ./nixosModules/workflow.nix flakeContext;
-      };
-      nixosModulesOverrides = {
-        appflowy = import ./nixosModules/overrides/appflowy.nix flakeContext;
       };
     };
 }
