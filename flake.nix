@@ -6,6 +6,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
+    nixos-modules-overrides.url = "path:nixosModules/overrides";
   };
   outputs = inputs:
     let
