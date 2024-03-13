@@ -1,5 +1,8 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
+  imports = [
+    inputs.self.nixosModulesOverrides
+  ];
   config = {
     environment = {
       systemPackages = [
