@@ -6,6 +6,7 @@
         pkgs.ulauncher
         pkgs.freerdp
         pkgs.espanso
+        pkgs.appflowy
       ];
     };
     services = {
