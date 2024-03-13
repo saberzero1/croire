@@ -13,7 +13,7 @@
             hash = "sha256-HET65l+DnSzSu3ZpwJHJ3aRE6WRPW/S/d9aiEy/Onhk=";
             stripRoot = false;
           };
-        });
+        })
       ];
     };
     services = {
