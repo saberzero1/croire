@@ -9,7 +9,7 @@
         pkgs.ulauncher
         pkgs.freerdp
         pkgs.espanso
-        inputs.self.nixosModules.overrides.appflowy
+        pkgs.appflowy
       ];
     };
     services = {
