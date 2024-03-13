@@ -9,7 +9,7 @@
         pkgs.appflowy
       ];
     };
-    appflowy = super.appflowy.overrideAttrs ( old: rec {
+    appflowy = appflowy.overrideAttrs ( old: rec {
       pname = "appflowy";
       version = "0.5.1";
       src = super.fetchzip {
