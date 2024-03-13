@@ -61,5 +61,8 @@
         vscodium = import ./nixosModules/vscodium.nix flakeContext;
         workflow = import ./nixosModules/workflow.nix flakeContext;
       };
+      nixosModulesOverrides = {
+        appflowy = import ./nixosModules/overrides/appflowy.nix flakeContext;
+      };
     };
 }
