@@ -16,9 +16,11 @@
           };
         };
         matches = {
-          base = {
-            includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/base.yml"];
-          };
+          base = [
+            {
+              includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/base.yml"];
+            }
+          ];
         };
       };
     };
