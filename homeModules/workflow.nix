@@ -29,8 +29,8 @@ in
       user = {
         tmpfiles = {
           rules = [
-            "L+ %h/.config/espanso/default.yml 0755 - - - ${espansoConfigFile}"
-            "L+ %h/.config/espanso/base.yml 0755 - - - ${espansoMatchesFile}"
+            "L+ %h/.config/espanso/config/default.yml 0755 - - - ${espansoConfigFile}"
+            "L+ %h/.config/espanso/config/base.yml 0755 - - - ${espansoMatchesFile}"
           ];
         };
       };
