@@ -8,14 +8,26 @@
     };
     services = {
       espanso = {
-        configs = {
-          default = { };
-        };
         enable = true;
-        matches = {
-          matches = [ ];
-        };
         package = pkgs.espanso;
+        configs = {
+          default = [
+            {
+              includes = [
+                "../../Documents/Repos/dotfiles/totten/config/default.yml"
+              ];
+            }
+          ];
+        };
+        matches = {
+          base = [
+            {
+              includes = [
+                "../../Documents/Repos/dotfiles/totten/config/base.yml"
+              ];
+            }
+          ];
+        };
       };
     };
   };
