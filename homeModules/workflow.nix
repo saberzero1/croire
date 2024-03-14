@@ -1,5 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: with builtins {
   config = {
     home = {
       packages = [
@@ -13,14 +13,14 @@
         configs = {
           default = [
             {
-              includes = "" + "../../Documents/Repos/dotfiles/totten/config/default.yml" + "";
+              includes = escapeNixString "../../Documents/Repos/dotfiles/totten/config/default.yml";
             }
           ];
         };
         matches = {
           base = [
             {
-              includes = "" + "../../Documents/Repos/dotfiles/totten/config/base.yml" + "";
+              includes = escapeNixString "../../Documents/Repos/dotfiles/totten/config/base.yml";
             }
           ];
         };
