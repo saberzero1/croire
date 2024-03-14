@@ -40,7 +40,7 @@
           "https://github.com"
           "https://gist.github.com"
         ];
-        extension = [
+        extensions = [
           pkgs.gh-dash
         ];
       };
