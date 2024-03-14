@@ -38,6 +38,7 @@ in
         enable = true;
         package = pkgs.git;
         signing = {
+          key = null;
           signByDefault = true;
         };
         userEmail = "github@emilebangma.com";
