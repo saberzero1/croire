@@ -12,16 +12,16 @@
         package = pkgs.espanso;
         configs = {
           default = {
-            includes = {[
+            includes = {
               "${"../../Documents/Repos/dotfiles/totten/config/default.yml"}"
-            ]};
+            };
           };
         };
         matches = {
           base = {
-            includes = {[
+            includes = {
               "${"../../Documents/Repos/dotfiles/totten/config/base.yml"}"
-            ]};
+            };
           };
         };
       };
