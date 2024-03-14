@@ -41,7 +41,7 @@
           "https://gist.github.com"
         ];
         extension = [
-          "dlvhdr/gh-dash"
+          pkgs.gh-dash
         ];
       };
     };
