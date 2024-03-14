@@ -11,18 +11,18 @@
         enable = true;
         package = pkgs.espanso;
         configs = {
-          default = {
-            includes = {
-              "${"../../Documents/Repos/dotfiles/totten/config/default.yml"}"
-            };
-          };
+          default = [
+            {
+              includes = "${"../../Documents/Repos/dotfiles/totten/config/default.yml"}";
+            }
+          ];
         };
         matches = {
-          base = {
-            includes = {
-              "${"../../Documents/Repos/dotfiles/totten/config/base.yml"}"
-            };
-          };
+          base = [
+            {
+              includes = "${"../../Documents/Repos/dotfiles/totten/config/base.yml"}";
+            }
+          ];
         };
       };
     };
