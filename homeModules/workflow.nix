@@ -13,14 +13,14 @@
         configs = {
           default = [
             {
-              includes = escapeNixString "../../Documents/Repos/dotfiles/totten/config/default.yml";
+              includes = (escapeNixString "../../Documents/Repos/dotfiles/totten/config/default.yml");
             }
           ];
         };
         matches = {
           base = [
             {
-              includes = escapeNixString "../../Documents/Repos/dotfiles/totten/config/base.yml";
+              includes = (escapeNixString "../../Documents/Repos/dotfiles/totten/config/base.yml");
             }
           ];
         };
