@@ -11,7 +11,7 @@
     programs = {
       git = {
         signing = {
-          gpgPath = "\\\${pkgs.gnupg}/bin/gpg2";
+          gpgPath = "${pkgs.gnupg}/bin/gpg2";
         };
       };
     };
