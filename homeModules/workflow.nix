@@ -13,14 +13,14 @@
         configs = {
           default = [
             {
-              includes = (escapeNixString "../../Documents/Repos/dotfiles/totten/config/default.yml");
+              includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/default.yml"];
             }
           ];
         };
         matches = {
           base = [
             {
-              includes = (escapeNixString "../../Documents/Repos/dotfiles/totten/config/base.yml");
+              includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/base.yml"];
             }
           ];
         };
