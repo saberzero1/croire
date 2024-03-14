@@ -4,6 +4,7 @@
     home = {
       packages = [
         pkgs.diff-so-fancy
+        pkgs.gh
       ];
     };
     programs = {
@@ -28,6 +29,20 @@
         };
         userEmail = "github@emilebangma.com";
         userName = "saberzero1";
+      };
+      gh = {
+        enable = true;
+        package = pkgs.gh;
+        gitCredentialHelper = {
+          enable = true;
+        };
+        hosts = [
+          "https://github.com"
+          "https://gist.github.com"
+        ];
+        extension = [
+          "dlvhdr/gh-dash"
+        ];
       };
     };
   };
