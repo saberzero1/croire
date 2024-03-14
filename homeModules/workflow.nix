@@ -1,8 +1,10 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }:
 let
-  espansoConfigFile = pkgs.writeText "default.yml" builtins.readFile /home/saberzero1/Documents/Repos/dotfiles/totten/config/default.yml;
-  espansoMatchesFile = pkgs.writeText "base.yml" builtins.readFile /home/saberzero1/Documents/Repos/dotfiles/totten/config/base.yml;
+  espansoConfigFileContent = builtins.readFile /home/saberzero1/Documents/Repos/dotfiles/totten/config/default.yml;
+  espansoMatchesFileContent = builtins.readFile /home/saberzero1/Documents/Repos/dotfiles/totten/config/base.yml;
+  espansoConfigFile = pkgs.writeText "default.yml" "${espansoConfigFileContent}";
+  espansoMatchesFile = pkgs.writeText "base.yml" "${espansoMatchesFileContent}";
 in
 {
   config = {
