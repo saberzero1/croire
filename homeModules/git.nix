@@ -3,10 +3,12 @@
 let
   config = pkgs.lib.mkMerge [
     # Configure key name per device.
+    #
+    # Use gpg2.
     # 
     # gpg2 --full-generate-key
     # gpg2 --list-secret-keys --keyid-format=long 
-    # gpg --armor --export 1234567890ABCDEF
+    # gpg2 --armor --export 1234567890ABCDEF
     (pkgs.lib.mkIf (config.networking.hostName == "nixos") {
       config.programs.git.signing.key = null;
     })
