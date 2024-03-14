@@ -15,7 +15,7 @@
             {
               includes = [
                 ''
-                  ${"../../Documents/Repos/dotfiles/totten/config/default.yml"}
+                  "../../Documents/Repos/dotfiles/totten/config/default.yml"
                 ''
               ];
             }
@@ -26,7 +26,7 @@
             {
               includes = [
                 ''
-                  ${"../../Documents/Repos/dotfiles/totten/config/base.yml"}
+                  "../../Documents/Repos/dotfiles/totten/config/base.yml"
                 ''
               ];
             }
