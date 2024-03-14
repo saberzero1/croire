@@ -11,18 +11,14 @@
         enable = true;
         package = pkgs.espanso;
         configs = {
-          default = [
-            {
-              includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/default.yml"];
-            }
-          ];
+          default = {
+            includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/default.yml"];
+          };
         };
         matches = {
-          base = [
-            {
-              includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/base.yml"];
-            }
-          ];
+          base = {
+            includes = builtins.toJSON ["../../Documents/Repos/dotfiles/totten/config/base.yml"];
+          };
         };
       };
     };
