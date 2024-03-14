@@ -22,7 +22,7 @@ in
         enable = true;
         package = pkgs.espanso;
         configs = { };
-        matches = [ ];
+        matches = { };
       };
     };
     systemd = {
