@@ -9,7 +9,7 @@ let
       config.programs.git.signing.key = null;
     })
     (pkgs.lib.mkIf (config.networking.hostName == "croire-low") {
-      config.programs.git.signing.key = "46D5EEEA8690F388";
+      config.programs.git.signing.key = "198769D1B0D0DF8C";
     })
   ];
 in
