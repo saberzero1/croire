@@ -1,5 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
 let
   config = pkgs.lib.mkMerge [
     (pkgs.lib.mkIf (config.networking.hostName == "nixos") {
@@ -13,6 +13,7 @@ let
     })
   ];
 in
+{
   config = {
     home = {
       packages = [
