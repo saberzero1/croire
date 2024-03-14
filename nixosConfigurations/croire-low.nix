@@ -21,7 +21,6 @@ let
       }
     ];
     config = {
-      programs.git.signing.key = "46D5EEEA8690F388";
       boot = {
         extraModulePackages = [ ];
         hardwareScan = true;
