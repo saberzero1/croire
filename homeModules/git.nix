@@ -1,5 +1,18 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
+let
+  config = pkgs.lib.mkMerge [
+    (pkgs.lib.mkIf (config.networking.hostName == "nixos") {
+      programs.git.signing.key = null;
+    })
+    (pkgs.lib.mkIf (config.networking.hostName == "croire") {
+      programs.git.signing.key = null;
+    })
+    (pkgs.lib.mkIf (config.networking.hostName == "croire-low") {
+      programs.git.signing.key = "46D5EEEA8690F388";
+    })
+  ];
+in
   config = {
     home = {
       packages = [
@@ -24,7 +37,6 @@
         enable = true;
         package = pkgs.git;
         signing = {
-          key = null;
           signByDefault = true;
         };
         userEmail = "github@emilebangma.com";
