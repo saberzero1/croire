@@ -10,7 +10,7 @@ let
     # gpg2 --list-secret-keys --keyid-format=long 
     # gpg2 --armor --export 1234567890ABCDEF
     (pkgs.lib.mkIf (config.networking.hostName == "nixos") {
-      config.programs.git.signing.key = null;
+      config.programs.git.signing.key = "41AEE99107640F10";
     })
     (pkgs.lib.mkIf (config.networking.hostName == "croire") {
       config.programs.git.signing.key = null;
