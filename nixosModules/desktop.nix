@@ -59,6 +59,9 @@ in
           yelp # help viewer
         ];
       };
+      sessionVariables = {
+        DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
+      };
     };
     services = {
       xserver = {

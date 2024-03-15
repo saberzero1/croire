@@ -26,10 +26,5 @@
         };
       };
     };
-    environment = {
-      sessionVariables = {
-        DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
-      };
-    };
   };
 }
