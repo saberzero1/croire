@@ -74,6 +74,10 @@ in
           "x-scheme-handler/unknown" = "Wavebox.desktop";
         };
       };
+      portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+      }
     };
     services = {
       xserver = {
