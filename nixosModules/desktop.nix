@@ -63,6 +63,18 @@ in
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
       };
     };
+    xdg = {
+      mime = {
+        enable = true;
+        defaultApplications = {
+          "text/html" = "Wavebox.desktop";
+          "x-scheme-handler/http" = "Wavebox.desktop";
+          "x-scheme-handler/https" = "Wavebox.desktop";
+          "x-scheme-handler/about" = "Wavebox.desktop";
+          "x-scheme-handler/unknown" = "Wavebox.desktop";
+        };
+      };
+    };
     services = {
       xserver = {
         desktopManager = {
