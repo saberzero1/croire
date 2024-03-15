@@ -16,7 +16,9 @@ let
     tv-glitch-color=#64A0FF
   '';
   browser = [
-    "Wavebox.desktop"
+    # Wavebox doesn't handle external links currently.
+    # "Wavebox.desktop"
+    "org.gnome.epiphany.desktop"
   ];
   associations = {
     "text/html" = browser;
