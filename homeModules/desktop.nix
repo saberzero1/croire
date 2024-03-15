@@ -2,7 +2,9 @@
 { config, lib, pkgs, ... }: 
 let
   browser = [
-    "Wavebox.desktop"
+    # Wavebox doesn't handle external links currently.
+    # "Wavebox.desktop"
+    "org.gnome.epiphany.desktop"
   ];
   associations = {
     "text/html" = browser;

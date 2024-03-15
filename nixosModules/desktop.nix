@@ -52,7 +52,7 @@ in
       gnome = {
         excludePackages = with pkgs.gnome; [
           baobab # disk usage analyzer
-          epiphany # web browser
+          # epiphany # web browser
           geary # e-mail client
           gnome-backgrounds
           gnome-bluetooth
