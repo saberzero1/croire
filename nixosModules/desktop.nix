@@ -84,7 +84,6 @@ in
     xdg = {
       mime = {
         enable = true;
-        associations.added = associations;
         defaultApplications = associations;
       };
       portal = {
