@@ -28,6 +28,7 @@ let
     "x-scheme-handler/chrome" = browser;
     "x-scheme-handler/about" = browser;
     "x-scheme-handler/unknown" = browser;
+    "x-scheme-handler/appflowy-flutter" = ["appflowy.desktop"];
     "application/x-extension-htm" = browser;
     "application/x-extension-html" = browser;
     "application/x-extension-shtml" = browser;
