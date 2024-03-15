@@ -77,7 +77,7 @@ in
       portal = {
         enable = true;
         xdgOpenUsePortal = true;
-      }
+      };
     };
     services = {
       xserver = {
