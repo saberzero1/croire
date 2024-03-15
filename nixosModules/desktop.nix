@@ -15,6 +15,24 @@ let
     tv-glitch-speed=2.00
     tv-glitch-color=#64A0FF
   '';
+  browser = [
+    "Wavebox.desktop"
+  ];
+  associations = {
+    "text/html" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
+    "x-scheme-handler/ftp" = browser;
+    "x-scheme-handler/chrome" = browser;
+    "x-scheme-handler/about" = browser;
+    "x-scheme-handler/unknown" = browser;
+    "application/x-extension-htm" = browser;
+    "application/x-extension-html" = browser;
+    "application/x-extension-shtml" = browser;
+    "application/xhtml+xml" = browser;
+    "application/x-extension-xhtml" = browser;
+    "application/x-extension-xht" = browser;
+  };
 in
 {
   config = {
@@ -66,14 +84,12 @@ in
     xdg = {
       mime = {
         enable = true;
-        defaultApplications = {
-          "text/html" = "Wavebox.desktop";
-          "x-scheme-handler/http" = "Wavebox.desktop";
-          "x-scheme-handler/https" = "Wavebox.desktop";
-          "x-scheme-handler/about" = "Wavebox.desktop";
-          "x-scheme-handler/unknown" = "Wavebox.desktop";
-        };
       };
+      mimeApps = {
+        enable = true;
+        associations.added = associations;
+        defaultApplications = associations;
+      }
       portal = {
         enable = true;
         xdgOpenUsePortal = true;
