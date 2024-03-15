@@ -28,7 +28,7 @@
     };
     environment = {
       sessionVariables = {
-        DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox"
+        DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
       };
     };
   };
