@@ -89,7 +89,7 @@ in
         enable = true;
         associations.added = associations;
         defaultApplications = associations;
-      }
+      };
       portal = {
         enable = true;
         xdgOpenUsePortal = true;
