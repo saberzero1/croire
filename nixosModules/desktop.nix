@@ -84,9 +84,6 @@ in
     xdg = {
       mime = {
         enable = true;
-      };
-      mimeApps = {
-        enable = true;
         associations.added = associations;
         defaultApplications = associations;
       };
