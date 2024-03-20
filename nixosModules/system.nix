@@ -12,6 +12,7 @@
         pkgs.qmk
         pkgs.gtk3
         pkgs.webkitgtk
+        pkgs.libuuid
       ];
     };
     fonts = {
