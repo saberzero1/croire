@@ -34,6 +34,9 @@
           '''
         '';
         syntaxHighlighting = { };
+        shellAliases = {
+          uuid = "uuidgen";
+        };
       };
     };
   };
