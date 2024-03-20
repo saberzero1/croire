@@ -84,7 +84,7 @@
       };
     };
     time = {
-      timeZone = "Europe/Brussels";
+      timeZone = "Europe/Amsterdam";
     };
     users = {
       groups = {
