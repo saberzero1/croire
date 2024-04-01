@@ -41,6 +41,7 @@ in
   config = {
     environment = {
       systemPackages = [
+        pkgs.gnome.gdm
         pkgs.gnome.gnome-shell
         pkgs.gnome.gnome-shell-extensions
         pkgs.gnome-browser-connector
@@ -72,7 +73,7 @@ in
           gnome-system-monitor
           gnome-themes-extra
           pkgs.glib
-          pkgs.gnome-connections
+          # pkgs.gnome-connections
           pkgs.gnome-photos
           pkgs.gnome-text-editor
           pkgs.gnome-tour
@@ -107,6 +108,11 @@ in
           wallpaper = {
             combineScreens = false;
             mode = "fill";
+          };
+        };
+        displayManager = {
+          gdm = {
+            enable = true;
           };
         };
       };
