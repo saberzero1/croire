@@ -13,6 +13,12 @@
         pkgs.gtk3
         pkgs.webkitgtk
         pkgs.libuuid
+        pkgs.wineWowPackages.stable
+        pkgs.wine
+        (pkgs.wine.override { wineBuild = "wine64"; })
+        pkgs.wine64
+        pkgs.wineWowPackages.staging
+        pkgs.winetricks
       ];
     };
     fonts = {
