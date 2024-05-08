@@ -113,15 +113,15 @@ let
         printing = {
           enable = true;
         };
+        displayManager = {
+          autoLogin = {
+            enable = true;
+            user = "saberzero1";
+          };
+        };
         xserver = {
-          displayManager = {
-            autoLogin = {
-              enable = true;
-              user = "saberzero1";
-            };
-            gdm = {
-              enable = true;
-            };
+          gdm = {
+            enable = true;
           };
           enable = true;
           xkb = {
