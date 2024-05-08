@@ -120,8 +120,10 @@ let
           };
         };
         xserver = {
-          gdm = {
-            enable = true;
+          displayManager = {
+            gdm = {
+              enable = true;
+            };
           };
           enable = true;
           xkb = {
