@@ -8,12 +8,14 @@ let
 in
 
 {
-  home.packages = [
-    (pkgs.wavebox.override {
-      inherit overlays;
-    })
-  ];
   config = {
+    home = [
+      packages = [
+        (pkgs.wavebox.override {
+          inherit overlays;
+        })
+      ];
+    ];
     programs = {
       chromium = {
         enable = true;
