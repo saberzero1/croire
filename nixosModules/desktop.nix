@@ -88,7 +88,7 @@ in
       };
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
-        QT_QPA_PLATFORM = "wayland wavebox";
+        QT_QPA_PLATFORM = "wayland";
       };
     };
     xdg = {
@@ -163,7 +163,8 @@ in
       style = "adwaita-dark";
       qpa = {
         plugin = [
-          "wayland-egl"
+          "xcb"
+          "wayland"
         ];
       }
     };
