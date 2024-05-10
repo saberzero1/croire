@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/zsh
+#!/usr/bin/zsh
 
 option="${1}"
 status=$?
