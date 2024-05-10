@@ -1,21 +1,6 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: 
-
-let
-  overlays = [
-    (import ../overlays/wavebox.nix)
-  ];
-in
-
-{
+{ config, lib, pkgs, ... }: {
   config = {
-    home = {
-      packages = [
-        (pkgs.wavebox.override {
-          inherit overlays;
-        })
-      ];
-    };
     programs = {
       chromium = {
         enable = true;
