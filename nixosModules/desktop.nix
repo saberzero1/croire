@@ -52,6 +52,8 @@ in
         pkgs.gnome.gnome-remote-desktop
         pkgs.xrdp
         pkgs.freerdp
+        pkgs.qt5
+        pkgs.qt6
         pkgs.qt5.qtwayland
         pkgs.qt6.qtwayland
       ];
@@ -89,6 +91,7 @@ in
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
         QT_QPA_PLATFORM = "wayland";
+        QT_QPA_PLATFORM_PLUGIN_PATH = "${qt5.qtbase.bin}/lib/qt-${qt5.qtbase.version}/plugins";
       };
     };
     xdg = {
@@ -161,12 +164,6 @@ in
       enable = true;
       platformTheme = "gnome";
       style = "adwaita-dark";
-      qpa = {
-        plugin = [
-          "xcb"
-          "wayland"
-        ];
-      };
     };
   };
 }
