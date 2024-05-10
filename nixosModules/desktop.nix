@@ -161,6 +161,11 @@ in
       enable = true;
       platformTheme = "gnome";
       style = "adwaita-dark";
+      qpa = {
+        plugin = [
+          "wayland-egl"
+        ];
+      }
     };
   };
 }
