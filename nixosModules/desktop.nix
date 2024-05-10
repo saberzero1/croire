@@ -86,6 +86,7 @@ in
       };
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
+        QT_QPA_PLATFORM = wayland wavebox
       };
     };
     xdg = {
