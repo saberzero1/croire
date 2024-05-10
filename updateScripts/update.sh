@@ -40,12 +40,7 @@ case ${option} in
         [ $status -eq 0 ] && echo "Finished switching NixOS" || echo "Switching failed"
         ;;
     all)
-        echo "Updating Flakes, Building, testing, and switching NixOS"
-        echo "Updating Flakes"
-        $cmd="nix flake update"
-        $cmd
-        $status=$?
-        [ $status -eq 0 ] && echo "Finished updating Flakes" || (echo "Updating Flakes failed" && exit 1)
+        echo "Building, testing, and switching NixOS"
         echo "Building NixOS"
         $cmd="sudo nixos-rebuild build --flake ./croire/. --impure"
         $cmd
