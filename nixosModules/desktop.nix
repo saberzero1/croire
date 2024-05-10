@@ -52,6 +52,7 @@ in
         pkgs.gnome.gnome-remote-desktop
         pkgs.xrdp
         pkgs.freerdp
+        pkgs.qt5.qttools.dev
         pkgs.qt5
         pkgs.qt6
         pkgs.qt5.qtwayland
