@@ -20,21 +20,21 @@ case ${option} in
         ;;
     build)
         echo "Building NixOS"
-        $cmd="sudo nixos-rebuild build --flake ./croire/. --impure"
+        $cmd="sudo nixos-rebuild build --flake . --impure"
         $cmd
         $status=$?
         [ $status -eq 0 ] && echo "Finished building NixOS" || echo "Building failed"
         ;;
     test)
         echo "Testing NixOS"
-        $cmd="sudo nixos-rebuild test --flake ./croire/. --impure"
+        $cmd="sudo nixos-rebuild test --flake . --impure"
         $cmd
         $status=$?
         [ $status -eq 0 ] && echo "Finished testing NixOS" || echo "Testing failed"
         ;;
     update)
         echo "Switching NixOS"
-        $cmd="sudo nixos-rebuild switch --flake ./croire/. --impure"
+        $cmd="sudo nixos-rebuild switch --flake . --impure"
         $cmd
         $status=$?
         [ $status -eq 0 ] && echo "Finished switching NixOS" || echo "Switching failed"
@@ -42,17 +42,17 @@ case ${option} in
     all)
         echo "Building, testing, and switching NixOS"
         echo "Building NixOS"
-        $cmd="sudo nixos-rebuild build --flake ./croire/. --impure"
+        $cmd="sudo nixos-rebuild build --flake . --impure"
         $cmd
         $status=$?
         [ $status -eq 0 ] && echo "Finished building NixOS" || (echo "Building failed" && exit 1)
         echo "Testing NixOS"
-        $cmd="sudo nixos-rebuild test --flake ./croire/. --impure"
+        $cmd="sudo nixos-rebuild test --flake . --impure"
         $cmd
         $status=$?
         [ $status -eq 0 ] && echo "Finished testing NixOS" || (echo "Testing failed" && exit 1)
         echo "Switching NixOS"
-        $cmd="sudo nixos-rebuild switch --flake ./croire/. --impure"
+        $cmd="sudo nixos-rebuild switch --flake . --impure"
         $cmd
         $status=$?
         [ $status -eq 0 ] && echo "Finished switching NixOS" || (echo "Switching failed" && exit 1)
