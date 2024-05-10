@@ -93,7 +93,7 @@ in
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
         QT_QPA_PLATFORM = "wayland";
-        QT_QPA_PLATFORM_PLUGIN_PATH = "${qt5.qtbase.bin}/lib/qt-${qt5.qtbase.version}/plugins";
+        QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
       };
     };
     xdg = {
