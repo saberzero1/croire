@@ -52,6 +52,8 @@ in
         pkgs.gnome.gnome-remote-desktop
         pkgs.xrdp
         pkgs.freerdp
+        pkgs.qt5.qtwayland
+        pkgs.qt6.qtwayland
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -154,6 +156,10 @@ in
           ];
         };
       };
+    };
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
     };
   };
 }
