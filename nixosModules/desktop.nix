@@ -52,9 +52,8 @@ in
         pkgs.gnome.gnome-remote-desktop
         pkgs.xrdp
         pkgs.freerdp
-        pkgs.libsForQt5.qt5.qmake
+        pkgs.libsForQt5.qt5
         #pkgs.qt5.qttools.dev
-        pkgs.qt5
         #pkgs.qt6
         #pkgs.qt5.qtwayland
         #pkgs.qt6.qtwayland
