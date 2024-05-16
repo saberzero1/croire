@@ -4,7 +4,7 @@ option="${1}"
 status=$?
 
 case ${option} in
-    flakes)
+    update)
         echo "Updating Flakes"
         nix flake update
         [ $status -eq 0 ] && echo "Finished updating Flakes" || echo "Updating Flakes failed"
@@ -24,7 +24,7 @@ case ${option} in
         sudo nixos-rebuild test --flake . --impure
         [ $status -eq 0 ] && echo "Finished testing NixOS" || echo "Testing failed"
         ;;
-    update)
+    switch)
         echo "Switching NixOS"
         sudo nixos-rebuild switch --flake . --impure
         [ $status -eq 0 ] && echo "Finished switching NixOS" || echo "Switching failed"
@@ -42,7 +42,7 @@ case ${option} in
         [ $status -eq 0 ] && echo "Finished switching NixOS" || (echo "Switching failed" && exit 1)
         ;;
     *)
-        echo "`basename ${0}`:usage: [flakes] | [clean] | [build] | [test] | [update] | [all]"
+        echo "`basename ${0}`:usage: [update] | [clean] | [build] | [test] | [switch] | [all]"
         exit 1 # Command to come out of the program with status 1
         ;; 
 esac
