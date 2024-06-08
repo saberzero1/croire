@@ -5,7 +5,7 @@
       systemPackages = [
         pkgs.ulauncher
         pkgs.freerdp
-        pkgs.espanso
+        pkgs.espanso-wayland
         pkgs.appflowy
         # pkgs.appflowy.overrideDerivation (oldAttrs: {
         #   version = "0.5.1";
@@ -20,6 +20,7 @@
     services = {
       espanso = {
         enable = true;
+        package = pkgs.espanso-wayland;
       };
     };
   };
