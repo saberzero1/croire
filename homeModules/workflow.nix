@@ -15,9 +15,8 @@ in
     };
     services = {
       espanso = {
-        enable = true;
-        wayland = true;
-        package = pkgs.espanso-wayland;
+        enable = false;
+        package = pkgs.espanso;
         configs = { };
         matches = { };
       };
