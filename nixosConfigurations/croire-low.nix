@@ -142,7 +142,7 @@ let
         }
       ];
       system = {
-        stateVersion = "23.11";
+        stateVersion = "24.11";
       };
       systemd = {
         services = {
