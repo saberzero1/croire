@@ -11,6 +11,7 @@
         pkgs.obsidian
         pkgs.discord
         pkgs.nexusmods-app
+        pkgs.steamtinkerlaunch
       ];
     };
     programs = {
