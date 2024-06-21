@@ -19,7 +19,6 @@
         pkgs.wine64
         pkgs.wineWowPackages.staging
         pkgs.winetricks
-        pkgs.nexusmods-app
       ];
     };
     fonts = {

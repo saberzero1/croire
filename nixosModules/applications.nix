@@ -10,6 +10,7 @@
         pkgs.steam
         pkgs.obsidian
         pkgs.discord
+        pkgs.nexusmods-app
       ];
     };
     programs = {
