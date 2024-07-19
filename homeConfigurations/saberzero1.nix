@@ -13,6 +13,11 @@ let
       inputs.self.homeModules.system
       inputs.self.homeModules.utils
       inputs.self.homeModules.workflow
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+      }
     ];
     config = {
       home = {
@@ -27,7 +32,6 @@ let
         home-manager = {
           enable = true;
           path = null;
-          backupFileExtension = "backup";
         };
       };
     };
