@@ -27,6 +27,7 @@ let
         home-manager = {
           enable = true;
           path = null;
+          backupFileExtension = "backup";
         };
       };
     };
@@ -34,7 +35,6 @@ let
   nixosModule = { ... }: {
     home-manager = {
       users.saberzero1 = homeModule;
-      backupFileExtension = "backup";
     };
   };
 in
