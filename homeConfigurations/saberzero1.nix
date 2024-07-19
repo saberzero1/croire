@@ -32,7 +32,10 @@ let
     };
   };
   nixosModule = { ... }: {
-    home-manager.users.saberzero1 = homeModule;
+    home-manager = {
+      users.saberzero1 = homeModule;
+      backupFileExtension = "backup";
+    };
   };
 in
 (
