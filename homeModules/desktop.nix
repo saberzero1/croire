@@ -43,8 +43,8 @@ in
         enable = true;
         defaultApplications = associations;
         associations.added = associations;
-        configFile."mimeapps.list".force = true;
       };
+      configFile."mimeapps.list".force = true;
     };
   };
 }
