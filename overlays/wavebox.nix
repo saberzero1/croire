@@ -1,9 +1,9 @@
 self: super: {
   wavebox = super.wavebox.overrideAttrs (oldAttrs: {
-    version = "10.126.22-2";
+    version = "10.127.16-2";
     src = super.fetchurl {
-      url = "https://download.wavebox.app/stable/linux/tar/Wavebox_10.126.22-2.tar.gz";
-      sha256 = "sha256-geAyd6R0w5pc7ERFPhHTPc4xj0n9VPPEn3ftmD7RXhg=";
+      url = "https://download.wavebox.app/stable/linux/tar/Wavebox_" + "${version}" + ".tar.gz";
+      sha256 = "sha256-VKAbgD1Nl9Yd63twkAamAKQv14hzpsbGiHnbFuiii9M=";
     };
   });
 }
