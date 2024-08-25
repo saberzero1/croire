@@ -8,7 +8,6 @@
       packages = [
         pkgs.python311Packages.pynvim
         pkgs.neovim-unwrapped
-        pkgs.neovide
         pkgs.git
         pkgs.gnumake
         pkgs.unzip

@@ -9,7 +9,6 @@
         pkgs.zsh-vi-mode
         pkgs.oh-my-posh
         pkgs.wezterm
-        pkgs.neovide
       ];
     };
     programs = {
@@ -42,9 +41,6 @@
             }
           }
         '';
-      };
-      neovide = {
-        enable = true;
       };
     };
     users = {

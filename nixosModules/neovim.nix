@@ -39,7 +39,6 @@
         pkgs.vimPlugins.mini-nvim
         pkgs.vimPlugins.tokyonight-nvim
         pkgs.neovim-unwrapped
-        pkgs.neovide
       ];
     };
     programs = {
