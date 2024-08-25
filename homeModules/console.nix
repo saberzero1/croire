@@ -7,7 +7,6 @@
         pkgs.zsh
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
-        pkgs.zsh-autosuggestions
         pkgs.wezterm
       ];
     };
@@ -15,9 +14,6 @@
       zsh = {
         dotDir = ".config/zsh";
         enable = true;
-        autosuggestions = {
-          enable = true;
-        };
         enableCompletion = true;
         history = {
           save = 100000;
