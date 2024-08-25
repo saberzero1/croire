@@ -34,7 +34,7 @@
       };
       wezterm = {
         enable = true;
-        package = pkgs.wezterm.wezterm;
+        package = with pkgs.wezterm.wezterm; [ wezterm ].wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
         extraConfig = ''
