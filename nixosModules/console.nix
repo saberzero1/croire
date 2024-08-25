@@ -3,7 +3,6 @@
   config = {
     environment = {
       systemPackages = [
-        pkgs.oh-my-zsh
         pkgs.zsh
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
@@ -15,9 +14,6 @@
         enable = true;
         enableCompletion = true;
         enableLsColors = true;
-        ohMyZsh = {
-          enable = true;
-        };
       };
     };
     users = {

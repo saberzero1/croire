@@ -3,7 +3,6 @@
   config = {
     home = {
       packages = [
-        pkgs.oh-my-zsh
         pkgs.zsh
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
@@ -17,14 +16,6 @@
         enableCompletion = true;
         history = {
           save = 100000;
-        };
-        ohMyZsh = {
-          enable = true;
-          package = pkgs.oh-my-zsh;
-          theme = "tokyonight_storm";
-          plugins = [
-
-          ];
         };
         package = pkgs.zsh;
         plugins = [
