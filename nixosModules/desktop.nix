@@ -88,6 +88,7 @@ in
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
         QT_QPA_PLATFORM = "wayland";
         QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
+        NIXOS_OZONE_WL = "1";
       };
     };
     xdg = {

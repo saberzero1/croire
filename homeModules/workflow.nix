@@ -15,7 +15,7 @@ in
     };
     services = {
       espanso = {
-        enable = true;
+        enable = false;
         package = pkgs.espanso;
         configs = { };
         matches = { };
