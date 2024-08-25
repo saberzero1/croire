@@ -17,7 +17,7 @@
       };
     };
     users = {
-      defaultUserShell = pkgs.wezterm;
+      defaultUserShell = pkgs.zsh;
     };
   };
 }
