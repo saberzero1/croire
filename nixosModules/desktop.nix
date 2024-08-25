@@ -17,8 +17,8 @@ let
   '';
   browser = [
     # Wavebox doesn't handle external links currently.
-    # "Wavebox.desktop"
-    "org.gnome.epiphany.desktop"
+    "Wavebox.desktop"
+    # "org.gnome.epiphany.desktop"
   ];
   associations = {
     "text/html" = browser;
@@ -89,6 +89,9 @@ in
         QT_QPA_PLATFORM = "wayland";
         QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
         NIXOS_OZONE_WL = "1";
+        EDITOR = "nvim";
+        BROWSER = "${pkgs.wavebox}/bin/wavebox";
+        TERMINAL = "wezterm";
       };
     };
     xdg = {
