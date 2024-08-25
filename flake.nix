@@ -6,11 +6,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
-    # custom flakes
-    wezterm = {
-      url = "github:wez/wezterm/main?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs = inputs:
     let

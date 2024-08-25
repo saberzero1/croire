@@ -43,7 +43,9 @@
             color_scheme = "tokyonight_storm",
             keys = {
               {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-            }
+            },
+            front_end = "WebGpu",
+            enable_wayland = false,
           }
         '';
       };
