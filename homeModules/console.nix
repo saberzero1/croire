@@ -1,7 +1,7 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }:
 let
-  weztermOverride = with pkgs.wezterm.wezterm; [ wezterm ];
+  weztermOverride = with pkgs.wezterm; [ wezterm ];
 in
 {
   config = {
