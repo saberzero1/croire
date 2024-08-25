@@ -104,9 +104,9 @@ let
           };
         };
       };
-      sound = {
-        enable = true;
-      };
+      # sound = {
+      #   enable = true;
+      # };
       systemd = {
         services = {
           "autovt@tty1" = {

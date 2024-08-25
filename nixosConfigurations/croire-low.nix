@@ -134,9 +134,9 @@ let
           };
         };
       };
-      sound = {
-        enable = true;
-      };
+      # sound = {
+      #   enable = true;
+      # };
       swapDevices = [
         {
           device = "/dev/disk/by-uuid/508b0146-f5ee-4b57-9a1a-c76809ca5597";
