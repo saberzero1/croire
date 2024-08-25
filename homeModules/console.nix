@@ -18,10 +18,6 @@
           save = 100000;
         };
         package = pkgs.zsh;
-        plugins = [
-          "git"
-          "sudo"
-        ];
         profileExtra = ''
 
         '';
