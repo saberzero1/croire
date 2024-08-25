@@ -1,17 +1,12 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }:
-let
-  weztermOverride = with pkgs.wezterm; [ wezterm ];
-in
-{
+{ config, lib, pkgs, ... }: {
   config = {
     home = {
       packages = [
         pkgs.zsh
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
-        # pkgs.wezterm
-        inputs.wezterm.packages.${pkgs.system}.default
+        pkgs.wezterm
       ];
     };
     programs = {
@@ -38,7 +33,7 @@ in
       };
       wezterm = {
         enable = true;
-        package = pkgs.weztermOverride.wezterm;
+        package = pkgs.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
         extraConfig = ''
