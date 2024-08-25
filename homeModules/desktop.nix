@@ -1,10 +1,10 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 let
   browser = [
     # Wavebox doesn't handle external links currently.
-    # "Wavebox.desktop"
-    "org.gnome.epiphany.desktop"
+    "Wavebox.desktop"
+    # "org.gnome.epiphany.desktop"
   ];
   associations = {
     "text/html" = browser;
@@ -44,6 +44,7 @@ in
         defaultApplications = associations;
         associations.added = associations;
       };
+      configFile."mimeapps.list".force = true;
     };
   };
 }

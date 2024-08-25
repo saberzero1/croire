@@ -8,12 +8,14 @@
       packages = [
         pkgs.python311Packages.pynvim
         pkgs.neovim-unwrapped
+        pkgs.neovide
         pkgs.git
         pkgs.gnumake
         pkgs.unzip
         pkgs.gcc
         pkgs.ripgrep
         pkgs.fd
+        pkgs.jq
       ];
     };
     programs = {

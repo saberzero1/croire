@@ -28,7 +28,18 @@
         pkgs.vimPlugins.nvim-treesitter-parsers.yaml
         pkgs.vimPlugins.nvim-treesitter-parsers.zig
         pkgs.vimPlugins.nvim-cmp
+        pkgs.vimPlugins.conform-nvim
+        pkgs.vimPlugins.vim-sleuth
+        pkgs.vimPlugins.todo-comments-nvim
+        pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.gitsigns-nvim
+        pkgs.vimPlugins.which-key-nvim
+        pkgs.vimPlugins.nvim-lspconfig
+        pkgs.vimPlugins.lazydev-nvim
+        pkgs.vimPlugins.mini-nvim
+        pkgs.vimPlugins.tokyonight-nvim
         pkgs.neovim-unwrapped
+        pkgs.neovide
       ];
     };
     programs = {

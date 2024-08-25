@@ -13,6 +13,11 @@ let
       inputs.self.homeModules.system
       inputs.self.homeModules.utils
       inputs.self.homeModules.workflow
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+      }
     ];
     config = {
       home = {
@@ -32,7 +37,9 @@ let
     };
   };
   nixosModule = { ... }: {
-    home-manager.users.saberzero1 = homeModule;
+    home-manager = {
+      users.saberzero1 = homeModule;
+    };
   };
 in
 (

@@ -18,6 +18,7 @@ let
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "bak";
       }
     ];
     config = {
