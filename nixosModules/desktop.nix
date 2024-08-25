@@ -1,5 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 let
   burnMyWindowsProfile = pkgs.writeText "nix-profile.conf" ''
     [burn-my-windows-profile]
@@ -58,20 +58,20 @@ in
       # exclude these instead of disabling the module.
       gnome = {
         excludePackages = with pkgs.gnome; [
-          baobab # disk usage analyzer
+          pkgs.baobab # disk usage analyzer
           # epiphany # web browser
-          geary # e-mail client
+          pkgs.geary # e-mail client
           gnome-backgrounds
           gnome-bluetooth
           gnome-characters
           gnome-clocks
           gnome-color-manager
           gnome-contacts
-          gnome-font-viewer
+          pkgs.gnome-font-viewer
           gnome-logs
           gnome-music
-          gnome-system-monitor
-          gnome-themes-extra
+          pkgs.gnome-system-monitor
+          pkgs.gnome-themes-extra
           pkgs.glib
           # pkgs.gnome-connections
           pkgs.gnome-photos
@@ -79,9 +79,9 @@ in
           pkgs.gnome-tour
           pkgs.gnome-user-docs
           pkgs.orca # screen reader
-          simple-scan
-          totem # video player
-          yelp # help viewer
+          pkgs.simple-scan
+          pkgs.totem # video player
+          pkgs.yelp # help viewer
         ];
       };
       sessionVariables = {
