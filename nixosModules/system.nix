@@ -24,6 +24,9 @@
     fonts = {
       enableDefaultPackages = true;
       enableGhostscriptFonts = true;
+      packages = [
+        pkgs.fira-code
+      ];
       fontDir = {
         enable = true;
       };
