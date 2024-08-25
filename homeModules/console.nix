@@ -7,7 +7,7 @@
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
         # pkgs.wezterm
-        inputs.wezterm.pkgs.wezterm
+        inputs.wezterm.packages.${pkgs.system}.default
       ];
     };
     programs = {
@@ -34,6 +34,7 @@
       };
       wezterm = {
         enable = true;
+        package = pkgs.wezterm.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
         extraConfig = ''
