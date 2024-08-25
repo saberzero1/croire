@@ -1,5 +1,9 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+let
+  weztermOverride = with pkgs.wezterm.wezterm; [ wezterm ];
+in
+{
   config = {
     home = {
       packages = [
@@ -34,7 +38,7 @@
       };
       wezterm = {
         enable = true;
-        package = with pkgs.wezterm.wezterm; [ wezterm ].wezterm;
+        package = pkgs.weztermOverride.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
         extraConfig = ''
