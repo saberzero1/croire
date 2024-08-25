@@ -8,6 +8,7 @@
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
         pkgs.oh-my-posh
+        pkgs.neovide
       ];
     };
     programs = {
