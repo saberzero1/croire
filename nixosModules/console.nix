@@ -7,6 +7,7 @@
         pkgs.zsh
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
+        pkgs.zsh-autosuggestions
         pkgs.wezterm
       ];
     };
