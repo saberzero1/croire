@@ -47,6 +47,21 @@
         };
         enableVteIntegration = true;
       };
+      wezterm = {
+        enable = true;
+        enableZshIntegration = true;
+        enableBashIntegration = true;
+        extraConfig = ''
+          return {
+            font = wezterm.font("Fira Code"),
+            font_size = 16.0,
+            color_scheme = "tokyonight_storm",
+            keys = {
+              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+            }
+          }
+        '';
+      };
     };
   };
 }
