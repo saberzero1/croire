@@ -15,9 +15,6 @@
         enableCompletion = true;
         enableLsColors = true;
       };
-      wezterm = {
-        enable = true;
-      };
     };
     users = {
       #defaultUserShell = pkgs.zsh;
