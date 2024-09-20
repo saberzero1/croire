@@ -7,6 +7,7 @@
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
         pkgs.wezterm
+        pkgs.nix-ld
       ];
     };
     programs = {
@@ -30,12 +31,20 @@
           ".." = "cd ..";
         };
         enableVteIntegration = true;
+
+        # This command let's me execute arbitrary binaries downloaded through channels such as mason.
+        initExtra = ''
+          export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+        '';
       };
       wezterm = {
         enable = true;
         package = pkgs.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
+      };
+      nix-ld = {
+        enable = true;
       };
     };
     xdg = {
