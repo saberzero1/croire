@@ -5,7 +5,7 @@
       packages = [
         pkgs.nodePackages_latest.nodejs
         pkgs.luajit
-        pkgs.python311Packages.pip
+        pkgs.python312Packages.pip
       ];
     };
   };

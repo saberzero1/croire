@@ -9,7 +9,7 @@ in {
   config = {
     home = {
       packages = [
-        pkgs.python311Packages.pynvim
+        pkgs.python312Packages.pynvim
         pkgs.neovim-unwrapped
         pkgs.git
         pkgs.gnumake
@@ -31,10 +31,53 @@ in {
         withNodeJs = true;
         withPython3 = true;
         withRuby = true;
-        /*plugins = with pkgs.vimPlugins; [
+        plugins = with pkgs.vimPlugins; [
+          luasnip
+          #bad-practices.nvim
+          cmp-nvim-lsp
+          cmp-path
+          cmp_luasnip
+          #code-stats-vim
+          conform-nvim
+          copilot-cmp
+          #copilot-lualine
+          copilot-lua
+          dashboard-nvim
+          diffview-nvim
+          fidget-nvim
+          gitsigns-nvim
+          harpoon
+          #harpoon-lualine
           lazy-nvim
+          lazydev-nvim
+          lualine-nvim
+          luvit-meta
+          mason-lspconfig-nvim
+          mason-tool-installer-nvim
+          mason-nvim
+          mini-nvim
+          nvim-cmp
+          nvim-colorizer-lua
+          nvim-lspconfig
+          nvim-notify
+          #nvim-repl
+          nvim-scrollbar
+          nvim-spectre
+          nvim-treesitter
+          nvim-web-devicons
+          plenary-nvim
+          statuscol-nvim
+          telescope-fzf-native-nvim
+          telescope-ui-select-nvim
+          telescope-nvim
+          todo-comments-nvim
+          tokyonight-nvim
+          vim-be-good
+          vim-fugitive
+          vim-sleuth
+          which-key-nvim
         ];
-        extraLuaConfig = ''
+        /*extraLuaConfig = ''
           vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
           require("lazy").setup({
             performance = {

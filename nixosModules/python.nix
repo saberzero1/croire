@@ -3,16 +3,16 @@
   config = {
     environment = {
       systemPackages = [
-        pkgs.python311Full
-        pkgs.python311Packages.pandas
-        pkgs.python311Packages.matplotlib
-        pkgs.python311Packages.seaborn
-        pkgs.python311Packages.beautifulsoup4
-        pkgs.python311Packages.pip
-        pkgs.python311Packages.scikitlearn
-        pkgs.python311Packages.numpy
-        pkgs.python311Packages.python-dotenv
-        pkgs.python311Packages.black
+        pkgs.python312Full
+        pkgs.python312Packages.pandas
+        pkgs.python312Packages.matplotlib
+        pkgs.python312Packages.seaborn
+        pkgs.python312Packages.beautifulsoup4
+        pkgs.python312Packages.pip
+        pkgs.python312Packages.scikitlearn
+        pkgs.python312Packages.numpy
+        pkgs.python312Packages.python-dotenv
+        pkgs.python312Packages.black
       ];
     };
   };
