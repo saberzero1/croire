@@ -9,3 +9,19 @@ From: https://github.com/NixOS/nixpkgs/issues/191128#issuecomment-1514224101
 > ```shell
 > nix-shell -p nix-prefetch-git jq --run "nix hash to-sri sha256:\$(nix-prefetch-git --url https://github.com/cli/cli --quiet --rev v2.20.2 | jq -r '.sha256')"
 > ```
+
+## Updating
+
+```shell
+nix flake update
+```
+
+## Cleaning
+
+```shell
+nix store optimise
+```
+
+```shell
+nix-collect-garbage -d
+```
