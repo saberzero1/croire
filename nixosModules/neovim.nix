@@ -4,7 +4,8 @@
     environment = {
       systemPackages = [
         pkgs.vimPlugins.nvim-treesitter
-        pkgs.vimPlugins.nvim-treesitter-parsers.bash
+        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+        /*pkgs.vimPlugins.nvim-treesitter-parsers.bash
         pkgs.vimPlugins.nvim-treesitter-parsers.c
         pkgs.vimPlugins.nvim-treesitter-parsers.c_sharp
         pkgs.vimPlugins.nvim-treesitter-parsers.cpp
@@ -26,7 +27,7 @@
         pkgs.vimPlugins.nvim-treesitter-parsers.vim
         pkgs.vimPlugins.nvim-treesitter-parsers.xml
         pkgs.vimPlugins.nvim-treesitter-parsers.yaml
-        pkgs.vimPlugins.nvim-treesitter-parsers.zig
+        pkgs.vimPlugins.nvim-treesitter-parsers.zig*/
         pkgs.vimPlugins.nvim-cmp
         pkgs.vimPlugins.conform-nvim
         pkgs.vimPlugins.vim-sleuth

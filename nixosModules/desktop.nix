@@ -92,6 +92,7 @@ in
         EDITOR = "nvim";
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
         TERMINAL = "wezterm";
+        LAZY = "/home/saberzero1/Documents/lazy-nvim";
       };
     };
     xdg = {
