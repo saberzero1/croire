@@ -3,7 +3,7 @@
 let
   browser = [
     # Wavebox doesn't handle external links currently.
-    "Wavebox.desktop"
+    "wavebox.desktop"
     # "org.gnome.epiphany.desktop"
   ];
   associations = {
@@ -34,7 +34,7 @@ in
           picture-uri-dark = "file:///home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper.png";
         };
         "org/gnome/shell" = {
-          favorite-apps = ["org.gnome.Nautilus.desktop" "Wavebox.desktop" "obsidian.desktop" "discord.desktop" "codium.desktop"];
+          favorite-apps = ["org.gnome.Nautilus.desktop" "wavebox.desktop" "obsidian.desktop" "discord.desktop" "codium.desktop"];
         };
       };
     };

@@ -17,7 +17,7 @@ let
   '';
   browser = [
     # Wavebox doesn't handle external links currently.
-    "Wavebox.desktop"
+    "wavebox.desktop"
     # "org.gnome.epiphany.desktop"
   ];
   associations = {
@@ -41,15 +41,15 @@ in
   config = {
     environment = {
       systemPackages = [
-        pkgs.gnome.gdm
-        pkgs.gnome.gnome-shell
-        pkgs.gnome.gnome-shell-extensions
+        pkgs.gdm
+        pkgs.gnome-shell
+        pkgs.gnome-shell-extensions
         pkgs.gnome-browser-connector
         pkgs.gnomeExtensions.burn-my-windows
         pkgs.gnomeExtensions.app-icons-taskbar
         pkgs.gnomeExtensions.espresso
         pkgs.gnomeExtensions.memento-mori
-        pkgs.gnome.gnome-remote-desktop
+        pkgs.gnome-remote-desktop
         pkgs.xrdp
         pkgs.freerdp
       ];
@@ -61,15 +61,15 @@ in
           pkgs.baobab # disk usage analyzer
           # epiphany # web browser
           pkgs.geary # e-mail client
-          gnome-backgrounds
-          gnome-bluetooth
-          gnome-characters
-          gnome-clocks
-          gnome-color-manager
-          gnome-contacts
+          pkgs.gnome-backgrounds
+          pkgs.gnome-bluetooth
+          pkgs.gnome-characters
+          pkgs.gnome-clocks
+          pkgs.gnome-color-manager
+          pkgs.gnome-contacts
           pkgs.gnome-font-viewer
-          gnome-logs
-          gnome-music
+          pkgs.gnome-logs
+          pkgs.gnome-music
           pkgs.gnome-system-monitor
           pkgs.gnome-themes-extra
           pkgs.glib
