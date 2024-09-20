@@ -19,7 +19,7 @@
         enable = true;
         package = pkgs.wezterm;
         enableZshIntegration = true;
-        enableBashIntegration = true
+        enableBashIntegration = true;
       };
     };
     users = {
