@@ -1,5 +1,8 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: let
+  #neovim_config = /home/saberzero1/Documents/Repos/dotfiles/shelter;
+  neovim_config = ../../shelter;
+in {
   imports = [
     inputs.self.homeModules.neovim_language_dependencies
   ];
@@ -28,7 +31,7 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = true;
-        plugins = with pkgs.vimPlugins; [
+        /*plugins = with pkgs.vimPlugins; [
           lazy-nvim
         ];
         extraLuaConfig = ''
@@ -48,7 +51,30 @@
               missing = false,
             },
           })
-        '';
+        '';*/
+        extraPackages = with pkgs.unstable; [
+          alejandra
+          black
+          golangci-lint
+          gopls
+          gotools
+          hadolint
+          isort
+          lua-language-server
+          markdownlint-cli
+          nixd
+          nodePackages.bash-language-server
+          nodePackages.prettier
+          pyright
+          ruff
+          shellcheck
+          shfmt
+          stylua
+          terraform-ls
+          tflint
+          vscode-langservers-extracted
+          yaml-language-server
+        ];
       };
     };
     xdg = {
@@ -56,7 +82,7 @@
         nvim = {
           enable = true;
           recursive = true;
-          source = /home/saberzero1/Documents/Repos/dotfiles/shelter;
+          source = "${neovim_config}";
         };
       };
     };
