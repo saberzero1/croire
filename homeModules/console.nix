@@ -7,7 +7,6 @@
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
         pkgs.wezterm
-        pkgs.nix-ld
       ];
     };
     programs = {
@@ -42,9 +41,6 @@
         package = pkgs.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
-      };
-      nix-ld = {
-        enable = true;
       };
     };
     xdg = {

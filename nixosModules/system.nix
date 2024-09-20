@@ -19,6 +19,7 @@
         pkgs.wine64
         pkgs.wineWowPackages.staging
         pkgs.winetricks
+        pkgs.nix-ld
       ];
     };
     fonts = {
@@ -84,6 +85,9 @@
     };
     services = {
       udev = {
+        enable = true;
+      };
+      nix-ld = {
         enable = true;
       };
     };
