@@ -41,7 +41,7 @@
                 }
               },
             dev = {
-              path = "${pkgs.vimUtils.packDir config.home-manager.users.USERNAME.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+              path = "/home/saberzero1/Documents/nvim-data",
             },
             install = {
               -- Safeguard in case we forget to install a plugin with Nix
