@@ -36,19 +36,14 @@
         package = pkgs.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
-        extraConfig = ''
-          return {
-            font = wezterm.font("Fira Code"),
-            font_size = 16.0,
-            color_scheme = "tokyonight_storm",
-            keys = {
-              {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
-            },
-            front_end = "WebGpu",
-            enable_wayland = false,
-          }
-        '';
       };
+    };
+    xdg = {
+      configFile = {
+        "wezterm/wezterm.lua" = {
+          source = /home/saberzero1/Documents/Repos/dotfiles/shelter/wezterm.lua
+        }
+      }
     };
   };
 }
