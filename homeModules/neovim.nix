@@ -46,7 +46,7 @@ in {
           diffview-nvim
           fidget-nvim
           gitsigns-nvim
-          harpoon
+          harpoon2
           #harpoon-lualine
           lazy-nvim
           lazydev-nvim
