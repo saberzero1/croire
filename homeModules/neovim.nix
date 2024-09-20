@@ -28,7 +28,7 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = true;
-        plugins = with pkgs.vimPlugins' [
+        plugins = with pkgs.vimPlugins; [
           lazy-nvim
         ];
         extraLuaConfig = ''
