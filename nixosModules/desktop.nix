@@ -57,7 +57,7 @@ in
       # and etc., but the module sets other useful options so it is better to
       # exclude these instead of disabling the module.
       gnome = {
-        excludePackages = with pkgs.gnome; [
+        excludePackages = [
           pkgs.baobab # disk usage analyzer
           # epiphany # web browser
           pkgs.geary # e-mail client
