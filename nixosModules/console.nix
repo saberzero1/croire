@@ -17,9 +17,6 @@
       };
       wezterm = {
         enable = true;
-        package = pkgs.wezterm;
-        enableZshIntegration = true;
-        enableBashIntegration = true;
       };
     };
     users = {
