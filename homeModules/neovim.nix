@@ -1,7 +1,7 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: let
-  #neovim_config = /home/saberzero1/Documents/Repos/dotfiles/shelter;
-  neovim_config = ../../shelter;
+  neovim_config = /home/saberzero1/Documents/Repos/dotfiles/shelter;
+  #neovim_config = ../../shelter;
 in {
   imports = [
     inputs.self.homeModules.neovim_language_dependencies
