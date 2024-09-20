@@ -41,7 +41,7 @@
     xdg = {
       configFile = {
         "wezterm/wezterm.lua" = {
-          source = /home/saberzero1/Documents/Repos/dotfiles/shelter/wezterm.lua
+          source = /home/saberzero1/Documents/Repos/dotfiles/shelter/wezterm.lua;
         }
       }
     };
