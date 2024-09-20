@@ -15,9 +15,16 @@
         enableCompletion = true;
         enableLsColors = true;
       };
+      wezterm = {
+        enable = true;
+        package = pkgs.wezterm;
+        enableZshIntegration = true;
+        enableBashIntegration = true
+      };
     };
     users = {
-      defaultUserShell = pkgs.zsh;
+      #defaultUserShell = pkgs.zsh;
+      defaultUserShell = pkgs.wezterm;
     };
   };
 }
