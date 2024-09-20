@@ -82,12 +82,12 @@
       nano = {
         enable = false;
       };
+      nix-ld = {
+        enable = true;
+      };
     };
     services = {
       udev = {
-        enable = true;
-      };
-      nix-ld = {
         enable = true;
       };
     };
