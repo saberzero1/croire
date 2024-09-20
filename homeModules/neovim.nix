@@ -52,7 +52,7 @@ in {
             },
           })
         '';*/
-        extraPackages = [
+        extraPackages = with pkgs; [
           alejandra
           black
           golangci-lint
