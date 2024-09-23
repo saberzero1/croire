@@ -55,6 +55,7 @@ in {
           mason-lspconfig-nvim
           mason-tool-installer-nvim
           mason-nvim
+          neocord
           mini-nvim
           nvim-cmp
           nvim-colorizer-lua
@@ -64,6 +65,7 @@ in {
           nvim-scrollbar
           nvim-spectre
           nvim-treesitter
+          nvim-treesitter.withAllGrammars
           nvim-web-devicons
           plenary-nvim
           statuscol-nvim

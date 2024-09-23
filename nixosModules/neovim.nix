@@ -39,6 +39,7 @@
         pkgs.vimPlugins.lazydev-nvim
         pkgs.vimPlugins.mini-nvim
         pkgs.vimPlugins.tokyonight-nvim
+        pkgs.vimPlugins.neocord
         pkgs.neovim-unwrapped
       ];
     };
