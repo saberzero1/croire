@@ -1,4 +1,4 @@
-{ inputs, ... }@flakeContext:
+{ inputs, username, ... }@flakeContext:
 let
   nixosModule = { config, lib, pkgs, ... }: {
     imports = [
