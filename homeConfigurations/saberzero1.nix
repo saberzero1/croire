@@ -35,7 +35,7 @@ let
   };
   nixosModule = { ... }: {
     home-manager = {
-      users.${username} = homeModule;
+      users.saberzero1 = homeModule;
     };
   };
 in
