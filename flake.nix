@@ -12,6 +12,7 @@
       flakeContext = {
         inherit inputs;
       };
+      username = "saberzero1";
     in
     {
       homeConfigurations = {

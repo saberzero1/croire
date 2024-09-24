@@ -1,4 +1,4 @@
-{ inputs, ... }@flakeContext:
+{ inputs, username, ... }@flakeContext:
 let
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
@@ -17,7 +17,7 @@ let
     config = {
       home = {
         stateVersion = "24.05";
-        username = username;
+        username = ${username};
         homeDirectory = "/home/${username}";
       };
       nixpkgs = {
@@ -35,7 +35,7 @@ let
   };
   nixosModule = { ... }: {
     home-manager = {
-      users.saberzero1 = homeModule;
+      users.${username} = homeModule;
     };
   };
 in
