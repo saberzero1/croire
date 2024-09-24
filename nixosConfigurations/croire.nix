@@ -1,5 +1,6 @@
 { inputs, username, ... }@flakeContext:
 let
+  username = username;
   nixosModule = { config, lib, pkgs, ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
