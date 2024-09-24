@@ -11,12 +11,12 @@
     let
       flakeContext = {
         inherit inputs;
-        username = "saberzero1";
       };
+      username = "saberzero1";
     in
     {
       homeConfigurations = {
-        saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
+        saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext username;
       };
       homeModules = {
         applications = import ./homeModules/applications.nix flakeContext;
@@ -39,9 +39,9 @@
         workflow = import ./homeModules/workflow.nix flakeContext;
       };
       nixosConfigurations = {
-        croire = import ./nixosConfigurations/croire.nix flakeContext;
-        croire-low = import ./nixosConfigurations/croire-low.nix flakeContext;
-        nixos = import ./nixosConfigurations/nixos.nix flakeContext;
+        croire = import ./nixosConfigurations/croire.nix flakeContext username;
+        croire-low = import ./nixosConfigurations/croire-low.nix flakeContext username;
+        nixos = import ./nixosConfigurations/nixos.nix flakeContext username;
       };
       nixosModules = {
         applications = import ./nixosModules/applications.nix flakeContext;
