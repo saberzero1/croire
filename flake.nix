@@ -7,7 +7,7 @@
     home-manager.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
   };
-  outputs = inputs:
+  outputs = { self, nixpkgs, ... } @ inputs:
     let
       flakeContext = {
         inherit inputs;
