@@ -1,6 +1,7 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, ... }:
 let
+  username = inputs.self.username;
   config = pkgs.lib.mkMerge [
     # Configure key name per device.
     #

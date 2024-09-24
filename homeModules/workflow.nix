@@ -1,6 +1,7 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, username, ... }:
+{ config, lib, pkgs, ... }:
 let
+  username = inputs.self.username;
   espansoConfigFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles/totten/config/default.yml";
   espansoMatchesFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles/totten/match/base.yml";
   espansoConfigFile = pkgs.writeText "default.yml" "${espansoConfigFileContent}";

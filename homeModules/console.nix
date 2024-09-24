@@ -1,5 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, username, ... }: {
+{ config, lib, pkgs, ... }: {
   imports = [
     inputs.self.homeModules.neovim_language_dependencies
   ];

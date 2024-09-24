@@ -1,6 +1,7 @@
 { inputs, ... }@flakeContext:
 let
-  homeModule = { config, lib, pkgs, username, ... }: {
+  username = inputs.self.username;
+  homeModule = { config, lib, pkgs, ... }: {
     imports = [
       inputs.self.homeModules.applications
       inputs.self.homeModules.browser

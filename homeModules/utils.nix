@@ -1,5 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, username, ... }: {
+{ config, lib, pkgs, ... }: {
   config = {
     home = {
       packages = [
