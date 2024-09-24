@@ -16,7 +16,7 @@
     in
     {
       homeConfigurations = {
-        saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext username;
+        saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
       };
       homeModules = {
         applications = import ./homeModules/applications.nix flakeContext;
@@ -39,9 +39,9 @@
         workflow = import ./homeModules/workflow.nix flakeContext;
       };
       nixosConfigurations = {
-        croire = import ./nixosConfigurations/croire.nix flakeContext username;
-        croire-low = import ./nixosConfigurations/croire-low.nix flakeContext username;
-        nixos = import ./nixosConfigurations/nixos.nix flakeContext username;
+        croire = import ./nixosConfigurations/croire.nix flakeContext;
+        croire-low = import ./nixosConfigurations/croire-low.nix flakeContext;
+        nixos = import ./nixosConfigurations/nixos.nix flakeContext;
       };
       nixosModules = {
         applications = import ./nixosModules/applications.nix flakeContext;

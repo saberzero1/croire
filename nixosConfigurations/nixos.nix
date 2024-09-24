@@ -170,6 +170,9 @@ let
   };
 in
 inputs.nixpkgs.lib.nixosSystem {
+  specialArgs = {
+    inherit username;
+  } // inputs;
   modules = [
     nixosModule
   ];
