@@ -1,13 +1,13 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, username, ... }:
 let
   config = pkgs.lib.mkMerge [
     # Configure key name per device.
     #
     # Use gpg2.
-    # 
+    #
     # gpg2 --full-generate-key
-    # gpg2 --list-secret-keys --keyid-format=long 
+    # gpg2 --list-secret-keys --keyid-format=long
     # gpg2 --armor --export 1234567890ABCDEF
     (pkgs.lib.mkIf (config.networking.hostName == "nixos") {
       config.programs.git.signing.key = "41AEE99107640F10";
