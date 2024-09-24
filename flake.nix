@@ -13,6 +13,7 @@
         inherit inputs;
       };
       username = "saberzero1";
+      inherit (self) outputs;
     in
     {
       homeConfigurations = {
