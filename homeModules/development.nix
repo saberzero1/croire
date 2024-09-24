@@ -1,7 +1,7 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
   imports = [
-    inputs.self.homeModules.neovim
+    #inputs.self.homeModules.neovim
     inputs.self.homeModules.vscodium
   ];
   config = {

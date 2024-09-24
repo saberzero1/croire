@@ -30,7 +30,8 @@
           name = "nvim";
           comment = "Edit text files";
           icon = "nvim";
-          exec = "${pkgs.wezterm}/bin/wezterm -e ${inputs.neovim-unwrapped.packages.${pkgs.system}.default}/bin/nvim %F";
+          #exec = "${pkgs.wezterm}/bin/wezterm -e ${inputs.neovim-unwrapped.packages.${pkgs.system}.default}/bin/nvim %F";
+          exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.neovim-unwrapped}/bin/nvim %F";
           categories = [ "Application" ];
           terminal = false;
           mimeType = [ "text/plain" ];
