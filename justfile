@@ -11,16 +11,16 @@ fetch:
   git submodule update --init --remote --recursive
 
 build:
-  sudo nixos-rebuild build --flake ./croire/. --impure --use-remote-sudo
+  sudo nixos-rebuild build --flake . --impure --use-remote-sudo
 
 test:
-  sudo nixos-rebuild test --flake ./croire/. --impure --use-remote-sudo
+  sudo nixos-rebuild test --flake . --impure --use-remote-sudo
 
 switch:
-  sudo nixos-rebuild switch --flake ./croire/. --impure --use-remote-sudo
+  sudo nixos-rebuild switch --flake . --impure --use-remote-sudo
 
 debug:
-  nixos-rebuild switch --flake ./croire/. --impure --use-remote-sudo --show-trace --verbose --option eval-cache false
+  nixos-rebuild switch --flake . --impure --use-remote-sudo --show-trace --verbose --option eval-cache false
 
 update:
   nix flake update
