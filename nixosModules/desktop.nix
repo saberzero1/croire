@@ -90,9 +90,10 @@ in
         QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
         NIXOS_OZONE_WL = "1";
         EDITOR = "nvim";
+        VISUAL = "nvim";
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
         TERMINAL = "wezterm";
-        LAZY = "/home/saberzero1/Documents/lazy-nvim";
+        LAZY = "${config.home.homeDirectory}/Documents/lazy-nvim";
       };
     };
     xdg = {
