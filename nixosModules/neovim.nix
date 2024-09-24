@@ -3,14 +3,14 @@
   config = {
     environment = {
       systemPackages = [
-        pkgs.neovim-unwrapped
+        inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       ];
     };
     programs = {
       neovim = {
         defaultEditor = true;
         enable = true;
-        package = pkgs.neovim-unwrapped;
+        package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
         viAlias = true;
         vimAlias = true;
         withNodeJs = true;

@@ -8,6 +8,7 @@
         pkgs.zsh-vi-mode
         pkgs.wezterm
         pkgs.just
+        inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       ];
     };
     programs = {

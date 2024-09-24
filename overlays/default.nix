@@ -14,7 +14,7 @@
     # });
   };
 
-  neovim-unwrapped = inputs.neovim-unwrapped-overlay.overlays.default;
+  nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
   # # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # # be accessible through 'pkgs.unstable'

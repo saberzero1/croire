@@ -6,6 +6,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
+    neovim-nightly-overlay = "github:nix-community/neovim-nightly-overlay";
   };
   outputs = { self, nixpkgs, ... } @ inputs:
     let
@@ -15,6 +16,22 @@
       };
     in
     {
+      overlays = [
+        inputs.neovim-nightly-overlay.overlays.default
+        #(_: _: {
+        #  nil = inputs.nil-lsp.packages."x86_64-linux".default;
+        #})
+        #(final: prev: {
+        #    # Override nil-lsp with a specific Rust toolchain
+        #    nil = prev.nil.overrideAttrs (old: {
+        #      nativeBuildInputs = old.nativeBuildInputs or [] ++ [
+        #        (final.rust-bin.stable."1.77.0".default.override {
+        #          extensions = [ ];  # Add any extensions you need
+        #        })
+        #      ];
+        #    });
+        #  })
+      ];
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
