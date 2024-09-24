@@ -7,6 +7,9 @@
 #
 ############################################################################
 
+fetch:
+  git submodule update --init --remote --recursive
+
 build:
   sudo nixos-rebuild build --flake ./croire/. --impure --use-remote-sudo
 
