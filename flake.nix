@@ -11,11 +11,11 @@
     let
       flakeContext = {
         inherit inputs;
-        username = "saberzero1";
         inherit (self) outputs;
       };
     in
     {
+      username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
       };
