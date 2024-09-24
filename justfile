@@ -52,6 +52,12 @@ optimize:
   # hard link nix stores
   sudo nix store optimise
 
+clean-all:
+  sudo nix-collect-garbage -d
+  sudo nix store optimise
+  sudo nix-collect-garbage -d
+  sudo /run/current-system/bin/switch-to-configuration boot
+
 ############################################################################
 #
 #  Idols, Commands related to my remote distributed building cluster
