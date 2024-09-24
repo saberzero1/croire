@@ -25,18 +25,6 @@
         vim = "nvim";
         vimdiff = "nvim -d";
       };
-      desktopEntries = {
-        "nvim" = {
-          name = "nvim";
-          comment = "Edit text files";
-          icon = "nvim";
-          #exec = "${pkgs.wezterm}/bin/wezterm -e ${inputs.neovim-unwrapped.packages.${pkgs.system}.default}/bin/nvim %F";
-          exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.neovim-unwrapped}/bin/nvim %F";
-          categories = [ "Application" ];
-          terminal = false;
-          mimeType = [ "text/plain" ];
-        };
-      };
     };
     programs = {
       zsh = {
@@ -114,6 +102,18 @@
         "nvim/.stylua.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles/shelter/.stylua.toml"; };
         "nvim/neovim.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles/shelter/neovim.yml"; };
         "nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles/shelter/lua"; };
+      };
+      desktopEntries = {
+        "nvim" = {
+          name = "nvim";
+          comment = "Edit text files";
+          icon = "nvim";
+          #exec = "${pkgs.wezterm}/bin/wezterm -e ${inputs.neovim-unwrapped.packages.${pkgs.system}.default}/bin/nvim %F";
+          exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.neovim-unwrapped}/bin/nvim %F";
+          categories = [ "Application" ];
+          terminal = false;
+          mimeType = [ "text/plain" ];
+        };
       };
     };
   };
