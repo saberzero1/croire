@@ -7,6 +7,7 @@
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
         pkgs.wezterm
+        pkgs.just
       ];
     };
     programs = {
