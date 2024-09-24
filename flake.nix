@@ -11,8 +11,8 @@
     let
       flakeContext = {
         inherit inputs;
+        username = "saberzero1";
       };
-      username = "saberzero1";
     in
     {
       homeConfigurations = {
