@@ -1,6 +1,7 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }:
 let
+  username = inputs.self.username;
   burnMyWindowsProfile = pkgs.writeText "nix-profile.conf" ''
     [burn-my-windows-profile]
 
@@ -93,7 +94,7 @@ in
         VISUAL = "nvim";
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
         TERMINAL = "wezterm";
-        LAZY = "${config.home.homeDirectory}/Documents/lazy-nvim";
+        LAZY = "/home/${username}/Documents/lazy-nvim";
       };
     };
     xdg = {
