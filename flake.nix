@@ -26,7 +26,7 @@
         development = import ./homeModules/development.nix flakeContext;
         git = import ./homeModules/git.nix flakeContext;
         javascript = import ./homeModules/javascript.nix flakeContext;
-        neovim = import ./homeModules/neovim.nix flakeContext;
+        #neovim = import ./homeModules/neovim.nix flakeContext;
         neovim_language_dependencies = import ./homeModules/neovim_language_dependencies.nix flakeContext;
         nixvim = import ./homeModules/nixvim.nix flakeContext;
         programming_languages = import ./homeModules/programming_languages.nix flakeContext;
