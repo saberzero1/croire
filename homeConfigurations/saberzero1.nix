@@ -1,4 +1,4 @@
-{ inputs, username, ... }@flakeContext:
+{ inputs, ... }@flakeContext:
 let
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
