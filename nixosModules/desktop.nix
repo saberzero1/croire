@@ -52,6 +52,7 @@ in
         pkgs.gnomeExtensions.memento-mori
         pkgs.gnome-remote-desktop
         pkgs.gnome.nautilus
+        pkgs.gnome.nautilus-python
         pkgs.xrdp
         pkgs.freerdp
       ];
@@ -96,7 +97,11 @@ in
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
         TERMINAL = "wezterm";
         LAZY = "/home/${username}/Documents/lazy-nvim";
+        NAUTILUS_4_EXTENSION_DIR = "${pkgs.gnome.nautilus-python}/lib/nautilus/extensions-4";
       };
+      pathsToLink = [
+        "/share/nautilus-python/extensions"
+      ];
     };
     xdg = {
       mime = {
