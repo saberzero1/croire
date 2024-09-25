@@ -53,6 +53,7 @@ in
         pkgs.gnome-remote-desktop
         pkgs.nautilus
         pkgs.nautilus-python
+        pkgs.nautilus-open-any-terminal
         pkgs.xrdp
         pkgs.freerdp
       ];
@@ -98,9 +99,9 @@ in
         TERMINAL = "wezterm";
         LAZY = "/home/${username}/Documents/lazy-nvim";
       };
-      pathsToLink = [
-        "/share/nautilus-python/extensions"
-      ];
+      #pathsToLink = [
+      #  "/share/nautilus-python/extensions"
+      #];
     };
     xdg = {
       mime = {
@@ -157,6 +158,10 @@ in
             }];
           };
         };
+      };
+      nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "wezterm";
       };
     };
     systemd = {

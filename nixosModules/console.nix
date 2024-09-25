@@ -7,7 +7,6 @@
         pkgs.zsh-you-should-use
         pkgs.zsh-vi-mode
         pkgs.wezterm
-        pkgs.nautilus-open-any-terminal
         pkgs.just
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
       ];
@@ -17,10 +16,6 @@
         enable = true;
         enableCompletion = true;
         enableLsColors = true;
-      };
-      nautilus-open-any-terminal = {
-        enable = true;
-        terminal = "wezterm";
       };
     };
     users = {
