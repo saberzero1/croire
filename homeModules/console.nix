@@ -94,10 +94,6 @@
         enableZshIntegration = true;
         enableBashIntegration = true;
       };
-      nautilus-open-any-terminal = {
-        enable = true;
-        terminal = "wezterm";
-      };
     };
     xdg = {
       configFile = {

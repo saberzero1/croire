@@ -97,7 +97,7 @@ in
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
         TERMINAL = "wezterm";
         LAZY = "/home/${username}/Documents/lazy-nvim";
-        NAUTILUS_4_EXTENSION_DIR = "${pkgs.gnome.nautilus-python}/lib/nautilus/extensions-4";
+        NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
       };
       pathsToLink = [
         "/share/nautilus-python/extensions"

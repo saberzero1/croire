@@ -18,6 +18,10 @@
         enableCompletion = true;
         enableLsColors = true;
       };
+      nautilus-open-any-terminal = {
+        enable = true;
+        terminal = "wezterm";
+      };
     };
     users = {
       defaultUserShell = pkgs.zsh;
