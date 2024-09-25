@@ -51,6 +51,7 @@ in
         pkgs.gnomeExtensions.espresso
         pkgs.gnomeExtensions.memento-mori
         pkgs.gnome-remote-desktop
+        pkgs.gnome.nautilus
         pkgs.xrdp
         pkgs.freerdp
       ];

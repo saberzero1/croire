@@ -4,7 +4,7 @@
     home = {
       packages = [
         pkgs.vscode-extensions.asvetliakov.vscode-neovim
-        pkgs.vscodium
+        pkgs.vscodium.fhs
       ];
     };
     programs = {
@@ -12,7 +12,7 @@
         enable = false;
         enableExtensionUpdateCheck = true;
         mutableExtensionsDir = true;
-        package = pkgs.vscodium;
+        package = pkgs.vscodium.fhs;
       };
     };
   };

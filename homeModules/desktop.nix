@@ -34,7 +34,7 @@ in
           picture-uri-dark = "file:///home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper.png";
         };
         "org/gnome/shell" = {
-          favorite-apps = ["org.gnome.Nautilus.desktop" "wavebox.desktop" "obsidian.desktop" "discord.desktop" "codium.desktop"];
+          favorite-apps = ["org.gnome.Nautilus.desktop" "wavebox.desktop" "obsidian.desktop" "discord.desktop" "codium.desktop" "nvim.desktop" "wezterm.desktop"];
         };
       };
     };

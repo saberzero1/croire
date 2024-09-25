@@ -3,7 +3,7 @@
   config = {
     environment = {
       systemPackages = [
-        pkgs.vscodium
+        pkgs.vscodium.fhs
         pkgs.vscode-extensions.asvetliakov.vscode-neovim
       ];
     };
