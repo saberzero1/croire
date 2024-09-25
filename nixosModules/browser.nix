@@ -4,6 +4,7 @@
     environment = {
       systemPackages = [
         pkgs.wavebox
+        pkgs.firefox
       ];
     };
   };
