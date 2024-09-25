@@ -96,7 +96,7 @@ in
         EDITOR = "nvim";
         VISUAL = "nvim";
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
-        TERMINAL = "wezterm";
+        #TERMINAL = "wezterm";
         LAZY = "/home/${username}/Documents/lazy-nvim";
       };
       #pathsToLink = [
