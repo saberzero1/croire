@@ -12,6 +12,11 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+
+    # https://wavebox.io/download
+    wavebox = prev.wavebox.overrideAttrs (oldAttrs: rec {
+      version = "10.129.29-2";
+    });
   };
 
   nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
