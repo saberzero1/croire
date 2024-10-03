@@ -3,7 +3,7 @@
   config = {
     environment = {
       systemPackages = [
-        inputs.modifications.wavebox.packages.${pkgs.system}.default
+        pkgs.wavebox-io
         pkgs.firefox
       ];
     };
