@@ -17,6 +17,7 @@
     wavebox = prev.wavebox.overrideAttrs (oldAttrs: rec {
       version = "10.129.29-2";
     });
+    wavebox-io = final.wavebox;
   };
 
   nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
