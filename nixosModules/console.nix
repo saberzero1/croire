@@ -17,7 +17,7 @@
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = /home/saberzero1/Documents/Repos/dotfiles-submodules/shelter/init.el;
+          config = ./home/saberzero1/Documents/Repos/dotfiles-submodules/shelter/init.el;
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
