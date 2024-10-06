@@ -104,7 +104,7 @@
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = "emacs/init.el";
+          config = "${config.home.homeDirectory}/.config/emacs/default.el";
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
@@ -118,7 +118,7 @@
           #defaultInitFile = true;
           defaultInitFile = pkgs.substituteAll {
             name = "default.el";
-            src = "${config.home.homeDirectory}/.config/emacs/init.el";
+            src = "${config.home.homeDirectory}/.config/emacs/default.el";
             inherit (config.xdg) configHome dataHome;
           };
 
@@ -165,7 +165,7 @@
         "nvim/.stylua.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/.stylua.toml"; };
         "nvim/neovim.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/neovim.yml"; };
         "nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua"; };
-        "emacs/init.el" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el"; };
+        "emacs/default.el" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/default.el"; };
         #"emacs" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el"; };
       };
       desktopEntries = {
