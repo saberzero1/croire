@@ -21,7 +21,7 @@
 
   nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
-  emacs-nightly = inputs.emacs-nightly-overlay.overlays.default;
+  emacs-nightly = inputs.emacs-overlay.overlays.default;
 
   # # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # # be accessible through 'pkgs.unstable'

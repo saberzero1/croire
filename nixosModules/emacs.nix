@@ -3,7 +3,7 @@
   config = {
     environment = {
       systemPackages = [
-        inputs.emacs-nightly-overlay.packages.${pkgs.system}.default
+        inputs.emacs-overlay.packages.${pkgs.system}.default
         (pkgs.emacsWithPackagesFromUsePackage {
           # Your Emacs config file. Org mode babel files are also
           # supported.
@@ -62,7 +62,7 @@
     programs = {
       emacs = {
         enable = true;
-        package = inputs.emacs-nightly-overlay.packages.${pkgs.system}.default;
+        package = inputs.emacs-overlay.packages.${pkgs.system}.default;
       };
     };
   };

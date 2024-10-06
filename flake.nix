@@ -7,7 +7,7 @@
     home-manager.url = "flake:home-manager";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    emacs-nightly-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
   outputs = { self, nixpkgs, ... } @ inputs:
     let
@@ -19,7 +19,7 @@
     {
       overlays = [
         inputs.neovim-nightly-overlay.overlays.default
-        inputs.emacs-nightly-overlay.overlays.default
+        inputs.emacs-overlay.overlays.default
         #(_: _: {
         #  nil = inputs.nil-lsp.packages."x86_64-linux".default;
         #})
