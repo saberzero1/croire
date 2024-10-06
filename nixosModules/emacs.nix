@@ -3,7 +3,7 @@
   config = {
     environment = {
       systemPackages = [
-        inputs.emacs-overlay.packages.${pkgs.system}.default
+        #inputs.emacs-overlay.packages.${pkgs.system}.default
         (pkgs.emacsWithPackagesFromUsePackage {
           # Your Emacs config file. Org mode babel files are also
           # supported.
@@ -11,7 +11,7 @@
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = ./emacs.el;
+          # config = ./emacs.el;
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
@@ -22,10 +22,10 @@
           #     src = ./emacs.el;
           #     inherit (config.xdg) configHome dataHome;
           #   };
-          defaultInitFile = true;
+          # defaultInitFile = true;
 
           # Package is optional, defaults to pkgs.emacs
-          package = pkgs.emacs;
+          package = pkgs.emacs-unstable;
           # package = pkgs.emacs-git;
 
           # By default emacsWithPackagesFromUsePackage will only pull in
@@ -62,13 +62,14 @@
     };
     services = {
       emacs = {
-        package = pkgs.emacs;
+        package = pkgs.emacs-unstable;
       };
     };
     programs = {
       emacs = {
         enable = true;
-        package = inputs.emacs-overlay.packages.${pkgs.system}.default;
+        #package = inputs.emacs-overlay.packages.${pkgs.system}.default;
+        package = pkgs.emacs-unstable
       };
     };
   };
