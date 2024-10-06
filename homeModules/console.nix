@@ -118,8 +118,8 @@
           #defaultInitFile = true;
           defaultInitFile = pkgs.substituteAll {
             name = "default.el";
-            src = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/default.el";
-            inherit (config.xdg) configHome dataHome;
+            src = emacs/init.el;
+            inherit (config.xdg) configHome dataHome configFile;
           };
 
           # Package is optional, defaults to pkgs.emacs
