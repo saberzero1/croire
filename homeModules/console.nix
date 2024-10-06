@@ -104,7 +104,7 @@
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = ./init.el;
+          config = ./emacs/init.el;
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
