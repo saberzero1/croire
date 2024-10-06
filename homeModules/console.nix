@@ -93,6 +93,10 @@
         enableZshIntegration = true;
         enableBashIntegration = true;
       };
+      emacs = {
+        enable = true;
+        package = pkgs.emacs;
+      };
     };
     xdg = {
       configFile = {

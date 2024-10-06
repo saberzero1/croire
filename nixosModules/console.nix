@@ -9,6 +9,7 @@
         pkgs.wezterm
         pkgs.just
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+        pkgs.emacs
       ];
     };
     programs = {
