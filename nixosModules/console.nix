@@ -9,7 +9,6 @@
         pkgs.wezterm
         pkgs.just
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-        #inputs.emacs-overlay.packages.${pkgs.system}.default
       ];
     };
     programs = {
@@ -21,7 +20,6 @@
     };
     users = {
       defaultUserShell = pkgs.zsh;
-      #defaultUserShell = pkgs.wezterm;
     };
   };
 }

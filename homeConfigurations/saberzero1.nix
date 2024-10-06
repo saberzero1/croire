@@ -26,12 +26,6 @@ let
           allowUnfree = true;
         };
       };
-      services = {
-        emacs = {
-          enable = true;
-          package = pkgs.emacs-unstable;
-        };
-      };
       programs = {
         home-manager = {
           enable = true;

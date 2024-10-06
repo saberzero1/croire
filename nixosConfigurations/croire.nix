@@ -17,13 +17,7 @@ let
       inputs.self.nixosModules.utils
       inputs.self.nixosModules.workflow
       {
-        nixpkgs.overlays = [
-          inputs.neovim-nightly-overlay.overlays.default
-          inputs.emacs-overlay.overlays.default
-          (import (builtins.fetchTarball {
-            url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-          }))
-        ];
+        nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";

@@ -17,9 +17,7 @@ let
     tv-glitch-color=#64A0FF
   '';
   browser = [
-    # Wavebox doesn't handle external links currently.
     "wavebox.desktop"
-    # "org.gnome.epiphany.desktop"
   ];
   associations = {
     "text/html" = browser;
@@ -96,12 +94,8 @@ in
         EDITOR = "nvim";
         VISUAL = "nvim";
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
-        #TERMINAL = "wezterm";
         LAZY = "/home/${username}/Documents/lazy-nvim";
       };
-      #pathsToLink = [
-      #  "/share/nautilus-python/extensions"
-      #];
     };
     xdg = {
       mime = {
