@@ -96,7 +96,7 @@
       };
       emacs = {
         enable = true;
-        package = pkgs.emacs-unstable;
+        package = pkgs.emacs;
       };
     };
     xdg = {
