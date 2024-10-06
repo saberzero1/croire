@@ -1,9 +1,5 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }:
-let
-  emacsInit = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el";
-in
-{
+{ config, lib, pkgs, ... }: {
   config = {
     environment = {
       systemPackages = [
@@ -21,7 +17,7 @@ in
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = "${emacsInit}";
+          config = ./emacs-init.el;
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
