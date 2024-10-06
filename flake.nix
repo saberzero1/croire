@@ -69,7 +69,6 @@
         console = import ./nixosModules/console.nix flakeContext;
         desktop = import ./nixosModules/desktop.nix flakeContext;
         development = import ./nixosModules/development.nix flakeContext;
-        emacs = import ./nixosModules/emacs.nix flakeContext;
         git = import ./nixosModules/git.nix flakeContext;
         javascript = import ./nixosModules/javascript.nix flakeContext;
         neovim = import ./nixosModules/neovim.nix flakeContext;
