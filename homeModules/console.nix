@@ -19,7 +19,7 @@
         pkgs.ripgrep
         pkgs.fd
         pkgs.jq
-        #pkgs.emacs
+        pkgs.emacs
       ];
       shellAliases = {
         vi = "nvim";
@@ -94,10 +94,10 @@
         enableZshIntegration = true;
         enableBashIntegration = true;
       };
-      #emacs = {
-      #  enable = true;
-      #  package = pkgs.emacs;
-      #};
+      emacs = {
+        enable = true;
+        package = pkgs.emacs;
+      };
     };
     xdg = {
       configFile = {
