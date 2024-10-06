@@ -118,7 +118,7 @@
           #defaultInitFile = true;
           defaultInitFile = pkgs.substituteAll {
             name = "default.el";
-            src = (dataHome)/emacs/init.el;
+            src = "${dataHome}/emacs/init.el";
             inherit (config.xdg) configHome dataHome;
           };
 
