@@ -1,7 +1,7 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }:
 let
-  emacsInit = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el";
+  emacsInit = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el";
 in
 {
   config = {
@@ -21,7 +21,7 @@ in
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = emacsInit;
+          config = "${emacsInit}";
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
