@@ -62,7 +62,7 @@
     };
     services = {
       emacs = {
-        package = pkgs.emacs-unstable;
+        package = pkgs.emacs;
       };
     };
     programs = {
