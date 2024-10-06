@@ -119,7 +119,7 @@
           defaultInitFile = pkgs.substituteAll {
             name = "default.el";
             src = ./emacs/init.el;
-            inherit (config.xdg) configHome dataHome configFile;
+            inherit (config.xdg) configHome dataHome;
           };
 
           # Package is optional, defaults to pkgs.emacs
