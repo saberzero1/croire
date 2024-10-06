@@ -95,7 +95,7 @@
         enableBashIntegration = true;
       };
       emacs = {
-        enable = true;
+        enable = false;
         #package = pkgs.emacs-unstable;
         package = (pkgs.emacsWithPackagesFromUsePackage {
           # Your Emacs config file. Org mode babel files are also
@@ -165,7 +165,7 @@
         "nvim/.stylua.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/.stylua.toml"; };
         "nvim/neovim.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/neovim.yml"; };
         "nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua"; };
-        "emacs/default.el" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/default.el"; };
+        #"emacs/default.el" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el"; };
         #"emacs" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el"; };
       };
       desktopEntries = {
