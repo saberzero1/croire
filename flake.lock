@@ -23,7 +23,7 @@
         "type": "github"
       }
     },
-    "emacs-nightly-overlay": {
+    "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
@@ -570,7 +570,7 @@
     },
     "root": {
       "inputs": {
-        "emacs-nightly-overlay": "emacs-nightly-overlay",
+        "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_4",
