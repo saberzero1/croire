@@ -25,7 +25,7 @@
           defaultInitFile = true;
 
           # Package is optional, defaults to pkgs.emacs
-          package = pkgs.emacs-unstable;
+          package = pkgs.emacs;
           # package = pkgs.emacs-git;
 
           # By default emacsWithPackagesFromUsePackage will only pull in
