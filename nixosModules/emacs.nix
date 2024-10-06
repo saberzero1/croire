@@ -59,6 +59,11 @@
         })
       ];
     };
+    services = {
+      emacs = {
+        package = pkgs.emacs-unstable;
+      };
+    };
     programs = {
       emacs = {
         enable = true;
