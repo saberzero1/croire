@@ -19,7 +19,7 @@
         pkgs.ripgrep
         pkgs.fd
         pkgs.jq
-        pkgs.emacs
+        pkgs.emacs-unstable
       ];
       shellAliases = {
         vi = "nvim";
@@ -96,7 +96,7 @@
       };
       emacs = {
         enable = true;
-        package = pkgs.emacs;
+        package = pkgs.emacs-unstable;
       };
     };
     xdg = {
