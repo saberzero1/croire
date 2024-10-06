@@ -104,7 +104,7 @@
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = "${config.home.homeDirectory}/.config/emacs/default.el";
+          config = default.el;
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
