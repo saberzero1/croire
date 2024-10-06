@@ -149,7 +149,7 @@
               patches = [ ./weechat-el.patch ];
             });
           };
-        })
+        });
       };
     };
     xdg = {
