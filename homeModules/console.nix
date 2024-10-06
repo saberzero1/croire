@@ -118,7 +118,7 @@
           #defaultInitFile = true;
           defaultInitFile = pkgs.substituteAll {
             name = "default.el";
-            src = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el";
+            src = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter";
             inherit (config.xdg) configHome dataHome;
           };
 
