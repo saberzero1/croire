@@ -119,7 +119,7 @@
             name = "default.el";
             src = ./emacs/init.el;
             inherit (config.xdg) configHome dataHome;
-          }
+          };
 
           # Package is optional, defaults to pkgs.emacs
           package = pkgs.emacs-unstable;
