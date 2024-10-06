@@ -19,7 +19,7 @@
         pkgs.ripgrep
         pkgs.fd
         pkgs.jq
-        pkgs.emacs-unstable
+        pkgs.emacs
       ];
       shellAliases = {
         vi = "nvim";
