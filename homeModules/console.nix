@@ -104,7 +104,6 @@
           #     they're being parsed in nix, which lacks unicode
           #     support.
           # config = ./emacs.org;
-          config = emacs/init.el;
 
           # Whether to include your config as a default init file.
           # If being bool, the value of config is used.
@@ -115,7 +114,12 @@
           #     src = ./emacs.el;
           #     inherit (config.xdg) configHome dataHome;
           #   };
-          defaultInitFile = true;
+          #defaultInitFile = true;
+          defaultInitFile = pkgs.substituteAll {
+            name = "default.el";
+            src = ./emacs/init.el;
+            inherit (config.xdg) configHome dataHome;
+          }
 
           # Package is optional, defaults to pkgs.emacs
           package = pkgs.emacs-unstable;
