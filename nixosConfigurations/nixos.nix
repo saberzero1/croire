@@ -20,6 +20,9 @@ let
         nixpkgs.overlays = [
           inputs.neovim-nightly-overlay.overlays.default
           inputs.emacs-overlay.overlays.default
+          (import (builtins.fetchTarball {
+            url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+          }))
         ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
