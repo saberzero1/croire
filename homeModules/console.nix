@@ -95,7 +95,7 @@
         enableBashIntegration = true;
       };
       emacs = {
-        enable = true;
+        enable = false;
         #package = pkgs.emacs-unstable;
         package = (pkgs.emacsWithPackagesFromUsePackage {
           # Your Emacs config file. Org mode babel files are also
