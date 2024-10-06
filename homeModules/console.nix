@@ -19,6 +19,7 @@
         pkgs.ripgrep
         pkgs.fd
         pkgs.jq
+        pkgs.emacs-unstable
       ];
       shellAliases = {
         vi = "nvim";
@@ -95,7 +96,7 @@
       };
       emacs = {
         enable = true;
-        package = pkgs.emacs;
+        package = pkgs.emacs-unstable;
       };
     };
     xdg = {
@@ -106,6 +107,8 @@
         "nvim/.stylua.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/.stylua.toml"; };
         "nvim/neovim.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/neovim.yml"; };
         "nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua"; };
+        "emacs.el" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el"; };
+        #"emacs" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.el"; };
       };
       desktopEntries = {
         "nvim" = {
