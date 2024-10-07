@@ -163,9 +163,15 @@ let
               "wheel"
               "networkmanager"
               "plugdev"
+              "docker"
             ];
             name = "saberzero1";
           };
+        };
+      };
+      virtualisation = {
+        docker = {
+          enable = true;
         };
       };
     };

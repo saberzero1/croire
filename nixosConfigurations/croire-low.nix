@@ -169,6 +169,12 @@ let
           };
         };
       };
+      virtualisation = {
+        docker = {
+          # Don't enable docker on low-spec hardware.
+          enable = false;
+        };
+      };
     };
   };
 in
