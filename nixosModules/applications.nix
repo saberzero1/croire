@@ -12,6 +12,8 @@
         pkgs.discord
         pkgs.nexusmods-app
         pkgs.steamtinkerlaunch
+        pkgs.wofi
+        pkgs.wofi-pass
       ];
     };
     programs = {
