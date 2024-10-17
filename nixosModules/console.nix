@@ -18,9 +18,6 @@
         enableCompletion = true;
         enableLsColors = true;
       };
-      ranger = {
-        enable = true;
-      };
     };
     users = {
       defaultUserShell = pkgs.zsh;

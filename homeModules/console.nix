@@ -20,6 +20,7 @@
         pkgs.fd
         pkgs.jq
         #pkgs.emacs-unstable
+        pkgs.ranger
       ];
       shellAliases = {
         vi = "nvim";
@@ -93,6 +94,10 @@
         package = pkgs.wezterm;
         enableZshIntegration = true;
         enableBashIntegration = true;
+      };
+      ranger = {
+        enable = true;
+        package = pkgs.ranger;
       };
     };
     xdg = {
