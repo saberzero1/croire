@@ -9,6 +9,7 @@
         pkgs.wezterm
         pkgs.just
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+        pkgs.ranger
       ];
     };
     programs = {
@@ -16,6 +17,9 @@
         enable = true;
         enableCompletion = true;
         enableLsColors = true;
+      };
+      ranger = {
+        enable = true;
       };
     };
     users = {
