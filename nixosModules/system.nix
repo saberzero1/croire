@@ -20,6 +20,8 @@
         pkgs.wineWowPackages.staging
         pkgs.winetricks
         pkgs.nix-ld
+        pkgs.evince
+        pkgs.foliate
       ];
     };
     fonts = {
