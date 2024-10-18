@@ -4,9 +4,8 @@
     console = {
       enable = true;
       font = "FiraCode";
+      keymap = "us";
       packages = with pkgs; [
-        fira-code
-        fira-code-symbols
         (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ];
     };
@@ -36,7 +35,6 @@
       packages = with pkgs; [
         fira-code
         fira-code-symbols
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ];
       fontDir = {
         enable = true;

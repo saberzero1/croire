@@ -5,22 +5,25 @@
   ];
   config = {
     home = {
-      packages = [
-        pkgs.zsh
-        pkgs.zsh-you-should-use
-        pkgs.zsh-vi-mode
-        pkgs.wezterm
-        pkgs.python312Packages.pynvim
-        pkgs.neovim-unwrapped
-        pkgs.git
-        pkgs.gnumake
-        pkgs.unzip
-        pkgs.gcc
-        pkgs.ripgrep
-        pkgs.fd
-        pkgs.jq
-        #pkgs.emacs-unstable
-        pkgs.ranger
+      packages = with pkgs; [
+        zsh
+        zsh-you-should-use
+        zsh-vi-mode
+        wezterm
+        python312Packages.pynvim
+        neovim-unwrapped
+        git
+        gnumake
+        unzip
+        gcc
+        ripgrep
+        fd
+        jq
+        #emacs-unstable
+        ranger
+        fira-code
+        fira-code-symbols
+        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ];
       shellAliases = {
         vi = "nvim";
