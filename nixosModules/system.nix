@@ -4,7 +4,7 @@
     console = {
       enable = true;
       font = "FiraCode";
-      packages = with pkgs [ fira-code-nerdfont ];
+      packages = with pkgs; [ fira-code-nerdfont ];
     };
     environment = {
       systemPackages = [
