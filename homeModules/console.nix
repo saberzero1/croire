@@ -108,6 +108,13 @@
         "nvim/.stylua.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/.stylua.toml"; };
         "nvim/neovim.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/neovim.yml"; };
         "nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua"; };
+        "ranger/commands.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/commands.py"; };
+        "ranger/commands_full.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/commands_full.py"; };
+        "ranger/rc.conf" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/rc.conf"; };
+        "ranger/rifle.conf" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/rifle.conf"; };
+        "ranger/scope.sh" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/scope.sh"; };
+        "ranger/plugins/ranger_devicons/__init__.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/__init__.py"; };
+        "ranger/plugins/ranger_devicons/devicons.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/devicons.py"; };
       };
       desktopEntries = {
         "nvim" = {
