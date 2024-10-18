@@ -3,8 +3,12 @@
   config = {
     console = {
       enable = true;
-      font = "Fira Code";
-      packages = with pkgs; [ fira-code-nerdfont ];
+      font = "FiraCode";
+      packages = with pkgs; [
+        fira-code
+        fira-code-symbols
+        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      ];
     };
     environment = {
       systemPackages = [
@@ -29,9 +33,10 @@
     fonts = {
       enableDefaultPackages = true;
       enableGhostscriptFonts = true;
-      packages = [
-        pkgs.fira-code
-        pkgs.fira-code-nerdfont
+      packages = with pkgs; [
+        fira-code
+        fira-code-symbols
+        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ];
       fontDir = {
         enable = true;
@@ -39,7 +44,7 @@
       fontconfig = {
         defaultFonts = {
           monospace = [
-            "Fira Code"
+            "FiraCode"
           ];
         };
         enable = true;
