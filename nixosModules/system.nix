@@ -3,6 +3,8 @@
   config = {
     console = {
       enable = true;
+      font = "FiraCode";
+      packages = with pkgs [ fira-code-nerdfont ];
     };
     environment = {
       systemPackages = [
@@ -29,6 +31,7 @@
       enableGhostscriptFonts = true;
       packages = [
         pkgs.fira-code
+        pkgs.fira-code-nerdfont
       ];
       fontDir = {
         enable = true;
@@ -36,7 +39,7 @@
       fontconfig = {
         defaultFonts = {
           monospace = [
-            "Fira Code"
+            "FiraCode"
           ];
         };
         enable = true;
