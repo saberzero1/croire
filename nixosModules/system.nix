@@ -4,7 +4,7 @@
     console = {
       enable = true;
       font = "FiraCode";
-      keymap = "us";
+      keyMap = "us";
       packages = with pkgs; [
         (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
       ];
