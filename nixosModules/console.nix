@@ -8,6 +8,7 @@
         pkgs.zsh-vi-mode
         pkgs.wezterm
         pkgs.just
+        pkgs.tmux
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
         pkgs.ranger
         pkgs.fastfetch

@@ -103,6 +103,9 @@
         enable = true;
         package = pkgs.ranger;
       };
+      tmux = {
+        enable = true;
+      }
     };
     xdg = {
       configFile = {
