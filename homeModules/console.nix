@@ -7,8 +7,12 @@
     home = {
       packages = with pkgs; [
         zsh
-        zsh-you-should-use
+        oh-my-zsh
+        zsh-autosuggestions
+        zsh-completions
+        zsh-syntax-highlighting
         zsh-vi-mode
+        zsh-you-should-use
         wezterm
         python312Packages.pynvim
         neovim-unwrapped
