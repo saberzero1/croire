@@ -4,8 +4,12 @@
     environment = {
       systemPackages = [
         pkgs.zsh
-        pkgs.zsh-you-should-use
+        pkgs.oh-my-zsh
+        pkgs.zsh-autosuggestions
+        pkgs.zsh-completions
+        pkgs.zsh-syntax-highlighting
         pkgs.zsh-vi-mode
+        pkgs.zsh-you-should-use
         pkgs.wezterm
         pkgs.just
         pkgs.tmux
