@@ -46,7 +46,9 @@
       zsh = {
         dotDir = ".config/zsh";
         enable = true;
-        enableAutosuggestions = true;
+        autosuggestion = {
+          enable = true;
+        };
         enableCompletion = true;
         history = {
           save = 100000;
