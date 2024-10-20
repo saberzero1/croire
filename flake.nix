@@ -5,6 +5,8 @@
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "flake:home-manager";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
