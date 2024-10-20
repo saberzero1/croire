@@ -3,11 +3,12 @@
   config = {
     console = {
       enable = true;
-      font = "FiraCode";
+      font = "Monaspace Neon";
       keyMap = "us";
       packages = with pkgs; [
         #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
         nerdfonts
+        monaspace
       ];
     };
     environment = {
@@ -36,6 +37,7 @@
       packages = with pkgs; [
         fira-code
         fira-code-symbols
+        monaspace
       ];
       fontDir = {
         enable = true;
@@ -43,7 +45,7 @@
       fontconfig = {
         defaultFonts = {
           monospace = [
-            "FiraCode"
+            "Monaspace Neon"
           ];
         };
         enable = true;
