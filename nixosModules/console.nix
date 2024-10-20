@@ -9,6 +9,7 @@
         pkgs.wezterm
         pkgs.just
         pkgs.tmux
+        pkgs.monaspace
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
         pkgs.ranger
         pkgs.fastfetch

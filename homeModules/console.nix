@@ -25,6 +25,7 @@
         fira-code-symbols
         #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
         nerdfonts
+        monaspace
       ];
       shellAliases = {
         vi = "nvim";
