@@ -105,7 +105,7 @@
       };
       tmux = {
         enable = true;
-      }
+      };
     };
     xdg = {
       configFile = {
