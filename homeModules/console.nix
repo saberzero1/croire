@@ -16,7 +16,13 @@
         gnumake
         unzip
         gcc
+        direnv
+        nix-direnv
+        atuin # https://haseebmajid.dev/posts/2023-08-12-how-sync-your-shell-history-with-atuin-in-nix/
+        fzf
         ripgrep
+        ripgrep-all
+        zoxide
         fd
         jq
         #emacs-unstable
@@ -37,6 +43,12 @@
       zsh = {
         dotDir = ".config/zsh";
         enable = true;
+        enableAutosuggestions = true;
+        ohMyZsh = {
+          enable = true;
+          plugins = [ "git" "vi-mode" "sudo" ];
+          #theme = "frisk";
+        };
         enableCompletion = true;
         history = {
           save = 100000;
@@ -58,7 +70,19 @@
         # This command let's me execute arbitrary binaries downloaded through channels such as mason.
         initExtra = ''
           export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+
+          # Initialize zoxide
+          eval "$(zoxide init zsh)"
+
+          # atuin
+          eval "$(atuin init zsh --disable-up-arrow)"
+
+          # direnv
+          eval "$(direnv hook zsh)"
         '';
+      };
+      direnv = {
+        enable = true;
       };
       neovim = {
         defaultEditor = true;
