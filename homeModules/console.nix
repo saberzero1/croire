@@ -7,7 +7,6 @@
     home = {
       packages = with pkgs; [
         zsh
-        oh-my-zsh
         zsh-autosuggestions
         zsh-completions
         zsh-syntax-highlighting
@@ -48,11 +47,6 @@
         dotDir = ".config/zsh";
         enable = true;
         enableAutosuggestions = true;
-        ohMyZsh = {
-          enable = true;
-          plugins = [ "git" "vi-mode" "sudo" ];
-          #theme = "frisk";
-        };
         enableCompletion = true;
         history = {
           save = 100000;

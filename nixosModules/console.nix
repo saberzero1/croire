@@ -4,7 +4,6 @@
     environment = {
       systemPackages = [
         pkgs.zsh
-        pkgs.oh-my-zsh
         pkgs.zsh-autosuggestions
         pkgs.zsh-completions
         pkgs.zsh-syntax-highlighting
