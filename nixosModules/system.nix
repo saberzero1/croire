@@ -6,7 +6,8 @@
       font = "FiraCode";
       keyMap = "us";
       packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        nerdfonts
       ];
     };
     environment = {

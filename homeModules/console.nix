@@ -23,7 +23,8 @@
         ranger
         fira-code
         fira-code-symbols
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        nerdfonts
       ];
       shellAliases = {
         vi = "nvim";
