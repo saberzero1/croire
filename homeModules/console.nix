@@ -72,7 +72,7 @@
           export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
 
           # Initialize zoxide
-          eval "$(zoxide init zsh)"
+          eval "$(zoxide init --cmd cd zsh)"
 
           # atuin
           eval "$(atuin init zsh --disable-up-arrow)"
