@@ -13,7 +13,7 @@
     };
     environment = {
       systemPackages = [
-        pkgs.libusb
+        pkgs.libusb1
         pkgs.wally-cli
         pkgs.zsa-udev-rules
         pkgs.qmk
