@@ -171,6 +171,15 @@
           terminal = false;
           mimeType = [ "text/plain" ];
         };
+        "ranger" = {
+          name = "ranger";
+          comment = "TUI File Explorer";
+          icon = "ranger";
+          exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.ranger}/bin/ranger %F";
+          categories = [ "Application" ];
+          terminal = false;
+          #mimeType = [ "text/plain" ];
+        }
       };
     };
   };
