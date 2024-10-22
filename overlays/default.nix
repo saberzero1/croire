@@ -15,7 +15,7 @@
 
     # https://wavebox.io/download
     wavebox = prev.wavebox.overrideAttrs (oldAttrs: rec {
-      version = "10.129.29-2";
+      version = "10.129.32-2";
     });
   };
 
