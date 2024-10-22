@@ -179,7 +179,7 @@
           categories = [ "Application" ];
           terminal = false;
           #mimeType = [ "text/plain" ];
-        }
+        };
       };
     };
   };
