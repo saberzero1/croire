@@ -134,7 +134,7 @@
       };
       starship = {
         enable = true;
-        settings = pkgs.lib.importTOML .config/starship/starship.toml;
+        settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
       };
       tmux = {
         enable = true;
