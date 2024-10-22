@@ -35,6 +35,7 @@
         #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
         nerdfonts
         monaspace
+        starship
       ];
       shellAliases = {
         vi = "nvim";
@@ -71,7 +72,7 @@
         initExtra = ''
           export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
 
-          # Initialize zoxide
+          # zoxide
           eval "$(zoxide init --cmd cd zsh)"
 
           # atuin
@@ -79,6 +80,9 @@
 
           # direnv
           eval "$(direnv hook zsh)"
+
+          # starship
+          eval "$(starship init zsh)"
         '';
       };
       direnv = {
@@ -128,6 +132,10 @@
         enable = true;
         package = pkgs.ranger;
       };
+      starship = {
+        enable = true;
+        settings = pkgs.lib.importTOML .config/starship.toml;
+      };
       tmux = {
         enable = true;
       };
@@ -151,6 +159,7 @@
         "ranger/scope.sh" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/scope.sh"; };
         "ranger/plugins/ranger_devicons/__init__.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/__init__.py"; };
         "ranger/plugins/ranger_devicons/devicons.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/devicons.py"; };
+        "starship.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml"}
       };
       desktopEntries = {
         "nvim" = {
