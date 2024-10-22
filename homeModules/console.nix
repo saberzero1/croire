@@ -174,7 +174,7 @@
         "ranger" = {
           name = "ranger";
           comment = "TUI File Explorer";
-          icon = "ranger";
+          icon = "files";
           exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.ranger}/bin/ranger %F";
           categories = [ "Application" ];
           terminal = false;
