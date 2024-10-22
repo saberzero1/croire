@@ -13,6 +13,7 @@
         pkgs.just
         pkgs.tmux
         pkgs.monaspace
+        pkgs.starship
         inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
         pkgs.ranger
         pkgs.fastfetch
