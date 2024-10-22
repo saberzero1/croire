@@ -132,7 +132,7 @@
         enable = true;
         package = pkgs.ranger;
       };
-      starship = {
+      starship = pkgs.lib.attrsets.optionalAttrs builtins.pathExists("${config.home.homeDirectory}/.config/starship/starship.toml") {
         enable = true;
         settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
       };
