@@ -132,8 +132,8 @@
         enable = true;
         package = pkgs.ranger;
       };
-      starship = pkgs.lib.attrsets.optionalAttrs (builtins.pathExists("${config.home.homeDirectory}/.config/starship/starship.toml")) {
-        enable = true;
+      starship = {
+        enable = lib.mkIf (builtins.pathExists("${config.home.homeDirectory}/.config/starship/starship.toml"));
         settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
       };
       tmux = {
