@@ -6,12 +6,8 @@
         pkgs.ulauncher
         pkgs.freerdp
         pkgs.espanso
+        pkgs.espanso-wayland
       ];
-    };
-    programs = {
-      espanso = {
-        enable = true;
-      };
     };
     systemd = {
       services = {

@@ -18,12 +18,14 @@ in
     home = {
       packages = [
         pkgs.ulauncher
+        pkgs.espanso
+        pkgs.espanso-wayland
       ];
     };
     services = {
       espanso = {
         enable = true;
-        package = pkgs.pkgs.espanso-wayland;
+        package = pkgs.espanso-wayland;
         configs = { };
         matches = { };
       };
