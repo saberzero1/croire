@@ -5,13 +5,12 @@
       systemPackages = [
         pkgs.ulauncher
         pkgs.freerdp
-        pkgs.espanso-wayland
+        pkgs.espanso
       ];
     };
     programs = {
       espanso = {
         enable = true;
-        package = pkgs.espanso-wayland;
       };
     };
     systemd = {
