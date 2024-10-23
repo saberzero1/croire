@@ -13,7 +13,7 @@
   outputs = { self, nixpkgs, ... } @ inputs:
     let
       #system = "x86_64-linux";
-      system = pkgs.system;
+      system = nixpkgs.pkgs.system;
       flakeContext = {
         inherit inputs;
         inherit (self) outputs;
