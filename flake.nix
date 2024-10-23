@@ -16,6 +16,10 @@
         inherit inputs;
         inherit (self) outputs;
       };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ self.overlays.default ];
+      };
     in
     {
       #overlays = [
