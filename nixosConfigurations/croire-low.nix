@@ -166,6 +166,7 @@ let
               "wheel"
               "networkmanager"
               "plugdev"
+              "input"
             ];
             name = "saberzero1";
           };

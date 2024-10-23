@@ -166,6 +166,7 @@ let
               "networkmanager"
               "plugdev"
               "docker"
+              "input"
             ];
             name = "saberzero1";
           };
