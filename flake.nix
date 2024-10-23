@@ -16,10 +16,6 @@
         inherit inputs;
         inherit (self) outputs;
       };
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ self.overlays.default ];
-      };
     in
     {
       #overlays = [
@@ -39,7 +35,7 @@
         #  })
       #];
       #overlays = import ./overlays/default.nix flakeContext;
-      overlays = self: super: {
+      overlays.default = self: super: {
         #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
         espanso = super.espanso.override {
           x11Support = false;
