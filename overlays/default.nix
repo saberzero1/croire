@@ -21,19 +21,33 @@
 
   nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
-  pkgs = import nixpkgs {
-    config = {
-      packageOverrides = pkgs: {
-        espanso = pkgs.espanso.override {
-          x11Support = false;
-          waylandSupport = true;
-        };
-        wavebox = pkgs.wavebox.override {
-          version = "10.129.32-2";
-        };
-      };
+  #pkgs = import nixpkgs {
+  #  config = {
+  #    packageOverrides = pkgs: {
+  #      espanso = pkgs.espanso.override {
+  #        x11Support = false;
+  #        waylandSupport = true;
+  #      };
+  #      wavebox = pkgs.wavebox.override {
+  #        version = "10.129.32-2";
+  #      };
+  #    };
+  #  };
+  #};
+
+  overlays = (self: super: {
+    #openssh = super.openssh.override {
+    #  hpnSupport = true;
+    #  kerberos = self.libkrb5;
+    #};
+    espanso = super.espanso.override {
+      x11Support = false;
+      waylandSupport = true;
     };
-  };
+    wavebox = super.wavebox.override {
+      version = "10.129.32-2";
+    };
+  })
 
   # # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # # be accessible through 'pkgs.unstable'
