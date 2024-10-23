@@ -67,7 +67,7 @@
         };
       });
       #legacyPackages.x86_64-linux = pkgs.pkgs;
-      legacyPackages.$(system) = pkgs.pkgs;
+      legacyPackages.${system} = pkgs.pkgs;
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
