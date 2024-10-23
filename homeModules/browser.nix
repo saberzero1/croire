@@ -4,7 +4,7 @@
     programs = {
       chromium = {
         enable = true;
-        package = self.pkgs.wavebox;
+        package = pkgs.overlays.wavebox;
       };
     };
   };
