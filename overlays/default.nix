@@ -8,18 +8,33 @@
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
-  modifications = final: prev: {
+  #modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
 
     # https://wavebox.io/download
-    wavebox = prev.wavebox.overrideAttrs (oldAttrs: rec {
-      version = "10.129.32-2";
-    });
-  };
+    #wavebox = prev.wavebox.overrideAttrs (oldAttrs: rec {
+      #version = "10.129.32-2";
+    #});
+  #};
 
   nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
+
+  #pkgs = import nixpkgs {
+  pkgs = inputs.nixpkgs {
+    config = {
+      packageOverrides = pkgs: {
+        espanso = pkgs.espanso.override {
+          x11Support = false;
+          waylandSupport = true;
+        };
+        wavebox = pkgs.wavebox.override {
+          version = "10.129.32-2";
+        };
+      };
+    };
+  };
 
   # # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # # be accessible through 'pkgs.unstable'

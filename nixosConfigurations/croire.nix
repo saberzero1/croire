@@ -17,7 +17,10 @@ let
       inputs.self.nixosModules.utils
       inputs.self.nixosModules.workflow
       {
-        nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
+        nixpkgs.overlays = [
+          nvim-nightly
+          pkgs
+        ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
