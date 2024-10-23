@@ -18,8 +18,8 @@
       };
     in
     {
-      overlays = [
-        inputs.neovim-nightly-overlay.overlays.default
+      #overlays = [
+      #  inputs.neovim-nightly-overlay.overlays.default
         #(_: _: {
         #  nil = inputs.nil-lsp.packages."x86_64-linux".default;
         #})
@@ -33,7 +33,8 @@
         #      ];
         #    });
         #  })
-      ];
+      #];
+      overlays = import ./overlays/default.nix flakeContext;
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
