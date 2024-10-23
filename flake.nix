@@ -34,7 +34,20 @@
         #    });
         #  })
       #];
-      overlays = import ./overlays/default.nix flakeContext;
+      #overlays = import ./overlays/default.nix flakeContext;
+      overlays = [
+        inputs.neovim-nightly-overlay.overlays.default
+        (self: super: {
+          #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
+          espanso = super.espanso.override {
+            x11Support = false;
+            waylandSupport = true;
+          };
+          wavebox = super.wavebox.override {
+            version = "10.129.32-2";
+          };
+        })
+      ];
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
