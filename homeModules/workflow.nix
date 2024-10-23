@@ -28,14 +28,19 @@ in
         matches = { };
       };
     };
-    systemd = {
-      user = {
-        tmpfiles = {
-          rules = [
-            "L+ %h/.config/espanso/config/default.yml 0755 - - - ${espansoConfigFile}"
-            "L+ %h/.config/espanso/match/base.yml 0755 - - - ${espansoMatchesFile}"
-          ];
-        };
+    # systemd = {
+    #   user = {
+    #     tmpfiles = {
+    #       rules = [
+    #         "L+ %h/.config/espanso/config/default.yml 0755 - - - ${espansoConfigFile}"
+    #         "L+ %h/.config/espanso/match/base.yml 0755 - - - ${espansoMatchesFile}"
+    #       ];
+    #     };
+    #   };
+    # };
+    xdg = {
+      configFile = {
+        "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
       };
     };
   };
