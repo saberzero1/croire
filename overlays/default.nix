@@ -47,7 +47,7 @@
     wavebox = super.wavebox.override {
       version = "10.129.32-2";
     };
-  })
+  });
 
   # # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # # be accessible through 'pkgs.unstable'
