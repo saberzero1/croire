@@ -12,6 +12,8 @@
   };
   outputs = { self, nixpkgs, ... } @ inputs:
     let
+      #system = "x86_64-linux";
+      system = pkgs.system;
       flakeContext = {
         inherit inputs;
         inherit (self) outputs;
@@ -45,6 +47,11 @@
           version = "10.129.32-2";
         };
       };
+      packages.${system} = let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        # YMMV, there's probably a better way
+        self.overlays.default pkgs pkgs;
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
