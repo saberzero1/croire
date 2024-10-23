@@ -19,7 +19,7 @@
     #});
   #};
 
-  nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
+
 
   #pkgs = import nixpkgs {
   #  config = {
@@ -40,6 +40,7 @@
     #  hpnSupport = true;
     #  kerberos = self.libkrb5;
     #};
+    nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
     espanso = super.espanso.override {
       x11Support = false;
       waylandSupport = true;
