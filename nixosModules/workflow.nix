@@ -5,13 +5,25 @@
       systemPackages = [
         pkgs.ulauncher
         pkgs.freerdp
-        pkgs.espanso
+        pkgs.espanso-wayland
       ];
     };
-    services = {
+    programs = {
       espanso = {
-        enable = false;
-        package = pkgs.espanso;
+        enable = true;
+        package = pkgs.espanso-wayland;
+      };
+    };
+    systemd = {
+      services = {
+        espanso = {
+          enable = true;
+          serviceConfig = {
+            execStart = "${pkgs.espanso-wayland}/bin/espanso start";
+            Restart = "always";
+            RestartSec = 1;
+          };
+        };
       };
     };
   };

@@ -38,18 +38,18 @@ in
     #     };
     #   };
     # };
-    systemd = {
-      services = {
-        espanso = {
-          enable = true;
-          serviceConfig = {
-            execStart = "${pkgs.espanso-wayland}/bin/espanso start";
-            Restart = "always";
-            RestartSec = 1;
-          };
-        };
-      };
-    };
+    # systemd = {
+    #   services = {
+    #     espanso = {
+    #       enable = true;
+    #       serviceConfig = {
+    #         execStart = "${pkgs.espanso-wayland}/bin/espanso start";
+    #         Restart = "always";
+    #         RestartSec = 1;
+    #       };
+    #     };
+    #   };
+    # };
     xdg = {
       configFile = {
         "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
