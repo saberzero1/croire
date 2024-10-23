@@ -19,13 +19,13 @@ in
       packages = [
         pkgs.ulauncher
         pkgs.espanso
-        pkgs.espanso-wayland
+        #pkgs.espanso-wayland
       ];
     };
     services = {
       espanso = {
         enable = true;
-        package = pkgs.espanso-wayland;
+        package = pkgs.espanso;#-wayland;
         configs = { };
         matches = { };
       };

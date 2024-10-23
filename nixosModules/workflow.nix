@@ -6,7 +6,7 @@
         pkgs.ulauncher
         pkgs.freerdp
         pkgs.espanso
-        pkgs.espanso-wayland
+        #pkgs.espanso-wayland
       ];
     };
     systemd = {
@@ -14,7 +14,7 @@
         espanso = {
           enable = true;
           serviceConfig = {
-            execStart = "${pkgs.espanso-wayland}/bin/espanso start";
+            execStart = "${pkgs.espanso}/bin/espanso start";
             Restart = "always";
             RestartSec = 1;
           };
