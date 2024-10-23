@@ -18,8 +18,7 @@ let
       inputs.self.nixosModules.workflow
       {
         nixpkgs.overlays = [
-          nvim-nightly
-          pkgs
+          inputs.self.overlays
         ];
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
