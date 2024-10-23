@@ -57,7 +57,7 @@
         #  })
       #];
       #overlays = import ./overlays/default.nix flakeContext;
-      overlays.default = (final: prev: {
+      overlays.default = (self: super: {
         espanso = super.espanso.override {
           x11Support = false;
           waylandSupport = true;
