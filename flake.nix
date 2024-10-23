@@ -12,7 +12,19 @@
   };
   outputs = { self, nixpkgs, ... } @ inputs:
     let
-      system = "x86_64-linux";
+      overlays = [
+        (self: super: {
+          #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
+          espanso = super.espanso.override {
+            x11Support = false;
+            waylandSupport = true;
+          };
+          wavebox = super.wavebox.override {
+            version = "10.129.32-2";
+          };
+        })
+      ];
+      pkgs = import nixpkgs { inherit overlays; };
       #system = nixpkgs.pkgs.system;
       flakeContext = {
         inherit inputs;
@@ -37,21 +49,6 @@
         #  })
       #];
       #overlays = import ./overlays/default.nix flakeContext;
-      overlays.default = self: super: {
-        #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
-        espanso = super.espanso.override {
-          x11Support = false;
-          waylandSupport = true;
-        };
-        wavebox = super.wavebox.override {
-          version = "10.129.32-2";
-        };
-      };
-      packages.${system} = let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        # YMMV, there's probably a better way
-        self.overlays.default pkgs pkgs;
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
