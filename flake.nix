@@ -12,20 +12,28 @@
   };
   outputs = { self, nixpkgs, ... } @ inputs:
     let
-      overlays = [
-        (self: super: {
-          #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
-          espanso = super.espanso.override {
-            x11Support = false;
-            waylandSupport = true;
-          };
-          wavebox = super.wavebox.override {
-            version = "10.129.32-2";
-          };
-        })
-      ];
-      pkgs = import nixpkgs { inherit overlays; };
+      # overlays = [
+      #   (self: super: {
+      #     #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
+      #     espanso = super.espanso.override {
+      #       x11Support = false;
+      #       waylandSupport = true;
+      #     };
+      #     wavebox = super.wavebox.override {
+      #       version = "10.129.32-2";
+      #     };
+      #   })
+      # ];
+      # pkgs = import nixpkgs { inherit overlays; };
       #system = nixpkgs.pkgs.system;
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          self.overlays.default
+        ];
+        config = { allowUnfree = true; };
+      };
       flakeContext = {
         inherit inputs;
         inherit (self) outputs;
@@ -49,6 +57,17 @@
         #  })
       #];
       #overlays = import ./overlays/default.nix flakeContext;
+      overlays.default = (final: prev: {
+        espanso = super.espanso.override {
+          x11Support = false;
+          waylandSupport = true;
+        };
+        wavebox = super.wavebox.override {
+          version = "10.129.32-2";
+        };
+      });
+      #legacyPackages.x86_64-linux = pkgs.pkgs;
+      legacyPackages.$(system) = pkgs.pkgs;
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;

@@ -1,5 +1,8 @@
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix
-# This file defines overlays
+# This file defines overlaysa
+
+# https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
+
 {inputs, ...}: {
 
   # This one brings our custom packages from the 'pkgs' directory
