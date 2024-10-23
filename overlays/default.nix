@@ -21,8 +21,7 @@
 
   nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
-  #pkgs = import nixpkgs {
-  pkgs = inputs.nixpkgs {
+  pkgs = import nixpkgs {
     config = {
       packageOverrides = pkgs: {
         espanso = pkgs.espanso.override {
