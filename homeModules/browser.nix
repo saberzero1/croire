@@ -4,7 +4,7 @@
     programs = {
       chromium = {
         enable = true;
-        package = pkgs.wavebox;
+        package = self.pkgs.wavebox;
       };
     };
   };
