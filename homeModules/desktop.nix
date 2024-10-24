@@ -25,6 +25,7 @@ in
     home = {
       packages = [
         #inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+        inputs.hyprland.nixosModules.default
         pkgs.kitty
       ];
     };
