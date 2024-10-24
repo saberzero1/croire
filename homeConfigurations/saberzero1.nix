@@ -1,7 +1,6 @@
 { inputs, ... }@flakeContext:
 let
   username = inputs.self.username;
-  profileDirectory = config.home-manager.users."${username}".home.profileDirectory;
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
       inputs.self.homeModules.applications
@@ -52,6 +51,7 @@ in
         homeModule
       ];
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+      profileDirectory = config.home-manager.users."${username}".home.profileDirectory;
     }
   ) // { inherit nixosModule; }
 )
