@@ -48,7 +48,7 @@ in
           enable = true;
           #package = config.home.packages.espanso.package;
           serviceConfig = {
-            execStart = "${profileDirectory}/bin/espanso start";
+            execStart = "${config.programs.espanso.package}/bin/espanso start";
             Restart = "always";
             RestartSec = 1;
           };
