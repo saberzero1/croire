@@ -40,21 +40,39 @@ in {
         description = "The package to use for the espanso binary.";
       };
     };
+    services.espanso = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = lib.mkEnableOption "espanso";
+      };
+      #package = config.programs.espanso.package;
+      serviceConfig = {
+        execStart = lib.mkOption {
+          type = lib.types.str;
+          default = "${espansoPackage}/bin/espanso start";
+        };
+        Restart = lib.mkOption {
+          type = lib.types.str;
+          default = "always";
+        };
+        RestartSec = lib.mkOption {
+          type = lib.types.int;
+          default = 1;
+        };
+      };
+    };
   };
 
   config = lib.mkIf config.programs.espanso.enable {
     home.packages = [ config.programs.espanso.package ];
-    services = {
-      espanso = {
-    #     enable = true;
-    #     package = config.programs.espanso.package;
-        serviceConfig = {
-          execStart = "${config.programs.espanso.package}/bin/espanso start";
-          Restart = "always";
-          RestartSec = 1;
-        };
-      };
-    };
+    # services.espanso = {
+    #   package = config.programs.espanso.package;
+    #   serviceConfig = {
+    #     execStart = "${config.programs.espanso.package}/bin/espanso start";
+    #     Restart = "always";
+    #     RestartSec = 1;
+    #   };
+    # };
 
     # Here you can add more configuration, for example, setting up environment
     # variables, startup services, etc., specific to espanso
