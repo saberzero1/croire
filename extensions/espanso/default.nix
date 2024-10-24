@@ -40,7 +40,7 @@ in {
         description = "The package to use for the espanso binary.";
       };
     };
-    systemd.services.espanso = {
+    services.espanso = {
       enable = lib.mkEnableOption "espanso";
       package = espansoPackage;
       serviceConfig = {
