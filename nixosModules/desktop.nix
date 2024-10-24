@@ -54,7 +54,7 @@ in
         pkgs.nautilus-open-any-terminal
         pkgs.xrdp
         pkgs.freerdp
-        pkgs.hyprland
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -158,6 +158,9 @@ in
       nautilus-open-any-terminal = {
         enable = true;
         terminal = "wezterm";
+      };
+      kitty = {
+        enable = true;
       };
       hyprland = {
         # Install the packages from nixpkgs
