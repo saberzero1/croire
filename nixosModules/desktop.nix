@@ -54,7 +54,7 @@ in
         pkgs.nautilus-open-any-terminal
         pkgs.xrdp
         pkgs.freerdp
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+        #inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
         pkgs.kitty
       ];
       # Most of these are optional programs added by services.gnome.core-services
