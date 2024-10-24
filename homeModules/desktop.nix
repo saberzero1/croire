@@ -65,9 +65,7 @@ in
       windowManager = {
         hyprland = {
           enable = true;
-          plugins = {
-
-          };
+          #plugins = {};
         };
       };
     };
