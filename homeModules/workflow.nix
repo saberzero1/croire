@@ -25,14 +25,14 @@ in
         config.programs.espanso.package
       ];
     };
-#    services = {
-#      espanso = {
-#        enable = true;
-#        #package = pkgs.espanso-wayland;
-#        configs = { };
-#        matches = { };
-#      };
-#    };
+   services = {
+     espanso = {
+       enable = true;
+       #package = pkgs.espanso-wayland;
+       configs = { };
+       matches = { };
+     };
+   };
     # systemd = {
     #   user = {
     #     tmpfiles = {
@@ -56,10 +56,10 @@ in
     #     };
     #   };
     # };
-    # xdg = {
-    #   configFile = {
-    #     "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
-    #   };
-    # };
+    xdg = {
+      configFile = {
+        "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
+      };
+    };
   };
 }
