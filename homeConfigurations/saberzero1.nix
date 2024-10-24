@@ -14,6 +14,7 @@ let
       inputs.self.homeModules.system
       inputs.self.homeModules.utils
       inputs.self.homeModules.workflow
+      ../extensions/espanso
     ];
     config = {
       home = {
@@ -46,9 +47,6 @@ in
 (
   (
     inputs.home-manager.lib.homeManagerConfiguration {
-      imports = [
-        ../extensions/espanso
-      ];
       modules = [
         homeModule
       ];
