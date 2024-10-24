@@ -15,7 +15,6 @@ let
       inputs.self.homeModules.system
       inputs.self.homeModules.utils
       inputs.self.homeModules.workflow
-      ../extensions/espanso
     ];
     config = {
       home = {
@@ -46,9 +45,9 @@ let
         services = {
           espanso = {
             enable = true;
-            package = config.programs.espanso.package;
+            package = pkgs.espanso-wayland;
             serviceConfig = {
-              execStart = "${config.programs.espanso.package}/bin/espanso start";
+              execStart = "${pkgs.espanso-wayland}/bin/espanso start";
               Restart = "always";
               RestartSec = 1;
             };

@@ -19,9 +19,9 @@ in
       packages = [
         pkgs.ulauncher
         #pkgs.espanso
-        #pkgs.espanso-wayland
+        pkgs.espanso-wayland
         pkgs.wl-clipboard
-        config.programs.espanso.package
+        #config.programs.espanso.package
       ];
     };
     services = {
