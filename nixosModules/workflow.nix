@@ -6,7 +6,7 @@
         pkgs.ulauncher
         pkgs.freerdp
         #pkgs.espanso
-        pkgs.espanso-wayland
+        #pkgs.espanso-wayland
       ];
     };
     systemd = {
