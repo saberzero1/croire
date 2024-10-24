@@ -54,6 +54,11 @@ let
           };
         };
       # };
+      xdg = {
+        configFile = {
+          "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
+        };
+      };
     };
   };
   nixosModule = { ... }: {
