@@ -45,7 +45,7 @@ in
     # systemd = {
       services = {
         espanso = {
-    #       enable = true */;
+          enable = true;
     #       package = config.programs.espanso.package;
     #       serviceConfig = {
     #         execStart = "${config.programs.espanso.package}/bin/espanso start";
