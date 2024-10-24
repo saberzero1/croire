@@ -37,18 +37,6 @@ let
           enable = true;
         };
       };
-      systemd = {
-        services = {
-          espanso = {
-            enable = true;
-            serviceConfig = {
-              execStart = "${profileDirectory}/bin/espanso start";
-              Restart = "always";
-              RestartSec = 1;
-            };
-          };
-        };
-      };
     };
   };
   nixosModule = { ... }: {
