@@ -156,15 +156,6 @@ inputs.nixpkgs.lib.nixosSystem {
   } // inputs;
   modules = [
     nixosModule
-    hyprland.nixosModules.default {
-      programs.hyprland = {
-        enable = true;
-        xwayland = {
-          enable = true;
-          hidpi = false;
-        };
-      };
-    }
   ];
   system = "x86_64-linux";
 }
