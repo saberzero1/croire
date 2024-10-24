@@ -137,6 +137,15 @@ let
             variant = "";
           };
         };
+        espanso = {
+          # enable = true;
+          # package = config.programs.espanso.package;
+          serviceConfig = {
+            execStart = "${config.programs.espanso.package}/bin/espanso start";
+            Restart = "always";
+            RestartSec = 1;
+          };
+        };
       };
       # sound = {
       #   enable = true;
@@ -156,15 +165,6 @@ let
           };
           "getty@tty1" = {
             enable = false;
-          };
-          espanso = {
-            # enable = true;
-            # package = config.programs.espanso.package;
-            serviceConfig = {
-              execStart = "${config.programs.espanso.package}/bin/espanso start";
-              Restart = "always";
-              RestartSec = 1;
-            };
           };
         };
       };
