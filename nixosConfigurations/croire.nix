@@ -1,7 +1,7 @@
 { inputs, ... }@flakeContext:
 let
   username = inputs.self.username;
-  nixosModule = { config, lib, pkgs, ... }: {
+  nixosModule = { config, lib, pkgs, hyprland, ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
       inputs.self.homeConfigurations.saberzero1.nixosModule
