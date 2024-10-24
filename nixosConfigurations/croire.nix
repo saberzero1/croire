@@ -24,7 +24,7 @@ let
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
       }
-      hyprland.nixosModules.default
+      inputs.hyprland.nixosModules.default
       {
         programs.hyprland = {
           enable = true;
