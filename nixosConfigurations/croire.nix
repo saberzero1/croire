@@ -30,7 +30,7 @@ let
           enable = true;
           xwayland = {
             enable = true;
-            hidpi = false;
+            force_zero_scaling = true;
           };
         };
       }
