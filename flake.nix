@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
   };
-  outputs = { self, nixpkgs, ... } @ inputs:
+  outputs = { self, nixpkgs, hyprland, ... } @ inputs:
     let
       # overlays = [
       #   (self: super: {
