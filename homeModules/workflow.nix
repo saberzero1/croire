@@ -2,7 +2,6 @@
 { config, lib, pkgs, ... }:
 let
   username = inputs.self.username;
-  profileDirectory = "/etc/profiles/per-user/${username}";
   espansoConfigFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/config/default.yml";
   espansoMatchesFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/match/base.yml";
   espansoConfigFile = pkgs.writeText "default.yml" ''
