@@ -41,7 +41,7 @@ let
           # };
         };
       };
-      systemd = {
+      # systemd = {
         services = {
           espanso = {
             enable = true;
@@ -53,7 +53,7 @@ let
             };
           };
         };
-      };
+      # };
     };
   };
   nixosModule = { ... }: {
