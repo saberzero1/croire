@@ -25,14 +25,14 @@ in
         config.programs.espanso.package
       ];
     };
-   services = {
-     espanso = {
-       enable = true;
-       #package = pkgs.espanso-wayland;
-       configs = { };
-       matches = { };
-     };
-   };
+    services = {
+      espanso = {
+        enable = true;
+        #package = pkgs.espanso-wayland;
+        configs = { };
+        matches = { };
+      };
+    };
     # systemd = {
     #   user = {
     #     tmpfiles = {
@@ -43,19 +43,19 @@ in
     #     };
     #   };
     # };
-    systemd = {
-      services = {
-        espanso = {
-          enable = true;
-          #package = config.home.packages.espanso.package;
-          serviceConfig = {
-            execStart = "${profileDirectory}/bin/espanso start";
-            Restart = "always";
-            RestartSec = 1;
-          };
-        };
-      };
-    };
+    # systemd = {
+    #   services = {
+    #     espanso = {
+    #       enable = true;
+    #       #package = config.home.packages.espanso.package;
+    #       serviceConfig = {
+    #         execStart = "${profileDirectory}/bin/espanso start";
+    #         Restart = "always";
+    #         RestartSec = 1;
+    #       };
+    #     };
+    #   };
+    # };
     xdg = {
       configFile = {
         "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
