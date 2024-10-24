@@ -1,7 +1,7 @@
-{ inputs, hyprland, ... }@flakeContext:
+{ inputs, ... }@flakeContext:
 let
   username = inputs.self.username;
-  nixosModule = { config, lib, pkgs, hyprland, ... }: {
+  nixosModule = { config, lib, pkgs, ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
       inputs.self.homeConfigurations.saberzero1.nixosModule
@@ -23,6 +23,16 @@ let
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "backup";
+      }
+      hyprland.nixosModules.default
+      {
+        programs.hyprland = {
+          enable = true;
+          xwayland = {
+            enable = true;
+            hidpi = false;
+          };
+        };
       }
     ];
     config = {
