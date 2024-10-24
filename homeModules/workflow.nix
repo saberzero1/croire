@@ -2,6 +2,7 @@
 { config, lib, pkgs, ... }:
 let
   username = inputs.self.username;
+  profileDirectory = "/etc/profiles/per-user/${username}";
   espansoConfigFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/config/default.yml";
   espansoMatchesFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/match/base.yml";
   espansoConfigFile = pkgs.writeText "default.yml" ''
@@ -40,18 +41,18 @@ in
     #     };
     #   };
     # };
-    # systemd = {
-    #   services = {
-    #     espanso = {
-    #       enable = true;
-    #       serviceConfig = {
-    #         execStart = "${profileDirectory}/bin/espanso start";
-    #         Restart = "always";
-    #         RestartSec = 1;
-    #       };
-    #     };
-    #   };
-    # };
+    systemd = {
+      services = {
+        espanso = {
+          enable = true;
+          serviceConfig = {
+            execStart = "${profileDirectory}/bin/espanso start";
+            Restart = "always";
+            RestartSec = 1;
+          };
+        };
+      };
+    };
     xdg = {
       configFile = {
         "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
