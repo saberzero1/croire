@@ -45,7 +45,7 @@ in
       services = {
         espanso = {
           enable = true;
-          package = "${profileDirectory}/bin/espanso";
+          package = config.programs.espanso.package;
           #serviceConfig = {
           #  execStart = "${profileDirectory}/bin/espanso start";
           #  Restart = "always";
