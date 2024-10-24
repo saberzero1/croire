@@ -22,6 +22,7 @@ in
         #pkgs.espanso
         #pkgs.espanso-wayland
         pkgs.wl-clipboard
+        config.programs.espanso.package
       ];
     };
 #    services = {
