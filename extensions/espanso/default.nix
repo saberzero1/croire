@@ -41,7 +41,10 @@ in {
       };
     };
     services.espanso = {
-      enable = lib.mkEnableOption "espanso";
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
       #package = espansoPackage;
       serviceConfig = {
         execStart = lib.mkOption {
