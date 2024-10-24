@@ -32,27 +32,27 @@ let
           enable = true;
           path = null;
         };
-        espanso = {
-          enable = true;
-          # serviceConfig = {
-          #   execStart = "${config.programs.espanso.package}/bin/espanso start";
-          #   Restart = "always";
-          #   RestartSec = 1;
-          # };
-        };
+        # espanso = {
+        #   enable = true;
+        #   # serviceConfig = {
+        #   #   execStart = "${config.programs.espanso.package}/bin/espanso start";
+        #   #   Restart = "always";
+        #   #   RestartSec = 1;
+        #   # };
+        # };
       };
       # systemd = {
-        services = {
-          espanso = {
-            enable = true;
-            package = pkgs.espanso-wayland;
-            serviceConfig = {
-              execStart = "${pkgs.espanso-wayland}/bin/espanso start";
-              Restart = "always";
-              RestartSec = 1;
-            };
-          };
-        };
+        # services = {
+        #   espanso = {
+        #     enable = true;
+        #     package = pkgs.espanso-wayland;
+        #     serviceConfig = {
+        #       execStart = "${pkgs.espanso-wayland}/bin/espanso start";
+        #       Restart = "always";
+        #       RestartSec = 1;
+        #     };
+        #   };
+        # };
       # };
     };
   };
