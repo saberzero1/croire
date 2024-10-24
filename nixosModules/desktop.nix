@@ -48,6 +48,7 @@ in
         pkgs.gnomeExtensions.app-icons-taskbar
         pkgs.gnomeExtensions.espresso
         pkgs.gnomeExtensions.memento-mori
+        pkgs.gnomeExtensions.paperwm
         pkgs.gnome-remote-desktop
         pkgs.nautilus
         pkgs.nautilus-python
@@ -147,6 +148,7 @@ in
               settings = {
                 "org/gnome/shell".enabled-extensions = [
                   "burn-my-windows@schneegans.github.com"
+                  "paperwm@paperwm.github.com"
                 ];
                 "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
               };
