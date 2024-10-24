@@ -29,14 +29,10 @@ in
         enable = true;
         package = pkgs.espanso-wayland;
         configs = {
-          extra_includes = [
-            "_default.yml"
-          ];
+          _skip = {};
         };
         matches = {
-          extra_includes = [
-            "_base.yml"
-          ];
+          _skip = {};
         };
       };
     };
