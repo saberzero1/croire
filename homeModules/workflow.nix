@@ -12,7 +12,6 @@ let
     extra_includes:
       - "${espansoConfigFileContent}/Documents/Repos/dotfiles-submodules/totten/match/base.yml"
   '';
-  profileDirectory = config.home.profileDirectory;
 in
 {
   config = {
@@ -41,18 +40,18 @@ in
     #     };
     #   };
     # };
-    systemd = {
-      services = {
-        espanso = {
-          enable = true;
-          serviceConfig = {
-            execStart = "${profileDirectory}/bin/espanso start";
-            Restart = "always";
-            RestartSec = 1;
-          };
-        };
-      };
-    };
+    # systemd = {
+    #   services = {
+    #     espanso = {
+    #       enable = true;
+    #       serviceConfig = {
+    #         execStart = "${profileDirectory}/bin/espanso start";
+    #         Restart = "always";
+    #         RestartSec = 1;
+    #       };
+    #     };
+    #   };
+    # };
     xdg = {
       configFile = {
         "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
