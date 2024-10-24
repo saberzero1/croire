@@ -30,12 +30,12 @@ in
         package = pkgs.espanso-wayland;
         configs = {
           default.extra_includes = [
-            _default.yml
+            "_default.yml"
           ];
         };
         matches = {
           base.extra_includes = [
-            _base.yml
+            "_base.yml"
           ];
         };
       };
