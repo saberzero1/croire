@@ -2,16 +2,16 @@
 { config, lib, pkgs, ... }:
 let
   username = inputs.self.username;
-  espansoConfigFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/config/default.yml";
-  espansoMatchesFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/match/base.yml";
-  espansoConfigFile = pkgs.writeText "default.yml" ''
-    extra_includes:
-      - "${espansoConfigFileContent}/Documents/Repos/dotfiles-submodules/totten/config/default.yml"
-  '';
-  espansoMatchesFile = pkgs.writeText "base.yml" ''
-    extra_includes:
-      - "${espansoConfigFileContent}/Documents/Repos/dotfiles-submodules/totten/match/base.yml"
-  '';
+  # espansoConfigFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/config/default.yml";
+  # espansoMatchesFileContent = builtins.readFile "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten/match/base.yml";
+  # espansoConfigFile = pkgs.writeText "default.yml" ''
+  #   extra_includes:
+  #     - "${espansoConfigFileContent}/Documents/Repos/dotfiles-submodules/totten/config/default.yml"
+  # '';
+  # espansoMatchesFile = pkgs.writeText "base.yml" ''
+  #   extra_includes:
+  #     - "${espansoConfigFileContent}/Documents/Repos/dotfiles-submodules/totten/match/base.yml"
+  # '';
 in
 {
   config = {
