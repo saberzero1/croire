@@ -31,6 +31,9 @@ let
           enable = true;
           path = null;
         };
+        espanso = {
+          enable = true;
+        };
       };
     };
   };
@@ -43,6 +46,9 @@ in
 (
   (
     inputs.home-manager.lib.homeManagerConfiguration {
+      imports = [
+        ../extensions/espanso
+      ];
       modules = [
         homeModule
       ];
