@@ -41,18 +41,18 @@ let
           # };
         };
       };
-      # systemd = {
+      systemd = {
         services = {
           espanso = {
             enable = true;
-            serviceConfig = {
-              execStart = "${config.programs.espanso.package}/bin/espanso start";
-              Restart = "always";
-              RestartSec = 1;
-            };
+            # serviceConfig = {
+            #   execStart = "${config.programs.espanso.package}/bin/espanso start";
+            #   Restart = "always";
+            #   RestartSec = 1;
+            # };
           };
         };
-      # };
+      };
     };
   };
   nixosModule = { ... }: {
