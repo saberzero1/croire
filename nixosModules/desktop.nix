@@ -145,7 +145,7 @@ in
         profiles = {
           user = {
             databases = [{
-              settings = {
+              settings = with lib.gvariant; {
                 "org/gnome/shell".enabled-extensions = [
                   "burn-my-windows@schneegans.github.com"
                   "paperwm@paperwm.github.com"
