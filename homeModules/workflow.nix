@@ -22,6 +22,7 @@ in
         #pkgs.espanso
         #pkgs.espanso-wayland
         pkgs.wl-clipboard
+        config.home.packages.espanso
       ];
     };
 #    services = {
@@ -46,7 +47,7 @@ in
       services = {
         espanso = {
           enable = true;
-          package = config.home.packages.espanso.package;
+          #package = config.home.packages.espanso.package;
           serviceConfig = {
             execStart = "${profileDirectory}/bin/espanso start";
             Restart = "always";
