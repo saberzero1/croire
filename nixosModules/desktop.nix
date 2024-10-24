@@ -160,9 +160,9 @@ in
         enable = true;
         terminal = "wezterm";
       };
-      kitty = {
-        enable = true;
-      };
+      # kitty = {
+      #   enable = true;
+      # };
       hyprland = {
         # Install the packages from nixpkgs
         enable = true;
