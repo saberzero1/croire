@@ -1,6 +1,7 @@
 { inputs, ... }@flakeContext:
 let
   username = inputs.self.username;
+  profileDirectory = config.home-manager.users."${username}".home.profileDirectory;
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
       inputs.self.homeModules.applications
@@ -41,7 +42,7 @@ let
           espanso = {
             enable = true;
             serviceConfig = {
-              execStart = "${espanso}/bin/espanso start";
+              execStart = "${profileDirectory}/bin/espanso start";
               Restart = "always";
               RestartSec = 1;
             };
