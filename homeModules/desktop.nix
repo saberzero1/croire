@@ -78,8 +78,10 @@ in
         associations.added = associations;
       };
       configFile = {
-        "mimeapps.list".force = true;
-        "hypr" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/hyprland"; };
+        "hypr/hyprland.conf" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/hyprland/hyprland.conf"; };
+        "mimeapps.list" = {
+          force = true;
+        };
       };
     };
   };
