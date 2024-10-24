@@ -44,8 +44,8 @@ in {
 
   config = lib.mkIf config.programs.espanso.enable {
     home.packages = [ config.programs.espanso.package ];
-    # services = {
-    #   espanso = {
+    services = {
+      espanso = {
     #     enable = true;
     #     package = config.programs.espanso.package;
         serviceConfig = {
@@ -53,8 +53,8 @@ in {
           Restart = "always";
           RestartSec = 1;
         };
-    #   };
-    # };
+      };
+    };
 
     # Here you can add more configuration, for example, setting up environment
     # variables, startup services, etc., specific to espanso
