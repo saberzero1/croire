@@ -54,6 +54,10 @@ in
         pkgs.nautilus-open-any-terminal
         pkgs.xrdp
         pkgs.freerdp
+        pkgs.i3
+        pkgs.i3status
+        pkgs.nitrogen
+        pkgs.rofi
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -123,6 +127,14 @@ in
         displayManager = {
           gdm = {
             enable = true;
+          };
+        };
+        windowManager = {
+          i3 = {
+            enable = true;
+            extraPackages = with pkgs; [
+              i3status
+            ];
           };
         };
       };
