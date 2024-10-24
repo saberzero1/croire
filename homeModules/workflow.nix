@@ -12,7 +12,7 @@ let
     extra_includes:
       - "${espansoConfigFileContent}/Documents/Repos/dotfiles-submodules/totten/match/base.yml"
   '';
-  profileDirectory = home.profileDirectory;
+  profileDirectory = config.home.profileDirectory;
 in
 {
   config = {
