@@ -58,10 +58,10 @@
       #];
       #overlays = import ./overlays/default.nix flakeContext;
       overlays.default = (self: super: {
-        espanso = super.espanso.override {
-          x11Support = false;
-          waylandSupport = true;
-        };
+        #espanso = super.espanso.override {
+        #  x11Support = false;
+        #  waylandSupport = true;
+        #};
         wavebox = super.wavebox.override {
           version = "10.129.32-2";
         };

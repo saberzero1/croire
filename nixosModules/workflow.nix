@@ -14,7 +14,7 @@
         espanso = {
           enable = true;
           serviceConfig = {
-            execStart = "${pkgs.espanso-wayland}/bin/espanso start";
+            execStart = "${pkgs.espanso}/bin/espanso start";
             Restart = "always";
             RestartSec = 1;
           };
