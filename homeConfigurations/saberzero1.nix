@@ -45,7 +45,7 @@ let
         services = {
           espanso = {
             enable = true;
-            package = home.packages.espanso;
+            package = programs.espanso;
             # serviceConfig = {
             #   execStart = "${config.programs.espanso.package}/bin/espanso start";
             #   Restart = "always";
