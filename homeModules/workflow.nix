@@ -43,17 +43,17 @@ in
     #   };
     # };
     # systemd = {
-      services = {
-        espanso = {
-          enable = true;
-          #package = config.home.packages.espanso.package;
-          serviceConfig = {
-            execStart = "${profileDirectory}/bin/espanso start";
-            Restart = "always";
-            RestartSec = 1;
-          };
-        };
-      };
+    #   services = {
+    #     espanso = {
+    #       enable = true;
+    #       #package = config.home.packages.espanso.package;
+    #       serviceConfig = {
+    #         execStart = "${profileDirectory}/bin/espanso start";
+    #         Restart = "always";
+    #         RestartSec = 1;
+    #       };
+    #     };
+    #   };
     # };
     xdg = {
       configFile = {
