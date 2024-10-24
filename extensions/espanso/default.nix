@@ -41,8 +41,8 @@ in {
       };
     };
     systemd.services.espanso = {
-      #enable = lib.mkEnableOption "espanso";
-      #package = config.programs.espanso.package;
+      enable = lib.mkEnableOption "espanso";
+      package = espansoPackage;
       serviceConfig = {
         execStart = lib.mkOption {
           type = lib.types.str;
