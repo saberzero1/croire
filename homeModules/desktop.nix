@@ -48,10 +48,6 @@ in
         associations.added = associations;
       };
       configFile."mimeapps.list".force = true;
-      configFile = {
-        "i3/config" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/i3/i3config"; };
-        "i3status/config" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/i3/i3statusconfig"; };
-      };
     };
   };
 }
