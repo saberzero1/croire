@@ -23,9 +23,8 @@ in
 {
   config = {
     home = {
-      packages = with pkgs; [
-        kitty
-        hyprland
+      packages = [
+        pkgs.kitty
       ];
     };
     dconf = {
