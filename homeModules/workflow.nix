@@ -21,6 +21,7 @@ in
         pkgs.ulauncher
         #pkgs.espanso
         #pkgs.espanso-wayland
+        pkgs.wl-clipboard
       ];
     };
 #    services = {

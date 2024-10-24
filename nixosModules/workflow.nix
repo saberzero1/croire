@@ -7,6 +7,7 @@
         pkgs.freerdp
         #pkgs.espanso
         #pkgs.espanso-wayland
+        pkgs.wl-clipboard
       ];
     };
 #    systemd = {
