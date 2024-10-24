@@ -1,4 +1,4 @@
-{ inputs, ... }@flakeContext:
+{ inputs, hyprland, ... }@flakeContext:
 let
   username = inputs.self.username;
   nixosModule = { config, lib, pkgs, hyprland, ... }: {
