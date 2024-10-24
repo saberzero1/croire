@@ -51,7 +51,7 @@ in
         homeModule
       ];
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-      profileDirectory = config.home-manager.users."${username}".home.profileDirectory;
+      profileDirectory = homeModule.config.home-manager.users."${username}".home.profileDirectory;
     }
   ) // { inherit nixosModule; }
 )
