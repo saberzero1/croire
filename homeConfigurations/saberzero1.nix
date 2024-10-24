@@ -32,14 +32,14 @@ let
           enable = true;
           path = null;
         };
-        # espanso = {
-        #   enable = true;
+        espanso = {
+          enable = true;
         #   serviceConfig = {
         #     execStart = "${config.programs.espanso.package}/bin/espanso start";
         #     Restart = "always";
         #     RestartSec = 1;
         #   };
-        # };
+        };
       };
       # systemd = {
         services = {
