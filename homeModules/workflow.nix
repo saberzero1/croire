@@ -22,14 +22,14 @@ in
         #pkgs.espanso-wayland
       ];
     };
-    services = {
-      espanso = {
-        enable = true;
-        #package = pkgs.espanso-wayland;
-        configs = { };
-        matches = { };
-      };
-    };
+#    services = {
+#      espanso = {
+#        enable = true;
+#        #package = pkgs.espanso-wayland;
+#        configs = { };
+#        matches = { };
+#      };
+#    };
     # systemd = {
     #   user = {
     #     tmpfiles = {
