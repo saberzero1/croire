@@ -28,8 +28,8 @@ in
       espanso = {
         enable = true;
         package = pkgs.espanso-wayland;
-        #configs = { };
-        #matches = { };
+        configs = null;
+        matches = null;
       };
     };
     # systemd = {
