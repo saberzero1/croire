@@ -47,7 +47,11 @@ in
         defaultApplications = associations;
         associations.added = associations;
       };
-      configFile."mimeapps.list".force = true;
+      configFile = {
+        "mimeapps.list".force = true;
+        "paperwm/user.css" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/paperwm/user.css"; };
+        "paperwm/user.js" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/paperwm/user.js"; };
+      }
     };
   };
 }
