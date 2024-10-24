@@ -22,13 +22,6 @@ let
 in
 {
   config = {
-    home = {
-      packages = [
-        #inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-        pkgs.hyprland
-        pkgs.kitty
-      ];
-    };
     dconf = {
       settings = with lib.hm.gvariant; {
         "org/gnome/desktop/background" = {
@@ -48,41 +41,13 @@ in
         };
       };
     };
-    programs = {
-      kitty = {
-        enable = true;
-      };
-      # hyprland = {
-      #   # Install the packages from nixpkgs
-      #   enable = true;
-      #   # set the flake package
-      #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      #   # make sure to also set the portal package, so that they are in sync
-      #   portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      #   # Whether to enable XWayland
-      #   xwayland.enable = true;
-      # };
-    };
-    wayland = {
-      windowManager = {
-        hyprland = {
-          enable = true;
-          #plugins = {};
-        };
-      };
-    };
     xdg = {
       mimeApps = {
         enable = true;
         defaultApplications = associations;
         associations.added = associations;
       };
-      configFile = {
-        "hypr/hyprland.conf" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/hyprland/hyprland.conf"; };
-        "mimeapps.list" = {
-          force = true;
-        };
-      };
+      configFile."mimeapps.list".force = true;
     };
   };
 }

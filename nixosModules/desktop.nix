@@ -54,8 +54,6 @@ in
         pkgs.nautilus-open-any-terminal
         pkgs.xrdp
         pkgs.freerdp
-        #inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-        pkgs.kitty
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -160,19 +158,6 @@ in
         enable = true;
         terminal = "wezterm";
       };
-      # kitty = {
-      #   enable = true;
-      # };
-      # hyprland = {
-      #   # Install the packages from nixpkgs
-      #   enable = true;
-      #   # set the flake package
-      #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      #   # make sure to also set the portal package, so that they are in sync
-      #   portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      #   # Whether to enable XWayland
-      #   xwayland.enable = true;
-      # };
     };
     systemd = {
       user = {
