@@ -183,7 +183,7 @@ in
                   switch-up-workspace = ["<Super><Alt>n"];
                   # Workspace Moving Position
                   move-down-workspace = ["<Super><Alt><Ctrl>m"];
-                  move-up-workspace = ["<Super><Alt<Ctrl>>n"];
+                  move-up-workspace = ["<Super><Alt><Ctrl>n"];
 
                   # Monitors
                   # Monitor Movement
