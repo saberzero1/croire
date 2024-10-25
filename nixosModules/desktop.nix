@@ -152,39 +152,39 @@ in
                 ];
                 "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
                 "org/gnome/shell/extensions/paperwm/keybindings" = {
-                  close-window = ["<Ctr><Alt>q"];
+                  close-window = ["<F24>q"];
                   # Scratch Layer
-                  toggle-scratch = ["<Shift><Ctr><Alt>space"];
-                  toggle-scratch-layer = ["<Ctr><Alt>space"];
+                  toggle-scratch = ["<F23>space"];
+                  toggle-scratch-layer = ["<F24>space"];
                   # Windows
                   # Alt Tab
-                  live-alt-tab = ["<Ctr><Alt>period"];
-                  live-alt-tab-backward = ["<Ctr><Alt>comma"];
+                  live-alt-tab = ["<F24>period"];
+                  live-alt-tab-backward = ["<F24>comma"];
                   # Movement
-                  move-left = ["<Ctr><Alt>h"];
-                  move-down = ["<Ctr><Alt>j"];
-                  move-up = ["<Ctr><Alt>k"];
-                  move-right = ["<Ctr><Alt>l"];
+                  move-left = ["<F24>h"];
+                  move-down = ["<F24>j"];
+                  move-up = ["<F24>k"];
+                  move-right = ["<F24>l"];
                   # Switching
-                  switch-left = ["<Shift><Ctr><Alt>h"];
-                  switch-down = ["<Shift><Ctr><Alt>j"];
-                  switch-up = ["<Shift><Ctr><Alt>k"];
-                  switch-right = ["<Shift><Ctr><Alt>l"];
+                  switch-left = ["<F23>h"];
+                  switch-down = ["<F23>j"];
+                  switch-up = ["<F23>k"];
+                  switch-right = ["<F23>l"];
 
                   # Workspaces
                   # Alt Tab
-                  previous-workspace = ["<Shift><Ctr><Alt>period"];
-                  previous-workspace-backward = ["<Shift><Ctr><Alt>comma"];
+                  previous-workspace = ["<F23>period"];
+                  previous-workspace-backward = ["<F23>comma"];
                   # Workspace Movement
-                  move-down-workspace = ["<Shift><Ctr><Alt>m"];
-                  move-up-workspace = ["<Shift><Ctr><Alt>n"];
+                  move-down-workspace = ["<F23>m"];
+                  move-up-workspace = ["<F23>n"];
 
                   # Monitors
                   # Monitor Movement
-                  move-monitor-left = ["<Shift><Ctr><Alt>y"];
-                  move-monitor-below = ["<Shift><Ctr><Alt>u"];
-                  move-monitor-above = ["<Shift><Ctr><Alt>i"];
-                  move-monitor-right = ["<Shift><Ctr><Alt>o"];
+                  move-monitor-left = ["<F23>y"];
+                  move-monitor-below = ["<F23>u"];
+                  move-monitor-above = ["<F23>i"];
+                  move-monitor-right = ["<F23>o"];
 
                   # Unbinds
                   move-previous-workspace = mkEmptyArray type.string;
@@ -196,7 +196,7 @@ in
                   switch-monitor-below = mkEmptyArray type.string;
                   switch-monitor-left = mkEmptyArray type.string;
                   switch-monitor-right = mkEmptyArray type.string;
-                  switch-next= mkEmptyArray type.string;
+                  switch-next = mkEmptyArray type.string;
                   switch-previous= mkEmptyArray type.string;
                   switch-up-workspace = mkEmptyArray type.string;
                 };
