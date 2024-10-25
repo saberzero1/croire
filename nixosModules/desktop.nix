@@ -273,27 +273,6 @@ in
             "L+ %h/.config/burn-my-windows/profiles/nix-profile.conf 0755 - - - ${burnMyWindowsProfile}"
           ];
         };
-        services = {
-          ulauncher = {
-            Unit = {
-              Description = "Linux Application Launcher";
-              Documentation = [ "https://ulauncher.io/" ];
-            };
-            Service = {
-              Type = "Simple";
-              Restart = "Always";
-              RestartSec = 1;
-              ExecStart = pkgs.writeShellScript "ulauncher-env-wrapper.sh" ''
-                export PATH="''${XDG_BIN_HOME}:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
-                export GDK_BACKEND=wayland
-                exec ${pkgs.ulauncher}/bin/ulauncher --hide-window
-              '';
-            };
-            Install = {
-              WantedBy = [ "graphical-session.target" ];
-            };
-          };
-        };
       };
     };
     qt = {
