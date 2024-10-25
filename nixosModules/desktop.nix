@@ -152,39 +152,39 @@ in
                 ];
                 "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
                 "org/gnome/shell/extensions/paperwm/keybindings" = {
-                  close-window = ["<Super><F24>q"];
+                  close-window = ["<Super><Alt><F24>q"];
                   # Scratch Layer
-                  toggle-scratch = ["<Super><F23>space"];
-                  toggle-scratch-layer = ["<Super><F24>space"];
+                  toggle-scratch = ["<Super><Alt><F19>space"];
+                  toggle-scratch-layer = ["<Super><Alt><F24>space"];
                   # Windows
                   # Alt Tab
-                  live-alt-tab = ["<Super><F24>period"];
-                  live-alt-tab-backward = ["<Super><F24>comma"];
+                  live-alt-tab = ["<Super><Alt><F24>period"];
+                  live-alt-tab-backward = ["<Super><Alt><F24>comma"];
                   # Movement
-                  move-left = ["<Super><F24>h"];
-                  move-down = ["<Super><F24>j"];
-                  move-up = ["<Super><F24>k"];
-                  move-right = ["<Super><F24>l"];
+                  move-left = ["<Super><Alt><F24>h"];
+                  move-down = ["<Super><Alt><F24>j"];
+                  move-up = ["<Super><Alt><F24>k"];
+                  move-right = ["<Super><Alt><F24>l"];
                   # Switching
-                  switch-left = ["<Super><F23>h"];
-                  switch-down = ["<Super><F23>j"];
-                  switch-up = ["<Super><F23>k"];
-                  switch-right = ["<Super><F23>l"];
+                  switch-left = ["<Super><Alt><F19>h"];
+                  switch-down = ["<Super><Alt><F19>j"];
+                  switch-up = ["<Super><Alt><F19>k"];
+                  switch-right = ["<Super><Alt><F19>l"];
 
                   # Workspaces
                   # Alt Tab
-                  previous-workspace = ["<Super><F23>period"];
-                  previous-workspace-backward = ["<Super><F23>comma"];
+                  previous-workspace = ["<Super><Alt><F19>period"];
+                  previous-workspace-backward = ["<Super><Alt><F19>comma"];
                   # Workspace Movement
-                  move-down-workspace = ["<Super><F23>m"];
-                  move-up-workspace = ["<Super><F23>n"];
+                  move-down-workspace = ["<Super><Alt><F19>m"];
+                  move-up-workspace = ["<Super><Alt><F19>n"];
 
                   # Monitors
                   # Monitor Movement
-                  move-monitor-left = ["<Super><F23>y"];
-                  move-monitor-below = ["<Super><F23>u"];
-                  move-monitor-above = ["<Super><F23>i"];
-                  move-monitor-right = ["<Super><F23>o"];
+                  move-monitor-left = ["<Super><Alt><F19>y"];
+                  move-monitor-below = ["<Super><Alt><F19>u"];
+                  move-monitor-above = ["<Super><Alt><F19>i"];
+                  move-monitor-right = ["<Super><Alt><F19>o"];
 
                   # Unbinds
                   move-previous-workspace = mkEmptyArray type.string;
