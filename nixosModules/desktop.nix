@@ -165,25 +165,25 @@ in
                   live-alt-tab-backward = ["<Super><Alt>comma"];
                   # Moving Focus
                   switch-left = ["<Super><Alt>h"];
-                  switch-down = ["<Super><Alt>j"];
-                  switch-up = ["<Super><Alt>k"];
                   switch-right = ["<Super><Alt>l"];
+                  switch-down = mkEmptyArray type.string;
+                  switch-up = mkEmptyArray type.string;
+                  # Workspace Moving Focus
+                  switch-down-workspace = ["<Super><Alt>j"];
+                  switch-up-workspace = ["<Super><Alt>k"];
                   # Moving Position
                   move-left = ["<Super><Alt><Ctrl>h"];
-                  move-down = ["<Super><Alt><Ctrl>j"];
-                  move-up = ["<Super><Alt><Ctrl>k"];
                   move-right = ["<Super><Alt><Ctrl>l"];
+                  move-down = mkEmptyArray type.string;
+                  move-up = mkEmptyArray type.string;
+                  # Workspace Moving Position
+                  move-down-workspace = ["<Super><Alt><Ctrl>j"];
+                  move-up-workspace = ["<Super><Alt><Ctrl>k"];
 
                   # Workspaces
                   # Alt Tab
                   previous-workspace = ["<Super><Alt><Ctrl>period"];
                   previous-workspace-backward = ["<Super><Alt><Ctrl>comma"];
-                  # Workspace Moving Focus
-                  switch-down-workspace = ["<Super><Alt>m"];
-                  switch-up-workspace = ["<Super><Alt>n"];
-                  # Workspace Moving Position
-                  move-down-workspace = ["<Super><Alt><Ctrl>m"];
-                  move-up-workspace = ["<Super><Alt><Ctrl>n"];
 
                   # Monitors
                   # Monitor Movement
