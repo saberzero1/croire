@@ -1,4 +1,8 @@
 /*
+https://github.com/daniellandau/switcher
+*/
+
+/*
 Users may override the default PaperWM styles to suit their preferences.
 Added custom styling in this `user.css` file.
 
@@ -112,6 +116,11 @@ DEFAULT STYLES ARE PROVIDED BELOW FOR REFERENCE:
   border-radius: 8px;
 }
 
+.paperwm-clone-shade {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+}
+
 .paperwm-window-position-bar-backdrop {
   background-color: rgba(0, 0, 0, 0.35);
 }
@@ -119,4 +128,10 @@ DEFAULT STYLES ARE PROVIDED BELOW FOR REFERENCE:
 .paperwm-window-position-bar {
   border: 0;
   border-radius: 1px;
+}
+
+.paperwm-selection {
+  border: 7px rgba(125, 207, 255, 0.8);
+  border-radius: 8px;
+  background-color: rgba(125, 207, 255, 0.8);
 }
