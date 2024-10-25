@@ -155,7 +155,28 @@ in
                   # Assuming keyboard halfleft side:
                   # Right button: <Super><Alt>
                   # Left button: <Super><Alt><Ctrl>
+
+                  # Application operations
+                  new-window = ["<Super><Alt>n"];
                   close-window = ["<Super><Alt>q"];
+
+                  # Window width
+                  resize-w-dec = ["<Super><Alt>n"]; # Decrement width
+                  resize-w-inc = ["<Super><Alt>m"]; # Increment width
+
+                  # Window dimensions
+                  toggle-maximiza-width = ["<Super><Alt>f"]; # full width
+                  paper-toggle-fullscreen = ["<Super><Alt><Ctrl>f"]; # full screen
+
+                  # Grab and move windows
+                  take-window = ["<Super><Alt>y"]; # Grab a window
+                  open-window-position-right = ["<Super><Alt>p"]; # Open or drop a grabbed window
+                  # Center window
+                  center = ["<Super><Alt>c"];
+                  switch-focus-mode = ["<Super><Alt><Ctrl>c"];
+                  center-horizontally = mkEmptyArray type.string;
+                  center-vertically = mkEmptyArray type.string;
+
                   # Scratch Layer
                   toggle-scratch = ["<Super><Alt>space"];
                   toggle-scratch-layer = ["<Super><Alt><Ctrl>space"];
@@ -164,16 +185,24 @@ in
                   live-alt-tab = ["<Super><Alt>period"];
                   live-alt-tab-backward = ["<Super><Alt>comma"];
                   # Moving Focus
-                  switch-left = ["<Super><Alt>h"];
-                  switch-right = ["<Super><Alt>l"];
+                  switch-left-loop = ["<Super><Alt>h"];
+                  switch-right-loop = ["<Super><Alt>l"];
+                  switch-down-loop = mkEmptyArray type.string;
+                  switch-up-loop = mkEmptyArray type.string;
+                  switch-left = mkEmptyArray type.string;
+                  switch-right = mkEmptyArray type.string;
                   switch-down = mkEmptyArray type.string;
                   switch-up = mkEmptyArray type.string;
                   # Workspace Moving Focus
                   switch-down-workspace = ["<Super><Alt>j"];
                   switch-up-workspace = ["<Super><Alt>k"];
                   # Moving Position
-                  move-left = ["<Super><Alt><Ctrl>h"];
-                  move-right = ["<Super><Alt><Ctrl>l"];
+                  move-left-loop = ["<Super><Alt><Ctrl>h"];
+                  move-right-loop = ["<Super><Alt><Ctrl>l"];
+                  move-down-loop = mkEmptyArray type.string;
+                  move-up-loop = mkEmptyArray type.string;
+                  move-left = mkEmptyArray type.string;
+                  move-right = mkEmptyArray type.string;
                   move-down = mkEmptyArray type.string;
                   move-up = mkEmptyArray type.string;
                   # Workspace Moving Position
@@ -187,22 +216,37 @@ in
 
                   # Monitors
                   # Monitor Movement
-                  move-monitor-left = ["<Super><Alt>y"];
-                  move-monitor-below = ["<Super><Alt>u"];
-                  move-monitor-above = ["<Super><Alt>i"];
-                  move-monitor-right = ["<Super><Alt>o"];
+                  move-monitor-left = ["<Super><Alt><Ctrl>y"];
+                  move-monitor-below = ["<Super><Alt><Ctrl>u"];
+                  move-monitor-above = ["<Super><Alt><Ctrl>i"];
+                  move-monitor-right = ["<Super><Alt><Ctrl>o"];
+
+                  # Index based movement
+                  switch-first = ["<Super><Alt>1"];
+                  switch-second = ["<Super><Alt>2"];
+                  switch-third = ["<Super><Alt>3"];
+                  switch-fourth = ["<Super><Alt>4"];
+                  switch-fifth = ["<Super><Alt>5"];
+                  switch-sixth = ["<Super><Alt>6"];
+                  switch-seventh = ["<Super><Alt>7"];
+                  switch-eighth = ["<Super><Alt>8"];
+                  switch-ninth = ["<Super><Alt>9"];
+                  switch-last = ["<Super><Alt>0"];
 
                   # Unbinds
                   move-previous-workspace = mkEmptyArray type.string;
                   move-previous-workspace-backward = mkEmptyArray type.string;
-                  switch-first = mkEmptyArray type.string;
-                  switch-last = mkEmptyArray type.string;
+                  #switch-first = mkEmptyArray type.string;
+                  #switch-last = mkEmptyArray type.string;
                   switch-monitor-above = mkEmptyArray type.string;
                   switch-monitor-below = mkEmptyArray type.string;
                   switch-monitor-left = mkEmptyArray type.string;
                   switch-monitor-right = mkEmptyArray type.string;
                   switch-next = mkEmptyArray type.string;
                   switch-previous= mkEmptyArray type.string;
+                };
+                "org/gnome/shell/extensions/paperwm/workspace" = {
+                  directory = "";
                 };
               };
             }];
