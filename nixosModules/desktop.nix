@@ -174,6 +174,7 @@ in
                   # Grab and move windows
                   take-window = ["<Super><Alt>y"]; # Grab a window
                   open-window-position-right = ["<Super><Alt>p"]; # Open or drop a grabbed window
+
                   # Center window
                   center = ["<Super><Alt>c"];
                   switch-focus-mode = ["<Super><Alt><Ctrl>c"];
@@ -183,6 +184,7 @@ in
                   # Scratch Layer
                   toggle-scratch = ["<Super><Alt>space"];
                   toggle-scratch-layer = ["<Super><Alt><Ctrl>space"];
+
                   # Windows
                   # Alt Tab
                   live-alt-tab = ["<Super><Alt>period"];
@@ -190,24 +192,28 @@ in
                   # Moving Focus
                   switch-left-loop = ["<Super><Alt>h"];
                   switch-right-loop = ["<Super><Alt>l"];
+
                   switch-down-loop = mkEmptyArray type.string;
                   switch-up-loop = mkEmptyArray type.string;
                   switch-left = mkEmptyArray type.string;
                   switch-right = mkEmptyArray type.string;
                   switch-down = mkEmptyArray type.string;
                   switch-up = mkEmptyArray type.string;
+
                   # Workspace Moving Focus
                   switch-down-workspace = ["<Super><Alt>j"];
                   switch-up-workspace = ["<Super><Alt>k"];
                   # Moving Position
                   move-left-loop = ["<Super><Alt><Ctrl>h"];
                   move-right-loop = ["<Super><Alt><Ctrl>l"];
+
                   move-down-loop = mkEmptyArray type.string;
                   move-up-loop = mkEmptyArray type.string;
                   move-left = mkEmptyArray type.string;
                   move-right = mkEmptyArray type.string;
                   move-down = mkEmptyArray type.string;
                   move-up = mkEmptyArray type.string;
+
                   # Workspace Moving Position
                   move-down-workspace = ["<Super><Alt><Ctrl>j"];
                   move-up-workspace = ["<Super><Alt><Ctrl>k"];
@@ -239,8 +245,6 @@ in
                   # Unbinds
                   move-previous-workspace = mkEmptyArray type.string;
                   move-previous-workspace-backward = mkEmptyArray type.string;
-                  #switch-first = mkEmptyArray type.string;
-                  #switch-last = mkEmptyArray type.string;
                   switch-monitor-above = mkEmptyArray type.string;
                   switch-monitor-below = mkEmptyArray type.string;
                   switch-monitor-left = mkEmptyArray type.string;
