@@ -152,39 +152,53 @@ in
                 ];
                 "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
                 "org/gnome/shell/extensions/paperwm/keybindings" = {
-                  close-window = mkEmptyArray type.string;
-                  live-alt-tab = ["<Super>period"];
-                  live-alt-tab-backward = ["<Super>comma"];
-                  move-down = ["<Shift><Super>j"];
-                  move-down-workspace = ["<Primary><Shift><Super>j"];
-                  move-left = ["<Shift><Super>h" "<Super><Shift>comma" "<Super><Ctrl>Left"];
-                  move-monitor-above = ["<Shift><Alt>k"];
-                  move-monitor-below = ["<Shift><Alt>j"];
-                  move-monitor-left = ["<Shift><Alt>h"];
-                  move-monitor-right = ["<Shift><Alt>l"];
-                  move-previous-workspace = ["<Primary><Super>l"];
-                  move-previous-workspace-backward = ["<Primary><Shift><Super>l"];
-                  move-right = ["<Shift><Super>l" "<Super><Shift>period" "<Super><Ctrl>Right"];
-                  move-up = ["<Shift><Super>k"];
-                  move-up-workspace = ["<Primary><Shift><Super>k"];
-                  previous-workspace = ["<Primary><Super>h"];
-                  previous-workspace-backward = ["<Primary><Shift><Super>h"];
-                  switch-down = ["<Super>j"];
-                  switch-down-workspace = ["<Primary><Super>j"];
-                  switch-first = ["<Super>g"];
-                  switch-last = ["<Shift><Super>g"];
-                  switch-left = ["<Super>h"];
-                  switch-monitor-above = ["<Alt>k"];
-                  switch-monitor-below = ["<Alt>j"];
-                  switch-monitor-left = ["<Alt>h"];
-                  switch-monitor-right = ["<Alt>l"];
+                  close-window = ["<Ctr><Alt>q"];
+                  # Scratch Layer
+                  toggle-scratch = ["<Shift><Ctr><Alt>space"];
+                  toggle-scratch-layer = ["<Ctr><Alt>space"];
+                  # Windows
+                  # Alt Tab
+                  live-alt-tab = ["<Ctr><Alt>period"];
+                  live-alt-tab-backward = ["<Ctr><Alt>comma"];
+                  # Movement
+                  move-left = ["<Ctr><Alt>h"];
+                  move-down = ["<Ctr><Alt>j"];
+                  move-up = ["<Ctr><Alt>k"];
+                  move-right = ["<Ctr><Alt>l"];
+                  # Switching
+                  switch-left = ["<Shift><Ctr><Alt>h"];
+                  switch-down = ["<Shift><Ctr><Alt>j"];
+                  switch-up = ["<Shift><Ctr><Alt>k"];
+                  switch-right = ["<Shift><Ctr><Alt>l"];
+
+                  # Workspaces
+                  # Alt Tab
+                  previous-workspace = ["<Shift><Ctr><Alt>period"];
+                  previous-workspace-backward = ["<Shift><Ctr><Alt>comma"];
+                  # Workspace Movement
+                  move-down-workspace = ["<Shift><Ctr><Alt>m"];
+                  move-up-workspace = ["<Shift><Ctr><Alt>n"];
+
+                  # Monitors
+                  # Monitor Movement
+                  move-monitor-left = ["<Shift><Ctr><Alt>y"];
+                  move-monitor-below = ["<Shift><Ctr><Alt>u"];
+                  move-monitor-above = ["<Shift><Ctr><Alt>i"];
+                  move-monitor-right = ["<Shift><Ctr><Alt>o"];
+
+                  # Unbinds
+                  move-previous-workspace = mkEmptyArray type.string;
+                  move-previous-workspace-backward = mkEmptyArray type.string;
+                  switch-down-workspace = mkEmptyArray type.string;
+                  switch-first = mkEmptyArray type.string;
+                  switch-last = mkEmptyArray type.string;
+                  switch-monitor-above = mkEmptyArray type.string;
+                  switch-monitor-below = mkEmptyArray type.string;
+                  switch-monitor-left = mkEmptyArray type.string;
+                  switch-monitor-right = mkEmptyArray type.string;
                   switch-next= mkEmptyArray type.string;
                   switch-previous= mkEmptyArray type.string;
-                  switch-right = ["<Super>l"];
-                  switch-up = ["<Super>k"];
-                  switch-up-workspace = ["<Primary><Super>k"];
-                  toggle-scratch = ["<Primary><Shift>space"];
-                  toggle-scratch-layer = ["<Primary>space"];
+                  switch-up-workspace = mkEmptyArray type.string;
                 };
               };
             }];
