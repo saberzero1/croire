@@ -161,8 +161,8 @@ in
                   close-window = ["<Super><Alt>q"];
 
                   # Window width
-                  resize-w-dec = ["<Super><Alt>n"]; # Decrement width
-                  resize-w-inc = ["<Super><Alt>m"]; # Increment width
+                  resize-w-dec = ["<Super><Alt>-"]; # Decrement width
+                  resize-w-inc = ["<Super><Alt>="]; # Increment width
 
                   # Window dimensions
                   toggle-maximiza-width = ["<Super><Alt>f"]; # full width
