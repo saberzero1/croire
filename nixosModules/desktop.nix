@@ -161,7 +161,7 @@ in
                   close-window = ["<Super><Alt>q"];
 
                   # Window width
-                  resize-w-inc = ["<Super><Alt>plus"]; # Increment width
+                  resize-w-inc = ["<Super><Alt>plus" "<Super><Alt>="]; # Increment width
                   resize-w-dec = ["<Super><Alt>minus"]; # Decrement width
                   # Window height
                   resize-h-inc = ["<Super><Alt><Ctrl>plus"]; # Increment height
