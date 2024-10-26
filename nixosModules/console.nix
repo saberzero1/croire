@@ -45,7 +45,7 @@
       };
       thefuck = {
         enable = true;
-        aias = "fuck";
+        alias = "fuck";
       };
     };
     users = {
