@@ -55,7 +55,7 @@ in
         pkgs.nautilus-open-any-terminal
         pkgs.xrdp
         pkgs.freerdp
-        pkgs.ulauncher
+        pkgs.albert
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -150,6 +150,7 @@ in
                 "org/gnome/shell".enabled-extensions = [
                   "burn-my-windows@schneegans.github.com"
                   "paperwm@paperwm.github.com"
+                  "gnome-shell-extension-stealmyfocus@v-dimitrov.github.com"
                 ];
                 "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
                 "org/gnome/shell/extensions/paperwm/keybindings" = {

@@ -34,6 +34,7 @@
         pkgs.usbutils
         pkgs.wget
         pkgs.zip
+        pkgs.thefuck
       ];
     };
     programs = {
@@ -41,6 +42,10 @@
         enable = true;
         enableCompletion = true;
         enableLsColors = true;
+      };
+      thefuck = {
+        enable = true;
+        aias = "fuck";
       };
     };
     users = {

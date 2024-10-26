@@ -36,6 +36,7 @@
         nerdfonts
         monaspace
         starship
+        thefuck
       ];
       shellAliases = {
         vi = "nvim";
@@ -83,6 +84,9 @@
 
           # starship
           eval "$(starship init zsh)"
+
+          # thefuck
+          eval $(thefuck --alias fuck)
         '';
       };
       direnv = {
@@ -138,6 +142,12 @@
       };
       tmux = {
         enable = true;
+      };
+      thefuck = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableInstantMode = false;
       };
     };
     xdg = {
