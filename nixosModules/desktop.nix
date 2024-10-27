@@ -134,13 +134,17 @@ in
             enable = true;
             wayland = true;
           };
-          defaultSession = "sway";
         };
         videoDrivers = [
           # "nvidia"
           "nouveau"
         ];
-        layout = "us";
+        xkb = {
+          layout = "us";
+        };
+      };
+      displayManager = {
+        defaultSession = "sway";
       };
       xrdp = {
         enable = true;
