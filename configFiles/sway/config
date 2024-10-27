@@ -37,7 +37,7 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper.pn
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    # floating_modifier $mod normal
 
     # Reload the configuration file
     bindsym $mod+c reload
