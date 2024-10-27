@@ -60,6 +60,9 @@
           enable = true;
         };
       };
+      nvidia = {
+        open = false;
+      };
     };
     i18n = {
       defaultLocale = "en_US.UTF-8";
