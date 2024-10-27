@@ -305,9 +305,9 @@ in
       waybar = {
         enable = true;
       };
-      qt5ct = {
-        enable = true;
-      };
+      #qt5ct = {
+      #  enable = true;
+      #};
     };
     systemd = {
       user = {
