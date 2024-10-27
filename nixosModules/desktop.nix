@@ -136,7 +136,8 @@ in
           };
         };
         videoDrivers = [
-          "nvidia"
+          # "nvidia"
+          "nouveau"
         ];
         layout = "us";
       };
