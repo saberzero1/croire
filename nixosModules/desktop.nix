@@ -90,7 +90,11 @@ in
       };
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
+        DL_VIDEODRIVER = "wayland";
         QT_QPA_PLATFORM = "wayland";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        _JAVA_AWT_WM_NONREPARENTING = 1;
+        MOZ_ENABLE_WAYLAND = 1;
         QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
         NIXOS_OZONE_WL = "1";
         EDITOR = "nvim";
@@ -117,6 +121,9 @@ in
           gnome = {
             enable = true;
           };
+          #plasma5 = {
+          #  enable = true;
+          #};
           wallpaper = {
             combineScreens = false;
             mode = "fill";
@@ -125,8 +132,13 @@ in
         displayManager = {
           gdm = {
             enable = true;
+            wayland = true;
           };
         };
+        videoDrivers = [
+          "nvidia"
+        ];
+        layout = "us";
       };
       xrdp = {
         enable = true;
@@ -265,6 +277,36 @@ in
       nautilus-open-any-terminal = {
         enable = true;
         terminal = "wezterm";
+      };
+      sway = {
+        enable = true;
+        wrapperFeatures = {
+          gtk = true;
+        };
+        extraPackages = with pkgs; [
+          swaylock
+          swayidle
+          wl-clipboard
+          wf-recorder
+          mako # notification daemon
+          grim
+        #kanshi
+          slurp
+          alacritty # Alacritty is the default terminal in the config
+          dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+          # https://gist.github.com/kborling/76805ade81ac5bfdd712df294208c878
+          rofi
+          gtk-engine-murrine
+          gtk_engines
+          gsettings-desktop-schemas
+          lxappearance
+        ];
+      };
+      waybar = {
+        enable = true;
+      };
+      qt5ct = {
+        enable = true;
       };
     };
     systemd = {
