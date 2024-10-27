@@ -134,6 +134,7 @@ in
             enable = true;
             wayland = true;
           };
+          defaultSession = "sway";
         };
         videoDrivers = [
           # "nvidia"
