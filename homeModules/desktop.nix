@@ -51,6 +51,7 @@ in
         "mimeapps.list".force = true;
         "paperwm/user.css" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/paperwm/user.css"; };
         "paperwm/user.js" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/paperwm/user.js"; };
+        "sway/config" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/sway/config"; };
       };
     };
   };
