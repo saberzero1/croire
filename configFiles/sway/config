@@ -95,10 +95,12 @@ bindsym $mod+g exec wl-copy ""
 
 # Layout stuff:
   # Split verticaly =
-  bindsym $mod+v splitv
+  # bindsym $mod+v splitv
+  bindsym $mod+Minus
 
   # Split horizontaly ||
-  bindsym $mod+h splith
+  # bindsym $mod+h splith
+  bindsym $mod+Backslash
 
   # Make the current focus fullscreen
   bindsym $mod+f fullscreen
