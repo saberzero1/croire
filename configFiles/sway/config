@@ -140,7 +140,7 @@ mode "launcher" {
   bindsym Escape mode "default"
 }
 bindsym $mod+o mode "launcher"
-bindsym $mod2+o exec rofi &
+bindsym $mod2+o exec rofi -mode drun &
 
 input "type:touchpad" {
   dwt enabled

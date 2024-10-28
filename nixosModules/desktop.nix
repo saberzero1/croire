@@ -139,9 +139,9 @@ in
           # "nvidia"
           "nouveau"
         ];
-        xkb = {
-          layout = "us";
-        };
+        # xkb = {
+        #   layout = "us";
+        # };
       };
       displayManager = {
         defaultSession = "sway";
