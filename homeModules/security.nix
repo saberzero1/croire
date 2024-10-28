@@ -14,6 +14,9 @@
           gpgPath = "${pkgs.gnupg}/bin/gpg2";
         };
       };
+      swaylock = {
+        enable = true;
+      };
     };
   };
 }

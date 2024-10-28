@@ -9,7 +9,6 @@
         pkgs.wpa_supplicant
         pkgs.wpa_supplicant_gui
         pkgs.pika-backup
-        pkgs.swaylock
       ];
     };
     programs = {
