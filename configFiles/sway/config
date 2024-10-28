@@ -151,6 +151,8 @@ input "type:touchpad" {
 # input "1:1:AT_Translated_Set_2_keyboard" {
 #     xkb_layout "us,sk"
 # }
+input * xkb_layout "us"
+input 12951:6505:ZSA_Technology_Labs_Moonlander_Mark_I xkb_layout "us"
 
 # Waybar
 exec waybar &
