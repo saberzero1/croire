@@ -400,7 +400,7 @@ in
             format-disconnected = "󰤮 Disconnected";
             format-alt = "{ifname}: {ipaddr}/{cidr}";
           };
-          "pulseaudio": {
+          "pulseaudio" = {
             format = "{icon}  {volume}%";
             format-muted = "󰖁 Muted";
             format-icons = {
