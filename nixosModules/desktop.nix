@@ -311,6 +311,10 @@ in
           gsettings-desktop-schemas
           lxappearance
         ];
+        extraSessionCommands = ''
+          eval $(gnome-keyring-daemon --start --components=secrets,ssh);
+          export SSH_AUTH_SOCK;
+        '';
       };
       waybar = {
         enable = true;
