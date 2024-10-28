@@ -57,10 +57,10 @@ in
     programs = {
       waybar = {
         enable = true;
-        settings = [
-          position = "bottom"
-          height = 30
-          modules-left = [ "sway/workspaces" ]
+        settings = [{
+          position = "bottom";
+          height = 30;
+          modules-left = [ "sway/workspaces" ];
           modules-right = [
             "network"
             "pulseaudio"
@@ -68,7 +68,7 @@ in
             "custom/date"
             "clock"
             "custom/power"
-          ]
+          ];
           "sway/workspaces" = {
             disable-scroll = true;
             all-outputs = true;
@@ -97,21 +97,21 @@ in
               "9" = "󰕧";
               "10" = "󰝚";
             };
-          }
+          };
           "custom/date" = {
             format = "󰸗 {}";
             interval = 3600;
             exec = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-date.sh";
-          }
+          };
           "custom/power" = {
             format = "󰐥";
             on-clock = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-power.sh";
-          }
+          };
           "clock" = {
             format = "󰅐 {:%H:%M}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             format-alt = "{:%Y-%m-%d}";
-          }
+          };
           "battery" = {
             states = {
               warning = 30;
@@ -127,14 +127,14 @@ in
               "󱊢"
               "󱊣"
             ];
-          }
+          };
           "network" = {
             format-wifi = "  {essid}";
             format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
             format-linked = "{ifname} (No IP) ";
             format-disconnected = "󰤮 Disconnected";
             format-alt = "{ifname}: {ipaddr}/{cidr}";
-          }
+          };
           "pulseaudio" = {
             format = "{icon}  {volume}%";
             format-muted = "󰖁 Muted";
@@ -151,8 +151,8 @@ in
                 ""
               ];
             };
-          }
-        ];
+          };
+        }];
         style = ''
 * {
 border: none;
