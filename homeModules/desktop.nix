@@ -62,11 +62,15 @@ in
           height = 30;
           modules-left = [ "sway/workspaces" ];
           modules-right = [
+            "sway/mode"
             "network"
             "pulseaudio"
             "battery"
             "custom/date"
+            "memory"
+            "cpu"
             "clock"
+            "tray"
             "custom/power"
           ];
           "sway/workspaces" = {
@@ -152,6 +156,20 @@ in
               ];
             };
           };
+
+          "sway/mode" = {
+            format = "<span style=\"italic\">{}</span>";
+          };
+          "tray" = {
+            spacing = 10;
+          };
+          "cpu" = {
+            format = "{usage}% ";
+            tooltip = false;
+          };
+          "memory" = {
+            format = "{}% ";
+          };
         }];
         style = ''
 * {
@@ -190,7 +208,7 @@ color: #24283b;
 border-radius: 5px;
 }
 
-#custom-date, #clock, #battery, #pulseaudio, #network {
+#sway-mode, #custom-date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
 background-color: #24283b;
 padding: 5px 10px;
 margin: 5px 0px;
@@ -212,7 +230,7 @@ padding: 5px 10px;
 }
 
 #clock {
-color: #b48ead;
+color: #bb9af7;
 border-radius: 0px 5px 5px 0px;
 margin-right: 10px;
 }
@@ -238,6 +256,28 @@ border-radius: 5px 0px 0px 5px;
 
 #pulseaudio {
 color: #e0af68;
+}
+
+#memory {
+color: #2ac3de;
+}
+
+#cpu {
+color: #7aa2f7;
+}
+
+#sway-mode {
+color: #c0caf5;
+}
+
+#tray {
+color #24283b;
+border-radius: 5px;
+margin-right: 10px;
+margin-top: 5px;
+margin-bottom: 5px;
+margin-left: 0px;
+padding: 5px 10px;
 }
         '';
       };
