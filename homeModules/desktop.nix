@@ -59,7 +59,7 @@ in
         enable = true;
         settings = {
           position = "bottom";
-          height = 30;
+          height = "30";
           modules-left = [ "sway/workspaces" ];
           modules-right = [
             "network"
