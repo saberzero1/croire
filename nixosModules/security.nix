@@ -39,6 +39,7 @@
         services = {
           swaylock = {
             enableGnomeKeyring = true;
+            gnupg.enable = true;
           };
         };
         #login = {
