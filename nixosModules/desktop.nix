@@ -320,9 +320,7 @@ in
         #'';
       };
       waybar = {
-        mainBar = {
-          enable = true;
-        };
+        enable = true;
       };
       # wofi = {
       #   enable = true;
