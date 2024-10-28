@@ -271,7 +271,7 @@ color: #c0caf5;
 }
 
 #tray {
-color #24283b;
+color: #24283b;
 border-radius: 5px;
 margin-right: 10px;
 margin-top: 5px;
