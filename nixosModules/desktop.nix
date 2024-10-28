@@ -314,107 +314,111 @@ in
           gsettings-desktop-schemas
           lxappearance
         ];
+        swaynag = {
+          enable = true;
+        };
         #extraSessionCommands = ''
         #  eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh);
         #  export SSH_AUTH_SOCK;
         #'';
       };
       waybar = {
-        enable = true;
-        settings = {
-          position =  "bottom";
-          height = 30;
-          modules-left = [ "sway/workspaces" ];
-          modules-right = [
-            "network"
-            "pulseaudio"
-            "battery"
-            "custom/date"
-            "clock"
-            "custom/power"
-          ];
-          # Modules configuration
-          "sway/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-            format = "{icon}";
-            persistent_workspaces = {
-              "1" = [];
-              "2" = [];
-              "3" = [];
-              "4" = [];
-              "5" = [];
-              "6" = [];
-              "7" = [];
-              "8" = [];
-              "9" = [];
-              "10" = [];
-            };
-            format-icons = {
-              "1" = "󰋜";
-              "2" = "󰖟";
-              "3" = "󰠮";
-              "4" = "󰭹";
-              "5" = "󱓷";
-              "6" = "󱇧";
-              "7" = "󰊢";
-              "8" = "󰖲";
-              "9" = "󰕧";
-              "10" = "󰝚";
-            };
-          };
-          "custom/date" = {
-            format = "󰸗 {}";
-            interval = 3600;
-            exec = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-date.sh";
-          };
-          "custom/power" = {
-            format = "󰐥";
-            on-clock = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-power.sh";
-          };
-          "clock" = {
-            format = "󰅐 {:%H:%M}";
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%Y-%m-%d}";
-          };
-          "battery" = {
-            states = {
-              warning = 30;
-              critical = 15;
-            };
-            format = "{icon} {capacity}%";
-            format-charging = "󰂄 {capacity}%";
-            format-plugged = "󰂄{capacity}%";
-            format-alt = "{time} {icon}";
-            format-full = "󱈑 {capacity}%";
-            format-icons = [
-              "󱊡"
-              "󱊢"
-              "󱊣"
+        mainBar = {
+          enable = true;
+          settings = {
+            position = "bottom";
+            height = 30;
+            modules-left = [ "sway/workspaces" ];
+            modules-right = [
+              "network"
+              "pulseaudio"
+              "battery"
+              "custom/date"
+              "clock"
+              "custom/power"
             ];
-          };
-          "network" = {
-            format-wifi = "  {essid}";
-            format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
-            format-linked = "{ifname} (No IP) ";
-            format-disconnected = "󰤮 Disconnected";
-            format-alt = "{ifname}: {ipaddr}/{cidr}";
-          };
-          "pulseaudio" = {
-            format = "{icon}  {volume}%";
-            format-muted = "󰖁 Muted";
-            format-icons = {
-              headphone = "";
-              hands-free = "";
-              headset = "";
-              phone = "";
-              portable = "";
-              car = "";
-              default = [
-                ""
-                ""
-                ""
+            "sway/workspaces" = {
+              disable-scroll = true;
+              all-outputs = true;
+              format = "{icon}";
+              persistent_workspaces = {
+                "1" = [];
+                "2" = [];
+                "3" = [];
+                "4" = [];
+                "5" = [];
+                "6" = [];
+                "7" = [];
+                "8" = [];
+                "9" = [];
+                "10" = [];
+              };
+              format-icons = {
+                "1" = "󰋜";
+                "2" = "󰖟";
+                "3" = "󰠮";
+                "4" = "󰭹";
+                "5" = "󱓷";
+                "6" = "󱇧";
+                "7" = "󰊢";
+                "8" = "󰖲";
+                "9" = "󰕧";
+                "10" = "󰝚";
+              };
+            };
+            "custom/date" = {
+              format = "󰸗 {}";
+              interval = 3600;
+              exec = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-date.sh";
+            };
+            "custom/power" = {
+              format = "󰐥";
+              on-clock = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-power.sh";
+            };
+            "clock" = {
+              format = "󰅐 {:%H:%M}";
+              tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+              format-alt = "{:%Y-%m-%d}";
+            };
+            "battery" = {
+              states = {
+                warning = 30;
+                critical = 15;
+              };
+              format = "{icon} {capacity}%";
+              format-charging = "󰂄 {capacity}%";
+              format-plugged = "󰂄{capacity}%";
+              format-alt = "{time} {icon}";
+              format-full = "󱈑 {capacity}%";
+              format-icons = [
+                "󱊡"
+                "󱊢"
+                "󱊣"
               ];
+            };
+            "network" = {
+              format-wifi = "  {essid}";
+              format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
+              format-linked = "{ifname} (No IP) ";
+              format-disconnected = "󰤮 Disconnected";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
+            };
+            "pulseaudio" = {
+              format = "{icon}  {volume}%";
+              format-muted = "󰖁 Muted";
+              format-icons = {
+                headphone = "";
+                hands-free = "";
+                headset = "";
+                phone = "";
+                portable = "";
+                car = "";
+                default = [
+                  ""
+                  ""
+                  ""
+                ];
+              };
             };
           };
         };
