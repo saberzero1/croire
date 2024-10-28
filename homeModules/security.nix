@@ -19,7 +19,7 @@
         settings = {
           ignore-empty-password = true;
           disable-caps-lock-text = true;
-          image = "$HOME/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_night.png";
+          image = "$HOME/Documents/Repos/dotfiles/croire/assets/wallpaper_night.png";
           font = "Monaspace Neon";
 
           text-ver-color = "00000000";
