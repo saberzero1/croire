@@ -322,9 +322,9 @@ in
         #   ...
         # '';
       };
-      swaylock = {
-        enable = true;
-      };
+      # swaylock = {
+      #   enable = true;
+      # };
       #qt5ct = {
       #  enable = true;
       #};
