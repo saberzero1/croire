@@ -312,17 +312,17 @@ in
       waybar = {
         enable = true;
       };
-      wofi = {
-        enable = true;
-        settings = {
-          MODE = "drun";
-          insensitive = true;
-          gtd_dark = true;
-        };
+      # wofi = {
+      #   enable = true;
+      #   settings = {
+      #     MODE = "drun";
+      #     insensitive = true;
+      #     gtd_dark = true;
+      #   };
         # style = ''
         #   ...
         # '';
-      };
+      # };
       # swaylock = {
       #   enable = true;
       # };

@@ -54,5 +54,19 @@ in
         "sway/config" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/sway/config"; };
       };
     };
+    programs = {
+      wofi = {
+        enable = true;
+        package = pkgs.wofi;
+        settings = {
+          MODE = "drun";
+          insensitive = true;
+          gtd_dark = true;
+        };
+        # style = ''
+        #   ...
+        # '';
+      };
+    };
   };
 }
