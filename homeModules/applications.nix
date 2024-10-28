@@ -29,61 +29,36 @@
           allow_images = true;
         };
         style = ''
-@define-color bg #282a36;
-@define-color purple #bd93f9;
-@define-color orange #ffb86c;
-@define-color green #50fa7b;
-@define-color pink #ff79c6;
-@define-color fg #f8f8f2;
-@define-color bg-light #44475a;
-@define-color cyan #8be9fd;
-@define-color yellow #f1fa8c;
-
-#window {
+window {
   margin: 0px;
-
-  border-radius: 7px;
-  background-color: @bg;
-  font-family: "Mononoki Nerd Font Mono";
-  font-size: 16px;
-  background: @bg;
-  border: 3px solid @purple;
+  border: 2px solid #414868;
+  border-radius: 5px;
+  background-color: #24283b;
+  font-family: monospace;
+  font-size: 12px;
 }
 
 #input {
-  margin: 15px;
-  border: 2px solid @orange;
-  border-radius: 10px;
-  color: @fg;
-  background: @bg;
-}
-
-#input:focus {
-  background: @bg-light;
-}
-
-#input:focus image {
-  color: @purple;
+  margin: 5px;
+  border: 1px solid #24283b;
+  color: #c0caf5;
+  background-color: #24283b;
 }
 
 #input image {
-  color: @purple;
+  color: #c0caf5;
 }
 
 #inner-box {
   margin: 5px;
   border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 7px;
-  background-color: inherit;
+  background-color: #24283b;
 }
 
 #outer-box {
   margin: 5px;
   border: none;
-  background-color: inherit;
-  border-radius: 7px;
+  background-color: #24283b;
 }
 
 #scroll {
@@ -94,19 +69,17 @@
 #text {
   margin: 5px;
   border: none;
-  color: @fg;
+  color: #c0caf5;
 }
 
 #entry:selected {
-  border-radius: 10px;
-  background: @purple;
-  background: linear-gradient(90deg, @purple, @pink);
+  background-color: #414868;
+  font-weight: normal;
 }
 
 #text:selected {
-	background-color: inherit;
-	color: @bg;
-	font-weight: normal;
+  background-color: #414868;
+  font-weight: normal;
 }
 '';
       };

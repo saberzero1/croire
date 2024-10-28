@@ -13,18 +13,25 @@ set $term wezterm
 
 # Colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #999999 #5f676a #999999 #999999   #999999
-client.focused_inactive #999999 #5f676a #999999 #999999   #999999
-client.unfocused        #333333 #222222 #888888 #292d2e   #1f1e1e
-client.urgent           #999999 #5f676a #999999 #999999   #999999
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# client.focused          #999999 #5f676a #999999 #999999   #999999
+# client.focused_inactive #999999 #5f676a #999999 #999999   #999999
+# client.unfocused        #333333 #222222 #888888 #292d2e   #1f1e1e
+# client.urgent           #999999 #5f676a #999999 #999999   #999999
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+## Window decoration
+# class                 border  backgr. text    indicator child_border
+client.focused          #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
+client.focused_inactive #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
+client.unfocused        #414868 #24283b #a9b1d6 #7dcfff   #414868
+client.urgent           #e0af68 #e0af68 #1d202f #7dcfff   #e0af68
 
 client.background       #ffffff
 
 default_border pixel 1
 
 # Wallpaper
-output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper.png fill
+output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_night.png fill
 
 # Key bindings
   # Start a terminal
@@ -162,6 +169,7 @@ assign [app_id="wezterm"] workspace number 1
 assign [app_id="discord"] workspace number 2
 assign [app_id="wavebox"] workspace number 3
 assign [app_id="codium-url-handler"] workspace number 4
+assign [app_id="wine"] workspace number 4
 
 # exec wezterm &
 # exec discord &
@@ -176,5 +184,8 @@ exec dbus-sway-environment
 exec configure-gtk
 exec systemctl --user import-environment
 #exec gnome-keyring-daemon --start --components=secrets,ssh
+
+# Swaylock
+bindsym Mod4+l exec swaylock &
 
 include @sysconfdir@/sway/config.d/*
