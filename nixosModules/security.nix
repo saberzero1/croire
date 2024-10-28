@@ -35,6 +35,11 @@
         package = pkgs.sudo;
         wheelNeedsPassword = true;
       };
+      pam = {
+        services = {
+          swaylock = { };
+        };
+      };
     };
     services = {
       openssh = {
