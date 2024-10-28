@@ -157,6 +157,9 @@ in
         gnome-browser-connector = {
           enable = true;
         };
+        gnome-keyring = {
+          enable = true;
+        };
       };
     };
     programs = {
