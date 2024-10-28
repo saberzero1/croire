@@ -51,7 +51,7 @@
           indicator-x-position = 250;
           indicator-y-position = 975;
           indicator-radius = 200;
-          font-size = 100'
+          font-size = 100';
           text-color = "c0caf5";
         };
       };
