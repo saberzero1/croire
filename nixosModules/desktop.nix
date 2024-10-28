@@ -161,6 +161,9 @@ in
           enable = true;
         };
       };
+      gnome3 = {
+        gnome-keyring.enable = true;
+      };
     };
     programs = {
       dconf = {
