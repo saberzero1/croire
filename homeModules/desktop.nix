@@ -58,7 +58,7 @@ in
       waybar = {
         enable = true;
         settings = [{
-          position = "bottom";
+          position = "top";
           height = 30;
           modules-left = [ "sway/workspaces" ];
           modules-right = [
