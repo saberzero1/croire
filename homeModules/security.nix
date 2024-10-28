@@ -19,7 +19,8 @@
         settings = {
           ignore-empty-password = true;
           disable-caps-lock-text = true;
-          image = "$HOME/Documents/Repos/dotfiles/croire/assets/wallpaper_night.png";
+          image = "$HOME/Documents/Repos/dotfiles-submodules/croire/assets/wallpaper_night.png";
+          effect-blur = "3x5";
           font = "Monaspace Neon";
 
           text-ver-color = "00000000";
