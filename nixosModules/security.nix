@@ -37,12 +37,14 @@
       };
       pam = {
         services = {
-          swaylock = { };
+          swaylock = {
+            enableGnomeKeyring = true;
+          };
         };
-        login = {
-          enableGnomeKeyring = true;
-          gnupg.enable = true;
-        };
+        #login = {
+        #  enableGnomeKeyring = true;
+        #  gnupg.enable = true;
+        #};
       };
     };
     services = {
