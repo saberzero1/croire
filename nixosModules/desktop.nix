@@ -314,9 +314,6 @@ in
           gsettings-desktop-schemas
           lxappearance
         ];
-        swaynag = {
-          enable = true;
-        };
         #extraSessionCommands = ''
         #  eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh);
         #  export SSH_AUTH_SOCK;
