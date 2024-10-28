@@ -73,6 +73,7 @@ in
             "tray"
             "custom/power"
           ];
+
           "sway/workspaces" = {
             disable-scroll = true;
             all-outputs = true;
@@ -102,20 +103,24 @@ in
               "10" = "󰝚";
             };
           };
+
           "custom/date" = {
             format = "󰸗 {}";
             interval = 3600;
             exec = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-date.sh";
           };
+
           "custom/power" = {
             format = "󰐥";
             on-clock = "$HOME/Documents/Repos/dotfiles-submodules/croire/configFiles/waybar/waybar-power.sh";
           };
+
           "clock" = {
             format = "󰅐 {:%H:%M}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
             format-alt = "{:%Y-%m-%d}";
           };
+
           "battery" = {
             states = {
               warning = 30;
@@ -132,10 +137,11 @@ in
               "󱊣"
             ];
           };
+
           "network" = {
             format-wifi = "  {essid}";
-            format-ethernet = "{ifname}: {ipaddr}/{cidr} ";
-            format-linked = "{ifname} (No IP) ";
+            format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈁";
+            format-linked = "{ifname} (No IP) 󱚵";
             format-disconnected = "󰤮 Disconnected";
             format-alt = "{ifname}: {ipaddr}/{cidr}";
           };
@@ -144,8 +150,8 @@ in
             format-muted = "󰖁 Muted";
             format-icons = {
               headphone = "";
-              hands-free = "";
-              headset = "";
+              hands-free = "󰏳";
+              headset = "󰋎";
               phone = "";
               portable = "";
               car = "";
@@ -271,7 +277,7 @@ color: #c0caf5;
 }
 
 #tray {
-color: #24283b;
+background-color: #24283b;
 border-radius: 5px;
 margin-right: 10px;
 margin-top: 5px;
