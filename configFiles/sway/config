@@ -175,6 +175,6 @@ for_window [app_id="com.github.finefindus.eyedropper"] floating enable
 exec dbus-sway-environment
 exec configure-gtk
 exec systemctl --user import-environment
-exec gnome-keyring-daemon --start --components=secrets,ssh
+#exec gnome-keyring-daemon --start --components=secrets,ssh
 
 include @sysconfdir@/sway/config.d/*
