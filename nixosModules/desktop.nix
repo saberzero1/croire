@@ -301,7 +301,7 @@ in
           alacritty # Alacritty is the default terminal in the config
           dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
           # https://gist.github.com/kborling/76805ade81ac5bfdd712df294208c878
-          rofi
+          wofi
           gtk-engine-murrine
           gtk_engines
           gsettings-desktop-schemas
@@ -310,6 +310,17 @@ in
       };
       waybar = {
         enable = true;
+      };
+      wofi = {
+        enable = true;
+        settings = {
+          MODE = "drun";
+          insensitive = true;
+          gtd_dark = true;
+        };
+        # style = ''
+        #   ...
+        # '';
       };
       #qt5ct = {
       #  enable = true;
