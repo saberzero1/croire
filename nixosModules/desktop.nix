@@ -387,7 +387,11 @@ in
             format-plugged = "󰂄{capacity}%";
             format-alt = "{time} {icon}";
             format-full = "󱈑 {capacity}%";
-            format-icons = ["󱊡", "󱊢", "󱊣"];
+            format-icons = [
+              "󱊡"
+              "󱊢"
+              "󱊣"
+            ];
           };
           "network" = {
             format-wifi = "  {essid}";
@@ -406,7 +410,11 @@ in
               phone = "";
               portable = "";
               car = "";
-              default = ["", "", ""];
+              default = [
+                ""
+                ""
+                ""
+              ];
             };
           };
         };
