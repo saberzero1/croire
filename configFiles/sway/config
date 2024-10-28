@@ -186,6 +186,20 @@ exec systemctl --user import-environment
 #exec gnome-keyring-daemon --start --components=secrets,ssh
 
 # Swaylock
-bindsym Mod4+l exec swaylock &
+bindsym Mod4+l exec swaylock \
+                            --screenshots \
+                            --clock \
+                            --indicator \
+                            --indicator-radius 100 \
+                            --indicator-thickness 7 \
+                            --effect-blur 7x5 \
+                            --effect-vignette 0.5:0.5 \
+                            --ring-color b4f9f8 \
+                            --key-hl-color c0caf5 \
+                            --line-color 00000000 \
+                            --inside-color 00000088 \
+                            --separator-color 00000000 \
+                            --grace 2 \
+                            --fade-in 0.2 &
 
 include @sysconfdir@/sway/config.d/*
