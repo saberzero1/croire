@@ -325,7 +325,14 @@ in
           position =  "bottom";
           height = 30;
           modules-left = [ "sway/workspaces" ];
-          modules-right = [ "network", "pulseaudio", "battery", "custom/date", "clock", "custom/power" ];
+          modules-right = [
+            "network"
+            "pulseaudio"
+            "battery"
+            "custom/date"
+            "clock"
+            "custom/power"
+          ];
           # Modules configuration
           "sway/workspaces" = {
             disable-scroll = true;
