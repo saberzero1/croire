@@ -89,7 +89,7 @@
           eval $(thefuck --alias fuck)
 
           # gnome
-          eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh)
+          # eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh)
         '';
       };
       direnv = {

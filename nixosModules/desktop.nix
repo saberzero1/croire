@@ -135,6 +135,9 @@ in
             enable = true;
             wayland = true;
           };
+          sessionCommands = ''
+            ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+          '';
         };
         videoDrivers = [
           # "nvidia"
@@ -160,9 +163,6 @@ in
         gnome-keyring = {
           enable = true;
         };
-      };
-      gnome3 = {
-        gnome-keyring.enable = true;
       };
     };
     programs = {
