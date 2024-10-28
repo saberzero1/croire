@@ -177,7 +177,7 @@ assign [app_id="wine"] workspace number 4
 # exec codium &
 
 # Evaluate on launch
-exec wezterm -c 'exit' &
+exec zsh -c 'exit' &
 
 #Window rules
 for_window [app_id="com.github.finefindus.eyedropper"] floating enable
