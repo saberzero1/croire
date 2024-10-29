@@ -331,7 +331,7 @@ in
           sway = {
             compositorPrettyName = "Sway";
             compositorComment = "Sway compositor managed by UWSM";
-            compositorBinPath = "/run/current-system/sw/bin/sway";
+            compositorBinPath = "${pkgs.sway}/bin/sway";
           };
         };
       };
