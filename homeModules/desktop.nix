@@ -29,7 +29,7 @@ in
         sunrise = "08:00";
         sunset = "18:00";
         temperature = {
-          day = 4000;
+          day = 4001;
           night = 4000;
         };
       };

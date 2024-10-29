@@ -58,6 +58,7 @@ in
         pkgs.albert
         pkgs.wofi
         pkgs.wlsunset
+        pkgs.uwsm
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -323,6 +324,16 @@ in
       };
       waybar = {
         enable = true;
+      };
+      uwsm = {
+        enable = true;
+        waylandCompositors = {
+          sway = {
+            compositorPrettyName = "Sway";
+            compositorComment = "Sway compositor managed by UWSM";
+            compositorBinPath = "/run/current-system/sw/bin/sway"
+          };
+        };
       };
       # wofi = {
       #   enable = true;
