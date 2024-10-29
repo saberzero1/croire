@@ -5,6 +5,11 @@
     inputs.self.homeModules.vscodium
   ];
   config = {
+    programs = {
+      zed-editor = {
+        enable = true;
+      };
+    };
     editorconfig = {
       enable = true;
       settings = {
