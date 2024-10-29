@@ -22,6 +22,18 @@ let
 in
 {
   config = {
+    services = {
+      wlsunset = {
+        enable = true;
+        package = pkgs.wlsunset;
+        sunrise = "08:00";
+        sunset = "18:00";
+        temperature = {
+          day = 4000;
+          night = 4000;
+        };
+      };
+    };
     dconf = {
       settings = with lib.hm.gvariant; {
         "org/gnome/desktop/background" = {
