@@ -51,7 +51,31 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
   bindsym $mod+c reload
 
   # Screenshots
-  bindsym $mod+s exec grim  -g "$(slurp)" ~/Desktop/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png')
+  $mod+Print exec "$(grimshot)" --notify save screen /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # All visible outputs
+  $mod+Shift+Print exec "$(grimshot)" --notify save active /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # Currently active window
+  ## Screen recording
+  $mod2+Print exec wf-recorder -o /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.mp4')
+  $mod2+Shift+Print exec wf-recorder -g "$(slurp)" -o /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.mp4')
+  # Screenshots
+  # bindsym $mod+s exec grim -g "$(slurp)" ~/Desktop/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png')
+  # Screenshot
+  # "Print" = "exec ${grimshot} --notify save screen $(${xdg-user-dir} PICTURES)/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png')"; # All visible outputs
+  # "Shift+Print" = "exec ${grimshot} --notify save area $(${xdg-user-dir} PICTURES)/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png')"; # Manually select a region
+  # "Alt+Print" = "exec ${grimshot} --notify save active $(${xdg-user-dir} PICTURES)/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png')"; # Currently active window
+  # "Shift+Alt+Print" = "exec ${grimshot} --notify save window $(${xdg-user-dir} PICTURES)/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png')"; # Manually select a window
+  # "Ctrl+Print" = "exec ${grimshot} --notify copy screen";
+  # "Ctrl+Shift+Print" = "exec ${grimshot} --notify copy area";
+  # "Ctrl+Alt+Print" = "exec ${grimshot} --notify copy active";
+  # "Ctrl+Shift+Alt+Print" = "exec ${grimshot} --notify copy window";
+  ## Screen recording
+  # "${modifier}+Print" = "exec wayrecorder --notify screen";
+  # "${modifier}+Shift+Print" = "exec wayrecorder --notify --input area";
+  # "${modifier}+Alt+Print" = "exec wayrecorder --notify --input active";
+  # "${modifier}+Shift+Alt+Print" = "exec wayrecorder --notify --input window";
+  # "${modifier}+Ctrl+Print" = "exec wayrecorder --notify --clipboard --input screen";
+  # "${modifier}+Ctrl+Shift+Print" = "exec wayrecorder --notify --clipboard --input area";
+  # "${modifier}+Ctrl+Alt+Print" = "exec wayrecorder --notify --clipboard --input active";
+  # "${modifier}+Ctrl+Shift+Alt+Print" = "exec wayrecorder --notify --clipboard --input window";
 
 
 # Moving around:
@@ -83,11 +107,23 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
   bindsym $mod+2 workspace number 2
   bindsym $mod+3 workspace number 3
   bindsym $mod+4 workspace number 4
+  bindsym $mod+5 workspace number 5
+  bindsym $mod+6 workspace number 6
+  bindsym $mod+7 workspace number 7
+  bindsym $mod+8 workspace number 8
+  bindsym $mod+9 workspace number 9
+  bindsym $mod+0 workspace number 10
   # Move focused container to workspace
   bindsym $mod2+1 move container to workspace number 1
   bindsym $mod2+2 move container to workspace number 2
   bindsym $mod2+3 move container to workspace number 3
   bindsym $mod2+4 move container to workspace number 4
+  bindsym $mod2+5 move container to workspace number 5
+  bindsym $mod2+6 move container to workspace number 6
+  bindsym $mod2+7 move container to workspace number 7
+  bindsym $mod2+8 move container to workspace number 8
+  bindsym $mod2+9 move container to workspace number 9
+  bindsym $mod2+0 move container to workspace number 10
 
 # Media keys
 # Brightness

@@ -57,6 +57,7 @@ in
         pkgs.freerdp
         pkgs.albert
         pkgs.wofi
+        pkgs.wlsunset
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -162,6 +163,16 @@ in
         };
         gnome-keyring = {
           enable = true;
+        };
+      };
+      wlsunset = {
+        enable = true;
+        package = pkgs.wlsunset;
+        sunrise = "08:00";
+        sunset = "18:00";
+        temperature = {
+          day = 4000;
+          night = 4000;
         };
       };
     };
@@ -301,6 +312,7 @@ in
           swayidle
           wl-clipboard
           wf-recorder
+          sway-contrib.grimshot
           mako # notification daemon
           grim
         #kanshi
