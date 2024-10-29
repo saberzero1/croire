@@ -329,9 +329,9 @@ in
         enable = true;
         waylandCompositors = {
           sway = {
-            compositorPrettyName = "Sway";
-            compositorComment = "Sway compositor managed by UWSM";
-            compositorBinPath = "${pkgs.sway}/bin/sway";
+            prettyName = "Sway";
+            comment = "Sway compositor managed by UWSM";
+            binPath = "${pkgs.sway}/bin/sway";
           };
         };
       };
