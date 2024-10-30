@@ -83,6 +83,7 @@
         neovim_language_dependencies = import ./homeModules/neovim_language_dependencies.nix flakeContext;
         nixvim = import ./homeModules/nixvim.nix flakeContext;
         programming_languages = import ./homeModules/programming_languages.nix flakeContext;
+        lua = import ./homeModules/lua.nix flakeContext;
         python = import ./homeModules/python.nix flakeContext;
         ruby = import ./homeModules/ruby.nix flakeContext;
         security = import ./homeModules/security.nix flakeContext;
@@ -106,6 +107,7 @@
         javascript = import ./nixosModules/javascript.nix flakeContext;
         neovim = import ./nixosModules/neovim.nix flakeContext;
         programming_languages = import ./nixosModules/programming_languages.nix flakeContext;
+        lua = import ./nixosModules/lua.nix flakeContext;
         python = import ./nixosModules/python.nix flakeContext;
         ruby = import ./nixosModules/ruby.nix flakeContext;
         security = import ./nixosModules/security.nix flakeContext;
