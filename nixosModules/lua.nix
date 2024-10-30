@@ -9,16 +9,16 @@
         pkgs.lua53Packages.argparse
         pkgs.lua53Packages.busted
         pkgs.lua53Packages.busted-htest
-        pkgs.lua53Packages.commons_nvim
+        pkgs.lua53Packages.commons-nvim
         pkgs.lua53Packages.compat53
         pkgs.lua53Packages.cosmo
         pkgs.lua53Packages.ldoc
         pkgs.lua53Packages.http
-        pkgs.lua53Packages.image_nvim
+        pkgs.lua53Packages.image-nvim
         pkgs.lua53Packages.inspect
         pkgs.lua53Packages.jsregexp
         pkgs.lua53Packages.lua-lsp
-        pkgs.lua53Packages.lua-utils_nvim
+        pkgs.lua53Packages.lua-utils-nvim
         pkgs.lua53Packages.luacheck
         pkgs.lua53Packages.luarocks
         pkgs.lua53Packages.luarocks-build-rust-mlua
@@ -40,19 +40,19 @@
         pkgs.lua53Packages.neorg
         pkgs.lua53Packages.neotest
         pkgs.lua53Packages.nlua
-        pkgs.lua53Packages.nui_nvim
-        pkgs.lua53Packages_nvim-cmp-scm
-        pkgs.lua53Packages_nvim-nio
-        pkgs.lua53Packages.pathlib_nvim
+        pkgs.lua53Packages.nui-nvim
+        pkgs.lua53Packages-nvim-cmp-scm
+        pkgs.lua53Packages-nvim-nio
+        pkgs.lua53Packages.pathlib-nvim
         pkgs.lua53Packages.penlight
-        pkgs.lua53Packages.plenary_nvim-scm
+        pkgs.lua53Packages.plenary-nvim-scm
         pkgs.lua53Packages.readline
-        pkgs.lua53Packages.rest_nvim
-        pkgs.lua53Packages.rocks-config_nvim
-        pkgs.lua53Packages.rocks-dev_nvim
-        pkgs.lua53Packages.rocks-git_nvim
-        pkgs.lua53Packages.rocks_nvim
-        pkgs.lua53Packages.rtp_nvim
+        pkgs.lua53Packages.rest-nvim
+        pkgs.lua53Packages.rocks-config-nvim
+        pkgs.lua53Packages.rocks-dev-nvim
+        pkgs.lua53Packages.rocks-git-nvim
+        pkgs.lua53Packages.rocks-nvim
+        pkgs.lua53Packages.rtp-nvim
         pkgs.lua53Packages.say
         pkgs.lua53Packages.serpent
         pkgs.lua53Packages.std._debug
