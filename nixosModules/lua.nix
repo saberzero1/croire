@@ -41,7 +41,7 @@
         pkgs.lua53Packages.neotest
         pkgs.lua53Packages.nlua
         pkgs.lua53Packages.nui-nvim
-        pkgs.lua53Packages.nvim-cmp-scm
+        pkgs.lua53Packages.nvim-cmp
         pkgs.lua53Packages.nvim-nio
         pkgs.lua53Packages.pathlib-nvim
         pkgs.lua53Packages.penlight
