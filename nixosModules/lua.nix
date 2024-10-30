@@ -35,7 +35,7 @@
         pkgs.lua53Packages.luv
         pkgs.lua53Packages.lyaml
         pkgs.lua53Packages.markdown
-        pkgs.lua53Packages.madiator_lua
+        pkgs.lua53Packages.mediator_lua
         pkgs.lua53Packages.middleclass
         pkgs.lua53Packages.neorg
         pkgs.lua53Packages.neotest
