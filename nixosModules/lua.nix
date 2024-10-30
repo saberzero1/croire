@@ -38,7 +38,7 @@
         pkgs.lua53Packages.mediator_lua
         pkgs.lua53Packages.middleclass
         pkgs.lua53Packages.neorg
-        pkgs.lua53Packages.neotest
+        # pkgs.lua53Packages.neotest
         pkgs.lua53Packages.nlua
         pkgs.lua53Packages.nui-nvim
         pkgs.lua53Packages.nvim-cmp
