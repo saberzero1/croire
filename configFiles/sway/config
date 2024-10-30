@@ -127,11 +127,20 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
 
 # Media keys
 # Brightness
-bindsym XF86MonBrightnessDown exec light -U 10
-bindsym XF86MonBrightnessUp exec light -A 10
+# bindsym XF86MonBrightnessDown exec light -U 10
+# bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessUp exec lightctl up
+bindsym XF86MonBrightnessDown exec lightctl down
 
 # Volume
-bindsym XF86AudioMute exec 'pulsemixer --toggle-mute'
+# bindsym XF86AudioMute exec 'pulsemixer --toggle-mute'
+bindsym XF86AudioRaiseVolume exec volumectl -u up
+bindsym XF86AudioLowerVolume exec volumectl -u down
+bindsym XF86AudioMute exec volumectl toggle-mute
+bindsym XF86AudioMicMute exec volumectl -m toggle-mute
+
+
+exec "avizo-service"
 
 # Git token (paste it into "")
 bindsym $mod+g exec wl-copy ""

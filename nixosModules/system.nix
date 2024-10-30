@@ -29,6 +29,8 @@
         pkgs.nix-ld
         pkgs.evince
         pkgs.foliate
+        pkgs.pulseaudioFull
+        pkgs.avizo
       ];
     };
     fonts = {

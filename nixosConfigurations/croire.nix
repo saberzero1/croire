@@ -42,6 +42,10 @@ let
         pulseaudio = {
           enable = false;
         };
+        # https://discourse.nixos.org/t/issue-after-sound-option-was-removed-in-unstable/49394/8
+        alsa = {
+          enablePersistence = true;
+        };
       };
       networking = {
         hostName = "nixos";
@@ -77,12 +81,18 @@ let
       };
       services = {
         pipewire = {
+          enable = true;
           alsa = {
             enable = true;
             support32Bit = true;
           };
-          enable = true;
           pulse = {
+            enable = true;
+          };
+          jack = {
+            enable = true;
+          };
+          audio = {
             enable = true;
           };
         };
