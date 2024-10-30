@@ -55,8 +55,8 @@
         pkgs.lua53Packages.rtp-nvim
         pkgs.lua53Packages.say
         pkgs.lua53Packages.serpent
-        pkgs.lua53Packages.std._debug
-        pkgs.lua53Packages.std.normalize
+        pkgs.lua53Packages.std_debug
+        pkgs.lua53Packages.std-normalize
         pkgs.lua53Packages.stdlib
       ];
     };
