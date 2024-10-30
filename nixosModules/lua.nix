@@ -45,7 +45,7 @@
         pkgs.lua53Packages.nvim-nio
         pkgs.lua53Packages.pathlib-nvim
         pkgs.lua53Packages.penlight
-        pkgs.lua53Packages.plenary-nvim-scm
+        pkgs.lua53Packages.plenary-nvim
         pkgs.lua53Packages.readline
         pkgs.lua53Packages.rest-nvim
         pkgs.lua53Packages.rocks-config-nvim
