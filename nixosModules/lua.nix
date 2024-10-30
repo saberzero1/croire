@@ -56,7 +56,7 @@
         pkgs.lua53Packages.say
         pkgs.lua53Packages.serpent
         pkgs.lua53Packages.std-_debug
-        pkgs.lua53Packages.normalize
+        pkgs.lua53Packages.std-normalize
         pkgs.lua53Packages.stdlib
       ];
     };
