@@ -204,7 +204,7 @@ exec waybar &
 assign [app_id="wezterm"] workspace number 1
 assign [app_id="discord"] workspace number 2
 assign [app_id="wavebox"] workspace number 3
-assign [app_id="zeditor"] workspace number 4
+assign [app_id="zed"] workspace number 4
 assign [app_id="codium-url-handler"] workspace number 4
 assign [app_id="wine"] workspace number 4
 

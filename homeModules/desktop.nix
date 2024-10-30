@@ -103,16 +103,16 @@ in
               "10" = [];
             };
             format-icons = {
-              "1" = "󰋜";
-              "2" = "󰖟";
-              "3" = "󰠮";
-              "4" = "󰭹";
-              "5" = "󱓷";
-              "6" = "󱇧";
-              "7" = "󰊢";
-              "8" = "󰖲";
-              "9" = "󰕧";
-              "10" = "󰝚";
+              "1" = "󰋜"; # Home
+              "2" = "󰖟"; # Web
+              "3" = "󰠮"; # Notes/Writing
+              "4" = "󰭹"; # Chat
+              "5" = "󱓷"; # Books/Reading
+              "6" = "󱇧"; # Development/Coding
+              "7" = "󰊢"; # Git/Version Control
+              "8" = "󰖲"; # Misc/Panes
+              "9" = "󰕧"; # Video/Camera
+              "10" = "󰝚"; # Music
             };
           };
 
@@ -157,6 +157,7 @@ in
             format-disconnected = "󰤮 Disconnected";
             format-alt = "{ifname}: {ipaddr}/{cidr}";
           };
+
           "pulseaudio" = {
             format = "{icon}  {volume}%";
             format-muted = "󰖁 Muted";
@@ -178,13 +179,16 @@ in
           "sway/mode" = {
             format = "<span style=\"italic\">{}</span>";
           };
+
           "tray" = {
             spacing = 10;
           };
+
           "cpu" = {
             format = "{usage}% ";
             tooltip = false;
           };
+
           "memory" = {
             format = "{}% ";
           };
