@@ -23,6 +23,9 @@ in
 {
   config = {
     services = {
+      mako = {
+        enable = true;
+      };
       wlsunset = {
         enable = true;
         package = pkgs.wlsunset;
@@ -69,9 +72,6 @@ in
       };
     };
     programs = {
-      mako = {
-        enable = true;
-      };
       waybar = {
         enable = true;
         settings = [{
