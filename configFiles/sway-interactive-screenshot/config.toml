@@ -8,7 +8,7 @@ save_dir = "~/Pictures/Screenshots"
 
 # File name format.
 # See: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
-file_name = "screenshot_%Y-%m-%dT%H:%M:%S.png"
+file_name = "Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 # Image format.
 type = "png" # "jpeg", "ppm"
@@ -36,7 +36,7 @@ save_dir = "~/Videos/Screencasts"
 
 # File name format.
 # See: https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes
-file_name = "screencast_%Y-%m-%dT%H:%M:%S.mkv"
+file_name = "Screencast from %Y-%m-%d %H-%M-%S.mkv"
 
 # Record audio.
 audio = "ask" # "yes", "no"
@@ -45,6 +45,6 @@ audio = "ask" # "yes", "no"
 # Alternative name for dragon-drop binary
 # dragon.command = "dragon"
 
-[ask]
-command = "fuzzel"
-args = []
+# [ask]
+# command = "fuzzel"
+# args = []

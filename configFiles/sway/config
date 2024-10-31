@@ -51,9 +51,9 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
   bindsym $mod+c reload
 
   # Screenshots
-  bindsym $mod+Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot
+  bindsym $mod+Print exec "$(python3)" /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot
   # Screen recordings
-  bindsym $mod2+Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot --videos
+  bindsym $mod2+Print exec "$(python3)" /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot --videos
 
   # Screenshots
   # bindsym $mod+Print exec "$(grimshot)" --notify save screen /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # All visible outputs
