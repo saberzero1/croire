@@ -32,6 +32,7 @@
         pkgs.pulseaudioFull
         pkgs.avizo
         pkgs.libnotify
+        pkgs.fuzzel
       ];
     };
     fonts = {

@@ -72,6 +72,10 @@ in
       };
     };
     programs = {
+      fuzzel = {
+        enable = true;
+        package = pkgs.fuzzel;
+      };
       waybar = {
         enable = true;
         settings = [{
