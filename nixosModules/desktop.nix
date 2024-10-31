@@ -316,6 +316,10 @@ in
           gtk_engines
           gsettings-desktop-schemas
           lxappearance
+          dragon
+          swappy
+          xdg-utils
+          notify-send
         ];
         #extraSessionCommands = ''
         #  eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh);

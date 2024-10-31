@@ -51,11 +51,16 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
   bindsym $mod+c reload
 
   # Screenshots
-  bindsym $mod+Print exec "$(grimshot)" --notify save screen /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # All visible outputs
-  bindsym $mod+Shift+Print exec "$(grimshot)" --notify save active /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # Currently active window
+  bindsym $mod+Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot
+  # Screen recordings
+  bindsym $mod2+Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot --videos
+
+  # Screenshots
+  # bindsym $mod+Print exec "$(grimshot)" --notify save screen /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # All visible outputs
+  # bindsym $mod+Shift+Print exec "$(grimshot)" --notify save active /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # Currently active window
   ## Screen recording
-  bindsym $mod2+Print exec wf-recorder -o /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.mp4')
-  bindsym $mod2+Shift+Print exec wf-recorder -g "$(slurp)" -o /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.mp4')
+  # bindsym $mod2+Print exec wf-recorder -o /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.mp4')
+  # bindsym $mod2+Shift+Print exec wf-recorder -g "$(slurp)" -o /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.mp4')
   # Screenshots
   # bindsym $mod+s exec grim -g "$(slurp)" ~/Desktop/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png')
   # Screenshot

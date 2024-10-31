@@ -64,6 +64,8 @@ in
         "paperwm/user.css" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/paperwm/user.css"; };
         "paperwm/user.js" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/paperwm/user.js"; };
         "sway/config" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/sway/config"; };
+        "sway-interactive-screenshot/config.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/config.toml"; };
+        "sway-interactive-screenshot/sway-interactive-screenshot" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot"; };
       };
     };
     programs = {
