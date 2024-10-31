@@ -319,7 +319,6 @@ in
           dragon
           swappy
           xdg-utils
-          tomli
         ];
         #extraSessionCommands = ''
         #  eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh);
