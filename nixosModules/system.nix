@@ -31,6 +31,7 @@
         pkgs.foliate
         pkgs.pulseaudioFull
         pkgs.avizo
+        pkgs.libnotify
       ];
     };
     fonts = {
