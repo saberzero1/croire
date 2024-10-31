@@ -69,6 +69,9 @@ in
       };
     };
     programs = {
+      mako = {
+        enable = true;
+      };
       waybar = {
         enable = true;
         settings = [{

@@ -339,9 +339,6 @@ in
           };
         };
       };
-      mako = {
-        enable = true;
-      };
       # wofi = {
       #   enable = true;
       #   settings = {
