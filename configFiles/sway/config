@@ -53,7 +53,7 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
   # Screenshots
   bindsym Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot
   # Screen recordings
-  bindsym Shift+Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot --videos
+  bindsym Shift+Print exec /home/saberzero1/Documents/Repos/dotfiles-submodules/croire/configFiles/sway-interactive-screenshot/sway-interactive-screenshot --video
 
   # Screenshots
   # bindsym $mod+Print exec "$(grimshot)" --notify save screen /home/saberzero1/Pictures/Screenshots/Screenshot-$(date +'%H:%M:%S.png') # All visible outputs
