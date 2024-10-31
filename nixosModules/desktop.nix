@@ -319,7 +319,6 @@ in
           dragon
           swappy
           xdg-utils
-          notify-send
           tomli
         ];
         #extraSessionCommands = ''
