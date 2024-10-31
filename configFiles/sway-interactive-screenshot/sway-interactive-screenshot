@@ -119,7 +119,7 @@ class Config:
             }
         },
         "ask" : {
-            "command" : "fuzzel",
+            "command" : "wofi",
             "args": [],
         }
     }
@@ -463,7 +463,7 @@ ASK_FNS = {
 }
 
 
-ask = ask_fuzzel
+ask = ask_wofi
 
 def notify(
     title: str,

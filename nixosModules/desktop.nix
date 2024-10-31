@@ -59,6 +59,7 @@ in
         pkgs.wofi
         pkgs.wlsunset
         pkgs.uwsm
+        pkgs.mako
       ];
       # Most of these are optional programs added by services.gnome.core-services
       # and etc., but the module sets other useful options so it is better to
@@ -337,6 +338,9 @@ in
             binPath = "${pkgs.sway}/bin/sway";
           };
         };
+      };
+      mako = {
+        enable = true;
       };
       # wofi = {
       #   enable = true;
