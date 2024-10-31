@@ -320,6 +320,7 @@ in
           swappy
           xdg-utils
           notify-send
+          tomli
         ];
         #extraSessionCommands = ''
         #  eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh);
