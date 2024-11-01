@@ -5,5 +5,6 @@
     inputs.self.homeModules.lua
     inputs.self.homeModules.python
     inputs.self.homeModules.ruby
+    inputs.self.homeModules.rust
   ];
 }

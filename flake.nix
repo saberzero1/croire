@@ -86,6 +86,7 @@
         lua = import ./homeModules/lua.nix flakeContext;
         python = import ./homeModules/python.nix flakeContext;
         ruby = import ./homeModules/ruby.nix flakeContext;
+        rust = import ./homeModules/rust.nix flakeContext;
         security = import ./homeModules/security.nix flakeContext;
         system = import ./homeModules/system.nix flakeContext;
         utils = import ./homeModules/utils.nix flakeContext;
@@ -110,6 +111,7 @@
         lua = import ./nixosModules/lua.nix flakeContext;
         python = import ./nixosModules/python.nix flakeContext;
         ruby = import ./nixosModules/ruby.nix flakeContext;
+        rust = import ./nixosModules/rust.nix flakeContext;
         security = import ./nixosModules/security.nix flakeContext;
         system = import ./nixosModules/system.nix flakeContext;
         utils = import ./nixosModules/utils.nix flakeContext;

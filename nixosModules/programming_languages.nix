@@ -5,5 +5,6 @@
     inputs.self.nixosModules.lua
     inputs.self.nixosModules.python
     inputs.self.nixosModules.ruby
+    inputs.self.nixosModules.rust
   ];
 }
