@@ -3,7 +3,7 @@
   config = {
     environment = {
       systemPackages = [
-        pkgs.python3133ull
+        pkgs.python313Full
         pkgs.python312Packages.pandas
         pkgs.python312Packages.matplotlib
         pkgs.python312Packages.seaborn
