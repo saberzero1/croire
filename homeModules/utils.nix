@@ -6,6 +6,7 @@
         pkgs._7zz
         pkgs.jq
         pkgs.parallel
+        pkgs.xclicker
       ];
     };
     programs = {
