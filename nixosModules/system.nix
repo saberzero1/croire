@@ -108,6 +108,10 @@
       udev = {
         enable = true;
       };
+      fstrim = {
+        enable = true;
+        interval = "weekly";
+      };
     };
     system = {
       switch = {
@@ -129,6 +133,11 @@
           useDefaultShell = true;
         };
       };
+    };
+    zramSwap = {
+      enable = true;
+      memoryPercent = 50;
+      algorithm = "zstd";
     };
   };
 }
