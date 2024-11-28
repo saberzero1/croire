@@ -34,7 +34,7 @@
         fira-code-symbols
         #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Mononoki" ]; })
         #nerdfonts
-        fira-code-nerdfont
+        nerd-fonts.fira-code
         borg-sans-mono #DroidSansMono
         mononoki
         monaspace
