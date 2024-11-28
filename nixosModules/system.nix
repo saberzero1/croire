@@ -6,8 +6,10 @@
       font = "Monaspace Neon";
       keyMap = "us";
       packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
         #nerdfonts
+        fira-code-nerdfont
+        borg-sans-mono #DroidSansMono
         monaspace
       ];
     };

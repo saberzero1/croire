@@ -32,8 +32,11 @@
         ranger
         fira-code
         fira-code-symbols
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Mononoki" ]; })
+        #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Mononoki" ]; })
         #nerdfonts
+        fira-code-nerdfont
+        borg-sans-mono #DroidSansMono
+        mononoki
         monaspace
         starship
         thefuck
