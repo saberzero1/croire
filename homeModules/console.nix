@@ -36,7 +36,8 @@
         #nerdfonts
         nerd-fonts.fira-code
         borg-sans-mono #DroidSansMono
-        mononoki
+        nerd-fonts.mononoki
+        #mononoki
         monaspace
         starship
         thefuck
