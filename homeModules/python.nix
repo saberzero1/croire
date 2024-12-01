@@ -6,6 +6,23 @@
   ...
 }:
 {
+  languages.python = {
+    enable = true;
+    uv.enable = true;
+    venv.enable = true;
+    venv.requirements = ''
+      black
+      numpy
+      pandas
+      matplotlib
+      seaborn
+      scikitlearn
+      beautifulsoup4
+      python-dotenv
+      jypter
+      ipython
+    '';
+  };
   config = {
     home = {
       packages = [
@@ -20,23 +37,6 @@
         pkgs.python312Packages.python-dotenv
         pkgs.python312Packages.black
       ];
-    };
-    languages.python = {
-      enable = true;
-      uv.enable = true;
-      venv.enable = true;
-      venv.requirements = ''
-        black
-        numpy
-        pandas
-        matplotlib
-        seaborn
-        scikitlearn
-        beautifulsoup4
-        python-dotenv
-        jypter
-        ipython
-      '';
     };
   };
 }
