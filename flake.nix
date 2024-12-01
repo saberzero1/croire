@@ -9,7 +9,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    flake-utils.url = "github:numtide/flake-utils";
+    devenv.url = "github:cachix/devenv";
   };
   outputs =
     {
@@ -79,22 +79,6 @@
       );
       #legacyPackages.x86_64-linux = pkgs.pkgs;
       legacyPackages.${system} = pkgs.pkgs;
-      devShell = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          python3
-          python3Packages.pip
-          python3Packages.virtualenv
-          pythonManylinuxPackages.manylinux2014Package
-          cmake
-          ninja
-          imagemagick
-        ];
-        shellHook = ''
-          export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib.outPath}/lib:${pkgs.pythonManylinuxPackages.manylinux2014Package}/lib:$LD_LIBRARY_PATH";
-          test -d .nix-venv || ${pkgs.python3.interpreter} -m venv .nix-venv
-          source .nix-venv/bin/activate
-        '';
-      };
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
