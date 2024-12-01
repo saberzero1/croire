@@ -1,11 +1,13 @@
 { inputs, ... }@flakeContext:
 { config, lib, pkgs, ... }: {
   config = {
-    environment = {
-      systemPackages = [
-        pkgs.rustup
-        pkgs.nixd
-      ];
+    home = {
+      packages = {
+        systemPackages = [
+          pkgs.rustup
+          pkgs.nixd
+        ];
+      };
     };
   };
 }
