@@ -4,6 +4,7 @@
     environment = {
       systemPackages = [
         pkgs.rustup
+        pkgs.nixd
       ];
     };
   };
