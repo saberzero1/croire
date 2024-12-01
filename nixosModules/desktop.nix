@@ -1,5 +1,10 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   username = inputs.self.username;
   burnMyWindowsProfile = pkgs.writeText "nix-profile.conf" ''
@@ -27,7 +32,7 @@ let
     "x-scheme-handler/chrome" = browser;
     "x-scheme-handler/about" = browser;
     "x-scheme-handler/unknown" = browser;
-    "x-scheme-handler/appflowy-flutter" = ["appflowy.desktop"];
+    "x-scheme-handler/appflowy-flutter" = [ "appflowy.desktop" ];
     "application/x-extension-htm" = browser;
     "application/x-extension-html" = browser;
     "application/x-extension-shtml" = browser;
@@ -143,8 +148,8 @@ in
           '';
         };
         videoDrivers = [
-          # "nvidia"
-          "nouveau"
+          "nvidia"
+          # "nouveau"
         ];
         # xkb = {
         #   layout = "us";
@@ -173,120 +178,122 @@ in
         enable = true;
         profiles = {
           user = {
-            databases = [{
-              settings = with lib.gvariant; {
-                "org/gnome/shell".enabled-extensions = [
-                  "burn-my-windows@schneegans.github.com"
-                  #"paperwm@paperwm.github.com"
-                  #"gnome-shell-extension-stealmyfocus@v-dimitrov.github.com"
-                ];
-                "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
-                # "org/gnome/shell/extensions/paperwm/keybindings" = {
-                #   # Assuming keyboard halfleft side:
-                #   # Right button: <Super><Alt>
-                #   # Left button: <Super><Alt><Ctrl>
+            databases = [
+              {
+                settings = with lib.gvariant; {
+                  "org/gnome/shell".enabled-extensions = [
+                    "burn-my-windows@schneegans.github.com"
+                    #"paperwm@paperwm.github.com"
+                    #"gnome-shell-extension-stealmyfocus@v-dimitrov.github.com"
+                  ];
+                  "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
+                  # "org/gnome/shell/extensions/paperwm/keybindings" = {
+                  #   # Assuming keyboard halfleft side:
+                  #   # Right button: <Super><Alt>
+                  #   # Left button: <Super><Alt><Ctrl>
 
-                #   # Application operations
-                #   new-window = ["<Super><Alt>n"];
-                #   close-window = ["<Super><Alt>q"];
+                  #   # Application operations
+                  #   new-window = ["<Super><Alt>n"];
+                  #   close-window = ["<Super><Alt>q"];
 
-                #   # Window width
-                #   resize-w-inc = ["<Super><Alt>plus" "<Super><Alt>="]; # Increment width
-                #   resize-w-dec = ["<Super><Alt>minus"]; # Decrement width
-                #   # Window height
-                #   resize-h-inc = ["<Super><Alt><Ctrl>plus"]; # Increment height
-                #   resize-h-dec = ["<Super><Alt><Ctrl>minus"]; # Decrement height
+                  #   # Window width
+                  #   resize-w-inc = ["<Super><Alt>plus" "<Super><Alt>="]; # Increment width
+                  #   resize-w-dec = ["<Super><Alt>minus"]; # Decrement width
+                  #   # Window height
+                  #   resize-h-inc = ["<Super><Alt><Ctrl>plus"]; # Increment height
+                  #   resize-h-dec = ["<Super><Alt><Ctrl>minus"]; # Decrement height
 
-                #   # Window dimensions
-                #   toggle-maximiza-width = ["<Super><Alt>f"]; # full width
-                #   paper-toggle-fullscreen = ["<Super><Alt><Ctrl>f"]; # full screen
+                  #   # Window dimensions
+                  #   toggle-maximiza-width = ["<Super><Alt>f"]; # full width
+                  #   paper-toggle-fullscreen = ["<Super><Alt><Ctrl>f"]; # full screen
 
-                #   # Grab and move windows
-                #   take-window = ["<Super><Alt>y"]; # Grab a window
-                #   open-window-position-right = ["<Super><Alt>p"]; # Open or drop a grabbed window
+                  #   # Grab and move windows
+                  #   take-window = ["<Super><Alt>y"]; # Grab a window
+                  #   open-window-position-right = ["<Super><Alt>p"]; # Open or drop a grabbed window
 
-                #   # Center window
-                #   center = ["<Super><Alt>c"];
-                #   switch-focus-mode = ["<Super><Alt><Ctrl>c"];
-                #   center-horizontally = mkEmptyArray type.string;
-                #   center-vertically = mkEmptyArray type.string;
+                  #   # Center window
+                  #   center = ["<Super><Alt>c"];
+                  #   switch-focus-mode = ["<Super><Alt><Ctrl>c"];
+                  #   center-horizontally = mkEmptyArray type.string;
+                  #   center-vertically = mkEmptyArray type.string;
 
-                #   # Scratch Layer
-                #   toggle-scratch = ["<Super><Alt>space"];
-                #   toggle-scratch-layer = ["<Super><Alt><Ctrl>space"];
+                  #   # Scratch Layer
+                  #   toggle-scratch = ["<Super><Alt>space"];
+                  #   toggle-scratch-layer = ["<Super><Alt><Ctrl>space"];
 
-                #   # Windows
-                #   # Alt Tab
-                #   live-alt-tab = ["<Super><Alt>period"];
-                #   live-alt-tab-backward = ["<Super><Alt>comma"];
-                #   # Moving Focus
-                #   switch-left-loop = ["<Super><Alt>h"];
-                #   switch-right-loop = ["<Super><Alt>l"];
+                  #   # Windows
+                  #   # Alt Tab
+                  #   live-alt-tab = ["<Super><Alt>period"];
+                  #   live-alt-tab-backward = ["<Super><Alt>comma"];
+                  #   # Moving Focus
+                  #   switch-left-loop = ["<Super><Alt>h"];
+                  #   switch-right-loop = ["<Super><Alt>l"];
 
-                #   switch-down-loop = mkEmptyArray type.string;
-                #   switch-up-loop = mkEmptyArray type.string;
-                #   switch-left = mkEmptyArray type.string;
-                #   switch-right = mkEmptyArray type.string;
-                #   switch-down = mkEmptyArray type.string;
-                #   switch-up = mkEmptyArray type.string;
+                  #   switch-down-loop = mkEmptyArray type.string;
+                  #   switch-up-loop = mkEmptyArray type.string;
+                  #   switch-left = mkEmptyArray type.string;
+                  #   switch-right = mkEmptyArray type.string;
+                  #   switch-down = mkEmptyArray type.string;
+                  #   switch-up = mkEmptyArray type.string;
 
-                #   # Workspace Moving Focus
-                #   switch-down-workspace = ["<Super><Alt>j"];
-                #   switch-up-workspace = ["<Super><Alt>k"];
-                #   # Moving Position
-                #   move-left-loop = ["<Super><Alt><Ctrl>h"];
-                #   move-right-loop = ["<Super><Alt><Ctrl>l"];
+                  #   # Workspace Moving Focus
+                  #   switch-down-workspace = ["<Super><Alt>j"];
+                  #   switch-up-workspace = ["<Super><Alt>k"];
+                  #   # Moving Position
+                  #   move-left-loop = ["<Super><Alt><Ctrl>h"];
+                  #   move-right-loop = ["<Super><Alt><Ctrl>l"];
 
-                #   move-down-loop = mkEmptyArray type.string;
-                #   move-up-loop = mkEmptyArray type.string;
-                #   move-left = mkEmptyArray type.string;
-                #   move-right = mkEmptyArray type.string;
-                #   move-down = mkEmptyArray type.string;
-                #   move-up = mkEmptyArray type.string;
+                  #   move-down-loop = mkEmptyArray type.string;
+                  #   move-up-loop = mkEmptyArray type.string;
+                  #   move-left = mkEmptyArray type.string;
+                  #   move-right = mkEmptyArray type.string;
+                  #   move-down = mkEmptyArray type.string;
+                  #   move-up = mkEmptyArray type.string;
 
-                #   # Workspace Moving Position
-                #   move-down-workspace = ["<Super><Alt><Ctrl>j"];
-                #   move-up-workspace = ["<Super><Alt><Ctrl>k"];
+                  #   # Workspace Moving Position
+                  #   move-down-workspace = ["<Super><Alt><Ctrl>j"];
+                  #   move-up-workspace = ["<Super><Alt><Ctrl>k"];
 
-                #   # Workspaces
-                #   # Alt Tab
-                #   previous-workspace = ["<Super><Alt><Ctrl>period"];
-                #   previous-workspace-backward = ["<Super><Alt><Ctrl>comma"];
+                  #   # Workspaces
+                  #   # Alt Tab
+                  #   previous-workspace = ["<Super><Alt><Ctrl>period"];
+                  #   previous-workspace-backward = ["<Super><Alt><Ctrl>comma"];
 
-                #   # Monitors
-                #   # Monitor Movement
-                #   move-monitor-left = ["<Super><Alt><Ctrl>y"];
-                #   move-monitor-below = ["<Super><Alt><Ctrl>u"];
-                #   move-monitor-above = ["<Super><Alt><Ctrl>i"];
-                #   move-monitor-right = ["<Super><Alt><Ctrl>o"];
+                  #   # Monitors
+                  #   # Monitor Movement
+                  #   move-monitor-left = ["<Super><Alt><Ctrl>y"];
+                  #   move-monitor-below = ["<Super><Alt><Ctrl>u"];
+                  #   move-monitor-above = ["<Super><Alt><Ctrl>i"];
+                  #   move-monitor-right = ["<Super><Alt><Ctrl>o"];
 
-                #   # Index based movement
-                #   switch-first = ["<Super><Alt>1"];
-                #   switch-second = ["<Super><Alt>2"];
-                #   switch-third = ["<Super><Alt>3"];
-                #   switch-fourth = ["<Super><Alt>4"];
-                #   switch-fifth = ["<Super><Alt>5"];
-                #   switch-sixth = ["<Super><Alt>6"];
-                #   switch-seventh = ["<Super><Alt>7"];
-                #   switch-eighth = ["<Super><Alt>8"];
-                #   switch-ninth = ["<Super><Alt>9"];
-                #   switch-last = ["<Super><Alt>0"];
+                  #   # Index based movement
+                  #   switch-first = ["<Super><Alt>1"];
+                  #   switch-second = ["<Super><Alt>2"];
+                  #   switch-third = ["<Super><Alt>3"];
+                  #   switch-fourth = ["<Super><Alt>4"];
+                  #   switch-fifth = ["<Super><Alt>5"];
+                  #   switch-sixth = ["<Super><Alt>6"];
+                  #   switch-seventh = ["<Super><Alt>7"];
+                  #   switch-eighth = ["<Super><Alt>8"];
+                  #   switch-ninth = ["<Super><Alt>9"];
+                  #   switch-last = ["<Super><Alt>0"];
 
-                #   # Unbinds
-                #   move-previous-workspace = mkEmptyArray type.string;
-                #   move-previous-workspace-backward = mkEmptyArray type.string;
-                #   switch-monitor-above = mkEmptyArray type.string;
-                #   switch-monitor-below = mkEmptyArray type.string;
-                #   switch-monitor-left = mkEmptyArray type.string;
-                #   switch-monitor-right = mkEmptyArray type.string;
-                #   switch-next = mkEmptyArray type.string;
-                #   switch-previous= mkEmptyArray type.string;
-                # };
-                # "org/gnome/shell/extensions/paperwm/workspace" = {
-                #   directory = "";
-                # };
-              };
-            }];
+                  #   # Unbinds
+                  #   move-previous-workspace = mkEmptyArray type.string;
+                  #   move-previous-workspace-backward = mkEmptyArray type.string;
+                  #   switch-monitor-above = mkEmptyArray type.string;
+                  #   switch-monitor-below = mkEmptyArray type.string;
+                  #   switch-monitor-left = mkEmptyArray type.string;
+                  #   switch-monitor-right = mkEmptyArray type.string;
+                  #   switch-next = mkEmptyArray type.string;
+                  #   switch-previous= mkEmptyArray type.string;
+                  # };
+                  # "org/gnome/shell/extensions/paperwm/workspace" = {
+                  #   directory = "";
+                  # };
+                };
+              }
+            ];
           };
         };
       };
@@ -307,7 +314,7 @@ in
           sway-contrib.grimshot
           mako # notification daemon
           grim
-        #kanshi
+          #kanshi
           slurp
           alacritty # Alacritty is the default terminal in the config
           dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
@@ -346,9 +353,9 @@ in
       #     insensitive = true;
       #     gtd_dark = true;
       #   };
-        # style = ''
-        #   ...
-        # '';
+      # style = ''
+      #   ...
+      # '';
       # };
       # swaylock = {
       #   enable = true;

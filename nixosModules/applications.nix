@@ -1,5 +1,11 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     appstream = {
       enable = true;

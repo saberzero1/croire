@@ -1,5 +1,11 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     console = {
       enable = true;
@@ -9,7 +15,7 @@
         #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
         #nerdfonts
         nerd-fonts.fira-code
-        borg-sans-mono #DroidSansMono
+        borg-sans-mono # DroidSansMono
         monaspace
       ];
     };
@@ -68,6 +74,30 @@
       };
       nvidia = {
         open = false;
+        powerManagement = {
+          enable = false;
+          fineGrained = false;
+        };
+        modesetting = {
+          enable = true;
+        };
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+      };
+      opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+        # driSupport64Bit = true;
+        # driSupportPackages = with pkgs; [
+        #   libGL
+        #   libGLU
+        #   libGLX
+        #   libEGL
+        #   libGLES
+        #   libGLESv1_CM
+        #   libGLESv2
+        # ];
       };
     };
     i18n = {
