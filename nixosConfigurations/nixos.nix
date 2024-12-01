@@ -108,6 +108,7 @@ let
           config = {
             allowUnfree = true;
             allowBroken = true;
+            nvidia.acceptLicense = true;
           };
           hostPlatform = lib.mkDefault "x86_64-linux";
         };
