@@ -6,6 +6,7 @@
         pkgs.rustup
         pkgs.nixd
         pkgs.nixpkgs-fmt
+        pkgs.nixfmt-rfc-style
       ];
     };
   };
