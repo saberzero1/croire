@@ -148,8 +148,8 @@ in
           '';
         };
         videoDrivers = [
-          "nvidia"
-          # "nouveau"
+          # "nvidia"
+          "nouveau"
         ];
         # xkb = {
         #   layout = "us";

@@ -81,7 +81,7 @@
         modesetting = {
           enable = true;
         };
-        nvidiaSettings = true;
+        # nvidiaSettings = true;
 
         #package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
       };
