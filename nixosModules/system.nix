@@ -86,7 +86,6 @@
       };
       opengl = {
         enable = true;
-        driSupport = true;
         driSupport32Bit = true;
         # driSupport64Bit = true;
         # driSupportPackages = with pkgs; [
