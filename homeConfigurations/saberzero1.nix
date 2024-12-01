@@ -2,46 +2,54 @@
 let
   username = inputs.self.username;
   profileDirectory = "/etc/profiles/per-user/${username}";
-  homeModule = { config, lib, pkgs, ... }: {
-    imports = [
-      inputs.self.homeModules.applications
-      inputs.self.homeModules.browser
-      inputs.self.homeModules.console
-      inputs.self.homeModules.desktop
-      inputs.self.homeModules.development
-      inputs.self.homeModules.git
-      inputs.self.homeModules.programming_languages
-      inputs.self.homeModules.security
-      inputs.self.homeModules.system
-      inputs.self.homeModules.utils
-      inputs.self.homeModules.workflow
-    ];
-    config = {
-      home = {
-        stateVersion = "24.05";
-        username = username;
-        homeDirectory = "/home/${username}";
-      };
-      nixpkgs = {
-        config = {
-          allowUnfree = true;
+  homeModule =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      imports = [
+        inputs.self.homeModules.applications
+        inputs.self.homeModules.browser
+        inputs.self.homeModules.console
+        inputs.self.homeModules.desktop
+        inputs.self.homeModules.development
+        inputs.self.homeModules.git
+        inputs.self.homeModules.programming_languages
+        inputs.self.homeModules.security
+        inputs.self.homeModules.system
+        inputs.self.homeModules.utils
+        inputs.self.homeModules.workflow
+      ];
+      config = {
+        home = {
+          stateVersion = "24.05";
+          username = username;
+          homeDirectory = "/home/${username}";
         };
-      };
-      programs = {
-        home-manager = {
-          enable = true;
-          path = null;
+        nixpkgs = {
+          config = {
+            allowUnfree = true;
+            allowBroken = true;
+          };
         };
-        # espanso = {
-        #   enable = true;
-        #   # serviceConfig = {
-        #   #   execStart = "${config.programs.espanso.package}/bin/espanso start";
-        #   #   Restart = "always";
-        #   #   RestartSec = 1;
-        #   # };
-        # };
-      };
-      # systemd = {
+        programs = {
+          home-manager = {
+            enable = true;
+            path = null;
+          };
+          # espanso = {
+          #   enable = true;
+          #   # serviceConfig = {
+          #   #   execStart = "${config.programs.espanso.package}/bin/espanso start";
+          #   #   Restart = "always";
+          #   #   RestartSec = 1;
+          #   # };
+          # };
+        };
+        # systemd = {
         # services = {
         #   espanso = {
         #     enable = true;
@@ -53,22 +61,25 @@ let
         #     };
         #   };
         # };
-      # };
+        # };
+      };
     };
-  };
-  nixosModule = { ... }: {
-    home-manager = {
-      users.saberzero1 = homeModule;
+  nixosModule =
+    { ... }:
+    {
+      home-manager = {
+        users.saberzero1 = homeModule;
+      };
     };
-  };
 in
 (
-  (
-    inputs.home-manager.lib.homeManagerConfiguration {
-      modules = [
-        homeModule
-      ];
-      pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-    }
-  ) // { inherit nixosModule; }
+  (inputs.home-manager.lib.homeManagerConfiguration {
+    modules = [
+      homeModule
+    ];
+    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  })
+  // {
+    inherit nixosModule;
+  }
 )
