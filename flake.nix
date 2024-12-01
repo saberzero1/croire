@@ -9,8 +9,15 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs, ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      ...
+    }@inputs:
     let
       # overlays = [
       #   (self: super: {
@@ -32,42 +39,77 @@
         overlays = [
           self.overlays.default
         ];
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
       flakeContext = {
         inherit inputs;
         inherit (self) outputs;
       };
+      envWithScript =
+        script:
+        (pkgs.buildFHSUserEnv {
+          name = "python-env";
+          targetPkgs =
+            pkgs:
+            (with pkgs; [
+              python3
+              python3Packages.pip
+              python3Packages.virtualenv
+              # Support binary wheels from PyPI
+              pythonManylinuxPackages.manylinux2014Package
+              # Enable building from sdists
+              cmake
+              ninja
+              gcc
+              pre-commit
+            ]);
+          runScript = "${
+            pkgs.writeShellScriptBin "runScript" (
+              ''
+                    set -e
+                    test -d .nix-venv || ${pkgs.python3.interpreter} -m venv .nix-venv
+                source .nix-venv/bin/activate
+                set +e
+              ''
+              + script
+            )
+          }/bin/runScript";
+        }).env;
     in
     {
       #overlays = [
       #  inputs.neovim-nightly-overlay.overlays.default
-        #(_: _: {
-        #  nil = inputs.nil-lsp.packages."x86_64-linux".default;
-        #})
-        #(final: prev: {
-        #    # Override nil-lsp with a specific Rust toolchain
-        #    nil = prev.nil.overrideAttrs (old: {
-        #      nativeBuildInputs = old.nativeBuildInputs or [] ++ [
-        #        (final.rust-bin.stable."1.77.0".default.override {
-        #          extensions = [ ];  # Add any extensions you need
-        #        })
-        #      ];
-        #    });
-        #  })
+      #(_: _: {
+      #  nil = inputs.nil-lsp.packages."x86_64-linux".default;
+      #})
+      #(final: prev: {
+      #    # Override nil-lsp with a specific Rust toolchain
+      #    nil = prev.nil.overrideAttrs (old: {
+      #      nativeBuildInputs = old.nativeBuildInputs or [] ++ [
+      #        (final.rust-bin.stable."1.77.0".default.override {
+      #          extensions = [ ];  # Add any extensions you need
+      #        })
+      #      ];
+      #    });
+      #  })
       #];
       #overlays = import ./overlays/default.nix flakeContext;
-      overlays.default = (self: super: {
-        #espanso = super.espanso.override {
-        #  x11Support = false;
-        #  waylandSupport = true;
-        #};
-        wavebox = super.wavebox.override {
-          version = "10.129.32-2";
-        };
-      });
+      overlays.default = (
+        self: super: {
+          #espanso = super.espanso.override {
+          #  x11Support = false;
+          #  waylandSupport = true;
+          #};
+          wavebox = super.wavebox.override {
+            version = "10.129.32-2";
+          };
+        }
+      );
       #legacyPackages.x86_64-linux = pkgs.pkgs;
       legacyPackages.${system} = pkgs.pkgs;
+      devShell = envWithScript "bash";
       username = "saberzero1";
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
