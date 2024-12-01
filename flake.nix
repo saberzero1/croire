@@ -41,6 +41,7 @@
         ];
         config = {
           allowUnfree = true;
+          allowBroken = true;
         };
       };
       flakeContext = {
