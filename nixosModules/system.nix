@@ -82,7 +82,7 @@
           enable = true;
         };
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_490;
+        package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
       };
       graphics = {
         enable = true;
