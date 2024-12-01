@@ -32,7 +32,6 @@ let
         nixpkgs = {
           config = {
             allowUnfree = true;
-            allowBroken = true;
           };
         };
         programs = {
