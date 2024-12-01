@@ -86,7 +86,7 @@
       };
       graphics = {
         enable = true;
-        driSupport32Bit = true;
+        # driSupport32Bit = true;
         # driSupport64Bit = true;
         # driSupportPackages = with pkgs; [
         #   libGL
