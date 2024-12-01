@@ -73,7 +73,7 @@
         };
       };
       nvidia = {
-        open = false;
+        open = true;
         powerManagement = {
           enable = false;
           finegrained = false;
@@ -82,7 +82,8 @@
           enable = true;
         };
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
+
+        #package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
       };
       graphics = {
         enable = true;
