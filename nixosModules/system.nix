@@ -82,9 +82,9 @@
           enable = true;
         };
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        # package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
-      opengl = {
+      graphics = {
         enable = true;
         driSupport32Bit = true;
         # driSupport64Bit = true;
