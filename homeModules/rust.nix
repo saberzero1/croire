@@ -5,6 +5,7 @@
       packages = [
         pkgs.rustup
         pkgs.nixd
+        pkgs.nixpkgs-fmt
       ];
     };
   };
