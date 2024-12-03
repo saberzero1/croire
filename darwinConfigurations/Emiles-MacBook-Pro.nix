@@ -12,6 +12,9 @@ let
       imports = [
         inputs.home-manager.darwinModules.home-manager
         inputs.nix-homebrew.darwinModules.nix-homebrew
+        inputs.self.darwinModules.git
+        inputs.self.darwinModules.security
+        inputs.self.darwinConfigurations.home
         #inputs.home-manager.nixosModules.home-manager
         #inputs.self.homeConfigurations.saberzero1.nixosModule
         #inputs.self.nixosModules.applications
@@ -82,6 +85,7 @@ let
       environment.systemPackages = [
         #pkgs.vim
         pkgs.just
+        pkgs.git
       ];
 
       # Necessary for using flakes on this system.
@@ -104,6 +108,10 @@ let
       
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      #programs.home-manager.enable = true;
+
+      security.pam.enableSudoTouchIdAuth = true;
     };
 in
 

@@ -110,10 +110,13 @@
       legacyPackages.${system} = pkgs.pkgs;
       username = "saberzero1";
       darwinConfigurations = {
-        #Emiles-MacBook-Pro = import ./darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
-        Emiles-MacBook-Pro = import ~/Documents/Repos/dotfiles-submodules/croire/darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
+        Emiles-MacBook-Pro = import ./darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
+        home = import ./darwinConfigurations/home.nix flakeContext;
+        #Emiles-MacBook-Pro = import ~/Documents/Repos/dotfiles-submodules/croire/darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
       };
       darwinModules = {
+        git = import ./darwinModules/git.nix flakeContext;
+        security = import ./darwinModules/security.nix flakeContext;
       };
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
