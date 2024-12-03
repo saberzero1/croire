@@ -10,14 +10,26 @@
 fetch:
   git submodule update --init --remote --recursive
 
+dinit:
+  nix run nix-darwin -- switch --flake .
+
 build:
   sudo nixos-rebuild build --flake . --impure --use-remote-sudo
+
+dbuild:
+  sudo -s -u $(whoami) darwin-rebuild build --flake . --impure
 
 test:
   sudo nixos-rebuild test --flake . --impure --use-remote-sudo
 
+dtest:
+  sudo -s -u $(whoami) darwin-rebuild test --flake . --impure
+
 switch:
   sudo nixos-rebuild switch --flake . --impure --use-remote-sudo
+
+dswitch:
+  sudo -s -u $(whoami) darwin-rebuild  switch --flake . --impure
 
 debug:
   nixos-rebuild switch --flake . --impure --use-remote-sudo --show-trace --verbose --option eval-cache false

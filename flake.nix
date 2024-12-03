@@ -10,11 +10,35 @@
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     devenv.url = "github:cachix/devenv";
+    darwin = {
+      url = "github:LnL7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    }; 
   };
   outputs =
     {
       self,
       nixpkgs,
+      home-manager,
+      devenv,
+      darwin,
+      nix-homebrew,
+      homebrew-bundle,
+      homebrew-core,
+      homebrew-cask,
       flake-utils,
       ...
     }@inputs:
@@ -33,7 +57,12 @@
       # ];
       # pkgs = import nixpkgs { inherit overlays; };
       #system = nixpkgs.pkgs.system;
-      system = "x86_64-linux";
+      #system = "x86_64-linux";
+      #system = builtins.currentSystem;
+      system = "$(nix eval --impure --raw --expr 'builtins.currentSystem')";
+      linuxSystem = "x86-64-linux";
+      darwinSystem = "aarch64-darwin";
+      # forAllSystems = f: nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems) f;
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
@@ -80,6 +109,12 @@
       #legacyPackages.x86_64-linux = pkgs.pkgs;
       legacyPackages.${system} = pkgs.pkgs;
       username = "saberzero1";
+      darwinConfigurations = {
+        #Emiles-MacBook-Pro = import ./darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
+        Emiles-MacBook-Pro = import ~/Documents/Repos/dotfiles-submodules/croire/darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
+      };
+      darwinModules = {
+      };
       homeConfigurations = {
         saberzero1 = import ./homeConfigurations/saberzero1.nix flakeContext;
       };
