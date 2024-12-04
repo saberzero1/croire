@@ -107,8 +107,8 @@ in
     enableBashIntegration = true;
   };
   starship = {
-    enable = (if (builtins.pathExists("${config.home.homeDirectory}/.config/starship/starship.toml")) then true else false);
-    settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
+    enable = true;
+    settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship.toml";
   };
   tmux = {
     enable = true;
