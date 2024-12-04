@@ -81,6 +81,14 @@ in
             };
           };
           stateVersion = "24.05";
+          sessionVariables = {
+            # DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
+            EDITOR = "nvim";
+            VISUAL = "nvim";
+            TERM = "wezterm";
+            # BROWSER = "${pkgs.wavebox}/bin/wavebox";
+            LAZY = "/home/${username}/Documents/lazy-nvim";
+          };
         };
         manual.manpages.enable = false;
       };
