@@ -13,22 +13,27 @@ fetch:
 dinit:
   nix run nix-darwin -- switch --flake .
 
+[linux]
 build:
   sudo nixos-rebuild build --flake . --impure --use-remote-sudo
 
-dbuild:
+[macos]
+build:
   sudo -s -u $(whoami) darwin-rebuild build --flake . --impure
 
+[linux]
 test:
   sudo nixos-rebuild test --flake . --impure --use-remote-sudo
 
-dtest:
-  sudo -s -u $(whoami) darwin-rebuild test --flake . --impure
+#test
+#  sudo -s -u $(whoami) darwin-rebuild test --flake . --impure
 
+[linux]
 switch:
   sudo nixos-rebuild switch --flake . --impure --use-remote-sudo
 
-dswitch:
+[macos]
+switch:
   sudo -s -u $(whoami) darwin-rebuild  switch --flake . --impure
 
 debug:
