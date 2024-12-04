@@ -68,16 +68,37 @@ let
 
           finder = {
             _FXShowPosixPathInTitle = false;
+            AppleShowAllFiles = true;
+            AppleShowAllExtensions = true;
+            ShowPathbar = true;
+            ShowStatusBar = true;
           };
+
           trackpad = {
             Clicking = true;
             TrackpadThreeFingerDrag = true;
+          };
+
+          WindowManager = {
+            EnableTiledWindowMargins = true;
+          };
+
+          controlcenter = {
+            AirDrop = false;
+            BatteryShowPercentage = true;
+            Bluetooth = true;
+            # Display = true;
+            # FocusModes = true;
+            NowPlaying = true;
+            Sound = true;
           };
         };
 
         keyboard = {
           enableKeyMapping = true;
           remapCapsLockToControl = true;
+          # swapLeftCommandAndLeftAlt = true;
+          swapLeftCtrlAndFn = true;
         };
       };
       # List packages installed in system profile. To search by name, run:
@@ -107,7 +128,15 @@ let
 
       
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs = {
+        hostPlatform = "aarch64-darwin";
+        config = {
+          allowUnfree = true;
+          # allowBroken = true;
+          # allowInsecure = false;
+          # allowUnsupportedSystem = true;
+        };
+      };
 
       #programs.home-manager.enable = true;
 
@@ -130,3 +159,4 @@ inputs.darwin.lib.darwinSystem {
   #   modules = [ configuration ];
   # };
 }
+

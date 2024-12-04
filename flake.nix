@@ -4,7 +4,8 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs";
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
-    home-manager.url = "flake:home-manager";
+    # home-manager.url = "flake:home-manager";
+    home-manager.url = "github:nix-community/home-manager";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixvim.url = "github:nix-community/nixvim/nixos-23.11";

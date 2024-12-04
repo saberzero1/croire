@@ -1,7 +1,8 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, home-manager, ... }:
 let
   username = inputs.self.username;
+  user = "emile";
   config = pkgs.lib.mkMerge [
     # Configure key name per device.
     #
@@ -14,16 +15,52 @@ let
       config.programs.git.signing.key = "7F462DBD67517E92";
     })
   ];
+  additionalFiles = import ../darwinModules/files.nix { inherit user config lib pkgs; };
 in
 {
-  config = {
-    environment = {
-      systemPackages = with pkgs; [
-        git
-        lazygit
-      ];
-    };  
-    programs = {
+  imports = [
+    ../darwinModules/dock
+  ];
+  users.users.${user} = {
+    name = "${user}";
+    home = "/Users/${user}";
+    isHidden = false;
+    shell = pkgs.zsh;
+  };
+  homebrew = {
+    enable = true;
+    casks = pkgs.callPackage ../darwinModules/casks.nix {};
+    masApps = {}; 
+  };
+  home-manager = {
+    useGlobalPkgs = true;
+    users.${user} = { pkgs, config, lib, ...}: {
+      home = {
+        enableNixpkgsReleaseCheck = false;
+        packages = pkgs.callPackage ../darwinModules/packages.nix {};
+        file = lib.mkMerge [
+          additionalFiles
+        ];
+        stateVersion = "24.05";
+      };
+      manual.manpages.enable = false;
+    };
+  };
+  local = {
+    dock.enable = true;
+    dock.entries = [
+      { path = "/System/Applications/Home.app/"; }
+      { path = "${pkgs.wezterm}/Applications/Wezterm.app/"; }
+    ];
+  };
+  #config = {
+  #  environment = {
+  #    systemPackages = with pkgs; [
+  #      git
+  #      lazygit
+  #    ];
+  #  };  
+  #  programs = {
       #git = {
       #  config = {
       #    init = {
@@ -119,6 +156,6 @@ in
       #    };
       #  };
       #};
-    };
-  };
+  #  };
+  #};
 }
