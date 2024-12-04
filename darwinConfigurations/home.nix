@@ -3,7 +3,7 @@
 let
   username = inputs.self.username;
   user = "emile";
-  config = pkgs.lib.mkMerge [
+  #config = pkgs.lib.mkMerge [
     # Configure key name per device.
     #
     # Use gpg2.
@@ -11,11 +11,16 @@ let
     # gpg2 --full-generate-key
     # gpg2 --list-secret-keys --keyid-format=long
     # gpg2 --armor --export 1234567890ABCDEF
-    (pkgs.lib.mkIf (config.networking.hostName == "emiles-macbook-pro") {
-      config.programs.git.signing.key = "7F462DBD67517E92";
-    })
-  ];
-  additionalFiles = import ../darwinModules/files.nix { inherit user config lib pkgs; };
+  #  (pkgs.lib.mkIf (config.networking.hostName == "emiles-macbook-pro") {
+  #    config.programs.git.signing.key = "7F462DBD67517E92";
+  #  })
+  #];
+  # additionalFiles = import ../darwinModules/files.nix { inherit user pkgs config lib; };
+  #symlink = import ../scripts/symlink.nix { inherit config pkgs lib; };
+  symlink = import ./symlink.nix { inherit config pkgs lib; };
+  # shelter = "/Users/${user}/Documents/Repos/dotfiles-submodules/shelter";
+  shelter = "/Users/emile/Documents/Repos/dotfiles-submodules/shelter";
+  # Add out-of-store-symlinks to given attrSet
 in
 {
   imports = [
@@ -30,17 +35,25 @@ in
   homebrew = {
     enable = true;
     casks = pkgs.callPackage ../darwinModules/casks.nix {};
+    # casks = inputs.self.darwinModules.casks;
     masApps = {}; 
   };
   home-manager = {
     useGlobalPkgs = true;
-    users.${user} = { pkgs, config, lib, ...}: {
+    users.${user} = { config, lib, pkgs, ... }: {
       home = {
         enableNixpkgsReleaseCheck = false;
         packages = pkgs.callPackage ../darwinModules/packages.nix {};
-        file = lib.mkMerge [
-          additionalFiles
-        ];
+        # file = lib.mkMerge [
+        #   additionalFiles
+        # ];
+        file = {
+          "${config.xdg.configHome}/wezterm" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm"; };
+          "${config.xdg.configHome}/nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua"; };
+          "${config.xdg.configHome}/nvim/init.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua"; };
+          "${config.xdg.configHome}/nvim/lazy-lock.json" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json"; };
+          "${config.xdg.configHome}/starship" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship"; };
+        };
         stateVersion = "24.05";
       };
       manual.manpages.enable = false;

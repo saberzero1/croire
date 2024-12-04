@@ -119,11 +119,12 @@
         #Emiles-MacBook-Pro = import ~/Documents/Repos/dotfiles-submodules/croire/darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
       };
       darwinModules = {
-        casks = import ./darwinModules/casks.nix flakeContext;
-        files = import ./darwinModules/files.nix flakeContext;
+        #casks = import ./darwinModules/casks.nix flakeContext;
+        #dock = import ./darwinModules/dock/default.nix flakeContext;
+        #files = import ./darwinModules/files.nix flakeContext;
         git = import ./darwinModules/git.nix flakeContext;
-        home-settings = import ./darwinModules/home-settings.nix flakeContext;
-        packages = import ./darwinModules/packages.nix flakeContext;
+        #home-settings = import ./darwinModules/home-settings.nix flakeContext;
+        #packages = import ./darwinModules/packages.nix flakeContext;
         security = import ./darwinModules/security.nix flakeContext;
       };
       homeConfigurations = {

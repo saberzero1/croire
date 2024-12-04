@@ -12,22 +12,14 @@ let
       imports = [
         inputs.home-manager.darwinModules.home-manager
         inputs.nix-homebrew.darwinModules.nix-homebrew
+        # inputs.self.darwinModules.casks
+        # inputs.self.darwinModules.dock
+        # inputs.self.darwinModules.files
         inputs.self.darwinModules.git
+        # inputs.self.darwinModules.home-settings
+        # inputs.self.darwinModules.packages
         inputs.self.darwinModules.security
         inputs.self.darwinConfigurations.home
-        #inputs.home-manager.nixosModules.home-manager
-        #inputs.self.homeConfigurations.saberzero1.nixosModule
-        #inputs.self.nixosModules.applications
-        #inputs.self.nixosModules.browser
-        #inputs.self.nixosModules.console
-        #inputs.self.nixosModules.desktop
-        #inputs.self.nixosModules.development
-        #inputs.self.nixosModules.git
-        #inputs.self.nixosModules.programming_languages
-        #inputs.self.nixosModules.security
-        #inputs.self.nixosModules.system
-        #inputs.self.nixosModules.utils
-        #inputs.self.nixosModules.workflow
         {
           #nixpkgs.overlays = [
           #  inputs.self.overlays
@@ -64,6 +56,10 @@ let
             launchanim = true;
             orientation = "bottom";
             tilesize = 48;
+            wvous-bl-corner = 11; # bottom-left; Set to Launchpad
+            wvous-br-corner = 1; # bottom-right; Disabled
+            wvous-tl-corner = 1; # top-left; Disabled
+            wvous-tr-corner = 1; # top-right; Disabled
           };
 
           finder = {
@@ -138,7 +134,7 @@ let
         };
       };
 
-      #programs.home-manager.enable = true;
+      # programs.home-manager.enable = true;
 
       security.pam.enableSudoTouchIdAuth = true;
     };
