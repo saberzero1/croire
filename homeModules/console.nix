@@ -1,5 +1,11 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
     inputs.self.homeModules.neovim_language_dependencies
   ];
@@ -35,7 +41,7 @@
         #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Mononoki" ]; })
         #nerdfonts
         nerd-fonts.fira-code
-        borg-sans-mono #DroidSansMono
+        borg-sans-mono # DroidSansMono
         nerd-fonts.mononoki
         #mononoki
         monaspace
@@ -145,7 +151,12 @@
         package = pkgs.ranger;
       };
       starship = {
-        enable = (if (builtins.pathExists("${config.home.homeDirectory}/.config/starship/starship.toml")) then true else false);
+        enable = (
+          if (builtins.pathExists ("${config.home.homeDirectory}/.config/starship/starship.toml")) then
+            true
+          else
+            false
+        );
         settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
       };
       tmux = {
@@ -160,31 +171,62 @@
     };
     xdg = {
       configFile = {
-        "wezterm/colors.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/colors.lua"; };
-        "wezterm/font.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/font.lua"; };
-        "wezterm/keybinds.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/keybinds.lua"; };
-        "wezterm/mousebinds.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/mousebinds.lua"; };
-        "wezterm/wezterm.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/wezterm.lua"; };
-        "nvim/init.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua"; };
-        "nvim/lazy-lock.json" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json"; };
-        "nvim/.stylua.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/.stylua.toml"; };
-        "nvim/neovim.yml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/neovim.yml"; };
-        "nvim/lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua"; };
-        "ranger/commands.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/commands.py"; };
-        "ranger/commands_full.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/commands_full.py"; };
-        "ranger/rc.conf" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/rc.conf"; };
-        "ranger/rifle.conf" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/rifle.conf"; };
-        "ranger/scope.sh" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/scope.sh"; };
-        "ranger/plugins/ranger_devicons/__init__.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/__init__.py"; };
-        "ranger/plugins/ranger_devicons/devicons.py" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/devicons.py"; };
-        "starship/starship.toml" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml"; };
+        "wezterm" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
+        };
+        #"wezterm/colors.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/colors.lua"; };
+        #"wezterm/font.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/font.lua"; };
+        #"wezterm/keybinds.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/keybinds.lua"; };
+        #"wezterm/mousebinds.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/mousebinds.lua"; };
+        #"wezterm/wezterm.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/wezterm.lua"; };
+        "nvim/init.lua" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
+        };
+        "nvim/lazy-lock.json" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
+        };
+        "nvim/.stylua.toml" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/.stylua.toml";
+        };
+        "nvim/neovim.yml" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/neovim.yml";
+        };
+        "nvim/lua" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
+        };
+        "ranger/commands.py" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/commands.py";
+        };
+        "ranger/commands_full.py" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/commands_full.py";
+        };
+        "ranger/rc.conf" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/rc.conf";
+        };
+        "ranger/rifle.conf" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/rifle.conf";
+        };
+        "ranger/scope.sh" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/scope.sh";
+        };
+        "ranger/plugins/ranger_devicons/__init__.py" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/__init__.py";
+        };
+        "ranger/plugins/ranger_devicons/devicons.py" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/ext/ranger/plugins/ranger_devicons/devicons.py";
+        };
+        "starship/starship.toml" = {
+          source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+        };
       };
       desktopEntries = {
         "nvim" = {
           name = "nvim";
           comment = "Edit text files";
           icon = "nvim";
-          exec = "${pkgs.wezterm}/bin/wezterm -e ${inputs.neovim-nightly-overlay.packages.${pkgs.system}.default}/bin/nvim %F";
+          exec = "${pkgs.wezterm}/bin/wezterm -e ${
+            inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+          }/bin/nvim %F";
           categories = [ "Application" ];
           terminal = false;
           mimeType = [ "text/plain" ];
