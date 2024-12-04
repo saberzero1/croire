@@ -73,8 +73,11 @@ in
             "${config.xdg.configHome}/nvim/lazy-lock.json" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
             };
-            "${config.xdg.configHome}/starship.toml" = {
-              source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+            #"${config.xdg.configHome}/starship.toml" = {
+            #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+            #};
+            ".config/starship.toml" = {
+              source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
           };
           stateVersion = "24.05";
