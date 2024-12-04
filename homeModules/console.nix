@@ -171,7 +171,7 @@
     };
     xdg = {
       configFile = {
-        "wezterm" = {
+        "${config.xdg.configHome}/wezterm" = {
           source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
         };
         #"wezterm/colors.lua" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm/colors.lua"; };
