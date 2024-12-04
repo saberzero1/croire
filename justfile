@@ -53,27 +53,38 @@ history:
 repl:
   nix repl -f flake:nixpkgs
 
+[unix]
 clean-old:
   # remove all generations older than 7 days
   sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
 
+[unix]
 gc:
   # garbage collect all unused nix store entries
   sudo nix-collect-garbage -d
 
+[unix]
 clean:
   # remove all old generations from boot
   sudo /run/current-system/bin/switch-to-configuration boot
 
+[unix]
 optimize:
   # hard link nix stores
   sudo nix store optimise
 
+[linux]
 clean-all:
   sudo nix-collect-garbage -d
   sudo nix store optimise
   sudo nix-collect-garbage -d
   sudo /run/current-system/bin/switch-to-configuration boot
+
+[macos]
+clean-all:
+  sudo nix-collect-garbage -d
+  sudo nix store optimise
+  sudo nix-collect-garbage -d
 
 ############################################################################
 #
