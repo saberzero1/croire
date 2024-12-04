@@ -19,11 +19,11 @@ in
     history = {
       save = 100000;
     };
-    syntaxHighlighting = {
+    enableSyntaxHighlighting = {
       enable = true;
     };
     autocd = false;
-    initExtraFirst = ''
+    shellInit = ''
       # zoxide
       eval "$(zoxide init --cmd cd zsh)"
 
