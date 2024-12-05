@@ -36,18 +36,28 @@ in
     name = "${user}";
     home = "/Users/${user}";
     isHidden = false;
-    ignoreShellProgramCheck = true;
+    #ignoreShellProgramCheck = true;
     shell = pkgs.zsh;
   };
   fonts = {
+    #enableFontDir = true;
     packages = with pkgs; [
-      monaspace
-      fira-code
+      nerd-fonts.monaspace
       fira-code-symbols
       nerd-fonts.fira-code
-      borg-sans-mono #DroidSansMono
+      nerd-fonts.fira-mono
+      # borg-sans-mono #DroidSansMono
+      nerd-fonts.droid-sans-mono
       nerd-fonts.mononoki
     ];
+    #fontConfig = {
+    #  enable = true;
+    #  defaultFonts = {
+    #    monospace = [
+    #      "Monaspace Neon"
+    #	];
+    #  };
+    #};
   };
   homebrew = {
     enable = true;
@@ -72,24 +82,24 @@ in
           #   additionalFiles
           # ];
           file = {
-            "${config.xdg.configHome}/wezterm" = {
+            "${config.home.homeDirectory}/wezterm" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
             };
-            "${config.xdg.configHome}/nvim/lua" = {
+            "${config.home.homeDirectory}/nvim/lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
             };
-            "${config.xdg.configHome}/nvim/init.lua" = {
+            "${config.home.homeDirectory}/nvim/init.lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
             };
-            "${config.xdg.configHome}/nvim/lazy-lock.json" = {
+            "${config.home.homeDirectory}/nvim/lazy-lock.json" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
             };
-            "${config.xdg.configHome}/starship.toml" = {
+            "${config.home.homeDirectory}/starship.toml" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
-            "${config.xdg.configHome}/.zshrc" = {
-              source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
-            };
+            #"${config.xdg.configHome}/.zshrc" = {
+            #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
+            #};
             #".config/starship.toml" = {
             #source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             #};
@@ -99,12 +109,142 @@ in
             # DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
             EDITOR = "nvim";
             VISUAL = "nvim";
-            TERM = "wezterm";
+            # TERM = "wezterm";
+	    TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
-            LAZY = "/home/${username}/Documents/lazy-nvim";
+            LAZY = "/home/${user}/Documents/lazy-nvim";
           };
+          sessionPath = [
+            "\${config.home}"
+          ];
         };
         manual.manpages.enable = false;
+        programs = {
+          direnv = {
+            enable = true;
+            enableZshIntegration = true;
+            nix-direnv.enable = true;
+          };
+          zsh = {
+            enable = true;
+            dotDir = ".config/zsh";
+            autosuggestion = {
+              enable = true;
+            };
+            enableCompletion = true;
+            history = {
+              save = 100000;
+            };
+            syntaxHighlighting = {
+              enable = true;
+            };
+            autocd = false;
+            defaultKeymap = "vicmd";
+            initExtra = ''
+              # zoxide
+              eval "$(zoxide init --cmd cd zsh)"
+        
+              # atuin
+              # eval "$(atuin init zsh --disable-up-arrow)"
+        
+              # direnv
+              eval "$(direnv hook zsh)"
+        
+              # starship
+              eval "$(starship init zsh)"
+        
+              # thefuck
+              eval $(thefuck --alias fuck)
+        
+              # Environment variables
+              export EDITOR = "nvim"
+              export VISUAL = "nvim"
+              # export TERM = "wezterm"
+            '';
+          };
+          git = {
+            enable = true;
+            ignores = [
+              "*.swp"
+            ];
+            userName = "saberzero1";
+            userEmail = "github@emilebangma.com";
+            lfs = {
+              enable = true;
+            };
+            extraConfig = {
+              init.defaultBranch = "master";
+              core = {
+                editor = "nvim";
+                autocrlf = "input";
+              };
+              commit.gpgsign = true;
+              pull.rebase = true;
+              rebase.autoStash = true;
+            };
+          };
+          neovim = {
+            defaultEditor = true;
+            enable = true;
+            package = pkgs.neovim-unwrapped;
+            viAlias = true;
+            vimAlias = true;
+            vimdiffAlias = true;
+            withNodeJs = true;
+            withPython3 = true;
+            withRuby = true;
+            extraPackages = with pkgs; [
+              alejandra
+              black
+              golangci-lint
+              gopls
+              gotools
+              hadolint
+              isort
+              lua-language-server
+              markdownlint-cli
+              nixd
+              nodePackages.bash-language-server
+              nodePackages.prettier
+              pyright
+              ruff
+              shellcheck
+              shfmt
+              stylua
+              terraform-ls
+              tflint
+              vscode-langservers-extracted
+              yaml-language-server
+            ];
+          };
+          wezterm = {
+            enable = true;
+            package = pkgs.wezterm;
+            enableZshIntegration = true;
+            enableBashIntegration = true;
+          };
+          starship = {
+            enable = true;
+            settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship.toml";
+            enableZshIntegration = true;
+            enableBashIntegration = true;
+          };
+          tmux = {
+            enable = true;
+          };
+          thefuck = {
+            enable = true;
+            enableBashIntegration = true;
+            enableZshIntegration = true;
+            enableInstantMode = false;
+          };
+          zoxide = {
+            enable = true;
+            package = pkgs.zoxide;
+            enableZshIntegration = true;
+            enableBashIntegration = true;
+          };
+        };
       };
   };
   local = {

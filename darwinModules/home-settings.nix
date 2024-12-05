@@ -1,9 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  gitName = "saberzero1";
-  gitEmail = "github@emilebangma.com";
-in
 {
   direnv = {
     enable = true;
@@ -50,8 +46,8 @@ in
     ignores = [
       "*.swp"
     ];
-    userName = gitName;
-    userEmail = gitEmail;
+    userName = "saberzero1";
+    userEmail = "github@emilebangma.com";
     lfs = {
       enable = true;
     };
