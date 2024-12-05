@@ -23,7 +23,7 @@ in
       enable = true;
     };
     autocd = false;
-    shellInit = ''
+    promptInit = ''
       # zoxide
       eval "$(zoxide init --cmd cd zsh)"
 
@@ -109,6 +109,8 @@ in
   starship = {
     enable = true;
     settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship.toml";
+    enableZshIntegration = true;
+    enableBashIntegration = true;
   };
   tmux = {
     enable = true;
