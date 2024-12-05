@@ -139,7 +139,7 @@ in
               enable = true;
             };
             autocd = false;
-            defaultKeymap = "vicmd";
+            #defaultKeymap = "vicmd";
             initExtra = ''
               # zoxide
               eval "$(zoxide init --cmd cd zsh)"
@@ -222,6 +222,11 @@ in
             package = pkgs.wezterm;
             enableZshIntegration = true;
             enableBashIntegration = true;
+	    extraConfig = ''
+	      local init = require "init"
+
+	      return init
+	    '';
           };
           starship = {
             enable = true;
@@ -250,8 +255,9 @@ in
   local = {
     dock.enable = true;
     dock.entries = [
-      { path = "/Applications/Safari.app"; }
-      { path = "${pkgs.wezterm}/Applications/Wezterm.app/"; }
+      #{ path = "/Applications/Safari.app"; }
+      { path = "/Applications/Wavebox.app"; }
+      { path = "${pkgs.wezterm}/Applications/Wezterm.app"; }
     ];
   };
   #config = {
