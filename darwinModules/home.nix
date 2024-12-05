@@ -42,6 +42,7 @@ in
   fonts = {
     #enableFontDir = true;
     packages = with pkgs; [
+      monaspace
       nerd-fonts.monaspace
       fira-code-symbols
       nerd-fonts.fira-code
