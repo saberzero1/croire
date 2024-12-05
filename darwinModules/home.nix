@@ -160,28 +160,28 @@ in
           #   additionalFiles
           # ];
           file = {
-            "./.config/wezterm" = {
+            "wezterm" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
-	      recursive = true;
+	      #recursive = true;
             };
-            "./.config/nvim/lua" = {
+            "nvim/lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
-	      recursive = true;
+	      #recursive = true;
             };
-            "./.config/nvim/init.lua" = {
+            "nvim/init.lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
             };
-            "./.config/nvim/lazy-lock.json" = {
+            "nvim/lazy-lock.json" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
             };
-            "./.config/starship/starship.toml" = {
+            "starship/starship.toml" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
               #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
             #"${config.xdg.configDirectory}/.config/.zshrc" = {
             #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
             #};
-            "./.config/starship.toml" = {
+            "starship.toml" = {
               source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
           };
@@ -234,11 +234,6 @@ in
         
               # thefuck
               eval $(thefuck --alias fuck)
-        
-              # Environment variables
-              export EDITOR = "nvim"
-              export VISUAL = "nvim"
-              # export TERM = "wezterm"
             '';
           };
           git = {
