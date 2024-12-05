@@ -39,6 +39,16 @@ in
     ignoreShellProgramCheck = true;
     shell = pkgs.zsh;
   };
+  fonts = {
+    packages = with pkgs; [
+      monaspace
+      fira-code
+      fira-code-symbols
+      nerd-fonts.fira-code
+      borg-sans-mono #DroidSansMono
+      nerd-fonts.mononoki
+    ];
+  };
   homebrew = {
     enable = true;
     casks = pkgs.callPackage ../darwinModules/casks.nix { };
@@ -74,12 +84,15 @@ in
             "${config.xdg.configHome}/nvim/lazy-lock.json" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
             };
-            #"${config.xdg.configHome}/starship.toml" = {
-            #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
-            #};
-            ".config/starship.toml" = {
-              source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+            "${config.xdg.configHome}/starship.toml" = {
+              source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
+            "${config.xdg.configHome}/.zshrc" = {
+              source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
+            };
+            #".config/starship.toml" = {
+            #source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+            #};
           };
           stateVersion = "24.05";
           sessionVariables = {
@@ -97,7 +110,7 @@ in
   local = {
     dock.enable = true;
     dock.entries = [
-      { path = "/System/Applications/Home.app/"; }
+      { path = "/Applications/Safari.app"; }
       { path = "${pkgs.wezterm}/Applications/Wezterm.app/"; }
     ];
   };
