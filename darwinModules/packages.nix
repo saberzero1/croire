@@ -17,6 +17,7 @@ with pkgs; [
   neovim-unwrapped
 
   # Terminal
+  ranger
   starship
   tmux
   wezterm
@@ -28,11 +29,11 @@ with pkgs; [
   zsh-you-should-use
 
   # Fonts
-  monaspace
-  fira-code
-  fira-code-symbols
+  nerd-fonts.monaspace
   nerd-fonts.fira-code
-  borg-sans-mono #DroidSansMono
+  fira-code-symbols
+  nerd-fonts.fira-mono
+  nerd-fonts.droid-sans-mono #DroidSansMono
   nerd-fonts.mononoki
 
   # Security

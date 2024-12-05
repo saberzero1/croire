@@ -6,6 +6,7 @@ let
       config,
       lib,
       pkgs,
+      home-manager,
       ...
     }:
     {
@@ -19,7 +20,7 @@ let
         # inputs.self.darwinModules.home-settings
         # inputs.self.darwinModules.packages
         inputs.self.darwinModules.security
-        inputs.self.darwinConfigurations.home
+        inputs.self.darwinModules.home
         {
           #nixpkgs.overlays = [
           #  inputs.self.overlays

@@ -1,5 +1,6 @@
-# { inputs, ... }@flakeContext:
-{ pkgs, config, lib, ... }:
+{ inputs, ... }@flakeContext:
+#{ pkgs, config, lib, ... }: {
+{ pkgs, config, lib, home-manager, ... }:
 let
   homeDirectory = "/Users/emile";
 in

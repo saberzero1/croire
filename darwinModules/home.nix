@@ -21,16 +21,16 @@ let
   #    config.programs.git.signing.key = "7F462DBD67517E92";
   #  })
   #];
-  # additionalFiles = import ../darwinModules/files.nix { inherit user pkgs config lib; };
+  # additionalFiles = import ./files.nix { inherit user pkgs config lib; };
   #symlink = import ../scripts/symlink.nix { inherit config pkgs lib; };
-  symlink = import ./symlink.nix { inherit config pkgs lib; };
+  # symlink = import ./symlink.nix { inherit config pkgs lib; };
   # shelter = "/Users/${user}/Documents/Repos/dotfiles-submodules/shelter";
   shelter = "/Users/emile/Documents/Repos/dotfiles-submodules/shelter";
 in
 # Add out-of-store-symlinks to given attrSet
 {
   imports = [
-    ../darwinModules/dock
+    ./dock
   ];
   users.users.${user} = {
     name = "${user}";
@@ -61,60 +61,139 @@ in
   };
   homebrew = {
     enable = true;
-    casks = pkgs.callPackage ../darwinModules/casks.nix { };
+    # casks = pkgs.callPackage ./casks.nix { };
     # casks = inputs.self.darwinModules.casks;
+    casks = [
+      "wavebox"
+      "obsidian"
+    ];
     masApps = { };
   };
   home-manager = {
+    useUserPackages = true;
     useGlobalPkgs = true;
     users.${user} =
       {
         config,
         lib,
         pkgs,
+	home-manager,
         ...
       }:
       {
         home = {
           enableNixpkgsReleaseCheck = false;
-          packages = pkgs.callPackage ../darwinModules/packages.nix { };
+          # packages = pkgs.callPackage ./packages.nix { };
+	  packages = with pkgs; [
+            # Core
+            coreutils
+            gcc
+            killall
+            openssh
+            sqlite
+            wget
+            zip
+          
+            # Development
+            direnv
+            nix-direnv
+            gh
+            neovim-unwrapped
+          
+            # Terminal
+            ranger
+            starship
+            tmux
+            wezterm
+            zsh
+            zsh-autosuggestions
+            zsh-completions
+            zsh-syntax-highlighting
+            zsh-vi-mode
+            zsh-you-should-use
+          
+            # Fonts
+            nerd-fonts.monaspace
+            nerd-fonts.fira-code
+            fira-code-symbols
+            nerd-fonts.fira-mono
+            nerd-fonts.droid-sans-mono #DroidSansMono
+            nerd-fonts.mononoki
+          
+            # Security
+            age
+            age-plugin-yubikey
+            gnupg
+            
+            # Javascript
+            nodePackages.live-server
+            nodePackages.prettier
+            nodePackages.npm
+            nodejs
+          
+            # Utility
+            fd
+            ffmpeg
+            fzf
+            gnumake
+            jq
+            just
+            pandoc
+            ripgrep
+            ripgrep-all
+            rsync
+            thefuck
+            unrar
+            unzip
+            zoxide
+          
+            # Python
+            black
+            python3
+            virtualenv
+          
+            # Mac
+            fswatch
+            dockutil
+          ];
           # file = lib.mkMerge [
           #   additionalFiles
           # ];
           file = {
-            "${config.home.homeDirectory}/wezterm" = {
+            "./.config/wezterm" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
 	      recursive = true;
             };
-            "${config.home.homeDirectory}/nvim/lua" = {
+            "./.config/nvim/lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
 	      recursive = true;
             };
-            "${config.home.homeDirectory}/nvim/init.lua" = {
+            "./.config/nvim/init.lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
             };
-            "${config.home.homeDirectory}/nvim/lazy-lock.json" = {
+            "./.config/nvim/lazy-lock.json" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
             };
-            "${config.home.homeDirectory}/starship.toml" = {
+            "./.config/starship/starship.toml" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+              #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
-            #"${config.xdg.configHome}/.zshrc" = {
-            #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
+            #"${config.xdg.configDirectory}/.config/.zshrc" = {
+            #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
             #};
-            #".config/starship.toml" = {
-            #source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
-            #};
+            "./.config/starship.toml" = {
+              source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+            };
           };
           stateVersion = "24.05";
           sessionVariables = {
             # DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
             EDITOR = "nvim";
             VISUAL = "nvim";
-            TERM = "wezterm";
+            # TERM = "wezterm";
 	    # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
-            LAZY = "${config.home.homeDirectory}/lazy-nvim";
+            LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
           };
           #sessionPath = [ "\${config.home}" ];
         };
@@ -222,18 +301,27 @@ in
             package = pkgs.wezterm;
             enableZshIntegration = true;
             enableBashIntegration = true;
-	    extraConfig = ''
-	      local init = require "init"
-
-	      return init
-	    '';
+	    #extraConfig = ''
+	    #  local init = require "init"
+            #
+	    #  return init
+	    #'';
           };
           starship = {
-            enable = true;
-            settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship.toml";
+            enable = (
+	      if (builtins.pathExists ("${config.home.homeDirectory}/.config/starship/starship.toml")) then
+	        true
+	      else
+	        false
+	    );
+            settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
             enableZshIntegration = true;
             enableBashIntegration = true;
           };
+	  ranger = {
+	    enable = true;
+	    package = pkgs.ranger;
+	  };
           tmux = {
             enable = true;
           };
@@ -251,7 +339,7 @@ in
           };
         };
       };
-  };
+    };
   local = {
     dock.enable = true;
     dock.entries = [

@@ -115,7 +115,6 @@
       username = "saberzero1";
       darwinConfigurations = {
         Emiles-MacBook-Pro = import ./darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
-        home = import ./darwinConfigurations/home.nix flakeContext;
         #Emiles-MacBook-Pro = import ~/Documents/Repos/dotfiles-submodules/croire/darwinConfigurations/Emiles-MacBook-Pro.nix flakeContext;
       };
       darwinModules = {
@@ -123,6 +122,7 @@
         #dock = import ./darwinModules/dock/default.nix flakeContext;
         #files = import ./darwinModules/files.nix flakeContext;
         git = import ./darwinModules/git.nix flakeContext;
+        home = import ./darwinModules/home.nix flakeContext;
         #home-settings = import ./darwinModules/home-settings.nix flakeContext;
         #packages = import ./darwinModules/packages.nix flakeContext;
         security = import ./darwinModules/security.nix flakeContext;
