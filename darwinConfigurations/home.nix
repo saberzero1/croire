@@ -84,9 +84,11 @@ in
           file = {
             "${config.home.homeDirectory}/wezterm" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
+	      recursive = true;
             };
             "${config.home.homeDirectory}/nvim/lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
+	      recursive = true;
             };
             "${config.home.homeDirectory}/nvim/init.lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
@@ -109,14 +111,12 @@ in
             # DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
             EDITOR = "nvim";
             VISUAL = "nvim";
-            # TERM = "wezterm";
-	    TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
+            TERM = "wezterm";
+	    # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
-            LAZY = "/home/${user}/Documents/lazy-nvim";
+            LAZY = "${config.home.homeDirectory}/lazy-nvim";
           };
-          sessionPath = [
-            "\${config.home}"
-          ];
+          #sessionPath = [ "\${config.home}" ];
         };
         manual.manpages.enable = false;
         programs = {
