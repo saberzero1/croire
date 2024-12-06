@@ -214,7 +214,7 @@ in
           };
           zsh = {
             enable = true;
-            dotDir = "/Users/${user}/config/zsh";
+            dotDir = "config/zsh";
             autosuggestion = {
               enable = true;
             };
@@ -314,12 +314,12 @@ in
           };
           starship = {
             enable = (
-	      if (builtins.pathExists "${config.home.homeDirectory}/config/starship/starship.toml") then
+	      if (builtins.pathExists "/Users/${user}/config/starship/starship.toml") then
 	        true
 	      else
 	        false
 	    );
-            settings = pkgs.lib.importTOML "${config.home.homeDirectory}/config/starship/starship.toml";
+            settings = pkgs.lib.importTOML "/Users/${user}/config/starship/starship.toml";
             enableZshIntegration = true;
             enableBashIntegration = true;
           };
