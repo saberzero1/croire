@@ -214,7 +214,7 @@ in
           };
           zsh = {
             enable = true;
-            dotDir = "config/zsh";
+            dotDir = "/Users/${user}/config/zsh";
             autosuggestion = {
               enable = true;
             };
