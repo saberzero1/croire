@@ -181,9 +181,9 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
               #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
-            #"${config.xdg.configDirectory}/.config/.zshrc" = {
-            #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
-            #};
+            "config/zsh/.zshrc" = {
+              source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
+            };
             "config/starship.toml" = {
               source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
@@ -194,12 +194,14 @@ in
             EDITOR = "nvim";
             VISUAL = "nvim";
             # TERM = "wezterm";
-	    # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
+	          # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
             # LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
-	    LAZY = "/Users/${user}/share/lazy-nvim";
-	    XDG_CONFIG_HOME = "/Users/${user}/config";
-	    WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
+	          LAZY = "/Users/${user}/share/lazy-nvim";
+	          XDG_CONFIG_HOME = "/Users/${user}/config";
+	          WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
+            STARSHIP_CONFIG = "/Users/${user}/config/starship/starship.toml";
+            ZDOTDIR = "/Users/${user}/config/zsh";
           };
           #sessionPath = [ "\${config.home}" ];
         };
@@ -212,7 +214,7 @@ in
           };
           zsh = {
             enable = true;
-            dotDir = ".config/zsh";
+            dotDir = "config/zsh";
             autosuggestion = {
               enable = true;
             };
@@ -312,12 +314,12 @@ in
           };
           starship = {
             enable = (
-	      if (builtins.pathExists ("${config.home.homeDirectory}/.config/starship/starship.toml")) then
+	      if (builtins.pathExists "${config.home.homeDirectory}/config/starship/starship.toml") then
 	        true
 	      else
 	        false
 	    );
-            settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship/starship.toml";
+            settings = pkgs.lib.importTOML "${config.home.homeDirectory}/config/starship/starship.toml";
             enableZshIntegration = true;
             enableBashIntegration = true;
           };
