@@ -163,28 +163,28 @@ in
           #   additionalFiles
           # ];
           file = {
-            "wezterm" = {
+            "config/wezterm" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
 	      recursive = true;
             };
-            "nvim/lua" = {
+            "config/nvim/lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
 	      recursive = true;
             };
-            "nvim/init.lua" = {
+            "config/nvim/init.lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
             };
-            "nvim/lazy-lock.json" = {
+            "config/nvim/lazy-lock.json" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lazy-lock.json";
             };
-            "starship/starship.toml" = {
+            "config/starship/starship.toml" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
               #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
             #"${config.xdg.configDirectory}/.config/.zshrc" = {
             #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
             #};
-            "starship.toml" = {
+            "config/starship.toml" = {
               source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
             };
           };
@@ -197,7 +197,9 @@ in
 	    # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
             # LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
-	    LAZY = "/Users/${user}/Documents/lazy-nvim";
+	    LAZY = "/Users/${user}/share/lazy-nvim";
+	    XDG_CONFIG_HOME = "/Users/${user}/config";
+	    WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
           };
           #sessionPath = [ "\${config.home}" ];
         };
