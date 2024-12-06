@@ -265,7 +265,7 @@ in
             defaultEditor = true;
             enable = true;
             #package = pkgs.neovim-unwrapped;
-	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
             viAlias = true;
             vimAlias = true;
             vimdiffAlias = true;
@@ -299,7 +299,7 @@ in
           wezterm = {
             enable = true;
             #package = pkgs.wezterm;
-	    package = inputs.wezterm.packages.${pkgs.system}.default
+	    package = inputs.wezterm.packages.${pkgs.system}.default;
             enableZshIntegration = true;
             enableBashIntegration = true;
 	    #extraConfig = ''
