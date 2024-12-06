@@ -99,13 +99,15 @@ in
             direnv
             nix-direnv
             gh
-            neovim-unwrapped
+            #neovim-unwrapped
+	    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
           
             # Terminal
             ranger
             starship
             tmux
-            wezterm
+            #wezterm
+	    inputs.wezterm.packages.${pkgs.system}.default
             zsh
             zsh-autosuggestions
             zsh-completions
@@ -194,7 +196,8 @@ in
             # TERM = "wezterm";
 	    # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
-            LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
+            # LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
+	    LAZY = "/Users/${user}/Documents/lazy-nvim";
           };
           #sessionPath = [ "\${config.home}" ];
         };
@@ -261,7 +264,8 @@ in
           neovim = {
             defaultEditor = true;
             enable = true;
-            package = pkgs.neovim-unwrapped;
+            #package = pkgs.neovim-unwrapped;
+	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
             viAlias = true;
             vimAlias = true;
             vimdiffAlias = true;
@@ -294,7 +298,8 @@ in
           };
           wezterm = {
             enable = true;
-            package = pkgs.wezterm;
+            #package = pkgs.wezterm;
+	    package = inputs.wezterm.packages.${pkgs.system}.default
             enableZshIntegration = true;
             enableBashIntegration = true;
 	    #extraConfig = ''
