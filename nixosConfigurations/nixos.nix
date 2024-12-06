@@ -68,9 +68,15 @@ let
             device = "/dev/disk/by-uuid/812D-2A15";
             fsType = "vfat";
           };
-          "/dev/sdb2" = {
+          "/mnt/internal-hard-drive" = {
             device = "/dev/disk/by-uuid/b2f385b9-88bb-4300-9101-bd742b03111d";
-            fsType = "ext4";
+            fsType = "auto";
+            options = [
+              "nosuid"
+              "nodev"
+              "nofail"
+              "x-gvfs-show"
+            ];
           };
         };
         hardware = {
