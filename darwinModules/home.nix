@@ -70,6 +70,17 @@ in
     ];
     masApps = { };
   };
+  services = {
+    aerospace = {
+      enable = true;
+      package = pkgs.aerospace;
+      settings = {
+        key-mapping = {
+          preset = "qwerty";
+        };
+      };
+    };
+  };
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -85,7 +96,7 @@ in
         home = {
           enableNixpkgsReleaseCheck = false;
           # packages = pkgs.callPackage ./packages.nix { };
-	  packages = with pkgs; [
+      	  packages = with pkgs; [
             # Core
             coreutils
             gcc
@@ -100,14 +111,14 @@ in
             nix-direnv
             gh
             #neovim-unwrapped
-	    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      	    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
           
             # Terminal
             ranger
             starship
             tmux
             #wezterm
-	    inputs.wezterm.packages.${pkgs.system}.default
+      	    inputs.wezterm.packages.${pkgs.system}.default
             zsh
             zsh-autosuggestions
             zsh-completions
@@ -158,6 +169,7 @@ in
             # Mac
             fswatch
             dockutil
+            aerospace
           ];
           # file = lib.mkMerge [
           #   additionalFiles
@@ -186,6 +198,9 @@ in
             #};
             "config/starship.toml" = {
               source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
+            };
+            "config/aerospace/aerospace.toml" = {
+              source = "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/croire/configFiles/aerospace/aerospace.toml";
             };
           };
           stateVersion = "24.05";
@@ -270,7 +285,7 @@ in
             defaultEditor = true;
             enable = true;
             #package = pkgs.neovim-unwrapped;
-	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
             viAlias = true;
             vimAlias = true;
             vimdiffAlias = true;
@@ -304,30 +319,30 @@ in
           wezterm = {
             enable = true;
             #package = pkgs.wezterm;
-	    package = inputs.wezterm.packages.${pkgs.system}.default;
+      	    package = inputs.wezterm.packages.${pkgs.system}.default;
             enableZshIntegration = true;
             enableBashIntegration = true;
-	    #extraConfig = ''
-	    #  local init = require "init"
-            #
-	    #  return init
-	    #'';
+      	    #extraConfig = ''
+      	    #  local init = require "init"
+                  #
+      	    #  return init
+      	    #'';
           };
           starship = {
             enable = (
-	      if (builtins.pathExists "/Users/${user}/config/starship/starship.toml") then
-	        true
-	      else
-	        false
-	    );
+      	      if (builtins.pathExists "/Users/${user}/config/starship/starship.toml") then
+      	        true
+      	      else
+      	        false
+      	    );
             settings = pkgs.lib.importTOML "/Users/${user}/config/starship/starship.toml";
             enableZshIntegration = true;
             enableBashIntegration = true;
           };
-	  ranger = {
-	    enable = true;
-	    package = pkgs.ranger;
-	  };
+      	  ranger = {
+      	    enable = true;
+      	    package = pkgs.ranger;
+      	  };
           tmux = {
             enable = true;
           };
