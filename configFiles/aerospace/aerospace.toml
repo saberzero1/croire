@@ -80,7 +80,7 @@ mod2-c = 'reload-config'
 
 mod-r = 'mode resize'
 
-mod2-o = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
+mod2-o = 'exec-and-forget open -n /Applications/Sol.app/Contents/MacOS/sol'
 
 [mode.resize.binding]
 h = 'resize width -50'
