@@ -49,6 +49,8 @@ let
             "com.apple.mouse.tapBehavior" = 1;
             "com.apple.sound.beep.volume" = 0.0;
             "com.apple.sound.beep.feedback" = 0;
+
+            AppleKeyboardUIMode = null;
           };
 
           dock = {
@@ -90,8 +92,8 @@ let
             Sound = true;
           };
 
-	  CustomUserPreferences = {
-	    NSGlobalDomain = {
+	        CustomUserPreferences = {
+	          NSGlobalDomain = {
               # Add a context menu item for showing the Web Inspector in web views
               WebKitDeveloperExtras = true;
             }; 
@@ -113,7 +115,7 @@ let
               location = "~/Desktop";
               type = "png";
             };
-	  };
+	        };
         };
 
         keyboard = {
