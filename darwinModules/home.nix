@@ -65,8 +65,9 @@ in
     # casks = pkgs.callPackage ./casks.nix { };
     # casks = inputs.self.darwinModules.casks;
     casks = [
-      "wavebox"
+      "sol"
       "obsidian"
+      "wavebox"
     ];
     masApps = { };
   };
