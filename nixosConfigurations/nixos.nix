@@ -68,6 +68,10 @@ let
             device = "/dev/disk/by-uuid/812D-2A15";
             fsType = "vfat";
           };
+          "/dev/sdb2" = {
+            device = "/dev/disk/by-uuid/b2f385b9-88bb-4300-9101-bd742b03111d";
+            fsType = "ext4";
+          };
         };
         hardware = {
           enableRedistributableFirmware = true;
