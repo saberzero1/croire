@@ -200,6 +200,7 @@ in
 	          LAZY = "/Users/${user}/share/lazy-nvim";
 	          XDG_CONFIG_HOME = "/Users/${user}/config";
 	          WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
+            WEZTERM_CONFIG_DIR = "/Users/${user}/config/wezterm";
             STARSHIP_CONFIG = "/Users/${user}/config/starship/starship.toml";
             ZDOTDIR = "/Users/${user}/config/zsh";
           };
