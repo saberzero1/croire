@@ -39,6 +39,7 @@ alt-cmd-backslash = 'split horizontal'
 alt-cmd-minus = 'split vertical'
 
 alt-cmd-f = 'fullscreen'
+alt-cmd-ctrl-f = 'fullscreen --no-outer-gaps'
 
 alt-cmd-s = 'layout v_accordion'               # 'layout stacking' in i3
 alt-cmd-w = 'layout h_accordion'               # 'layout tabbed' in i3
@@ -77,6 +78,9 @@ alt-cmd-ctrl-9 = 'move-node-to-workspace 9'
 alt-cmd-ctrl-0 = 'move-node-to-workspace 10'
 
 alt-cmd-ctrl-c = 'reload-config'
+
+alt-cmd-q = 'close'
+alt-cmd-ctrl-q = 'close --quit-if-last-window'
 
 alt-cmd-r = 'mode resize'
 
