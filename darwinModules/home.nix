@@ -75,11 +75,7 @@ in
     aerospace = {
       enable = true;
       package = pkgs.aerospace;
-      settings = {
-        key-mapping = {
-          preset = "qwerty";
-        };
-      };
+      settings = pkgs.lib.importTOML "/Users/${user}/config/aerospace/aerospace.toml";
     };
   };
   home-manager = {
