@@ -256,6 +256,10 @@ in
               # thefuck
               eval $(thefuck --alias fuck)
             '';
+            profileExtra = ''
+              # Aerospace on Silicon
+              eval "$(/opt/homebrew/bin/brew shellenv)"
+            '';
           };
           git = {
             enable = true;
