@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 {
 /*  imports = [
     flake.inputs.nixvim.homeManagerModules.nixvim
