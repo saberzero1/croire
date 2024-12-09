@@ -27,7 +27,7 @@
     luaunit
     luautf8
     luazip
-    luuid
+    # luuid
     luv
     lyaml
     markdown
