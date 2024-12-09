@@ -17,7 +17,7 @@
     # nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     # Darwin-specific
-    darwin = {
+    nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
