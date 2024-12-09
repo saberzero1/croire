@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  import = [
+    ./languages/default.nix
+  ];
   # Nix packages to install to $HOME
   #
   # Search for packages here: https://search.nixos.org/packages
@@ -37,17 +40,18 @@
     direnv
     nix-direnv
     gh
-    #neovim-unwrapped
-    #inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    git
+    diff-so-fancy
     neovim
+    zed-editor
 
     # Terminal
     ranger
     starship
     tmux
     wezterm
-    #inputs.wezterm.packages.${pkgs.system}.default
     zsh
+    zsh-autopair
     zsh-autosuggestions
     zsh-completions
     zsh-syntax-highlighting
@@ -68,9 +72,6 @@
     gnupg
 
     # Javascript
-    nodePackages.live-server
-    nodePackages.prettier
-    nodePackages.npm
     nodejs
 
     # Utility
@@ -90,10 +91,21 @@
     black
     python3
     virtualenv
+    python313Full
 
-    # Mac
-    fswatch
-    dockutil
-    aerospace
+    # Lua
+    luajit
+
+    # Extra
+    fastfetch
+    gnuplot
+    hdparm
+    hplip
+    htop
+    imagemagick
+    mpv
+    pamixer
+    pciutils
+    usbutils
   ];
 }
