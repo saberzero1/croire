@@ -38,7 +38,8 @@
     nix-direnv
     gh
     #neovim-unwrapped
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    #inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    neovim
 
     # Terminal
     ranger
