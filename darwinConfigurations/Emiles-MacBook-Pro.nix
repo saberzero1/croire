@@ -31,8 +31,8 @@ in
 /*
   { inputs, ... }@flakeContext:
   let
-    username = "emile";
-    darwinModule =
+  username = "emile";
+  darwinModule =
       {
         config,
         lib,
@@ -123,8 +123,8 @@ in
               Sound = true;
             };
 
-  	        CustomUserPreferences = {
-  	          NSGlobalDomain = {
+           	        CustomUserPreferences = {
+             	          NSGlobalDomain = {
                 # Add a context menu item for showing the Web Inspector in web views
                 WebKitDeveloperExtras = true;
               };
@@ -146,7 +146,7 @@ in
                 location = "~/Desktop";
                 type = "png";
               };
-  	        };
+           	        };
           };
 
           keyboard = {
@@ -200,17 +200,17 @@ in
 
   #inputs.nixpkgs.lib.darwinSystem {
   inputs.darwin.lib.darwinSystem {
-    specialArgs = {
+  specialArgs = {
       inherit username;
-    } // inputs;
-    modules = [
+  } // inputs;
+  modules = [
       darwinModule
-    ];
-    system = "aarch64-darwin";
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#Emiles-MacBook-Pro
-    # darwinConfigurations."Emiles-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-    #   modules = [ configuration ];
-    # };
+  ];
+  system = "aarch64-darwin";
+  # Build darwin flake using:
+  # $ darwin-rebuild build --flake .#Emiles-MacBook-Pro
+  # darwinConfigurations."Emiles-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+  #   modules = [ configuration ];
+  # };
   }
 */

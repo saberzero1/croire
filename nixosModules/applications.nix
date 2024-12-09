@@ -1,9 +1,8 @@
 { inputs, ... }@flakeContext:
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 {
   config = {

@@ -1,10 +1,9 @@
 # This is your nix-darwin configuration.
 # For home configuration, see /modules/home/*
-{
-  flake,
-  pkgs,
-  lib,
-  ...
+{ flake
+, pkgs
+, lib
+, ...
 }:
 
 let

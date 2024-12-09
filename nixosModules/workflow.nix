@@ -10,17 +10,17 @@
         pkgs.wl-clipboard
       ];
     };
-#    systemd = {
-#      services = {
-#        espanso = {
-#          enable = true;
-#          serviceConfig = {
-#            execStart = "${pkgs.espanso}/bin/espanso start";
-#            Restart = "always";
-#            RestartSec = 1;
-#          };
-#        };
-#      };
-#    };
+    #    systemd = {
+    #      services = {
+    #        espanso = {
+    #          enable = true;
+    #          serviceConfig = {
+    #            execStart = "${pkgs.espanso}/bin/espanso start";
+    #            Restart = "always";
+    #            RestartSec = 1;
+    #          };
+    #        };
+    #      };
+    #    };
   };
 }

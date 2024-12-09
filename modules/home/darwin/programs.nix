@@ -69,7 +69,7 @@
       defaultEditor = true;
       enable = true;
       #package = pkgs.neovim-unwrapped;
-	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
@@ -103,30 +103,30 @@
     wezterm = {
       enable = true;
       #package = pkgs.wezterm;
-	    package = inputs.wezterm.packages.${pkgs.system}.default;
+      package = inputs.wezterm.packages.${pkgs.system}.default;
       enableZshIntegration = true;
       enableBashIntegration = true;
-	    #extraConfig = ''
-	    #  local init = require "init"
-            #
-	    #  return init
-	    #'';
+      #extraConfig = ''
+      #  local init = require "init"
+      #
+      #  return init
+      #'';
     };
     starship = {
       enable = (
-	      if (builtins.pathExists "$HOME/config/starship/starship.toml") then
-	        true
-	      else
-	        false
-	    );
+        if (builtins.pathExists "$HOME/config/starship/starship.toml") then
+          true
+        else
+          false
+      );
       settings = pkgs.lib.importTOML "$HOME/config/starship/starship.toml";
       enableZshIntegration = true;
       enableBashIntegration = true;
     };
-	  ranger = {
-	    enable = true;
-	    package = pkgs.ranger;
-	  };
+    ranger = {
+      enable = true;
+      package = pkgs.ranger;
+    };
     tmux = {
       enable = true;
     };
