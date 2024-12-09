@@ -45,8 +45,8 @@
     ranger
     starship
     tmux
-    #wezterm
-    inputs.wezterm.packages.${pkgs.system}.default
+    wezterm
+    #inputs.wezterm.packages.${pkgs.system}.default
     zsh
     zsh-autosuggestions
     zsh-completions

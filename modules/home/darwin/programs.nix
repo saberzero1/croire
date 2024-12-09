@@ -102,8 +102,8 @@
     };
     wezterm = {
       enable = true;
-      #package = pkgs.wezterm;
-      package = inputs.wezterm.packages.${pkgs.system}.default;
+      package = pkgs.wezterm;
+      #package = inputs.wezterm.packages.${pkgs.system}.default;
       enableZshIntegration = true;
       enableBashIntegration = true;
       #extraConfig = ''
