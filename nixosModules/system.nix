@@ -26,7 +26,7 @@
         pkgs.zsa-udev-rules
         pkgs.qmk
         pkgs.gtk3
-        pkgs.webkitgtk
+        pkgs.webkitgtk_6_0
         pkgs.libuuid
         pkgs.wineWowPackages.stable
         pkgs.wine
