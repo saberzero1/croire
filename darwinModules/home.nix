@@ -102,14 +102,14 @@ in
             sqlite
             wget
             zip
-          
+
             # Development
             direnv
             nix-direnv
             gh
             #neovim-unwrapped
       	    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-          
+
             # Terminal
             ranger
             starship
@@ -122,7 +122,7 @@ in
             zsh-syntax-highlighting
             zsh-vi-mode
             zsh-you-should-use
-          
+
             # Fonts
             nerd-fonts.monaspace
             nerd-fonts.fira-code
@@ -130,18 +130,18 @@ in
             nerd-fonts.fira-mono
             nerd-fonts.droid-sans-mono #DroidSansMono
             nerd-fonts.mononoki
-          
+
             # Security
             age
             age-plugin-yubikey
             gnupg
-            
+
             # Javascript
             nodePackages.live-server
             nodePackages.prettier
             nodePackages.npm
             nodejs
-          
+
             # Utility
             fd
             ffmpeg
@@ -157,12 +157,12 @@ in
             unrar
             unzip
             zoxide
-          
+
             # Python
             black
             python3
             virtualenv
-          
+
             # Mac
             fswatch
             dockutil
@@ -206,7 +206,7 @@ in
             EDITOR = "nvim";
             VISUAL = "nvim";
             # TERM = "wezterm";
-	          # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
+	          # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/";
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
             # LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
 	          LAZY = "/Users/${user}/share/lazy-nvim";
@@ -243,16 +243,16 @@ in
             initExtra = ''
               # zoxide
               eval "$(zoxide init --cmd cd zsh)"
-        
+
               # atuin
               # eval "$(atuin init zsh --disable-up-arrow)"
-        
+
               # direnv
               eval "$(direnv hook zsh)"
-        
+
               # starship
               eval "$(starship init zsh)"
-        
+
               # thefuck
               eval $(thefuck --alias fuck)
             '';
@@ -476,4 +476,3 @@ in
   #  };
   #};
 }
-

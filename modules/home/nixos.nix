@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./nixos/default.nix
+  ];
+}
