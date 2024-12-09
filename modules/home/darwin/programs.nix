@@ -68,8 +68,8 @@
     neovim = {
       defaultEditor = true;
       enable = true;
-      #package = pkgs.neovim-unwrapped;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+      package = pkgs.neovim;
+      #package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
