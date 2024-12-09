@@ -8,11 +8,11 @@
 	          # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/";
     # BROWSER = "${pkgs.wavebox}/bin/wavebox";
     # LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
-	  LAZY = "/Users/${user}/share/lazy-nvim";
-	  XDG_CONFIG_HOME = "/Users/${user}/config";
-	  WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
-    WEZTERM_CONFIG_DIR = "/Users/${user}/config/wezterm";
-    STARSHIP_CONFIG = "/Users/${user}/config/starship/starship.toml";
-    ZDOTDIR = "/Users/${user}/config/zsh";
+	  LAZY = "$HOME/share/lazy-nvim";
+	  XDG_CONFIG_HOME = "$HOME/config";
+	  WEZTERM_CONFIG_FILE = "$HOME/config/wezterm/wezterm.lua";
+    WEZTERM_CONFIG_DIR = "$HOME/config/wezterm";
+    STARSHIP_CONFIG = "$HOME/config/starship/starship.toml";
+    ZDOTDIR = "$HOME/config/zsh";
   };
 }
