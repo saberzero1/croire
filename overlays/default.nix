@@ -1,12 +1,12 @@
-{ flake, pkgs, ... }:
+{ flake, ... }:
 
 let
   inherit (flake) inputs;
   inherit (inputs) self;
 in
 self: super: {
-  neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-  wezterm = inputs.wezterm.packages.${pkgs.system}.default;
+  neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
+  wezterm = inputs.wezterm.packages.${self.system}.default;
 }
 
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix
