@@ -12,6 +12,7 @@ in
     self.darwinModules.fonts
     self.darwinModules.homebrew
     self.darwinModules.services
+    self.darwinModules.system
   ];
 
   # The platform the configuration will be used on.
