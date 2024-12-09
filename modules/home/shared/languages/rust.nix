@@ -1,9 +1,5 @@
 { pkgs, ... }: {
-  config = {
-    environment = {
-      systemPackages = [
-        rustup
-      ];
-    };
-  };
+  home.packages = with pkgs; [
+    rustup
+  ];
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   environment = {
     systemPackages = with pkgs; [
       vlc
@@ -133,13 +133,20 @@
   systemd = {
     user = {
       tmpfiles = {
-        rules = [
-          "L+ %h/.config/burn-my-windows/profiles/nix-profile.conf 0755 - - - ${burnMyWindowsProfile}"
-        ];
+        rules = [ ];
       };
     };
   };
-
+  /*
+    dconf = {
+    enable = true;
+    profiles = {
+      user = {
+        databases = [ ];
+      };
+    };
+    };
+  */
   qt = {
     enable = true;
     platformTheme = "gnome";
@@ -222,5 +229,78 @@
     enable = true;
     memoryPercent = 50;
     algorithm = "zstd";
+  };
+
+  programs = {
+
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "wezterm";
+    };
+
+    sway = {
+      enable = true;
+      wrapperFeatures = {
+        gtk = true;
+      };
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        wl-clipboard
+        wf-recorder
+        sway-contrib.grimshot
+        mako # notification daemon
+        grim
+        slurp
+        alacritty # Alacritty is the default terminal in the config
+        dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+        wofi
+        gtk-engine-murrine
+        gtk_engines
+        gsettings-desktop-schemas
+        lxappearance
+        dragon
+        swappy
+        xdg-utils
+      ];
+    };
+
+    waybar = {
+      enable = true;
+    };
+
+    uwsm = {
+      enable = true;
+      waylandCompositors = {
+        sway = {
+          prettyName = "Sway";
+          comment = "Sway compositor managed by UWSM";
+          binPath = "${pkgs.sway}/bin/sway";
+        };
+      };
+    };
+
+    nano = {
+      enable = false;
+    };
+
+    nix-ld = {
+      enable = true;
+    };
+
+    npm = {
+      enable = true;
+      npmrc = ''
+        '''
+          prefix = '''''${HOME}/.npm
+          color=true
+        '''
+      '';
+    };
+
+    steam = {
+      enable = true;
+      package = pkgs.steam;
+    };
   };
 }

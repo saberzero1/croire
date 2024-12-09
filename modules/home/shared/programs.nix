@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.
@@ -125,6 +125,7 @@
         }
       ];
     };
+
     git = {
       enable = true;
       package = pkgs.gitFull;
@@ -136,7 +137,7 @@
       lfs = {
         enable = true;
       };
-      config = {
+      /*config = {
         url = {
           "https://github.com/" = {
             insteadOf = [
@@ -145,7 +146,7 @@
             ];
           };
         };
-      };
+      };*/
       extraConfig = {
         init.defaultBranch = "master";
         core = {
@@ -156,23 +157,6 @@
         pull.rebase = true;
         rebase.autoStash = true;
       };
-    };
-    npm = {
-      enable = true;
-      npmrc = ''
-        '''
-          prefix = '''''${HOME}/.npm
-          color=true
-        '''
-      '';
-    };
-
-    nano = {
-      enable = false;
-    };
-
-    nix-ld = {
-      enable = true;
     };
   };
 }

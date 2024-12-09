@@ -7,7 +7,7 @@ let
   inherit (inputs) self;
 in
 {
-  import = [
+  imports = [
     self.nixosModules.default
     self.nixosModules.fonts
     #self.darwinModules.homebrew
@@ -130,6 +130,7 @@ in
       plugdev = { };
     };
     mutableUsers = true;
+    defaultUserShell = pkgs.zsh;
     users = {
       "saberzero1" = {
         extraGroups = [

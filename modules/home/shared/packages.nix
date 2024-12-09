@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  import = [
+  imports = [
     ./languages/default.nix
   ];
   # Nix packages to install to $HOME

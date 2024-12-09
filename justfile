@@ -26,6 +26,10 @@ lint:
 check:
   nix flake check
 
+[group('dev')]
+check-all:
+  nix flake check --all-systems
+
 # Manually enter dev shell
 [group('dev')]
 dev:

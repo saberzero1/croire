@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  environment = {
-    systemPackages = with pkgs; [
-      ruby
-    ];
-  };
+  home.packages = with pkgs; [
+    ruby
+  ];
 }

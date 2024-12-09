@@ -1,4 +1,4 @@
-{ flake, pkgs, ... }:
+{ flake, pkgs, lib, ... }:
 {
   services = {
     pipewire = {
@@ -16,13 +16,13 @@
       audio = {
         enable = true;
       };
-      udev = {
-        enable = true;
-      };
-      fstrim = {
-        enable = true;
-        interval = "weekly";
-      };
+    };
+    udev = {
+      enable = true;
+    };
+    fstrim = {
+      enable = true;
+      interval = "weekly";
     };
 
     printing = {
@@ -74,14 +74,14 @@
       openFirewall = false;
       port = 3389;
     };
-      gnome = {
-        gnome-browser-connector = {
-          enable = true;
-        };
-        gnome-keyring = {
-          enable = true;
-        };
+    gnome = {
+      gnome-browser-connector = {
+        enable = true;
       };
+      gnome-keyring = {
+        enable = true;
+      };
+    };
     openssh = {
       enable = true;
     };

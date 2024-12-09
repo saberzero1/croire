@@ -15,4 +15,6 @@ in
   nix.settings.trusted-users = [ "root" "saberzero1" ];
 
   services.openssh.enable = true;
+
+  programs.zsh.enable = true;
 }

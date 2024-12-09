@@ -1,11 +1,7 @@
 { pkgs, ... }: {
-  config = {
-    environment = {
-      systemPackages = [
-        nixd
-        nixpkgs-fmt
-        nixfmt-rfc-style
-      ];
-    };
-  };
+  home.packages = with pkgs; [
+    nixd
+    nixpkgs-fmt
+    nixfmt-rfc-style
+  ];
 }
