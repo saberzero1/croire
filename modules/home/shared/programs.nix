@@ -24,7 +24,7 @@
       syntaxHighlighting = {
         enable = true;
       };
-      enableLsColors = true;
+      #enableLsColors = true;
       plugins = [
         {
           name = "zsh-autopair";
