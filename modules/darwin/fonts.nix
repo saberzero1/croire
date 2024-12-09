@@ -13,4 +13,4 @@
       nerd-fonts.mononoki
     ];
   };
-]
+}
