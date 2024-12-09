@@ -11,6 +11,7 @@ in
     self.darwinModules.default
     self.darwinModules.fonts
     self.darwinModules.homebrew
+    self.darwinModules.security
     self.darwinModules.services
     self.darwinModules.system
   ];

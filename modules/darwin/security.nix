@@ -1,13 +1,10 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [
-    diff-so-fancy
-    gh
-    lazygit
-    git
-    gnupg
-    sshpass
-  ];
+{ pkgs, ... }: {
+  environment = {
+    systemPackages = with pkgs; [
+      gnupg
+      sshpass
+    ];
+  };
   programs = {
     gnupg = {
       agent = {

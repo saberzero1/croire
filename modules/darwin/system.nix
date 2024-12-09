@@ -5,8 +5,6 @@
       gh
       lazygit
       git
-      gnupg
-      sshpass
     ];
   };
 }
