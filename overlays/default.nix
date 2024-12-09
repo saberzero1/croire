@@ -1,9 +1,19 @@
+{ flake, ... }:
+
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
+self: super: {
+  neovim = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+}
+
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix
 # This file defines overlaysa
 
 # https://nixos-and-flakes.thiscute.world/nixpkgs/overlays
 
-{inputs, ...}: {
+#{inputs, ...}: {
 
   # This one brings our custom packages from the 'pkgs' directory
   # additions = final: _prev: import ../pkgs {pkgs = final;};
@@ -22,7 +32,7 @@
     #});
   #};
 
-  nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
+  #nvim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
   #pkgs = import nixpkgs {
   #  config = {
@@ -47,4 +57,4 @@
   #   };
   # };
 
-}
+  #}

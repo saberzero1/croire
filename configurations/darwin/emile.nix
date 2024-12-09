@@ -1,6 +1,6 @@
 # See /modules/darwin/* for actual settings
 # This file is just *top-level* configuration.
-{ flake, ... }:
+{ flake, lib, ... }:
 
 let
   inherit (flake) inputs;
@@ -23,6 +23,7 @@ in
       # allowInsecure = false;
       # allowUnsupportedSystem = true;
     };
+    overlays = lib.attrValues self.overlays;
   };
 
   networking.hostName = "Emiles-MacBook-Pro";
