@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ flake, pkgs, ... }:
 {
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.
@@ -114,7 +114,7 @@
     };
     starship = {
       enable = true;
-      settings = pkgs.lib.importTOML "${inputs.dotfiles}/starship.toml";
+      settings = pkgs.lib.importTOML "${flake.inputs.dotfiles}/starship.toml";
       enableZshIntegration = true;
       enableBashIntegration = true;
     };
