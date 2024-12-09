@@ -10,17 +10,6 @@
     };
     zsh = {
       enable = true;
-      dotDir = ".config/zsh";
-      autosuggestion = {
-        enable = true;
-      };
-      enableCompletion = true;
-      history = {
-        save = 100000;
-      };
-      syntaxHighlighting = {
-        enable = true;
-      };
       autocd = false;
       #defaultKeymap = "vicmd";
       initExtra = ''

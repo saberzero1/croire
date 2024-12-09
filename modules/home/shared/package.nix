@@ -48,6 +48,7 @@
     wezterm
     #inputs.wezterm.packages.${pkgs.system}.default
     zsh
+    zsh-autopair
     zsh-autosuggestions
     zsh-completions
     zsh-syntax-highlighting
