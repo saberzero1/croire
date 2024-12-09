@@ -15,18 +15,15 @@
     ".config/nvim/lazy-lock.json" = {
       source = "${flake.inputs.dotfiles}/lazy-lock.json";
     };
-    #"config/starship/starship.toml" = {
-    #  source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
-      #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/starship/starship.toml";
-      #};
-    #"config/zsh/.zshrc" = {
-    #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
-    #};
-    #".config/starship.toml" = {
-    #  source = "${flake.inputs.dotfiles}/starship/starship.toml";
-      #};
     ".config/aerospace/aerospace.toml" = {
       source = "${flake.inputs.dotfiles}/aerospace/aerospace.toml";
     };
+    ".config/ranger/commands.py" = { source = "${flake.inputs.dotfiles}/ranger/commands.py"; };
+    ".config/ranger/commands_full.py" = { source = "${flake.inputs.dotfiles}/ranger/commands_full.py"; };
+    ".config/ranger/rc.conf" = { source = "${flake.inputs.dotfiles}/ranger/rc.conf"; };
+    ".config/ranger/rifle.conf" = { source = "${flake.inputs.dotfiles}/ranger/rifle.conf"; };
+    ".config/ranger/scope.sh" = { source = "${flake.inputs.dotfiles}/ranger/scope.sh"; };
+    ".config/ranger/plugins/ranger_devicons/__init__.py" = { source = "${flake.inputs.dotfiles}/ranger/plugins/ranger_devicons/__init__.py"; };
+    ".config/ranger/plugins/ranger_devicons/devicons.py" = { source = "${flake.inputs.dotfiles}/ranger/plugins/ranger_devicons/devicons.py"; };
   };
 }
