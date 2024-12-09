@@ -10,7 +10,7 @@
     };
     zsh = {
       enable = true;
-      dotDir = "config/zsh";
+      dotDir = ".config/zsh";
       autosuggestion = {
         enable = true;
       };
