@@ -22,9 +22,9 @@
     #"config/zsh/.zshrc" = {
     #source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/scripts/.zshrc";
     #};
-    ".config/starship.toml" = {
-      source = "${flake.inputs.dotfiles}/starship/starship.toml";
-    };
+    #".config/starship.toml" = {
+    #  source = "${flake.inputs.dotfiles}/starship/starship.toml";
+      #};
     ".config/aerospace/aerospace.toml" = {
       source = "${flake.inputs.dotfiles}/aerospace/aerospace.toml";
     };
