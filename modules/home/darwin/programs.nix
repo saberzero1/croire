@@ -113,13 +113,8 @@
       #'';
     };
     starship = {
-      enable = (
-        if (builtins.pathExists /Users/emile/config/starship/starship.toml) then
-          true
-        else
-          false
-      );
-      settings = pkgs.lib.importTOML /Users/emile/config/starship/starship.toml;
+      enable = true;
+      settings = pkgs.lib.importTOML "${inputs.dotfiles}/starship.toml";
       enableZshIntegration = true;
       enableBashIntegration = true;
     };

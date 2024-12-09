@@ -58,6 +58,16 @@
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Dotfiles
+    dotfiles = {
+      url = "github:saberzero1/shelter/master";
+      flake = false;
+    };
+    espanso = {
+      url = "github:saberzero1/totten/master";
+      flake = false;
+    };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
