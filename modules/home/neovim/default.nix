@@ -6,7 +6,7 @@
 */
   environment = {
     systemPackages = [
-      inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+      flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     ];
   };
 
