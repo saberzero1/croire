@@ -92,9 +92,6 @@
     python3
     virtualenv
 
-    # Lua
-    luajit
-
     # Extra
     fastfetch
     gnuplot

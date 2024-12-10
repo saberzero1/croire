@@ -22,5 +22,8 @@
 
     # Python
     python313Full
+
+    # Lua
+    luajit
   ];
 }
