@@ -27,7 +27,7 @@
     pika-backup
 
     # Python
-    python312Full
+    python3
     python312Packages.pynvim
 
     # Lua
