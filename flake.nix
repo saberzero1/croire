@@ -64,7 +64,7 @@
       url = "github:saberzero1/shelter/master";
       flake = false;
     };
-    espanso = {
+    totten = {
       url = "github:saberzero1/totten/master";
       flake = false;
     };
