@@ -375,6 +375,10 @@
       '';
     };
     git = {
+      signing = {
+        key = null;
+        signByDefault = true;
+      };
       diff-so-fancy = {
         changeHunkIndicators = true;
         enable = true;
