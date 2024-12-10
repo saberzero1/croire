@@ -17,9 +17,11 @@
         enable = true;
       };
     };
+
     udev = {
       enable = true;
     };
+
     fstrim = {
       enable = true;
       interval = "weekly";
@@ -65,15 +67,18 @@
         variant = "";
       };
     };
+
     displayManager = {
       defaultSession = "sway";
     };
+
     xrdp = {
       enable = false;
       defaultWindowManager = "gnome-remote-desktop";
       openFirewall = false;
       port = 3389;
     };
+
     gnome = {
       gnome-browser-connector = {
         enable = true;
@@ -82,8 +87,31 @@
         enable = true;
       };
     };
+
     openssh = {
       enable = true;
+    };
+
+    mako = {
+      enable = true;
+    };
+
+    wlsunset = {
+      enable = true;
+      package = pkgs.wlsunset;
+      sunrise = "08:00";
+      sunset = "18:00";
+      temperature = {
+        day = 4001;
+        night = 4000;
+      };
+    };
+
+    espanso = {
+      enable = true;
+      package = pkgs.espanso-wayland;
+      configs = { };
+      matches = { };
     };
   };
 }

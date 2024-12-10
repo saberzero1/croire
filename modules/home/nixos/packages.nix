@@ -10,6 +10,8 @@
     freerdp
     wl-clipboard
 
+    espanso-wayland
+
     # Extras
     hdparm
     hplip
@@ -20,10 +22,21 @@
     pciutils
     usbutils
 
+    atuin
+    gh-dash
+    xclicker
+
+    pika-backup
+
     # Python
     python313Full
+    python312Packages.pynvim
 
     # Lua
     luajit
+
+    # VSCopium
+    vscode-extensions.asvetliakov.vscode-neovim
+    vscodium.fhs
   ];
 }

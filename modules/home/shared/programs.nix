@@ -7,7 +7,19 @@
     bat.enable = true;
     # Type `<ctrl> + r` to fuzzy search your shell history
     fzf.enable = true;
-    jq.enable = true;
+    jq = {
+      colors = {
+        arrays = "1;37";
+        false = "0;37";
+        null = "1;30";
+        numbers = "0;37";
+        objects = "1;37";
+        strings = "0;32";
+        true = "0;37";
+      };
+      enable = true;
+      package = pkgs.jq;
+    };
     # Install btop https://github.com/aristocratos/btop
     btop.enable = true;
 
@@ -158,6 +170,16 @@
         pull.rebase = true;
         rebase.autoStash = true;
       };
+    };
+    ripgrep = {
+      enable = true;
+      package = pkgs.ripgrep;
+    };
+    vscode = {
+      enable = false;
+      enableExtensionUpdateCheck = true;
+      mutableExtensionsDir = true;
+      package = pkgs.vscodium.fhs;
     };
   };
 }
