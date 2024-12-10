@@ -99,13 +99,5 @@
     # Extra
     fastfetch
     gnuplot
-    hdparm
-    hplip
-    htop
-    imagemagick
-    mpv
-    pamixer
-    pciutils
-    usbutils
   ];
 }

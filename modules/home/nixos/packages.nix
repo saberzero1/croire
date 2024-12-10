@@ -9,5 +9,15 @@
     ulauncher
     freerdp
     wl-clipboard
+
+    # Extras
+    hdparm
+    hplip
+    htop
+    imagemagick
+    mpv
+    pamixer
+    pciutils
+    usbutils
   ];
 }
