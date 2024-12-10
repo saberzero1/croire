@@ -22,5 +22,13 @@
       source = "${flake.inputs.dotfiles}/ranger";
       recursive = true;
     };
+    ".config/espanso/config" = {
+      source = "${flake.inputs.espanso}/config";
+      recursive = true;
+    };
+    ".config/espanso/match" = {
+      source = "${flake.inputs.espanso}/match";
+      recursive = true;
+    };
   };
 }

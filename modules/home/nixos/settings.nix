@@ -65,10 +65,6 @@
       "sway/config" = { source = "${flake.inputs.dotfiles}/sway/config"; };
       "sway-interactive-screenshot/config.toml" = { source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/config.toml"; };
       "sway-interactive-screenshot/sway-interactive-screenshot" = { source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/sway-interactive-screenshot"; };
-      "espanso" = {
-        source = "${flake.inputs.espanso}";
-        recursive = true;
-      };
     };
     desktopEntries = {
       "nvim" = {

@@ -10,8 +10,6 @@
     freerdp
     wl-clipboard
 
-    espanso-wayland
-
     # Extras
     hdparm
     hplip
