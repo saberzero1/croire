@@ -36,5 +36,8 @@
     # VSCopium
     vscode-extensions.asvetliakov.vscode-neovim
     vscodium.fhs
+
+    # Espanso
+    espanso-wayland
   ];
 }

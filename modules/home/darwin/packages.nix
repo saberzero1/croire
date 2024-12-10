@@ -8,5 +8,8 @@
     fswatch
     dockutil
     aerospace
+
+    # Espanso
+    espanso
   ];
 }

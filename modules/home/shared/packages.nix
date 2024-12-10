@@ -96,7 +96,5 @@
     fastfetch
     gnuplot
 
-    # Espanso
-    espanso-wayland
   ];
 }
