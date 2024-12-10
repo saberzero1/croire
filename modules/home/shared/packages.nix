@@ -91,7 +91,6 @@
     black
     python3
     virtualenv
-    python313Full
 
     # Lua
     luajit

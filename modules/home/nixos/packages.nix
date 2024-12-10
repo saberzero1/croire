@@ -19,5 +19,8 @@
     pamixer
     pciutils
     usbutils
+
+    # Python
+    python313Full
   ];
 }
