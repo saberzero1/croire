@@ -128,7 +128,8 @@
 
     git = {
       enable = true;
-      package = pkgs.gitFull;
+      package = pkgs.git;
+      # package = pkgs.gitFull;
       ignores = [
         "*.swp"
       ];
