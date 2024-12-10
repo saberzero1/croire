@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   home.sessionVariables = {
     TERM = "wezterm";
