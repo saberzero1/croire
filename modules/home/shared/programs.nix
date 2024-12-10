@@ -138,39 +138,6 @@
       ];
     };
 
-    git = {
-      enable = true;
-      package = pkgs.git;
-      # package = pkgs.gitFull;
-      ignores = [
-        "*.swp"
-      ];
-      userName = "saberzero1";
-      userEmail = "github@emilebangma.com";
-      lfs = {
-        enable = true;
-      };
-      /*config = {
-        url = {
-          "https://github.com/" = {
-            insteadOf = [
-              "gh:"
-              "github:"
-            ];
-          };
-        };
-      };*/
-      extraConfig = {
-        init.defaultBranch = "master";
-        core = {
-          editor = "nvim";
-          autocrlf = "input";
-        };
-        commit.gpgsign = true;
-        pull.rebase = true;
-        rebase.autoStash = true;
-      };
-    };
     ripgrep = {
       enable = true;
       package = pkgs.ripgrep;

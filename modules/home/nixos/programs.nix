@@ -389,13 +389,29 @@
       };
       enable = true;
       package = pkgs.git;
-      signing = {
+      ignores = [
+        "*.swp"
+      ];
+      lfs = {
+        enable = true;
+      };
+      /*signing = {
         # key = null;
         signByDefault = true;
         gpgPath = "${pkgs.gnupg}/bin/gpg2";
-      };
+        };*/
       userEmail = "github@emilebangma.com";
       userName = "saberzero1";
+      extraConfig = {
+        init.defaultBranch = "master";
+        core = {
+          editor = "nvim";
+          autocrlf = "input";
+        };
+        commit.gpgsign = true;
+        pull.rebase = true;
+        rebase.autoStash = true;
+      };
     };
     gh = {
       enable = true;
