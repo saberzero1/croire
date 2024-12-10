@@ -35,13 +35,7 @@
   };
 
   programs = {
-    git = {
-      signing = {
-        # key = null;
-        gpgPath = "${pkgs.gnupg}/bin/gpg2";
-        signByDefault = true;
-      };
-    };
+
     gnupg = {
       agent = {
         enable = true;

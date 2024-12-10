@@ -392,6 +392,7 @@
       signing = {
         # key = null;
         signByDefault = true;
+        gpgPath = "${pkgs.gnupg}/bin/gpg2";
       };
       userEmail = "github@emilebangma.com";
       userName = "saberzero1";
