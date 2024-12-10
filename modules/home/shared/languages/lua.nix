@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs.lua53Packages; [
-    lua
+    # lua
     libluv
     argparse
     busted
