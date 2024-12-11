@@ -101,7 +101,6 @@ in
     graphics = {
       enable = true;
       enable32Bit = true;
-      enable64Bit = true;
     };
     keyboard = {
       qmk = {
