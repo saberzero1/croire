@@ -1,6 +1,6 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, lib, ... }:
+{ flake, pkgs, lib, config, ... }:
 
 let
   inherit (flake) inputs;
@@ -84,6 +84,38 @@ in
     alsa = {
       enablePersistence = true;
     };
+    nvidia = {
+      modesetting = {
+        enable = true;
+      };
+      powerManagement = {
+        enable = false;
+        fineGrained = false;
+      };
+      open = true;
+
+      nvidiaSettings = true;
+
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      enable64Bit = true;
+    };
+    keyboard = {
+      qmk = {
+        enable = true;
+      };
+      zsa = {
+        enable = true;
+      };
+    };
+  };
+
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" /*"amdgpu"*/ ];
   };
 
   networking = {
