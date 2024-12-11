@@ -90,7 +90,7 @@ in
       };
       powerManagement = {
         enable = false;
-        fineGrained = false;
+        finegrained = false;
       };
       open = true;
 
