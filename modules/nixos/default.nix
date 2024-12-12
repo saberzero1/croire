@@ -24,7 +24,7 @@ in
     gamescope = {
       enable = true;
       package = pkgs.gamescope;
-      args = [
+      /*args = [
         "-b"
         "-W 1920"
         "-H 1080"
@@ -33,7 +33,7 @@ in
         "--expose-wayland"
         "--prefer-vk-device"
         "--force-grab-cursor"
-      ];
+        ];*/
     };
   };
 }
