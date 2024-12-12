@@ -96,5 +96,10 @@
     fastfetch
     gnuplot
 
+    # Privacy
+    tor
+    playwright
+    playwright-driver
+    playwright-test
   ];
 }

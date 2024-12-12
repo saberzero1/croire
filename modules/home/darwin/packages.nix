@@ -10,6 +10,6 @@
     aerospace
 
     # Espanso
-    espanso
+    # espanso
   ];
 }

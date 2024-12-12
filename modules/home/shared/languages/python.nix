@@ -9,6 +9,14 @@
     numpy
     python-dotenv
     black
+    pytest
+
+    # Playwright
+    playwright
+    playwright-driver
+    playwright-test
+    playwright-stealth
+    playwrightcapture
   ];
 
 }

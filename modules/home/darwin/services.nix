@@ -3,7 +3,7 @@
   services = {
     espanso = {
       enable = true;
-      package = pkgs.espanso;
+      # package = pkgs.espanso;
       configs = { };
       matches = { };
     };
