@@ -98,8 +98,8 @@
 
     # Privacy
     tor
-    playwright
+    #playwright
     playwright-driver
-    playwright-test
+    #playwright-test
   ];
 }

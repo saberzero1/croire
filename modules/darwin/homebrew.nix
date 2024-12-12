@@ -8,6 +8,7 @@
       "sol"
       "obsidian"
       "wavebox"
+      "nordlayer"
     ];
     masApps = { };
   };
