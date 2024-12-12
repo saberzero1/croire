@@ -9,6 +9,7 @@
       "obsidian"
       "wavebox"
       "nordlayer"
+      "espanso"
     ];
     masApps = { };
   };
