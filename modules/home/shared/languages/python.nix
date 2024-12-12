@@ -13,7 +13,7 @@
 
     # Playwright
     playwright
-    playwright-driver
+    # playwright-driver
     playwright-test
     playwright-stealth
     playwrightcapture
