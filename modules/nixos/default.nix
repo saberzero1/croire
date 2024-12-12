@@ -16,5 +16,24 @@ in
 
   services.openssh.enable = true;
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+
+    # GeForce Now for Linux fix
+    # https://github.com/hmlendea/gfn-electron/issues/250#issuecomment-2408948652
+    gamescope = {
+      enable = true;
+      package = pkgs.gamescope;
+      args = [
+        "-b"
+        "-W 1920"
+        "-H 1080"
+        "-r 60"
+        "--backend sdl"
+        "--expose-wayland"
+        "--prefer-vk-device"
+        "--force-grab-cursor"
+      ];
+    };
+  };
 }
