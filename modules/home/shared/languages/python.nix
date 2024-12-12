@@ -14,7 +14,7 @@
     # Playwright
     playwright
     # playwright-driver
-    playwright-test
+    pytest-playwright
     playwright-stealth
     playwrightcapture
   ];
