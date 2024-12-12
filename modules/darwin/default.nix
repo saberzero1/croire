@@ -101,8 +101,8 @@ in
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToControl = true;
-      # swapLeftCommandAndLeftAlt = true;
-      swapLeftCtrlAndFn = true;
+      swapLeftCommandAndLeftAlt = false;
+      swapLeftCtrlAndFn = false;
     };
 
     activationScripts.postUserActivation.text = ''
