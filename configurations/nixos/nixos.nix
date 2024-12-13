@@ -14,6 +14,10 @@ in
     self.nixosModules.security
     self.nixosModules.services
     self.nixosModules.system
+    inputs.nix-snapd.nixosModules.default
+    {
+      services.snap.enable = true;
+    }
   ];
 
   # The platform the configuration will be used on.

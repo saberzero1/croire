@@ -1,9 +1,14 @@
 { flake, pkgs, lib, ... }:
 {
-  home.shellAliases = {
-    vi = "nvim";
-    vim = "nvim";
-    vimdiff = "nvim -d";
+  home = {
+    shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
+      vimdiff = "nvim -d";
+    };
+    sessionPath = [
+      "/snap/bin"
+    ];
   };
   dconf = {
     settings = {
