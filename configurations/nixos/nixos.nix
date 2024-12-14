@@ -81,13 +81,16 @@ in
 
   hardware = {
     enableRedistributableFirmware = true;
+
     pulseaudio = {
       enable = false;
     };
+
     # https://discourse.nixos.org/t/issue-after-sound-option-was-removed-in-unstable/49394/8
     alsa = {
       enablePersistence = true;
     };
+
     nvidia = {
       modesetting = {
         enable = true;
@@ -102,10 +105,16 @@ in
 
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
+
     graphics = {
       enable = true;
       enable32Bit = true;
     };
+
+    opengl = {
+      enable = true;
+    };
+
     keyboard = {
       qmk = {
         enable = true;
