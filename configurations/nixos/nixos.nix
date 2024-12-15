@@ -111,10 +111,6 @@ in
       enable32Bit = true;
     };
 
-    opengl = {
-      enable = true;
-    };
-
     keyboard = {
       qmk = {
         enable = true;
