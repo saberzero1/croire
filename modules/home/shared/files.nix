@@ -5,18 +5,13 @@
       source = "${flake.inputs.dotfiles}/wezterm";
       recursive = true;
     };
-    ".config/nvim/lua" = {
-      source = "${flake.inputs.dotfiles}/lua";
+    ".config/nvim" = {
+      source = "${flake.inputs.dotfiles}/nvim";
       recursive = true;
     };
-    ".config/nvim/init.lua" = {
-      source = "${flake.inputs.dotfiles}/init.lua";
-    };
-    ".config/nvim/lazy-lock.json" = {
-      source = "${flake.inputs.dotfiles}/lazy-lock.json";
-    };
-    ".config/aerospace/aerospace.toml" = {
-      source = "${flake.inputs.dotfiles}/aerospace/aerospace.toml";
+    ".config/aerospace" = {
+      source = "${flake.inputs.dotfiles}/aerospace";
+      recursive = true;
     };
     ".config/ranger" = {
       source = "${flake.inputs.dotfiles}/ranger";
