@@ -28,7 +28,7 @@
     };
 
     printing = {
-      enable = true;
+      enable = false;
     };
 
     displayManager = {
@@ -62,10 +62,10 @@
           ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
         '';
       };
-      videoDrivers = [
+      /*videoDrivers = [
         # "nvidia"
         "nouveau"
-      ];
+      ];*/
       xkb = {
         layout = "us";
         variant = "";

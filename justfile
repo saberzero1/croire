@@ -45,6 +45,11 @@ run:
 switch:
   nix run .#activate --accept-flake-config
 
+# Check the system configuration
+[group('Main')]
+status:
+  sudo nix-channel --list | grep nixos
+
 #fetch:
 #  git submodule update --init --remote --recursive
 

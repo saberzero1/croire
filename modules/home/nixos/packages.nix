@@ -12,7 +12,7 @@
 
     # Extras
     hdparm
-    hplip
+    # hplip
     htop
     imagemagick
     mpv
