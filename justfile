@@ -43,7 +43,7 @@ run:
 # Activate default configuration
 [group('Main')]
 switch:
-  nix run .#activate
+  nix run .#activate --accept-flake-config
 
 #fetch:
 #  git submodule update --init --remote --recursive
