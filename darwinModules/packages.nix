@@ -40,7 +40,7 @@ with pkgs; [
   age
   age-plugin-yubikey
   gnupg
-  
+
   # Javascript
   nodePackages.live-server
   nodePackages.prettier

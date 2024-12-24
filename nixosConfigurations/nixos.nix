@@ -2,11 +2,10 @@
 let
   username = inputs.self.username;
   nixosModule =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
+    { config
+    , lib
+    , pkgs
+    , ...
     }:
     {
       imports = [

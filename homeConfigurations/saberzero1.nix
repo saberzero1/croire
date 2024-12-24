@@ -3,11 +3,10 @@ let
   username = inputs.self.username;
   profileDirectory = "/etc/profiles/per-user/${username}";
   homeModule =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
+    { config
+    , lib
+    , pkgs
+    , ...
     }:
     {
       imports = [
@@ -78,7 +77,7 @@ in
     ];
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
   })
-  // {
+    // {
     inherit nixosModule;
   }
 )

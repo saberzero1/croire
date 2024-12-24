@@ -7,40 +7,78 @@
 #
 ############################################################################
 
-fetch:
-  git submodule update --init --remote --recursive
+# Default command when 'just' is run without arguments
+default:
+  @just --list
 
-dinit:
-  nix run nix-darwin -- switch --flake .
+# Update nix flake
+[group('Main')]
+update:
+  nix flake update
 
-[linux]
-build:
-  sudo nixos-rebuild build --flake . --impure --use-remote-sudo
+# Lint nix files
+[group('dev')]
+lint:
+  nix fmt
 
-[macos]
-build:
-  sudo -s -u $(whoami) darwin-rebuild build --flake . --impure
+# Check nix flake
+[group('dev')]
+check:
+  nix flake check
 
-[linux]
-test:
-  sudo nixos-rebuild test --flake . --impure --use-remote-sudo
+[group('dev')]
+check-all:
+  nix flake check --all-systems
+
+# Manually enter dev shell
+[group('dev')]
+dev:
+  nix develop
+
+# Activate the configuration
+[group('Main')]
+run:
+  nix run
+
+# Activate default configuration
+[group('Main')]
+switch:
+  nix run .#activate
+
+#fetch:
+#  git submodule update --init --remote --recursive
+
+#dinit:
+#  nix run nix-darwin -- switch --flake .
+
+#[linux]
+#build:
+#  sudo nixos-rebuild build --flake . --impure --use-remote-sudo
+
+#[macos]
+#build:
+#  sudo -s -u $(whoami) darwin-rebuild build --flake . --impure
+
+#[linux]
+#test:
+#  sudo nixos-rebuild test --flake . --impure --use-remote-sudo
 
 #test
 #  sudo -s -u $(whoami) darwin-rebuild test --flake . --impure
 
-[linux]
-switch:
-  sudo nixos-rebuild switch --flake . --impure --use-remote-sudo
+#[linux]
+#switch:
+#  sudo nixos-rebuild switch --flake . --impure --use-remote-sudo
 
-[macos]
-switch:
-  sudo -s -u $(whoami) darwin-rebuild  switch --flake . --impure
+#[macos]
+#switch:
+#  sudo -s -u $(whoami) darwin-rebuild  switch --flake . --impure
 
-debug:
-  nixos-rebuild switch --flake . --impure --use-remote-sudo --show-trace --verbose --option eval-cache false
+#debug:
+#  nixos-rebuild switch --flake . --impure --use-remote-sudo --show-trace --verbose --option eval-cache false
 
-update:
-  nix flake update
+#update:
+#  nix flake update
 
 # Update specific input
 # usage: make upp i=home-manager

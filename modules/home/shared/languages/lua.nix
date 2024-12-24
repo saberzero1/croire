@@ -1,0 +1,56 @@
+{ pkgs, ... }:
+{
+  home.packages = with pkgs.lua53Packages; [
+    libluv
+    argparse
+    busted
+    busted-htest
+    commons-nvim
+    compat53
+    cosmo
+    ldoc
+    http
+    image-nvim
+    inspect
+    jsregexp
+    lua-lsp
+    lua-utils-nvim
+    luacheck
+    luarocks
+    luarocks-build-rust-mlua
+    luarocks-build-treesitter-parser
+    luasnip
+    luasql-sqlite3
+    luassert
+    luasystem
+    luatext
+    luaunit
+    luautf8
+    luazip
+    luv
+    lyaml
+    markdown
+    mediator_lua
+    middleclass
+    neorg
+    nlua
+    nui-nvim
+    nvim-cmp
+    nvim-nio
+    pathlib-nvim
+    penlight
+    plenary-nvim
+    readline
+    rest-nvim
+    rocks-config-nvim
+    rocks-dev-nvim
+    rocks-git-nvim
+    rocks-nvim
+    rtp-nvim
+    say
+    serpent
+    std-_debug
+    std-normalize
+    stdlib
+  ];
+}

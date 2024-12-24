@@ -1,0 +1,33 @@
+name: Update Flakes
+on:
+  schedule:
+    - cron: 12 */1 * * *
+  workflow_dispatch:
+
+jobs:
+  update-packages:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Nix with Cachix
+        uses: cachix/install-nix-action@v20
+
+      - name: Update Flakes
+        run: nix flake update
+
+      - name: Push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: flake.lock
+          skip_fetch: true
+          skip_dirty_check: false
+          commit_options: "--no-verify --signoff"
+          commit_message: "[ci] flakes: auto-updated"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"

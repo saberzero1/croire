@@ -1,10 +1,9 @@
 { inputs, ... }@flakeContext:
-{
-  config,
-  lib,
-  pkgs,
-  home-manager,
-  ...
+{ config
+, lib
+, pkgs
+, home-manager
+, ...
 }:
 let
   username = inputs.self.username;
@@ -82,18 +81,17 @@ in
     useUserPackages = true;
     useGlobalPkgs = true;
     users.${user} =
-      {
-        config,
-        lib,
-        pkgs,
-	home-manager,
-        ...
+      { config
+      , lib
+      , pkgs
+      , home-manager
+      , ...
       }:
       {
         home = {
           enableNixpkgsReleaseCheck = false;
           # packages = pkgs.callPackage ./packages.nix { };
-      	  packages = with pkgs; [
+          packages = with pkgs; [
             # Core
             coreutils
             gcc
@@ -102,27 +100,27 @@ in
             sqlite
             wget
             zip
-          
+
             # Development
             direnv
             nix-direnv
             gh
             #neovim-unwrapped
-      	    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
-          
+            inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+
             # Terminal
             ranger
             starship
             tmux
             #wezterm
-      	    inputs.wezterm.packages.${pkgs.system}.default
+            inputs.wezterm.packages.${pkgs.system}.default
             zsh
             zsh-autosuggestions
             zsh-completions
             zsh-syntax-highlighting
             zsh-vi-mode
             zsh-you-should-use
-          
+
             # Fonts
             nerd-fonts.monaspace
             nerd-fonts.fira-code
@@ -130,18 +128,18 @@ in
             nerd-fonts.fira-mono
             nerd-fonts.droid-sans-mono #DroidSansMono
             nerd-fonts.mononoki
-          
+
             # Security
             age
             age-plugin-yubikey
             gnupg
-            
+
             # Javascript
             nodePackages.live-server
             nodePackages.prettier
             nodePackages.npm
             nodejs
-          
+
             # Utility
             fd
             ffmpeg
@@ -157,12 +155,12 @@ in
             unrar
             unzip
             zoxide
-          
+
             # Python
             black
             python3
             virtualenv
-          
+
             # Mac
             fswatch
             dockutil
@@ -174,11 +172,11 @@ in
           file = {
             "config/wezterm" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/wezterm";
-	      recursive = true;
+              recursive = true;
             };
             "config/nvim/lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/lua";
-	      recursive = true;
+              recursive = true;
             };
             "config/nvim/init.lua" = {
               source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/shelter/init.lua";
@@ -206,12 +204,12 @@ in
             EDITOR = "nvim";
             VISUAL = "nvim";
             # TERM = "wezterm";
-	          # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/"; 
+            # TERM = "${pkgs.wezterm}/Applications/Wezterm.app/";
             # BROWSER = "${pkgs.wavebox}/bin/wavebox";
             # LAZY = "${config.home.homeDirectory}/.local/share/lazy-nvim";
-	          LAZY = "/Users/${user}/share/lazy-nvim";
-	          XDG_CONFIG_HOME = "/Users/${user}/config";
-	          WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
+            LAZY = "/Users/${user}/share/lazy-nvim";
+            XDG_CONFIG_HOME = "/Users/${user}/config";
+            WEZTERM_CONFIG_FILE = "/Users/${user}/config/wezterm/wezterm.lua";
             WEZTERM_CONFIG_DIR = "/Users/${user}/config/wezterm";
             STARSHIP_CONFIG = "/Users/${user}/config/starship/starship.toml";
             ZDOTDIR = "/Users/${user}/config/zsh";
@@ -243,16 +241,16 @@ in
             initExtra = ''
               # zoxide
               eval "$(zoxide init --cmd cd zsh)"
-        
+
               # atuin
               # eval "$(atuin init zsh --disable-up-arrow)"
-        
+
               # direnv
               eval "$(direnv hook zsh)"
-        
+
               # starship
               eval "$(starship init zsh)"
-        
+
               # thefuck
               eval $(thefuck --alias fuck)
             '';
@@ -286,7 +284,7 @@ in
             defaultEditor = true;
             enable = true;
             #package = pkgs.neovim-unwrapped;
-      	    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+            package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
             viAlias = true;
             vimAlias = true;
             vimdiffAlias = true;
@@ -320,30 +318,30 @@ in
           wezterm = {
             enable = true;
             #package = pkgs.wezterm;
-      	    package = inputs.wezterm.packages.${pkgs.system}.default;
+            package = inputs.wezterm.packages.${pkgs.system}.default;
             enableZshIntegration = true;
             enableBashIntegration = true;
-      	    #extraConfig = ''
-      	    #  local init = require "init"
-                  #
-      	    #  return init
-      	    #'';
+            #extraConfig = ''
+            #  local init = require "init"
+            #
+            #  return init
+            #'';
           };
           starship = {
             enable = (
-      	      if (builtins.pathExists "/Users/${user}/config/starship/starship.toml") then
-      	        true
-      	      else
-      	        false
-      	    );
+              if (builtins.pathExists "/Users/${user}/config/starship/starship.toml") then
+                true
+              else
+                false
+            );
             settings = pkgs.lib.importTOML "/Users/${user}/config/starship/starship.toml";
             enableZshIntegration = true;
             enableBashIntegration = true;
           };
-      	  ranger = {
-      	    enable = true;
-      	    package = pkgs.ranger;
-      	  };
+          ranger = {
+            enable = true;
+            package = pkgs.ranger;
+          };
           tmux = {
             enable = true;
           };
@@ -361,7 +359,7 @@ in
           };
         };
       };
-    };
+  };
   local = {
     dock.enable = true;
     dock.entries = [
@@ -476,4 +474,3 @@ in
   #  };
   #};
 }
-

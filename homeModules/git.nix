@@ -94,7 +94,7 @@ in
               cherryPickedCommitFgColor = [
                 "#7aa2f7"
               ];
-              cherryPickedCommitBgColor= [
+              cherryPickedCommitBgColor = [
                 "#bb92f7"
               ];
               markedBaseCommitFgColor = [

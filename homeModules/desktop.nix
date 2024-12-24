@@ -100,16 +100,16 @@ in
             all-outputs = true;
             format = "{icon}";
             persistent_workspaces = {
-              "1" = [];
-              "2" = [];
-              "3" = [];
-              "4" = [];
-              "5" = [];
-              "6" = [];
-              "7" = [];
-              "8" = [];
-              "9" = [];
-              "10" = [];
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
+              "6" = [ ];
+              "7" = [ ];
+              "8" = [ ];
+              "9" = [ ];
+              "10" = [ ];
             };
             format-icons = {
               "1" = "󰋜"; # Home
@@ -203,113 +203,113 @@ in
           };
         }];
         style = ''
-* {
-border: none;
-border-radius: 0;
-font-family: mononoki Nerd Font;
-font-size: 14px;
-min-height: 0;
-}
+          * {
+          border: none;
+          border-radius: 0;
+          font-family: mononoki Nerd Font;
+          font-size: 14px;
+          min-height: 0;
+          }
 
-window#waybar {
-background: transparent;
-color: white;
-}
+          window#waybar {
+          background: transparent;
+          color: white;
+          }
 
-#workspaces {
-background-color: #24283b;
-margin: 5px;
-margin-left: 10px;
-border-radius: 5px;
-}
-#workspaces button {
-padding: 5px 10px;
-color: #c0caf5;
-}
+          #workspaces {
+          background-color: #24283b;
+          margin: 5px;
+          margin-left: 10px;
+          border-radius: 5px;
+          }
+          #workspaces button {
+          padding: 5px 10px;
+          color: #c0caf5;
+          }
 
-#workspaces button.focused {
-color: #24283b;
-background-color: #7aa2f7;
-border-radius: 5px;
-}
+          #workspaces button.focused {
+          color: #24283b;
+          background-color: #7aa2f7;
+          border-radius: 5px;
+          }
 
-#workspaces button:hover {
-background-color: #7dcfff;
-color: #24283b;
-border-radius: 5px;
-}
+          #workspaces button:hover {
+          background-color: #7dcfff;
+          color: #24283b;
+          border-radius: 5px;
+          }
 
-#sway-mode, #custom-date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
-background-color: #24283b;
-padding: 5px 10px;
-margin: 5px 0px;
-}
+          #sway-mode, #custom-date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
+          background-color: #24283b;
+          padding: 5px 10px;
+          margin: 5px 0px;
+          }
 
-#custom-date {
-color: #7dcfff;
-}
+          #custom-date {
+          color: #7dcfff;
+          }
 
-#custom-power {
-color: #24283b;
-background-color: #db4b4b;
-border-radius: 5px;
-margin-right: 10px;
-margin-top: 5px;
-margin-bottom: 5px;
-margin-left: 0px;
-padding: 5px 10px;
-}
+          #custom-power {
+          color: #24283b;
+          background-color: #db4b4b;
+          border-radius: 5px;
+          margin-right: 10px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          margin-left: 0px;
+          padding: 5px 10px;
+          }
 
-#clock {
-color: #bb9af7;
-border-radius: 0px 5px 5px 0px;
-margin-right: 10px;
-}
+          #clock {
+          color: #bb9af7;
+          border-radius: 0px 5px 5px 0px;
+          margin-right: 10px;
+          }
 
-#battery {
-color: #9ece6a;
-}
+          #battery {
+          color: #9ece6a;
+          }
 
-#battery.charging {
-color: #9ece6a;
-}
+          #battery.charging {
+          color: #9ece6a;
+          }
 
-#battery.warning:not(.charging) {
-background-color: #f7768e;
-color: #24283b;
-border-radius: 5px 5px 5px 5px;
-}
+          #battery.warning:not(.charging) {
+          background-color: #f7768e;
+          color: #24283b;
+          border-radius: 5px 5px 5px 5px;
+          }
 
-#network {
-color: #f7768e;
-border-radius: 5px 0px 0px 5px;
-}
+          #network {
+          color: #f7768e;
+          border-radius: 5px 0px 0px 5px;
+          }
 
-#pulseaudio {
-color: #e0af68;
-}
+          #pulseaudio {
+          color: #e0af68;
+          }
 
-#memory {
-color: #2ac3de;
-}
+          #memory {
+          color: #2ac3de;
+          }
 
-#cpu {
-color: #7aa2f7;
-}
+          #cpu {
+          color: #7aa2f7;
+          }
 
-#sway-mode {
-color: #c0caf5;
-}
+          #sway-mode {
+          color: #c0caf5;
+          }
 
-#tray {
-background-color: #24283b;
-border-radius: 5px;
-margin-right: 10px;
-margin-top: 5px;
-margin-bottom: 5px;
-margin-left: 0px;
-padding: 5px 10px;
-}
+          #tray {
+          background-color: #24283b;
+          border-radius: 5px;
+          margin-right: 10px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          margin-left: 0px;
+          padding: 5px 10px;
+          }
         '';
       };
     };
