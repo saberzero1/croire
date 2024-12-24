@@ -26,7 +26,6 @@ jobs:
           file_pattern: flake.lock
           skip_fetch: true
           skip_dirty_check: false
-          commit_options: "--no-verify --signoff"
           commit_message: "[ci] flakes: auto-updated"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
