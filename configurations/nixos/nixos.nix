@@ -1,7 +1,6 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
 { flake, pkgs, lib, config, ... }:
-
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -10,7 +9,6 @@ in
   imports = [
     self.nixosModules.default
     self.nixosModules.fonts
-    #self.darwinModules.homebrew
     self.nixosModules.security
     self.nixosModules.services
     self.nixosModules.system

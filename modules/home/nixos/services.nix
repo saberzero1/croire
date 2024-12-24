@@ -14,8 +14,8 @@
         day = 6500;
         night = 4000;
       };
-      # systemdTarget = "";
     };
+
     espanso = {
       enable = true;
       package = pkgs.espanso-wayland;

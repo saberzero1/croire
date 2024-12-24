@@ -1,10 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment = {
     systemPackages = with pkgs; [
       gnupg
       sshpass
     ];
   };
+
   programs = {
     gnupg = {
       agent = {

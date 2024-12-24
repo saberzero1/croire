@@ -142,6 +142,7 @@
       enable = true;
       package = pkgs.ripgrep;
     };
+
     vscode = {
       enable = false;
       enableExtensionUpdateCheck = true;

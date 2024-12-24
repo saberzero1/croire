@@ -1,4 +1,4 @@
-{ flake, config, pkgs, ... }:
+{ flake, ... }:
 {
   home.file = {
     ".config/wezterm" = {

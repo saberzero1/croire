@@ -63,7 +63,7 @@
     nerd-fonts.fira-code
     fira-code-symbols
     nerd-fonts.fira-mono
-    nerd-fonts.droid-sans-mono #DroidSansMono
+    nerd-fonts.droid-sans-mono
     nerd-fonts.mononoki
 
     # Security
@@ -98,8 +98,6 @@
 
     # Privacy
     tor
-    #playwright
     playwright-driver
-    #playwright-test
   ];
 }

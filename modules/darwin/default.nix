@@ -1,11 +1,6 @@
 # This is your nix-darwin configuration.
 # For home configuration, see /modules/home/*
-{ flake
-, pkgs
-, lib
-, ...
-}:
-
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -14,6 +9,7 @@ in
   imports = [
     ./dock
   ];
+
   # Use TouchID for `sudo` authentication
   security.pam.enableSudoTouchIdAuth = true;
 
@@ -114,10 +110,10 @@ in
       ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
     '';
   };
+
   local = {
     dock.enable = true;
     dock.entries = [
-      #{ path = "/Applications/Safari.app"; }
       { path = "/Applications/Wavebox.app"; }
       { path = "${pkgs.wezterm}/Applications/Wezterm.app"; }
     ];

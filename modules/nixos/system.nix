@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }:
+{
   environment = {
     systemPackages = with pkgs; [
       vlc
@@ -137,16 +138,7 @@
       };
     };
   };
-  /*
-    dconf = {
-    enable = true;
-    profiles = {
-      user = {
-        databases = [ ];
-      };
-    };
-    };
-  */
+
   qt = {
     enable = true;
     platformTheme = "gnome";

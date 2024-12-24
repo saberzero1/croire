@@ -1,4 +1,4 @@
-{ flake, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   services = {
     pipewire = {

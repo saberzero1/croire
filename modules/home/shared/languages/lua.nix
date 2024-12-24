@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs.lua53Packages; [
-    # lua
     libluv
     argparse
     busted
@@ -28,14 +27,12 @@
     luaunit
     luautf8
     luazip
-    # luuid
     luv
     lyaml
     markdown
     mediator_lua
     middleclass
     neorg
-    # neotest
     nlua
     nui-nvim
     nvim-cmp

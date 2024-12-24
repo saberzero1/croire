@@ -76,10 +76,12 @@
         }
       '';
     };
+
     chromium = {
       enable = true;
       package = pkgs.wavebox;
     };
+
     zsh = {
       dotDir = ".config/zsh";
       enable = true;
@@ -128,16 +130,19 @@
         # eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh)
       '';
     };
+
     thefuck = {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
       enableInstantMode = false;
     };
+
     fuzzel = {
       enable = true;
       package = pkgs.fuzzel;
     };
+
     waybar = {
       enable = true;
       settings = [{
@@ -374,6 +379,7 @@
         }
       '';
     };
+
     git = {
       signing = {
         key = null;
@@ -417,6 +423,7 @@
         rebase.autoStash = true;
       };
     };
+
     gh = {
       enable = true;
       package = pkgs.gh;
@@ -431,6 +438,7 @@
         pkgs.gh-dash
       ];
     };
+
     lazygit = {
       enable = true;
       package = pkgs.lazygit;
@@ -477,6 +485,7 @@
         };
       };
     };
+
     swaylock = {
       enable = true;
       settings = {

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs.python312Packages; [
     pandas
     matplotlib
@@ -11,9 +12,7 @@
     black
     pytest
 
-    # Playwright
     playwright
-    # playwright-driver
     pytest-playwright
     playwright-stealth
     playwrightcapture
