@@ -119,15 +119,21 @@ optimize:
 [linux]
 clean-all:
   sudo nix-collect-garbage -d
+  nix-collect-garbage -d
   sudo nix store optimise
+  nix store optimise
   sudo nix-collect-garbage -d
+  nix-collect-garbage -d
   sudo /run/current-system/bin/switch-to-configuration boot
 
 [macos]
 clean-all:
   sudo nix-collect-garbage -d
+  nix-collect-garbage -d
   sudo nix store optimise
+  nix store optimise
   sudo nix-collect-garbage -d
+  nix-collect-garbage -d
 
 ############################################################################
 #
