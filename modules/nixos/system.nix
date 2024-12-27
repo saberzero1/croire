@@ -53,6 +53,8 @@
 
       gnugrep
       gnused
+      glib
+      glibc
       curlFull
       iwgtk
       iperf2
