@@ -56,6 +56,7 @@
       glib
       glibc
       nss
+      libnss_nis
       curlFull
       iwgtk
       iperf2
