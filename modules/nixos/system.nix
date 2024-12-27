@@ -55,6 +55,7 @@
       gnused
       glib
       glibc
+      nss
       curlFull
       iwgtk
       iperf2
