@@ -45,6 +45,22 @@
         "type": "github"
       }
     },
+    "color-schemes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735334948,
+        "narHash": "sha256-mV7u3fARyrZ3d5zNgURYLCPXeK8kTa7GqeZ46L/x4nE=",
+        "owner": "mbadolato",
+        "repo": "iTerm2-Color-Schemes",
+        "rev": "08df2e8a72dde535f8d17d8115fe792dbcdc6f35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mbadolato",
+        "repo": "iTerm2-Color-Schemes",
+        "type": "github"
+      }
+    },
     "devenv": {
       "inputs": {
         "cachix": "cachix",
@@ -349,6 +365,21 @@
         "owner": "wez",
         "repo": "freetype2",
         "rev": "e4586d960f339cf75e2e0b34aee30a0ed8353c0d",
+        "type": "github"
+      }
+    },
+    "ghostty": {
+      "locked": {
+        "lastModified": 1702368251,
+        "narHash": "sha256-hafrDmzGplzm+vdIo+LkOjRfA4qRcy5JmpGGksnht5c=",
+        "owner": "clo4",
+        "repo": "ghostty-hm-module",
+        "rev": "887e13a6e7acf5ffaab0119d96e476d84db90904",
+        "type": "github"
+      },
+      "original": {
+        "owner": "clo4",
+        "repo": "ghostty-hm-module",
         "type": "github"
       }
     },
@@ -961,11 +992,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1735390971,
-        "narHash": "sha256-hpmBfM0qXhNStOgAPsFcCE9v4LZWQk4u035ypnh5VAk=",
+        "lastModified": 1735392747,
+        "narHash": "sha256-ODJ2s8sWPtHXvQClfhcdfg5dYJ65T5EPN/7MTPyA9Rk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "60a5248571b6182760672812589ecf88c8f1cc06",
+        "rev": "db5ca039e6feb69490e01e7e651edf83a6884b60",
         "type": "github"
       },
       "original": {
@@ -1137,9 +1168,11 @@
     },
     "root": {
       "inputs": {
+        "color-schemes": "color-schemes",
         "devenv": "devenv",
         "dotfiles": "dotfiles",
         "flake-parts": "flake-parts_2",
+        "ghostty": "ghostty",
         "home-manager": "home-manager",
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
