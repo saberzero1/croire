@@ -45,22 +45,6 @@
         "type": "github"
       }
     },
-    "color-schemes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735334948,
-        "narHash": "sha256-mV7u3fARyrZ3d5zNgURYLCPXeK8kTa7GqeZ46L/x4nE=",
-        "owner": "mbadolato",
-        "repo": "iTerm2-Color-Schemes",
-        "rev": "08df2e8a72dde535f8d17d8115fe792dbcdc6f35",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mbadolato",
-        "repo": "iTerm2-Color-Schemes",
-        "type": "github"
-      }
-    },
     "devenv": {
       "inputs": {
         "cachix": "cachix",
@@ -1240,7 +1224,6 @@
     },
     "root": {
       "inputs": {
-        "color-schemes": "color-schemes",
         "devenv": "devenv",
         "dotfiles": "dotfiles",
         "flake-parts": "flake-parts_2",
