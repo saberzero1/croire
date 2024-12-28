@@ -83,7 +83,7 @@
     };*/
     ghostty = {
       url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     color-schemes = {
       url = "github:mbadolato/iTerm2-Color-Schemes";
