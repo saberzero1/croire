@@ -25,5 +25,9 @@
       source = "${flake.inputs.totten}";
       recursive = true;
     };
+    ".config/themes" = {
+      source = "${flake.inputs.color-schemes}";
+      recursive = true;
+    };
   };
 }
