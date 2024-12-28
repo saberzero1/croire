@@ -9,7 +9,7 @@ set $up k
 set $right l
 
 # Terminal
-set $term wezterm
+set $term ghostty
 
 # Colors
 # class                 border  backgr. text    indicator child_border
@@ -186,7 +186,7 @@ bindsym $mod+r mode "resize"
 
 # Launcher mode
 mode "launcher" {
-  bindsym $mod+t exec wezterm &
+  bindsym $mod+t exec ghostty &
   bindsym $mod+d exec discord &
   bindsym $mod+o exec obsidian &
   bindsym $mod+w exec wavebox &
@@ -215,14 +215,14 @@ input 12951:6505:ZSA_Technology_Labs_Moonlander_Mark_I xkb_layout "us"
 exec waybar &
 
 # Startup
-assign [app_id="wezterm"] workspace number 1
+assign [app_id="ghostty"] workspace number 1
 assign [app_id="discord"] workspace number 2
 assign [app_id="wavebox"] workspace number 3
 assign [app_id="zed"] workspace number 4
 assign [app_id="codium-url-handler"] workspace number 4
 assign [app_id="wine"] workspace number 4
 
-exec wezterm &
+exec ghostty &
 # exec discord &
 # exec wavebox &
 # exec codium &
