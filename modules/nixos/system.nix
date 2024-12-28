@@ -232,7 +232,7 @@
   programs = {
     nautilus-open-any-terminal = {
       enable = true;
-      terminal = "ghostty";
+      terminal = "xterm-ghostty";
     };
 
     sway = {
