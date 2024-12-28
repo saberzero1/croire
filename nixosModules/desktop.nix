@@ -107,7 +107,8 @@ in
         NIXOS_OZONE_WL = "1";
         EDITOR = "nvim";
         VISUAL = "nvim";
-        TERM = "wezterm";
+        # TERM = "wezterm";
+        TERM = "ghostty";
         BROWSER = "${pkgs.wavebox}/bin/wavebox";
         LAZY = "/home/${username}/Documents/lazy-nvim";
       };

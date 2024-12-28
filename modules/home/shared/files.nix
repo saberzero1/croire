@@ -17,6 +17,10 @@
       source = "${flake.inputs.dotfiles}/ranger";
       recursive = true;
     };
+    ".config/ghostty" = {
+      source = "${flake.inputs.dotfiles}/ghostty";
+      recursive = true;
+    };
     ".config/espanso" = {
       source = "${flake.inputs.totten}";
       recursive = true;

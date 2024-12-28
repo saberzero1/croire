@@ -81,7 +81,10 @@
       url = "github:clo4/ghostty-hm-module";
       inputs.nixpkgs.follows = "nixpkgs";
     };*/
-    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     color-schemes = {
       url = "github:mbadolato/iTerm2-Color-Schemes";
       flake = false;

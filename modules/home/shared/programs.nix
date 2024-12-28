@@ -71,7 +71,7 @@
       enableBashIntegration = true;
     };
 
-    ghostty = {
+    /*ghostty = {
       enable = true;
       package = pkgs.ghostty;
       shellIntegration = {
@@ -95,7 +95,7 @@
         clearDefaultKeybindings = false;
         # keybindings = {};
       };
-    };
+      };*/
 
     starship = {
       enable = true;

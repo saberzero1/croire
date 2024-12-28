@@ -30,6 +30,8 @@
       uwsm
       mako
 
+      ghostty
+
       libusb1
       wally-cli
       zsa-udev-rules
