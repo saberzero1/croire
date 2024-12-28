@@ -25,9 +25,5 @@
       source = "${flake.inputs.totten}";
       recursive = true;
     };
-    ".config/ghostty/themes" = {
-      source = "${flake.inputs.color-schemes}/Ghostty";
-      recursive = true;
-    };
   };
 }
