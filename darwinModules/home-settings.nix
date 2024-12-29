@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   direnv = {
@@ -38,7 +42,7 @@
       # Environment variables
       export EDITOR = "nvim"
       export VISUAL = "nvim"
-      export TERM = "wezterm"
+      export TERM = "xterm-ghostty"
     '';
   };
   git = {
@@ -96,12 +100,14 @@
       yaml-language-server
     ];
   };
-  wezterm = {
-    enable = true;
-    package = pkgs.wezterm;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
-  };
+  /*
+    wezterm = {
+      enable = true;
+      package = pkgs.wezterm;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
+  */
   starship = {
     enable = true;
     settings = pkgs.lib.importTOML "${config.home.homeDirectory}/.config/starship.toml";

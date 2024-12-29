@@ -115,7 +115,8 @@ in
     dock.enable = true;
     dock.entries = [
       { path = "/Applications/Wavebox.app"; }
-      { path = "${pkgs.wezterm}/Applications/Wezterm.app"; }
+      { path = "/Applications/Ghostty.app"; }
+      # { path = "${pkgs.wezterm}/Applications/Wezterm.app"; }
     ];
   };
 }

@@ -49,7 +49,7 @@
     ranger
     starship
     tmux
-    wezterm
+    # wezterm
     zsh
     zsh-autopair
     zsh-autosuggestions
