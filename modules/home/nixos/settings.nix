@@ -65,11 +65,21 @@
     };
     configFile = {
       "mimeapps.list".force = true;
-      "paperwm/user.css" = { source = "${flake.inputs.dotfiles}/paperwm/user.css"; };
-      "paperwm/user.js" = { source = "${flake.inputs.dotfiles}/paperwm/user.js"; };
-      "sway/config" = { source = "${flake.inputs.dotfiles}/sway/config"; };
-      "sway-interactive-screenshot/config.toml" = { source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/config.toml"; };
-      "sway-interactive-screenshot/sway-interactive-screenshot" = { source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/sway-interactive-screenshot"; };
+      "paperwm/user.css" = {
+        source = "${flake.inputs.dotfiles}/paperwm/user.css";
+      };
+      "paperwm/user.js" = {
+        source = "${flake.inputs.dotfiles}/paperwm/user.js";
+      };
+      "sway/config" = {
+        source = "${flake.inputs.dotfiles}/sway/config";
+      };
+      "sway-interactive-screenshot/config.toml" = {
+        source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/config.toml";
+      };
+      "sway-interactive-screenshot/sway-interactive-screenshot" = {
+        source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/sway-interactive-screenshot";
+      };
     };
     desktopEntries = {
       "nvim" = {
@@ -86,6 +96,15 @@
         comment = "TUI File Explorer";
         icon = "ranger";
         exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.ranger}/bin/ranger %F";
+        categories = [ "Application" ];
+        terminal = false;
+        #mimeType = [ "text/plain" ];
+      };
+      "geforce-now" = {
+        name = "GeForce NOW";
+        comment = "Cloud Gaming";
+        icon = "geforcenow-electron";
+        exec = "/snap/bin/geforcenow-electron";
         categories = [ "Application" ];
         terminal = false;
         #mimeType = [ "text/plain" ];
