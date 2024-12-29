@@ -71,32 +71,6 @@
       enableBashIntegration = true;
     };
 
-    /*ghostty = {
-      enable = true;
-      package = pkgs.ghostty;
-      shellIntegration = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      settings = {
-        font-size = 16;
-        font-family = "Monaspace Neon";
-
-        # MacOS settings
-        window-theme = "dark";
-        macos-option-as-alt = true;
-
-        # Config file
-        config-file = [
-          "${flake.inputs.color-schemes}/Ghostty/Tomorrow Night Bright"
-        ];
-
-        # Keybindings
-        clearDefaultKeybindings = false;
-        # keybindings = {};
-      };
-      };*/
-
     starship = {
       enable = true;
       settings = pkgs.lib.importTOML "${flake.inputs.dotfiles}/starship/starship.toml";
