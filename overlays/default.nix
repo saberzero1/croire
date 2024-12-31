@@ -6,6 +6,7 @@ let
 in
 self: super: {
   ghostty = inputs.ghostty.packages.${self.system}.default;
+  #gitbutler = inputs.gitbutler.packages.${self.system}.default;
   neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
   wezterm = inputs.wezterm.packages.${self.system}.default;
 }

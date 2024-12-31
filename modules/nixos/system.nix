@@ -31,6 +31,7 @@
       mako
 
       ghostty
+      gitbutler
 
       libusb1
       wally-cli

@@ -84,6 +84,10 @@
       };
     */
     ghostty.url = "github:ghostty-org/ghostty";
+    gitbutler = {
+      url = "github:gitbutlerapp/gitbutler";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Dotfiles
     dotfiles = {
