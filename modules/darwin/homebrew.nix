@@ -9,6 +9,7 @@
     };
     casks = [
       "ghostty"
+      "gitbutler"
       "sol"
       "obsidian"
       "wavebox"
