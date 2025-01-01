@@ -18,7 +18,7 @@ jobs:
         uses: cachix/install-nix-action@v20
 
       - name: Update Flakes
-        run: nix flake update
+        run: nix flake update --accept-flake-config
 
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v4
