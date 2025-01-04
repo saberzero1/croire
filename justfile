@@ -17,22 +17,22 @@ update:
   nix flake update
 
 # Lint nix files
-[group('dev')]
+[group('Dev')]
 lint:
   nix fmt
 
 # Check nix flake
-[group('dev')]
+[group('Dev')]
 check:
   nix flake check
 
 # Check nix flake for all systems
-[group('dev')]
+[group('Dev')]
 check-all:
   nix flake check --all-systems
 
 # Manually enter dev shell
-[group('dev')]
+[group('Dev')]
 dev:
   nix develop
 
