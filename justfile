@@ -26,6 +26,7 @@ lint:
 check:
   nix flake check
 
+# Check nix flake for all systems
 [group('dev')]
 check-all:
   nix flake check --all-systems
@@ -96,26 +97,32 @@ history:
 repl:
   nix repl -f flake:nixpkgs
 
+# Remove all generations older than 7 days
+[group('Clean')]
 [unix]
 clean-old:
-  # remove all generations older than 7 days
   sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
 
+# Garbage collect all unused nix store entries
+[group('Clean')]
 [unix]
 gc:
-  # garbage collect all unused nix store entries
   sudo nix-collect-garbage -d
 
+# Remove all old generations from boot
+[group('Clean')]
 [unix]
 clean:
-  # remove all old generations from boot
   sudo /run/current-system/bin/switch-to-configuration boot
 
+# Hard link nix stores
+[group('Clean')]
 [unix]
 optimize:
-  # hard link nix stores
   sudo nix store optimise
 
+# Run all clean commands
+[group('Clean')]
 [linux]
 clean-all:
   sudo nix-collect-garbage -d
@@ -126,6 +133,8 @@ clean-all:
   nix-collect-garbage -d
   sudo /run/current-system/bin/switch-to-configuration boot
 
+# Run all clean commands
+[group('Clean')]
 [macos]
 clean-all:
   sudo nix-collect-garbage -d
