@@ -144,6 +144,13 @@ clean-all:
   sudo nix-collect-garbage -d
   nix-collect-garbage -d
 
+# Repair the nix store
+[group('Maintenance')]
+[confirm('This will take a long time, are you sure?')]
+[unix]
+repair:
+  sudo nix-store --verify --check-contents --repair
+
 ############################################################################
 #
 #  Idols, Commands related to my remote distributed building cluster
