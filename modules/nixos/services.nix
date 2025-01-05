@@ -20,6 +20,9 @@
 
     udev = {
       enable = true;
+      path = [
+        "${pkgs.coreutils-full}/bin"
+      ];
     };
 
     fstrim = {
@@ -62,10 +65,12 @@
           ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
         '';
       };
-      /*videoDrivers = [
-        # "nvidia"
-        "nouveau"
-      ];*/
+      /*
+        videoDrivers = [
+          # "nvidia"
+          "nouveau"
+        ];
+      */
       xkb = {
         layout = "us";
         variant = "";

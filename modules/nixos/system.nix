@@ -35,7 +35,7 @@
 
       libusb1
       wally-cli
-      # zsa-udev-rules
+      zsa-udev-rules
       qmk
       gtk3
       webkitgtk_6_0

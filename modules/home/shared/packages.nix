@@ -28,7 +28,8 @@
     less
 
     # Core
-    coreutils
+    #coreutils
+    coreutils-full
     gcc
     killall
     openssh
