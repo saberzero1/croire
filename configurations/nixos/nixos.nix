@@ -1,10 +1,11 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake
-, pkgs
-, lib
-, config
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -86,9 +87,11 @@ in
     enableRedistributableFirmware = true;
 
     # https://discourse.nixos.org/t/issue-after-sound-option-was-removed-in-unstable/49394/8
-    alsa = {
-      enablePersistence = true;
-    };
+    /*
+      alsa = {
+        enablePersistence = true;
+      };
+    */
 
     nvidia = {
       modesetting = {
