@@ -116,6 +116,7 @@ in
     dock.entries = [
       { path = "/Applications/Wavebox.app"; }
       { path = "/Applications/Ghostty.app"; }
+      { path = "/Applications/Obsidian.app"; }
       # { path = "${pkgs.wezterm}/Applications/Wezterm.app"; }
     ];
   };
