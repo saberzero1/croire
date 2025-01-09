@@ -23,6 +23,13 @@
       nerd-fonts.fira-mono
       nerd-fonts.droid-sans-mono
       nerd-fonts.mononoki
+
+      # JP Fonts
+      migu
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
     ];
   };
 }

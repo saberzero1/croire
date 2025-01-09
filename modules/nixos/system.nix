@@ -205,6 +205,7 @@
       "en_US.UTF-8/UTF-8"
       "nl_NL.UTF-8/UTF-8"
       "nl_NL/ISO-8859-1"
+      "ja_JP.UTF-8/UTF-8"
     ];
   };
 
