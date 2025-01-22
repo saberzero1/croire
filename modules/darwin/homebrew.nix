@@ -5,26 +5,17 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "uninstall";
-      extraFlags = [ "-f" ];
+      cleanup = "zap";
+      #extraFlags = [ "--force" ];
     };
     casks = [
       "espanso"
-      {
-        name = "ghostty";
-        greedy = true;
-      }
-      {
-        name = "gitbutler";
-        greedy = true;
-      }
+      "ghostty"
+      "gitbutler"
       "nordlayer"
       "sol"
       "obsidian"
-      {
-        name = "wavebox";
-        greedy = true;
-      }
+      "wavebox"
     ];
     masApps = { };
   };
