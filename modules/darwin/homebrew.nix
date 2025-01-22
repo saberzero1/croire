@@ -6,17 +6,16 @@
       autoUpdate = true;
       upgrade = true;
       cleanup = "uninstall";
+      extraFlags = [ "-f" ];
     };
     casks = [
       "espanso"
       {
         name = "ghostty";
-        args = [ "--force" ];
         greedy = true;
       }
       {
         name = "gitbutler";
-        args = [ "--force" ];
         greedy = true;
       }
       "nordlayer"
@@ -24,7 +23,6 @@
       "obsidian"
       {
         name = "wavebox";
-        args = [ "--force" ];
         greedy = true;
       }
     ];
