@@ -8,13 +8,22 @@
       cleanup = "uninstall";
     };
     casks = [
-      "ghostty"
-      "gitbutler"
+      "espanso"
+      {
+        name = "ghostty";
+        greedy = true;
+      }
+      {
+        name = "gitbutler";
+        greedy = true;
+      }
+      "nordlayer"
       "sol"
       "obsidian"
-      "wavebox"
-      "nordlayer"
-      "espanso"
+      {
+        name = "wavebox";
+        greedy = true;
+      }
     ];
     masApps = { };
   };
