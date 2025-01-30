@@ -300,6 +300,10 @@
     steam = {
       enable = true;
       package = pkgs.steam;
+      protontricks = {
+        enable = true;
+        package = pkgs.protontricks;
+      };
     };
   };
 }
