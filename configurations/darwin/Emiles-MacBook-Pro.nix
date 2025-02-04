@@ -17,7 +17,7 @@ in
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    hostPlatform = "aarch64-darwin";
+    hostPlatform.system = "aarch64-darwin";
     config = {
       allowUnfree = true;
       # allowBroken = true;

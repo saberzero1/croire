@@ -11,7 +11,7 @@ in
     self.darwinModules.default
   ];
 
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.hostPlatform.system = "aarch64-darwin";
   networking.hostName = "example";
 
   # For home-manager to work.
