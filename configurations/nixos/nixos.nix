@@ -25,7 +25,7 @@ in
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    hostPlatform = "x86_64-linux";
+    hostPlatform.system = "x86_64-linux";
     config = {
       allowUnfree = true;
       allowBroken = true;
