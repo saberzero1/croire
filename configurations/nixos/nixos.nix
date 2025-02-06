@@ -93,6 +93,8 @@ in
     */
 
     nvidia = {
+      open = true;
+
       modesetting = {
         enable = true;
       };
@@ -100,11 +102,10 @@ in
         enable = false;
         finegrained = false;
       };
-      open = false;
 
       nvidiaSettings = true;
 
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
     graphics = {
@@ -131,7 +132,8 @@ in
     xserver = {
       enable = true;
       videoDrivers = [
-        "nvidia" # "amdgpu"
+        # "nvidia" # "amdgpu"
+        "nouveau"
       ];
     };
   };

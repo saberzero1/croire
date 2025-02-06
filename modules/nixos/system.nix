@@ -170,7 +170,7 @@
       };
     };
     nvidia = {
-      open = false;
+      open = true;
       powerManagement = {
         enable = false;
         finegrained = false;
@@ -178,6 +178,7 @@
       modesetting = {
         enable = true;
       };
+      # package = config.boot.kernelPackages.nvidiaPackages.production;
     };
     graphics = {
       enable = true;

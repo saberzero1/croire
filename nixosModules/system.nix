@@ -82,6 +82,8 @@
         };
         # nvidiaSettings = true;
 
+        package = lib.mkOptionDefault config.boot.kernelPackages.nvidiaPackages.production;
+
         #package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
       };
       graphics = {
