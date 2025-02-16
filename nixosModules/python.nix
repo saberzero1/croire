@@ -1,9 +1,14 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
+{ config
+, lib
+, pkgs
+, ...
+}:
+{
   config = {
     environment = {
       systemPackages = [
-        pkgs.python313Full
+        pkgs.python3Full
         pkgs.python312Packages.pandas
         pkgs.python312Packages.matplotlib
         pkgs.python312Packages.seaborn

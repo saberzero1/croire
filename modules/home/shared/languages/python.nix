@@ -16,6 +16,8 @@
     pytest-playwright
     playwright-stealth
     playwrightcapture
+
+    tkinter
   ];
 
 }
