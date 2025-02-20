@@ -19,7 +19,7 @@ update:
 # Lint nix files
 [group('Dev')]
 lint:
-  nix fmt
+  nix fmt -- .
 
 # Check nix flake
 [group('Dev')]

@@ -40,12 +40,16 @@ in
     users."emile" = {
       imports = [ (self + /configurations/home/emile.nix) ];
     };
+    backupFileExtension = "backup";
   };
 
   # Necessary for using flakes on this system.
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    extra-nix-path = "nixpkgs=flake:nixpkgs";
+  nix = {
+    enable = false;
+    settings = {
+      experimental-features = "nix-command flakes";
+      extra-nix-path = "nixpkgs=flake:nixpkgs";
+    };
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
