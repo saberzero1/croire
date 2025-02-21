@@ -1,4 +1,9 @@
-{ flake, pkgs, ... }:
+{
+  flake,
+  pkgs,
+  config,
+  ...
+}:
 {
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.
@@ -87,7 +92,39 @@
 
     tmux = {
       enable = true;
+      shortcut = "b";
+      clock24 = true;
+      baseIndex = 1;
+      escapeTime = 0;
+      keyMode = "vi";
+      secureSocket = false;
+
+      plugins = with pkgs; [
+        tmuxPlugins.better-mouse-mode
+      ];
+
+      extraConfig = ''
+        # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
+        set -g default-terminal "xterm-256color"
+        set -ga terminal-overrides ",*256col*:Tc"
+        set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+        set-environment -g COLORTERM "truecolor"
+
+        # Mouse works as expected
+        set-option -g mouse on
+        # easy-to-remember split pane commands
+        bind | split-window -h -c "#{pane_current_path}"
+        bind - split-window -v -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
+      '';
     };
+
+    /*
+      tmate = {
+        enable = true;
+        extraConfig = config.xdg.configFile."tmux/tmux.conf".text;
+      };
+    */
 
     thefuck = {
       enable = true;
@@ -152,4 +189,18 @@
       package = pkgs.vscodium.fhs;
     };
   };
+  home.packages = [
+    # Open tmux for current project.
+    (pkgs.writeShellApplication {
+      name = "pux";
+      runtimeInputs = [ pkgs.tmux ];
+      text = ''
+        PRJ="''$(zoxide query -i)"
+        echo "Launching tmux for ''$PRJ"
+        set -x
+        cd "''$PRJ" && \
+          exec tmux -S "''$PRJ".tmux attach
+      '';
+    })
+  ];
 }
