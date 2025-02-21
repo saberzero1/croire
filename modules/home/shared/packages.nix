@@ -50,6 +50,7 @@
     ranger
     starship
     tmux
+    fpp
     # wezterm
     zsh
     zsh-autopair

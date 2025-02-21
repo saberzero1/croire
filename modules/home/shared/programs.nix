@@ -1,8 +1,7 @@
-{
-  flake,
-  pkgs,
-  config,
-  ...
+{ flake
+, pkgs
+, config
+, ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -92,15 +91,23 @@
 
     tmux = {
       enable = true;
-      shortcut = "b";
+      shortcut = "a";
       clock24 = true;
       baseIndex = 1;
-      escapeTime = 0;
-      keyMode = "vi";
+      # escapeTime = 0;
+      # keyMode = "vi";
       secureSocket = false;
 
-      plugins = with pkgs; [
-        tmuxPlugins.better-mouse-mode
+      plugins = with pkgs.tmuxPlugins; [
+        fpp # Facebook Path Picker
+        yank
+        better-mouse-mode
+        tokyo-night-tmux
+        sensible
+        resurrect
+        power-theme
+        mode-indicator
+        tmux-which-key
       ];
 
       extraConfig = ''
