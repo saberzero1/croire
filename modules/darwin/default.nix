@@ -75,6 +75,8 @@ in
         NSGlobalDomain = {
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
+          # Disable natural scrolling
+          "com.apple.swipescrolldirection" = false;
         };
         "com.apple.finder" = {
           ShowExternalHardDrivesOnDesktop = true;

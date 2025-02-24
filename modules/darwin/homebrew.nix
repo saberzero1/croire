@@ -8,6 +8,9 @@
       cleanup = "zap";
       #extraFlags = [ "--force" ];
     };
+    global = {
+      autoUpdate = false;
+    };
     casks = [
       "espanso"
       "ghostty"
@@ -18,5 +21,6 @@
       "wavebox"
     ];
     masApps = { };
+    taps = [ ];
   };
 }

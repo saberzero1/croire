@@ -191,7 +191,11 @@
 
     vscode = {
       enable = false;
-      enableExtensionUpdateCheck = true;
+      profiles = {
+        default = {
+          enableExtensionUpdateCheck = true;
+        };
+      };
       mutableExtensionsDir = true;
       package = pkgs.vscodium.fhs;
     };
