@@ -113,6 +113,14 @@ in
           location = "~/Desktop";
           type = "png";
         };
+        "com.apple.sybolichotkeys" = {
+          AppleSymbolicHotKeys = {
+            # Disable 'Q' to lock screen
+            "12" = {
+              enabled = false;
+            };
+          };
+        };
       };
     };
 
