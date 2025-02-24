@@ -30,12 +30,21 @@ in
         LSQuarantine = false;
       };
 
+      universalaccess = {
+        reduceMotion = true;
+        reduceTransparency = true;
+        mouseDriverCursorSize = 1.5;
+        closeViewScrollWheelToggle = null;
+      };
+
       loginwindow = {
         GuestEnabled = false;
       };
 
       dock = {
-        autohide = false;
+        autohide = true;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 0.0;
         show-recents = false;
         launchanim = true;
         orientation = "bottom";

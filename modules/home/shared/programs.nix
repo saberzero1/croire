@@ -1,7 +1,8 @@
-{ flake
-, pkgs
-, config
-, ...
+{
+  flake,
+  pkgs,
+  config,
+  ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -31,6 +32,12 @@
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+    };
+
+    ghostty = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
 
     neovim = {

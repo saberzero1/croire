@@ -46,7 +46,7 @@
       flake = false;
     };
     homebrew-cask = {
-      url = "github:homebrew/homebrew-cask";
+      url = "github:Homebrew/homebrew-cask";
       flake = false;
     };
 
