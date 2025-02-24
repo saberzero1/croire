@@ -115,6 +115,10 @@ in
         };
         "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
+            # Disable 'Cmd + Alt + Q' for logging out
+            "60" = {
+              enabled = false;
+            };
             # Disable 'Cmd + Space' for Spotlight Search
             "64" = {
               enabled = false;
