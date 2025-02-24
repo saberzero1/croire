@@ -259,7 +259,7 @@
         gtk_engines
         gsettings-desktop-schemas
         lxappearance
-        dragon
+        kdePackages.dragon
         swappy
         xdg-utils
       ];
