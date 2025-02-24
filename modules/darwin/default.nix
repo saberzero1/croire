@@ -113,10 +113,14 @@ in
           location = "~/Desktop";
           type = "png";
         };
-        "com.apple.sybolichotkeys" = {
+        "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
-            # Disable 'Q' to lock screen
-            "12" = {
+            # Disable 'Cmd + Space' for Spotlight Search
+            "64" = {
+              enabled = false;
+            };
+            # Disable 'Cmd + Alt + Space' for Finder search window
+            "65" = {
               enabled = false;
             };
           };
