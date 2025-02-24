@@ -115,8 +115,97 @@ in
         };
         "com.apple.symbolichotkeys" = {
           AppleSymbolicHotKeys = {
-            # Disable 'Cmd + Alt + Q' for logging out
+            "7" = {
+              enabled = false;
+            };
+            "8" = {
+              enabled = false;
+            };
+            "9" = {
+              enabled = false;
+            };
+            "10" = {
+              enabled = false;
+            };
+            "11" = {
+              enabled = false;
+            };
+            "12" = {
+              enabled = false;
+            };
+            "13" = {
+              enabled = false;
+            };
+            "15" = {
+              enabled = false;
+            };
+            "16" = {
+              enabled = false;
+            };
+            "17" = {
+              enabled = false;
+            };
+            "18" = {
+              enabled = false;
+            };
+            "19" = {
+              enabled = false;
+            };
+            "20" = {
+              enabled = false;
+            };
+            "21" = {
+              enabled = false;
+            };
+            "22" = {
+              enabled = false;
+            };
+            "23" = {
+              enabled = false;
+            };
+            "24" = {
+              enabled = false;
+            };
+            "25" = {
+              enabled = false;
+            };
+            "26" = {
+              enabled = false;
+            };
+            "27" = {
+              enabled = false;
+            };
+            "32" = {
+              enabled = false;
+            };
+            "33" = {
+              enabled = false;
+            };
+            "34" = {
+              enabled = false;
+            };
+            "35" = {
+              enabled = false;
+            };
+            "36" = {
+              enabled = false;
+            };
+            "37" = {
+              enabled = false;
+            };
+            "52" = {
+              enabled = false;
+            };
+            "57" = {
+              enabled = false;
+            };
+            "59" = {
+              enabled = false;
+            };
             "60" = {
+              enabled = false;
+            };
+            "61" = {
               enabled = false;
             };
             # Disable 'Cmd + Space' for Spotlight Search
@@ -125,6 +214,45 @@ in
             };
             # Disable 'Cmd + Alt + Space' for Finder search window
             "65" = {
+              enabled = false;
+            };
+            "79" = {
+              enabled = false;
+            };
+            "80" = {
+              enabled = false;
+            };
+            "81" = {
+              enabled = false;
+            };
+            "82" = {
+              enabled = false;
+            };
+            "98" = {
+              enabled = false;
+            };
+            "118" = {
+              enabled = false;
+            };
+            "160" = {
+              enabled = false;
+            };
+            "162" = {
+              enabled = false;
+            };
+            "163" = {
+              enabled = false;
+            };
+            "175" = {
+              enabled = false;
+            };
+            "179" = {
+              enabled = false;
+            };
+            "190" = {
+              enabled = false;
+            };
+            "222" = {
               enabled = false;
             };
           };

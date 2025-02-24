@@ -15,6 +15,7 @@
       "espanso"
       "ghostty"
       "gitbutler"
+      "key-codes"
       "nordlayer"
       "sol"
       "obsidian"
