@@ -30,11 +30,11 @@ in
         LSQuarantine = false;
       };
 
+      # Requires System Settings > Privacy & Security > Full Disk Access
       universalaccess = {
         reduceMotion = true;
         reduceTransparency = true;
         mouseDriverCursorSize = 1.5;
-        closeViewScrollWheelToggle = null;
       };
 
       loginwindow = {

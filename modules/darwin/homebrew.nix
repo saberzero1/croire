@@ -13,7 +13,7 @@
     };
     casks = [
       "espanso"
-      "ghostty@tip"
+      "ghostty"
       "gitbutler"
       "nordlayer"
       "sol"

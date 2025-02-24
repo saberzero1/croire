@@ -95,7 +95,7 @@
       package = pkgs.zsh;
       profileExtra = ''
 
-                  '';
+      '';
       syntaxHighlighting = {
         enable = true;
       };
@@ -145,130 +145,132 @@
 
     waybar = {
       enable = true;
-      settings = [{
-        position = "top";
-        height = 30;
-        modules-left = [ "sway/workspaces" ];
-        modules-right = [
-          "sway/mode"
-          "network"
-          "pulseaudio"
-          "battery"
-          "custom/date"
-          "memory"
-          "cpu"
-          "clock"
-          "tray"
-          "custom/power"
-        ];
-
-        "sway/workspaces" = {
-          disable-scroll = true;
-          all-outputs = true;
-          format = "{icon}";
-          persistent_workspaces = {
-            "1" = [ ];
-            "2" = [ ];
-            "3" = [ ];
-            "4" = [ ];
-            "5" = [ ];
-            "6" = [ ];
-            "7" = [ ];
-            "8" = [ ];
-            "9" = [ ];
-            "10" = [ ];
-          };
-          format-icons = {
-            "1" = "󰋜"; # Home
-            "2" = "󰖟"; # Web
-            "3" = "󰠮"; # Notes/Writing
-            "4" = "󰭹"; # Chat
-            "5" = "󱓷"; # Books/Reading
-            "6" = "󱇧"; # Development/Coding
-            "7" = "󰊢"; # Git/Version Control
-            "8" = "󰖲"; # Misc/Panes
-            "9" = "󰕧"; # Video/Camera
-            "10" = "󰝚"; # Music
-          };
-        };
-
-        "custom/date" = {
-          format = "󰸗 {}";
-          interval = 3600;
-          exec = "${flake.inputs.dotfiles}/waybar/waybar-date.sh";
-        };
-
-        "custom/power" = {
-          format = "󰐥";
-          on-clock = "${flake.inputs.dotfiles}/waybar/waybar-power.sh";
-        };
-
-        "clock" = {
-          format = "󰅐 {:%H:%M}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          format-alt = "{:%Y-%m-%d}";
-        };
-
-        "battery" = {
-          states = {
-            warning = 30;
-            critical = 15;
-          };
-          format = "{icon} {capacity}%";
-          format-charging = "󰂄 {capacity}%";
-          format-plugged = "󰂄{capacity}%";
-          format-alt = "{time} {icon}";
-          format-full = "󱈑 {capacity}%";
-          format-icons = [
-            "󱊡"
-            "󱊢"
-            "󱊣"
+      settings = [
+        {
+          position = "top";
+          height = 30;
+          modules-left = [ "sway/workspaces" ];
+          modules-right = [
+            "sway/mode"
+            "network"
+            "pulseaudio"
+            "battery"
+            "custom/date"
+            "memory"
+            "cpu"
+            "clock"
+            "tray"
+            "custom/power"
           ];
-        };
 
-        "network" = {
-          format-wifi = "  {essid}";
-          format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈁";
-          format-linked = "{ifname} (No IP) 󱚵";
-          format-disconnected = "󰤮 Disconnected";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
-        };
+          "sway/workspaces" = {
+            disable-scroll = true;
+            all-outputs = true;
+            format = "{icon}";
+            persistent_workspaces = {
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
+              "6" = [ ];
+              "7" = [ ];
+              "8" = [ ];
+              "9" = [ ];
+              "10" = [ ];
+            };
+            format-icons = {
+              "1" = "󰋜"; # Home
+              "2" = "󰖟"; # Web
+              "3" = "󰠮"; # Notes/Writing
+              "4" = "󰭹"; # Chat
+              "5" = "󱓷"; # Books/Reading
+              "6" = "󱇧"; # Development/Coding
+              "7" = "󰊢"; # Git/Version Control
+              "8" = "󰖲"; # Misc/Panes
+              "9" = "󰕧"; # Video/Camera
+              "10" = "󰝚"; # Music
+            };
+          };
 
-        "pulseaudio" = {
-          format = "{icon}  {volume}%";
-          format-muted = "󰖁 Muted";
-          format-icons = {
-            headphone = "";
-            hands-free = "󰏳";
-            headset = "󰋎";
-            phone = "";
-            portable = "";
-            car = "";
-            default = [
-              ""
-              ""
-              ""
+          "custom/date" = {
+            format = "󰸗 {}";
+            interval = 3600;
+            exec = "${flake.inputs.dotfiles}/waybar/waybar-date.sh";
+          };
+
+          "custom/power" = {
+            format = "󰐥";
+            on-clock = "${flake.inputs.dotfiles}/waybar/waybar-power.sh";
+          };
+
+          "clock" = {
+            format = "󰅐 {:%H:%M}";
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            format-alt = "{:%Y-%m-%d}";
+          };
+
+          "battery" = {
+            states = {
+              warning = 30;
+              critical = 15;
+            };
+            format = "{icon} {capacity}%";
+            format-charging = "󰂄 {capacity}%";
+            format-plugged = "󰂄{capacity}%";
+            format-alt = "{time} {icon}";
+            format-full = "󱈑 {capacity}%";
+            format-icons = [
+              "󱊡"
+              "󱊢"
+              "󱊣"
             ];
           };
-        };
 
-        "sway/mode" = {
-          format = "<span style=\"italic\">{}</span>";
-        };
+          "network" = {
+            format-wifi = "  {essid}";
+            format-ethernet = "{ifname}: {ipaddr}/{cidr} 󰈁";
+            format-linked = "{ifname} (No IP) 󱚵";
+            format-disconnected = "󰤮 Disconnected";
+            format-alt = "{ifname}: {ipaddr}/{cidr}";
+          };
 
-        "tray" = {
-          spacing = 10;
-        };
+          "pulseaudio" = {
+            format = "{icon}  {volume}%";
+            format-muted = "󰖁 Muted";
+            format-icons = {
+              headphone = "";
+              hands-free = "󰏳";
+              headset = "󰋎";
+              phone = "";
+              portable = "";
+              car = "";
+              default = [
+                ""
+                ""
+                ""
+              ];
+            };
+          };
 
-        "cpu" = {
-          format = "{usage}% ";
-          tooltip = false;
-        };
+          "sway/mode" = {
+            format = "<span style=\"italic\">{}</span>";
+          };
 
-        "memory" = {
-          format = "{}% ";
-        };
-      }];
+          "tray" = {
+            spacing = 10;
+          };
+
+          "cpu" = {
+            format = "{usage}% ";
+            tooltip = false;
+          };
+
+          "memory" = {
+            format = "{}% ";
+          };
+        }
+      ];
       style = ''
         * {
         border: none;
@@ -405,11 +407,13 @@
       lfs = {
         enable = true;
       };
-      /*signing = {
+      /*
+        signing = {
         # key = null;
         signByDefault = true;
         gpgPath = "${pkgs.gnupg}/bin/gpg2";
-        };*/
+        };
+      */
       userEmail = "github@emilebangma.com";
       userName = "saberzero1";
       extraConfig = {
@@ -422,6 +426,10 @@
         pull.rebase = true;
         rebase.autoStash = true;
       };
+    };
+
+    ghostty = {
+      enable = true;
     };
 
     gh = {
