@@ -29,6 +29,11 @@ in
       LaunchServices = {
         LSQuarantine = false;
       };
+
+      loginwindow = {
+        GuestEnabled = false;
+      };
+
       dock = {
         autohide = false;
         show-recents = false;
@@ -71,12 +76,15 @@ in
         Sound = true;
       };
 
+      NSGlobalDomain = {
+        # Disable natural scrolling
+        "com.apple.swipescrolldirection" = false;
+      };
+
       CustomUserPreferences = {
         NSGlobalDomain = {
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
-          # Disable natural scrolling
-          "com.apple.swipescrolldirection" = false;
         };
         "com.apple.finder" = {
           ShowExternalHardDrivesOnDesktop = true;
