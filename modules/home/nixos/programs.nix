@@ -127,7 +127,6 @@
 
         # gnome
         eval $(dbus-update-activation-environment --systemd --all)
-        # eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=ssh)
       '';
     };
 
