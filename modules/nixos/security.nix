@@ -44,13 +44,17 @@
     gnupg = {
       agent = {
         enable = true;
-        enableSSHSupport = true;
+        enableSSHSupport = false;
         settings = { };
       };
       package = pkgs.gnupg;
     };
     ssh = {
       package = pkgs.openssh;
+      startAgent = true;
+      extraConfig = ''
+        AddKeysToAgent yes
+      '';
     };
     seahorse = {
       enable = true;
