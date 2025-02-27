@@ -32,6 +32,7 @@
     systemPackages = with pkgs; [
       gnupg
       sshpass
+      seahorse
       sudo
       wpa_supplicant
       wpa_supplicant_gui
@@ -50,6 +51,9 @@
     };
     ssh = {
       package = pkgs.openssh;
+    };
+    seahorse = {
+      enable = true;
     };
   };
 }
