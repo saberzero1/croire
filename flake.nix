@@ -20,61 +20,61 @@
     # Principle inputs (updated by `nix run .#update`)
 
     # Unified Nix sources
-    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable?shallow=1";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs?shallow=1";
-    sops-nix.url = "github:Mic92/sops-nix?shallow=1";
-    devenv.url = "github:cachix/devenv?shallow=1";
-    flake-parts.url = "github:hercules-ci/flake-parts?shallow=1";
-    nixos-unified.url = "github:srid/nixos-unified?shallow=1";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master?shallow=1";
+    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
+    devenv.url = "github:cachix/devenv";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixos-unified.url = "github:srid/nixos-unified";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # WSL-specific
     # nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     # Darwin-specific
     nix-darwin = {
-      url = "github:LnL7/nix-darwin/master?shallow=1";
+      url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew?shallow=1";
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle?shallow=1";
+      url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
     homebrew-core = {
-      url = "github:homebrew/homebrew-core?shallow=1";
+      url = "github:homebrew/homebrew-core";
       flake = false;
     };
     homebrew-cask = {
-      url = "github:Homebrew/homebrew-cask?shallow=1";
+      url = "github:Homebrew/homebrew-cask";
       flake = false;
     };
 
     # Home-manager
     home-manager = {
-      url = "github:nix-community/home-manager?shallow=1";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Software inputs
     nix-index-database = {
-      url = "github:nix-community/nix-index-database?shallow=1";
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim?shallow=1";
+      url = "github:nix-community/nixvim";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay?shallow=1";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {
-      url = "github:wez/wezterm/main?dir=nix&shallow=1";
+      url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-snapd = {
-      url = "github:nix-community/nix-snapd?shallow=1";
+      url = "github:nix-community/nix-snapd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     /*
@@ -83,19 +83,19 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
     */
-    ghostty.url = "github:ghostty-org/ghostty?shallow=1";
+    ghostty.url = "github:ghostty-org/ghostty";
     gitbutler = {
-      url = "github:gitbutlerapp/gitbutler?shallow=1";
+      url = "github:gitbutlerapp/gitbutler";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Dotfiles
     dotfiles = {
-      url = "github:saberzero1/shelter/master?shallow=1";
+      url = "github:saberzero1/shelter/master";
       flake = false;
     };
     totten = {
-      url = "github:saberzero1/totten/master?shallow=1";
+      url = "github:saberzero1/totten/master";
       flake = false;
     };
   };
