@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   # Programs natively supported by home-manager.
   # They can be configured in `programs.*` instead of using home.packages.
@@ -68,6 +68,8 @@
           autocrlf = "input";
         };
         commit.gpgsign = true;
+        gpg.format = "ssh";
+        user.signingkey = "${config.home.homeDirectory}/.ssh/saberzero1-github.pub";
         pull.rebase = true;
         rebase.autoStash = true;
       };
