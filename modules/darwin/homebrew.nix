@@ -20,6 +20,7 @@
       "sol"
       "obsidian"
       "wavebox"
+      "zen-browser"
     ];
     masApps = { };
     taps = [ ];

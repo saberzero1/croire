@@ -1,43 +1,51 @@
-{ pkgs, ... }:
+{ pkgs
+, config
+, flake
+, ...
+}:
 {
   # Nix packages to install to $HOME
   #
   # Search for packages here: https://search.nixos.org/packages
-  home.packages = with pkgs; [
-    wavebox
-    firefox
-    ulauncher
-    freerdp
-    wl-clipboard
+  home.packages =
+    with pkgs;
+    [
+      wavebox
+      ulauncher
+      freerdp
+      wl-clipboard
 
-    # Extras
-    hdparm
-    # hplip
-    htop
-    imagemagick
-    mpv
-    pamixer
-    pciutils
-    usbutils
+      # Extras
+      hdparm
+      # hplip
+      htop
+      imagemagick
+      mpv
+      pamixer
+      pciutils
+      usbutils
 
-    atuin
-    gh-dash
-    xclicker
+      atuin
+      gh-dash
+      xclicker
 
-    pika-backup
+      pika-backup
 
-    # Python
-    python3
-    python312Packages.pynvim
+      # Python
+      python3
+      python312Packages.pynvim
 
-    # Lua
-    luajit
+      # Lua
+      luajit
 
-    # VSCopium
-    vscode-extensions.asvetliakov.vscode-neovim
-    vscodium.fhs
+      # VSCopium
+      vscode-extensions.asvetliakov.vscode-neovim
+      vscodium.fhs
 
-    # Espanso
-    espanso-wayland
-  ];
+      # Espanso
+      espanso-wayland
+    ]
+    ++ [
+      flake.inputs.zen-browser.packages."x86_64-linux".default
+    ];
 }
