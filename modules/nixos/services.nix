@@ -127,8 +127,5 @@
       enable = false;
     };
 
-    yubikey-touch-detector = {
-      enable = false;
-    };
   };
 }

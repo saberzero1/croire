@@ -1,6 +1,5 @@
 { flake
 , pkgs
-, config
 , ...
 }:
 {
@@ -198,6 +197,10 @@
       };
       mutableExtensionsDir = true;
       package = pkgs.vscodium.fhs;
+    };
+
+    yubikey-touch-detector = {
+      enable = false;
     };
   };
   home.packages = [
