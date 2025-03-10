@@ -1,5 +1,4 @@
 { pkgs
-, config
 , flake
 , ...
 }:
@@ -34,6 +33,11 @@
       restic
       rclone
       rclone-browser
+
+      # Encryption
+      age-plugin-yubikey
+      sops
+      yubikey-touch-detector
 
       # Python
       python3

@@ -70,7 +70,10 @@
 
     # Security
     age
+    ssh-to-age
     age-plugin-yubikey
+    yubikey-agent
+    yubikey-manager
     gnupg
 
     # Javascript
