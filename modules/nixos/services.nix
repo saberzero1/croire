@@ -126,6 +126,5 @@
     yubikey-agent = {
       enable = false;
     };
-
   };
 }

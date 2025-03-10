@@ -198,10 +198,6 @@
       mutableExtensionsDir = true;
       package = pkgs.vscodium.fhs;
     };
-
-    yubikey-touch-detector = {
-      enable = false;
-    };
   };
   home.packages = [
     # Open tmux for current project.

@@ -65,5 +65,9 @@
     seahorse = {
       enable = true;
     };
+
+    yubikey-touch-detector = {
+      enable = false;
+    };
   };
 }

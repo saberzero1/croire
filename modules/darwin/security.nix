@@ -14,5 +14,9 @@
         enableSSHSupport = true;
       };
     };
+
+    yubikey-touch-detector = {
+      enable = false;
+    };
   };
 }
