@@ -98,5 +98,25 @@
     openssh = {
       enable = true;
     };
+
+    # Backups and Restores
+    prometheus = {
+      enable = false;
+      exporters = {
+        restic = {
+          enable = false;
+          port = 9753;
+          rcloneConfigFile = null;
+        };
+      };
+    };
+
+    restic = {
+      enable = false;
+      server = {
+        enable = false;
+        prometheus = true;
+      };
+    };
   };
 }

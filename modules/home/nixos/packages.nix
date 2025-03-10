@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, flake
-, ...
+{
+  pkgs,
+  config,
+  flake,
+  ...
 }:
 {
   # Nix packages to install to $HOME
@@ -30,6 +31,8 @@
       xclicker
 
       pika-backup
+      rclone
+      rclone-browser
 
       # Python
       python3
