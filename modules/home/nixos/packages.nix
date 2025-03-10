@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  flake,
-  ...
+{ pkgs
+, config
+, flake
+, ...
 }:
 {
   # Nix packages to install to $HOME
@@ -30,7 +29,9 @@
       gh-dash
       xclicker
 
+      # Backup and Sync
       pika-backup
+      restic
       rclone
       rclone-browser
 

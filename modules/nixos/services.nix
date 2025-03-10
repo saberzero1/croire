@@ -112,7 +112,6 @@
     };
 
     restic = {
-      enable = false;
       server = {
         enable = false;
         prometheus = true;

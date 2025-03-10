@@ -21,6 +21,10 @@
       source = "${flake.inputs.dotfiles}/ghostty";
       recursive = true;
     };
+    ".config/rclone" = {
+      source = "${flake.inputs.dotfiles}/rclone";
+      recursive = true;
+    };
     ".config/espanso" = {
       source = "${flake.inputs.totten}";
       recursive = true;
