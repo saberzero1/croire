@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs
+, lib
+, config
+, ...
+}:
 {
   services = {
     pipewire = {
@@ -106,7 +110,7 @@
         restic = {
           enable = false;
           port = 9753;
-          rcloneConfigFile = null;
+          rcloneConfigFile = "${config.home.homeDirectory}/.config/rclone/.rclone.conf";
         };
       };
     };
