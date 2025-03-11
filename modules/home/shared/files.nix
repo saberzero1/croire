@@ -25,6 +25,10 @@
       source = "${flake.inputs.dotfiles}/rclone";
       recursive = true;
     };
+    ".config/bat" = {
+      source = "${flake.inputs.dotfiles}/bat";
+      recursive = true;
+    };
     ".config/espanso" = {
       source = "${flake.inputs.totten}";
       recursive = true;

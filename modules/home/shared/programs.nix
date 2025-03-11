@@ -7,7 +7,20 @@
   # They can be configured in `programs.*` instead of using home.packages.
   programs = {
     # Better `cat`
-    bat.enable = true;
+    bat = {
+      enable = true;
+      config = {
+        theme = "tokyonight_storm";
+      };
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batgrep
+        batman
+        batpipe
+        batwatch
+        prettybat
+      ];
+    };
     # Type `<ctrl> + r` to fuzzy search your shell history
     fzf.enable = true;
     jq = {
