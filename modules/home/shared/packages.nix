@@ -87,7 +87,6 @@
     pandoc
     ripgrep-all
     rsync
-    thefuck
     unrar
     unzip
     zoxide

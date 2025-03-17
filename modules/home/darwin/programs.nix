@@ -21,7 +21,7 @@
         eval "$(starship init zsh)"
 
         # thefuck
-        eval $(thefuck --alias fuck)
+        # eval $(thefuck --alias fuck)
 
         # Aerospace on Silicon
         if [[ $(uname -m) == 'arm64' ]]; then
@@ -37,6 +37,14 @@
     # gpg2 --full-generate-key
     # gpg2 --list-secret-keys --keyid-format=long
     # gpg2 --armor --export 1234567890ABCDEF
+
+    thefuck = {
+      enable = false;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableInstantMode = false;
+    };
+
     git = {
       diff-so-fancy = {
         changeHunkIndicators = true;

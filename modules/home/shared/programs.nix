@@ -145,13 +145,6 @@
       };
     */
 
-    thefuck = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      enableInstantMode = false;
-    };
-
     zoxide = {
       enable = true;
       package = pkgs.zoxide;

@@ -6,6 +6,8 @@
       gh
       lazygit
       git
+
+      xcodes
     ];
   };
 }
