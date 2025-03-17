@@ -53,6 +53,9 @@
 
       # Espanso
       espanso-wayland
+
+      # Graphic Drivers
+      driversi686Linux.amdvlk
     ]
     ++ [
       flake.inputs.zen-browser.packages."x86_64-linux".default
