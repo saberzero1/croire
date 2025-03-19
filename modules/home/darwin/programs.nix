@@ -20,8 +20,8 @@
         # starship
         eval "$(starship init zsh)"
 
-        # thefuck
-        # eval $(thefuck --alias fuck)
+        # thefuck replacement pay-respects
+        eval $(pay-respects zsh --alias fuck --nocnf)
 
         # Aerospace on Silicon
         if [[ $(uname -m) == 'arm64' ]]; then
@@ -38,11 +38,11 @@
     # gpg2 --list-secret-keys --keyid-format=long
     # gpg2 --armor --export 1234567890ABCDEF
 
-    thefuck = {
-      enable = false;
+    pay-respects = {
+      enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      enableInstantMode = false;
+      package = pkgs.pay-respects;
     };
 
     git = {

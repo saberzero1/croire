@@ -76,6 +76,9 @@
     yubikey-manager
     gnupg
 
+    # Terminal
+    pay-respects
+
     # Javascript
     nodejs
 

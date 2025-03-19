@@ -127,19 +127,19 @@
         # starship
         eval "$(starship init zsh)"
 
-        # thefuck
-        eval $(thefuck --alias fuck)
+        # thefuck replacement pay-respects
+        eval $(pay-respects zsh --alias fuck --nocnf)
 
         # gnome
         eval $(dbus-update-activation-environment --systemd --all)
       '';
     };
 
-    thefuck = {
+    pay-respects = {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      enableInstantMode = false;
+      package = pkgs.pay-respects;
     };
 
     fuzzel = {

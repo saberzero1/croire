@@ -27,7 +27,7 @@
       atuin
       gh-dash
       xclicker
-      thefuck
+      # thefuck
 
       # Backup and Sync
       pika-backup
