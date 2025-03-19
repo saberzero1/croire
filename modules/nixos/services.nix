@@ -27,6 +27,10 @@
       path = [
         "${pkgs.coreutils-full}/bin"
       ];
+      # Disable autosuspend on all USB keyboards and mice
+      extraRules = ''
+        ACTION=="add", SUBSYSTEM=="usb", ATTR{product}=="*Mouse", ATTR{product}=="*Keyboard", TEST=="power/control", ATTR{power/control}="-1"
+      '';
     };
 
     fstrim = {
