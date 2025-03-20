@@ -1,6 +1,3 @@
-# just is a command runner, Justfile is very similar to Makefile, but simpler.
-# Shamelessly stolen from https://nixos-and-flakes.thiscute.world/best-practices/simplify-nixos-related-commands
-
 ############################################################################
 #
 #  Nix commands related to the local machine
@@ -51,43 +48,6 @@ switch:
 status:
   sudo nix-channel --list | grep nixos
 
-#fetch:
-#  git submodule update --init --remote --recursive
-
-#dinit:
-#  nix run nix-darwin -- switch --flake .
-
-#[linux]
-#build:
-#  sudo nixos-rebuild build --flake . --impure --use-remote-sudo
-
-#[macos]
-#build:
-#  sudo -s -u $(whoami) darwin-rebuild build --flake . --impure
-
-#[linux]
-#test:
-#  sudo nixos-rebuild test --flake . --impure --use-remote-sudo
-
-#test
-#  sudo -s -u $(whoami) darwin-rebuild test --flake . --impure
-
-#[linux]
-#switch:
-#  sudo nixos-rebuild switch --flake . --impure --use-remote-sudo
-
-#[macos]
-#switch:
-#  sudo -s -u $(whoami) darwin-rebuild  switch --flake . --impure
-
-#debug:
-#  nixos-rebuild switch --flake . --impure --use-remote-sudo --show-trace --verbose --option eval-cache false
-
-#update:
-#  nix flake update
-
-# Update specific input
-# usage: make upp i=home-manager
 upp input:
   nix flake lock --update-input {{input}}
 
@@ -151,24 +111,3 @@ clean-all:
 repair:
   sudo nix-store --verify --check-contents --repair
 
-############################################################################
-#
-#  Idols, Commands related to my remote distributed building cluster
-#
-############################################################################
-
-# add-idols-ssh-key:
-#   ssh-add ~/.ssh/ai-idols
-#
-# aqua: add-idols-ssh-key
-#   nixos-rebuild --flake .#aquamarine --target-host aquamarine --build-host aquamarine switch --use-remote-sudo
-#
-# aqua-debug: add-idols-ssh-key
-#   nixos-rebuild --flake .#aquamarine --target-host aquamarine --build-host aquamarine switch --use-remote-sudo --show-trace --verbose
-#
-# ruby: add-idols-ssh-key
-#   nixos-rebuild --flake .#ruby --target-host ruby --build-host ruby switch --use-remote-sudo
-#
-# idols: aqua ruby kana
-#
-# idols-debug: aqua-debug ruby-debug kana-debug
