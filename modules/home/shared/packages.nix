@@ -44,7 +44,7 @@
     git
     diff-so-fancy
     neovim
-    zed-editor
+    zed-editor-fhs
 
     # Terminal
     ranger
