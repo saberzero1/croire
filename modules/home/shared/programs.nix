@@ -1,6 +1,7 @@
-{ flake
-, pkgs
-, ...
+{
+  flake,
+  pkgs,
+  ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -206,7 +207,7 @@
     };
 
     zed-editor = {
-      enable = true;
+      enable = false;
       package = pkgs.zed-editor-fhs;
       extraPackages = with pkgs; [
         nixd
