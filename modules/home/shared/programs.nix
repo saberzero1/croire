@@ -204,6 +204,19 @@
       mutableExtensionsDir = true;
       package = pkgs.vscodium.fhs;
     };
+
+    zed-editor = {
+      enable = true;
+      extraPackages = with pkgs; [
+        nixd
+      ];
+      extensions = [
+        "nix"
+        "tokyo-night"
+      ];
+      userKeymaps = pkgs.lib.importJSON "${flake.inputs.dotfiles}/zed/keymap.json";
+      userSettings = pkgs.lib.importJSON "${flake.inputs.dotfiles}/zed/settings.json";
+    };
   };
   home.packages = [
     # Open tmux for current project.
