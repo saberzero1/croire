@@ -1,4 +1,9 @@
-{ flake, pkgs, lib, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -11,6 +16,6 @@ in
   home = {
     username = "emile";
     homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/emile";
-    stateVersion = "24.05";
+    stateVersion = "24.11";
   };
 }

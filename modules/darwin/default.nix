@@ -263,8 +263,8 @@ in
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToControl = true;
-      swapLeftCommandAndLeftAlt = false;
-      swapLeftCtrlAndFn = false;
+      swapLeftCommandAndLeftAlt = true;
+      swapLeftCtrlAndFn = true;
     };
 
     activationScripts.postUserActivation.text = ''
