@@ -59,6 +59,8 @@ in
         enable = true;
       };
     };
+    # Prevent USB sleep
+    postBootCommands = "echo -1 > /sys/module/usbcore/parameters/autosuspend";
   };
 
   fileSystems = {
