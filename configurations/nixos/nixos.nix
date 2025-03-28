@@ -51,6 +51,9 @@ in
       "kvm-intel"
     ];
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "usbcore.autosuspend=-1"
+    ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -60,7 +63,7 @@ in
       };
     };
     # Prevent USB sleep
-    postBootCommands = "echo -1 > /sys/module/usbcore/parameters/autosuspend";
+    # postBootCommands = "echo -1 > /sys/module/usbcore/parameters/autosuspend";
   };
 
   fileSystems = {
