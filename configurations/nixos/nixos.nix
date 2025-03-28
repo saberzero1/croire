@@ -91,11 +91,10 @@ in
     enableRedistributableFirmware = true;
 
     # https://discourse.nixos.org/t/issue-after-sound-option-was-removed-in-unstable/49394/8
-    /*
-      alsa = {
-        enablePersistence = true;
-      };
-    */
+
+    alsa = {
+      enablePersistence = true;
+    };
 
     nvidia = {
       open = true;
