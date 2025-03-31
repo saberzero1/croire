@@ -29,6 +29,10 @@
       source = "${flake.inputs.dotfiles}/bat";
       recursive = true;
     };
+    ".config/tmux" = {
+      source = "${flake.inputs.dotfiles}/tmux";
+      recursive = true;
+    };
     ".config/espanso" = {
       source = "${flake.inputs.totten}";
       recursive = true;
