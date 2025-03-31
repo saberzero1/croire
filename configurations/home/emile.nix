@@ -14,7 +14,7 @@ in
   ];
   home = {
     username = "emile";
-    homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/emile";
+    # homeDirectory = lib.mkDefault "/${if pkgs.stdenv.isDarwin then "Users" else "home"}/emile";
     stateVersion = "24.11";
   };
 }
