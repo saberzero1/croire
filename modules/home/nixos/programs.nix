@@ -132,6 +132,9 @@
 
         # gnome
         eval $(dbus-update-activation-environment --systemd --all)
+
+        # tmux
+        bindkey -s ^f "tmux-sessionizer\n"
       '';
     };
 
