@@ -122,7 +122,7 @@
         tmux-which-key
       ];
 
-      extraConfig = builtins.readFile {flake.inputs.dotfiles}/tmux/tmux.conf;
+      extraConfig = pkgs.lib.strings.fileContents "${flake.inputs.dotfiles}/tmux/tmux.conf";
     };
 
     /*
