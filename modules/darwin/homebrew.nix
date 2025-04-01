@@ -14,6 +14,7 @@
     casks = [
       "espanso"
       "ghostty"
+      "gimp"
       "gitbutler"
       "key-codes"
       "nordlayer"
