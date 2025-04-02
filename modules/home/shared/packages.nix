@@ -50,7 +50,7 @@
     starship
     tmux
     fpp
-    # wezterm
+    wezterm
     zsh
     zsh-autopair
     zsh-autosuggestions

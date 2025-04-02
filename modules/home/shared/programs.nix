@@ -80,14 +80,12 @@
       ];
     };
 
-    /*
-      wezterm = {
-        enable = true;
-        package = pkgs.wezterm;
-        enableZshIntegration = true;
-        enableBashIntegration = true;
-      };
-    */
+    wezterm = {
+      enable = true;
+      package = pkgs.wezterm;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+    };
 
     starship = {
       enable = true;
