@@ -7,7 +7,28 @@ let
 in
 {
   # These users can add Nix caches.
-  nix.settings.trusted-users = [ "root" "saberzero1" ];
+  nix.settings.trusted-users = [
+    "root"
+    "saberzero1"
+  ];
+
+  system = {
+    activationScripts = {
+      postActivation.text = ''
+        echo "Running postActivation script"
+      '';
+
+      tmuxSessionizerScript.text = ''
+        echo "Running tmuxSessionizer script"
+        chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
+      '';
+    };
+    userActivationScripts = {
+      postUserActivation.text = ''
+        echo "Running postUserActivation script"
+      '';
+    };
+  };
 
   services.openssh.enable = true;
 
@@ -19,7 +40,8 @@ in
     gamescope = {
       enable = true;
       package = pkgs.gamescope;
-      /*args = [
+      /*
+        args = [
         "-b"
         "-W 1920"
         "-H 1080"
@@ -28,7 +50,8 @@ in
         "--expose-wayland"
         "--prefer-vk-device"
         "--force-grab-cursor"
-        ];*/
+        ];
+      */
     };
   };
 }
