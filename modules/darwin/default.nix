@@ -277,7 +277,7 @@ in
         mkdir -p "$app_target"
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
         # Custom additions
-        sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
+        sudo chmod +x "$(readlink "$HOME/.config/tmux/scripts/tmux-sessionizer")"
       '';
     };
 

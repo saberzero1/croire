@@ -15,7 +15,7 @@ in
   system = {
     activationScripts = {
       postActivation.text = ''
-        sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
+        sudo chmod +x "$(readlink "$HOME/.config/tmux/scripts/tmux-sessionizer")"
       '';
     };
   };
