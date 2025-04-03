@@ -33,6 +33,16 @@
       source = "${flake.inputs.dotfiles}/tmux";
       recursive = true;
     };
+    /*
+      ".config/yabai" = {
+        source = "${flake.inputs.dotfiles}/yabai";
+        recursive = true;
+      };
+    */
+    ".config/skhd" = {
+      source = "${flake.inputs.dotfiles}/skhd";
+      recursive = true;
+    };
     ".config/espanso" = {
       source = "${flake.inputs.totten}";
       recursive = true;

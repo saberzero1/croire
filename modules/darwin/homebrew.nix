@@ -11,6 +11,16 @@
     global = {
       autoUpdate = false;
     };
+    /*
+      brews = [
+        {
+          name = "koekeishiya/formulae/skhd";
+        }
+        {
+          name = "koekeishiya/formulae/yabai";
+        }
+      ];
+    */
     casks = [
       "espanso"
       "ghostty"
@@ -18,8 +28,8 @@
       "gitbutler"
       "key-codes"
       "nordlayer"
-      "sol"
       "obsidian"
+      "sol"
       "wavebox"
       "zen-browser"
     ];
