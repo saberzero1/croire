@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.sessionVariables = {
-    TERM = "xterm-ghostty";
+    TERM = "xterm-256color";
     DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
     BROWSER = "${pkgs.wavebox}/bin/wavebox";
     DL_VIDEODRIVER = "wayland";

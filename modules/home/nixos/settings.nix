@@ -86,7 +86,7 @@
         name = "nvim";
         comment = "Edit text files";
         icon = "nvim";
-        exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.neovim}/bin/nvim %F";
+        exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.neovim}/bin/nvim %F";
         categories = [ "Application" ];
         terminal = false;
         mimeType = [ "text/plain" ];
@@ -95,7 +95,7 @@
         name = "explorer";
         comment = "TUI File Explorer";
         icon = "ranger";
-        exec = "${pkgs.ghostty}/bin/ghostty -e ${pkgs.ranger}/bin/ranger %F";
+        exec = "${pkgs.wezterm}/bin/wezterm -e ${pkgs.ranger}/bin/ranger %F";
         categories = [ "Application" ];
         terminal = false;
         #mimeType = [ "text/plain" ];

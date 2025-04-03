@@ -235,7 +235,7 @@
   programs = {
     nautilus-open-any-terminal = {
       enable = true;
-      terminal = "xterm-ghostty";
+      terminal = "wezterm";
     };
 
     sway = {
