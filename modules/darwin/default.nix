@@ -278,10 +278,8 @@ in
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
         # Custom additions
-        if [ -d "$HOME/.config/tmux/scripts" ]; then
           echo "Setting tmux-sessionizer permissions"
           sudo chmod +x "$(readlink "$HOME/.config/tmux/scripts/tmux-sessionizer")"
-        fi
       '';
     };
 
