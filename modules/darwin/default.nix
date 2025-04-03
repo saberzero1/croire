@@ -276,11 +276,8 @@ in
         app_target="$app_target_base/$moniker"
         mkdir -p "$app_target"
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
-      '';
-
-      tmuxSessionizerScript.text = ''
-        echo "Running tmuxSessionizer script"
-        chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
+        # Custom additions
+        sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
       '';
     };
 

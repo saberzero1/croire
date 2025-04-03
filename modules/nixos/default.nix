@@ -15,17 +15,7 @@ in
   system = {
     activationScripts = {
       postActivation.text = ''
-        echo "Running postActivation script"
-      '';
-
-      tmuxSessionizerScript.text = ''
-        echo "Running tmuxSessionizer script"
-        chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
-      '';
-    };
-    userActivationScripts = {
-      postUserActivation.text = ''
-        echo "Running postUserActivation script"
+        sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
       '';
     };
   };
