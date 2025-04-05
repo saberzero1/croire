@@ -66,8 +66,8 @@ jobs:
       - name: Test Flakes
         run: nix flake check
 
-      - name: Build Flakes
-        run: nix run .#activate --accept-flake-config
+      # - name: Build Flakes
+      #   run: nix run .#activate --accept-flake-config
 
       - name: Omnix deploy to Cachix
         run: om ci run .#activate --include-all-dependencies -- --accept-flake-config | xargs cachix push saberzero1
