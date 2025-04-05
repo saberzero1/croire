@@ -66,6 +66,7 @@ jobs:
           name: saberzero1
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           installCommand: nix profile install --accept-flake-config nixpkgs#cachix
+          extraPullNames: "nix-community,cachix,nixpkgs,om,saberzero1"
 
       - name: Test Flakes
         run: nix flake check
