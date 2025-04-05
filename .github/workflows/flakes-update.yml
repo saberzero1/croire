@@ -47,11 +47,11 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Install Omnix
-        run: nix --accept-flake-config profile install "github:juspay:omnix"
+      - name: Setup Nix with Cachix
+        uses: cachix/install-nix-action@v26
 
-      # - name: Setup Nix with Cachix
-      #   uses: cachix/install-nix-action@v26
+      - name: Install Omnix
+        run: nix --accept-flake-config profile install github:juspay:omnix
 
       - name: Update Flakes
         run: nix flake update --accept-flake-config
