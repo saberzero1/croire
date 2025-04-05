@@ -51,11 +51,13 @@ ci:
         # Run `nix flake check` for checking the 'templates' outputs
         flake-check:
           enable: true
-    cli-test-dep-cache:
-      dir: crates/omnix-cli/tests
-      steps:
-        lockfile:
-          enable: false
+    # cli-test-dep-cache:
+    #   dir: crates/omnix-cli/tests
+    #   steps:
+    #     lockfile:
+    #       enable: false
+    build-cachix:
+      dir: .
 health:
   default:
     nix-version:
