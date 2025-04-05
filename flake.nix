@@ -30,6 +30,8 @@
       # personal cachix binaries public key
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
     ];
+
+    extra-experimental-features = "nix-command flakes";
   };
 
   inputs = {
