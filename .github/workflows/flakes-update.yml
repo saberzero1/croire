@@ -44,8 +44,8 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Setup Nix with Cachix
-        uses: cachix/install-nix-action@v26
+      # - name: Setup Nix with Cachix
+      #   uses: cachix/install-nix-action@v26
 
       - name: Update Flakes
         run: nix flake update --accept-flake-config
