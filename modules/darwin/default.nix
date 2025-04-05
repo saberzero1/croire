@@ -278,9 +278,11 @@ in
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
         # Custom additions
-          echo "Setting tmux-sessionizer permissions"
-          sudo chmod +x "$(readlink "$HOME/.config/tmux/scripts/tmux-sessionizer")"
-          sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
+        echo "Setting tmux-sessionizer permissions"
+        sudo chmod +x "$(readlink "$HOME/.config/tmux/scripts/tmux-sessionizer")"
+        sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
+
+        skhd --restart-service
       '';
     };
 
