@@ -55,7 +55,14 @@ ci:
     #   dir: crates/omnix-cli/tests
     #   steps:
     #     lockfile:
-    #       enable: false
+    #       enable: false"
+    caches:
+      required:
+        - https://nix-community.cachix.org
+        - https://cachix.cachix.org
+        - https://nixpkgs.cachix.org
+        - https://om.cachix.org
+        - https://saberzero1.cachix.org
     build-cachix:
       dir: .
 health:
