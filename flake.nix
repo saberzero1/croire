@@ -11,6 +11,8 @@
       "https://cachix.cachix.org"
       # nixpkgs cache server
       "https://nixpkgs.cachix.org"
+      # omnix cachix binaries
+      "https://om.cachix.org"
       # personal cachix binaries
       "https://saberzero1.cachix.org"
     ];
@@ -23,6 +25,8 @@
       "cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM="
       # nixpkgs cache server public key
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
+      # omnix cachix binaries public key
+      "om.cachix.org-1:ifal/RLZJKN4sbpScyPGqJ2+appCslzu7ZZF/C01f2Q="
       # personal cachix binaries public key
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
     ];
