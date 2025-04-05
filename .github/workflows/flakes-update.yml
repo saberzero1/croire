@@ -69,7 +69,7 @@ jobs:
           extraPullNames: "nix-community,cachix,nixpkgs,om,saberzero1"
 
       - name: Test Flakes
-        run: nix flake check
+        run: nix flake check --accept-flake-config
 
       # - name: Build Flakes
       #   run: nix run .#activate --accept-flake-config
