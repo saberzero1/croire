@@ -111,6 +111,9 @@
       url = "github:saberzero1/totten/master";
       flake = false;
     };
+
+    # Omnix
+    omnix.url = "github:juspay/omnix";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
