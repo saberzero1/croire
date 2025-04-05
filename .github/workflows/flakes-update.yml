@@ -60,7 +60,7 @@ jobs:
         run: nix run .#activate --accept-flake-config
 
       - name: Omnix deploy to Cachix
-        run: om ci run --include-all-dependencies | xargs cachix push saberzero1
+        run: om ci run .#activate --include-all-dependencies -- --accept-flake-config | xargs cachix push saberzero1
 
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
