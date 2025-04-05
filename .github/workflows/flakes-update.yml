@@ -50,11 +50,11 @@ jobs:
       - name: Setup Nix with Cachix
         uses: cachix/install-nix-action@v26
 
-      - name: Install Omnix
-        run: nix --accept-flake-config profile install github:juspay:omnix
-
       - name: Update Flakes
         run: nix flake update --accept-flake-config
+
+      - name: Install Omnix
+        run: nix --accept-flake-config profile install github:juspay:omnix
 
       - name: Authenticate Cachix
         uses: cachix/cachix-action@v16
