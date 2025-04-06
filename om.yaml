@@ -56,13 +56,13 @@ ci:
     #   steps:
     #     lockfile:
     #       enable: false"
-    caches:
-      required:
-        - https://nix-community.cachix.org
-        - https://cachix.cachix.org
-        - https://nixpkgs.cachix.org
-        - https://om.cachix.org
-        - https://saberzero1.cachix.org
+    # caches:
+    #   required:
+    #     - https://nix-community.cachix.org
+    #     - https://cachix.cachix.org
+    #     - https://nixpkgs.cachix.org
+    #     - https://om.cachix.org
+    #     - https://saberzero1.cachix.org
     build-cachix:
       dir: .
 health:
