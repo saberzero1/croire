@@ -42,6 +42,7 @@ run:
 [group('Main')]
 switch:
   nix run .#activate --accept-flake-config
+  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
 
 # Check the system configuration
 [group('Main')]
