@@ -41,34 +41,38 @@ run:
 # Activate default configuration
 [group('Main')]
 [linux]
-switch-pure:
+build:
   nix run --accept-flake-config .#activate
-  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
 
 # Activate default configuration
 [group('Main')]
 [macos]
-switch-pure:
+build:
   skhd --stop-service
   nix run --accept-flake-config .#activate
-  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
   skhd --start-service
 
 # Activate default configuration
 [group('Main')]
 [linux]
-switch:
-  nix run --impure --accept-flake-config .#activate
-  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
+switch: pull build
 
 # Activate default configuration
 [group('Main')]
 [macos]
-switch:
-  skhd --stop-service
-  nix run --impure --accept-flake-config .#activate
-  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
-  skhd --start-service
+switch: pull build
+
+# Initialize the configuration
+[group('Main')]
+[unix]
+pull:
+  git -C ~/Repos/shelter pull
+
+# Initialize the configuration
+[group('Main')]
+[unix]
+init:
+  git clone https://github.com/saberzero1/shelter.git ~/Repos/shelter
 
 # Check the system configuration
 [group('Main')]

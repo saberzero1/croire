@@ -1,49 +1,64 @@
 { flake
+, config
 , lib
 , ...
 }:
 let
-  dotfiles = "$HOME/Repos/shelter/";
+  dotfiles = "${config.home.homeDirectory}/Repos/shelter/";
   symlink =
     symlink:
     if lib.trivial.inPureEvalMode then
-      "${flake.inputs.dotfiles}/" + symlink
+      "${flake.inputs.dotfiles}/${symlink}"
     else
-      lib.file.mkOutOfStoreSymlink dotfiles + symlink;
+      "${dotfiles}/${symlink}";
+  # config.lib.file.mkOutOfStoreSymlink dotfiles + symlink;
 in
 {
-  home.file = {
-    ".config/wezterm" = {
+  xdg.configFile = {
+    "bat/config".enable = false;
+    "bat/syntaxes/ghostty.sublime-syntax".enable = false;
+    "ranger/rc.conf".enable = false;
+    "tmux/tmux.conf".enable = false;
+    "wezterm/wezterm.lua".enable = false;
+    wezterm = {
+      enable = true;
+      force = true;
       source = symlink "wezterm";
-      recursive = true;
     };
-    ".config/nvim" = {
+    nvim = {
+      enable = true;
       source = symlink "nvim";
-      recursive = true;
     };
-    ".config/aerospace" = {
+    aerospace = {
+      enable = true;
       source = symlink "aerospace";
-      recursive = true;
     };
-    ".config/ranger" = {
+    ranger = {
+      enable = true;
+      force = true;
       source = symlink "ranger";
-      recursive = true;
     };
-    ".config/ghostty" = {
+    ghostty = {
+      enable = true;
       source = symlink "ghostty";
-      recursive = true;
     };
-    ".config/rclone" = {
+    rclone = {
+      enable = true;
       source = symlink "rclone";
-      recursive = true;
     };
-    ".config/bat" = {
+    bat = {
+      enable = true;
       source = symlink "bat";
-      recursive = true;
     };
-    ".config/tmux" = {
+    tmux = {
+      enable = true;
+      force = true;
       source = symlink "tmux";
-      recursive = true;
+    };
+    "tmux/scripts/tmux-sessionizer" = {
+      enable = true;
+      source = symlink "tmux/scripts/tmux-sessionizer";
+      executable = true;
     };
     /*
       ".config/yabai" = {
@@ -51,13 +66,12 @@ in
         recursive = true;
       };
     */
-    ".config/skhd" = {
+    skhd = {
+      enable = true;
       source = symlink "skhd";
-      recursive = true;
     };
-    ".config/espanso" = {
+    espanso = {
       source = "${flake.inputs.totten}";
-      recursive = true;
     };
   };
 }
