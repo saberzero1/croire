@@ -41,8 +41,24 @@ run:
 # Activate default configuration
 [group('Main')]
 [linux]
+switch-pure:
+  nix run --accept-flake-config .#activate
+  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
+
+# Activate default configuration
+[group('Main')]
+[macos]
+switch-pure:
+  skhd --stop-service
+  nix run --accept-flake-config .#activate
+  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
+  skhd --start-service
+
+# Activate default configuration
+[group('Main')]
+[linux]
 switch:
-  nix run .#activate --accept-flake-config
+  nix run --impure --accept-flake-config .#activate
   sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
 
 # Activate default configuration
@@ -50,7 +66,7 @@ switch:
 [macos]
 switch:
   skhd --stop-service
-  nix run .#activate --accept-flake-config
+  nix run --impure --accept-flake-config .#activate
   sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
   skhd --start-service
 

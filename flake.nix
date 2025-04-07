@@ -47,7 +47,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     devenv.url = "github:cachix/devenv";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-unified.url = "github:srid/nixos-unified";
+    nixos-unified.url = "github:saberzero1/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # WSL-specific
