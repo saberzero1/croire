@@ -40,9 +40,19 @@ run:
 
 # Activate default configuration
 [group('Main')]
+[linux]
 switch:
   nix run .#activate --accept-flake-config
   sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
+
+# Activate default configuration
+[group('Main')]
+[macos]
+switch:
+  skhd --stop-service
+  nix run .#activate --accept-flake-config
+  sudo chmod +x ~/.config/tmux/scripts/tmux-sessionizer
+  skhd --start-service
 
 # Check the system configuration
 [group('Main')]
