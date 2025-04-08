@@ -549,11 +549,11 @@
         "unstablePkgs": "unstablePkgs"
       },
       "locked": {
-        "lastModified": 1744134391,
-        "narHash": "sha256-hMvuC1tXuuLJ1GT9hNWQm9AYMl1hIAogRkpImC7MNJk=",
+        "lastModified": 1744139519,
+        "narHash": "sha256-7rMGXA/sidKVBVgCv82HeHc+JrtuA2BRWVgr57RHaes=",
         "owner": "gitbutlerapp",
         "repo": "gitbutler",
-        "rev": "06e7b53461e1f5e17d65720cb12ef446ca60eae4",
+        "rev": "bba66e1578fb4ac445c5c7792c7dbf16d48a9055",
         "type": "github"
       },
       "original": {
@@ -649,15 +649,14 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "treefmt-nix": "treefmt-nix"
+        ]
       },
       "locked": {
-        "lastModified": 1744127405,
-        "narHash": "sha256-Cqkmsb3CDcUREjszRe2/qkvztFzEujkaaqV5/nqfdlk=",
+        "lastModified": 1744138333,
+        "narHash": "sha256-l0Vjq1EZoYTfWImVmwsvMEuIdasrBRRCoNTV0rNtYi0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "fefb6ae1b301b620a81645789e19945092b079da",
+        "rev": "760eed59594f2f258db0d66b7ca4a5138681fd97",
         "type": "github"
       },
       "original": {
@@ -706,11 +705,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1744130992,
-        "narHash": "sha256-KfZHEaoW6DnW/sK3WNzWGgkrw1n1ytI159x25KQk4hk=",
+        "lastModified": 1744139559,
+        "narHash": "sha256-S6iSSFTHBVVuyw0esKERMawaCaUmCvTh5VkXq6Mzcvs=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "193ff152dcddfe72858e5e3474c56e5225f923ba",
+        "rev": "c2d982018119fcd42061c348ddae573f5b887a60",
         "type": "github"
       },
       "original": {
@@ -722,11 +721,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1744136011,
-        "narHash": "sha256-gxqq9BXWiR8TZkYOdiA4GAoke2gA0SFr22ZTzlpeXq0=",
+        "lastModified": 1744139509,
+        "narHash": "sha256-NVGZ+OqLHLIxz7x5L3jJxqp5vC+O0hc6FRx3OIFiBM8=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "007fe3e93c8af50b9710a19029c6cdcfaaed067c",
+        "rev": "8aaee5744cd740f05bc3d2aa2eaba7c06b87803e",
         "type": "github"
       },
       "original": {
@@ -821,7 +820,7 @@
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-src": "neovim-src",
         "nixpkgs": "nixpkgs_5",
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix"
       },
       "locked": {
         "lastModified": 1744095922,
@@ -1084,11 +1083,11 @@
     },
     "nixos-unified": {
       "locked": {
-        "lastModified": 1744051346,
-        "narHash": "sha256-rMaFmEMm0+oA7ZaGdovnldq0GIoBbgHTKDJymJ5qCvc=",
+        "lastModified": 1744139678,
+        "narHash": "sha256-vJIfQKRLCXYTwXA97y96WLtjFyZvKQtnEGyAriuRWp4=",
         "owner": "saberzero1",
         "repo": "nixos-unified",
-        "rev": "b3434345570ab244bd559b9265276ccfdc4f9440",
+        "rev": "534b0ba6b997e87c4a5ba88ec2c58d56750e8643",
         "type": "github"
       },
       "original": {
@@ -1158,11 +1157,11 @@
     },
     "nixpkgs-stable_2": {
       "locked": {
-        "lastModified": 1744135887,
-        "narHash": "sha256-Bdg5OeipYML2yUoA5Yw4ryGYXU5UELA/eILWwY2K8iw=",
+        "lastModified": 1744139229,
+        "narHash": "sha256-uJT5/f8sGg3Oj/MAjZGZJD5b+Ym5NT4sOhJSp5Hr8zY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "95bf21ec38100c3dcb992a062d345b6b9e16fbc8",
+        "rev": "8cc0451ead532078052ac7d3aa82e23572047acf",
         "type": "github"
       },
       "original": {
@@ -1662,27 +1661,6 @@
       }
     },
     "treefmt-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "home-manager",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1743748085,
-        "narHash": "sha256-uhjnlaVTWo5iD3LXics1rp9gaKgDRQj6660+gbUU3cE=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "815e4121d6a5d504c0f96e5be2dd7f871e4fd99d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "treefmt-nix_2": {
       "inputs": {
         "nixpkgs": [
           "neovim-nightly-overlay",
