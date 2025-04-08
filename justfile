@@ -48,7 +48,7 @@ build:
 [group('Main')]
 [macos]
 build:
-  skhd --stop-service
+  skhd --stop-service || true
   nix run --accept-flake-config .#activate
   skhd --start-service
 
@@ -66,13 +66,7 @@ switch: pull build
 [group('Main')]
 [unix]
 pull:
-  git -C ~/Repos/shelter pull
-
-# Initialize the configuration
-[group('Main')]
-[unix]
-init:
-  git clone https://github.com/saberzero1/shelter.git ~/Repos/shelter
+  git -C ~/Repos/shelter pull || git clone https://github.com/saberzero1/shelter.git ~/Repos/shelter
 
 # Check the system configuration
 [group('Main')]
