@@ -86,7 +86,7 @@ repl:
 [group('Clean')]
 [unix]
 clean-old:
-  sudo nix profile wipe-history --profile /nix/var/nix/profiles/system  --older-than 7d
+  sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d
 
 # Garbage collect all unused nix store entries
 [group('Clean')]
