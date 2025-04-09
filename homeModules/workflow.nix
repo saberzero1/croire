@@ -57,7 +57,7 @@ in
     # };
     xdg = {
       configFile = {
-        "espanso" = { source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
+        "espanso" = { source = config.lib.file.mkOutOfStoreSym "${flake.inputs.dotfiles}/${config.home.homeDirectory}/Documents/Repos/dotfiles-submodules/totten"; };
       };
     };
   };

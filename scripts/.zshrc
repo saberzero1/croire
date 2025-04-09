@@ -2,7 +2,7 @@
 eval "$(zoxide init --cmd cd zsh)"
 
 # atuin
-# eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin init zsh --disable-up-arrow)"
 
 # direnv
 eval "$(direnv hook zsh)"
@@ -11,4 +11,4 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
 # thefuck
-eval $(thefuck --alias fuck)
+# eval $(thefuck --alias fuck)

@@ -116,25 +116,25 @@
         export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
 
         # zoxide
-        eval "$(zoxide init --cmd cd zsh)"
+        # eval "$(zoxide init --cmd cd zsh)"
 
         # atuin
-        eval "$(atuin init zsh --disable-up-arrow)"
+        # eval "$(atuin init zsh --disable-up-arrow)"
 
         # direnv
-        eval "$(direnv hook zsh)"
+        # eval "$(direnv hook zsh)"
 
         # starship
-        eval "$(starship init zsh)"
+        # eval "$(starship init zsh)"
 
         # thefuck replacement pay-respects
-        eval $(pay-respects zsh --alias fuck --nocnf)
+        # eval $(pay-respects zsh --alias fuck --nocnf)
 
         # gnome
-        eval $(dbus-update-activation-environment --systemd --all)
+        # eval $(dbus-update-activation-environment --systemd --all)
 
         # tmux
-        bindkey -s ^f "tmux-sessionizer\n"
+        # bindkey -s ^f "tmux-sessionizer\n"
       '';
     };
 

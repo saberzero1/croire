@@ -257,7 +257,6 @@
 
         # Custom additions
         echo "Setting tmux-sessionizer permissions"
-        # sudo chmod +x "$(readlink "$HOME/.config/tmux/scripts/tmux-sessionizer")"
         # sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
 
         # skhd --restart-service

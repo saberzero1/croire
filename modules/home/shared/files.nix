@@ -1,77 +1,59 @@
 { flake
-, config
-, lib
 , ...
 }:
-let
-  dotfiles = "${config.home.homeDirectory}/Repos/shelter/";
-  symlink =
-    symlink:
-    if lib.trivial.inPureEvalMode then
-      "${flake.inputs.dotfiles}/${symlink}"
-    else
-      "${dotfiles}/${symlink}";
-  # config.lib.file.mkOutOfStoreSymlink dotfiles + symlink;
-in
 {
-  xdg.configFile = {
-    "bat/config".enable = false;
-    "bat/syntaxes/ghostty.sublime-syntax".enable = false;
-    "ranger/rc.conf".enable = false;
-    "tmux/tmux.conf".enable = false;
-    "wezterm/wezterm.lua".enable = false;
-    wezterm = {
-      enable = true;
-      force = true;
-      source = symlink "wezterm";
+  home.file = {
+    ".config/wezterm" = {
+      source = "${flake.inputs.dotfiles}/wezterm";
+      recursive = true;
     };
-    nvim = {
-      enable = true;
-      source = symlink "nvim";
+    ".config/nvim" = {
+      source = "${flake.inputs.dotfiles}/nvim";
+      recursive = true;
     };
-    aerospace = {
-      enable = true;
-      source = symlink "aerospace";
+    ".config/aerospace" = {
+      source = "${flake.inputs.dotfiles}/aerospace";
+      recursive = true;
     };
-    ranger = {
-      enable = true;
-      force = true;
-      source = symlink "ranger";
+    ".config/ranger" = {
+      source = "${flake.inputs.dotfiles}/ranger";
+      recursive = true;
     };
-    ghostty = {
-      enable = true;
-      source = symlink "ghostty";
+    ".config/ghostty" = {
+      source = "${flake.inputs.dotfiles}/ghostty";
+      recursive = true;
     };
-    rclone = {
-      enable = true;
-      source = symlink "rclone";
+    ".config/rclone" = {
+      source = "${flake.inputs.dotfiles}/rclone";
+      recursive = true;
     };
-    bat = {
-      enable = true;
-      source = symlink "bat";
+    ".config/bat" = {
+      source = "${flake.inputs.dotfiles}/bat";
+      recursive = true;
     };
-    tmux = {
-      enable = true;
-      force = true;
-      source = symlink "tmux";
+    ".config/tmux" = {
+      source = "${flake.inputs.dotfiles}/tmux";
+      recursive = true;
     };
-    "tmux/scripts/tmux-sessionizer" = {
-      enable = true;
-      source = symlink "tmux/scripts/tmux-sessionizer";
-      executable = true;
-    };
+    /*
+      ".config/tmux/scripts/tmux-sessionizer" = {
+        source = "${flake.inputs.dotfiles}/tmux/scripts/tmux-sessionizer";
+        executable = true;
+      };
+    */
     /*
       ".config/yabai" = {
         source = "${flake.inputs.dotfiles}/yabai";
         recursive = true;
       };
     */
-    skhd = {
-      enable = true;
-      source = symlink "skhd";
+    ".config/skhd" = {
+      source = "${flake.inputs.dotfiles}/skhd";
+      recursive = true;
     };
-    espanso = {
+    ".config/espanso" = {
       source = "${flake.inputs.totten}";
+      recursive = true;
     };
   };
 }
