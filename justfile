@@ -65,8 +65,20 @@ switch: pull build
 # Initialize the configuration
 [group('Main')]
 [unix]
-pull:
+pull-dotfiles:
   git -C ~/Repos/shelter pull || git clone https://github.com/saberzero1/shelter.git ~/Repos/shelter
+
+# Initialize the configuration
+[group('Main')]
+[unix]
+pull-self:
+  git fetch --all
+  git pull
+
+# Initialize the configuration
+[group('Main')]
+[unix]
+pull: pull-self pull-dotfiles
 
 # Check the system configuration
 [group('Main')]
