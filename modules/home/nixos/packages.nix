@@ -1,6 +1,7 @@
-{ pkgs
-, flake
-, ...
+{
+  pkgs,
+  flake,
+  ...
 }:
 {
   # Nix packages to install to $HOME
@@ -56,6 +57,9 @@
 
       # Graphic Drivers
       driversi686Linux.amdvlk
+
+      # Miscellaneous
+      calibre
     ]
     ++ [
       flake.inputs.zen-browser.packages."x86_64-linux".default

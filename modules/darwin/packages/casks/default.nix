@@ -1,6 +1,7 @@
 { ... }:
 {
   homebrew.casks = [
+    "calibre"
     "espanso"
     "ghostty"
     "gimp"
