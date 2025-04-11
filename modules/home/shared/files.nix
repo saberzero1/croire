@@ -35,12 +35,10 @@
       source = "${flake.inputs.dotfiles}/tmux";
       recursive = true;
     };
-    /*
-      ".config/tmux/scripts/tmux-sessionizer" = {
-        source = "${flake.inputs.dotfiles}/tmux/scripts/tmux-sessionizer";
-        executable = true;
-      };
-    */
+    ".config/scripts/tmux" = {
+      source = "${flake.inputs.dotfiles}/tmux/scripts";
+      executable = true;
+    };
     /*
       ".config/yabai" = {
         source = "${flake.inputs.dotfiles}/yabai";
