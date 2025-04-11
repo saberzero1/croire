@@ -29,7 +29,7 @@
         fi
 
         # tmux
-        bindkey -s ^f "tmux-sessionizer\n"
+        bindkey -s "^f" "tmux-sessionizer\n"
       '';
     };
 
