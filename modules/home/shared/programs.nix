@@ -1,6 +1,7 @@
-{ flake
-, pkgs
-, ...
+{
+  flake,
+  pkgs,
+  ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -265,6 +266,11 @@
       ];
       userKeymaps = pkgs.lib.importJSON "${flake.inputs.dotfiles}/zed/keymap.json";
       userSettings = pkgs.lib.importJSON "${flake.inputs.dotfiles}/zed/settings.json";
+    };
+
+    rclone = {
+      enable = true;
+      package = pkgs.rclone;
     };
   };
   home.packages = [
