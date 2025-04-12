@@ -11,6 +11,9 @@
       source = "${flake.inputs.dotfiles}/nvim";
       recursive = true;
     };
+    ".config/starship/starship.toml" = {
+      source = "${flake.inputs.dotfiles}/starship/starship.toml";
+    };
     ".config/aerospace" = {
       source = "${flake.inputs.dotfiles}/aerospace";
       recursive = true;

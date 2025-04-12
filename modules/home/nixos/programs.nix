@@ -87,57 +87,6 @@
       package = pkgs.wavebox;
     };
 
-    zsh = {
-      dotDir = ".config/zsh";
-      enable = true;
-      autosuggestion = {
-        enable = true;
-      };
-      enableCompletion = true;
-      history = {
-        save = 100000;
-      };
-      package = pkgs.zsh;
-      profileExtra = ''
-
-      '';
-      syntaxHighlighting = {
-        enable = true;
-      };
-      shellAliases = {
-        uuid = "uuidgen";
-        ll = "ls -l";
-        ".." = "cd ..";
-      };
-      enableVteIntegration = true;
-
-      # This command let's me execute arbitrary binaries downloaded through channels such as mason.
-      initExtra = ''
-        export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
-
-        # zoxide
-        # eval "$(zoxide init --cmd cd zsh)"
-
-        # atuin
-        # eval "$(atuin init zsh --disable-up-arrow)"
-
-        # direnv
-        # eval "$(direnv hook zsh)"
-
-        # starship
-        # eval "$(starship init zsh)"
-
-        # thefuck replacement pay-respects
-        # eval $(pay-respects zsh --alias fuck --nocnf)
-
-        # gnome
-        # eval $(dbus-update-activation-environment --systemd --all)
-
-        # tmux
-        # bindkey -s ^f "tmux-sessionizer\n"
-      '';
-    };
-
     pay-respects = {
       enable = true;
       enableBashIntegration = true;

@@ -84,8 +84,9 @@
     wezterm = {
       enable = true;
       package = pkgs.wezterm;
-      enableZshIntegration = true;
-      enableBashIntegration = true;
+      # wezterm executes a bunch of slow commands before and after every input
+      enableZshIntegration = false;
+      enableBashIntegration = false;
     };
 
     starship = {
@@ -151,6 +152,39 @@
       syntaxHighlighting = {
         enable = true;
       };
+      shellAliases = {
+        uuid = "uuidgen";
+        ll = "ls -l";
+        ".." = "cd ..";
+      };
+      enableVteIntegration = true;
+      initExtra = ''
+        # zoxide
+        eval "$(zoxide init --cmd cd zsh)"
+
+        # atuin
+        # eval "$(atuin init zsh --disable-up-arrow)"
+
+        # direnv
+        eval "$(direnv hook zsh)"
+
+        # starship
+        eval "$(starship init zsh)"
+
+        # thefuck replacement pay-respects
+        eval $(pay-respects zsh --alias fuck --nocnf)
+
+        if [[ $(uname -m) == 'arm64' ]]; then
+          # Aerospace on Silicon
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+        else
+          # Systemd on linux
+          eval $(dbus-update-activation-environment --systemd --all)
+        fi
+
+        # tmux
+        # bindkey -s "^f" "tmux-sessionizer\n"
+      '';
       plugins = [
         {
           name = "zsh-autopair";
