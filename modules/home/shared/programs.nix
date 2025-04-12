@@ -182,8 +182,11 @@
           eval $(dbus-update-activation-environment --systemd --all)
         fi
 
+        # source shortcuts
+        source "$HOME/.config/scripts/zsh/shortcuts"
+
         # tmux
-        # bindkey -s "^f" "tmux-sessionizer\n"
+        bindkey -s "^F" "start-tmux-sessionizer\n"
       '';
       plugins = [
         {

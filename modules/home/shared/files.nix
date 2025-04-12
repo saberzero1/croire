@@ -45,6 +45,10 @@
     ".config/scripts/tmux/directories" = {
       source = "${flake.inputs.dotfiles}/tmux/scripts/directories";
     };
+    ".config/scripts/zsh/shortcuts" = {
+      source = "${flake.inputs.dotfiles}/zsh/scripts/shortcuts";
+      executable = true;
+    };
     /*
       ".config/yabai" = {
         source = "${flake.inputs.dotfiles}/yabai";
