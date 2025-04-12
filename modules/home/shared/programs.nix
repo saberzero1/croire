@@ -183,10 +183,10 @@
         fi
 
         # source shortcuts
-        source "$HOME/.config/scripts/zsh/shortcuts"
+        source "~/.config/scripts/zsh/shortcuts"
 
         # tmux
-        bindkey -s "^F" "start-tmux-sessionizer\n"
+        bindkey -s "^F" "tmux-sessionizer\n"
       '';
       plugins = [
         {
