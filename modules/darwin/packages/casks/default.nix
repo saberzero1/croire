@@ -8,6 +8,7 @@
     "gitbutler"
     "nordlayer"
     "obsidian"
+    "macfuse"
     "sol"
     "wavebox"
     "zen-browser"
