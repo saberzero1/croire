@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home = {
-    shellAliases = {
-      "reload-rclone" = "systemctl --user restart rCloneMounts.service";
-    };
     sessionVariables = {
       TERM = "xterm-ghostty";
       DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
