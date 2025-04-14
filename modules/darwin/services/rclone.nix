@@ -1,17 +1,15 @@
-{ ... }:
+{ pkgs, ... }:
 {
   launchd = {
     user = {
       agents = {
-        "rCloneMounts" = {
-          command = "reload-rclone";
-          environment = {
-            "reload-rclone" = "launchd --user restart rCloneMounts.service";
-          };
+        rclone-mounts = {
+          command = "${pkgs.rclone}/bin/rclone mount hidrive:hidrive ~/hidrive";
           serviceConfig = {
-            runAtLoad = true;
-            standardOutPath = "$HOME/.logs/rclone/rclone-mounts.log";
-            standardErrorPath = "$HOME/.logs/rclone/rclone-mounts.log";
+            RunAtLoad = true;
+            KeepAlive = true;
+            StandardOutPath = "/tmp/logs/rclone/rclone-mounts.log";
+            StandardErrorPath = "/tmp/logs/rclone/rclone-mounts.log";
           };
         };
       };
