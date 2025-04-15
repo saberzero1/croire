@@ -29,6 +29,7 @@
       wlsunset
       uwsm
       mako
+      sway
 
       ghostty
       # gitbutler
@@ -134,7 +135,18 @@
     };
     portal = {
       enable = true;
+      wlr.enable = true;
       xdgOpenUsePortal = true;
+      configPackages = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+      extraPackages = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
     };
   };
 
@@ -273,11 +285,16 @@
       terminal = "wezterm";
     };
 
+    dbus = {
+      enable = true;
+    };
+
     sway = {
       enable = true;
       wrapperFeatures = {
         gtk = true;
       };
+      xwayland.enable = true;
       extraPackages = with pkgs; [
         swaylock
         swayidle
@@ -299,6 +316,12 @@
         xdg-utils
       ];
 
+      extraOptions = [
+        "--verbose"
+        "--debug"
+        "--unsupported-gpu"
+      ];
+
       extraSessionCommands = ''
         eval "$(ssh-agent -s)"
         eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
@@ -316,8 +339,15 @@
         sway = {
           prettyName = "Sway";
           comment = "Sway compositor managed by UWSM";
-          binPath = "${pkgs.sway}/bin/sway";
+          binPath = "/run/current-system/sw/bin/sway";
         };
+      };
+    };
+
+    wayland = {
+      enable = true;
+      windowManager.sway = {
+        enable = true;
       };
     };
 

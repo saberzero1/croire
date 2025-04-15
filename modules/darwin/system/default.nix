@@ -5,5 +5,4 @@
     ./security.nix
     ./settings.nix
   ];
-
 }

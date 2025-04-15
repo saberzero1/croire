@@ -6,6 +6,11 @@ let
   inherit (inputs) self;
 in
 {
+  imports = [
+    ./packages
+    ./services
+    ./system
+  ];
   # These users can add Nix caches.
   nix.settings.trusted-users = [
     "root"
