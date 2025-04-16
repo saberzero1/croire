@@ -1,9 +1,8 @@
-{
-  flake,
-  pkgs,
-  inputs,
-  config,
-  ...
+{ flake
+, pkgs
+, inputs
+, config
+, ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -106,7 +105,7 @@
       settings = [
         {
           position = "top";
-          height = 30;
+          height = 38;
           modules-left = [ "sway/workspaces" ];
           modules-right = [
             "sway/mode"

@@ -17,7 +17,7 @@
     };
 
     espanso = {
-      enable = true;
+      enable = false;
       package = pkgs.espanso-wayland;
       configs = { };
       matches = { };

@@ -1,7 +1,6 @@
-{
-  pkgs,
-  flake,
-  ...
+{ pkgs
+, flake
+, ...
 }:
 {
   # Nix packages to install to $HOME
@@ -53,7 +52,7 @@
       vscodium.fhs
 
       # Espanso
-      espanso-wayland
+      # espanso-wayland
 
       # Graphic Drivers
       driversi686Linux.amdvlk
@@ -80,6 +79,13 @@
       kdePackages.dragon
       swappy
       xdg-utils
+
+      evince
+      foliate
+      pulseaudioFull
+      avizo
+      libnotify
+      fuzzel
 
     ]
     ++ [

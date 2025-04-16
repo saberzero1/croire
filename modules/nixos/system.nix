@@ -1,7 +1,10 @@
 { pkgs, config, ... }:
 {
   environment = {
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      MOZ_ENABLE_WAYLAND = "1";
+    };
 
     systemPackages = with pkgs; [
       vlc
@@ -35,6 +38,8 @@
       slurp
       wl-keyboard
       grim
+
+      dbus
 
       ghostty
       # gitbutler
@@ -279,9 +284,11 @@
       terminal = "wezterm";
     };
 
-    waybar = {
-      enable = true;
-    };
+    /*
+      waybar = {
+        enable = true;
+      };
+    */
 
     uwsm = {
       enable = true;

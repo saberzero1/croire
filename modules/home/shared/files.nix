@@ -1,6 +1,5 @@
-{
-  flake,
-  ...
+{ flake
+, ...
 }:
 {
   home.file = {
