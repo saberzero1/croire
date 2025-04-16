@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   security = {
+    polkit = {
+      enable = true;
+      #defaultBackend = "polkit-gnome";
+    };
+
     rtkit = {
       enable = true;
     };

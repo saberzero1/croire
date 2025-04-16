@@ -1,11 +1,22 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
 in
 {
+  imports = [
+    ./packages
+    ./services
+    ./system
+  ];
+
   # These users can add Nix caches.
   nix.settings.trusted-users = [
     "root"

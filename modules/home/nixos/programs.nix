@@ -1,8 +1,9 @@
-{ flake
-, pkgs
-, inputs
-, config
-, ...
+{
+  flake,
+  pkgs,
+  inputs,
+  config,
+  ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -101,6 +102,7 @@
 
     waybar = {
       enable = true;
+      systemd.enable = true;
       settings = [
         {
           position = "top";

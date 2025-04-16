@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 {
   environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+
     systemPackages = with pkgs; [
       vlc
       steam
@@ -29,6 +31,10 @@
       wlsunset
       uwsm
       mako
+      sway
+      slurp
+      wl-keyboard
+      grim
 
       ghostty
       # gitbutler
@@ -271,39 +277,6 @@
     nautilus-open-any-terminal = {
       enable = true;
       terminal = "wezterm";
-    };
-
-    sway = {
-      enable = true;
-      wrapperFeatures = {
-        gtk = true;
-      };
-      extraPackages = with pkgs; [
-        swaylock
-        swayidle
-        wl-clipboard
-        wf-recorder
-        sway-contrib.grimshot
-        mako # notification daemon
-        grim
-        slurp
-        alacritty # Alacritty is the default terminal in the config
-        dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
-        wofi
-        gtk-engine-murrine
-        gtk_engines
-        gsettings-desktop-schemas
-        lxappearance
-        kdePackages.dragon
-        swappy
-        xdg-utils
-      ];
-
-      extraSessionCommands = ''
-        eval "$(ssh-agent -s)"
-        eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-        export SSH_AUTH_SOCK
-      '';
     };
 
     waybar = {

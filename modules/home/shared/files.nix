@@ -1,5 +1,6 @@
-{ flake
-, ...
+{
+  flake,
+  ...
 }:
 {
   home.file = {
@@ -61,6 +62,10 @@
     };
     ".config/espanso" = {
       source = "${flake.inputs.totten}";
+      recursive = true;
+    };
+    ".assets/backgrounds" = {
+      source = "${flake.inputs.dotfiles}/assets";
       recursive = true;
     };
   };

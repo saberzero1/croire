@@ -1,4 +1,9 @@
-{ flake, pkgs, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  ...
+}:
 {
   home = {
     shellAliases = {
@@ -9,14 +14,18 @@
     sessionPath = [
       "/snap/bin"
     ];
+    file.".hm-graphical-session".text = pkgs.lib.concatStringsSep "\n" [
+      "export MOZ_ENABLE_WAYLAND=1"
+      "export NIXOS_OZONE_WL=1"
+    ];
   };
   dconf = {
     settings = {
       "org/gnome/desktop/background" = {
         color-shading-type = "solid";
         picture-options = "zoom";
-        picture-uri = "file:///home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper.png";
-        picture-uri-dark = "file:///home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper.png";
+        picture-uri = "file:///home/saberzero1/.assets/backgroounds/wallpaper.png";
+        picture-uri-dark = "file:///home/saberzero1/.assets/backgrounds/wallpaper.png";
       };
       "org/gnome/shell" = {
         favorite-apps = [
@@ -72,7 +81,7 @@
         source = "${flake.inputs.dotfiles}/paperwm/user.js";
       };
       "sway/config" = {
-        source = "${flake.inputs.dotfiles}/sway/config";
+        source = lib.mkDefault "${flake.inputs.dotfiles}/sway/config";
       };
       "sway-interactive-screenshot/config.toml" = {
         source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/config.toml";
@@ -111,4 +120,31 @@
       };
     };
   };
+
+  wayland = {
+    systemd = {
+      #target = "sway-session.target";
+    };
+
+    windowManager.sway = {
+      enable = true;
+      xwayland = true;
+      systemd.xdgAutostart = true;
+      wrapperFeatures = {
+        gtk = true;
+      };
+
+      extraConfig = lib.mkDefault (builtins.readFile "${flake.inputs.dotfiles}/sway/config");
+
+      /*
+        extraSessionCommands = ''
+          eval "$(ssh-agent -s)"
+          eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+          export SSH_AUTH_SOCK
+        '';
+      */
+
+    };
+  };
+
 }

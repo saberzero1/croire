@@ -1,6 +1,7 @@
-{ pkgs
-, flake
-, ...
+{
+  pkgs,
+  flake,
+  ...
 }:
 {
   # Nix packages to install to $HOME
@@ -59,6 +60,27 @@
 
       # Miscellaneous
       calibre
+
+      # Sway
+      swaylock
+      swayidle
+      wl-clipboard
+      wf-recorder
+      sway-contrib.grimshot
+      mako # notification daemon
+      grim
+      slurp
+      alacritty # Alacritty is the default terminal in the config
+      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+      wofi
+      gtk-engine-murrine
+      gtk_engines
+      gsettings-desktop-schemas
+      lxappearance
+      kdePackages.dragon
+      swappy
+      xdg-utils
+
     ]
     ++ [
       flake.inputs.zen-browser.packages."x86_64-linux".default
