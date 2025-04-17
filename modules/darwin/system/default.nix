@@ -1,9 +1,6 @@
+{ ... }:
 {
-  imports = [
-    ./fonts.nix
-    ./packages.nix
-    ./security.nix
-    ./settings.nix
-  ];
-
+  imports = builtins.map (fn: ./${fn}) (
+    builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
+  );
 }

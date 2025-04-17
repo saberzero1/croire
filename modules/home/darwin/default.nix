@@ -1,6 +1,6 @@
-# A module that automatically imports everything else in the parent folder.
+{ ... }:
 {
-  imports =
-    with builtins;
-    map (fn: ./${fn}) (filter (fn: fn != "default.nix") (attrNames (readDir ./.)));
+  imports = builtins.map (fn: ./${fn}) (
+    builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
+  );
 }
