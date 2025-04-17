@@ -51,31 +51,31 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Setup Nix with Cachix
-        uses: cachix/install-nix-action@v26
+      # - name: Setup Nix with Cachix
+      #   uses: cachix/install-nix-action@v26
 
       - name: Update Flakes
         run: nix flake update --accept-flake-config
 
-      - name: Install Omnix
-        run: nix --accept-flake-config profile install github:juspay/omnix
+      # - name: Install Omnix
+      #   run: nix --accept-flake-config profile install github:juspay/omnix
 
-      - name: Authenticate Cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: saberzero1
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-          installCommand: nix profile install --accept-flake-config nixpkgs#cachix
-          extraPullNames: "nix-community,cachix,nixpkgs,om,saberzero1"
+      # - name: Authenticate Cachix
+      #   uses: cachix/cachix-action@v14
+      #   with:
+      #     name: saberzero1
+      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      #     installCommand: nix profile install --accept-flake-config nixpkgs#cachix
+      #     extraPullNames: "nix-community,cachix,nixpkgs,om,saberzero1"
 
-      - name: Test Flakes
-        run: nix flake check --accept-flake-config
+      # - name: Test Flakes
+      #   run: nix flake check --accept-flake-config
 
       # - name: Build Flakes
       #   run: nix run .#activate --accept-flake-config
 
-      - name: Omnix deploy to Cachix
-        run: om ci run --include-all-dependencies -- --accept-flake-config --impure | xargs cachix push saberzero1
+      # - name: Omnix deploy to Cachix
+      #   run: om ci run --include-all-dependencies -- --accept-flake-config --impure | xargs cachix push saberzero1
 
       - name: Push changes
         if: runner.os == 'Linux'
