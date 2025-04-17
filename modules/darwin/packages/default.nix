@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ ... }:
 {
   imports = [
     ./casks

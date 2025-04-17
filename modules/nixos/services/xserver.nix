@@ -1,6 +1,5 @@
 { pkgs, lib, ... }:
 {
-
   services.xserver = {
     enable = true;
     desktopManager = {
@@ -22,7 +21,6 @@
       '';
     };
     videoDrivers = [
-      # "nvidia"
       "nouveau"
     ];
     xkb = {
@@ -30,5 +28,4 @@
       variant = "";
     };
   };
-
 }

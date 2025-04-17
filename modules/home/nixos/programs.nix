@@ -1,8 +1,7 @@
-{ flake
-, pkgs
-, inputs
-, config
-, ...
+{
+  flake,
+  pkgs,
+  ...
 }:
 {
   # Programs natively supported by home-manager.

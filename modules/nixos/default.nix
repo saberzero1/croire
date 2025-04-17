@@ -1,14 +1,9 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake
-, pkgs
-, lib
-, ...
+{
+  pkgs,
+  ...
 }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
 {
   imports = [
     ./packages

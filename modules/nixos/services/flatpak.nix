@@ -1,8 +1,6 @@
 { ... }:
 {
-
   services.flatpak = {
     enable = true;
   };
-
 }

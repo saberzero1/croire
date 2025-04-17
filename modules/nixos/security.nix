@@ -3,7 +3,6 @@
   security = {
     polkit = {
       enable = true;
-      #defaultBackend = "polkit-gnome";
     };
 
     rtkit = {

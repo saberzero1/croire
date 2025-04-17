@@ -1,6 +1,5 @@
 { config, ... }:
 {
-
   # Backups and Restores
   services.prometheus = {
     enable = false;
@@ -12,5 +11,4 @@
       };
     };
   };
-
 }

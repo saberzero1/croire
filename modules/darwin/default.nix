@@ -1,10 +1,6 @@
 # This is your nix-darwin configuration.
 # For home configuration, see /modules/home/*
-{ flake, pkgs, ... }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
+{ ... }:
 {
   imports = [
     ./dock

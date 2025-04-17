@@ -1,6 +1,5 @@
 { ... }:
 {
-
   services.displayManager = {
     autoLogin = {
       enable = true;
@@ -8,5 +7,4 @@
     };
     defaultSession = "sway";
   };
-
 }

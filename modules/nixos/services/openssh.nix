@@ -1,8 +1,6 @@
 { ... }:
 {
-
   services.openssh = {
     enable = true;
   };
-
 }
