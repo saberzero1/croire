@@ -1,6 +1,5 @@
-{
-  flake,
-  ...
+{ flake
+, ...
 }:
 let
   inherit (flake) inputs;

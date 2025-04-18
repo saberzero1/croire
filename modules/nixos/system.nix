@@ -296,9 +296,14 @@
         sway = {
           prettyName = "Sway";
           comment = "Sway compositor managed by UWSM";
-          binPath = "${pkgs.sway}/bin/sway";
+          binPath = "/run/current-system/sw/bin/sway";
         };
       };
+    };
+
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
     };
 
     nano = {
@@ -328,4 +333,13 @@
       };
     };
   };
+
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "saberzero1";
+    };
+    defaultSession = "sway";
+  };
+
 }

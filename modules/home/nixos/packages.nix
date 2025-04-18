@@ -79,6 +79,7 @@
       kdePackages.dragon
       swappy
       xdg-utils
+      uwsm
 
       evince
       foliate

@@ -135,7 +135,7 @@
         gtk = true;
       };
 
-      config = {
+      config = rec {
         modifier = "Mod4";
         input = {
           "*" = {
@@ -223,6 +223,18 @@
             "Mod4+l" =
               "exec swaylock  -i ${flake.inputs.dotfiles}/assets/wallpaper_night_blurred.png --indicator-radius 100 --indicator-thickness 7 --hide-keyboard-layout --disable-caps-lock-text --ignore-empty-password --ring-color b4f9f8 --key-hl-color c0caf5 --line-color 00000000 --inside-color b4f9f888 --separator-color 00000000 --ring-wrong-color f7768e --line-wrong-color 00000000 --inside-wrong-color f7768e88 --text-wrong-color 00000000 --ring-ver-color 7aa2f7 --line-ver-color 00000000 --inside-ver-color 7aa2f788 --text-ver-color 00000000 --ring-clear-color 565f89 --line-clear-color 00000000 --inside-clear-color 565f8988 --text-clear-color 00000000 --ring-caps-lock-color e0af68 --line-caps-lock-color 00000000 --inside-caps-lock-color e0af6888 --text-caps-lock-color 00000000";
           };
+
+        startup = [
+          { command = "systemctl --user import-environment"; }
+          { command = "avizo-service"; }
+          { command = "wezterm"; }
+          { command = "configure-gtk"; }
+          { command = "dbus-sway-environment"; }
+        ];
+
+        bars = [ ];
+
+        defaultWorkspace = "workspace number 1";
       };
 
       extraConfig = ''
@@ -235,11 +247,8 @@
 
         default_border pixel 1
 
-        exec systemctl --user import-environment
-
-        exec "avizo-service"
-
         assign [app_id="ghostty"] workspace number 1
+        assign [app_id="wezterm"] workspace number 1
         assign [app_id="discord"] workspace number 2
         assign [app_id="wavebox"] workspace number 3 
         assign [app_id="zen"] workspace number 3
@@ -248,11 +257,6 @@
         assign [app_id="wine"] workspace number 4
 
         for_window [app_id="com.github.finefindus.eyedropper"] floating enable
-
-        # exec waybar &
-        exec wezterm &
-        exec dbus-sway-environment
-        exec configure-gtk
 
         include @sysconfdir@/sway/config.d/*
       '';
