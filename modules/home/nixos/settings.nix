@@ -230,7 +230,6 @@
         startup = [
           { command = "systemctl --user import-environment"; }
           { command = "avizo-service"; }
-          { command = "wezterm"; }
           { command = "configure-gtk"; }
           { command = "dbus-sway-environment"; }
         ];
