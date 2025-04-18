@@ -265,6 +265,10 @@ in
     stateVersion = "24.11";
   };
 
+  time = {
+    timeZone = lib.mkForce "Europe/Amsterdam";
+  };
+
   # public key
   # programs.git.signing.key = "41AEE99107640F10";
 

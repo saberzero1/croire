@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   environment = {
     sessionVariables = {
@@ -266,10 +266,6 @@
     switch = {
       enable = true;
     };
-  };
-
-  time = {
-    timeZone = lib.mkForce "Europe/Amsterdam";
   };
 
   zramSwap = {
