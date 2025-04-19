@@ -52,7 +52,7 @@
       vscodium.fhs
 
       # Espanso
-      # espanso-wayland
+      espanso-wayland
 
       # Graphic Drivers
       driversi686Linux.amdvlk
@@ -88,6 +88,8 @@
       libnotify
       fuzzel
 
+      steam
+      discord
     ]
     ++ [
       flake.inputs.zen-browser.packages."x86_64-linux".default

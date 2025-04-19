@@ -1,6 +1,11 @@
 { ... }:
 {
-  imports = builtins.map (fn: ./${fn}) (
-    builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
-  );
+  imports =
+    builtins.map (fn: ./${fn})
+      (
+        builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
+      )
+    ++ [
+      ./programs
+    ];
 }
