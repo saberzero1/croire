@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.greetd.tuigreet} --time --remember --theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=darkgray;input=red' --greeting 'Welcome home' --cmd sway";
+        command = "${lib.getExe pkgs.greetd.tuigreet} --time --remember --theme 'border=lightmagenta;text=lightcyan;prompt=lightgreen;time=lightred;action=lightblue;button=lightgray;container=darkgray;input=lightred' --greeting 'Welcome home' --cmd sway";
         user = "greeter";
       };
     };
