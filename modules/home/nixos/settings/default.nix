@@ -6,8 +6,7 @@
         builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
       )
     ++ [
-      ./programs
-      ./services
-      ./settings
+      ./home
+      ./xdg
     ];
 }
