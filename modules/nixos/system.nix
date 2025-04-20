@@ -190,6 +190,7 @@
         };
 
         espansoService = {
+          enable = false;
           description = "Start espanso";
           after = [ "network-online.target" ];
           serviceConfig = {
