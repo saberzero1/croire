@@ -155,37 +155,55 @@
         rules = [ ];
       };
 
-      services.rCloneMounts = {
-        description = "Mount all rClone configurations";
-        after = [ "network-online.target" ];
-        serviceConfig = {
-          Type = "forking";
-          ExecStartPre = "${pkgs.writeShellScript "rClonePre" ''
-            remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
-            for remote in $remotes;
-            do
-            name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-            /usr/bin/env mkdir -p $HOME/"$name"
-            done
-          ''}";
-          ExecStart = "${pkgs.writeShellScript "rCloneStart" ''
-            remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
-            for remote in $remotes;
-            do
-            name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-            ${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf --vfs-cache-mode writes --ignore-checksum mount "$remote" "$name" &
-            done
-          ''}";
-          ExecStop = "${pkgs.writeShellScript "rCloneStop" ''
-            remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
-            for remote in $remotes;
-            do
-            name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-            /usr/bin/env fusermount -u $HOME/"$name"
-            done
-          ''}";
+      services = {
+        rCloneMounts = {
+          description = "Mount all rClone configurations";
+          after = [ "network-online.target" ];
+          serviceConfig = {
+            Type = "forking";
+            ExecStartPre = "${pkgs.writeShellScript "rClonePre" ''
+              remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
+              for remote in $remotes;
+              do
+              name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
+              /usr/bin/env mkdir -p $HOME/"$name"
+              done
+            ''}";
+            ExecStart = "${pkgs.writeShellScript "rCloneStart" ''
+              remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
+              for remote in $remotes;
+              do
+              name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
+              ${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf --vfs-cache-mode writes --ignore-checksum mount "$remote" "$name" &
+              done
+            ''}";
+            ExecStop = "${pkgs.writeShellScript "rCloneStop" ''
+              remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
+              for remote in $remotes;
+              do
+              name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
+              /usr/bin/env fusermount -u $HOME/"$name"
+              done
+            ''}";
+          };
+          wantedBy = [ "default.target" ];
         };
-        wantedBy = [ "default.target" ];
+
+        espansoService = {
+          description = "Start espanso";
+          after = [ "network-online.target" ];
+          serviceConfig = {
+            Type = "simple";
+            ExecStartPre = "${pkgs.writeShellScript "espansoPre" ''
+              ${pkgs.espanso-wayland}/bin/espanso service register
+            ''}";
+            ExecStart = "${pkgs.writeShellScript "espansoStart" ''
+              ${pkgs.espanso-wayland}/bin/espanso service start
+            ''}";
+            Restart = "always";
+          };
+          wantedBy = [ "default.target" ];
+        };
       };
 
     };
