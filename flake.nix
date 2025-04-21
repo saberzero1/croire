@@ -51,6 +51,10 @@
     nixos-unified.url = "github:saberzero1/nixos-unified";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    # Determinate nix
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
+
     # WSL-specific
     # nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
