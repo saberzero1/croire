@@ -158,7 +158,7 @@
         ".." = "cd ..";
       };
       enableVteIntegration = true;
-      initExtra = ''
+      initContent = ''
         # zoxide
         eval "$(zoxide init --cmd cd zsh)"
 

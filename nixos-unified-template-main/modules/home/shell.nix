@@ -4,7 +4,7 @@
     # on macOS, you probably don't need this
     bash = {
       enable = true;
-      initExtra = ''
+      initContent = ''
         # Custom bash profile goes here
       '';
     };
