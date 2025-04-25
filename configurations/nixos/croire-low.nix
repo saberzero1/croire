@@ -1,11 +1,10 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{
-  flake,
-  pkgs,
-  lib,
-  config,
-  ...
+{ flake
+, pkgs
+, lib
+, config
+, ...
 }:
 let
   inherit (flake) inputs;
@@ -75,9 +74,6 @@ in
 
   hardware = {
     enableRedistributableFirmware = true;
-    pulseaudio = {
-      enable = false;
-    };
     # https://discourse.nixos.org/t/issue-after-sound-option-was-removed-in-unstable/49394/8
     alsa = {
       enablePersistence = true;
@@ -100,6 +96,43 @@ in
         enable = true;
         group = "networkmanager";
       };
+    };
+  };
+
+  # For home-manager to work.
+  # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
+  users = {
+    groups = {
+      plugdev = { };
+    };
+    mutableUsers = true;
+    defaultUserShell = pkgs.zsh;
+    users = {
+      "saberzero1" = {
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "plugdev"
+          "docker"
+          "input"
+        ];
+        name = "saberzero1";
+        home = "/home/saberzero1";
+        initialPassword = "changeme";
+        expires = null;
+        isNormalUser = true;
+        useDefaultShell = true;
+      };
+    };
+  };
+
+  # Enable home-manager for "runner" user
+  home-manager = {
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    backupFileExtension = "backup";
+    users."saberzero1" = {
+      imports = [ (self + /configurations/home/saberzero1.nix) ];
     };
   };
 
@@ -135,9 +168,7 @@ in
         enable = true;
       };
     };
-    printing = {
-      enable = true;
-    };
+
     displayManager = {
       autoLogin = {
         enable = true;
@@ -175,20 +206,6 @@ in
       };
       "getty@tty1" = {
         enable = false;
-      };
-    };
-  };
-
-  users = {
-    users = {
-      saberzero1 = {
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-          "plugdev"
-          "input"
-        ];
-        name = "saberzero1";
       };
     };
   };
