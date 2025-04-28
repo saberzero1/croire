@@ -126,6 +126,10 @@
       url = "github:saberzero1/totten/master";
       flake = false;
     };
+    sanctum = {
+      url = "github:saberzero1/sanctum/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Omnix
     omnix.url = "github:juspay/omnix";

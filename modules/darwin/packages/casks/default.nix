@@ -11,6 +11,7 @@
     "macfuse"
     "sol"
     "wavebox"
+    "windows-app"
     "zen-browser"
   ];
 }
