@@ -16,14 +16,6 @@
     "saberzero1"
   ];
 
-  system = {
-    activationScripts = {
-      postActivation.text = ''
-        echo "Setting tmux-sessionizer permissions"
-      '';
-    };
-  };
-
   services.openssh.enable = true;
 
   programs = {

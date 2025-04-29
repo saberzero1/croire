@@ -1261,21 +1261,6 @@
         "type": "github"
       }
     },
-    "nixCats": {
-      "locked": {
-        "lastModified": 1745808270,
-        "narHash": "sha256-rMUNme6Y+b/vZpbnDu8mim1jDxGMLIHjFrHG98qPIes=",
-        "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
-        "rev": "d4d8f3dcaa860ed4df11a8179d7771423161d5b6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
-        "type": "github"
-      }
-    },
     "nix_2": {
       "inputs": {
         "flake-compat": [
@@ -1852,7 +1837,6 @@
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim",
         "omnix": "omnix",
-        "sanctum": "sanctum",
         "sops-nix": "sops-nix",
         "totten": "totten",
         "wezterm": "wezterm",
@@ -1943,28 +1927,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "sanctum": {
-      "inputs": {
-        "nixCats": "nixCats",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1745867644,
-        "narHash": "sha256-t8tcC5stoEk+8qUhZ490V8v8vUnVtsDeTkWwT8y6y5k=",
-        "owner": "saberzero1",
-        "repo": "sanctum",
-        "rev": "75ab275be46d5943e291ab1b08666f01fdd34cbd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "saberzero1",
-        "ref": "master",
-        "repo": "sanctum",
         "type": "github"
       }
     },
