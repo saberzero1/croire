@@ -255,6 +255,11 @@
         mkdir -p "$app_target"
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
+        echo "Cleaning Neovim plugin cache"
+        sudo rm -rf "$HOME/.local/share/nvim/lazy"
+        sudo rm -rf "$HOME/.cache/nvim/luac/*"
+        echo "Cleaning Neovim plugin cache done"
+
         # Custom additions
         echo "Setting tmux-sessionizer permissions"
         # sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
