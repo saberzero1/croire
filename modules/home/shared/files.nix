@@ -1,6 +1,55 @@
 { flake
 , ...
 }:
+let
+  dotfiles = flake.inputs.dotfiles;
+  file =
+    { source }:
+    {
+      ".config/${source}" = {
+        source = "${dotfiles}/${source}";
+      };
+    };
+  folder =
+    { source
+    , recursive ? false
+    ,
+    }:
+    {
+      ".config/${source}" = {
+        source = "${dotfiles}/${source}";
+        recursive = recursive;
+      };
+    };
+  executable =
+    { source }:
+    {
+      ".config/${source}" = {
+        source = "${dotfiles}/${source}";
+        executable = true;
+      };
+    };
+  fileSources = [
+    "starship/starship.toml"
+    "scripts/tmux/directories"
+    "skhd"
+  ];
+  folderSources = [
+    "wezterm"
+    "nvim"
+    "aerospace"
+    "ranger"
+    "ghostty"
+    "rclone"
+    "bat"
+    "scripts/tmux/directories"
+    "skhd"
+  ];
+  executableSources = [
+    "scripts/tmux/tmux-sessionizer"
+    "scripts/zsh/shortcuts"
+  ];
+in
 {
   home.file = {
     ".config/wezterm" = {
