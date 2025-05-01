@@ -2,6 +2,8 @@
 , ...
 }:
 let
+  debug = false;
+
   files = [
     "starship/starship.toml"
     "tmux/scripts/directories"
@@ -39,7 +41,7 @@ let
     }
   ];
 
-  dotfiles = flake.inputs.dotfiles;
+  dotfiles = if debug then builtins.path "$HOME/Repos/shelter" else flake.inputs.dotfiles;
 
   homeFiles = builtins.listToAttrs (
     builtins.map
