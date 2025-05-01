@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./languages/default.nix
-  ];
   # Nix packages to install to $HOME
   #
   # Search for packages here: https://search.nixos.org/packages

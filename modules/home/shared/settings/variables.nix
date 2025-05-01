@@ -1,10 +1,6 @@
 { pkgs, ... }:
 {
   home = {
-    sessionPath = [
-      "$HOME/.config/tmux/scripts"
-      "$HOME/.local/bin"
-    ];
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";

@@ -4,7 +4,7 @@
 let
   files = [
     "starship/starship.toml"
-    "scripts/tmux/directories"
+    "tmux/scripts/directories"
   ];
   folders = [
     "wezterm"
@@ -41,34 +41,36 @@ let
 
   dotfiles = flake.inputs.dotfiles;
 
-  fileSources = builtins.map
-    (source: {
-      name = ".config/${source}";
-      value = {
-        source = "${dotfiles}/${source}";
-      };
-    })
-    files;
-  folderSources = builtins.map
-    (source: {
-      name = ".config/${source}";
-      value = {
-        source = "${dotfiles}/${source}";
-        recursive = true;
-      };
-    })
-    folders;
-  executableSources = builtins.map
-    (source: {
-      name = ".config/${source}";
-      value = {
-        source = "${dotfiles}/${source}";
-        executable = true;
-      };
-    })
-    executables;
-  miscSources = miscs;
+  homeFiles = builtins.listToAttrs (
+    builtins.map
+      (source: {
+        name = ".config/${source}";
+        value = {
+          source = "${dotfiles}/${source}";
+        };
+      })
+      files
+    ++ builtins.map
+      (source: {
+        name = ".config/${source}";
+        value = {
+          source = "${dotfiles}/${source}";
+          recursive = true;
+        };
+      })
+      folders
+    ++ builtins.map
+      (source: {
+        name = ".config/${source}";
+        value = {
+          source = "${dotfiles}/${source}";
+          executable = true;
+        };
+      })
+      executables
+    ++ miscs
+  );
 in
 {
-  home.file = builtins.listToAttrs (fileSources ++ folderSources ++ executableSources ++ miscSources);
+  home.file = homeFiles;
 }
