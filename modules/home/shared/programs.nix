@@ -1,6 +1,7 @@
-{ flake
-, pkgs
-, ...
+{
+  flake,
+  pkgs,
+  ...
 }:
 {
   # Programs natively supported by home-manager.
@@ -103,12 +104,17 @@
 
     tmux = {
       enable = true;
+      prefix = "C-a";
+      sensibleOnTop = true;
       shortcut = "a";
       clock24 = true;
       baseIndex = 1;
       escapeTime = 0;
       keyMode = "vi";
       secureSocket = false;
+      shell = "${pkgs.zsh}/bin/zsh";
+
+      tmuxp.enable = true;
 
       plugins = with pkgs.tmuxPlugins; [
         fpp # Facebook Path Picker
