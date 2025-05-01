@@ -2,7 +2,7 @@
 {
   home = {
     sessionPath = [
-      "$HOME/.config/scripts/tmux"
+      "$HOME/.config/tmux/scripts"
       "$HOME/.local/bin"
     ];
     sessionVariables = {
