@@ -40,18 +40,17 @@
       bind - split-window -v -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
 
-      bind-key -r f run-shell "tmux new-window ~/.config/tmux/scripts/tmux-sessionizer"
+      bind-key -r f run-shell "tmux neww ~/.config/tmux/scripts/tmux-sessionizer"
 
       # bind-key -r k run-shell "~/.local/scripts/tmux-sessionizer ~/projects/work/tmux-theme"
 
-      set -g default-command $SHELL
+      set -g default-command "$SHELL"
 
-      # startup windows
-      tmux new-window -kS -n "scratch" -t 1 zsh
-      tmux new-window -kS -n "editor" -t 2 nvim
-      tmux new-window -kS -n "watcher" -t 3 zsh
-      tmux new-window -kS -n "remote" -t 4 zsh 
-      tmux new-window -kS -n "git" -t 5 lazygit
+      # neww -c "#{pane_current_path}" -n "scratch" -t 1 $SHELL;
+      # neww -c "#{pane_current_path}" -n "editor" -t 2 nvim;
+      # neww -c "#{pane_current_path}" -n "watcher" -t 3 $SHELL;
+      # neww -c "#{pane_current_path}" -n "remote" -t 4 $SHELL;
+      # neww -c "#{pane_current_path}" -n "git" -t 5 lazygit;
     '';
   };
 

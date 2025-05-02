@@ -16,6 +16,7 @@ let
     "ghostty"
     "rclone"
     "bat"
+    "tmuxinator"
     # "skhd"
     # "yabai"
     # "tmux"
