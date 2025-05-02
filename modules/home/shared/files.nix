@@ -1,5 +1,6 @@
-{ flake
-, ...
+{
+  flake,
+  ...
 }:
 let
   debug = false;
@@ -16,7 +17,6 @@ let
     "ghostty"
     "rclone"
     "bat"
-    "tmuxinator"
     # "skhd"
     # "yabai"
     # "tmux"
@@ -45,32 +45,26 @@ let
   dotfiles = if debug then builtins.path "$HOME/Repos/shelter" else flake.inputs.dotfiles;
 
   homeFiles = builtins.listToAttrs (
-    builtins.map
-      (source: {
-        name = ".config/${source}";
-        value = {
-          source = "${dotfiles}/${source}";
-        };
-      })
-      files
-    ++ builtins.map
-      (source: {
-        name = ".config/${source}";
-        value = {
-          source = "${dotfiles}/${source}";
-          recursive = true;
-        };
-      })
-      folders
-    ++ builtins.map
-      (source: {
-        name = ".config/${source}";
-        value = {
-          source = "${dotfiles}/${source}";
-          executable = true;
-        };
-      })
-      executables
+    builtins.map (source: {
+      name = ".config/${source}";
+      value = {
+        source = "${dotfiles}/${source}";
+      };
+    }) files
+    ++ builtins.map (source: {
+      name = ".config/${source}";
+      value = {
+        source = "${dotfiles}/${source}";
+        recursive = true;
+      };
+    }) folders
+    ++ builtins.map (source: {
+      name = ".config/${source}";
+      value = {
+        source = "${dotfiles}/${source}";
+        executable = true;
+      };
+    }) executables
     ++ miscs
   );
 in
