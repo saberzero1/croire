@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.git = {
     signing = {
@@ -32,8 +32,8 @@
       gpgPath = "${pkgs.gnupg}/bin/gpg2";
       };
     */
-    userEmail = "github@emilebangma.com";
     userName = "saberzero1";
+    userEmail = "github@emilebangma.com";
     extraConfig = {
       init.defaultBranch = "master";
       core = {
@@ -41,6 +41,8 @@
         autocrlf = "input";
       };
       commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "${config.home.homeDirectory}/.ssh/saberzero1-github.pub";
       pull.rebase = true;
       rebase.autoStash = true;
     };
