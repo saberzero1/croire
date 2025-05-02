@@ -46,6 +46,17 @@
 
       set -g default-command "$SHELL"
 
+      bind-key 1 run-shell -c '#{pane_current_path}' "tmux select-window -t 1 || tmux new-window -t 1 -n 'scratch' -c '#{pane_current_path}' $SHELL"
+      bind-key 2 run-shell -c '#{pane_current_path}' "tmux select-window -t 2 || tmux new-window -t 2 -n 'editor' -c '#{pane_current_path}' nvim"
+      bind-key 3 run-shell -c '#{pane_current_path}' "tmux select-window -t 3 || tmux new-window -t 3 -n 'watcher' -c '#{pane_current_path}' $SHELL"
+      bind-key 4 run-shell -c '#{pane_current_path}' "tmux select-window -t 4 || tmux new-window -t 4 -n 'remote' -c '#{pane_current_path}' $SHELL"
+      bind-key 5 run-shell -c '#{pane_current_path}' "tmux select-window -t 5 || tmux new-window -t 5 -n 'git' -c '#{pane_current_path}' lazygit"
+      bind-key 6 run-shell -c '#{pane_current_path}' "tmux select-window -t 6 || tmux new-window -t 6 -c '#{pane_current_path}'"
+      bind-key 7 run-shell -c '#{pane_current_path}' "tmux select-window -t 7 || tmux new-window -t 7 -c '#{pane_current_path}'"
+      bind-key 8 run-shell -c '#{pane_current_path}' "tmux select-window -t 8 || tmux new-window -t 8 -c '#{pane_current_path}'"
+      bind-key 9 run-shell -c '#{pane_current_path}' "tmux select-window -t 9 || tmux new-window -t 9 -c '#{pane_current_path}'"
+      bind-key 0 run-shell -c '#{pane_current_path}' "tmux select-window -t 10 || tmux new-window -t 10 -c '#{pane_current_path}'"
+
       # neww -c "#{pane_current_path}" -n "scratch" -t 1 $SHELL;
       # neww -c "#{pane_current_path}" -n "editor" -t 2 nvim;
       # neww -c "#{pane_current_path}" -n "watcher" -t 3 $SHELL;
