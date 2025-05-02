@@ -56,12 +56,6 @@
       bind-key 8 run-shell -c '#{pane_current_path}' "tmux select-window -t 8 || tmux new-window -t 8 -c '#{pane_current_path}'"
       bind-key 9 run-shell -c '#{pane_current_path}' "tmux select-window -t 9 || tmux new-window -t 9 -c '#{pane_current_path}'"
       bind-key 0 run-shell -c '#{pane_current_path}' "tmux select-window -t 10 || tmux new-window -t 10 -c '#{pane_current_path}'"
-
-      # neww -c "#{pane_current_path}" -n "scratch" -t 1 $SHELL;
-      # neww -c "#{pane_current_path}" -n "editor" -t 2 nvim;
-      # neww -c "#{pane_current_path}" -n "watcher" -t 3 $SHELL;
-      # neww -c "#{pane_current_path}" -n "remote" -t 4 $SHELL;
-      # neww -c "#{pane_current_path}" -n "git" -t 5 lazygit;
     '';
   };
 
