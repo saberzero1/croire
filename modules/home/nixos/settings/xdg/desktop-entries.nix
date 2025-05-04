@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   xdg.desktopEntries = {
     "nvim" = {
@@ -27,6 +27,15 @@
       categories = [ "Application" ];
       terminal = false;
       #mimeType = [ "text/plain" ];
+    };
+    "obsidian" = {
+      name = "Obsidian";
+      comment = "Knowledge Management";
+      icon = "${flake.inputs.dotfiles}/assets/icons/obsidian.png";
+      exec = "${pkgs.obsidian}/bin/obsidian %U";
+      categories = [ "Application" ];
+      terminal = false;
+      mimeType = [ "text/plain" ];
     };
   };
 }

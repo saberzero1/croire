@@ -33,7 +33,7 @@
       {
         name = ".assets/backgrounds";
         value = {
-          source = "${flake.inputs.dotfiles}/assets";
+          source = "${flake.inputs.dotfiles}/assets/backgrounds";
           recursive = true;
         };
       }

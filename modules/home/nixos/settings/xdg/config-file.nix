@@ -15,7 +15,7 @@
       source = "${flake.inputs.dotfiles}/sway-interactive-screenshot/sway-interactive-screenshot";
     };
     ".assets/backgrounds" = {
-      source = "${flake.inputs.dotfiles}/assets";
+      source = "${flake.inputs.dotfiles}/assets/backgrounds";
       recursive = true;
     };
   };
