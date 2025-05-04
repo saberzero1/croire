@@ -1,6 +1,13 @@
 { inputs, ... }@flakeContext:
-{ config, lib, pkgs, ... }: {
-  config = {
+{
+  flake
+    config,
+    lib,
+    pkgs,
+    ...
+    }:
+    {
+    config = {
     home = {
       packages = [
         pkgs.gnupg
@@ -19,7 +26,7 @@
         settings = {
           ignore-empty-password = true;
           disable-caps-lock-text = true;
-          image = "$HOME/Documents/Repos/dotfiles-submodules/croire/assets/wallpaper_night.png";
+          image = "${flake.inputs.dotfiles}/assets/backgrounds/wallpaper_night.png";
           effect-blur = "3x5";
           font = "Monaspace Neon";
 
