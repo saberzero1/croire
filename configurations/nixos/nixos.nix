@@ -109,7 +109,7 @@ in
 
       nvidiaSettings = true;
 
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     graphics = {
@@ -136,8 +136,8 @@ in
     xserver = {
       enable = true;
       videoDrivers = [
-        # "nvidia" # "amdgpu"
-        "nouveau"
+        "nvidia" # "amdgpu"
+        # "nouveau"
       ];
     };
 

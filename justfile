@@ -3,6 +3,7 @@
 #  Nix commands related to the local machine
 #
 ############################################################################
+set quiet
 
 # Default command when 'just' is run without arguments
 default:
@@ -42,6 +43,7 @@ run:
 [group('Main')]
 [linux]
 build:
+  df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$#)#"
   nix run --accept-flake-config .#activate
   echo "Installing Neovim plugins"
   nvim --headless "+Lazy! restore" "+Lazy! clean" "+qa" 1>/dev/null
@@ -91,14 +93,21 @@ pull: pull-self pull-dotfiles
 status:
   sudo nix-channel --list | grep nixos
 
+[group('Util')]
 upp input:
   nix flake lock --update-input {{input}}
 
+[group('Util')]
 history:
   nix profile history --profile /nix/var/nix/profiles/system
 
+[group('Util')]
 repl:
   nix repl -f flake:nixpkgs
+
+[group('Util')]
+disk:
+  df -H --output=source,fstype,size,used,avail,pcent,target
 
 # Remove all generations older than 7 days
 [group('Clean')]
