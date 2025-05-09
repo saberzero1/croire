@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 {
   home.sessionPath = [
-    "$HOME/.config/tmux/scripts"
-    "$HOME/.local/bin"
+    "${config.home.homeDirectory}/.config/tmux/scripts"
+    "${config.home.homeDirectory}/.local/bin"
   ];
 }

@@ -1,4 +1,8 @@
-{ flake, pkgs, ... }:
+{ flake
+, pkgs
+, config
+, ...
+}:
 {
   # https://icons8.com/icons/set/computer-hardware--style-fluency
   xdg.desktopEntries = {
@@ -58,9 +62,10 @@
       name = "Tmux Sessionizer";
       comment = "Tmux Sessionizer";
       icon = "${flake.inputs.dotfiles}/assets/icons/tmux.png";
-      exec = "${pkgs.wezterm}/bin/wezterm -e tmux-sessionizer";
+      exec = "${pkgs.wezterm}/bin/wezterm -e ${config.home.homeDirectory}/.config/tmux/scripts/tmux-sessionizer";
       categories = [ "Application" ];
       terminal = false;
+      mimeType = [ "text/plain" ];
     };
   };
 }

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   system = {
     userActivationScripts = {

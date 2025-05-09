@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   environment = {
     sessionVariables = {
@@ -162,27 +162,27 @@
           serviceConfig = {
             Type = "forking";
             ExecStartPre = "${pkgs.writeShellScript "rClonePre" ''
-              remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
+              remotes=$(${pkgs.rclone}/bin/rclone --config=${config.home.homeDirectory}/.config/rclone/rclone.conf listremotes)
               for remote in $remotes;
               do
               name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-              /usr/bin/env mkdir -p $HOME/"$name"
+              /usr/bin/env mkdir -p ${config.home.homeDirectory}/"$name"
               done
             ''}";
             ExecStart = "${pkgs.writeShellScript "rCloneStart" ''
-              remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
+              remotes=$(${pkgs.rclone}/bin/rclone --config=${config.home.homeDirectory}/.config/rclone/rclone.conf listremotes)
               for remote in $remotes;
               do
               name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-              ${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf --vfs-cache-mode writes --ignore-checksum mount "$remote" "$name" &
+              ${pkgs.rclone}/bin/rclone --config=${config.home.homeDirectory}/.config/rclone/rclone.conf --vfs-cache-mode writes --ignore-checksum mount "$remote" "$name" &
               done
             ''}";
             ExecStop = "${pkgs.writeShellScript "rCloneStop" ''
-              remotes=$(${pkgs.rclone}/bin/rclone --config=$HOME/.config/rclone/rclone.conf listremotes)
+              remotes=$(${pkgs.rclone}/bin/rclone --config=${config.home.homeDirectory}/.config/rclone/rclone.conf listremotes)
               for remote in $remotes;
               do
               name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-              /usr/bin/env fusermount -u $HOME/"$name"
+              /usr/bin/env fusermount -u ${config.home.homeDirectory}/"$name"
               done
             ''}";
           };
@@ -333,7 +333,7 @@
       enable = true;
       npmrc = ''
         '''
-          prefix = '''''${HOME}/.npm
+          prefix = '''''${config.home.homeDirectory}/.npm
           color=true
         '''
       '';

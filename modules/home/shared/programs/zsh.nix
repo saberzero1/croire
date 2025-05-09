@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -45,7 +45,7 @@
       fi
       #
       # source shortcuts
-      source "$HOME/.config/zsh/scripts/shortcuts"
+      source "${config.home.homeDirectory}/.config/zsh/scripts/shortcuts"
       #
       # tmux
       bindkey -s "^F" "tmux-sessionizer\n"
