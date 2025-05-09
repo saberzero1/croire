@@ -53,7 +53,7 @@
     "reboot" = {
       name = "Reboot";
       comment = "Reboot the system";
-      icon = "${flake.inputs.dotfiles}/assets/icons/reboot.png";
+      icon = "${flake.inputs.dotfiles}/assets/icons/restart.png";
       exec = "${pkgs.wezterm}/bin/wezterm -e reboot";
       categories = [ "System" ];
       terminal = false;
