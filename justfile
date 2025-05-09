@@ -43,7 +43,7 @@ run:
 [group('Main')]
 [linux]
 build:
-  df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$#)#"
+  df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   nix run --accept-flake-config .#activate
   echo "Installing Neovim plugins"
   nvim --headless "+Lazy! restore" "+Lazy! clean" "+qa" 1>/dev/null

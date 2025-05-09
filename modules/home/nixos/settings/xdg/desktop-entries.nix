@@ -54,5 +54,13 @@
       categories = [ "System" ];
       terminal = false;
     };
+    "tmux-sessionizer" = {
+      name = "Tmux Sessionizer";
+      comment = "Tmux Sessionizer";
+      icon = "${flake.inputs.dotfiles}/assets/icons/tmux.png";
+      exec = "${pkgs.wezterm}/bin/wezterm -e tmux-sessionizer";
+      categories = [ "Application" ];
+      terminal = false;
+    };
   };
 }
