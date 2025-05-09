@@ -46,7 +46,7 @@
       name = "Shutdown";
       comment = "Shutdown the system";
       icon = "${flake.inputs.dotfiles}/assets/icons/shutdown.png";
-      exec = "${pkgs.wezterm}/bin/wezterm -e power-down";
+      exec = "${pkgs.wezterm}/bin/wezterm -e shutdown --poweroff --no-wall 0";
       categories = [ "System" ];
       terminal = false;
     };
