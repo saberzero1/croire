@@ -1,5 +1,6 @@
-{ flake
-, ...
+{
+  flake,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -14,5 +15,4 @@ in
     username = "saberzero1";
     stateVersion = "24.11";
   };
-
 }
