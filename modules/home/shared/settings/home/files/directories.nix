@@ -11,7 +11,7 @@
       })
       [
         "wezterm"
-        "nvim"
+        # "nvim"
         "aerospace"
         "ranger"
         "ghostty"
