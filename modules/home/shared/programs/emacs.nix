@@ -5,7 +5,7 @@
   ];
 
   programs.doom-emacs = {
-    enable = true;
+    enable = false;
     doomDir = "${flake.inputs.dotfiles}/doom-emacs";
   };
 }
