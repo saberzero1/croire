@@ -55,6 +55,12 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
 
+    # Doom Emacs
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # WSL-specific
     # nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
