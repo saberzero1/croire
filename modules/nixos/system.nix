@@ -81,7 +81,7 @@
       _7zz
       parallel
 
-      gimp3-with-plugins
+      gimp3
 
       vscodium.fhs
       vscode-extensions.asvetliakov.vscode-neovim
