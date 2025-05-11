@@ -82,6 +82,7 @@
       parallel
 
       gimp3-with-plugins
+      inkscape-with-extensions
 
       vscodium.fhs
       vscode-extensions.asvetliakov.vscode-neovim
