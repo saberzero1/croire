@@ -7,7 +7,7 @@
       restic = {
         enable = false;
         port = 9753;
-        rcloneConfigFile = "${config.home.homeDirectory}/.config/rclone/.rclone.conf";
+        rcloneConfigFile = "$HOME/.config/rclone/.rclone.conf";
       };
     };
   };
