@@ -40,10 +40,13 @@ in
 
   # Necessary for using flakes on this system.
   nix = {
-    enable = false;
     settings = {
       experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
+      trusted-users = [
+        "root"
+        "emile"
+      ];
     };
   };
 
@@ -54,5 +57,9 @@ in
     startup.chime = false;
   };
 
-  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local = {
+    enable = true;
+    reattach = true;
+    touchIdAuth = true;
+  };
 }
