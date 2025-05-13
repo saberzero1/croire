@@ -8,6 +8,12 @@
       gnupg
       sshpass
     ];
+    variables = {
+      NIX_CONFIG = ''
+        build-users-group = nixbld
+        extra-trusted-users = emile
+      '';
+    };
   };
 
   programs = {

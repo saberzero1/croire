@@ -16,6 +16,9 @@
       "root"
       "emile"
     ];
+    channel = {
+      enable = true;
+    };
   };
 
   local = {
