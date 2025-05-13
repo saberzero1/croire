@@ -40,6 +40,7 @@ in
 
   # Necessary for using flakes on this system.
   nix = {
+    enable = false;
     settings = {
       experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
