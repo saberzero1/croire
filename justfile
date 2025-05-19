@@ -54,7 +54,7 @@ build:
 [macos]
 build:
   skhd --stop-service || true
-  nix run --accept-flake-config .#activate
+  sudo nix run --accept-flake-config .#activate
   echo "Installing Neovim plugins"
   nvim --headless "+Lazy! restore" "+Lazy! clean" "+qa" 1>/dev/null
   echo "Installing Neovim plugins done"

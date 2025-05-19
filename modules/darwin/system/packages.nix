@@ -1,13 +1,23 @@
 { pkgs, ... }:
 {
   environment = {
-    systemPackages = with pkgs; [
-      diff-so-fancy
-      gh
-      lazygit
-      git
+    systemPackages =
+      with pkgs;
+      [
+        diff-so-fancy
+        gh
+        lazygit
+        git
 
-      xcodes
-    ];
+        xcodes
+      ]
+      ++ (with pkgs.darwin.apple_sdk.frameworks; [
+        AppKit
+        CoreServices
+        Foundation
+        IOKit
+        Security
+        SystemConfiguration
+      ]);
   };
 }

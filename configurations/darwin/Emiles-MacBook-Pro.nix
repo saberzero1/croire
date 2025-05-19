@@ -54,6 +54,7 @@ in
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system = {
+    primaryUser = "emile";
     stateVersion = 6;
     startup.chime = false;
   };

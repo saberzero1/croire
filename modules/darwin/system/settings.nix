@@ -1,4 +1,7 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
+let
+  primaryUserHome = "/Users/emile";
+in
 {
   # Configure macOS system
   # More examples => https://github.com/ryan4yin/nix-darwin-kickstarter/blob/main/rich-demo/modules/system.nix
@@ -246,9 +249,9 @@
     };
 
     activationScripts = {
-      postUserActivation.text = ''
-        echo "Running postUserActivation script"
-        apps_source="$HOME/Applications/Home Manager Apps"
+      postActivation.text = ''
+        echo "Running postActivation script"
+        apps_source="${primaryUserHome}/Applications/Home Manager Apps"
         moniker="Nix Trampolines"
         app_target_base="$HOME/Applications"
         app_target="$app_target_base/$moniker"
@@ -256,8 +259,8 @@
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
         echo "Cleaning Neovim plugin cache"
-        sudo rm -rf "$HOME/.local/share/nvim/lazy"
-        sudo rm -rf "$HOME/.cache/nvim/luac/*"
+        sudo rm -rf "${primaryUserHome}/.local/share/nvim/lazy"
+        sudo rm -rf "${primaryUserHome}/.cache/nvim/luac/*"
         echo "Cleaning Neovim plugin cache done"
 
         # Custom additions
