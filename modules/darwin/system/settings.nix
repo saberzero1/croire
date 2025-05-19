@@ -35,6 +35,8 @@ in
         wvous-br-corner = 4; # bottom-right - Desktop
         wvous-tl-corner = 1; # top-left; Disabled
         wvous-tr-corner = 1; # top-right; Disabled
+
+        mru-spaces = false; # Don't use most recently used spaces
       };
 
       finder = {
@@ -69,6 +71,14 @@ in
       NSGlobalDomain = {
         # Disable natural scrolling
         "com.apple.swipescrolldirection" = false;
+      };
+
+      spaces = {
+        spans-displays = false;
+      };
+
+      WindowManager = {
+        StandardHideDesktopIcons = false;
       };
 
       CustomUserPreferences = {
