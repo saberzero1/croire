@@ -17,8 +17,8 @@
         "ghostty"
         "rclone"
         "bat"
-        # "skhd"
-        # "yabai"
+        "skhd"
+        "yabai"
         # "tmux"
       ]
     )
