@@ -19,15 +19,9 @@
     },
     "cachix": {
       "inputs": {
-        "devenv": [
-          "devenv"
-        ],
-        "flake-compat": [
-          "devenv"
-        ],
-        "git-hooks": [
-          "devenv"
-        ],
+        "devenv": ["devenv"],
+        "flake-compat": ["devenv"],
+        "git-hooks": ["devenv"],
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
@@ -209,12 +203,8 @@
     },
     "emacs-overlay": {
       "inputs": {
-        "nixpkgs": [
-          "nix-doom-emacs-unstraightened"
-        ],
-        "nixpkgs-stable": [
-          "nix-doom-emacs-unstraightened"
-        ]
+        "nixpkgs": ["nix-doom-emacs-unstraightened"],
+        "nixpkgs-stable": ["nix-doom-emacs-unstraightened"]
       },
       "locked": {
         "lastModified": 1747988687,
@@ -357,11 +347,7 @@
     },
     "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": [
-          "determinate",
-          "nix",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["determinate", "nix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1733312601,
@@ -379,11 +365,7 @@
     },
     "flake-parts_2": {
       "inputs": {
-        "nixpkgs-lib": [
-          "devenv",
-          "nix",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["devenv", "nix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1712014858,
@@ -419,10 +401,7 @@
     },
     "flake-parts_4": {
       "inputs": {
-        "nixpkgs-lib": [
-          "neovim-nightly-overlay",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["neovim-nightly-overlay", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1743550720,
@@ -461,11 +440,7 @@
     },
     "flake-parts_6": {
       "inputs": {
-        "nixpkgs-lib": [
-          "nix",
-          "nix",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["nix", "nix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1733312601,
@@ -501,10 +476,7 @@
     },
     "flake-parts_8": {
       "inputs": {
-        "nixpkgs-lib": [
-          "omnix",
-          "nixpkgs"
-        ]
+        "nixpkgs-lib": ["omnix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1725234343,
@@ -652,14 +624,9 @@
     },
     "git-hooks": {
       "inputs": {
-        "flake-compat": [
-          "devenv"
-        ],
+        "flake-compat": ["devenv"],
         "gitignore": "gitignore",
-        "nixpkgs": [
-          "devenv",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["devenv", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1746537231,
@@ -678,20 +645,9 @@
     "git-hooks-nix": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "gitignore": [
-          "determinate",
-          "nix"
-        ],
-        "nixpkgs": [
-          "determinate",
-          "nix",
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [
-          "determinate",
-          "nix",
-          "nixpkgs"
-        ]
+        "gitignore": ["determinate", "nix"],
+        "nixpkgs": ["determinate", "nix", "nixpkgs"],
+        "nixpkgs-stable": ["determinate", "nix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1734279981,
@@ -709,24 +665,10 @@
     },
     "git-hooks-nix_2": {
       "inputs": {
-        "flake-compat": [
-          "nix",
-          "nix"
-        ],
-        "gitignore": [
-          "nix",
-          "nix"
-        ],
-        "nixpkgs": [
-          "nix",
-          "nix",
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [
-          "nix",
-          "nix",
-          "nixpkgs"
-        ]
+        "flake-compat": ["nix", "nix"],
+        "gitignore": ["nix", "nix"],
+        "nixpkgs": ["nix", "nix", "nixpkgs"],
+        "nixpkgs-stable": ["nix", "nix", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1734279981,
@@ -746,10 +688,7 @@
       "inputs": {
         "flake-compat": "flake-compat_5",
         "gitignore": "gitignore_2",
-        "nixpkgs": [
-          "neovim-nightly-overlay",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["neovim-nightly-overlay", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1747372754,
@@ -785,9 +724,7 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nix-playwright-browsers": "nix-playwright-browsers",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "rust-overlay": "rust-overlay",
         "unstablePkgs": "unstablePkgs"
       },
@@ -807,11 +744,7 @@
     },
     "gitignore": {
       "inputs": {
-        "nixpkgs": [
-          "devenv",
-          "git-hooks",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["devenv", "git-hooks", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -829,11 +762,7 @@
     },
     "gitignore_2": {
       "inputs": {
-        "nixpkgs": [
-          "neovim-nightly-overlay",
-          "git-hooks",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["neovim-nightly-overlay", "git-hooks", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1709087332,
@@ -869,10 +798,7 @@
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": "flake-parts_5",
-        "nixpkgs": [
-          "neovim-nightly-overlay",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["neovim-nightly-overlay", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1747284884,
@@ -890,9 +816,7 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1747978958,
@@ -910,10 +834,7 @@
     },
     "home-manager_2": {
       "inputs": {
-        "nixpkgs": [
-          "zen-browser",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["zen-browser", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1743604125,
@@ -996,16 +917,8 @@
     },
     "ixx": {
       "inputs": {
-        "flake-utils": [
-          "nixvim",
-          "nuschtosSearch",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixvim",
-          "nuschtosSearch",
-          "nixpkgs"
-        ]
+        "flake-utils": ["nixvim", "nuschtosSearch", "flake-utils"],
+        "nixpkgs": ["nixvim", "nuschtosSearch", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1737371634,
@@ -1118,9 +1031,7 @@
     },
     "nix-darwin": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1748004251,
@@ -1159,9 +1070,7 @@
       "inputs": {
         "doomemacs": "doomemacs",
         "emacs-overlay": "emacs-overlay",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "systems": "systems_4"
       },
       "locked": {
@@ -1200,9 +1109,7 @@
     },
     "nix-index-database": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1747540584,
@@ -1241,9 +1148,7 @@
       "inputs": {
         "flake-compat": "flake-compat_7",
         "flake-parts": "flake-parts_7",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1734935829,
@@ -1321,21 +1226,13 @@
     },
     "nix_2": {
       "inputs": {
-        "flake-compat": [
-          "devenv"
-        ],
+        "flake-compat": ["devenv"],
         "flake-parts": "flake-parts_2",
         "libgit2": "libgit2",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-23-11": [
-          "devenv"
-        ],
-        "nixpkgs-regression": [
-          "devenv"
-        ],
-        "pre-commit-hooks": [
-          "devenv"
-        ]
+        "nixpkgs-23-11": ["devenv"],
+        "nixpkgs-regression": ["devenv"],
+        "pre-commit-hooks": ["devenv"]
       },
       "locked": {
         "lastModified": 1745930071,
@@ -1795,12 +1692,8 @@
     },
     "nixvim": {
       "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "flake-parts": ["flake-parts"],
+        "nixpkgs": ["nixpkgs"],
         "nuschtosSearch": "nuschtosSearch",
         "systems": "systems_6"
       },
@@ -1822,10 +1715,7 @@
       "inputs": {
         "flake-utils": "flake-utils_4",
         "ixx": "ixx",
-        "nixpkgs": [
-          "nixvim",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixvim", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1745046075,
@@ -1906,10 +1796,7 @@
     "rust-flake": {
       "inputs": {
         "crane": "crane",
-        "nixpkgs": [
-          "omnix",
-          "nixpkgs"
-        ],
+        "nixpkgs": ["omnix", "nixpkgs"],
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
@@ -1928,10 +1815,7 @@
     },
     "rust-overlay": {
       "inputs": {
-        "nixpkgs": [
-          "gitbutler",
-          "unstablePkgs"
-        ]
+        "nixpkgs": ["gitbutler", "unstablePkgs"]
       },
       "locked": {
         "lastModified": 1740536993,
@@ -1949,11 +1833,7 @@
     },
     "rust-overlay_2": {
       "inputs": {
-        "nixpkgs": [
-          "omnix",
-          "rust-flake",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["omnix", "rust-flake", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1736700680,
@@ -1971,10 +1851,7 @@
     },
     "rust-overlay_3": {
       "inputs": {
-        "nixpkgs": [
-          "wezterm",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["wezterm", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1747449297,
@@ -2147,10 +2024,7 @@
     },
     "treefmt-nix": {
       "inputs": {
-        "nixpkgs": [
-          "neovim-nightly-overlay",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["neovim-nightly-overlay", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1747912973,
@@ -2203,9 +2077,7 @@
         "freetype2": "freetype2",
         "harfbuzz": "harfbuzz",
         "libpng": "libpng",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "rust-overlay": "rust-overlay_3",
         "zlib": "zlib"
       },
@@ -2247,17 +2119,9 @@
     },
     "zig": {
       "inputs": {
-        "flake-compat": [
-          "ghostty"
-        ],
-        "flake-utils": [
-          "ghostty",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ghostty",
-          "nixpkgs-stable"
-        ]
+        "flake-compat": ["ghostty"],
+        "flake-utils": ["ghostty", "flake-utils"],
+        "nixpkgs": ["ghostty", "nixpkgs-stable"]
       },
       "locked": {
         "lastModified": 1741825901,
@@ -2292,14 +2156,8 @@
     },
     "zon2nix": {
       "inputs": {
-        "flake-utils": [
-          "ghostty",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "ghostty",
-          "nixpkgs-unstable"
-        ]
+        "flake-utils": ["ghostty", "flake-utils"],
+        "nixpkgs": ["ghostty", "nixpkgs-unstable"]
       },
       "locked": {
         "lastModified": 1742104771,
