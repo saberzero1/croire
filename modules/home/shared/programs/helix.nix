@@ -6,15 +6,30 @@
     settings = {
       theme = "tokyonight";
       editor = {
-        lineNumbers = "relative";
-        lsp.display-messages = true;
-      };
-      lsp = {
-        enable = true;
+        auto-format = true;
+        color-modes = true;
+        evil = true;
+        insert-final-newline = true;
+        line-number = "relative";
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        inline-diagnostics = {
+          cursor-line = "hint";
+        };
+        lsp = {
+          enable = true;
+          display-messages = true;
+        };
       };
       keys = {
         normal = {
-          space.space = "file_picker";
+          space = {
+            space = "file_picker";
+            s.g = "global_search";
+          };
         };
       };
     };
