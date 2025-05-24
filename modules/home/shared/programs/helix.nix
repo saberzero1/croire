@@ -30,6 +30,19 @@
             space = "file_picker";
             s.g = "global_search";
           };
+          "{" = "goto_prev_paragraph";
+          "}" = "goto_next_paragraph";
+          C-j = [
+            "extend_to_line_bounds"
+            "delete_selection"
+            "paste_after"
+          ];
+          C-k = [
+            "extend_to_line_bounds"
+            "delete_selection"
+            "move_line_up"
+            "paste_before"
+          ];
         };
       };
     };
