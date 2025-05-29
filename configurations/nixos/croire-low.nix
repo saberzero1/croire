@@ -50,7 +50,7 @@ in
     kernelModules = [
       "kvm-intel"
     ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_14;
     loader = {
       efi = {
         canTouchEfiVariables = true;
