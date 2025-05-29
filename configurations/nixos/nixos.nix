@@ -117,7 +117,7 @@ in
         nvidiaBusId = "PCI:1:0:0";
       };
 
-      package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     graphics = {
