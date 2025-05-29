@@ -13,6 +13,7 @@
       ulauncher
       freerdp
       wl-clipboard
+      wezterm
 
       # Extras
       hdparm

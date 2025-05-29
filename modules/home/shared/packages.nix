@@ -48,7 +48,6 @@
     starship
     tmux
     fpp
-    wezterm
     zsh
     zsh-autopair
     zsh-autosuggestions
