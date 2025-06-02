@@ -101,6 +101,6 @@
 
     # Privacy
     tor
-    playwright-driver
+    # playwright-driver
   ];
 }
