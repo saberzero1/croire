@@ -1,0 +1,16 @@
+fork = false
+frame = "buttonless"
+idle = true
+maximized = false
+no-multigrid = true
+theme = "auto"
+srgb = false
+tabs = false
+title-hidden = true
+vsync = false
+wsl = false
+
+[font]
+size = 16
+hinting = "full"
+normal = ["Fira Code"]

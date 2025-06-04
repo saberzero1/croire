@@ -1,0 +1,50 @@
+{
+  "theme": {
+    "mode": "system",
+    "dark": "Tokyo Night Storm",
+    "light": "Tokyo Night Light"
+  },
+  "icon_theme": {
+    "mode": "system",
+    "dark": "VSCode Icons Theme",
+    "light": "VSCode Icons Theme"
+  },
+  "features": {
+    "copilot": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "ui_font_family": "Monaspace Neon",
+  "buffer_font_family": "Monaspace Neon",
+  "ui_font_size": 18,
+  "buffer_font_size": 18,
+  "relative_line_numbers": true,
+  "terminal": {
+    "detect_env": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv", ".envrc", "envrc"],
+        "activate_script": "default"
+      }
+    }
+  },
+  "restore_on_startup": "last_session",
+  "load_direnv": "shell_hook",
+  "current_line_highlight": "all",
+  "selection_highlight": true,
+  "cursor_blink": false,
+  "tabs": {
+    "close_position": "right",
+    "file_icons": true,
+    "git_status": true,
+    "activate_on_close": "history",
+    "show_close_button": "hover"
+  },
+  "enable_language_server": true,
+  "ensure_final_newline_on_save": true,
+  "format_on_save": true,
+  "use_autoclose": true,
+  "always_treat_brackets_as_autoclosed": false
+}

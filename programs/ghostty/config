@@ -1,0 +1,14 @@
+# Linux only
+config-file = ?linux/config
+config-file = ?linux/keybindings
+# MacOS only
+config-file = ?macos/config
+config-file = ?macos/keybindings
+# Shared
+config-file = ?shared/config
+config-file = ?shared/keybindings
+
+font-size = 18
+font-family = Monaspace Neon
+theme = dark:tokyonight-storm,light:tokyonight-day
+shell-integration = zsh
