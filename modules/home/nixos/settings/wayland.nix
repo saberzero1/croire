@@ -30,7 +30,7 @@
         };
         output = {
           "*" = {
-            bg = "${flake.inputs.dotfiles}/assets/backgrounds/wallpaper_night.png fill";
+            bg = "${flake.inputs.dotfiles}/../assets/backgrounds/wallpaper_night.png fill";
           };
         };
         terminal = "${pkgs.wezterm}/bin/wezterm";
@@ -46,9 +46,10 @@
           lib.mkOptionDefault {
             "${mod}+q" = "kill";
             "${mod}+c" = "reload";
-            "Print" = "exec ${flake.inputs.dotfiles}/sway-interactive-screenshot/sway-interactive-screenshot";
+            "Print" =
+              "exec ${flake.inputs.dotfiles}/../sway-interactive-screenshot/sway-interactive-screenshot";
             "Shift+Print" =
-              "exec ${flake.inputs.dotfiles}/sway-interactive-screenshot/sway-interactive-screenshot --video";
+              "exec ${flake.inputs.dotfiles}/../sway-interactive-screenshot/sway-interactive-screenshot --video";
             "${mod}+${left}" = "focus left";
             "${mod}+${down}" = "focus down";
             "${mod}+${up}" = "focus up";

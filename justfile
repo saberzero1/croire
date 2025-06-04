@@ -86,7 +86,7 @@ pull-self:
 # Initialize the configuration
 [group('Main')]
 [unix]
-pull: pull-self pull-dotfiles
+pull: pull-self
 
 # Check the system configuration
 [group('Main')]

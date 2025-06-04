@@ -193,19 +193,14 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1749053758,
-        "narHash": "sha256-MYf2JbZAtvIRJ0yemb+OjndyVdwkowfQHFjxVH2zBvA=",
-        "owner": "saberzero1",
-        "repo": "shelter",
-        "rev": "5792cd58381983a8e95da3aa0a5ca6b7c77f4883",
-        "type": "github"
+        "path": "./programs",
+        "type": "path"
       },
       "original": {
-        "owner": "saberzero1",
-        "ref": "master",
-        "repo": "shelter",
-        "type": "github"
-      }
+        "path": "./programs",
+        "type": "path"
+      },
+      "parent": []
     },
     "emacs-overlay": {
       "inputs": {
