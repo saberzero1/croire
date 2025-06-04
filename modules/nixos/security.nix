@@ -19,6 +19,9 @@
       execWheelOnly = true;
       package = pkgs.sudo;
       wheelNeedsPassword = true;
+      extraConfig = ''
+        Defaults timestamp_timeout=60
+      '';
     };
 
     pam = {
