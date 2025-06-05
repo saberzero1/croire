@@ -12,6 +12,6 @@
     # sketchybar
     lua54Packages.lua
     sketchybar-app-font
-    sbar-lua
+    sbarlua
   ];
 }
