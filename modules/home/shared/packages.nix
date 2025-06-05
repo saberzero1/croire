@@ -10,6 +10,7 @@
     sd
     tree
     gnumake
+    eza
 
     # Nix dev
     cachix

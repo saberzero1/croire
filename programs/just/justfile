@@ -1,7 +1,4 @@
 set quiet
 
-default:
-  @just --list
-
 jump:
   ssh jump

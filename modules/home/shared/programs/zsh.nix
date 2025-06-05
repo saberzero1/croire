@@ -15,8 +15,6 @@
       enable = true;
     };
     shellAliases = {
-      uuid = "uuidgen";
-      ll = "ls -l";
       ".." = "cd ..";
     };
     enableVteIntegration = true;
