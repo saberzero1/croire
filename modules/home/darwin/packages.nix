@@ -8,5 +8,10 @@
     fswatch
     dockutil
     aerospace
+
+    # sketchybar
+    lua54Packages.lua
+    sketchybar-app-font
+    sbar-lua
   ];
 }

@@ -1,8 +1,8 @@
 { flake, ... }:
-
 let
   inherit (flake) inputs;
 in
+
 self: super: {
   doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.system}.default;
   ghostty = inputs.ghostty.packages.${self.system}.default;
@@ -10,6 +10,7 @@ self: super: {
   neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
   omnix = inputs.omnix.packages.${self.system}.default;
   # wezterm = inputs.wezterm.packages.${self.system}.default;
+  sbar-lua = super.callPackage ./../packages/sbarlua.nix { };
 }
 
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix

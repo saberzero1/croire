@@ -22,7 +22,7 @@ in
         "rclone"
         "bat"
         "skhd"
-        "sketchybar"
+        # "sketchybar"
         "yabai"
         # "tmux"
       ]
