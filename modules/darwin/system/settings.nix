@@ -85,6 +85,7 @@ in
         NSGlobalDomain = {
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
+          _HIHideMenuBar = true;
         };
         "com.apple.finder" = {
           ShowExternalHardDrivesOnDesktop = true;
