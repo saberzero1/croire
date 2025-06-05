@@ -81,7 +81,7 @@ pull-dotfiles:
 [unix]
 pull-self:
   git fetch --all
-  git pull
+  git pull 2>/dev/null
 
 # Initialize the configuration
 [group('Main')]
