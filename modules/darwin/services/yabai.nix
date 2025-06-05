@@ -11,15 +11,7 @@
       yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
       # Unload the macOS WindowManager process
-      launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
-
-      # sudo yabai --load-sa
-      # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-      yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-      # yabai -m signal --add event=display_added action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-      # yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-      yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-      yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+      # launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
 
       function setup_space {
         local idx="$1"
@@ -34,8 +26,6 @@
         fi
 
         yabai -m space "$idx" --label "$label"
-
-        sketchybar --trigger space_change --trigger windows_on_spaces
       }
 
       #########
@@ -98,7 +88,7 @@
       ##########
 
       # Make space for sketchybar
-      yabai -m config external_bar all:33:0
+      yabai -m config external_bar all:40:0
 
       # no spacing around windows
       yabai -m config top_padding 0
