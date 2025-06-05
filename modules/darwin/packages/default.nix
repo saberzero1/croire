@@ -19,5 +19,12 @@
     global = {
       autoUpdate = false;
     };
+
+    taps = [
+      {
+        name = "FelizKratz/homebrew-formulae";
+        clone_target = "git@github.com:FelixKratz/homebrew-formulae.git";
+      }
+    ];
   };
 }
