@@ -1,4 +1,8 @@
 { flake, ... }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   programs.waybar = {
     enable = true;
@@ -52,11 +56,11 @@
         "custom/date" = {
           format = "󰸗 {}";
           interval = 3600;
-          exec = "${flake.inputs.dotfiles}/waybar/waybar-date.sh";
+          exec = "${self}/programs/waybar/waybar-date.sh";
         };
         "custom/power" = {
           format = "󰐥";
-          on-clock = "${flake.inputs.dotfiles}/waybar/waybar-power.sh";
+          on-clock = "${self}/programs/waybar/waybar-power.sh";
         };
         "clock" = {
           format = "󰅐 {:%H:%M}";

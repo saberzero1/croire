@@ -1,11 +1,15 @@
 { flake, ... }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   home.file = builtins.listToAttrs (
     (builtins.map
       (source: {
         name = ".config/${source}";
         value = {
-          source = "${flake.inputs.dotfiles}/${source}";
+          source = "${self}/programs/${source}";
           recursive = true;
         };
       })
@@ -33,7 +37,7 @@
       {
         name = ".assets/backgrounds";
         value = {
-          source = "${flake.inputs.dotfiles}/assets/backgrounds";
+          source = "${self}/assets/backgrounds";
           recursive = true;
         };
       }

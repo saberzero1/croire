@@ -124,16 +124,6 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # Dotfiles
-    /*
-      dotfiles = {
-        url = "github:saberzero1/shelter/master";
-        flake = false;
-      };
-    */
-    dotfiles = {
-      url = "./programs";
-      flake = false;
-    };
     totten = {
       url = "github:saberzero1/totten/master";
       flake = false;

@@ -1,4 +1,8 @@
 { flake, pkgs, ... }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   programs.zed-editor = {
     enable = true;
@@ -35,7 +39,7 @@
       "xml"
       "zig"
     ];
-    userKeymaps = pkgs.lib.importJSON "${flake.inputs.dotfiles}/zed/keymap.json";
-    userSettings = pkgs.lib.importJSON "${flake.inputs.dotfiles}/zed/settings.json";
+    userKeymaps = pkgs.lib.importJSON "${self}/programs/zed/keymap.json";
+    userSettings = pkgs.lib.importJSON "${self}/programs/zed/settings.json";
   };
 }

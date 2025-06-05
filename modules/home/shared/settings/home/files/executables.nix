@@ -1,11 +1,15 @@
 { flake, ... }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   home.file = builtins.listToAttrs (
     builtins.map
       (source: {
         name = ".config/${source}";
         value = {
-          source = "${flake.inputs.dotfiles}/${source}";
+          source = "${self}/programs/${source}";
           executable = true;
         };
       })

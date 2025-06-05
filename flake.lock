@@ -190,18 +190,6 @@
         "type": "github"
       }
     },
-    "dotfiles": {
-      "flake": false,
-      "locked": {
-        "path": "./programs",
-        "type": "path"
-      },
-      "original": {
-        "path": "./programs",
-        "type": "path"
-      },
-      "parent": []
-    },
     "emacs-overlay": {
       "inputs": {
         "nixpkgs": [
@@ -1802,7 +1790,6 @@
       "inputs": {
         "determinate": "determinate",
         "devenv": "devenv",
-        "dotfiles": "dotfiles",
         "flake-parts": "flake-parts_3",
         "ghostty": "ghostty",
         "gitbutler": "gitbutler",

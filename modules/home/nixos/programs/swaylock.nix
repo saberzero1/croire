@@ -1,11 +1,15 @@
 { flake, ... }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   programs.swaylock = {
     enable = true;
     settings = {
       ignore-empty-password = true;
       disable-caps-lock-text = true;
-      image = "${flake.inputs.dotfiles}/../assets/backgrounds/wallpaper_night.png";
+      image = "${self}/assets/backgrounds/wallpaper_night.png";
       effect-blur = "3x5";
       font = "Monaspace Neon";
       text-ver-color = "00000000";

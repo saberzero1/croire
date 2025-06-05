@@ -3,6 +3,10 @@
 , lib
 , ...
 }:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   wayland = {
     windowManager.sway = {
@@ -30,7 +34,7 @@
         };
         output = {
           "*" = {
-            bg = "${flake.inputs.dotfiles}/../assets/backgrounds/wallpaper_night.png fill";
+            bg = "${self}/assets/backgrounds/wallpaper_night.png fill";
           };
         };
         terminal = "${pkgs.wezterm}/bin/wezterm";
@@ -46,10 +50,9 @@
           lib.mkOptionDefault {
             "${mod}+q" = "kill";
             "${mod}+c" = "reload";
-            "Print" =
-              "exec ${flake.inputs.dotfiles}/../sway-interactive-screenshot/sway-interactive-screenshot";
+            "Print" = "exec ${self}/programs/sway-interactive-screenshot/sway-interactive-screenshot";
             "Shift+Print" =
-              "exec ${flake.inputs.dotfiles}/../sway-interactive-screenshot/sway-interactive-screenshot --video";
+              "exec ${self}/programs/sway-interactive-screenshot/sway-interactive-screenshot --video";
             "${mod}+${left}" = "focus left";
             "${mod}+${down}" = "focus down";
             "${mod}+${up}" = "focus up";
@@ -100,7 +103,7 @@
             "${mod}+o" = "exec wofi &";
             "${mod2}+o" = "exec wofi &";
             "Mod4+l" =
-              "exec swaylock  -i ${flake.inputs.dotfiles}/assets/backgrounds/wallpaper_night_blurred.png --indicator-radius 100 --indicator-thickness 7 --hide-keyboard-layout --disable-caps-lock-text --ignore-empty-password --ring-color b4f9f8 --key-hl-color c0caf5 --line-color 00000000 --inside-color b4f9f888 --separator-color 00000000 --ring-wrong-color f7768e --line-wrong-color 00000000 --inside-wrong-color f7768e88 --text-wrong-color 00000000 --ring-ver-color 7aa2f7 --line-ver-color 00000000 --inside-ver-color 7aa2f788 --text-ver-color 00000000 --ring-clear-color 565f89 --line-clear-color 00000000 --inside-clear-color 565f8988 --text-clear-color 00000000 --ring-caps-lock-color e0af68 --line-caps-lock-color 00000000 --inside-caps-lock-color e0af6888 --text-caps-lock-color 00000000";
+              "exec swaylock -i ${self}/assets/backgrounds/wallpaper_night_blurred.png --indicator-radius 100 --indicator-thickness 7 --hide-keyboard-layout --disable-caps-lock-text --ignore-empty-password --ring-color b4f9f8 --key-hl-color c0caf5 --line-color 00000000 --inside-color b4f9f888 --separator-color 00000000 --ring-wrong-color f7768e --line-wrong-color 00000000 --inside-wrong-color f7768e88 --text-wrong-color 00000000 --ring-ver-color 7aa2f7 --line-ver-color 00000000 --inside-ver-color 7aa2f788 --text-ver-color 00000000 --ring-clear-color 565f89 --line-clear-color 00000000 --inside-clear-color 565f8988 --text-clear-color 00000000 --ring-caps-lock-color e0af68 --line-caps-lock-color 00000000 --inside-caps-lock-color e0af6888 --text-caps-lock-color 00000000";
           };
         startup = [
           { command = "systemctl --user import-environment"; }
