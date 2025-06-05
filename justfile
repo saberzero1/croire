@@ -58,7 +58,7 @@ build:
   echo "Installing Neovim plugins"
   nvim --headless "+Lazy! restore" "+Lazy! clean" "+qa" 1>/dev/null
   echo "Installing Neovim plugins done"
-  brew services restart sketchybar
+  sketchybar --reload
   # skhd --start-service
 
 # Activate default configuration
