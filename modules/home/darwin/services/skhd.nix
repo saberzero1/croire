@@ -16,10 +16,20 @@
       # alt + ctrl - 0x1F : find -a "Sol" -exec open {} \;
 
       # Close current window
-      cmd + alt - q: close
+      # cmd + alt - q: close
+      cmd + alt - q: skhd -k "cmd - q "
+      cmd + alt + ctrl - q: kill $(yabai -m query --windows --window | jq pid)
 
       # Open launcher
-      cmd + alt - o: open -na /Applications/Sol.app/Contents/MacOS/sol
+      cmd + alt - o: open -a /Applications/Sol.app/Contents/MacOS/sol
+
+      # Open specific applications
+      # Terminal
+      cmd + alt - t: open -a Wezterm
+      # Note-taking
+      cmd + alt - n: open -a Obsidian
+      # Browser
+      cmd + alt - b: open -a Wavebox
 
       # Window focus
       cmd + alt - h: yabai -m window --focus west

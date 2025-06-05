@@ -41,6 +41,7 @@
 
       # Assign applications to spaces
       yabai -m rule --add app="^Wezterm$" space=^1
+      yabai -m rule --add app="^Ghostty$" space=^1
       yabai -m rule --add app="^Obsidian$" space=2
       yabai -m rule --add app="^Wavebox$" space=3
 

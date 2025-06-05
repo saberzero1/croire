@@ -9,6 +9,7 @@
         };
       })
       [
+        "just/justfile"
         "starship/starship.toml"
         "tmux/scripts/directories"
       ]
