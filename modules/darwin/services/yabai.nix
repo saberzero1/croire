@@ -161,6 +161,8 @@
       # Otherwise yabai takes care of management and I couldnt resize apps like
       # packet tracer for example
       yabai -m rule --apply
+
+      sketchybar || sketchybar --reload
     '';
   };
 }

@@ -287,6 +287,12 @@ in
         sudo mkdir -p "${primaryUserHome}/.local/share/sketchybar_lua"
         sudo cp "${pkgs.sbarlua}/lib/lua/5.4/sketchybar.so" "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
         sudo chmod +x "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
+        cd "${primaryUserHome}/.config/sketchybar/helpers/menus"
+        make
+        cd -
+        cd "${primaryUserHome}/.config/sketchybar/helpers/event_providers"
+        make
+        cd -
         echo "Sketchybar setup done"
 
         # skhd --restart-service
