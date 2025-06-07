@@ -17,7 +17,7 @@
     };
 
     global = {
-      autoUpdate = false;
+      autoUpdate = true;
     };
 
     taps = [
