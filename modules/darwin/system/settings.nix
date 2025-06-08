@@ -2,7 +2,8 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  primaryUserHome = "/Users/emile";
+  primaryUser = "emile";
+  primaryUserHome = "/Users/${primaryUser}";
 in
 {
   # Configure macOS system
@@ -272,13 +273,12 @@ in
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
         echo "Cleaning Neovim plugin cache"
-        sudo rm -rf "${primaryUserHome}/.local/share/nvim/lazy"
         sudo rm -rf "${primaryUserHome}/.cache/nvim/luac/*"
         sudo rm -rf "${primaryUserHome}/.config/nvim"
         echo "Cleaning Neovim plugin cache done"
 
         echo "Installing LazyVim"
-        sudo mkdir -p "${primaryUserHome}/.config/nvim"
+        mkdir -p "${primaryUserHome}/.config/nvim"
         cp -r "${self}/programs/nvim" "${primaryUserHome}/.config"
         echo "Installing LazyVim done"
 
@@ -301,6 +301,7 @@ in
         cd -
         echo "Sketchybar setup done"
 
+        sudo chown -R ${primaryUser}:staff "${primaryUserHome}/.config"
         # skhd --restart-service
       '';
     };
