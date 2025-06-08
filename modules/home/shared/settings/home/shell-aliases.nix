@@ -68,17 +68,17 @@ let
     npy = "npm why"; # Explain why a package is installed
   };
   utility = {
-    da = "date '+%Y-%m-%d %A %T %Z'"; # Date and time
     h = "history"; # Show command history
-    op = "sudo lsof -i -P"; # List open ports
+    now = "date '+%Y-%m-%d %A %T %Z'"; # Date and time
+    ports = "sudo lsof -i -P"; # List open ports
     p = "pwd"; # Print working directory
     path = "echo $${PATH//:/\\n}"; # Print PATH variable separated by newlines
     reload = "exec $SHELL -l"; # Reload shell
     tree = "tree --dirsfirst"; # List files in tree format
     ts = "tmux-sessionizer"; # Tmux sessionizer
     uuid = "uuidgen | tr -d '\n' | tr '[:upper:]' '[:lower:]' | pbcopy && pbpaste && echo"; # Generate UUID, copy to clipboard, and print
-    wk = "date +%V"; # Get current week number
-    wth = "curl -s 'wttr.in/?format=3'"; # Get weather in a short format
+    week = "date +%V"; # Get current week number
+    weather = "curl -s 'wttr.in/?format=3'"; # Get weather in a short format
   };
   vi = {
     vi = "${pkgs.neovim}/bin/nvim";
