@@ -14,9 +14,6 @@
     syntaxHighlighting = {
       enable = true;
     };
-    shellAliases = {
-      ".." = "cd ..";
-    };
     enableVteIntegration = true;
     initContent = ''
       # zoxide
