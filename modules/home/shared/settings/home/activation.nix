@@ -1,9 +1,18 @@
-{ lib, config, ... }:
+{ flake
+, lib
+, config
+, ...
+}:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
 {
   home.activation = {
     lazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       echo "Installing LazyVim"
-      cp -r "${config.home.homeDirectory}/Repos/shelter/nvim" "${config.home.homeDirectory}/.config"
+      rm -rf "${config.home.homeDirectory}/.config/nvim"
+      cp -r "${self}/programs/nvim" "${config.home.homeDirectory}/.config/nvim"
       echo "Installing LazyVim done"
     '';
   };
