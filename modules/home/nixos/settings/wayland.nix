@@ -123,12 +123,13 @@ in
         default_border pixel 1
         assign [app_id="ghostty"] workspace number 1
         assign [app_id="wezterm"] workspace number 1
-        assign [app_id="discord"] workspace number 2
+        assign [app_id="obsidian"] workspace number 2
         assign [app_id="wavebox"] workspace number 3 
         assign [app_id="zen"] workspace number 3
         assign [app_id="zed"] workspace number 4
         assign [app_id="codium-url-handler"] workspace number 4
         assign [app_id="wine"] workspace number 4
+        assign [app_id="discord"] workspace number 5
         for_window [app_id="com.github.finefindus.eyedropper"] floating enable
         include @sysconfdir@/sway/config.d/*
       '';
