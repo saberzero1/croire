@@ -1,6 +1,7 @@
-{ pkgs
-, flake
-, ...
+{
+  pkgs,
+  flake,
+  ...
 }:
 {
   # Nix packages to install to $HOME
@@ -24,6 +25,7 @@
       pamixer
       pciutils
       usbutils
+      lsof
 
       atuin
       gh-dash
