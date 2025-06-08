@@ -2,3 +2,10 @@ set quiet
 
 jump:
   ssh jump
+
+obsidian-eslint:
+  npm run build
+  npm test
+  npm run init:eslint-docs
+  npm run update:eslint-docs
+

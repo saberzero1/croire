@@ -38,6 +38,7 @@ let
   };
   just = {
     j = "${pkgs.just}/bin/just --choose";
+    jj = "${pkgs.just}/bin/just --global-justfile";
     gj = "${pkgs.just}/bin/just --global-justfile --choose";
   };
   ls = {
