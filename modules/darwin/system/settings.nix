@@ -274,7 +274,13 @@ in
         echo "Cleaning Neovim plugin cache"
         sudo rm -rf "${primaryUserHome}/.local/share/nvim/lazy"
         sudo rm -rf "${primaryUserHome}/.cache/nvim/luac/*"
+        sudo rm -rf "${primaryUserHome}/.config/nvim"
         echo "Cleaning Neovim plugin cache done"
+
+        echo "Installing LazyVim"
+        sudo mkdir -p "${primaryUserHome}/.config/nvim"
+        cp -r "${self}/programs/nvim" "${primaryUserHome}/.config"
+        echo "Installing LazyVim done"
 
         # Custom additions
         echo "Setting tmux-sessionizer permissions"

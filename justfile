@@ -45,9 +45,6 @@ run:
 build:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   nix run --accept-flake-config .#activate
-  echo "Installing Neovim plugins"
-  nvim --headless "+Lazy! restore" "+Lazy! clean" "+qa" 1>/dev/null
-  echo "Installing Neovim plugins done"
 
 # Activate default configuration
 [group('Main')]
@@ -55,9 +52,6 @@ build:
 build:
   # skhd --stop-service || true
   sudo nix run --accept-flake-config .#activate
-  echo "Installing Neovim plugins"
-  nvim --headless "+Lazy! restore" "+Lazy! clean" "+qa" 1>/dev/null
-  echo "Installing Neovim plugins done"
   sketchybar --reload
   # skhd --start-service
 
