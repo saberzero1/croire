@@ -1,10 +1,13 @@
 # Linux only
+config-file = ?linux/commands
 config-file = ?linux/config
 config-file = ?linux/keybindings
 # MacOS only
+config-file = ?macos/commands
 config-file = ?macos/config
 config-file = ?macos/keybindings
 # Shared
+config-file = ?shared/commands
 config-file = ?shared/config
 config-file = ?shared/keybindings
 
