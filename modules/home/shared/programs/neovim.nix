@@ -9,7 +9,7 @@
     withRuby = true;
     extraPackages = with pkgs; [
       alejandra
-      black
+      python313Packages.black
       golangci-lint
       gopls
       gotools

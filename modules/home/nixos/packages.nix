@@ -43,8 +43,8 @@
       yubikey-touch-detector
 
       # Python
-      python3
-      python312Packages.pynvim
+      python313Full
+      python313Packages.pynvim
 
       # Lua
       luajit

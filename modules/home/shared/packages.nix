@@ -92,8 +92,8 @@
     zoxide
 
     # Python
-    black
-    python3
+    python313Packages.black
+    python313Full
     virtualenv
 
     # Extra

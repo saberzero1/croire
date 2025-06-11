@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs.python312Packages; [
+  home.packages = with pkgs.python313Packages; [
     pandas
     matplotlib
     seaborn
@@ -18,6 +18,8 @@
     playwrightcapture
 
     tkinter
+    async-tkinter-loop
+    customtkinter
   ];
 
 }
