@@ -14,5 +14,6 @@ in
     VISUAL = "nvim";
     LAZY = "${config.home.homeDirectory}/share/lazy-nvim";
     SHELL = "${pkgs.zsh}/bin/zsh";
+    TS_SEARCH_PATHS = "(~/Documents/Repos ~/Repos)";
   } // just;
 }

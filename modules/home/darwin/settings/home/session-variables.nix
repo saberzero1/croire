@@ -10,5 +10,6 @@ in
       24
       7
     ];
+    TS_EXTRA_SEARCH_PATHS = "(~/Work/Repos)";
   };
 }

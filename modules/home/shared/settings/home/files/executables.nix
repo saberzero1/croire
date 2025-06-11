@@ -14,7 +14,9 @@ in
         };
       })
       [
+        "tmux/tmux-sessionizer.conf"
         "tmux/scripts/tmux-sessionizer"
+        "tmux/scripts/session-template"
         "zsh/scripts/shortcuts"
       ]
   );

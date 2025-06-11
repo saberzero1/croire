@@ -15,7 +15,7 @@ in
       [
         "just/justfile"
         "starship/starship.toml"
-        "tmux/scripts/directories"
+        # "tmux/scripts/directories"
       ]
   );
 }

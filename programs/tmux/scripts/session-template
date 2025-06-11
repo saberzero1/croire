@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+tmux renamew -t 1 'scratch' && clear
+tmux neww -kdS -n 'editor' -a -t 2 'nvim' && clear
+tmux neww -kdS -n 'watcher' -a -t 3 '$SHELL' && clear
+tmux neww -kdS -n 'remote' -a -t 4 '$SHELL' && clear
+tmux neww -kdS -n 'git' -a -t 5 'lazygit' && clear
