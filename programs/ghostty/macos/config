@@ -1,4 +1,6 @@
-window-theme = "dark"
+window-theme = "system"
 macos-option-as-alt = true
 macos-auto-secure-input = true
 macos-secure-input-indication = true
+
+auto-update-channel = "stable"
