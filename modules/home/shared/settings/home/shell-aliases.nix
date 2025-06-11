@@ -39,7 +39,7 @@ let
   just = {
     j = "${pkgs.just}/bin/just --choose";
     jj = "${pkgs.just}/bin/just --global-justfile";
-    gj = "${pkgs.just}/bin/just --global-justfile --choose";
+    gj = "${pkgs.just}/bin/just --global-justfile --choose 2>/dev/null";
   };
   ls = {
     ls = "${pkgs.eza}/bin/eza --icons --long --group-directories-first";
