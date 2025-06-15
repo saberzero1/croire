@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Ensure that BASH_REMATCH works if called from zsh
-setopt KSH_ARRAYS BASH_REMATCH
+setopt KSH_ARRAYS BASH_REMATCH &>/dev/null
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux"
 CONFIG_FILE="$CONFIG_DIR/tmux-sessionizer.conf"
@@ -127,4 +127,4 @@ fi
 
 switch_to "$selected_name"
 
-unsetopt KSH_ARRAYS BASH_REMATCH
+unsetopt KSH_ARRAYS BASH_REMATCH &>/dev/null
