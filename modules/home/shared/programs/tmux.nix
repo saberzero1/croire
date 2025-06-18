@@ -41,6 +41,7 @@
       bind c new-window -c "#{pane_current_path}"
 
       bind-key -r f run-shell "tmux neww ~/.config/tmux/scripts/tmux-sessionizer"
+      bind-key -r q run-shell "tmux kill-session"
 
       # bind-key -r k run-shell "~/.local/scripts/tmux-sessionizer ~/projects/work/tmux-theme"
 
