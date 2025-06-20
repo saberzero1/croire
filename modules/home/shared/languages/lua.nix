@@ -16,7 +16,8 @@
     lua-lsp
     lua-utils-nvim
     luacheck
-    luarocks
+    luafilesystem
+    luarocks-nix
     luarocks-build-rust-mlua
     luarocks-build-treesitter-parser
     luasnip
@@ -43,7 +44,7 @@
     readline
     rest-nvim
     rocks-config-nvim
-    rocks-dev-nvim
+    # rocks-dev-nvim
     rocks-git-nvim
     rocks-nvim
     rtp-nvim
