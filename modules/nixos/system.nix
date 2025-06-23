@@ -69,6 +69,10 @@
       gnused
       glib
       glibc
+      libxml2
+      libxslt
+      zlib
+      pkg-config
       nss
       libnss_nis
       curlFull

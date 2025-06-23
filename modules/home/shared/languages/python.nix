@@ -12,10 +12,10 @@
     black
     pytest
 
-    playwright
-    pytest-playwright
-    playwright-stealth
-    playwrightcapture
+    # playwright
+    # pytest-playwright
+    # playwright-stealth
+    # playwrightcapture
 
     tkinter
     async-tkinter-loop
