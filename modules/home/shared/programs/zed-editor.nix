@@ -5,9 +5,10 @@ let
 in
 {
   programs.zed-editor = {
-    enable = true;
+    enable = false;
     extraPackages = with pkgs; [
       nixd
+      jq
     ];
     extensions = [
       "awk"

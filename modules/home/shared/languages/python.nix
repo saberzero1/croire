@@ -11,6 +11,7 @@
     python-dotenv
     black
     pytest
+    json5
 
     # playwright
     # pytest-playwright
