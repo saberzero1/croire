@@ -2,6 +2,6 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.wavebox;
+    package = pkgs.chromium;
   };
 }

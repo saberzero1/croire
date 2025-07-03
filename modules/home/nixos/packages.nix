@@ -9,7 +9,8 @@
   home.packages =
     with pkgs;
     [
-      wavebox
+      # wavebox
+      ladybird
       ulauncher
       freerdp
       wl-clipboard

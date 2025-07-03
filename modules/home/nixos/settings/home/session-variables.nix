@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
 {
   home.sessionVariables = {
     TERM = "xterm-ghostty";
-    DEFAULT_BROWSER = "${pkgs.wavebox}/bin/wavebox";
-    BROWSER = "${pkgs.wavebox}/bin/wavebox";
+    DEFAULT_BROWSER = "${flake.inputs.zen-browser}/bin/zen";
+    BROWSER = "${flake.inputs.zen-browser}/bin/zen";
     DL_VIDEODRIVER = "wayland";
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";

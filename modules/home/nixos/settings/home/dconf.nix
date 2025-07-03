@@ -10,7 +10,7 @@
     "org/gnome/shell" = {
       favorite-apps = [
         "ranger.desktop"
-        "wavebox.desktop"
+        "zen.desktop"
         "obsidian.desktop"
         "discord.desktop"
         "nvim.desktop"

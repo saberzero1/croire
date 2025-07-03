@@ -134,20 +134,20 @@
     mime = {
       enable = true;
       defaultApplications = {
-        "text/html" = [ "wavebox.desktop" ];
-        "x-scheme-handler/http" = [ "wavebox.desktop" ];
-        "x-scheme-handler/https" = [ "wavebox.desktop" ];
-        "x-scheme-handler/ftp" = [ "wavebox.desktop" ];
-        "x-scheme-handler/chrome" = [ "wavebox.desktop" ];
-        "x-scheme-handler/about" = [ "wavebox.desktop" ];
-        "x-scheme-handler/unknown" = [ "wavebox.desktop" ];
+        "text/html" = [ "zen.desktop" ];
+        "x-scheme-handler/http" = [ "zen.desktop" ];
+        "x-scheme-handler/https" = [ "zen.desktop" ];
+        "x-scheme-handler/ftp" = [ "zen.desktop" ];
+        "x-scheme-handler/chrome" = [ "zen.desktop" ];
+        "x-scheme-handler/about" = [ "zen.desktop" ];
+        "x-scheme-handler/unknown" = [ "zen.desktop" ];
         "x-scheme-handler/appflowy-flutter" = [ "appflowy.desktop" ];
-        "application/x-extension-htm" = [ "wavebox.desktop" ];
-        "application/x-extension-html" = [ "wavebox.desktop" ];
-        "application/x-extension-shtml" = [ "wavebox.desktop" ];
-        "application/xhtml+xml" = [ "wavebox.desktop" ];
-        "application/x-extension-xhtml" = [ "wavebox.desktop" ];
-        "application/x-extension-xht" = [ "wavebox.desktop" ];
+        "application/x-extension-htm" = [ "zen.desktop" ];
+        "application/x-extension-html" = [ "zen.desktop" ];
+        "application/x-extension-shtml" = [ "zen.desktop" ];
+        "application/xhtml+xml" = [ "zen.desktop" ];
+        "application/x-extension-xhtml" = [ "zen.desktop" ];
+        "application/x-extension-xht" = [ "zen.desktop" ];
       };
     };
     portal = {
