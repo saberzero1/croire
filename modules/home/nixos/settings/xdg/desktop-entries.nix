@@ -32,9 +32,9 @@ in
       name = "GeForce NOW (AppImage)";
       comment = "Cloud Gaming";
       icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
-      exec = "${pkgs.gamescope}/bin/gamescope --force-grab-cursor -s 1.25 -w 1920 -h 1080 -W 1920 -H 1080 --scaler fit --expose-wayland --force-windows-fullscreen -f -- ${pkgs.appimage-run}/bin/appimage-run ${config.home.homeDirectory}/AppImages/geforce_now.AppImage --no-sandbox";
+      exec = "${pkgs.bash}/bin/bash -c ${config.home.homeDirectory}/AppImages/geforce_now";
       categories = [ "Application" ];
-      terminal = true;
+      terminal = false;
       mimeType = [ "text/plain" ];
     };
     "obsidian" = {
