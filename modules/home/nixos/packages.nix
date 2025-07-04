@@ -16,6 +16,9 @@
       wl-clipboard
       wezterm
 
+      gearlever
+      appimage-run
+
       # Extras
       hdparm
       # hplip

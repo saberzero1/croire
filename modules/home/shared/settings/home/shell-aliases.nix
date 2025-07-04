@@ -17,15 +17,14 @@ let
   git = {
     g = "git"; # Git command
     ga = "git add"; # Add files to staging area
-    # gaa = "git add --all"; # Add all files to staging area
+    gaa = "git add --all"; # Add all files to staging area
     gb = "git branch"; # List branches
     # gbd = "git branch -d"; # Delete branch
     # gbD = "git branch -D"; # Force delete branch
     gco = "git checkout"; # Checkout branch or commit
     gcm = "git commit -m"; # Commit changes with message
-    # gca = "git commit --amend --no-edit"; # Amend last commit without changing message
-    # gcma = "git commit --amend"; # Amend last commit with editor
-    gca = "git commit --amend"; # Amend last commit with editor
+    gca = "git commit --amend --no-edit"; # Amend last commit without changing message
+    gcma = "git commit --amend"; # Amend last commit with editor
     gd = "git diff"; # Show differences
     gdc = "git diff --cached"; # Show staged differences
     gf = "git fetch"; # Fetch changes from remote repository
@@ -65,7 +64,8 @@ let
     npsv = "npm serve"; # Start npm server
     npt = "npm test"; # Run npm tests
     npu = "npm update"; # Update npm packages
-    npx = "npx || npm exec"; # Run npx command
+    # npx = "npx || npm exec"; # Run npx command
+    npx = "npx"; # Run npx command
     npy = "npm why"; # Explain why a package is installed
   };
   utility = {
