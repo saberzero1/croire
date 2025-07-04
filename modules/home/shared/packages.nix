@@ -40,7 +40,7 @@
     direnv
     nix-direnv
     gh
-    git
+    gitFull
     diff-so-fancy
     neovim
 

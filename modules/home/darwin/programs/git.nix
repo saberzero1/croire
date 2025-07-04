@@ -22,7 +22,7 @@
       useUnicodeRuler = true;
     };
     enable = true;
-    package = pkgs.git;
+    package = pkgs.gitFull;
     userName = "saberzero1";
     userEmail = "github@emilebangma.com";
     ignores = [

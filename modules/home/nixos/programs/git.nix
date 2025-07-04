@@ -18,7 +18,7 @@
       useUnicodeRuler = true;
     };
     enable = true;
-    package = pkgs.git;
+    package = pkgs.gitFull;
     ignores = [
       "*.swp"
     ];

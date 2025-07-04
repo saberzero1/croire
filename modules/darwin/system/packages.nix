@@ -5,7 +5,7 @@
       diff-so-fancy
       gh
       lazygit
-      git
+      gitFull
 
       xcodes
       apple-sdk
