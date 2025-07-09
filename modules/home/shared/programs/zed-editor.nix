@@ -5,7 +5,7 @@ let
 in
 {
   programs.zed-editor = {
-    enable = false;
+    enable = true;
     extraPackages = with pkgs; [
       nixd
       jq
@@ -14,6 +14,7 @@ in
       "awk"
       "csharp"
       "csv"
+      "cython"
       "discord-presence"
       "docker-compose"
       "dockerfile"
@@ -22,6 +23,7 @@ in
       "env"
       "erlang"
       "ini"
+      "java"
       "just"
       "libsql-context-server"
       "live-server"
