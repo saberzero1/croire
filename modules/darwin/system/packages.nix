@@ -9,6 +9,8 @@
 
       xcodes
       apple-sdk
+
+      bun
     ];
   };
 }

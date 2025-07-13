@@ -102,6 +102,7 @@
 
     # Privacy
     tor
+    libressl
     # playwright-driver
   ];
 }
