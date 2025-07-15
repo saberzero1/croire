@@ -15,6 +15,7 @@ in
       [
         "just/justfile"
         "starship/starship.toml"
+        "yazi/flavors/tokyo-night.yazi"
         # "tmux/scripts/directories"
       ]
   );

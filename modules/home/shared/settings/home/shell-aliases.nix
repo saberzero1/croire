@@ -86,6 +86,9 @@ let
     vim = "${pkgs.neovim}/bin/nvim";
     vimdiff = "${pkgs.neovim}/bin/nvim -d";
   };
+  yazi = {
+    y = "${pkgs.yazi}/bin/yazi";
+  };
 in
 {
   home.shellAliases =
@@ -98,5 +101,6 @@ in
     // ls
     // npm
     // utility
-    // vi;
+    // vi
+    // yazi;
 }
