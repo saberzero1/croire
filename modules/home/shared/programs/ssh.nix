@@ -6,11 +6,20 @@ let
       pkgs.lib.readFile "${primaryUserHome}/.ssh/config_work"
     else
       "";
+  inherit (pkgs.stdenv) isDarwin isLinux;
+  sshPackage =
+    if isDarwin then
+      null
+    else if isLinux then
+      pkgs.openssh
+    else
+      throw "Unsupported platform for SSH configuration";
 in
 {
   programs.ssh = {
     enable = true;
-    package = pkgs.openssh;
+    package = sshPackage;
+    addKeysToAgent = "ask";
 
     extraConfig =
       ''

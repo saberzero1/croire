@@ -73,7 +73,7 @@ let
     now = "date '+%Y-%m-%d %A %T %Z'"; # Date and time
     ports = "sudo lsof -i -P"; # List open ports
     p = "pwd"; # Print working directory
-    path = "echo $${PATH//:/\\n}"; # Print PATH variable separated by newlines
+    path = "echo \${PATH//:/\\n}"; # Print PATH variable separated by newlines
     reload = "exec $SHELL -l"; # Reload shell
     tree = "tree --dirsfirst"; # List files in tree format
     ts = "tmux-sessionizer"; # Tmux sessionizer

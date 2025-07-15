@@ -22,7 +22,13 @@ in
     overlays = lib.attrValues self.overlays;
   };
 
-  networking.hostName = "Emiles-MacBook-Pro";
+  networking = {
+    hostName = "Emiles-MacBook-Pro";
+
+    applicationFirewall = {
+      enable = true;
+    };
+  };
 
   # For home-manager to work.
   # https://github.com/nix-community/home-manager/issues/4026#issuecomment-1565487545
