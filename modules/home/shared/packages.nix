@@ -77,7 +77,7 @@
     pay-respects
 
     # Javascript
-    nodejs
+    # nodejs
 
     # Utility
     ffmpeg

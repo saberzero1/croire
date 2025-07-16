@@ -64,8 +64,6 @@ let
     npsv = "npm serve"; # Start npm server
     npt = "npm test"; # Run npm tests
     npu = "npm update"; # Update npm packages
-    # npx = "npx || npm exec"; # Run npx command
-    npx = "npx"; # Run npx command
     npy = "npm why"; # Explain why a package is installed
   };
   utility = {

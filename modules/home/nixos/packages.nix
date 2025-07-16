@@ -10,7 +10,7 @@
     with pkgs;
     [
       # wavebox
-      ladybird
+      # ladybird
       ulauncher
       freerdp
       wl-clipboard

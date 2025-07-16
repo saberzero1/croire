@@ -84,6 +84,7 @@
       gnumake
       _7zz
       parallel
+      libavif
 
       gimp3-with-plugins
       inkscape-with-extensions
