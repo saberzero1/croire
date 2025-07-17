@@ -41,7 +41,7 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
   bindsym $mod+t exec ghostty &
   bindsym $mod+g exec ghostty &
 
-  bindsym $mod+o exec obsidian &
+  bindsym $mod+n exec obsidian &
 
   bindsym $mod+w exec zen &
 
@@ -201,7 +201,7 @@ mode "launcher" {
   bindsym $mod+t exec ghostty &
   bindsym $mod+g exec ghostty &
   bindsym $mod+d exec discord &
-  bindsym $mod+o exec obsidian &
+  bindsym $mod+n exec obsidian &
   #bindsym $mod+w exec wavebox &
   bindsym $mod+z exec zed &
 

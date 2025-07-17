@@ -19,7 +19,7 @@ cmd + alt - o: open -na /Applications/Sol.app/Contents/MacOS/sol
 cmd + alt - t: yabai -m space --focus 1; open -a /Applications/iTerm.app/Contents/MacOS/iTerm2
 cmd + alt - g: yabai -m space --focus 1; open -a /Applications/Ghostty.app/Contents/MacOS/ghostty
 
-cmd + alt - o: yabai -m space --focus 2; open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
+cmd + alt - n: yabai -m space --focus 2; open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
 
 cmd + alt - w: yabai -m space --focus 3; open -a /Applications/Wavebox.app/Contents/MacOS/Wavebox
 cmd + alt - z: yabai -m space --focus 3; open -a /Applications/Zen.app/Contents/MacOS/zen
