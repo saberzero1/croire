@@ -13,21 +13,21 @@
 cmd + alt - q: close
 
 # Open launcher
-cmd + alt - o: open -na /Applications/Sol.app/Contents/MacOS/sol
+cmd + alt - o: open -a /Applications/Sol.app/Contents/MacOS/sol
 
 # Open Applications
-cmd + alt - t: yabai -m space --focus 1; open -a /Applications/iTerm.app/Contents/MacOS/iTerm2
-cmd + alt - g: yabai -m space --focus 1; open -a /Applications/Ghostty.app/Contents/MacOS/ghostty
+cmd + alt - t: yabai -m space --focus 1; open -a /Applications/iTerm.app/Contents/MacOS/iTerm2;
+cmd + alt - g: yabai -m space --focus 1; open -a /Applications/Ghostty.app/Contents/MacOS/ghostty;
 
-cmd + alt - n: yabai -m space --focus 2; open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
+cmd + alt - n: yabai -m space --focus 2; open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian;
 
-cmd + alt - w: yabai -m space --focus 3; open -a /Applications/Wavebox.app/Contents/MacOS/Wavebox
-cmd + alt - z: yabai -m space --focus 3; open -a /Applications/Zen.app/Contents/MacOS/zen
+cmd + alt - w: yabai -m space --focus 3; open -a /Applications/Wavebox.app/Contents/MacOS/Wavebox;
+cmd + alt - z: yabai -m space --focus 3; open -a /Applications/Zen.app/Contents/MacOS/zen;
 
-cmd + alt - b: yabai -m space --focus 4; open -a /Applications/BBM\ Enterprise.app/Contents/MacOS/BBM\ Enterprise
-cmd + alt - z: yabai -m space --focus 4; open -a /Applications/Zed.app/Contents/MacOS/zed
+cmd + alt - b: yabai -m space --focus 4; open -a /Applications/BBM\ Enterprise.app/Contents/MacOS/BBM\ Enterprise;
+cmd + alt - z: yabai -m space --focus 4; open -a /Applications/Zed.app/Contents/MacOS/zed;
 
-cmd + alt - m: yabai -m space --focus 5; open -a /Applications/Microsoft\ Teams.app/Contents/MacOS/MSTeams
+cmd + alt - m: yabai -m space --focus 5; open -a /Applications/Microsoft\ Teams.app/Contents/MacOS/MSTeams;
 
 # Window focus
 cmd + alt - h: yabai -m window --focus west
