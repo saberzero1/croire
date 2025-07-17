@@ -1,7 +1,15 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  inherit (pkgs.stdenv) isDarwin;
+  darwinExtras =
+    if isDarwin then
+      [
+        "skhd/scripts/kill_last_instance.sh"
+      ]
+    else
+      [ ];
 in
 {
   home.file = builtins.listToAttrs (
@@ -13,11 +21,14 @@ in
           executable = true;
         };
       })
-      [
-        "tmux/tmux-sessionizer.conf"
-        "tmux/scripts/tmux-sessionizer"
-        "tmux/scripts/session-template"
-        "zsh/scripts/shortcuts"
-      ]
+      (
+        [
+          "tmux/tmux-sessionizer.conf"
+          "tmux/scripts/tmux-sessionizer"
+          "tmux/scripts/session-template"
+          "zsh/scripts/shortcuts"
+        ]
+        ++ darwinExtras
+      )
   );
 }

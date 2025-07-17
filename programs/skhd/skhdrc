@@ -10,7 +10,7 @@
 # alt + ctrl - 0x1F : find -a "Sol" -exec open {} \;
 
 # Close current window
-cmd + alt - q: close
+cmd + alt - q: $HOME/.config/skhd/scripts/kill_last_instance.sh
 
 # Open launcher
 cmd + alt - o: open -a /Applications/Sol.app/Contents/MacOS/sol
