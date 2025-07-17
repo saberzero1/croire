@@ -36,6 +36,18 @@ output * bg /home/saberzero1/Documents/Repos/dotfiles/croire/assets/wallpaper_ni
 # Key bindings
   # Start a terminal
   # bindsym $mod+Return exec $term
+  
+  # Applications
+  bindsym $mod+t exec ghostty &
+  bindsym $mod+g exec ghostty &
+
+  bindsym $mod+o exec obsidian &
+
+  bindsym $mod+w exec zen &
+
+  bindsym $mod+z exec zed &
+
+  bindsym $mod+d exec discord &
 
   # Kill focused window
   bindsym $mod+q kill
@@ -187,6 +199,7 @@ bindsym $mod+r mode "resize"
 # Launcher mode
 mode "launcher" {
   bindsym $mod+t exec ghostty &
+  bindsym $mod+g exec ghostty &
   bindsym $mod+d exec discord &
   bindsym $mod+o exec obsidian &
   #bindsym $mod+w exec wavebox &
@@ -227,8 +240,8 @@ assign [app_id="codium-url-handler"] workspace number 4
 assign [app_id="wine"] workspace number 4
 assign [app_id="discord"] workspace number 5
 
-exec wezterm &
-# exec ghostty &
+# exec wezterm &
+exec ghostty &
 # exec discord &
 # exec wavebox &
 # exec codium &

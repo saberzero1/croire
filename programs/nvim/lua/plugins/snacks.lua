@@ -14,5 +14,6 @@ return {
 ]],
       },
     },
+    explorer = { enabled = false },
   },
 }
