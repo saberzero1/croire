@@ -19,7 +19,7 @@ in
     self.nixosModules.system
     inputs.nix-snapd.nixosModules.default
     {
-      services.snap.enable = true;
+      services.snap.enable = false;
     }
   ];
 
