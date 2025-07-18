@@ -39,5 +39,11 @@
         ];
       */
     };
+
+    appimage = {
+      enable = true;
+      binfmt = true;
+      package = pkgs.appimage-run;
+    };
   };
 }

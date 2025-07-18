@@ -110,6 +110,11 @@
       url = "github:nix-community/nix-snapd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-ld = {
+      url = "github:Mic92/nix-ld";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-alien.url = "github:thiagokokada/nix-alien";
     /*
       ghostty = {
         url = "github:clo4/ghostty-hm-module";

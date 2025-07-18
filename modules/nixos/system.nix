@@ -57,7 +57,6 @@
       wine64
       wineWowPackages.staging
       winetricks
-      nix-ld
       evince
       foliate
       pulseaudioFull
@@ -94,6 +93,8 @@
 
       bun
       gfn-electron
+      pipewire
+      libnss_nis
     ];
     # Most of these are optional programs added by services.gnome.core-services
     # and etc., but the module sets other useful options so it is better to
@@ -338,6 +339,10 @@
 
     nix-ld = {
       enable = true;
+      package = pkgs.nix-ld;
+      dev = {
+        enable = true;
+      };
     };
 
     npm = {
