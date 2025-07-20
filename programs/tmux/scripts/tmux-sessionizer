@@ -5,6 +5,7 @@ setopt KSH_ARRAYS BASH_REMATCH &>/dev/null
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux"
 CONFIG_FILE="$CONFIG_DIR/tmux-sessionizer.conf"
+TS_FINISHED=0
 
 # config file example
 # ------------------------
@@ -39,6 +40,7 @@ sanity_check() {
 switch_to() {
   if [[ -z $TMUX ]]; then
     tmux attach-session -t "$1"
+    TS_FINISHED=1
   else
     tmux switch-client -t "$1"
   fi
@@ -126,5 +128,9 @@ if ! has_session "$selected_name"; then
 fi
 
 switch_to "$selected_name"
+
+if [[ $TS_FINISHED -eq 0 ]]; then
+  tmux attach-session -t "$selected_name"
+fi
 
 unsetopt KSH_ARRAYS BASH_REMATCH &>/dev/null

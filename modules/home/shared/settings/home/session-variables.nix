@@ -13,14 +13,12 @@ let
   };
 in
 {
-  home.sessionVariables =
-    {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      LAZY = "${config.home.homeDirectory}/share/lazy-nvim";
-      SHELL = "${pkgs.zsh}/bin/zsh";
-      TS_SEARCH_PATHS = "(~/Documents/Repos ~/Repos)";
-    }
-    // just
-    // tmux_sesionizer;
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    LAZY = "${config.home.homeDirectory}/share/lazy-nvim";
+    SHELL = "${pkgs.zsh}/bin/zsh";
+  }
+  // just
+  // tmux_sesionizer;
 }
