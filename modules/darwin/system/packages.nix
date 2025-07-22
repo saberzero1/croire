@@ -11,6 +11,8 @@
       apple-sdk
 
       bun
+
+      opencode
     ];
   };
 }

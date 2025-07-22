@@ -25,7 +25,8 @@
     dock.enable = true;
     dock.entries = [
       { path = "/Applications/Wavebox.app"; }
-      { path = "/Applications/Ghostty.app"; }
+      # { path = "/Applications/Ghostty.app"; }
+      { path = "/etc/profiles/per-user/emile/bin/ghostty"; }
       { path = "/Applications/Obsidian.app"; }
       # { path = "${pkgs.wezterm}/Applications/Wezterm.app"; }
     ];

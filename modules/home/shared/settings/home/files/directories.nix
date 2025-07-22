@@ -18,7 +18,7 @@ in
         # "nvim"
         "aerospace"
         "ranger"
-        "ghostty"
+        #"ghostty"
         "rclone"
         "bat"
         "skhd"
