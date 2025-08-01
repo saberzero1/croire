@@ -4,7 +4,6 @@
     pandas
     matplotlib
     seaborn
-    beautifulsoup4
     pip
     scikitlearn
     numpy

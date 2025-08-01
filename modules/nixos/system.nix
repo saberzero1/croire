@@ -84,6 +84,7 @@
       _7zz
       parallel
       libavif
+      libsoup_3
 
       gimp3-with-plugins
       inkscape-with-extensions

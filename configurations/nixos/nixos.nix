@@ -30,6 +30,11 @@ in
       allowUnfree = true;
       allowBroken = true;
       nvidia.acceptLicense = true;
+      # Override libsoup with libsoup_3
+      packageOverrides = pkgs: {
+        libsoup = pkgs.libsoup_3;
+        libsoup_2_4 = pkgs.libsoup_3;
+      };
     };
     overlays = lib.attrValues self.overlays;
   };

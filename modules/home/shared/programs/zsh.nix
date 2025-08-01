@@ -3,7 +3,7 @@
   programs.zsh = {
     enable = true;
     package = pkgs.zsh;
-    dotDir = ".config/zsh";
+    dotDir = "${config.home.homeDirectory}/.config/zsh";
     autosuggestion = {
       enable = true;
     };
