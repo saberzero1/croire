@@ -5,7 +5,7 @@ in
 
 self: super: {
   doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.system}.default;
-  ghostty = inputs.ghostty.packages.${self.system}.default;
+  # ghostty = inputs.ghostty.packages.${self.system}.default;
   #gitbutler = inputs.gitbutler.packages.${self.system}.default;
   neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
   omnix = inputs.omnix.packages.${self.system}.default;

@@ -15,6 +15,8 @@
       enable = true;
     };
     packages = with pkgs; [
+      fira-code
+      monaspace
       nerd-fonts.monaspace
       fira-code-symbols
       nerd-fonts.fira-code
