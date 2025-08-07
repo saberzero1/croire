@@ -13,10 +13,10 @@ in
         sudo rm -rf "$HOME/.config/nvim"
         echo "Cleaning Neovim plugin cache done"
 
-        echo "Installing LazyVim"
-        sudo mkdir -p "$HOME/.config/nvim"
-        cp -r "${self}/programs/nvim" "$HOME/.config"
-        echo "Installing LazyVim done"
+        # echo "Installing LazyVim"
+        # sudo mkdir -p "$HOME/.config/nvim"
+        # cp -r "${self}/programs/nvim" "$HOME/.config"
+        # echo "Installing LazyVim done"
 
         echo "Setting tmux-sessionizer permissions"
       '';
