@@ -273,8 +273,8 @@ in
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
         echo "Cleaning Neovim plugin cache"
-        sudo rm -rf "${primaryUserHome}/.cache/nvim/luac/*"
-        sudo rm -rf "${primaryUserHome}/.config/nvim"
+        # sudo rm -rf "${primaryUserHome}/.cache/nvim/luac/*"
+        # sudo rm -rf "${primaryUserHome}/.config/nvim"
         echo "Cleaning Neovim plugin cache done"
 
         # echo "Installing LazyVim"

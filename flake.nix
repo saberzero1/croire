@@ -94,13 +94,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
+    akira.url = "github:saberzero1/akira";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";

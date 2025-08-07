@@ -1,10 +1,10 @@
 { ... }:
 {
-  programs.nixvim = {
+  programs.neovim = {
     enable = true;
     defaultEditor = true;
-    vimdiffAlias = true;
-    nixpkgs.useGlobalPkgs = false;
+    #vimdiffAlias = true;
+    #nixpkgs.useGlobalPkgs = false;
     /*
       enable = true;
       defaultEditor = true;
