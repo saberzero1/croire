@@ -44,14 +44,14 @@ run:
 [linux]
 build:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
-  nix run --accept-flake-config .#activate
+  nix run .#activate
 
 # Activate default configuration
 [group('Main')]
 [macos]
 build:
   # skhd --stop-service || true
-  sudo nix run --accept-flake-config .#activate
+  sudo nix run .#activate
   sketchybar --reload
   # skhd --start-service
 
