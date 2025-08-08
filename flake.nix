@@ -36,6 +36,7 @@
     ];
 
     extra-experimental-features = "nix-command flakes";
+    extra-nix-path = "nixpkgs=flake:nixpkgs";
   };
 
   inputs = {
@@ -94,7 +95,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    akira.url = "github:saberzero1/akira";
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";

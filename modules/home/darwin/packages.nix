@@ -1,7 +1,4 @@
-{ flake, pkgs, ... }:
-let
-  inherit (flake) inputs;
-in
+{ pkgs, ... }:
 {
   # Nix packages to install to $HOME
   #
@@ -16,6 +13,5 @@ in
     lua54Packages.lua
     sketchybar-app-font
     sbarlua
-  ]
-  ++ [ inputs.akira.packages.${system}.default ];
+  ];
 }

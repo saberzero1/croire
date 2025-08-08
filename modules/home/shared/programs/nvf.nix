@@ -1,0 +1,33 @@
+{ flake
+, pkgs
+, lib
+, ...
+}:
+let
+  inherit (flake) inputs;
+  inherit (inputs) self;
+in
+{
+  imports = [
+    flake.inputs.nvf.homeManagerModules.default
+    ./nvf
+  ];
+
+  programs.nvf = {
+    enable = true;
+    settings = {
+      vim = {
+        package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+        viAlias = true;
+        vimAlias = true;
+        lsp = {
+          enable = true;
+        };
+        lazy = {
+          enable = true;
+          loader = "lz.n";
+        };
+      };
+    };
+  };
+}
