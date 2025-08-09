@@ -20,13 +20,6 @@ in
         package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
         viAlias = true;
         vimAlias = true;
-        lsp = {
-          enable = true;
-        };
-        lazy = {
-          enable = true;
-          loader = "lz.n";
-        };
       };
     };
   };
