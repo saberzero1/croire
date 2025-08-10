@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv) isDarwin isLinux;
   packageTarget = if isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
   extraSettings =
     if isDarwin then
@@ -18,7 +18,7 @@ let
 in
 {
   programs.ghostty = {
-    enable = true;
+    enable = isLinux;
     package = packageTarget;
     settings = {
       font-family = "Monaspace Neon";
