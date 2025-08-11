@@ -1,26 +1,10 @@
 { pkgs, ... }:
-let
-  inherit (pkgs.stdenv) isDarwin isLinux;
-  packageTarget = if isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
-  extraSettings =
-    if isDarwin then
-      {
-        font-size = 20;
-        window-theme = "system";
-        macos-option-as-alt = true;
-        macos-auto-secure-input = true;
-        macos-secure-input-indication = true;
-      }
-    else
-      {
-        font-size = 18;
-      };
-in
 {
   programs.ghostty = {
-    enable = isLinux;
-    package = packageTarget;
+    enable = true;
+    package = pkgs.ghostty;
     settings = {
+      font-size = 18;
       font-family = "Monaspace Neon";
       font-family-bold = "Monaspace Xenon";
       font-family-italic = "Monaspace Radon";
@@ -49,7 +33,6 @@ in
 
       theme = "dark:tokyonight-storm,light:tokyonight-day";
       shell-integration = "zsh";
-    }
-    // extraSettings;
+    };
   };
 }

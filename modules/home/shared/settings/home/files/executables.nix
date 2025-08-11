@@ -3,7 +3,7 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   inherit (pkgs.stdenv) isDarwin;
-  darwinExtras =
+  extras =
     if isDarwin then
       [
         "skhd/scripts/kill_last_instance.sh"
@@ -28,7 +28,7 @@ in
           "tmux/scripts/session-template"
           "zsh/scripts/shortcuts"
         ]
-        ++ darwinExtras
+        ++ extras
       )
   );
 }

@@ -1,7 +1,15 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  inherit (pkgs.stdenv) isDarwin;
+  extras =
+    if isDarwin then
+      [
+        "ghostty"
+      ]
+    else
+      [ ];
 in
 {
   home.file = builtins.listToAttrs (
@@ -13,19 +21,22 @@ in
           recursive = true;
         };
       })
-      [
-        "wezterm"
-        # "nvim"
-        "aerospace"
-        "ranger"
-        #"ghostty"
-        "rclone"
-        "bat"
-        "skhd"
-        # "sketchybar"
-        "yabai"
-        # "tmux"
-      ]
+      (
+        [
+          "wezterm"
+          # "nvim"
+          "aerospace"
+          "ranger"
+          #"ghostty"
+          "rclone"
+          "bat"
+          "skhd"
+          # "sketchybar"
+          "yabai"
+          # "tmux"
+        ]
+        ++ extras
+      )
     )
     ++ [
       {

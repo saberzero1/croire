@@ -3,7 +3,7 @@ let
   inherit (flake) inputs;
   inherit (inputs) self;
   inherit (pkgs.stdenv) isDarwin;
-  darwinExtras =
+  extras =
     if isDarwin then
       [
         "zed/keymap.json"
@@ -28,7 +28,7 @@ in
           "yazi/flavors/tokyo-night.yazi"
           # "tmux/scripts/directories"
         ]
-        ++ darwinExtras
+        ++ extras
       )
   );
 }
