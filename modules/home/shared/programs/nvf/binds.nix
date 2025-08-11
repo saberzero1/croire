@@ -8,6 +8,9 @@
       whichKey = {
         enable = true;
       };
+      hardtime-nvim = {
+        enable = false;
+      };
     };
     ui.borders.plugins.which-key = {
       enable = true;

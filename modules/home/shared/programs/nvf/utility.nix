@@ -19,5 +19,8 @@
         ring.storage = "sqlite";
       };
     };
+    snacks-nvim = {
+      enable = true;
+    };
   };
 }
