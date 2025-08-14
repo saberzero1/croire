@@ -3,9 +3,12 @@
   programs.nvf.settings.vim = {
     options = {
       autoindent = true;
+      cmdheight = 0;
       shiftwidth = 2;
       tabstop = 2;
       termguicolors = true;
+      updatetime = 100;
+      wrap = false;
     };
     preventJunkFiles = true;
     searchCase = "smart";
