@@ -11,9 +11,12 @@
         enable = true;
       };
     };
+    utility.snacks-nvim.setupOpts.picker = {
+      enable = true;
+      ui_select = true;
+    };
     telescope = {
       enable = true;
-      extensions = [ ];
     };
   };
 }
