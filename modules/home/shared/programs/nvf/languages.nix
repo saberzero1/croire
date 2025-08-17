@@ -5,5 +5,6 @@
     enableDAP = true;
     enableExtraDiagnostics = true;
     enableFormat = true;
+    enableTreesitter = true;
   };
 }

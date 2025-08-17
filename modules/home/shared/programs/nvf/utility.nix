@@ -4,8 +4,22 @@
     direnv = {
       enable = true;
     };
+    motion = {
+      hop = {
+        enable = true;
+      };
+      leap = {
+        enable = true;
+      };
+      precognition = {
+        enable = true;
+      };
+    };
     multicursors = {
       enable = false;
+    };
+    snacks-nvim = {
+      enable = true;
     };
     surround = {
       enable = true;
@@ -18,9 +32,6 @@
       setupOpts = {
         ring.storage = "sqlite";
       };
-    };
-    snacks-nvim = {
-      enable = true;
     };
   };
 }

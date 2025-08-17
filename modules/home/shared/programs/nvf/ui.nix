@@ -10,6 +10,24 @@
         };
       };
     };
+    breadcrumbs = {
+      enable = true;
+      navbuddy = {
+        enable = true;
+      };
+    };
+    colorizer = {
+      enable = true;
+    };
+    fastaction = {
+      enable = true;
+    };
+    illuminate = {
+      enable = true;
+    };
+    noice = {
+      enable = true;
+    };
     smartcolumn = {
       enable = true;
       setupOpts = {
