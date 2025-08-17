@@ -85,6 +85,7 @@
       parallel
       libavif
       libsoup_3
+      tree-sitter
 
       gimp3-with-plugins
       inkscape-with-extensions

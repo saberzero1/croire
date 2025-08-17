@@ -12,16 +12,16 @@
       #---@type snacks.dashboard.Item[]
       keys = [
         {
-          icon = " ";
-          key = "f";
-          desc = "Find File";
-          action = ":lua Snacks.dashboard.pick('files')";
-        }
-        {
           icon = " ";
           key = "n";
           desc = "New File";
           action = ":ene | startinsert";
+        }
+        {
+          icon = " ";
+          key = "f";
+          desc = "Find File";
+          action = ":lua Snacks.dashboard.pick('files')";
         }
         {
           icon = " ";
@@ -48,6 +48,12 @@
           #section = "session";
         }
         #{ icon = "󰒲 "; key = "L"; desc = "Lazy"; action = ":Lazy"; enabled = package.loaded.lazy ~= nil; }
+        {
+          icon = " ";
+          key = "c";
+          desc = "Check Config";
+          action = ":checkhealth";
+        }
         {
           icon = " ";
           key = "q";

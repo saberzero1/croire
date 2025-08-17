@@ -10,6 +10,7 @@ in
       gh
       lazygit
       gitFull
+      tree-sitter
 
       xcodes
       apple-sdk
