@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.nvf.settings.vim = {
     languages = {
@@ -6,6 +6,7 @@
         enable = true;
         format = {
           enable = true;
+          package = pkgs.nodePackages.prettier;
           type = "prettier";
         };
         lsp = {
@@ -24,6 +25,10 @@
       };
       svelte = {
         enable = true;
+        extraDiagnostics = {
+          enable = true;
+          types = [ "eslint_d" ];
+        };
         format = {
           enable = true;
           type = "prettier";
@@ -38,8 +43,13 @@
       };
       ts = {
         enable = true;
+        extraDiagnostics = {
+          enable = true;
+          types = [ "eslint_d" ];
+        };
         format = {
           enable = true;
+          package = pkgs.nodePackages.prettier;
           type = "prettier";
         };
         lsp = {

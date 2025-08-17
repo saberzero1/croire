@@ -17,6 +17,7 @@ in
     enable = true;
     settings = {
       vim = {
+        enableLuaLoader = true;
         package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
         viAlias = true;
         vimAlias = true;

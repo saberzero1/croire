@@ -12,5 +12,6 @@
     sass
     serve
     npm
+    vscode-langservers-extracted
   ];
 }

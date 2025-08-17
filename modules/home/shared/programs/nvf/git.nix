@@ -5,7 +5,7 @@
     gitsigns = {
       enable = true;
       codeActions = {
-        enable = true;
+        enable = false;
       };
     };
   };
