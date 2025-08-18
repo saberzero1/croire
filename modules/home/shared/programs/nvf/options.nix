@@ -7,6 +7,7 @@
       shiftwidth = 2;
       tabstop = 2;
       termguicolors = true;
+      tm = 300;
       updatetime = 100;
       wrap = false;
     };
