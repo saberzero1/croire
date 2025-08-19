@@ -5,6 +5,14 @@
     event = [ "DeferredUIEnter" ];
     package = pkgs.vimPlugins.hydra-nvim;
     setupOpts = { };
+    keys = [
+      {
+        mode = "n";
+        key = "<leader><leader>";
+        action = null;
+        desc = "Hydra";
+      }
+    ];
     after = ''
       local Hydra = require("hydra")
       Hydra.setup({
@@ -33,6 +41,21 @@
           { "<Esc>", nil, { exit = true, desc = "Exit", nowait = true } },
         },
       })
+      --[===[
+      local motion_hydra = Hydra({
+        name = "MOTION",
+        mode = "n",
+        body = "<leader><leader>m",
+        hint = [[ Motion ]],
+        config = {},
+        heads = {
+          { "h", "<cmd>HopChar1<CR>", { desc = "Hop Char 1", nowait = true } },
+          { "l", "<cmd>HopLine<CR>", { desc = "Hop Line", nowait = true } },
+          { "w", "<cmd>HopWord<CR>", { desc = "Hop Word", nowait = true } },
+          { "<Esc>", nil, { exit = true, desc = "Exit", nowait = true } },
+        },
+      })
+      --]===]
     '';
   };
 }
