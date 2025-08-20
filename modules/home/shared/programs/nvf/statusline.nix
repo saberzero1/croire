@@ -261,6 +261,9 @@
                 color_info = {
                   fg = "cyan"
                 }
+              },
+              separator = {
+                left = ""
               }
             }
           ''
@@ -290,7 +293,8 @@
               maxcount = 999,
               timeout = 120,
               separator = {
-                left = ""
+                left = "",
+                right = ""
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -299,7 +303,6 @@
                 end
                 return { }
               end
-
             }
           ''
           ''
@@ -307,7 +310,8 @@
               "branch",
               icon = " •",
               separator = {
-                left = ""
+                left = "",
+                right = ""
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -336,14 +340,14 @@
                 end
                 return { }
               end
-
             }
           ''
           ''
             {
               "progress",
               separator = {
-                left = ""
+                left = "",
+                right = ""
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -352,12 +356,15 @@
                 end
                 return { }
               end
-
             }
           ''
           ''
             {
               "location",
+              separator = {
+                left = "",
+                right = ""
+              },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
                 if hydra_statusline ~= nil and hydra_statusline.is_active() then
@@ -365,12 +372,15 @@
                 end
                 return { }
               end
-
             }
           ''
           ''
             {
               "fileformat",
+              separator = {
+                left = "",
+                right = ""
+              },
               color = {
                 fg = "black"
               },
@@ -386,7 +396,6 @@
                 end
                 return { }
               end
-
             }
           ''
         ];
