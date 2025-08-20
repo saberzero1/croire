@@ -82,7 +82,7 @@
               icons_enabled = true,
               separator = {
                 left = "",
-                right = ""
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -98,8 +98,8 @@
               "",
               draw_empty = true,
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -137,7 +137,7 @@
                 readonly = " "
               },
               separator = {
-                right = ""
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -154,8 +154,8 @@
               "",
               draw_empty = true,
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -190,12 +190,22 @@
                 removed = "-"
               },
               separator = {
-                right = ""
+                right = " "
               }
             }
           ''
         ];
         x = [
+          ''
+            {
+              "",
+              draw_empty = true,
+              separator = {
+                left = " ",
+                right = " "
+              }
+            }
+          ''
           ''
             {
               -- Lsp server name
@@ -228,7 +238,7 @@
               end,
               icon = " ",
               separator = {
-                left = ""
+                left = " "
               }
             }
           ''
@@ -263,8 +273,25 @@
                 }
               },
               separator = {
-                left = ""
+                left = " "
               }
+            }
+          ''
+          ''
+            {
+              "",
+              draw_empty = true,
+              separator = {
+                left = " ",
+                right = " "
+              },
+              color = function()
+                local hydra_statusline = require("hydra.statusline")
+                if hydra_statusline ~= nil and hydra_statusline.is_active() then
+                  return { bg = "#1abc9c" }
+                end
+                return { }
+              end
             }
           ''
         ];
@@ -274,8 +301,8 @@
               "",
               draw_empty = true,
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -293,8 +320,8 @@
               maxcount = 999,
               timeout = 120,
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -310,8 +337,8 @@
               "branch",
               icon = " •",
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = " "
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -330,8 +357,8 @@
               "",
               draw_empty = true,
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = ""
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -346,8 +373,8 @@
             {
               "progress",
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = ""
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -362,8 +389,8 @@
             {
               "location",
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = ""
               },
               color = function()
                 local hydra_statusline = require("hydra.statusline")
@@ -378,8 +405,8 @@
             {
               "fileformat",
               separator = {
-                left = "",
-                right = ""
+                left = " ",
+                right = ""
               },
               color = {
                 fg = "black"
