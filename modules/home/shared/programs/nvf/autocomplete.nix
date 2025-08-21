@@ -21,7 +21,18 @@
         };
       };
       setupOpts = {
+        completion = {
+          menu = {
+            auto_show = true;
+          };
+        };
         sources = {
+          default = [
+            "lsp"
+            "path"
+            "snippets"
+            "buffer"
+          ];
           providers = {
             copilot = {
               name = "copilot";

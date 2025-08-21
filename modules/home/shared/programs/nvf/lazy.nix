@@ -1,19 +1,22 @@
 { pkgs, ... }:
+let
+  plugin = pkgs.vimPlugins;
+in
 {
   programs.nvf.settings.vim.lazy = {
     enable = true;
     enableLznAutoRequire = true;
     loader = "lz.n";
     plugins = {
-      "${pkgs.vimPlugins.persistence-nvim.pname}" = {
+      "${plugin.persistence-nvim.pname}" = {
         enabled = true;
-        package = pkgs.vimPlugins.persistence-nvim;
+        package = plugin.persistence-nvim;
         event = "BufReadPre";
         setupModule = "persistence";
       };
-      "${pkgs.vimPlugins.vim-repeat.pname}" = {
+      "${plugin.vim-repeat.pname}" = {
         enabled = true;
-        package = pkgs.vimPlugins.vim-repeat;
+        package = plugin.vim-repeat;
       };
     };
   };
