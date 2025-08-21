@@ -11,6 +11,10 @@
         event = "BufReadPre";
         setupModule = "persistence";
       };
+      "${pkgs.vimPlugins.vim-repeat.pname}" = {
+        enabled = true;
+        package = pkgs.vimPlugins.vim-repeat;
+      };
     };
   };
 }

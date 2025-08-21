@@ -8,10 +8,11 @@
         enable = true;
       };
       disabledFiletypes = [
-        "dashboard"
         "alpha"
+        "dashboard"
         "ministarter"
         "snacks_dashboard"
+        "startify"
       ];
       activeSection = {
         a = [

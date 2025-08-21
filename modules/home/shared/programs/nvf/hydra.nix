@@ -5,14 +5,7 @@
     event = [ "DeferredUIEnter" ];
     package = pkgs.vimPlugins.hydra-nvim;
     setupOpts = { };
-    keys = [
-      {
-        mode = "n";
-        key = "<leader><leader>";
-        action = null;
-        desc = "Hydra";
-      }
-    ];
+    keys = [ ];
     after = ''
       local Hydra = require("hydra")
       Hydra.setup({
@@ -31,13 +24,19 @@
       local buffer_hydra = Hydra({
         name = "BUFFER",
         mode = "n",
-        body = "<leader><leader>b",
+        body = "<leader>b",
         hint = [[ Buffer ]],
         config = {},
         heads = {
-          { "d", "<cmd>bdelete<CR>", { desc = "Delete", nowait = true }},
-          { "h", "<cmd>BufferLineCyclePrev<CR>", { desc = "Next", nowait = true } },
-          { "l", "<cmd>BufferLineCycleNext<CR>", { desc = "Previous", nowait = true } },
+          { "d", "<cmd>bdelete<CR>", { desc = "Close buffer", nowait = true }},
+          { "h", "<cmd>BufferLineCyclePrev<CR>", { desc = "Next buffer", nowait = true } },
+          { "l", "<cmd>BufferLineCycleNext<CR>", { desc = "Previous buffer", nowait = true } },
+          { "H", "<cmd>BufferLineMovePrev<CR>", { desc = "Move buffer left", nowait = true } },
+          { "L", "<cmd>BufferLineMoveNext<CR>", { desc = "Move buffer right", nowait = true } },
+          --{ "p", "<cmd>BufferLinePick<CR>", { desc = "Pick buffer", nowait = true } },
+          --{ "P", "<cmd>BufferLineSortByExtension<CR>", { desc = "Sort by extension", nowait = true } },
+          --{ "D", "<cmd>BufferLineSortByDirectory<CR>", { desc = "Sort by directory", nowait = true } },
+          --{ "I", "<cmd>BufferLineSortById<CR>", { desc = "Sort by id", nowait = true } },
           { "<Esc>", nil, { exit = true, desc = "Exit", nowait = true } },
         },
       })
