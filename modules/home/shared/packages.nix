@@ -80,7 +80,7 @@
     # nodejs
 
     # Utility
-    ffmpeg
+    ffmpeg-full
     fzf
     jq
     just

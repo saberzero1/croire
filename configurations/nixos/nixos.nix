@@ -30,6 +30,7 @@ in
       allowUnfree = true;
       allowBroken = true;
       nvidia.acceptLicense = true;
+      cudaSupport = true;
       # Override libsoup with libsoup_3
       packageOverrides = pkgs: {
         libsoup = pkgs.libsoup_3;
