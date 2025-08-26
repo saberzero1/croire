@@ -22,7 +22,7 @@
         end,
       })
       local buffer_hydra = Hydra({
-        name = "BUFFER",
+        name = "BUFFER   ",
         mode = "n",
         body = "<leader>b",
         hint = [[ Buffer ]],
@@ -42,7 +42,7 @@
       })
       --[===[
       git_hydra = Hydra({
-        name = "GIT",
+        name = "GIT      ",
         mode = "n",
         body = "<leader>g",
         hint = [[ Git ]],
@@ -69,7 +69,7 @@
       --]===]
       --[===[
       local motion_hydra = Hydra({
-        name = "MOTION",
+        name = "MOTION   ",
         mode = "n",
         body = "<leader><leader>m",
         hint = [[ Motion ]],

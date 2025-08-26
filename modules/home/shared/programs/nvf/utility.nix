@@ -17,7 +17,12 @@
           treesitter_search = "R";
           toggle = "<c-s>";
         };
-        setupOpts = { };
+        setupOpts = {
+          jump = {
+            jumplist = true;
+            autojump = true;
+          };
+        };
       };
       leap = {
         enable = false;

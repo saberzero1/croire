@@ -32,6 +32,17 @@
       enable = true;
       setupOpts = {
         colorcolumn = "80";
+        disabled_filetypes = [
+          "help"
+          "text"
+          "markdown"
+          "NvimTree"
+          "alpha"
+          "dashboard"
+          "ministarter"
+          "snacks_dashboard"
+          "startify"
+        ];
       };
     };
   };

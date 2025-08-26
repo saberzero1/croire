@@ -6,8 +6,8 @@ in
   programs.nvf.settings.vim = {
     keymaps = [ ];
     lazy.plugins = {
-      enabled = true;
       "${plugin.unimpaired-nvim.pname}" = {
+        enabled = true;
         package = plugin.unimpaired-nvim;
         setupModule = "unimpaired";
         setupOpts = {

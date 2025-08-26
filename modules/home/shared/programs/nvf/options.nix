@@ -4,6 +4,7 @@
     options = {
       autoindent = true;
       cmdheight = 0;
+      laststatus = 3;
       shiftwidth = 2;
       tabstop = 2;
       termguicolors = true;
