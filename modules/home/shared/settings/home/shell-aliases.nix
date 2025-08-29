@@ -67,6 +67,7 @@ let
     npy = "npm why"; # Explain why a package is installed
   };
   utility = {
+    disk = "df -H --output=pcent,avail,target | grep \/$ | sed \"s# \\\/##\" | sed \"s#% *#%#g\" | sed \"s#^#Disk usage:#\" \| sed \"s#%#% (#\" \| sed \"s#\\$# available)#\""; # Show disk usage
     h = "history"; # Show command history
     now = "date '+%Y-%m-%d %A %T %Z'"; # Date and time
     ports = "sudo lsof -i -P"; # List open ports
@@ -89,16 +90,15 @@ let
   };
 in
 {
-  home.shellAliases =
-    {
-      # uuid = "uuidgen";
-    }
-    // cd
-    // git
-    // just
-    // ls
-    // npm
-    // utility
-    // vi
-    // yazi;
+  home.shellAliases = {
+    # uuid = "uuidgen";
+  }
+  // cd
+  // git
+  // just
+  // ls
+  // npm
+  // utility
+  // vi
+  // yazi;
 }
