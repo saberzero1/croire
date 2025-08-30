@@ -76,7 +76,6 @@ let
     reload = "exec $SHELL -l"; # Reload shell
     tree = "tree --dirsfirst"; # List files in tree format
     ts = "tmux-sessionizer"; # Tmux sessionizer
-    uuid = "uuidgen | tr -d '\n' | tr '[:upper:]' '[:lower:]' | pbcopy && pbpaste && echo"; # Generate UUID, copy to clipboard, and print
     week = "date +%V"; # Get current week number
     weather = "curl -s 'wttr.in/?format=3'"; # Get weather in a short format
   };
