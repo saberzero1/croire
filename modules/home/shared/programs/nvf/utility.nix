@@ -8,22 +8,6 @@
       hop = {
         enable = false;
       };
-      flash-nvim = {
-        enable = true;
-        mappings = {
-          jump = "s";
-          treesitter = "S";
-          remote = "r";
-          treesitter_search = "R";
-          toggle = "<c-s>";
-        };
-        setupOpts = {
-          jump = {
-            jumplist = true;
-            autojump = true;
-          };
-        };
-      };
       leap = {
         enable = false;
       };
