@@ -100,13 +100,6 @@ in
           }
         ];
       };
-      "${plugin.nvim-lint.pname}" = {
-        enabled = true;
-        lazy = true;
-        package = plugin.nvim-lint;
-        setupModule = "lint";
-        setupOpts = { };
-      };
     };
   };
 }
