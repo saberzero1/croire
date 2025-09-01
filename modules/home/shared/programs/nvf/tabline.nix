@@ -21,6 +21,7 @@
     binds.whichKey.register = {
       # Handled by hydra.nvim
       "<leader>b" = "+Buffer";
+      "<leader>s" = "+Search";
       "<leader>bm" = null;
       "<leader>bs" = null;
       "<leader>bsi" = null;

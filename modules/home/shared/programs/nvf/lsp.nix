@@ -6,6 +6,9 @@
     lightbulb = {
       enable = true;
     };
+    lspconfig = {
+      enable = true;
+    };
     otter-nvim = {
       enable = true;
     };
