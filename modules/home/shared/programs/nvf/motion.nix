@@ -13,7 +13,7 @@
           "x"
         ];
         key = "s";
-        action = "<cmd>lua require('flash').jump({ autojump = true })<cr>";
+        action = "<cmd>lua require('flash').jump()<cr>";
         desc = "Flash: Jump";
       }
       {

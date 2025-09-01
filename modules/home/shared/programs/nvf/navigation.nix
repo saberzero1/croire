@@ -20,6 +20,14 @@
     };
     telescope = {
       enable = true;
+      extensions = [
+        {
+          name = "yank_history";
+          setup = {
+            yank_history = { };
+          };
+        }
+      ];
     };
   };
 }

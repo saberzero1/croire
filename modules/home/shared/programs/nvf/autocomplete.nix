@@ -43,6 +43,9 @@
             };
           };
         };
+        snippets = {
+          preset = "luasnip";
+        };
       };
     };
   };

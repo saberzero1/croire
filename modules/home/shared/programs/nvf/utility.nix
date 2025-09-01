@@ -36,11 +36,5 @@
     undotree = {
       enable = true;
     };
-    yanky-nvim = {
-      enable = true;
-      setupOpts = {
-        ring.storage = "sqlite";
-      };
-    };
   };
 }
