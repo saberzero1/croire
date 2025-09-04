@@ -1,6 +1,16 @@
 { lib, ... }:
 let
   lua = lib.mkLuaInline;
+  keymap = key: command: [
+    "n"
+    "${key}"
+    "<cmd>${command}<cr>"
+    {
+      noremap = true;
+      silent = true;
+      nowait = true;
+    }
+  ];
 in
 {
   programs.nvf.settings.vim.dashboard.alpha = {
@@ -45,6 +55,7 @@ in
             opts = {
               position = "center";
               shortcut = "n";
+              keymap = keymap "n" "ene | startinsert";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -57,7 +68,8 @@ in
             on_press = "<cmd>Telescope find_files<cr>";
             opts = {
               position = "center";
-              shortcut = "<leader> f f";
+              shortcut = "f";
+              keymap = keymap "f" "Telescope find_files";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -70,7 +82,8 @@ in
             on_press = "<cmd>Telescope live_grep<cr>";
             opts = {
               position = "center";
-              shortcut = "<leader> s g";
+              shortcut = "g";
+              keymap = keymap "g" "Telescope live_grep";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -83,7 +96,8 @@ in
             on_press = "<cmd>Telescope oldfiles<cr>";
             opts = {
               position = "center";
-              shortcut = "<leader> f R";
+              shortcut = "r";
+              keymap = keymap "r" "Telescope oldfiles";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -101,7 +115,8 @@ in
             '';
             opts = {
               position = "center";
-              shortcut = "<leader> q s";
+              shortcut = "s";
+              keymap = keymap "s" "lua require('persistence').load()";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -116,7 +131,8 @@ in
             on_press = ":checkhealth";
             opts = {
               position = "center";
-              shortcut = "<leader> h c";
+              shortcut = "h";
+              keymap = keymap "h" "checkhealth";
               cursor = 3;
               width = 50;
               align_shortcut = "right";
@@ -129,7 +145,8 @@ in
             on_press = ":qa";
             opts = {
               position = "center";
-              shortcut = "<leader> q q";
+              shortcut = "q";
+              keymap = keymap "q" "qa";
               cursor = 3;
               width = 50;
               align_shortcut = "right";

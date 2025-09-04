@@ -6,10 +6,10 @@
         enable = true;
         mappings = {
           # Handled by hydra.nvim
-          closeCurrent = null;
-          cycleNext = null;
-          cyclePrevious = null;
-          pick = null;
+          closeCurrent = "<leader>bd";
+          cycleNext = "L";
+          cyclePrevious = "H";
+          pick = "<leader>bp";
           sortByExtension = null;
           sortByDirectory = null;
           sortById = null;
