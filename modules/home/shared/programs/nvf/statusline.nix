@@ -85,14 +85,7 @@ in
               separator = {
                 left = "",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { bg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
           ''
@@ -102,14 +95,7 @@ in
               separator = {
                 left = " ",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { bg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
         ];
@@ -125,14 +111,7 @@ in
               separator = {
                 left = "",
                 right = ""
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { fg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
           ''
@@ -145,14 +124,7 @@ in
               separator = {
                 left = "",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { fg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
 
             }
           ''
@@ -163,14 +135,7 @@ in
               separator = {
                 left = " ",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { fg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
 
             }
           ''
@@ -293,14 +258,7 @@ in
               separator = {
                 left = " ",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { fg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
 
             }
           ''
@@ -312,14 +270,7 @@ in
               separator = {
                 left = " ",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { fg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
           ''
@@ -329,14 +280,7 @@ in
               separator = {
                 left = " ",
                 right = " "
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { fg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
 
             }
           ''
@@ -349,14 +293,7 @@ in
               separator = {
                 left = " ",
                 right = ""
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { bg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
           ''
@@ -365,14 +302,7 @@ in
               separator = {
                 left = " ",
                 right = ""
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { bg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
           ''
@@ -381,14 +311,7 @@ in
               separator = {
                 left = " ",
                 right = ""
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { bg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
           ''
@@ -405,14 +328,7 @@ in
                 unix = "", -- e712
                 dos = "",  -- e70f
                 mac = ""   -- e711
-              },
-              color = function()
-                local hydra_statusline = require("hydra.statusline")
-                if hydra_statusline ~= nil and hydra_statusline.is_active() then
-                  return { bg = "#1abc9c" }
-                end
-                return { }
-              end
+              }
             }
           ''
         ];

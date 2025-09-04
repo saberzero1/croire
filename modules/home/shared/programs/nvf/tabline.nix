@@ -5,7 +5,6 @@
       nvimBufferline = {
         enable = true;
         mappings = {
-          # Handled by hydra.nvim
           closeCurrent = "<leader>bd";
           cycleNext = "L";
           cyclePrevious = "H";
