@@ -93,7 +93,8 @@ in
               "",
               draw_empty = true,
               separator = {
-                left = " ",
+                -- left = " ",
+                left = "",
                 right = " "
               }
             }
