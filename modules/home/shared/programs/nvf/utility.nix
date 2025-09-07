@@ -43,7 +43,7 @@ in
     };
     utility = {
       direnv = {
-        enable = true;
+        enable = false;
       };
       motion = {
         hop = {

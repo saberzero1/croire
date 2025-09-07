@@ -5,7 +5,7 @@ let
 in
 {
   programs.zed-editor = {
-    enable = true;
+    enable = false;
     package = pkgs.zed-editor;
     extraPackages = with pkgs; [
       nixd
