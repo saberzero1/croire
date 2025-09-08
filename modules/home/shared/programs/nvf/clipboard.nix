@@ -1,6 +1,7 @@
 { ... }:
 {
   programs.nvf.settings.vim.clipboard = {
-    enable = true;
+    # Set in globals.nix
+    enable = false;
   };
 }

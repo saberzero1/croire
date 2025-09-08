@@ -8,10 +8,19 @@
         enable = true;
       };
       mappings = {
-        confirm = "<CR>";
-        complete = "<S-Space>";
-        next = "<C-n>";
-        previous = "<C-p>";
+        /*
+          confirm = "<CR>";
+          complete = "<S-Space>";
+          next = "<C-n>";
+          previous = "<C-p>";
+        */
+        close = null;
+        complete = null;
+        confirm = null;
+        next = null;
+        previous = null;
+        scrollDocsDown = null;
+        scrollDocsUp = null;
       };
       sourcePlugins = {
         "blink-cmp-copilot" = {
@@ -22,8 +31,23 @@
       };
       setupOpts = {
         completion = {
+          accept = {
+            auto_brackets = {
+              enabled = true;
+            };
+          };
           menu = {
+            #auto_show = true;
+            draw = {
+              treesitter = [ "lsp" ];
+            };
+          };
+          documentation = {
             auto_show = true;
+            auto_show_delay_ms = 200;
+          };
+          ghost_text = {
+            enabled = true;
           };
         };
         sources = {

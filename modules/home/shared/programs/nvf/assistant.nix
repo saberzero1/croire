@@ -26,6 +26,13 @@
         };
       };
       mappings = {
+        panel = {
+          accept = null;
+          jumpNext = null;
+          jumpPrev = null;
+          open = null;
+          refresh = null;
+        };
         suggestion = {
           accept = "<Tab>";
           acceptLine = "<C-Tab>";
