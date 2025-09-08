@@ -90,6 +90,13 @@ in
       setupOpts = {
         preset = "helix";
         defaults = { };
+        sort = [
+          "local" # local before global
+          "order" # marks/registers before others
+          (lua ''function(item) return item.group and 0 or 1 end'') # groups before non-groups
+          "alphanum" # alphanumerical
+          "mod" # special modifiers last
+        ];
         spec = lua ''
           {
             {

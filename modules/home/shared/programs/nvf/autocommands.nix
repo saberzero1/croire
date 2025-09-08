@@ -133,7 +133,7 @@ in
                 desc = "Quit buffer",
               })
             end)
-          end      
+          end
         '';
       })
       (mkAutoCommand {
