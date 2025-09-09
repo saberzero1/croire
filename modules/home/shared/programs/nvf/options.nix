@@ -17,20 +17,20 @@ in
       cursorline = true;
       expandtab = true;
       /*
-      fillchars = lua ''
-        {
-          foldopen = "",
-          foldclose = "",
-          fold = " ",
-          foldsep = " ",
-          diff = "╱",
-          eob = " ",
-        }
-      '';
+        fillchars = lua ''
+          {
+            foldopen = "",
+            foldclose = "",
+            fold = " ",
+            foldsep = " ",
+            diff = "╱",
+            eob = " ",
+          }
+        '';
       */
       foldlevel = 99;
-      # formatexpr = "v:lua.vim.lsp.formatexpr()";
-      # formatoptions = "jcroqlnt";
+      formatexpr = "v:lua.require'conform'.formatexpr()";
+      formatoptions = "jcroqlnt";
       grepformat = "%f:%l:%c:%m";
       grepprg = "rg --vimgrep";
       ignorecase = true;

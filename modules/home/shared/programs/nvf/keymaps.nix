@@ -89,6 +89,60 @@ in
         expr = true;
         desc = "Up";
       })
+      # Move to window using the <ctrl> hjkl keys
+      (mkKeyMap {
+        action = "<C-w>h";
+        key = "<C-h>";
+        mode = "n";
+        desc = "Go to Left Window";
+        noremap = false;
+      })
+      (mkKeyMap {
+        action = "<C-w>j";
+        key = "<C-j>";
+        mode = "n";
+        desc = "Go to Lower Window";
+        noremap = false;
+      })
+      (mkKeyMap {
+        action = "<C-w>k";
+        key = "<C-k>";
+        mode = "n";
+        desc = "Go to Upper Window";
+        noremap = false;
+      })
+      (mkKeyMap {
+        action = "<C-w>l";
+        key = "<C-l>";
+        mode = "n";
+        desc = "Go to Right Window";
+        noremap = false;
+      })
+      # Resize window using <ctrl> arrow keys
+      (mkKeyMap {
+        action = "<cmd>resize +2<cr>";
+        key = "<C-Up>";
+        mode = "n";
+        desc = "Increase Window Height";
+      })
+      (mkKeyMap {
+        action = "<cmd>resize -2<cr>";
+        key = "<C-Down>";
+        mode = "n";
+        desc = "Decrease Window Height";
+      })
+      (mkKeyMap {
+        action = "<cmd>vertical resize -2<cr>";
+        key = "<C-Left>";
+        mode = "n";
+        desc = "Decrease Window Width";
+      })
+      (mkKeyMap {
+        action = "<cmd>vertical resize +2<cr>";
+        key = "<C-Right>";
+        mode = "n";
+        desc = "Increase Window Width";
+      })
       # Move Lines
       (mkKeyMap {
         action = "<cmd>execute 'move .+' . v:count1<cr>==";
@@ -302,6 +356,26 @@ in
         key = "gcO";
         mode = "n";
         desc = "Add Comment Above";
+      })
+      # Formatting
+      (mkKeyMap {
+        action = ''
+          function()
+            local conform = require("conform")
+            if conform ~= nil then
+              conform.format({})
+            else
+              vim.lsp.buf.format({})
+            end
+          end
+        '';
+        key = "<leader>cf";
+        mode = [
+          "n"
+          "v"
+        ];
+        lua = true;
+        desc = "Format";
       })
       # Diagnostics
       (mkKeyMap {
