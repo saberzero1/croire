@@ -52,7 +52,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>";
+          action = "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>";
           desc = "Switch Buffer";
         }
         {
@@ -70,7 +70,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua command_history<cr>";
+          action = "<cmd>Telescope command_history<cr>";
           desc = "Command History";
         }
         {
@@ -88,7 +88,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>";
+          action = "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>";
           desc = "Buffers";
         }
         {
@@ -126,7 +126,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua git_files<cr>";
+          action = "<cmd>Telescope git_files<cr>";
           desc = "Find Files (git-files)";
         }
         {
@@ -135,7 +135,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua oldfiles<cr>";
+          action = "<cmd>Telescope oldfiles<cr>";
           desc = "Recent";
         }
         {
@@ -154,7 +154,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua git_commits<CR>";
+          action = "<cmd>Telescope git_commits<CR>";
           desc = "Commits";
         }
         {
@@ -163,7 +163,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua git_status<CR>";
+          action = "<cmd>Telescope git_status<CR>";
           desc = "Status";
         }
         {
@@ -172,7 +172,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua registers<cr>";
+          action = "<cmd>Telescope registers<cr>";
           desc = "Registers";
         }
         {
@@ -181,7 +181,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua autocmds<cr>";
+          action = "<cmd>Telescope autocmds<cr>";
           desc = "Auto Commands";
         }
         {
@@ -190,7 +190,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua grep_curbuf<cr>";
+          action = "<cmd>Telescope grep_curbuf<cr>";
           desc = "Buffer";
         }
         {
@@ -199,7 +199,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua command_history<cr>";
+          action = "<cmd>Telescope command_history<cr>";
           desc = "Command History";
         }
         {
@@ -208,7 +208,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua commands<cr>";
+          action = "<cmd>Telescope commands<cr>";
           desc = "Commands";
         }
         {
@@ -217,7 +217,8 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua diagnostics_document<cr>";
+          # action = "<cmd>Telescope diagnostics_document<cr>";
+          action = "<cmd>Telescope diagnostics<cr>";
           desc = "Document Diagnostics";
         }
         {
@@ -226,7 +227,8 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua diagnostics_workspace<cr>";
+          # action = "<cmd>Telescope diagnostics_workspace<cr>";
+          action = "<cmd>Telescope diagnostics<cr>";
           desc = "Workspace Diagnostics";
         }
         {
@@ -254,7 +256,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua help_tags<cr>";
+          action = "<cmd>Telescope help_tags<cr>";
           desc = "Help Pages";
         }
         {
@@ -263,7 +265,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua highlights<cr>";
+          action = "<cmd>Telescope highlights<cr>";
           desc = "Search Highlight Groups";
         }
         {
@@ -272,7 +274,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua jumps<cr>";
+          action = "<cmd>Telescope jumplist<cr>";
           desc = "Jumplist";
         }
         {
@@ -281,7 +283,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua keymaps<cr>";
+          action = "<cmd>Telescope keymaps<cr>";
           desc = "Key Maps";
         }
         {
@@ -290,7 +292,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua loclist<cr>";
+          action = "<cmd>Telescope loclist<cr>";
           desc = "Location List";
         }
         {
@@ -299,7 +301,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua man_pages<cr>";
+          action = "<cmd>Telescope man_pages<cr>";
           desc = "Location List";
         }
         {
@@ -308,7 +310,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua marks<cr>";
+          action = "<cmd>Telescope marks<cr>";
           desc = "Jump to Mark";
         }
         {
@@ -317,7 +319,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua resume<cr>";
+          action = "<cmd>Telescope resume<cr>";
           desc = "Resume";
         }
         {
@@ -326,7 +328,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua quickfix<cr>";
+          action = "<cmd>Telescope quickfix<cr>";
           desc = "Quickfix List";
         }
         {
@@ -344,9 +346,10 @@
             "n"
             "v"
           ];
-          action = "function() require('fzf-lua').lsp_document_symbols({ regex_filter = symbols_filter, }) end";
+          # action = "function() require('fzf-lua').lsp_document_symbols({ regex_filter = symbols_filter, }) end";
+          action = "<cmd>Telescope lsp_document_symbols<cr>";
           desc = "Goto Symbol";
-          lua = true;
+          # lua = true;
         }
         {
           key = "<leader>sS";
@@ -354,9 +357,10 @@
             "n"
             "v"
           ];
-          action = "function() require('fzf-lua').lsp_live_workspace_symbols({ regex_filter = symbols_filter, }) end";
+          # action = "function() require('fzf-lua').lsp_live_workspace_symbols({ regex_filter = symbols_filter, }) end";
+          action = "<cmd>Telescope lsp_workspace_symbols<cr>";
           desc = "Goto Symbol (Workspace)";
-          lua = true;
+          # lua = true;
         }
         # nvim-lspconfig mappings
         {
@@ -365,7 +369,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>";
+          action = "<cmd>Telescope lsp_definitions jump1=true ignore_current_line=true<cr>";
           desc = "Goto Definition";
         }
         {
@@ -374,7 +378,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>";
+          action = "<cmd>Telescope lsp_references jump1=true ignore_current_line=true<cr>";
           desc = "References";
           nowait = true;
         }
@@ -384,7 +388,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>";
+          action = "<cmd>Telescope lsp_implementations jump1=true ignore_current_line=true<cr>";
           desc = "Goto Implementation";
         }
         {
@@ -393,7 +397,7 @@
             "n"
             "v"
           ];
-          action = "<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>";
+          action = "<cmd>Telescope lsp_typedefs jump1=true ignore_current_line=true<cr>";
           desc = "Goto T[y]pe Definition";
         }
         # todo-comments.nvim mappings

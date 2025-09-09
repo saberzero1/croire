@@ -15,6 +15,7 @@ in
 
   programs.nvf = {
     enable = true;
+    defaultEditor = true;
     settings = {
       vim = {
         enableLuaLoader = true;

@@ -1,10 +1,12 @@
 { pkgs, ... }:
 let
-  all = builtins.all;
-  isBool = builtins.isBool;
-  isString = builtins.isString;
-  isStringOrNull = x: builtins.isString x || x == null;
-  isList = builtins.isList;
+  inherit (builtins)
+    all
+    isBool
+    isString
+    isList
+    ;
+  isStringOrNull = x: isString x || x == null;
   plugin = pkgs.vimPlugins;
   mkKeyMap =
     { action
@@ -22,7 +24,7 @@ let
     }:
       assert (isString action);
       assert (isString key);
-      assert (isString mode) || (isList mode && all (x: isString x) mode);
+      assert (isString mode) || (isList mode && all isString mode);
       assert (isStringOrNull desc);
       assert (isBool expr);
       assert (isBool lua);
@@ -32,17 +34,19 @@ let
       assert (isBool silent);
       assert (isBool unique);
       {
-        action = action;
-        key = key;
-        mode = mode;
-        desc = desc;
-        expr = expr;
-        lua = lua;
-        noremap = noremap;
-        nowait = nowait;
-        script = script;
-        silent = silent;
-        unique = unique;
+        inherit
+          action
+          key
+          mode
+          desc
+          expr
+          lua
+          noremap
+          nowait
+          script
+          silent
+          unique
+          ;
       };
 in
 {
@@ -363,9 +367,9 @@ in
           function()
             local conform = require("conform")
             if conform ~= nil then
-              conform.format({})
+              conform.format()
             else
-              vim.lsp.buf.format({})
+              vim.lsp.buf.format()
             end
           end
         '';
