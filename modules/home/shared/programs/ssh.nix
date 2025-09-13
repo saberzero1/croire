@@ -18,23 +18,35 @@ in
 {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     package = sshPackage;
-    addKeysToAgent = "ask";
-
-    extraConfig =
-      ''
-        Host *
-            IgnoreUnknown UseKeychain
-            UseKeychain yes
-            UserKnownHostsFile ~/.ssh/known_hosts
-            StrictHostKeyChecking ask
-
-        Host github.com
-            AddKeysToAgent yes
-            UseKeychain yes
-            IdentityFile ~/.ssh/saberzero1-github
-
-      ''
-      + workConfig;
+    matchBlocks = {
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "ask";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+        extraOptions = {
+          "IgnoreUnknown" = "UseKeychain";
+          "UseKeychain" = "yes";
+          "StrictHostKeyChecking" = "ask";
+        };
+      };
+      "github.com" = {
+        addKeysToAgent = "yes";
+        identityFile = "~/.ssh/saberzero1-github";
+        identitiesOnly = true;
+        extraOptions = {
+          "UseKeychain" = "yes";
+        };
+      };
+    };
+    extraConfig = workConfig;
   };
 }
