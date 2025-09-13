@@ -1,7 +1,6 @@
-{
-  pkgs,
-  flake,
-  ...
+{ pkgs
+, flake
+, ...
 }:
 {
   # Nix packages to install to $HOME
@@ -99,6 +98,7 @@
       discord
     ]
     ++ (with flake.inputs; [
+      zen-browser.packages."x86_64-linux".twilight
       nix-alien.packages."x86_64-linux".nix-alien
     ]);
 }
