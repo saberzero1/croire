@@ -8,6 +8,7 @@ self: super: {
   # ghostty = inputs.ghostty.packages.${self.system}.default;
   #gitbutler = inputs.gitbutler.packages.${self.system}.default;
   neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
+  nix-direnv = inputs.nix-direnv.packages.${self.system}.default;
   #nixvim = inputs.akira.packages.${self.system}.default;
   omnix = inputs.omnix.packages.${self.system}.default;
   # wezterm = inputs.wezterm.packages.${self.system}.default;
