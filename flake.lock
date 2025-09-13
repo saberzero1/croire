@@ -983,11 +983,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1757775177,
-        "narHash": "sha256-tF+jQYpA+C8sgXlb6AR3v5JFwiGQthVIcRHotT2a+Wk=",
+        "lastModified": 1757778197,
+        "narHash": "sha256-REGhgVx9WcCwyvnQz/aoWn8w7kMYRNsdUCkYGl6gTws=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "9343fb3755654868649ad5e73a3362519b07fa57",
+        "rev": "f3adabec2dc23e7013be09814fa7db2f3731a972",
         "type": "github"
       },
       "original": {
@@ -1446,12 +1446,12 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1757103352,
-        "narHash": "sha256-PtT7ix43ss8PONJ1VJw3f6t2yAoGH+q462Sn8lrmWmk=",
-        "rev": "11b2a10c7be726321bb854403fdeec391e798bf0",
-        "revCount": 2413,
+        "lastModified": 1757775351,
+        "narHash": "sha256-xWsxmNHwt9jV/yFJqzsNeilpH4BR8MPe44Yt0eaGAIM=",
+        "rev": "f89c620d3d6e584d98280b48f0af7be4f8506ab5",
+        "revCount": 2418,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixos-hardware/0.1.2413%2Brev-11b2a10c7be726321bb854403fdeec391e798bf0/01991b95-009d-77af-94b6-090316109cd3/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixos-hardware/0.1.2418%2Brev-f89c620d3d6e584d98280b48f0af7be4f8506ab5/019943a2-a0cf-7412-b23c-1aa5591c3b8e/source.tar.gz"
       },
       "original": {
         "type": "tarball",
