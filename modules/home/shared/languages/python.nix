@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs.python313Packages; [
+  home.packages = with pkgs.python3Packages; [
     pandas
     matplotlib
     seaborn

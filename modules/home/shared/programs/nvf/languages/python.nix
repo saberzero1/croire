@@ -7,7 +7,7 @@
         enable = true;
         package =
           with pkgs;
-          python313.withPackages (
+          python3.withPackages (
             ps: with ps; [
               debugpy
             ]

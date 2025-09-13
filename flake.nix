@@ -43,14 +43,15 @@
     # Principle inputs (updated by `nix run .#update`)
 
     # Unified Nix sources
-    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs";
-    sops-nix.url = "github:Mic92/sops-nix";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
     devenv.url = "github:cachix/devenv";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    nix-direnv.url = "https://flakehub.com/f/nix-community/nix-direnv/*";
+    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1";
     #nixos-unified.url = "github:srid/nixos-unified";
     nixos-unified.url = "github:saberzero1/nixos-unified";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
 
     # Determinate nix
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
@@ -86,7 +87,7 @@
 
     # Home-manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "https://flakehub.com/f/nix-community/home-manager/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -105,14 +106,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-snapd = {
-      url = "github:nix-community/nix-snapd";
+      url = "https://flakehub.com/f/nix-community/nix-snapd/*";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-ld = {
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/*";
     /*
       ghostty = {
         url = "github:clo4/ghostty-hm-module";
@@ -124,7 +125,10 @@
       url = "github:gitbutlerapp/gitbutler";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Dotfiles
     totten = {
