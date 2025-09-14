@@ -1,12 +1,7 @@
 { pkgs, ... }:
 let
-  primaryUserHome = "/Users/emile";
-  workConfig =
-    if builtins.pathExists "${primaryUserHome}/.ssh/config_work" then
-      pkgs.lib.readFile "${primaryUserHome}/.ssh/config_work"
-    else
-      "";
   inherit (pkgs.stdenv) isDarwin isLinux;
+  extraInclude = if isDarwin then [ "config_work" ] else [ ];
   sshPackage =
     if isDarwin then
       null
@@ -20,6 +15,10 @@ in
     enable = true;
     enableDefaultConfig = false;
     package = sshPackage;
+    includes = extraInclude;
+    extraOptionOverrides = {
+      "IgnoreUnknown" = "UseKeychain";
+    };
     matchBlocks = {
       "*" = {
         forwardAgent = false;
@@ -33,7 +32,6 @@ in
         controlPath = "~/.ssh/master-%r@%n:%p";
         controlPersist = "no";
         extraOptions = {
-          "IgnoreUnknown" = "UseKeychain";
           "UseKeychain" = "yes";
           "StrictHostKeyChecking" = "ask";
         };
@@ -47,6 +45,5 @@ in
         };
       };
     };
-    extraConfig = workConfig;
   };
 }
