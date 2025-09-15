@@ -42,7 +42,13 @@
     gh
     gitFull
     diff-so-fancy
+
+    # Editor
     neovim
+    ghostscript
+    imagemagick # For previewing images in nvim
+    mermaid-cli # For rendering mermaid diagrams in nvim
+    tectonic # For building LaTeX documents in nvim
 
     # Terminal
     ranger
