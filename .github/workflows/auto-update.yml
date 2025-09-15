@@ -32,48 +32,6 @@ jobs:
       - name: Update Flakes
         run: nix flake update --accept-flake-config
 
-      - name: Setup Node
-        if: runner.os == 'Linux'
-        uses: actions/setup-node@v4
-        with:
-          node-version: "current"
-
-      - name: Setup Python
-        if: runner.os == 'Linux'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-
-      - name: Setup Java
-        if: runner.os == 'Linux'
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: Install neovim
-        if: runner.os == 'Linux'
-        run: sudo apt install -y git curl wget luajit build-essential libfuse-dev
-
-      - name: Install lazy.nvim dependencies
-        if: runner.os == 'Linux'
-        run: |
-          npm install markdownlint-cli2
-          pip install sqlfluff
-
-      - name: Update lazy.nvim packages
-        if: runner.os == 'Linux'
-        run: |
-          sudo snap install --edge nvim --classic
-          mkdir -p $HOME/data
-          mkdir -p $HOME/.config/nvim
-          cp -r ${{ github.workspace }}/programs/nvim $HOME/.config
-          export XDG_DATA_HOME=$HOME/data
-          export XDG_CONFIG_HOME=$HOME/.config
-          nvim --headless "+30sleep!" +qa
-          nvim --headless "+Lazy! sync" "+30sleep!" +qa
-          cp $HOME/.config/nvim/lazy-lock.json ${{ github.workspace }}/programs/nvim
-
       - name: Push changes
         if: runner.os == 'Linux'
         uses: stefanzweifel/git-auto-commit-action@v5
