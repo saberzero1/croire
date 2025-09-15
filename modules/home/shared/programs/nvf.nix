@@ -1,12 +1,7 @@
 { flake
 , pkgs
-, lib
 , ...
 }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
 {
   imports = [
     flake.inputs.nvf.homeManagerModules.default
@@ -19,7 +14,7 @@ in
     settings = {
       vim = {
         enableLuaLoader = true;
-        package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+        package = pkgs.neovim;
         viAlias = true;
         vimAlias = true;
         withNodeJs = true;

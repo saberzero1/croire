@@ -1,4 +1,5 @@
 { pkgs, ... }:
+# TODO: fix supertab bindings
 {
   programs.nvf.settings.vim.autocomplete = {
     enableSharedCmpSources = true;

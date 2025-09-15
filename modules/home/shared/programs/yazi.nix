@@ -1,4 +1,24 @@
 { pkgs, ... }:
+let
+  plugins = [
+    "chmod"
+    "git"
+    "lazygit"
+    "relative-motions"
+    "restore"
+    "starship"
+    "sudo"
+    "ouch"
+  ];
+  pluginMap = builtins.listToAttrs (
+    map
+      (plugin: {
+        name = plugin;
+        value = pkgs.yaziPlugins.${plugin};
+      })
+      plugins
+  );
+in
 {
   programs.yazi = {
     enable = true;
@@ -14,16 +34,6 @@
       use = "tokyo-night"
       dark = "tokyo-night"
     '';
-
-    plugins = {
-      "chmod" = pkgs.yaziPlugins.chmod;
-      "git" = pkgs.yaziPlugins.git;
-      "lazygit" = pkgs.yaziPlugins.lazygit;
-      "relative-motions" = pkgs.yaziPlugins.relative-motions;
-      "restore" = pkgs.yaziPlugins.restore;
-      "starship" = pkgs.yaziPlugins.starship;
-      "sudo" = pkgs.yaziPlugins.sudo;
-      "ouch" = pkgs.yaziPlugins.ouch;
-    };
+    plugins = pluginMap;
   };
 }
