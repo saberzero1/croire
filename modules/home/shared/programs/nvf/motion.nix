@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.nvf.settings.vim.lazy.plugins."flash-nvim" = {
     enabled = true;

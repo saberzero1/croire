@@ -20,6 +20,12 @@
         withNodeJs = true;
         withPython3 = true;
         withRuby = true;
+        preventJunkFiles = true;
+        searchCase = "smart";
+        syntaxHighlighting = true;
+        undoFile = {
+          enable = true;
+        };
       };
     };
   };

@@ -1,4 +1,3 @@
-{ ... }:
 {
   imports = [ ./languages ];
   programs.nvf.settings.vim.languages = {
