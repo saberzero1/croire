@@ -12,7 +12,93 @@ in
         enable = true;
       };
       fold = true;
-      grammars = with pkgs.vimPlugins.nvim-treesitter; [ withAllGrammars ];
+      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        bash
+        blade
+        #c
+        c-sharp
+        clojure
+        comment
+        cmake
+        cpp
+        css
+        csv
+        cuda
+        dart
+        diff
+        dockerfile
+        editorconfig
+        elixir
+        elm
+        erlang
+        fish
+        fsharp
+        git-config
+        git-rebase
+        gitattributes
+        gitcommit
+        gitignore
+        gleam
+        go
+        gpg
+        haskell
+        hlsl
+        html
+        http
+        hyprlang
+        java
+        javascript
+        jinja
+        jinja-inline
+        jsdoc
+        json
+        json5
+        jsonc
+        julia
+        just
+        kotlin
+        latex
+        llvm
+        #lua
+        #luadoc
+        luap
+        make
+        #markdown
+        #markdown-inline
+        nim
+        nim-format-string
+        nix
+        ocaml
+        passwd
+        php
+        phpdoc
+        powershell
+        python
+        #query
+        r
+        readline
+        requirements
+        regex
+        ruby
+        rust
+        scala
+        sql
+        ssh-config
+        svelte
+        sway
+        tmux
+        toml
+        tsx
+        typescript
+        typst
+        udev
+        #vim
+        #vimdoc
+        vue
+        xml
+        yaml
+        zig
+      ];
       highlight = {
         enable = true;
       };

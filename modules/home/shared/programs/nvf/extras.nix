@@ -5,6 +5,7 @@
       fzf
       lazygit
       ripgrep
+      # vimPlugins.nvim-treesitter.allGrammars
     ];
   };
 }
