@@ -1,4 +1,7 @@
 { pkgs, config, ... }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+in
 {
   # Configure key name per device.
   #
@@ -25,6 +28,16 @@
     package = pkgs.gitFull;
     userName = "saberzero1";
     userEmail = "github@emilebangma.com";
+    includes =
+      if isDarwin then
+        [
+          {
+            path = "${config.home.homeDirectory}/work_gitconfig";
+            condition = "gitdir:~/Work/External/Repos/**";
+          }
+        ]
+      else
+        [ ];
     ignores = [
       "*.swp"
     ];

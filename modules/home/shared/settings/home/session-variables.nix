@@ -8,7 +8,7 @@ let
     JUST_UNSTABLE = "true";
   };
   tmux_sesionizer = {
-    TS_SEARCH_PATHS = "(~/Repos ~/Documents/Repos ~/Work/Repos)";
+    TS_SEARCH_PATHS = "(~/Repos ~/Documents/Repos ~/Work/Repos ~/Work/External/Repos)";
     TS_MAX_DEPTH = 3;
   };
 in
