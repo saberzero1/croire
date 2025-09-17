@@ -12,9 +12,10 @@
     };
 
     pki = {
-      certificateFiles = [
+      certificateFiles = builtins.filter (path: builtins.pathExists path) [
         "/etc/ssl/cert.pem"
         "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        "/etc/nix/ca_cert.pem"
       ];
     };
   };
