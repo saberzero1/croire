@@ -11,6 +11,7 @@
     black
     pytest
     json5
+    requests
 
     # playwright
     # pytest-playwright
