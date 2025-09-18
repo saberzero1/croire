@@ -92,6 +92,6 @@ jobs:
         run: |
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
-          hostnamectl set-hostname nixos
+          sudo hostnamectl set-hostname nixos
 
       - run: nix run .#activate
