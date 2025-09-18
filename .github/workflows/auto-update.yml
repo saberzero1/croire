@@ -76,7 +76,7 @@ jobs:
       - uses: cachix/cachix-action@v14
         with:
           name: saberzero1
-          extraPullNames: devenv
+          extraPullNames: [devenv, nixpkgs, nix-community, cachix, om]
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
