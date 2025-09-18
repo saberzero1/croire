@@ -19,7 +19,7 @@ jobs:
       matrix:
         system: [x86_64-linux, aarch64-darwin]
       fail-fast: false
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.system }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
