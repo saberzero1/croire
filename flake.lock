@@ -619,7 +619,7 @@
     },
     "flake-utils_4": {
       "inputs": {
-        "systems": "systems_7"
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1463,15 +1463,15 @@
     },
     "nixos-unified": {
       "locked": {
-        "lastModified": 1754580198,
-        "narHash": "sha256-E4OGkOBYBo+jAuGm4Tq1Dft/d6dwSiG450FvI6IppNI=",
-        "owner": "saberzero1",
+        "lastModified": 1754753812,
+        "narHash": "sha256-sYZLY+hsaMzz3gsYdwHA7conki3H8zSl43YH2xWnKBc=",
+        "owner": "srid",
         "repo": "nixos-unified",
-        "rev": "6bac3bcaa7c7996a8a4a252fa67ce55c7d8b2c2e",
+        "rev": "4a5e3c33c6177237a27902d3fa4d845448d48e2b",
         "type": "github"
       },
       "original": {
-        "owner": "saberzero1",
+        "owner": "srid",
         "repo": "nixos-unified",
         "type": "github"
       }
@@ -1873,6 +1873,7 @@
         "nvf": "nvf",
         "omnix": "omnix",
         "sops-nix": "sops-nix",
+        "systems": "systems_7",
         "totten": "totten",
         "wezterm": "wezterm",
         "zen-browser": "zen-browser"
@@ -2073,6 +2074,21 @@
       }
     },
     "systems_7": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_8": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
