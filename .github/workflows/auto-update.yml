@@ -83,5 +83,5 @@ jobs:
             extra-experimental-features = "nix-command flakes";
             extra-nix-path = "nixpkgs=flake:nixpkgs";
 
-      - run: nix-build
-      - run: nix-shell --run "echo OK"
+      - run: use flake . --impure --accept-flake-config
+      - run: nix build
