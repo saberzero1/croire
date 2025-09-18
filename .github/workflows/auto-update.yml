@@ -101,7 +101,7 @@ jobs:
           sudo hostnamectl set-hostname nixos
 
      - name: Load environment variables (macOS)
-        if: runner.os == 'macOS'
+        if: runner.os != 'Linux'
         run: |
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
