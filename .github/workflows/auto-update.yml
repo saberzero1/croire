@@ -83,5 +83,14 @@ jobs:
             extra-experimental-features = "nix-command flakes";
             extra-nix-path = "nixpkgs=flake:nixpkgs";
 
-      - run: use flake . --impure --accept-flake-config
+      - name: Install direnv
+        run: |
+          curl -sfL https://direnv.net/install.sh | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      
+      - name: Load environment variables
+        run: |
+          direnv allow .
+          direnv export gha > "$GITHUB_ENV"
+
       - run: nix build
