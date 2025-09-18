@@ -64,7 +64,12 @@ jobs:
       #       --cache om \
       #       < $HOME/omci.json
   cachix-push:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        #system: [x86_64-linux, aarch64-darwin]
+        os: [macos-latest, ubuntu-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
     needs: update-nix-packages
     steps:
       - uses: actions/checkout@v4
@@ -88,10 +93,18 @@ jobs:
           curl -sfL https://direnv.net/install.sh | bash
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       
-      - name: Load environment variables
+      - name: Load environment variables (Linux)
+        if: runner.os == 'Linux'
         run: |
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos
+
+     - name: Load environment variables (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          direnv allow .
+          direnv export gha > "$GITHUB_ENV"
+          sudo hostnamectl set-hostname Emiles-Macbook-Pro
 
       - run: nix build
