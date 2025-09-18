@@ -17,7 +17,7 @@ jobs:
     if: github.ref_name == github.event.repository.default_branch
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os: [x86_64-linux, aarch64-darwin]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -44,3 +44,21 @@ jobs:
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
           commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+
+      - name: Install Omnix
+        run: nix profile install nixpkgs#omnix
+
+      - name: Run Omnix
+        run: om ci run --results=om.json
+
+      - name: Push to Cachix
+        env:
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        if: env.BRANCH_NAME == 'master'
+        run: |
+          nix run github:juspay/cachix-push -- \
+            --subflake omnix \
+            --prefix "${BRANCH_NAME}" \
+            --cache om \
+            < $HOME/omci.json

@@ -44,14 +44,16 @@ run:
 [linux]
 build:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
-  nix run .#activate
+  # nix run .#activate
+  om ci run .#activate
 
 # Activate default configuration
 [group('Main')]
 [macos]
 build:
   # skhd --stop-service || true
-  sudo nix run .#activate
+  # sudo nix run .#activate
+  sudo om ci run .#activate
   sketchybar --reload
   # skhd --start-service
 
