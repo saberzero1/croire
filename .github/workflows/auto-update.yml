@@ -93,4 +93,4 @@ jobs:
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
 
-      - run: nix run .#activate
+      - run: nix run nixos#activate
