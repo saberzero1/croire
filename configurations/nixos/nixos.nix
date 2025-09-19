@@ -280,6 +280,7 @@ in
     experimental-features = "nix-command flakes parallel-eval";
     extra-nix-path = "nixpkgs=flake:nixpkgs";
     lazy-trees = true;
+    eval-cores = 0; # Use all available CPU cores for evaluation
   };
 
   system = {
