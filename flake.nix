@@ -35,8 +35,9 @@
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
     ];
 
-    extra-experimental-features = "nix-command flakes";
+    extra-experimental-features = "nix-command flakes parallel-eval";
     extra-nix-path = "nixpkgs=flake:nixpkgs";
+    lazy-trees = true;
   };
 
   inputs = {

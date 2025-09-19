@@ -48,12 +48,13 @@ in
   nix = {
     enable = false;
     settings = {
-      experimental-features = "nix-command flakes";
+      experimental-features = "nix-command flakes parallel-eval";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       trusted-users = [
         "root"
         "emile"
       ];
+      lazy-trees = true;
     };
   };
 

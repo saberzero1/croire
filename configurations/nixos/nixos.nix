@@ -277,8 +277,9 @@ in
 
   # These users can add Nix caches.
   nix.settings = {
-    experimental-features = "nix-command flakes";
+    experimental-features = "nix-command flakes parallel-eval";
     extra-nix-path = "nixpkgs=flake:nixpkgs";
+    lazy-trees = true;
   };
 
   system = {
