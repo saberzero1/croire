@@ -19,6 +19,7 @@
         vimAlias = true;
         withNodeJs = true;
         withPython3 = true;
+        python3Packages = [ "pynvim" ];
         withRuby = true;
         preventJunkFiles = true;
         searchCase = "smart";
