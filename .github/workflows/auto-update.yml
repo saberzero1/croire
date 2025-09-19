@@ -108,6 +108,6 @@ jobs:
         run: |
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
-          sudo scutil --set Emiles-Macbook-Pro
+          sudo scutil --set HostName Emiles-Macbook-Pro
 
       - run: nix build
