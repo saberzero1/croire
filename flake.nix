@@ -15,6 +15,8 @@
       "https://nixpkgs.cachix.org"
       # omnix cachix binaries
       "https://om.cachix.org"
+      # determinate binaries
+      "https://install.determinate.systems"
       # personal cachix binaries
       "https://saberzero1.cachix.org"
     ];
@@ -31,6 +33,8 @@
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       # omnix cachix binaries public key
       "om.cachix.org-1:ifal/RLZJKN4sbpScyPGqJ2+appCslzu7ZZF/C01f2Q="
+      # determinate binaries public key
+      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
       # personal cachix binaries public key
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
     ];

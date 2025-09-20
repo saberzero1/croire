@@ -1,10 +1,12 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ pkgs
+{ flake
+, pkgs
 , ...
 }:
 {
   imports = [
+    flake.inputs.determinate.nixosModules.default
     ./packages
     ./services
     ./system

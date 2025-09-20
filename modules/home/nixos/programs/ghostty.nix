@@ -31,7 +31,7 @@
         "+ss15"
       ];
 
-      theme = "dark:tokyonight-storm,light:tokyonight-day";
+      theme = "dark:TokyoNight Storm,light:TokyoNight Day";
       shell-integration = "zsh";
     };
   };
