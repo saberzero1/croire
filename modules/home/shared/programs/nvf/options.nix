@@ -10,7 +10,7 @@ in
       clipboard = lua ''
         vim.env.SSH_TTY and "" or "unnamedplus"
       '';
-      cmdheight = 0;
+      cmdheight = 3;
       completeopt = "menu,menuone,noselect";
       conceallevel = 2;
       confirm = true;
