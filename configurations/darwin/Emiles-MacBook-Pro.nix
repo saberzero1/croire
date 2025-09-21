@@ -48,14 +48,14 @@ in
   nix = {
     enable = false;
     settings = {
-      experimental-features = "nix-command flakes parallel-eval";
+      experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       trusted-users = [
         "root"
         "emile"
       ];
-      lazy-trees = true;
-      eval-cores = 0; # Use all available CPU cores for evaluation
+      # lazy-trees = true;
+      # eval-cores = 0; # Use all available CPU cores for evaluation
     };
   };
 

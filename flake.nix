@@ -39,10 +39,10 @@
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
     ];
 
-    extra-experimental-features = "nix-command flakes parallel-eval";
+    extra-experimental-features = "nix-command flakes";
     extra-nix-path = "nixpkgs=flake:nixpkgs";
-    lazy-trees = true;
-    eval-cores = 0; # Use all available CPU cores for evaluation
+    # lazy-trees = true;
+    # eval-cores = 0; # Use all available CPU cores for evaluation
   };
 
   inputs = {
