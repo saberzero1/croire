@@ -46,6 +46,16 @@
         action = "<cmd>lua require('flash').toggle()<cr>";
         desc = "Flash: Toggle";
       }
+      {
+        mode = [
+          "n"
+          "o"
+          "x"
+        ];
+        key = "<c-space>";
+        action = "<cmd>lua function() require('flash').treesitter({ actions = { ['<c-space>'] = 'next', ['<BS>'] = 'prev' } }) end<cr>";
+        desc = "Flash: Treesitter Incremental Selection";
+      }
     ];
     setupOpts = {
       jump = {

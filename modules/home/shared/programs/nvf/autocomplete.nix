@@ -24,10 +24,12 @@
         scrollDocsUp = null;
       };
       sourcePlugins = {
-        "blink-cmp-copilot" = {
+        "blink-copilot" = {
           enable = true;
-          package = pkgs.vimPlugins.blink-cmp-copilot;
-          module = "blink-cmp-copilot";
+          package = pkgs.vimPlugins.blink-copilot;
+          # package = pkgs.vimPlugins.blink-cmp-copilot;
+          # module = "blink-cmp-copilot";
+          module = "blink-copilot";
         };
       };
       setupOpts = {
@@ -50,6 +52,9 @@
           ghost_text = {
             enabled = true;
           };
+          keymap = {
+            preset = "super-tab";
+          };
         };
         sources = {
           default = [
@@ -57,12 +62,13 @@
             "path"
             "snippets"
             "buffer"
+            "copilot"
           ];
           providers = {
             copilot = {
               name = "copilot";
-              module = "blink-cmp-copilot";
-              kind = "Copilot";
+              module = "blink-copilot";
+              # kind = "Copilot";
               score_offset = 100;
               async = true;
             };

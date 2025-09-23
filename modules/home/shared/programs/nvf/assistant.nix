@@ -1,3 +1,6 @@
+let
+  ai_cmp = true;
+in
 {
   programs.nvf.settings.vim.assistant = {
     avante-nvim = {
@@ -20,8 +23,9 @@
       setupOpts = {
         panel.enabled = false;
         suggestion = {
-          enabled = true;
+          enabled = !ai_cmp;
           auto_trigger = true;
+          hide_during_completion = ai_cmp;
         };
       };
       mappings = {
@@ -33,10 +37,7 @@
           refresh = null;
         };
         suggestion = {
-          accept = "<Tab>";
-          acceptLine = "<C-Tab>";
-          acceptWord = "<S-Tab>";
-          dismiss = "<C-]>";
+          accept = null;
           next = "<M-]>";
           prev = "<M-[";
         };
