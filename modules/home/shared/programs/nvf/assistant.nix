@@ -7,6 +7,9 @@ in
       enable = false;
       setupOpts = {
         auto_suggestions_provider = "copilot";
+        behavior = {
+          auto_suggestions = ai_cmp;
+        };
         provider = "copilot";
         input = {
           provider = "snacks";
@@ -22,10 +25,10 @@ in
       cmp.enable = true;
       setupOpts = {
         panel.enabled = false;
-        suggestion = {
-          enabled = !ai_cmp;
-          auto_trigger = true;
-          hide_during_completion = ai_cmp;
+        suggestion.enabled = false;
+        filetypes = {
+          markdown = true;
+          help = true;
         };
       };
       mappings = {
@@ -38,8 +41,8 @@ in
         };
         suggestion = {
           accept = null;
-          next = "<M-]>";
-          prev = "<M-[";
+          next = null;
+          prev = null;
         };
       };
     };
