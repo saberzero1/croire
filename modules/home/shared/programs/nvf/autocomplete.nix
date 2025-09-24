@@ -100,13 +100,13 @@ in
             "select_prev"
             "fallback"
           ];
-          "j" = [
+          "<C-j>" = [
             "select_next"
-            "fallback"
+            "fallback_to_mappings"
           ];
-          "k" = [
+          "<C-k>" = [
             "select_prev"
-            "fallback"
+            "fallback_to_mappings"
           ];
           "<A-1>" = [ (lua ''function(cmp) cmp.accept({ index = 1 }) end'') ];
           "<A-2>" = [ (lua ''function(cmp) cmp.accept({ index = 2 }) end'') ];
