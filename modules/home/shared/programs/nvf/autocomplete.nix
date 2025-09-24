@@ -44,7 +44,10 @@ in
       setupOpts = {
         completion = {
           list = {
-            cycle_from_bottom = true;
+            cycle = {
+              from_bottom = true;
+              from_top = true;
+            };
           };
           accept = {
             auto_brackets = {
@@ -75,6 +78,7 @@ in
           };
         };
         keymap = {
+          # https://cmp.saghen.dev/configuration/keymap.html#commands
           preset = "none";
           "<Esc>" = [
             "hide"
