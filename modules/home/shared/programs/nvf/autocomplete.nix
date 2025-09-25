@@ -42,11 +42,11 @@ in
         */
       };
       setupOpts = {
+        fuzzy = {
+          implementation = "prefer_rust_with_warning";
+          prebuilt_binaries.download = false;
+        };
         completion = {
-          fuzzy = {
-            implementation = "prefer_rust_with_warning";
-            prebuilt_binaries.download = false;
-          };
           list = {
             cycle = {
               from_bottom = true;
