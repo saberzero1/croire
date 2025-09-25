@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.nvf.settings.vim = {
     tabline = {
