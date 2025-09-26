@@ -14,6 +14,7 @@ in
 
       xcodes
       apple-sdk
+      pre-commit
 
       bun
 

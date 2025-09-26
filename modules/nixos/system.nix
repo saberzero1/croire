@@ -43,6 +43,7 @@
 
       ghostty
       # gitbutler
+      pre-commit
 
       libusb1
       wally-cli
