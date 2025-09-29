@@ -53,6 +53,13 @@ in
               from_top = true;
             };
           };
+          trigger = {
+            # https://cmp.saghen.dev/configuration/reference.html#completion-trigger
+            prefetch_on_insert = true;
+            show_on_insert = true;
+            show_on_backspace = true;
+            show_on_backspace_in_keyword = true;
+          };
           accept = {
             auto_brackets = {
               enabled = true;
