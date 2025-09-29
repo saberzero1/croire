@@ -8,6 +8,7 @@ let
       [
         "zed/keymap.json"
         "zed/settings.json"
+        "amethyst/amethyst.yml"
       ]
     else
       [ ];
