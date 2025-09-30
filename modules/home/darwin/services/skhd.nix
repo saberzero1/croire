@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.skhd = {
-    enable = false;
+    enable = true;
     package = pkgs.skhd;
     config = ''
       # Close current window

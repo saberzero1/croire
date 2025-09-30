@@ -7,6 +7,7 @@ let
     if isDarwin then
       [
         "skhd/scripts/kill_last_instance.sh"
+        "yabai/yabairc"
       ]
     else
       [ ];

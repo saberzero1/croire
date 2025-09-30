@@ -26,6 +26,10 @@
         name = "FelizKratz/homebrew-formulae";
         clone_target = "git@github.com:FelixKratz/homebrew-formulae.git";
       }
+      {
+        name = "koekeishiya/homebrew-formulae";
+        clone_target = "git@github.com:koekeishiya/homebrew-formulae.git";
+      }
     ];
   };
 }

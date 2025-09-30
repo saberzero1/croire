@@ -2,6 +2,18 @@
 {
   services.yabai = {
     enable = false;
+    /*
+      package = 
+      pkgs.yabai.overrideAttrs (finalAttrs: previousAttrs: {
+        # https://github.com/koekeishiya/yabai/commit/ff42ceadc92dfc50df63b73e3e1384b8b4059864
+        src = pkgs.fetchFromGitHub {
+          owner = "koekeishiya";
+          repo = "yabai";
+          rev = "ff42ceadc92dfc50df63b73e3e1384b8b4059864";
+          hash = "sha256-DTwRQRiEJUBAp97XiSy4skZuNkVpE2YMXRazlODXf2A=";
+        };
+      });
+      */
     enableScriptingAddition = true;
     config = { };
     extraConfig = ''
