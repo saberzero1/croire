@@ -272,10 +272,10 @@ in
         mkdir -p "$app_target"
         ${pkgs.rsync}/bin/rsync --archive --checksum --chmod=-w --copy-unsafe-links --delete "$apps_source/" "$app_target"
 
-        echo "Cleaning Neovim plugin cache"
+        # echo "Cleaning Neovim plugin cache"
         # sudo rm -rf "${primaryUserHome}/.cache/nvim/luac/*"
         # sudo rm -rf "${primaryUserHome}/.config/nvim"
-        echo "Cleaning Neovim plugin cache done"
+        # echo "Cleaning Neovim plugin cache done"
 
         # echo "Setting up Yabai"
         # https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(from-HEAD)
@@ -291,23 +291,23 @@ in
         # echo "Installing LazyVim done"
 
         # Custom additions
-        echo "Setting tmux-sessionizer permissions"
+        # echo "Setting tmux-sessionizer permissions"
         # sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
 
-        echo "Setting up Sketchybar"
-        sudo rm -rf "${primaryUserHome}/.config/sketchybar"
-        cp -r "${self}/programs/sketchybar" "${primaryUserHome}/.config/sketchybar"
-        sudo chmod +x "${primaryUserHome}/.config/sketchybar/sketchybarrc"
-        sudo mkdir -p "${primaryUserHome}/.local/share/sketchybar_lua"
-        sudo cp "${pkgs.sbarlua}/lib/lua/5.4/sketchybar.so" "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
-        sudo chmod +x "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
-        cd "${primaryUserHome}/.config/sketchybar/helpers/menus"
-        make
-        cd -
-        cd "${primaryUserHome}/.config/sketchybar/helpers/event_providers"
-        make
-        cd -
-        echo "Sketchybar setup done"
+        # echo "Setting up Sketchybar"
+        # sudo rm -rf "${primaryUserHome}/.config/sketchybar"
+        # cp -r "${self}/programs/sketchybar" "${primaryUserHome}/.config/sketchybar"
+        # sudo chmod +x "${primaryUserHome}/.config/sketchybar/sketchybarrc"
+        # sudo mkdir -p "${primaryUserHome}/.local/share/sketchybar_lua"
+        # sudo cp "${pkgs.sbarlua}/lib/lua/5.4/sketchybar.so" "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
+        # sudo chmod +x "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
+        # cd "${primaryUserHome}/.config/sketchybar/helpers/menus"
+        # make
+        # cd -
+        # cd "${primaryUserHome}/.config/sketchybar/helpers/event_providers"
+        # make
+        # cd -
+        # echo "Sketchybar setup done"
 
         sudo chown -R ${primaryUser}:staff "${primaryUserHome}/.config"
         # skhd --restart-service

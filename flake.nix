@@ -91,6 +91,7 @@
       url = "github:Homebrew/homebrew-cask";
       flake = false;
     };
+    spacebar.url = "github:cmacrae/spacebar/v1.4.0";
 
     # Home-manager
     home-manager = {

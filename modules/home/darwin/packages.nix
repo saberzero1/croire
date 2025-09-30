@@ -10,8 +10,8 @@
     aerospace
 
     # sketchybar
-    lua54Packages.lua
-    sketchybar-app-font
-    sbarlua
+    # lua54Packages.lua
+    # sketchybar-app-font
+    # sbarlua
   ];
 }
