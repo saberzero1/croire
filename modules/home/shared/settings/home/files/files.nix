@@ -8,6 +8,7 @@ let
       [
         "zed/keymap.json"
         "zed/settings.json"
+        "aerospace/aerospace.toml"
         # "amethyst/amethyst.yml"
       ]
     else

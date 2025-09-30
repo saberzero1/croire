@@ -277,6 +277,14 @@ in
         # sudo rm -rf "${primaryUserHome}/.config/nvim"
         echo "Cleaning Neovim plugin cache done"
 
+        # echo "Setting up Yabai"
+        # https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(from-HEAD)
+        # codesign -fs "yabai-cert" "$(/opt/homebrew/bin/brew --prefix yabai)/bin/yabai"
+        # echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(/usr/bin/shasum -a 256 /opt/homebrew/bin/yabai | cut -d " " -f 1) /opt/homebrew/bin/yabai --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+        # /opt/homebrew/bin/yabai -m signal --add event=dock_did_restart action="sudo /opt/homebrew/bin/yabai --load-sa"
+        # sudo /opt/homebrew/bin/yabai --load-sa
+        # echo "Yabai setup done"
+
         # echo "Installing LazyVim"
         # mkdir -p "${primaryUserHome}/.config/nvim"
         # cp -r "${self}/programs/nvim" "${primaryUserHome}/.config"
@@ -303,12 +311,6 @@ in
 
         sudo chown -R ${primaryUser}:staff "${primaryUserHome}/.config"
         # skhd --restart-service
-
-        echo "Setting up Yabai"
-        # https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(from-HEAD)
-        codesign -fs "yabai-cert" "$(/opt/homebrew/bin/brew --prefix yabai)/bin/yabai"
-        echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(/usr/bin/shasum -a 256 /opt/homebrew/bin/yabai | cut -d " " -f 1) /opt/homebrew/bin/yabai --load-sa" | sudo tee /private/etc/sudoers.d/yabai
-        echo "Yabai setup done"
       '';
     };
 

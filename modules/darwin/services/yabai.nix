@@ -3,7 +3,7 @@
   services.yabai = {
     enable = false;
     /*
-      package = 
+      package =
       pkgs.yabai.overrideAttrs (finalAttrs: previousAttrs: {
         # https://github.com/koekeishiya/yabai/commit/ff42ceadc92dfc50df63b73e3e1384b8b4059864
         src = pkgs.fetchFromGitHub {
@@ -13,14 +13,14 @@
           hash = "sha256-DTwRQRiEJUBAp97XiSy4skZuNkVpE2YMXRazlODXf2A=";
         };
       });
-      */
+    */
     enableScriptingAddition = true;
     config = { };
     extraConfig = ''
       #!/usr/bin/env bash
 
-      sudo yabai --load-sa
       yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+      sudo yabai --load-sa
 
       # Unload the macOS WindowManager process
       # launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist >/dev/null 2>&1 &
