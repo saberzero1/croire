@@ -50,6 +50,67 @@ in
             action = ":checkhealth<cr>";
             desc = "Check Health";
           }
+          # Bufferline.nvim
+          {
+            key = "<leader>bp";
+            mode = "n";
+            action = "<cmd>BufferLineTogglePin<cr>";
+            desc = "Toggle Pin";
+          }
+          {
+            key = "<leader>bP";
+            mode = "n";
+            action = "<cmd>BufferLineGroupClose ungrouped<cr>";
+            desc = "Delete Non-Pinned Buffers";
+          }
+          {
+            key = "<leader>br";
+            mode = "n";
+            action = "<cmd>BufferLineCloseRight<cr>";
+            desc = "Delete Buffers to the Right";
+          }
+          {
+            key = "<leader>bl";
+            mode = "n";
+            action = "<cmd>BufferLineCloseLeft<cr>";
+            desc = "Delete Buffers to the Left";
+          }
+          {
+            key = "<S-h>";
+            mode = "n";
+            action = "<cmd>BufferLineCyclePrev<cr>";
+            desc = "Prev Buffer";
+          }
+          {
+            key = "<S-l>";
+            mode = "n";
+            action = "<cmd>BufferLineCycleNext<cr>";
+            desc = "Next Buffer";
+          }
+          {
+            key = "[b";
+            mode = "n";
+            action = "<cmd>BufferLineCyclePrev<cr>";
+            desc = "Prev Buffer";
+          }
+          {
+            key = "]b";
+            mode = "n";
+            action = "<cmd>BufferLineCycleNext<cr>";
+            desc = "Next Buffer";
+          }
+          {
+            key = "[B";
+            mode = "n";
+            action = "<cmd>BufferLineMovePrev<cr>";
+            desc = "Move Buffer prev";
+          }
+          {
+            key = "]B";
+            mode = "n";
+            action = "<cmd>BufferLineMoveNext<cr>";
+            desc = "Move Buffer next";
+          }
         ];
       };
       "${plugin.vim-repeat.pname}" = {
