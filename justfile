@@ -56,6 +56,7 @@ build:
   # sudo om ci run .#activate
   sketchybar --reload
   # skhd --start-service
+  aerospace reload-config
 
 # Activate default configuration
 [group('Main')]
