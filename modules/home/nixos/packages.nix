@@ -61,7 +61,7 @@
       espanso-wayland
 
       # Graphic Drivers
-      driversi686Linux.amdvlk
+      # driversi686Linux.amdvlk (deprecated, replacement is enabled by default nowadays)
 
       # Miscellaneous
       calibre
