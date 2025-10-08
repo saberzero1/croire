@@ -16,7 +16,7 @@ jobs:
   configure:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix-outputs.matrix }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
 
