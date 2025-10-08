@@ -19,6 +19,10 @@ in
       bun
 
       opencode
+
+      ruby
+      rubyPackages.nokogiri
+      rubyPackages.solargraph
     ];
   };
 }

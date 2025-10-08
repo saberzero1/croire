@@ -8,7 +8,7 @@
     };
     lsp = {
       enable = true;
-      server = "nimlsp";
+      servers = "nimlsp";
     };
     treesitter = {
       enable = true;

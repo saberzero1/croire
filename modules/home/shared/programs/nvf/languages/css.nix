@@ -7,7 +7,7 @@
     };
     lsp = {
       enable = true;
-      server = "vscode-langservers-extracted";
+      servers = "cssls";
     };
   };
 }

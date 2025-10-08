@@ -11,7 +11,7 @@
     };
     lsp = {
       enable = true;
-      server = "astro";
+      servers = "astro";
     };
     treesitter = {
       enable = true;

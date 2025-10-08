@@ -12,7 +12,7 @@
     };
     lsp = {
       enable = true;
-      server = "sqls";
+      servers = "sqls";
     };
     treesitter = {
       enable = true;

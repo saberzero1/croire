@@ -9,7 +9,7 @@
     };
     lsp = {
       enable = true;
-      server = "dart";
+      servers = "dart";
     };
     treesitter = {
       enable = true;

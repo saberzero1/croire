@@ -11,7 +11,7 @@
     };
     lsp = {
       enable = true;
-      server = "svelte";
+      servers = "svelte";
     };
     treesitter = {
       enable = true;

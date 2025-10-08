@@ -7,7 +7,7 @@
     };
     lsp = {
       enable = true;
-      server = "ocaml-lsp";
+      servers = "ocaml-lsp";
     };
     treesitter = {
       enable = true;

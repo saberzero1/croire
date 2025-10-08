@@ -11,7 +11,7 @@
     };
     lsp = {
       enable = true;
-      server = "ts_ls";
+      servers = "ts_ls";
     };
     treesitter = {
       enable = true;

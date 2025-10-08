@@ -11,7 +11,7 @@
     };
     lsp = {
       enable = true;
-      server = "rubyserver";
+      servers = "solargraph";
     };
     treesitter = {
       enable = true;

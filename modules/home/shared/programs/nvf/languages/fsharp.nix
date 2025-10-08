@@ -7,7 +7,7 @@
     };
     lsp = {
       enable = true;
-      server = "fsautocomplete";
+      servers = "fsautocomplete";
     };
     treesitter = {
       enable = true;

@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      server = "gleam";
+      servers = "gleam";
     };
     treesitter = {
       enable = true;

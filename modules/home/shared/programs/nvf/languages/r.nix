@@ -7,7 +7,7 @@
     };
     lsp = {
       enable = true;
-      server = "r_language_server";
+      servers = "r_language_server";
     };
     treesitter = {
       enable = true;

@@ -12,7 +12,7 @@
     };
     lsp = {
       enable = true;
-      server = "marksman";
+      servers = "marksman";
     };
     treesitter = {
       enable = true;

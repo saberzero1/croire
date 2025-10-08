@@ -2,7 +2,7 @@
   programs.nvf.settings.vim.languages.haskell = {
     enable = true;
     dap = {
-      enable = true;
+      enable = false; # currently broken
     };
     lsp = {
       enable = true;

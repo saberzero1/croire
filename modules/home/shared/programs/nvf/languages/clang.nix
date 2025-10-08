@@ -8,8 +8,7 @@
     };
     lsp = {
       enable = true;
-      opts = null;
-      server = "clangd";
+      servers = "clangd";
     };
     treesitter = {
       enable = true;

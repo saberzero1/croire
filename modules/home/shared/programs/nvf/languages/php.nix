@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      server = "phpactor";
+      servers = "phpactor";
     };
     treesitter = {
       enable = true;

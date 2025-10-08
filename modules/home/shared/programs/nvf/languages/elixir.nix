@@ -10,7 +10,7 @@
     };
     lsp = {
       enable = true;
-      server = "elixirls";
+      servers = "elixirls";
     };
     treesitter = {
       enable = true;

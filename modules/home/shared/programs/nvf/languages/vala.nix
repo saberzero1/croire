@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      server = "vala_ls";
+      servers = "vala_ls";
     };
     treesitter = {
       enable = true;

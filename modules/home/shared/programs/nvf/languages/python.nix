@@ -11,7 +11,7 @@
     };
     lsp = {
       enable = true;
-      server = "basedpyright";
+      servers = "basedpyright";
     };
     treesitter = {
       enable = true;

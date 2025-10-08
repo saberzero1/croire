@@ -7,7 +7,7 @@
     };
     lsp = {
       enable = true;
-      server = "tinymist";
+      servers = "tinymist";
     };
     treesitter = {
       enable = true;

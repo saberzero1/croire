@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      server = "wgsl-analyzer";
+      servers = "wgsl-analyzer";
     };
     treesitter = {
       enable = true;

@@ -11,7 +11,7 @@
     };
     lsp = {
       enable = true;
-      server = "gopls";
+      servers = "gopls";
     };
     treesitter = {
       enable = true;
