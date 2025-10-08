@@ -125,6 +125,7 @@ jobs:
           --systems "x86_64-linux" \
           ".#default.ROOT" \
           --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
+          -- \
           --accept-flake-config \
           --impure
 
@@ -135,5 +136,6 @@ jobs:
           --systems "x86_64-linux" \
           ".#default.ROOT" \
           --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
+          -- \
           --accept-flake-config \
           --impure
