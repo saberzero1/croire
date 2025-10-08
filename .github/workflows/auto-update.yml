@@ -14,7 +14,7 @@ env:
 
 jobs:
   configure:
-    runs-on: x86_64-linux
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix-outputs.matrix }}
     steps:
