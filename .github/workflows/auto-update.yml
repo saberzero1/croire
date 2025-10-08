@@ -133,7 +133,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           om ci run \
-          --systems "x86_64-linux" \
+          --systems "aarch64-darwin" \
           ".#default.ROOT" \
           --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
           -- \

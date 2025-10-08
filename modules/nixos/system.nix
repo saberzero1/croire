@@ -264,7 +264,7 @@
       modesetting = {
         enable = true;
       };
-      # package = config.boot.kernelPackages.nvidiaPackages.production;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     graphics = {
       enable = true;
