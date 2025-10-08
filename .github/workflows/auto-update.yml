@@ -113,5 +113,10 @@ jobs:
       - name: Nix build
         run: nix build --accept-flake-config --impure
 
-      - name: Check Flake
-        run: nix flake check --accept-flake-config --impure
+      - name: Check Flake (Linux)
+        if: runner.os == 'Linux'
+        run: nix flake check --accept-flake-config --impure --system "x86_64-linux"
+
+      - name: Check Flake (maxOS)
+        if: runner.os == 'macOS'
+        run: nix flake check --accept-flake-config --impure --system "aarch64-darwin"
