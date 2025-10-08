@@ -1,5 +1,11 @@
 om:
   ci:
     default:
-      root:
-        dir: "."
+      ROOT:
+        dir: .
+        steps:
+          flake-check:
+            enable: false
+          build:
+            enable: true
+            impure: true

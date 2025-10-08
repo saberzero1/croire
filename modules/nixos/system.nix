@@ -100,10 +100,6 @@
       libnss_nis
 
       opencode
-
-      ruby
-      rubyPackages.nokogiri
-      rubyPackages.solargraph
     ];
     # Most of these are optional programs added by services.gnome.core-services
     # and etc., but the module sets other useful options so it is better to

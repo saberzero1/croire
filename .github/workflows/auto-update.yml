@@ -101,6 +101,9 @@ jobs:
         if: runner.os == 'macOS'
         run: brew install direnv
 
+      - name: Install omnix
+        run: nix profile install nixpkgs#omnix
+
       - name: Load environment variables (Linux)
         if: runner.os == 'Linux'
         run: |
@@ -114,28 +117,27 @@ jobs:
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           sudo scutil --set HostName Emiles-Macbook-Pro
-
-      - name: Install omnix
-        run: nix profile install nixpkgs#omnix
-
-      - name: Build flake (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          om ci run \
-          --systems "x86_64-linux" \
-          ".#default.ROOT" \
-          --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
-          -- \
-          --accept-flake-config \
-          --impure
-
-      - name: Build flake (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          om ci run \
-          --systems "aarch64-darwin" \
-          ".#default.ROOT" \
-          --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
-          -- \
-          --accept-flake-config \
-          --impure
+      - name: Build
+        run: nix build
+      #
+      # - name: Build flake (Linux)
+      #   if: runner.os == 'Linux'
+      #   run: |
+      #     om ci run \
+      #     --systems "x86_64-linux" \
+      #     ".#default.ROOT" \
+      #     --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
+      #     -- \
+      #     --accept-flake-config \
+      #     --impure
+      #
+      # - name: Build flake (macOS)
+      #   if: runner.os == 'macOS'
+      #   run: |
+      #     om ci run \
+      #     --systems "aarch64-darwin" \
+      #     ".#default.ROOT" \
+      #     --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
+      #     -- \
+      #     --accept-flake-config \
+      #     --impure

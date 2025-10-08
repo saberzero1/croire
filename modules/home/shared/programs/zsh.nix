@@ -14,7 +14,7 @@
     syntaxHighlighting = {
       enable = true;
     };
-    enableVteIntegration = true;
+    enableVteIntegration = false;
     initContent = ''
       # zoxide
       eval "$(zoxide init --cmd cd zsh)"

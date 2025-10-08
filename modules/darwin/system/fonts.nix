@@ -2,6 +2,7 @@
 {
   fonts = {
     packages = with pkgs; [
+      fira-code
       monaspace
       nerd-fonts.monaspace
       fira-code-symbols

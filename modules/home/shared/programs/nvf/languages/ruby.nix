@@ -10,8 +10,7 @@
       type = "rubocop";
     };
     lsp = {
-      enable = true;
-      servers = "solargraph";
+      enable = false;
     };
     treesitter = {
       enable = true;
