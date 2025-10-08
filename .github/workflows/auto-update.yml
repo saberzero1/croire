@@ -13,32 +13,19 @@ env:
   NIXPKGS_ALLOW_UNFREE: 1
 
 jobs:
-  configure:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Determinate Nix
-        uses: DeterminateSystems/nix-installer-action@main
-
-      - name: Install omnix
-        run: nix profile install nixpkgs#omnix
-
-      - id: set-matrix
-        run: |
-          set -euxo pipefail
-          MATRIX="$(om ci gh-matrix --systems=x86_64-linux,aarch64-darwin | jq -c .)"
-          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
-
   update-nix-packages:
     if: github.ref_name == github.event.repository.default_branch
-    needs: configure
     strategy:
-      matrix: ${{ fromJson(needs.configure.outputs.matrix) }}
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        arch: [X64, ARM64]
+        exclude:
+          - os: macos-latest
+            arch: X64
+          - os: ubuntu-latest
+            arch: ARM64
       fail-fast: false
-    runs-on: ${{ matrix.system }}
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -83,9 +70,16 @@ jobs:
       #       < $HOME/omci.json
   cachix-push:
     strategy:
-      matrix: ${{ fromJson(needs.configure.outputs.matrix) }}
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        arch: [X64, ARM64]
+        exclude:
+          - os: macos-latest
+            arch: X64
+          - os: ubuntu-latest
+            arch: ARM64
       fail-fast: false
-    runs-on: ${{ matrix.system }}
+    runs-on: ${{ matrix.os }}
     needs: update-nix-packages
     steps:
       - uses: actions/checkout@v4
@@ -124,9 +118,18 @@ jobs:
       - name: Install omnix
         run: nix profile install nixpkgs#omnix
 
-      - name: Build flake
+      - name: Build flake (Linux)
+        if: runner.os == 'Linux'
         run: |
           om ci run \
-          --systems "${{ matrix.system }}" \
-          ".#default.${{ matrix.subflake }}" \
+          --systems "x86_64-linux" \
+          ".#default.ROOT" \
+          --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Build flake (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          om ci run \
+          --systems "x86_64-linux" \
+          ".#default.ROOT" \
           --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}"
