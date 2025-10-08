@@ -70,6 +70,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # CI
+    devour-flake = {
+      url = "github:srid/devour-flake";
+      flake = false;
+    };
+
     # WSL-specific
     # nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 

@@ -4,6 +4,7 @@ let
 in
 
 self: super: {
+  devour-flake = self.callPackage inputs.devour-flake { };
   doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.system}.default;
   # ghostty = inputs.ghostty.packages.${self.system}.default;
   #gitbutler = inputs.gitbutler.packages.${self.system}.default;

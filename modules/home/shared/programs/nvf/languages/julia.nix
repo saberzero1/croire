@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   programs.nvf.settings.vim.languages.julia = {
-    enable = pkgs.stdenv.isLinux;
+    enable = false;
     lsp = {
-      enable = pkgs.stdenv.isLinux;
+      enable = false;
       servers = "julials";
     };
   };

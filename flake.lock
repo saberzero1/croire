@@ -151,6 +151,22 @@
     "devour-flake": {
       "flake": false,
       "locked": {
+        "lastModified": 1738639461,
+        "narHash": "sha256-R7MHvTh5fskzxNLBe9bher+GQBZ8ZHjz75CPQG3fSRI=",
+        "owner": "srid",
+        "repo": "devour-flake",
+        "rev": "9fe4db872c107ea217c13b24527b68d9e4a4c01b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "devour-flake",
+        "type": "github"
+      }
+    },
+    "devour-flake_2": {
+      "flake": false,
+      "locked": {
         "lastModified": 1726283167,
         "narHash": "sha256-Cvc84VzvvdmehafnaIPfdPylNWJcDmv79QQh/MH/4Qk=",
         "owner": "srid",
@@ -1831,7 +1847,7 @@
     },
     "omnix": {
       "inputs": {
-        "devour-flake": "devour-flake",
+        "devour-flake": "devour-flake_2",
         "false": "false",
         "flake-parts": "flake-parts_9",
         "git-hooks": "git-hooks_3",
@@ -1863,6 +1879,7 @@
       "inputs": {
         "determinate": "determinate",
         "devenv": "devenv",
+        "devour-flake": "devour-flake",
         "flake-parts": "flake-parts_3",
         "ghostty": "ghostty",
         "gitbutler": "gitbutler",
