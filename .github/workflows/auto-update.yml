@@ -95,7 +95,7 @@ jobs:
       - name: Install direnv (macOS)
         if: runner.os == 'macOS'
         run: brew install direnv
-      
+
       - name: Load environment variables (Linux)
         if: runner.os == 'Linux'
         run: |
@@ -110,4 +110,4 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo scutil --set HostName Emiles-Macbook-Pro
 
-      - run: nix build
+      - run: nix build --accept-flake-config
