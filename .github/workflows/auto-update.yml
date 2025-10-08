@@ -118,7 +118,7 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo scutil --set HostName Emiles-Macbook-Pro
       - name: Build
-        run: nix build
+        run: nix build --impure --accept-flake-config
       #
       # - name: Build flake (Linux)
       #   if: runner.os == 'Linux'
