@@ -252,7 +252,7 @@
       };
     };
     nvidia = {
-      open = true;
+      open = mkDefault true;
       powerManagement = {
         enable = false;
         finegrained = false;
