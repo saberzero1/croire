@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 {
   environment = {
     sessionVariables = {
@@ -252,7 +252,7 @@
       };
     };
     nvidia = {
-      open = mkDefault true;
+      open = lib.mkDefault true;
       powerManagement = {
         enable = false;
         finegrained = false;
