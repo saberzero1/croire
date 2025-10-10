@@ -15,17 +15,16 @@ env:
 jobs:
   update-nix-packages:
     if: github.ref_name == github.event.repository.default_branch
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
-        arch: [X64, ARM64]
-        exclude:
-          - os: macos-latest
-            arch: X64
-          - os: ubuntu-latest
-            arch: ARM64
-      fail-fast: false
-    runs-on: ${{ matrix.os }}
+        include:
+          - runner: ubuntu-latest
+            system: x86_64-linux
+          - runner: macos-latest
+            system: aarch64-darwin
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,17 +68,16 @@ jobs:
       #       --cache om \
       #       < $HOME/omci.json
   cachix-push:
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
-        arch: [X64, ARM64]
-        exclude:
-          - os: macos-latest
-            arch: X64
-          - os: ubuntu-latest
-            arch: ARM64
-      fail-fast: false
-    runs-on: ${{ matrix.os }}
+        include:
+          - runner: ubuntu-latest
+            system: x86_64-linux
+          - runner: macos-latest
+            system: aarch64-darwin
     needs: update-nix-packages
     steps:
       - uses: actions/checkout@v4
@@ -118,11 +116,13 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo scutil --set HostName Emiles-Macbook-Pro
 
-      - name: Run build script
+      - name: Run om ci
         run: |
-          chmod +x build_cachix.sh
-          ./build_cachix.sh
-
+          om ci run \
+            --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
+            --systems "${{ matrix.system }}" \
+            --results=$HOME/omci.json \
+            -- --accept-flake-config --impure
       # - name: Build (Linux)
       #   if: runner.os == 'Linux'
       #   run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
