@@ -16,8 +16,6 @@ jobs:
   update-nix-packages:
     if: github.ref_name == github.event.repository.default_branch
     runs-on: ${{ matrix.runner }}
-    permissions:
-      contents: read
     strategy:
       matrix:
         include:
@@ -69,8 +67,6 @@ jobs:
       #       < $HOME/omci.json
   cachix-push:
     runs-on: ${{ matrix.runner }}
-    permissions:
-      contents: read
     strategy:
       matrix:
         include:
