@@ -120,11 +120,11 @@ jobs:
 
       - name: Build (Linux)
         if: runner.os == 'Linux'
-        run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{}
+        run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
 
       - name: Build (macOS)
         if: runner.os == 'macOS'
-        run: nix flake show --json | jq '.packages."aarch64-darwin"|keys[]'| xargs -I {} nix build .#{}
+        run: nix flake show --json | jq '.packages."aarch64-darwin"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
       #
       # - name: Build flake (Linux)
       #   if: runner.os == 'Linux'
