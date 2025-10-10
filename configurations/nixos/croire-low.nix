@@ -78,6 +78,7 @@ in
     alsa = {
       enablePersistence = true;
     };
+    nvidia.open = false;
   };
 
   networking = {
