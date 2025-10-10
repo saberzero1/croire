@@ -118,13 +118,18 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo scutil --set HostName Emiles-Macbook-Pro
 
-      - name: Build (Linux)
-        if: runner.os == 'Linux'
-        run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
+      - name: Run build script
+        run: |
+          chmod +x build_cachix.sh
+          ./build_cachix.sh
 
-      - name: Build (macOS)
-        if: runner.os == 'macOS'
-        run: nix flake show --json | jq '.packages."aarch64-darwin"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
+      # - name: Build (Linux)
+      #   if: runner.os == 'Linux'
+      #   run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
+      #
+      # - name: Build (macOS)
+      #   if: runner.os == 'macOS'
+      #   run: nix flake show --json | jq '.packages."aarch64-darwin"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
       #
       # - name: Build flake (Linux)
       #   if: runner.os == 'Linux'
