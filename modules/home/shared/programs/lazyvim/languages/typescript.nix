@@ -11,7 +11,7 @@
     ];
 
     extraPackages = with pkgs; [
-      nodejs
+      nodejs_latest
       yarn
       typescript
       deno

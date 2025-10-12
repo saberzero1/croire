@@ -6,8 +6,9 @@ in
 {
   programs.zed-editor = {
     enable = false;
-    package = pkgs.zed-editor;
+    package = pkgs.zed-editor-fhs;
     extraPackages = with pkgs; [
+      nodejs_latest
       nixd
       jq
     ];

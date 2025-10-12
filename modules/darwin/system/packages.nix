@@ -11,6 +11,7 @@ in
       lazygit
       gitFull
       tree-sitter
+      nodejs_latest
 
       xcodes
       apple-sdk

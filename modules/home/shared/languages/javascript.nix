@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
   home.packages =
-    (with pkgs.nodePackages; [
+    (with pkgs.nodePackages_latest; [
+      nodejs
       live-server
       typescript
       prettier

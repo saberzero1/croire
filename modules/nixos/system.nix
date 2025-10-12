@@ -1,4 +1,8 @@
-{ pkgs, config, lib, ... }:
+{ pkgs
+, config
+, lib
+, ...
+}:
 {
   environment = {
     sessionVariables = {
@@ -44,6 +48,7 @@
       ghostty
       # gitbutler
       pre-commit
+      nodejs_latest
 
       libusb1
       wally-cli

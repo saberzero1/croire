@@ -49,9 +49,9 @@
     # Principle inputs (updated by `nix run .#update`)
 
     # Unified Nix sources
-    #nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    #nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
     devenv.url = "github:cachix/devenv";
     nix-direnv.url = "https://flakehub.com/f/nix-community/nix-direnv/*";
@@ -66,10 +66,10 @@
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
 
     # Doom Emacs
-    nix-doom-emacs-unstraightened = {
-      url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-doom-emacs-unstraightened = {
+    #   url = "github:marienz/nix-doom-emacs-unstraightened";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # CI
     devour-flake = {
@@ -111,10 +111,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:NotAShelf/nvf/v0.8";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nvf = {
+    #   url = "github:NotAShelf/nvf/v0.8";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     lazyvim.url = "github:pfassina/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {

@@ -1,6 +1,7 @@
-{ pkgs
-, flake
-, ...
+{
+  pkgs,
+  flake,
+  ...
 }:
 {
   # Nix packages to install to $HOME
@@ -39,7 +40,7 @@
       pika-backup
       restic
       rclone
-      rclone-browser
+      # rclone-browser
 
       # Encryption
       age-plugin-yubikey
