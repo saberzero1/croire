@@ -2,7 +2,6 @@
 {
   home.packages =
     (with pkgs.nodePackages; [
-      nodejs
       live-server
       typescript
       prettier
