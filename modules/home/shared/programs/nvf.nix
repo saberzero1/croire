@@ -9,7 +9,7 @@
   ];
 
   programs.nvf = {
-    enable = true;
+    enable = false;
     defaultEditor = true;
     settings = {
       vim = {

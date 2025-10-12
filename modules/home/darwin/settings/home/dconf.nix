@@ -1,4 +1,0 @@
-{ ... }:
-{
-  dconf.settings = { };
-}

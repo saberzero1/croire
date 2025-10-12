@@ -133,7 +133,7 @@ in
     useGlobalPkgs = true;
     backupFileExtension = "backup";
     users."saberzero1" = {
-      imports = [ (self + /configurations/home/saberzero1.nix) ];
+      imports = [ (self + /configurations/home/nixos/saberzero1.nix) ];
     };
   };
 

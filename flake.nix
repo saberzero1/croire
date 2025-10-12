@@ -49,14 +49,15 @@
     # Principle inputs (updated by `nix run .#update`)
 
     # Unified Nix sources
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    #nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
     devenv.url = "github:cachix/devenv";
     nix-direnv.url = "https://flakehub.com/f/nix-community/nix-direnv/*";
     flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1";
-    nixos-unified.url = "github:srid/nixos-unified";
-    #nixos-unified.url = "github:saberzero1/nixos-unified";
+    #nixos-unified.url = "github:srid/nixos-unified";
+    nixos-unified.url = "github:saberzero1/nixos-unified/overlays";
     nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
     systems.url = "github:nix-systems/default";
 
@@ -114,6 +115,7 @@
       url = "github:NotAShelf/nvf/v0.8";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lazyvim.url = "github:pfassina/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";

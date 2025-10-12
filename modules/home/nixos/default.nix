@@ -9,5 +9,6 @@
       ./programs
       ./services
       ./settings
+      ./../../../scripts/rclone.nix
     ];
 }

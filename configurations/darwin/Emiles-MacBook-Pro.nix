@@ -12,7 +12,7 @@ in
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    hostPlatform.system = "aarch64-darwin";
+    hostPlatform = "aarch64-darwin";
     config = {
       allowUnfree = true;
       # allowBroken = true;
@@ -39,7 +39,7 @@ in
     useUserPackages = true;
     useGlobalPkgs = true;
     users."emile" = {
-      imports = [ (self + /configurations/home/emile.nix) ];
+      imports = [ (self + /configurations/home/darwin/emile.nix) ];
     };
     backupFileExtension = "backup";
   };

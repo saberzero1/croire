@@ -1,14 +1,10 @@
 { flake
 , ...
 }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
 {
   imports = [
-    self.homeModules.shared
-    self.homeModules.nixos
+    flake.inputs.self.homeModules.default
+    flake.inputs.self.homeModules.linux-only
   ];
   home = {
     username = "saberzero1";
