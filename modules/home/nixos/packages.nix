@@ -65,7 +65,7 @@
       # driversi686Linux.amdvlk (deprecated, replacement is enabled by default nowadays)
 
       # Miscellaneous
-      calibre
+      # calibre
 
       # Sway
       swaylock
