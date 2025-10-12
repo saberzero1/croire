@@ -50,6 +50,10 @@ let
     lld = "${pkgs.eza}/bin/eza --icons --long --tree";
     lae = "${pkgs.eza}/bin/eza --icons --long --all --tree";
   };
+  nix = {
+    nixf = "nix flake";
+    nixfu = "nix flake update --option access-tokens \"github.com=$(gh auth token)\"";
+  };
   npm = {
     npb = "npm build"; # Build npm project
     npc = "npm cache"; # Clear npm cache
@@ -96,6 +100,7 @@ in
   // git
   // just
   // ls
+  // nix
   // npm
   // utility
   // vi
