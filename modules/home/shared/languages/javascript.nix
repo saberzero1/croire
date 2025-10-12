@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages =
-    (with pkgs.nodePackages_latest; [
+    (with pkgs.nodePackages; [
       nodejs
       live-server
       typescript
