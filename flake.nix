@@ -50,7 +50,7 @@
 
     # Unified Nix sources
     #nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     #nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
     devenv.url = "github:cachix/devenv";
@@ -157,46 +157,44 @@
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
-  outputs =
-    inputs:
-    inputs.nixos-unified.lib.mkFlake {
-      inherit inputs;
-      root = ./.;
-    };
   /*
     outputs =
-      inputs@{ self, ... }:
-      inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-        systems = [
-          "x86_64-linux"
-          # "aarch64-linux"
-          "aarch64-darwin"
-        ];
-        imports = (
-          with builtins; map (fn: ./modules/flake-parts/${fn}) (attrNames (readDir ./modules/flake-parts))
-        );
-
-        perSystem =
-          { lib, system, ... }:
-          {
-            # Make our overlay available to the devShell
-            # "Flake parts does not yet come with an endorsed module that initializes the pkgs argument.""
-            # So we must do this manually; https://flake.parts/overlays#consuming-an-overlay
-            _module.args.pkgs = import inputs.nixpkgs {
-              inherit system;
-              overlays = lib.attrValues self.overlays;
-              config.allowUnfree = true;
-            };
-          };
-
-        # https://omnix.page/om/ci.html
-        flake.om.ci.default.ROOT = {
-          dir = ".";
-          steps.flake-check.enable = false; # Doesn't make sense to check nixos config on darwin!
-          steps.custom = { };
-        };
+      inputs:
+      inputs.nixos-unified.lib.mkFlake {
+        inherit inputs;
+        root = ./.;
       };
   */
+  outputs =
+    inputs@{ self, ... }:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+        # "aarch64-linux"
+        "aarch64-darwin"
+      ];
+      imports = (with builtins; map (fn: ./modules/flake/${fn}) (attrNames (readDir ./modules/flake)));
+
+      perSystem =
+        { lib, system, ... }:
+        {
+          # Make our overlay available to the devShell
+          # "Flake parts does not yet come with an endorsed module that initializes the pkgs argument.""
+          # So we must do this manually; https://flake.parts/overlays#consuming-an-overlay
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = lib.attrValues self.overlays;
+            config.allowUnfree = true;
+          };
+        };
+
+      # https://omnix.page/om/ci.html
+      flake.om.ci.default.ROOT = {
+        dir = ".";
+        steps.flake-check.enable = false; # Doesn't make sense to check nixos config on darwin!
+        steps.custom = { };
+      };
+    };
   /*
     outputs =
       {
