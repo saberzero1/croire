@@ -76,6 +76,16 @@ jobs:
             system: aarch64-darwin
     needs: update-nix-packages
     steps:
+      - name: free disk space
+        if: runner.os == 'Linux'
+        run: |
+          df -h
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+          docker rmi $(docker image ls -aq)
+          df -h
+
       - uses: actions/checkout@v4
 
       - name: Install Determinate Nix
