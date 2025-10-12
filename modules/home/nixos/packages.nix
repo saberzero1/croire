@@ -1,7 +1,6 @@
-{
-  pkgs,
-  flake,
-  ...
+{ pkgs
+, flake
+, ...
 }:
 {
   # Nix packages to install to $HOME
