@@ -48,7 +48,6 @@
       ghostty
       # gitbutler
       pre-commit
-      nodejs_latest
 
       libusb1
       wally-cli
