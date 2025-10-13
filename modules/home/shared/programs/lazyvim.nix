@@ -8,6 +8,8 @@
   programs.lazyvim = {
     enable = true;
 
+    pluginSource = "nixpkgs";
+
     extraPackages = with pkgs; [
       fd
       git
