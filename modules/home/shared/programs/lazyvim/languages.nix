@@ -4,5 +4,5 @@
     ./languages
   ];
 
-  programs.lazyvim.treesitterParsers = builtins.attrValues pkgs.tree-sitter-grammars;
+  programs.lazyvim.treesitterParsers = with pkgs.tree-sitter-grammars; builtins.attrValues pkgs.tree-sitter-grammars;
 }
