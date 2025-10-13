@@ -294,22 +294,20 @@ in
         # echo "Setting tmux-sessionizer permissions"
         # sudo chmod +x "$HOME/.config/tmux/scripts/tmux-sessionizer"
 
-        echo "Setting up Sketchybar"
-        sudo rm -rf "${primaryUserHome}/.config/sketchybar"
-        cp -r "${self}/programs/sketchybar" "${primaryUserHome}/.config/sketchybar"
-        sudo chmod +x "${primaryUserHome}/.config/sketchybar/sketchybarrc"
-        sudo chmod +x "${primaryUserHome}/.config/sketchybar/plugins/init.sh"
-        sudo chmod +x "${primaryUserHome}/.config/sketchybar/plugins/aerospace.sh"
-        sudo mkdir -p "${primaryUserHome}/.local/share/sketchybar_lua"
-        sudo cp "${pkgs.sbarlua}/lib/lua/5.4/sketchybar.so" "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
-        sudo chmod +x "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
-        cd "${primaryUserHome}/.config/sketchybar/helpers/menus"
-        make
-        cd -
-        cd "${primaryUserHome}/.config/sketchybar/helpers/event_providers"
-        make
-        cd -
-        echo "Sketchybar setup done"
+        # echo "Setting up Sketchybar"
+        # sudo rm -rf "${primaryUserHome}/.config/sketchybar"
+        # sudo cp -r "${self}/programs/sketchybar" "${primaryUserHome}/.config/sketchybar"
+        # sudo chmod +x "${primaryUserHome}/.config/sketchybar/sketchybarrc"
+        # sudo mkdir -p "${primaryUserHome}/.local/share/sketchybar_lua"
+        # sudo cp "${pkgs.sbarlua}/lib/lua/5.4/sketchybar.so" "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
+        # sudo chmod +x "${primaryUserHome}/.local/share/sketchybar_lua/sketchybar.so"
+        # cd "${primaryUserHome}/.config/sketchybar/helpers/menus"
+        # make
+        # cd -
+        # cd "${primaryUserHome}/.config/sketchybar/helpers/event_providers"
+        # make
+        # cd -
+        # echo "Sketchybar setup done"
 
         sudo chown -R ${primaryUser}:staff "${primaryUserHome}/.config"
         # skhd --restart-service

@@ -8,9 +8,9 @@ let
       [
         "aerospace"
         "ghostty"
-        "skhd"
-        "sketchybar"
-        "yabai"
+        # "skhd"
+        # "sketchybar"
+        # "yabai"
       ]
     else
       [ ];

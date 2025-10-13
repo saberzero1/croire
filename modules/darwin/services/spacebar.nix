@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.spacebar = {
-    enable = false;
+    enable = true;
     package = pkgs.spacebar;
     config = {
       position = "top";
