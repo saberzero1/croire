@@ -19,6 +19,11 @@ in
       bun
 
       opencode
+
+      # Sketchybar
+      lua54Packages.lua
+      sketchybar-app-font
+      sbarlua
     ];
   };
 }

@@ -2,4 +2,5 @@
 package.path = "./?.lua;./?/init.lua;" .. package.path
 -- Load the sketchybar-package and prepare the helper binaries
 require("helpers")
+os.execute("(plugins/init.sh)")
 require("init")

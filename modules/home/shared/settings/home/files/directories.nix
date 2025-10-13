@@ -6,7 +6,11 @@ let
   extras =
     if isDarwin then
       [
+        "aerospace"
         "ghostty"
+        "skhd"
+        "sketchybar"
+        "yabai"
       ]
     else
       [ ];
@@ -25,14 +29,14 @@ in
         [
           "wezterm"
           # "nvim"
-          "aerospace"
+          # "aerospace"
           "ranger"
           #"ghostty"
           "rclone"
           "bat"
-          "skhd"
+          # "skhd"
           # "sketchybar"
-          "yabai"
+          # "yabai"
           # "tmux"
         ]
         ++ extras
