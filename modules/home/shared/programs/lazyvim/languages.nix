@@ -1,15 +1,14 @@
 { lib, pkgs, ... }:
 let
-  grammarPackages = with pkgs.tree-sitter-grammars; [
-  builtins.attrNames
-  (builtins.map (n: pkgs.tree-sitter-grammars.${n}))
-  (builtins.filter (pkg: !pkg.meta.broken))
-];
+  grammarPackages = builtins.attrValues pkgs.tree-sitter-grammars;
+  filterNonPackage = builtins.filter lib.isDerivation;
+  filterBroken = builtins.filter (n: !n.meta.broken);
+  allGrammars = filterBroken (filterNonPackage grammarPackages);
 in
 {
   imports = [
     ./languages
   ];
 
-  programs.lazyvim.treesitterParsers = grammarPackages;
+  programs.lazyvim.treesitterParsers = allGrammars;
 }
