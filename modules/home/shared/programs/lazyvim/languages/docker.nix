@@ -5,10 +5,6 @@
       lang.docker.enable = true;
     };
 
-    treesitterParsers = with pkgs.tree-sitter-grammars; [
-      tree-sitter-dockerfile
-    ];
-
     extraPackages = with pkgs; [
       hadolint
     ];
