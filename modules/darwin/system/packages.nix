@@ -18,7 +18,7 @@ in
 
       bun
 
-      opencode
+      # opencode
 
       # Sketchybar
       lua54Packages.lua
