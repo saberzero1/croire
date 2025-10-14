@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  grammarPackages = with pkgs; lib.pipe tree-sitter-grammars.sources [
+  grammarPackages = lib.pipe pkgs.tree-sitter-grammars [
   builtins.attrNames
   (builtins.map (n: tree-sitter-grammars.${n}))
   (builtins.filter (pkg: !pkg.meta.broken))
