@@ -66,10 +66,10 @@
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
 
     # Doom Emacs
-    # nix-doom-emacs-unstraightened = {
-    #   url = "github:marienz/nix-doom-emacs-unstraightened";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-doom-emacs-unstraightened = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "";
+    };
 
     # CI
     devour-flake = {
@@ -130,12 +130,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/*";
-    /*
-      ghostty = {
-        url = "github:clo4/ghostty-hm-module";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-    */
     ghostty.url = "github:ghostty-org/ghostty";
     gitbutler = {
       url = "github:gitbutlerapp/gitbutler";

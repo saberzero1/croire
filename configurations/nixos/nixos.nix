@@ -181,16 +181,20 @@ in
 
         # You can choose a specific set of servers from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
         # server_names = [ ... ];
-        server_names = [
-          "doh-cleanbrowsing-adult"
-          "cleanbrowsing-adult-doh"
-        ];
+        /*
+          server_names = [
+            "doh-cleanbrowsing-adult"
+            "cleanbrowsing-adult-doh"
+          ];
+        */
       };
     };
   };
 
   networking = {
     nameservers = [
+      "8.8.8.8"
+      "8.8.4.4"
       "127.0.0.1"
       "::1"
     ];
