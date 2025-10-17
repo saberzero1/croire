@@ -44,6 +44,7 @@
       grim
 
       dbus
+      vulkan-tools
 
       ghostty
       # gitbutler

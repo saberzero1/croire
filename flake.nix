@@ -68,7 +68,7 @@
     # Doom Emacs
     nix-doom-emacs-unstraightened = {
       url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # CI
@@ -129,6 +129,7 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl.url = "github:nix-community/nixGL";
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/*";
     ghostty.url = "github:ghostty-org/ghostty";
     gitbutler = {
