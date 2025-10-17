@@ -1,7 +1,7 @@
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+             '("melpa" . ,(format "http%s://melpa.org/packages/" s)))
 (package-initialize)
 (package-refresh-contents)
 
