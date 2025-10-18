@@ -12,7 +12,7 @@
       sass
       serve
       npm
-      vscode-langservers-extracted
+      # vscode-langservers-extracted
     ])
     ++ (with pkgs; [
       bun
