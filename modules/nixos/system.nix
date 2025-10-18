@@ -10,119 +10,103 @@
       MOZ_ENABLE_WAYLAND = "1";
     };
 
-    systemPackages =
-      with pkgs;
-      [
-        vlc
-        steam
-        obsidian
-        discord
-        nexusmods-app
-        steamtinkerlaunch
-        wofi
-        wofi-pass
-        gdm
-        gnome-shell
-        gnome-shell-extensions
-        gnome-browser-connector
-        gnomeExtensions.burn-my-windows
-        gnomeExtensions.app-icons-taskbar
-        gnomeExtensions.espresso
-        gnomeExtensions.memento-mori
-        gnomeExtensions.paperwm
-        gnome-remote-desktop
-        nautilus
-        nautilus-python
-        nautilus-open-any-terminal
-        xrdp
-        freerdp
-        albert
-        wlsunset
-        uwsm
-        mako
-        sway
-        slurp
-        wl-keyboard
-        grim
+    systemPackages = with pkgs; [
+      vlc
+      steam
+      obsidian
+      discord
+      nexusmods-app
+      steamtinkerlaunch
+      wofi
+      wofi-pass
+      gdm
+      gnome-shell
+      gnome-shell-extensions
+      gnome-browser-connector
+      gnomeExtensions.burn-my-windows
+      gnomeExtensions.app-icons-taskbar
+      gnomeExtensions.espresso
+      gnomeExtensions.memento-mori
+      gnomeExtensions.paperwm
+      gnome-remote-desktop
+      nautilus
+      nautilus-python
+      nautilus-open-any-terminal
+      xrdp
+      freerdp
+      albert
+      wlsunset
+      uwsm
+      mako
+      sway
+      slurp
+      wl-keyboard
+      grim
 
-        dbus
-        vulkan-tools
+      dbus
+      vulkan-tools
 
-        ghostty
-        # gitbutler
-        pre-commit
-        ispell
+      ghostty
+      # gitbutler
+      pre-commit
+      ispell
 
-        libusb1
-        wally-cli
-        zsa-udev-rules
-        qmk
-        gtk3
-        webkitgtk_6_0
-        libuuid
-        wineWowPackages.stable
-        wine
-        (pkgs.wine.override { wineBuild = "wine64"; })
-        wine64
-        wineWowPackages.staging
-        winetricks
-        evince
-        foliate
-        pulseaudioFull
-        avizo
-        libnotify
-        fuzzel
+      libusb1
+      wally-cli
+      zsa-udev-rules
+      qmk
+      gtk3
+      webkitgtk_6_0
+      libuuid
+      wineWowPackages.stable
+      wine
+      (pkgs.wine.override { wineBuild = "wine64"; })
+      wine64
+      wineWowPackages.staging
+      winetricks
+      evince
+      foliate
+      pulseaudioFull
+      avizo
+      libnotify
+      fuzzel
 
-        gnugrep
-        gnused
-        glib
-        glibc
-        libxml2
-        libxslt
-        zlib
-        pkg-config
-        nss
-        libnss_nis
-        curlFull
-        iwgtk
-        iperf2
-        sshpass
-        uget
-        wget2
-        gnumake
-        _7zz
-        parallel
-        libavif
-        libsoup_3
-        tree-sitter
+      gnugrep
+      gnused
+      glib
+      glibc
+      libxml2
+      libxslt
+      zlib
+      pkg-config
+      nss
+      libnss_nis
+      curlFull
+      iwgtk
+      iperf2
+      sshpass
+      uget
+      wget2
+      gnumake
+      _7zz
+      parallel
+      libavif
+      libsoup_3
+      tree-sitter
 
-        gimp3-with-plugins
-        inkscape-with-extensions
+      gimp3-with-plugins
+      inkscape-with-extensions
 
-        vscodium.fhs
-        vscode-extensions.asvetliakov.vscode-neovim
+      vscodium.fhs
+      vscode-extensions.asvetliakov.vscode-neovim
 
-        bun
-        gfn-electron
-        pipewire
-        libnss_nis
+      bun
+      gfn-electron
+      pipewire
+      libnss_nis
 
-        # opencode
-      ]
-      ++ (with pkgs.aspellDicts; [
-        aspell-dict-en
-        aspell-dict-nl
-        aspell-dict-en-computers
-        apsell-dict-en-science
-      ])
-      ++ (with pkgs.fonts; [
-        font-mplus
-        font-noto
-        font-jetbrains-mono
-        font-fira-code
-        font-hack
-        font-source-code-pro
-      ]);
+      # opencode
+    ];
     # Most of these are optional programs added by services.gnome.core-services
     # and etc., but the module sets other useful options so it is better to
     # exclude these instead of disabling the module.
