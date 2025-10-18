@@ -175,13 +175,11 @@ in
         enable = true;
         user = "saberzero1";
       };
+      gdm = {
+        enable = true;
+      };
     };
     xserver = {
-      displayManager = {
-        gdm = {
-          enable = true;
-        };
-      };
       enable = true;
       xkb = {
         layout = "us";
