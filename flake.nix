@@ -140,7 +140,7 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # zed.url = "github:zed-industries/zed";
+    zed.url = "github:zed-industries/zed";
 
     # Dotfiles
     totten = {

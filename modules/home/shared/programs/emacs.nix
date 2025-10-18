@@ -10,6 +10,6 @@ in
   programs.doom-emacs = {
     enable = true;
     doomDir = "${self}/programs/doom-emacs";
-    # doomLocalDir = "${config.home.homeDirectory}/doom.d";
+    doomLocalDir = "${config.home.homeDirectory}/doom.d";
   };
 }

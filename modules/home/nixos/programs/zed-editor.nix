@@ -5,8 +5,8 @@ let
 in
 {
   programs.zed-editor = {
-    enable = false;
-    package = pkgs.zed; # pkgs.zed-latest;
+    enable = true;
+    package = pkgs.zed-latest;
     extraPackages = with pkgs; [
       nodejs_latest
       nixd
