@@ -1,11 +1,103 @@
-om:
-  ci:
-    default:
-      ROOT:
-        dir: .
-        steps:
-          flake-check:
-            enable: false
-          build:
-            enable: true
-            impure: true
+ci:
+  default:
+    ROOT:
+      dir: .
+      steps:
+        lockfile:
+          enable: false
+        build:
+          enable: false
+        flake-check:
+          enable: false
+  build:
+    ROOT:
+      dir: .
+      steps:
+        lockfile:
+          enable: false
+        build:
+          enable: true
+          impure: true
+        flake-check:
+          enable: false
+  check:
+    ROOT:
+      dir: .
+      steps:
+        lockfile:
+          enable: false
+        build:
+          enable: false
+        flake-check:
+          enable: true
+  update:
+    ROOT:
+      dir: .
+      steps:
+        lockfile:
+          enable: false
+        build:
+          enable: false
+        flake-check:
+          enable: false
+        custom:
+          update-flake:
+            type: devshell
+            command:
+              - nix
+              - flake
+              - update
+              - --accept-flake-config
+  switch:
+    ROOT:
+      dir: .
+      steps:
+        lockfile:
+          enable: false
+        build:
+          enable: true
+          impure: true
+        flake-check:
+          enable: false
+        custom:
+          activate-configuration:
+            type: app
+            name: activate
+  clean:
+    ROOT:
+      dir: .
+      steps:
+        lockfile:
+          enable: false
+        build:
+          enable: false
+        flake-check:
+          enable: false
+        custom:
+          collect-garbage:
+            type: devshell
+            command:
+              - sudo
+              - nix-collect-garbage
+              - -d
+            systems:
+              - x86_64-linux
+              - aarch64-darwin
+          optimise-store:
+            type: devshell
+            command:
+              - sudo
+              - nix
+              - store
+              - optimise
+            systems:
+              - x86_64-linux
+              - aarch64-darwin
+          switch-to-configuration:
+            type: devshell
+            command:
+              - sudo
+              - /run/current-system/bin/switch-to-configuration
+              - boot
+            systems:
+              - x86_64-linux

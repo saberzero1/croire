@@ -21,8 +21,8 @@ jobs:
         include:
           - runner: ubuntu-latest
             system: x86_64-linux
-          - runner: macos-latest
-            system: aarch64-darwin
+          # - runner: macos-latest
+          #   system: aarch64-darwin
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,11 +32,24 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Update Flakes
-        run: nix flake update --accept-flake-config
+      - name: Install direnv
+        run: sudo apt-get update && sudo apt-get install -y direnv
+
+      - name: Install omnix
+        run: nix profile install nixpkgs#omnix
+
+      - name: Load environment variables
+        run: |
+          direnv allow .
+          direnv export gha > "$GITHUB_ENV"
+          sudo hostnamectl set-hostname nixos
+
+      - name: Omnix update flakes
+        run: |
+          om ci run .#update \
+            --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
 
       - name: Push changes
-        if: runner.os == 'Linux'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           file_pattern: "flake.lock programs/nvim/lazy-lock.json"
@@ -128,13 +141,14 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo scutil --set HostName Emiles-Macbook-Pro
 
-      - name: Run om ci
+      - name: Omnix build flakes
         run: |
-          om ci run \
+          om ci run .#build \
             --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
             --systems "${{ matrix.system }}" \
             --results=$HOME/omci.json \
-            -- --accept-flake-config --impure
+            -- --accept-flake-config
+
       # - name: Build (Linux)
       #   if: runner.os == 'Linux'
       #   run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
