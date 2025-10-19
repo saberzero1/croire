@@ -11,8 +11,8 @@ in
   programs = {
     doom-emacs = {
       enable = true;
-      doomDir = "${self}/programs/doom-emacs";
-      doomLocalDir = "${config.home.homeDirectory}/doom.d";
+      doomDir = "${self}/programs/doom";
+      doomLocalDir = "${config.home.homeDirectory}/.config/doom";
       provideEmacs = false;
     };
     emacs = {

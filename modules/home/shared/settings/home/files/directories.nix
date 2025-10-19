@@ -27,6 +27,7 @@ in
       })
       (
         [
+          "doom"
           "emacs"
           "wezterm"
           # "nvim"
