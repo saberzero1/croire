@@ -11,5 +11,6 @@ in
     enable = true;
     doomDir = "${self}/programs/doom-emacs";
     doomLocalDir = "${config.home.homeDirectory}/doom.d";
+    provideEmacs = true;
   };
 }
