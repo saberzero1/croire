@@ -27,6 +27,7 @@ in
       })
       (
         [
+          "emacs.d"
           "wezterm"
           # "nvim"
           # "aerospace"
