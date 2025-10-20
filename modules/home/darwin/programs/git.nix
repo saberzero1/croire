@@ -20,7 +20,7 @@ in
           [
             {
               path = "${config.home.homeDirectory}/work_gitconfig";
-              condition = "gitdir:${config.home.homeDirectory}/Work/External/Repos/";
+              condition = "gitdir:${config.home.homeDirectory}/Work/External/Repos/**";
             }
           ]
         else
