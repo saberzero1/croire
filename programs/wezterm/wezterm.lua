@@ -15,6 +15,8 @@ end
 
 local config = {
 	front_end = "WebGpu",
+  webgpu_preferred_adapter = "high-performance",
+  animation_fps = 60,
 	max_fps = 120,
 
 	font_size = 18.0,

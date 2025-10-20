@@ -8,7 +8,7 @@
   programs.lazyvim = {
     enable = true;
 
-    pluginSource = "nixpkgs";
+    pluginSource = "latest";
 
     extraPackages = with pkgs; [
       fd
