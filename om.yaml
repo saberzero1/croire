@@ -55,8 +55,7 @@ ci:
         lockfile:
           enable: false
         build:
-          enable: true
-          impure: true
+          enable: false
         flake-check:
           enable: false
         custom:
