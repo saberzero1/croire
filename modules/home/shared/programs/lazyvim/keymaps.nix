@@ -1,1 +1,3 @@
-{ }
+{
+  programs.lazyvim.config.keymaps = '''';
+}

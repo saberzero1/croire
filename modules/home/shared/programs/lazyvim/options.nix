@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.lazyvim.config.options = ''
     -- Set <space> as the leader key
