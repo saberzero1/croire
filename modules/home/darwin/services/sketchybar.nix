@@ -38,7 +38,7 @@
         INDEX=0
 
         for sid in $(aerospace list-workspaces --all); do
-          label="$${LABELS[$INDEX]:-}"
+          label="''${LABELS[$INDEX]:-}"
           item="space.$sid"
           LEFT_SPACE_ITEMS+=("$item")
 
@@ -101,11 +101,11 @@
           --subscribe cpu_temp system_stats
 
         # === ITEM GROUPS ===
-        LEFT_ITEMS=("$${LEFT_SPACE_ITEMS[@]}" front_app)
+        LEFT_ITEMS=("''${LEFT_SPACE_ITEMS[@]}" front_app)
         RIGHT_ITEMS=(colorlock volume battery net cpu_temp)
 
         # === COMPARTMENTS (Outer padding for clean edges; height=26 leaves vertical margin in 34pt bar) ===
-        ${pkgs.sketchybar}/bin/sketchybar --add bracket left_compartment "$${LEFT_ITEMS[@]}" \
+        ${pkgs.sketchybar}/bin/sketchybar --add bracket left_compartment "''${LEFT_ITEMS[@]}" \
           --set left_compartment \
             background.color="$CLR_COMP_BG" \
             background.corner_radius=8 \
@@ -114,7 +114,7 @@
             background.border_width=1 \
             background.drawing=on
 
-        ${pkgs.sketchybar}/bin/sketchybar --add bracket right_compartment "$${RIGHT_ITEMS[@]}" \
+        ${pkgs.sketchybar}/bin/sketchybar --add bracket right_compartment "''${RIGHT_ITEMS[@]}" \
           --set right_compartment \
             background.color="$CLR_COMP_BG" \
             background.corner_radius=8 \
