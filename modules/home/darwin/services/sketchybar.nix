@@ -33,7 +33,7 @@
 
         # === WORKSPACES ===
         ${pkgs.sketchybar}/bin/sketchybar --add event aerospace_workspace_change
-        LABELS=("" "" "" "󱙺" "" "" "" "" "" "") # "󰎇" "󰖣"
+        LABELS=("" "" "" "󱙺" "" "" "" "" "") # "󰎇" "󰖣"
         LEFT_SPACE_ITEMS=()
         INDEX=0
 
@@ -154,7 +154,7 @@
           exit 0
         fi
 
-        case "$${PERCENTAGE}" in
+        case "''${PERCENTAGE}" in
           9[0-9]|100) ICON=""
           ;;
           [6-8][0-9]) ICON=""
@@ -172,7 +172,7 @@
 
         # The item invoking this script (name $NAME) will get its icon and label
         # updated with the current battery status
-        ${pkgs.sketchybar}/bin/sketchybar --set "$NAME" icon="$ICON" label="$${PERCENTAGE}%"
+        ${pkgs.sketchybar}/bin/sketchybar --set "$NAME" icon="$ICON" label="''${PERCENTAGE}%"
       '';
     };
     clock = {
