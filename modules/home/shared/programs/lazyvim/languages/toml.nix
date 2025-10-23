@@ -2,7 +2,11 @@
 {
   programs.lazyvim = {
     extras = {
-      lang.toml.enable = true;
+      lang.toml = {
+        enable = true;
+        installDependencies = true;
+        installRuntimeDependencies = true;
+      };
     };
   };
 }

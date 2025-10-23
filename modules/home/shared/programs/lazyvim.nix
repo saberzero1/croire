@@ -11,7 +11,9 @@
     pluginSource = "latest";
 
     extraPackages = with pkgs; [
+      curl
       fd
+      fzf
       git
       lazygit
       ripgrep

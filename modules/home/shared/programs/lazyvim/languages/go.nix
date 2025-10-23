@@ -2,7 +2,11 @@
 {
   programs.lazyvim = {
     extras = {
-      lang.go.enable = true;
+      lang.go = {
+        enable = true;
+        installDependencies = true;
+        installRuntimeDependencies = true;
+      };
     };
 
     extraPackages = with pkgs; [

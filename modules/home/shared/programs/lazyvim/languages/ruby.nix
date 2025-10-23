@@ -2,7 +2,11 @@
 {
   programs.lazyvim = {
     extras = {
-      lang.ruby.enable = true;
+      lang.ruby = {
+        enable = true;
+        installDependencies = true;
+        installRuntimeDependencies = true;
+      };
     };
 
     extraPackages = with pkgs; [

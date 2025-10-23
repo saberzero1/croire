@@ -2,7 +2,11 @@
 {
   programs.lazyvim = {
     extras = {
-      lang.typescript.enable = true;
+      lang.typescript = {
+        enable = true;
+        installDependencies = true;
+        installRuntimeDependencies = true;
+      };
     };
 
     extraPackages = with pkgs; [

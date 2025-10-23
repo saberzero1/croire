@@ -2,7 +2,11 @@
 {
   programs.lazyvim = {
     extras = {
-      lang.rust.enable = true;
+      lang.rust = {
+        enable = true;
+        installDependencies = true;
+        installRuntimeDependencies = true;
+      };
     };
 
     extraPackages = with pkgs; [
