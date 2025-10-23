@@ -18,15 +18,15 @@ LABEL_PADDING=2            # Consistent label inner padding (unified from 4/2)
 COMP_PADDING=6             # Compartment outer padding (increased from bar-level 0 for breathing room)
 
 # === SYSTEM METRICS PROVIDER ===
-pkill -f stats_provider >/dev/null 2>&1
-/Users/nate/Documents/scripts/stats_provider --cpu temperature &
+# pkill -f stats_provider >/dev/null 2>&1
+# /Users/nate/Documents/scripts/stats_provider --cpu temperature &
 
 # === BAR (No outer padding; defer to compartments) ===
 sketchybar --bar position=top height=34 blur_radius=0 color="$CLR_BG" padding_left="$BAR_PADDING" padding_right="$BAR_PADDING"
 
 # === WORKSPACES ===
 sketchybar --add event aerospace_workspace_change
-LABELS=("" "" "" "󱙺" "" "" "" "" "" "") # "󰎇" "󰖣"
+LABELS=("" "" "" "󱙺" "" "" "" "" "") # "󰎇" "󰖣"
 LEFT_SPACE_ITEMS=()
 INDEX=0
 
@@ -57,8 +57,8 @@ done
 sketchybar --default \
   padding_left="$ITEM_PADDING" \
   padding_right="$ITEM_PADDING" \
-  icon.font="VictorMono Nerd Font:Regular:12.0" \
-  label.font="VictorMono Nerd Font:Regular:14.0" \
+  icon.font="FiraCode Nerd Font:Regular:12.0" \
+  label.font="FiraCode Nerd Font:Regular:14.0" \
   icon.color="$CLR_FG" \
   label.color="$CLR_FG" \
   icon.padding_left="$ICON_PADDING" \
@@ -89,13 +89,13 @@ sketchybar --add item battery right \
 sketchybar --add item net right \
   --set net update_freq=120 icon= script="$PLUGIN_DIR/wifi.sh"
 
-sketchybar --add item cpu_temp right \
-  --set cpu_temp icon= script="sketchybar --set cpu_temp label=\$CPU_TEMP" icon.padding_left="$COMP_PADDING" \
-  --subscribe cpu_temp system_stats
+# sketchybar --add item cpu_temp right \
+#   --set cpu_temp icon= script="sketchybar --set cpu_temp label=\$CPU_TEMP" icon.padding_left="$COMP_PADDING" \
+#   --subscribe cpu_temp system_stats
 
 # === ITEM GROUPS ===
 LEFT_ITEMS=("${LEFT_SPACE_ITEMS[@]}" front_app)
-RIGHT_ITEMS=(clock volume battery net cpu_temp)
+RIGHT_ITEMS=(colorlock volume battery net) # cpu_temp)
 
 # === COMPARTMENTS (Outer padding for clean edges; height=26 leaves vertical margin in 34pt bar) ===
 sketchybar --add bracket left_compartment "${LEFT_ITEMS[@]}" \

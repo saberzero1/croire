@@ -7,7 +7,7 @@
     # Mac
     fswatch
     dockutil
-    aerospace
+    # aerospace
 
     # sketchybar
     # lua54Packages.lua

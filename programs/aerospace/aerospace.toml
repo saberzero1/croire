@@ -12,7 +12,7 @@ after-startup-command = ['exec-and-forget sketchybar']
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE'
 ]
 
 # Start AeroSpace at login
@@ -60,12 +60,23 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+# [gaps]
+#     inner.horizontal = 0
+#     inner.vertical =   0
+#     outer.left =       0
+#     outer.bottom =     0
+#     outer.top =        0
+#     outer.right =      0
+
+[exec]
+    inherit-env-vars = true
+
 [gaps]
-    inner.horizontal = 0
-    inner.vertical =   0
+    inner.horizontal = 5
+    inner.vertical =   5
     outer.left =       0
     outer.bottom =     0
-    outer.top =        0
+    outer.top =        3
     outer.right =      0
 
 # 'main' binding mode declaration
@@ -131,7 +142,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-cmd-7 = 'workspace 7'
     alt-cmd-8 = 'workspace 8'
     alt-cmd-9 = 'workspace 9'
-    alt-cmd-0 = 'workspace 0'
+    # alt-cmd-0 = 'workspace 0'
     # alt-cmd-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
     # alt-cmd-b = 'workspace B'
     # alt-cmd-c = 'workspace C'
@@ -156,16 +167,16 @@ automatically-unhide-macos-hidden-apps = false
     # alt-cmd-z = 'workspace Z'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-    alt-cmd-ctrl-1 = 'move-node-to-workspace 1'
-    alt-cmd-ctrl-2 = 'move-node-to-workspace 2'
-    alt-cmd-ctrl-3 = 'move-node-to-workspace 3'
-    alt-cmd-ctrl-4 = 'move-node-to-workspace 4'
-    alt-cmd-ctrl-5 = 'move-node-to-workspace 5'
-    alt-cmd-ctrl-6 = 'move-node-to-workspace 6'
-    alt-cmd-ctrl-7 = 'move-node-to-workspace 7'
-    alt-cmd-ctrl-8 = 'move-node-to-workspace 8'
-    alt-cmd-ctrl-9 = 'move-node-to-workspace 9'
-    alt-cmd-ctrl-0 = 'move-node-to-workspace 0'
+    alt-cmd-ctrl-1 = 'move-node-to-workspace 1 --focus-follows-window'
+    alt-cmd-ctrl-2 = 'move-node-to-workspace 2 --focus-follows-window'
+    alt-cmd-ctrl-3 = 'move-node-to-workspace 3 --focus-follows-window'
+    alt-cmd-ctrl-4 = 'move-node-to-workspace 4 --focus-follows-window'
+    alt-cmd-ctrl-5 = 'move-node-to-workspace 5 --focus-follows-window'
+    alt-cmd-ctrl-6 = 'move-node-to-workspace 6 --focus-follows-window'
+    alt-cmd-ctrl-7 = 'move-node-to-workspace 7 --focus-follows-window'
+    alt-cmd-ctrl-8 = 'move-node-to-workspace 8 --focus-follows-window'
+    alt-cmd-ctrl-9 = 'move-node-to-workspace 9 --focus-follows-window'
+    # alt-cmd-ctrl-0 = 'move-node-to-workspace 0 --focus-follows-window'
     # alt-cmd-ctrl-a = 'move-node-to-workspace A'
     # alt-cmd-ctrl-b = 'move-node-to-workspace B'
     # alt-cmd-ctrl-c = 'move-node-to-workspace C'

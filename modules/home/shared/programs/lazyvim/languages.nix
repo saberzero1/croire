@@ -1,9 +1,11 @@
 { lib, pkgs, ... }:
 let
-  grammarPackages = builtins.attrValues pkgs.tree-sitter-grammars;
+  # grammarPackages = builtins.attrValues pkgs.tree-sitter-grammars;
+  grammarPackages = builtins.attrValues pkgs.vimPlugins.nvim-treesitter.grammarPlugins;
   filterNonPackage = builtins.filter lib.isDerivation;
   filterBroken = builtins.filter (n: !n.meta.broken);
-  allGrammars = filterBroken (filterNonPackage grammarPackages);
+  filterEmpty = builtins.filter (n: n.pname or "" != "");
+  allGrammars = filterEmpty (filterBroken (filterNonPackage grammarPackages));
 in
 {
   imports = [

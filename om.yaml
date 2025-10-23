@@ -63,6 +63,16 @@ ci:
           activate-configuration:
             type: app
             name: activate
+          reload-aerospace:
+            type: devshell
+            command:
+              - aerospace
+              - reload-config
+          reload-sketchybar:
+            type: devshell
+            command:
+              - sketchybar
+              - --reload
   clean:
     ROOT:
       dir: .

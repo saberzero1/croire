@@ -6,7 +6,7 @@ let
   extras =
     if isDarwin then
       [
-        "aerospace"
+        # "aerospace"
         "ghostty"
         # "skhd"
         # "sketchybar"
