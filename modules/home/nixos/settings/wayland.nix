@@ -1,7 +1,8 @@
-{ flake
-, pkgs
-, lib
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -59,10 +60,10 @@ in
             size = 3;
             passes = 1;
           };
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          # drop_shadow = true;
+          # shadow_range = 4;
+          # shadow_render_power = 3;
+          # "col.shadow" = "rgba(1a1a1aee)";
         };
 
         animations = {
@@ -87,9 +88,9 @@ in
           new_status = "master";
         };
 
-        gestures = {
-          workspace_swipe = false;
-        };
+        # gestures = {
+        #   workspace_swipe = false;
+        # };
 
         misc = {
           force_default_wallpaper = 0;
@@ -207,7 +208,7 @@ in
       extraConfig = ''
         # Resize submap
         bind = $mod, r, submap, resize
-        
+
         # Bindings that only work in resize submap
         submap = resize
         bind = , h, resizeactive, -10 0
