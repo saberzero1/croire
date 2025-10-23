@@ -68,11 +68,15 @@ ci:
             command:
               - aerospace
               - reload-config
+            systems:
+              - aarch64-darwin
           reload-sketchybar:
             type: devshell
             command:
               - sketchybar
               - --reload
+            systems:
+              - aarch64-darwin
   clean:
     ROOT:
       dir: .
