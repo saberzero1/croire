@@ -17,6 +17,8 @@
       "https://om.cachix.org"
       # determinate binaries
       "https://install.determinate.systems"
+      # hyprland cachix binaries
+      "https://hyprland.cachix.org"
       # personal cachix binaries
       "https://saberzero1.cachix.org"
     ];
@@ -35,6 +37,8 @@
       "om.cachix.org-1:ifal/RLZJKN4sbpScyPGqJ2+appCslzu7ZZF/C01f2Q="
       # determinate binaries public key
       "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+      # hyprland cachix binaries public key
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       # personal cachix binaries public key
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
     ];

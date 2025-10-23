@@ -11,9 +11,9 @@ in
       {
         position = "top";
         height = 38;
-        modules-left = [ "sway/workspaces" ];
+        modules-left = [ "hyprland/workspaces" ];
         modules-right = [
-          "sway/mode"
+          "hyprland/mode"
           "network"
           "pulseaudio"
           "battery"
@@ -24,11 +24,11 @@ in
           "tray"
           "custom/power"
         ];
-        "sway/workspaces" = {
+        "hyprland/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
           format = "{icon}";
-          persistent_workspaces = {
+          persistent-workspaces = {
             "1" = [ ];
             "2" = [ ];
             "3" = [ ];
@@ -107,7 +107,7 @@ in
             ];
           };
         };
-        "sway/mode" = {
+        "hyprland/mode" = {
           format = "<span style=\"italic\">{}</span>";
         };
         "tray" = {
@@ -154,7 +154,7 @@ in
       color: #24283b;
       border-radius: 5px;
       }
-      #sway-mode, #custom-date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
+      #hyprland-mode, #custom-date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
       background-color: #24283b;
       padding: 5px 10px;
       margin: 5px 0px;
@@ -201,7 +201,7 @@ in
       #cpu {
       color: #7aa2f7;
       }
-      #sway-mode {
+      #hyprland-mode {
       color: #c0caf5;
       }
       #tray {

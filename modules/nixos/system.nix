@@ -38,10 +38,19 @@
       wlsunset
       uwsm
       mako
-      sway
+      hyprland
       slurp
       wl-keyboard
       grim
+
+      # hyprland build dependencies
+      epoll-shim
+      libexecinfo
+      libnotify
+      tracy
+      wayland-protocols
+      hyprland-protocols
+      udis86
 
       dbus
       vulkan-tools
@@ -329,17 +338,16 @@
     uwsm = {
       enable = true;
       waylandCompositors = {
-        sway = {
-          prettyName = "Sway";
-          comment = "Sway compositor managed by UWSM";
-          binPath = "/run/current-system/sw/bin/sway";
+        hyprland = {
+          prettyName = "Hyprland";
+          comment = "Hyprland compositor managed by UWSM";
+          binPath = "/run/current-system/sw/bin/Hyprland";
         };
       };
     };
 
-    sway = {
+    hyprland = {
       enable = true;
-      wrapperFeatures.gtk = true;
     };
 
     nano = {
@@ -385,7 +393,7 @@
       enable = true;
       user = "saberzero1";
     };
-    defaultSession = "sway";
+    defaultSession = "hyprland";
   };
 
 }

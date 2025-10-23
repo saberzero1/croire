@@ -9,134 +9,218 @@ let
 in
 {
   wayland = {
-    windowManager.sway = {
+    windowManager.hyprland = {
       enable = true;
-      xwayland = true;
-      checkConfig = true;
-      systemd.xdgAutostart = true;
-      wrapperFeatures = {
-        gtk = true;
+      xwayland.enable = true;
+      systemd = {
+        enable = true;
       };
-      config = {
-        modifier = "Mod4";
-        input = {
-          "*" = {
-            xkb_layout = "us";
-          };
-          "12951:6505:ZSA_Technology_Labs_Moonlander_Mark_I" = {
-            xkb_layout = "us";
-          };
-          "type:touchpad" = {
-            dwt = "enabled";
-            tap = "enabled";
-            middle_emulation = "enabled";
-          };
-        };
-        output = {
-          "*" = {
-            bg = "${self}/assets/backgrounds/wallpaper_night.png fill";
-          };
-        };
-        terminal = "${pkgs.wezterm}/bin/wezterm";
-        keybindings =
-          let
-            mod = "Mod4+Mod1";
-            mod2 = "Mod4+Mod1+Ctrl";
-            left = "h";
-            down = "j";
-            up = "k";
-            right = "l";
-          in
-          lib.mkOptionDefault {
-            "${mod}+q" = "kill";
-            "${mod}+c" = "reload";
-            "Print" = "exec ${self}/programs/sway-interactive-screenshot/sway-interactive-screenshot";
-            "Shift+Print" =
-              "exec ${self}/programs/sway-interactive-screenshot/sway-interactive-screenshot --video";
-            "${mod}+${left}" = "focus left";
-            "${mod}+${down}" = "focus down";
-            "${mod}+${up}" = "focus up";
-            "${mod}+${right}" = "focus right";
-            "${mod}+Left" = "focus left";
-            "${mod}+Down" = "focus down";
-            "${mod}+Up" = "focus up";
-            "${mod}+Right" = "focus right";
-            "${mod2}+${left}" = "move left";
-            "${mod2}+${down}" = "move down";
-            "${mod2}+${up}" = "move up";
-            "${mod2}+${right}" = "move right";
-            "${mod2}+Left" = "move left";
-            "${mod2}+Down" = "move down";
-            "${mod2}+Up" = "move up";
-            "${mod2}+Right" = "move right";
-            "${mod}+1" = "workspace number 1";
-            "${mod}+2" = "workspace number 2";
-            "${mod}+3" = "workspace number 3";
-            "${mod}+4" = "workspace number 4";
-            "${mod}+5" = "workspace number 5";
-            "${mod}+6" = "workspace number 6";
-            "${mod}+7" = "workspace number 7";
-            "${mod}+8" = "workspace number 8";
-            "${mod}+9" = "workspace number 9";
-            "${mod}+0" = "workspace number 10";
-            "${mod2}+1" = "move container to workspace number 1";
-            "${mod2}+2" = "move container to workspace number 2";
-            "${mod2}+3" = "move container to workspace number 3";
-            "${mod2}+4" = "move container to workspace number 4";
-            "${mod2}+5" = "move container to workspace number 5";
-            "${mod2}+6" = "move container to workspace number 6";
-            "${mod2}+7" = "move container to workspace number 7";
-            "${mod2}+8" = "move container to workspace number 8";
-            "${mod2}+9" = "move container to workspace number 9";
-            "${mod2}+0" = "move container to workspace number 10";
-            "XF86MonBrightnessUp" = "exec lightctl up";
-            "XF86MonBrightnessDown" = "exec lightctl down";
-            "XF86AudioRaiseVolume" = "exec volumectl -u up";
-            "XF86AudioLowerVolume" = "exec volumectl -u down";
-            "XF86AudioMute" = "exec volumectl toggle-mute";
-            "XF86AudioMicMute" = "exec volumectl -m toggle-mute";
-            "${mod}+g" = "exec wl-copy \"\"";
-            "${mod}+Minus" = "splitv";
-            "${mod}+Backslash" = "splith";
-            "${mod}+f" = "fullscreen";
-            "${mod2}+space" = "floating toggle";
-            "${mod}+o" = "exec wofi &";
-            "${mod2}+o" = "exec wofi &";
-            "Mod4+l" =
-              "exec swaylock -i ${self}/assets/backgrounds/wallpaper_night_blurred.png --indicator-radius 100 --indicator-thickness 7 --hide-keyboard-layout --disable-caps-lock-text --ignore-empty-password --ring-color b4f9f8 --key-hl-color c0caf5 --line-color 00000000 --inside-color b4f9f888 --separator-color 00000000 --ring-wrong-color f7768e --line-wrong-color 00000000 --inside-wrong-color f7768e88 --text-wrong-color 00000000 --ring-ver-color 7aa2f7 --line-ver-color 00000000 --inside-ver-color 7aa2f788 --text-ver-color 00000000 --ring-clear-color 565f89 --line-clear-color 00000000 --inside-clear-color 565f8988 --text-clear-color 00000000 --ring-caps-lock-color e0af68 --line-caps-lock-color 00000000 --inside-caps-lock-color e0af6888 --text-caps-lock-color 00000000";
-          };
-        startup = [
-          { command = "systemctl --user import-environment"; }
-          { command = "avizo-service"; }
-          { command = "configure-gtk"; }
-          { command = "dbus-sway-environment"; }
+      settings = {
+        monitor = ",preferred,auto,1";
+
+        exec-once = [
+          "systemctl --user import-environment"
+          "avizo-service"
+          # "waybar"
+          "mako"
+          "eval $(ssh-agent -s)"
+          "eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
+          "hyprpaper"
         ];
-        bars = [ ];
-        defaultWorkspace = "workspace number 1";
+
+        env = [
+          "XCURSOR_SIZE,24"
+          "QT_QPA_PLATFORMTHEME,qt5ct"
+        ];
+
+        input = {
+          kb_layout = "us";
+          follow_mouse = 1;
+          touchpad = {
+            natural_scroll = false;
+          };
+          sensitivity = 0;
+        };
+
+        general = {
+          gaps_in = 5;
+          gaps_out = 10;
+          border_size = 1;
+          "col.active_border" = "rgba(7aa2f7ee)";
+          "col.inactive_border" = "rgba(414868aa)";
+          layout = "dwindle";
+          allow_tearing = false;
+        };
+
+        decoration = {
+          rounding = 5;
+          blur = {
+            enabled = true;
+            size = 3;
+            passes = 1;
+          };
+          # drop_shadow = true;
+          # shadow_range = 4;
+          # shadow_render_power = 3;
+          # "col.shadow" = "rgba(1a1a1aee)";
+        };
+
+        animations = {
+          enabled = true;
+          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+          animation = [
+            "windows, 1, 7, myBezier"
+            "windowsOut, 1, 7, default, popin 80%"
+            "border, 1, 10, default"
+            "borderangle, 1, 8, default"
+            "fade, 1, 7, default"
+            "workspaces, 1, 6, default"
+          ];
+        };
+
+        dwindle = {
+          pseudotile = true;
+          preserve_split = true;
+        };
+
+        master = {
+          new_status = "master";
+        };
+
+        # gestures = {
+        #   workspace_swipe = false;
+        # };
+
+        misc = {
+          force_default_wallpaper = 0;
+        };
+
+        # Window rules
+        windowrulev2 = [
+          "workspace 1, class:^(ghostty)$"
+          "workspace 1, class:^(wezterm)$"
+          "workspace 2, class:^(obsidian)$"
+          "workspace 3, class:^(zen)$"
+          "workspace 4, class:^(zed)$"
+          "workspace 4, class:^(codium-url-handler)$"
+          "workspace 4, class:^(wine)$"
+          "workspace 5, class:^(discord)$"
+          "float, class:^(com.github.finefindus.eyedropper)$"
+        ];
+
+        # Keybindings
+        "$mod" = "SUPER_ALT";
+        "$mod2" = "SUPER_ALT_CTRL";
+
+        bind = [
+          # Applications
+          "$mod, t, exec, ghostty"
+          "$mod, g, exec, ghostty"
+          "$mod, n, exec, obsidian"
+          "$mod, w, exec, zen"
+          "$mod, z, exec, zed"
+          "$mod, d, exec, discord"
+
+          # Window management
+          "$mod, q, killactive,"
+          "$mod, c, exec, hyprctl reload"
+          "$mod, f, fullscreen,"
+          "$mod2, space, togglefloating,"
+
+          # Launcher
+          "$mod, o, exec, wofi --show drun"
+          "$mod2, o, exec, wofi --show drun"
+
+          # Screenshots
+          ", Print, exec, grimblast copy area"
+          "SHIFT, Print, exec, grimblast save area ~/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')"
+
+          # Lock screen
+          "SUPER, l, exec, hyprlock"
+
+          # Focus movement
+          "$mod, h, movefocus, l"
+          "$mod, l, movefocus, r"
+          "$mod, k, movefocus, u"
+          "$mod, j, movefocus, d"
+          "$mod, left, movefocus, l"
+          "$mod, right, movefocus, r"
+          "$mod, up, movefocus, u"
+          "$mod, down, movefocus, d"
+
+          # Window movement
+          "$mod2, h, movewindow, l"
+          "$mod2, l, movewindow, r"
+          "$mod2, k, movewindow, u"
+          "$mod2, j, movewindow, d"
+          "$mod2, left, movewindow, l"
+          "$mod2, right, movewindow, r"
+          "$mod2, up, movewindow, u"
+          "$mod2, down, movewindow, d"
+
+          # Workspace switching
+          "$mod, 1, workspace, 1"
+          "$mod, 2, workspace, 2"
+          "$mod, 3, workspace, 3"
+          "$mod, 4, workspace, 4"
+          "$mod, 5, workspace, 5"
+          "$mod, 6, workspace, 6"
+          "$mod, 7, workspace, 7"
+          "$mod, 8, workspace, 8"
+          "$mod, 9, workspace, 9"
+          "$mod, 0, workspace, 10"
+
+          # Move to workspace
+          "$mod2, 1, movetoworkspace, 1"
+          "$mod2, 2, movetoworkspace, 2"
+          "$mod2, 3, movetoworkspace, 3"
+          "$mod2, 4, movetoworkspace, 4"
+          "$mod2, 5, movetoworkspace, 5"
+          "$mod2, 6, movetoworkspace, 6"
+          "$mod2, 7, movetoworkspace, 7"
+          "$mod2, 8, movetoworkspace, 8"
+          "$mod2, 9, movetoworkspace, 9"
+          "$mod2, 0, movetoworkspace, 10"
+
+          # Splitting
+          "$mod, minus, layoutmsg, splitv"
+          "$mod, backslash, layoutmsg, splith"
+        ];
+
+        bindm = [
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
+        ];
+
+        binde = [
+          # Media keys
+          ", XF86MonBrightnessUp, exec, lightctl up"
+          ", XF86MonBrightnessDown, exec, lightctl down"
+          ", XF86AudioRaiseVolume, exec, volumectl -u up"
+          ", XF86AudioLowerVolume, exec, volumectl -u down"
+          ", XF86AudioMute, exec, volumectl toggle-mute"
+          ", XF86AudioMicMute, exec, volumectl -m toggle-mute"
+        ];
       };
+
+      # Extra configuration for submap bindings
       extraConfig = ''
-        client.focused          #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
-        client.focused_inactive #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
-        client.unfocused        #414868 #24283b #a9b1d6 #7dcfff   #414868
-        client.urgent           #e0af68 #e0af68 #1d202f #7dcfff   #e0af68
-        client.background       #ffffff
-        default_border pixel 1
-        assign [app_id="ghostty"] workspace number 1
-        assign [app_id="wezterm"] workspace number 1
-        assign [app_id="obsidian"] workspace number 2
-        assign [app_id="zen"] workspace number 3 
-        assign [app_id="zen"] workspace number 3
-        assign [app_id="zed"] workspace number 4
-        assign [app_id="codium-url-handler"] workspace number 4
-        assign [app_id="wine"] workspace number 4
-        assign [app_id="discord"] workspace number 5
-        for_window [app_id="com.github.finefindus.eyedropper"] floating enable
-        include @sysconfdir@/sway/config.d/*
-      '';
-      extraSessionCommands = ''
-        eval "$(ssh-agent -s)"
-        eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-        export SSH_AUTH_SOCK
+        # Resize submap
+        bind = $mod, r, submap, resize
+
+        # Bindings that only work in resize submap
+        submap = resize
+        bind = , h, resizeactive, -10 0
+        bind = , l, resizeactive, 10 0
+        bind = , k, resizeactive, 0 -10
+        bind = , j, resizeactive, 0 10
+        bind = , left, resizeactive, -10 0
+        bind = , right, resizeactive, 10 0
+        bind = , up, resizeactive, 0 -10
+        bind = , down, resizeactive, 0 10
+        bind = , escape, submap, reset
+        bind = , return, submap, reset
+        submap = reset
       '';
     };
   };

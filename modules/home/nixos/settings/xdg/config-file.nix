@@ -12,12 +12,6 @@ in
     "paperwm/user.js" = {
       source = "${self}/programs/paperwm/user.js";
     };
-    "sway-interactive-screenshot/config.toml" = {
-      source = "${self}/programs/sway-interactive-screenshot/config.toml";
-    };
-    "sway-interactive-screenshot/sway-interactive-screenshot" = {
-      source = "${self}/programs/sway-interactive-screenshot/sway-interactive-screenshot";
-    };
     ".assets/backgrounds" = {
       source = "${self}/assets/backgrounds";
       recursive = true;

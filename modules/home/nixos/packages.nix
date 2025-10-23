@@ -66,12 +66,12 @@
       # Miscellaneous
       # calibre
 
-      # Sway
-      swaylock
-      swayidle
+      # Hyprland
+      hyprlock
+      hypridle
       wl-clipboard
       wf-recorder
-      sway-contrib.grimshot
+      grimblast
       mako # notification daemon
       grim
       slurp

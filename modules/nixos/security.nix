@@ -26,7 +26,7 @@
 
     pam = {
       services = {
-        swaylock = {
+        hyprlock = {
           enableGnomeKeyring = true;
           gnupg.enable = true;
         };
