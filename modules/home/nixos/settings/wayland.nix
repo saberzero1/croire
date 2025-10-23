@@ -26,6 +26,7 @@ in
           "mako"
           "eval $(ssh-agent -s)"
           "eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
+          "hyprpaper"
         ];
 
         env = [
