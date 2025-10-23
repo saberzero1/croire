@@ -4,6 +4,8 @@ let
   inherit (inputs) self;
   primaryUser = "emile";
   primaryUserHome = "/Users/${primaryUser}";
+  # wallpaper = "${self}/assets/backgrounds/wallpaper_temple_trail_tokyo-night.png";
+  wallpaper = "${self}/assets/backgrounds/wallpaper_pixel_neon.png";
 in
 {
   # Configure macOS system
@@ -308,6 +310,9 @@ in
         # make
         # cd -
         # echo "Sketchybar setup done"
+
+        echo "Setting wallpaper"
+        /usr/bin/osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"${wallpaper}\""
 
         sudo chown -R ${primaryUser}:staff "${primaryUserHome}/.config"
         # skhd --restart-service
