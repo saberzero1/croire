@@ -43,6 +43,15 @@
       wl-keyboard
       grim
 
+      # hyprland build dependencies
+      epoll-shim
+      libexecinfo
+      libnotify
+      tracy
+      wayland-protocols
+      hyprland-protocols
+      udis86
+
       dbus
       vulkan-tools
 

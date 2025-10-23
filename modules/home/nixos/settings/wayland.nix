@@ -14,11 +14,11 @@ in
       xwayland.enable = true;
       systemd = {
         enable = true;
-        variables = ["--all"];
+        variables = [ "--all" ];
       };
       settings = {
         monitor = ",preferred,auto,1";
-        
+
         exec-once = [
           "systemctl --user import-environment"
           "avizo-service"
@@ -121,24 +121,24 @@ in
           "$mod, w, exec, zen"
           "$mod, z, exec, zed"
           "$mod, d, exec, discord"
-          
+
           # Window management
           "$mod, q, killactive,"
           "$mod, c, exec, hyprctl reload"
           "$mod, f, fullscreen,"
           "$mod2, space, togglefloating,"
-          
+
           # Launcher
           "$mod, o, exec, wofi --show drun"
           "$mod2, o, exec, wofi --show drun"
-          
+
           # Screenshots
           ", Print, exec, grimblast copy area"
           "SHIFT, Print, exec, grimblast save area ~/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')"
-          
+
           # Lock screen
           "SUPER, l, exec, hyprlock"
-          
+
           # Focus movement
           "$mod, h, movefocus, l"
           "$mod, l, movefocus, r"
@@ -148,7 +148,7 @@ in
           "$mod, right, movefocus, r"
           "$mod, up, movefocus, u"
           "$mod, down, movefocus, d"
-          
+
           # Window movement
           "$mod2, h, movewindow, l"
           "$mod2, l, movewindow, r"
@@ -158,7 +158,7 @@ in
           "$mod2, right, movewindow, r"
           "$mod2, up, movewindow, u"
           "$mod2, down, movewindow, d"
-          
+
           # Workspace switching
           "$mod, 1, workspace, 1"
           "$mod, 2, workspace, 2"
@@ -170,7 +170,7 @@ in
           "$mod, 8, workspace, 8"
           "$mod, 9, workspace, 9"
           "$mod, 0, workspace, 10"
-          
+
           # Move to workspace
           "$mod2, 1, movetoworkspace, 1"
           "$mod2, 2, movetoworkspace, 2"
@@ -182,14 +182,14 @@ in
           "$mod2, 8, movetoworkspace, 8"
           "$mod2, 9, movetoworkspace, 9"
           "$mod2, 0, movetoworkspace, 10"
-          
+
           # Splitting
           "$mod, minus, layoutmsg, splitv"
           "$mod, backslash, layoutmsg, splith"
-          
+
           # Resize mode
           "$mod, r, submap, resize"
-          
+
           # Resize submap bindings
           "resize, h, resizeactive, -10 0"
           "resize, l, resizeactive, 10 0"
