@@ -190,20 +190,6 @@ in
           "$mod, r, submap, resize"
         ];
 
-        # Bindings that apply when in resize submap
-        "bind:resize" = [
-          ", h, resizeactive, -10 0"
-          ", l, resizeactive, 10 0"
-          ", k, resizeactive, 0 -10"
-          ", j, resizeactive, 0 10"
-          ", left, resizeactive, -10 0"
-          ", right, resizeactive, 10 0"
-          ", up, resizeactive, 0 -10"
-          ", down, resizeactive, 0 10"
-          ", escape, submap, reset"
-          ", return, submap, reset"
-        ];
-
         bindm = [
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
@@ -219,6 +205,21 @@ in
           ", XF86AudioMicMute, exec, volumectl -m toggle-mute"
         ];
       };
+
+      # Extra configuration for submap bindings
+      extraConfig = ''
+        # Bindings for resize submap
+        bind = , h, resizeactive, -10 0
+        bind = , l, resizeactive, 10 0
+        bind = , k, resizeactive, 0 -10
+        bind = , j, resizeactive, 0 10
+        bind = , left, resizeactive, -10 0
+        bind = , right, resizeactive, 10 0
+        bind = , up, resizeactive, 0 -10
+        bind = , down, resizeactive, 0 10
+        bind = , escape, submap, reset
+        bind = , return, submap, reset
+      '';
     };
   };
 }
