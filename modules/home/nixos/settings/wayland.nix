@@ -189,6 +189,18 @@ in
           
           # Resize mode
           "$mod, r, submap, resize"
+          
+          # Resize submap bindings
+          "resize, h, resizeactive, -10 0"
+          "resize, l, resizeactive, 10 0"
+          "resize, k, resizeactive, 0 -10"
+          "resize, j, resizeactive, 0 10"
+          "resize, left, resizeactive, -10 0"
+          "resize, right, resizeactive, 10 0"
+          "resize, up, resizeactive, 0 -10"
+          "resize, down, resizeactive, 0 10"
+          "resize, escape, submap, reset"
+          "resize, return, submap, reset"
         ];
 
         bindm = [
@@ -204,25 +216,6 @@ in
           ", XF86AudioLowerVolume, exec, volumectl -u down"
           ", XF86AudioMute, exec, volumectl toggle-mute"
           ", XF86AudioMicMute, exec, volumectl -m toggle-mute"
-        ];
-
-        # Resize submap
-        submap = [
-          "resize"
-        ];
-        
-        # Binds for resize mode
-        "bind, resize" = [
-          "h, resizeactive, -10 0"
-          "l, resizeactive, 10 0"
-          "k, resizeactive, 0 -10"
-          "j, resizeactive, 0 10"
-          "left, resizeactive, -10 0"
-          "right, resizeactive, 10 0"
-          "up, resizeactive, 0 -10"
-          "down, resizeactive, 0 10"
-          "escape, submap, reset"
-          "return, submap, reset"
         ];
       };
     };
