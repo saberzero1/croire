@@ -26,7 +26,9 @@ sketchybar --bar position=top height=34 blur_radius=0 color="$CLR_BG" padding_le
 
 # === WORKSPACES ===
 sketchybar --add event aerospace_workspace_change
-LABELS=("" "" "" "󱙺" "" "" "" "" "") # "󰎇" "󰖣"
+# https://www.nerdfonts.com/cheat-sheet
+# Search for nf-md-* for icons that are actually rendered well at small sizes
+LABELS=("󰆍" "󰏭" "󰖟" "󰆈" "󰊻" "󰢹" "󱓼" "󰣀" "󱓼" "󱓼") # "" "" "" "󱙺" "" "󰎇" "󰖣"
 LEFT_SPACE_ITEMS=()
 INDEX=0
 
@@ -93,9 +95,12 @@ sketchybar --add item net right \
 #   --set cpu_temp icon= script="sketchybar --set cpu_temp label=\$CPU_TEMP" icon.padding_left="$COMP_PADDING" \
 #   --subscribe cpu_temp system_stats
 
+sketchybar --add item cpu right \
+  --set cpu update_freq=1 script="$PLUGIN_DIR/cpu.sh"
+
 # === ITEM GROUPS ===
 LEFT_ITEMS=("${LEFT_SPACE_ITEMS[@]}" front_app)
-RIGHT_ITEMS=(colorlock volume battery net) # cpu_temp)
+RIGHT_ITEMS=(clock volume battery net cpu) # cpu_temp)
 
 # === COMPARTMENTS (Outer padding for clean edges; height=26 leaves vertical margin in 34pt bar) ===
 sketchybar --add bracket left_compartment "${LEFT_ITEMS[@]}" \

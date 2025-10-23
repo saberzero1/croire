@@ -25,6 +25,11 @@ in
       target = ".config/sketchybar/plugins/clock.sh";
       text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/clock.sh";
     };
+    cpu = {
+      executable = true;
+      target = ".config/sketchybar/plugins/cpu.sh";
+      text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/cpu.sh";
+    };
     front_app = {
       executable = true;
       target = ".config/sketchybar/plugins/front_app.sh";

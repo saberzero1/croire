@@ -10,11 +10,12 @@
     };
 
     extraPackages = with pkgs; [
-      rustup
+      bacon
       cargo
+      clippy
       rust-analyzer
       rustfmt
-      clippy
+      rustup
     ];
   };
 }

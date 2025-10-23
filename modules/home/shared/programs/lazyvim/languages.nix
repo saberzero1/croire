@@ -11,5 +11,5 @@ in
     ./languages
   ];
 
-  programs.lazyvim.treesitterParsers = allGrammars;
+  # programs.lazyvim.treesitterParsers = allGrammars;
 }
