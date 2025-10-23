@@ -1,8 +1,7 @@
-{
-  flake,
-  pkgs,
-  lib,
-  ...
+{ flake
+, pkgs
+, lib
+, ...
 }:
 let
   inherit (flake) inputs;
@@ -22,7 +21,7 @@ in
         exec-once = [
           "systemctl --user import-environment"
           "avizo-service"
-          "waybar"
+          # "waybar"
           "mako"
           "eval $(ssh-agent -s)"
           "eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
