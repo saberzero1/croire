@@ -54,6 +54,7 @@
 
       dbus
       vulkan-tools
+      lsof
 
       ghostty
       # gitbutler
