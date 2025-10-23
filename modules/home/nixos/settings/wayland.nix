@@ -185,9 +185,6 @@ in
           # Splitting
           "$mod, minus, layoutmsg, splitv"
           "$mod, backslash, layoutmsg, splith"
-
-          # Resize mode - enter resize submap
-          "$mod, r, submap, resize"
         ];
 
         bindm = [
@@ -208,7 +205,11 @@ in
 
       # Extra configuration for submap bindings
       extraConfig = ''
-        # Bindings for resize submap
+        # Resize submap
+        bind = $mod, r, submap, resize
+        
+        # Bindings that only work in resize submap
+        submap = resize
         bind = , h, resizeactive, -10 0
         bind = , l, resizeactive, 10 0
         bind = , k, resizeactive, 0 -10
@@ -219,6 +220,7 @@ in
         bind = , down, resizeactive, 0 10
         bind = , escape, submap, reset
         bind = , return, submap, reset
+        submap = reset
       '';
     };
   };
