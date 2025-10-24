@@ -1,10 +1,7 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports =
-    builtins.map (fn: ./${fn})
-      (
-        builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
-      )
+    inputs.self.lib.croire.autoImport ./.
     ++ [
       ./programs
       ./services

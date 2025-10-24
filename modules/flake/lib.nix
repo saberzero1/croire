@@ -1,6 +1,6 @@
 # Reusable utility functions as a flake-parts module
-# This exports library functions that can be accessed without relative path calculations
-{ ... }:
+# This exports library functions that can be used in imports (available early in evaluation)
+{ inputs, ... }:
 let
   # Automatically import all .nix files in a directory except default.nix
   # This eliminates the need for the common pattern:
@@ -8,11 +8,11 @@ let
   #     builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
   #   )
   #
-  # Usage in modules with flake context:
-  #   imports = flake.lib.croire.autoImport ./.;
-  #
-  # Usage in modules with inputs access:
-  #   imports = inputs.self.lib.croire.autoImport ./.;
+  # IMPORTANT: Can be used in imports because it's available via inputs.self.lib
+  # Usage in any module:
+  #   { inputs, ... }: {
+  #     imports = inputs.self.lib.croire.autoImport ./.;
+  #   }
   autoImport =
     dir:
     builtins.map (fn: dir + "/${fn}") (
@@ -23,9 +23,9 @@ let
   # Useful for generating lists from filenames (e.g., homebrew casks)
   #
   # Usage:
-  #   casks = flake.lib.croire.filesAsNames ./.;
-  #   OR
-  #   casks = inputs.self.lib.croire.filesAsNames ./.;
+  #   { inputs, ... }: let
+  #     casks = inputs.self.lib.croire.filesAsNames ./.;
+  #   in { ... }
   filesAsNames =
     dir:
     builtins.map
@@ -36,9 +36,9 @@ let
   # This provides deep auto-importing for nested directory structures
   #
   # Usage:
-  #   imports = flake.lib.croire.autoImportRecursive ./.;
-  #   OR
-  #   imports = inputs.self.lib.croire.autoImportRecursive ./.;
+  #   { inputs, ... }: {
+  #     imports = inputs.self.lib.croire.autoImportRecursive ./.;
+  #   }
   autoImportRecursive =
     dir:
     let
@@ -64,9 +64,8 @@ let
 in
 {
   # Export to flake.lib.croire for use throughout the configuration
-  # This makes functions available as:
-  #   - flake.lib.croire.* (in modules with flake context)
-  #   - inputs.self.lib.croire.* (in modules with inputs access)
+  # This makes functions available as inputs.self.lib.croire.*
+  # These can be used even in imports because inputs.self.lib is available early
   flake.lib.croire = {
     inherit autoImport filesAsNames autoImportRecursive;
   };
