@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ croire-lib, lib, pkgs, ... }:
 let
   grammarPackages = builtins.attrValues pkgs.vimPlugins.nvim-treesitter-parsers;
   filterNonPackage = builtins.filter lib.isDerivation;
@@ -7,7 +7,7 @@ let
   allGrammars = filterEmpty (filterBroken (filterNonPackage grammarPackages));
 in
 {
-  imports = (import ../../../../../../lib/auto-import.nix) ./.;
+  imports = croire-lib.autoImport ./.;
 
   programs.lazyvim.extraPackages =
     # with pkgs.vimPlugins;

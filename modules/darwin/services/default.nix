@@ -1,4 +1,4 @@
-{ ... }:
+{ croire-lib, ... }:
 {
-  imports = (import ../../../lib/auto-import.nix) ./.;
+  imports = croire-lib.autoImport ./.;
 }

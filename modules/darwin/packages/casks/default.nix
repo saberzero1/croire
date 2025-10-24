@@ -1,7 +1,7 @@
-{ ... }:
+{ croire-lib, ... }:
 let
   casks =
-    (import ../../../../lib/files-as-names.nix) ./.
+    croire-lib.filesAsNames ./.
     ++ [
       "nikitabobko/tap/aerospace"
     ];

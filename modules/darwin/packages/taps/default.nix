@@ -1,6 +1,6 @@
-{ ... }:
+{ croire-lib, ... }:
 let
-  taps = (import ../../../../lib/files-as-names.nix) ./.;
+  taps = croire-lib.filesAsNames ./.;
 in
 {
   homebrew.taps = taps;
