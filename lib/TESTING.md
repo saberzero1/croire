@@ -2,13 +2,13 @@
 
 This document describes how to test the library functions to ensure they work correctly.
 
-## Testing croire-lib Functions
+## Testing flake.inputs.self.lib.croire Functions
 
-The library functions are accessed via the `croire-lib` parameter in modules. Testing is done by verifying the configuration builds successfully.
+The library functions are accessed via `flake.inputs.self.lib.croire` in modules. Testing is done by verifying the configuration builds successfully.
 
 ### Testing autoImport
 
-Check that modules using `croire-lib.autoImport` work correctly:
+Check that modules using `flake.inputs.self.lib.croire.autoImport` work correctly:
 
 ```bash
 # From the repository root
@@ -16,9 +16,8 @@ Check that modules using `croire-lib.autoImport` work correctly:
 nix-instantiate --eval --strict -E '
   let
     flake = builtins.getFlake (toString ./.);
-    croire-lib = flake.lib.croire;
   in
-    croire-lib.autoImport ./modules/nixos/services
+    flake.lib.croire.autoImport ./modules/nixos/services
 '
 ```
 
@@ -26,16 +25,15 @@ Expected: A list of paths to all .nix files in the directory except default.nix
 
 ### Testing filesAsNames
 
-Check that `croire-lib.filesAsNames` extracts filenames correctly:
+Check that `flake.inputs.self.lib.croire.filesAsNames` extracts filenames correctly:
 
 ```bash
 # From the repository root
 nix-instantiate --eval --strict -E '
   let
     flake = builtins.getFlake (toString ./.);
-    croire-lib = flake.lib.croire;
   in
-    croire-lib.filesAsNames ./modules/darwin/packages/casks
+    flake.lib.croire.filesAsNames ./modules/darwin/packages/casks
 '
 ```
 
@@ -64,10 +62,10 @@ sudo om ci run .#switch
 
 ## Verification Checklist
 
-- [ ] All 36 modules updated to use `croire-lib` parameter
+- [ ] All 36+ modules updated to use `flake.inputs.self.lib.croire` pattern
 - [ ] No syntax errors in modified files
 - [ ] modules/flake/lib.nix exports `flake.lib.croire` functions
-- [ ] Parent modules pass `croire-lib` via `_module.args`
+- [ ] All modules have `flake` parameter in their function signature
 - [ ] Documentation updated
 - [ ] Configuration builds successfully
 - [ ] No broken imports
@@ -76,14 +74,14 @@ sudo om ci run .#switch
 
 ### Module Parameter Not Available
 
-If a module can't find `croire-lib`, verify:
-1. The parent module has `flake` context
-2. The parent module passes `croire-lib` via `_module.args`
-3. The child module declares `croire-lib` in its parameters
+If a module can't find the library functions, verify:
+1. The module has `flake` in its parameter list: `{ flake, ... }:`
+2. The usage is correct: `flake.inputs.self.lib.croire.autoImport ./.`
+3. The flake-parts module `/modules/flake/lib.nix` is being loaded
 
 ### Syntax Errors
 
 Check for:
-- Missing `croire-lib` in module parameters
-- Incorrect function call syntax
+- Missing `flake` in module parameters
+- Incorrect function call syntax (should be `flake.inputs.self.lib.croire.*`)
 - Missing semicolons

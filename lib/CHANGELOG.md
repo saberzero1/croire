@@ -3,18 +3,21 @@
 ## Version 2.0 - 2025-10-24
 
 ### Changed
-- **Breaking**: Converted to flake-parts module with `croire-lib` parameter
-- All modules now use `croire-lib` parameter instead of relative imports
-- No more path calculations required
+- **Breaking**: Converted to flake-parts module using `flake.inputs.self.lib.croire`
+- All modules now use `flake` parameter to access library functions via `flake.inputs.self.lib.croire`
+- No more path calculations or module arguments required
+- Functions work in `imports` attribute (unlike module arguments)
 
 ### Removed
 - **Deprecated files removed**: `lib/auto-import.nix`, `lib/files-as-names.nix`
 - **Deprecated scripts removed**: `scripts/import-list.nix`, `scripts/import.nix`, `programs/nix/auto-import.nix`
 - All references to legacy standalone files from documentation
+- Module argument approach (no longer needed)
 
 ### Added
-- Module argument system using `_module.args` to pass `croire-lib` to child modules
-- Updated all parent modules to provide `croire-lib` parameter
+- Flake-parts module exporting library functions via `flake.lib.croire`
+- Access to functions through `flake.inputs.self.lib.croire` in all modules
+- Comprehensive documentation with before/after examples
 
 ## Initial Release - 2025-10-24
 
@@ -117,13 +120,13 @@ For new modules or when updating existing ones:
 
 **New pattern:**
 ```nix
-{ ... }:
+{ flake, ... }:
 {
-  imports = (import ../../../lib/auto-import.nix) ./.;
+  imports = flake.inputs.self.lib.croire.autoImport ./.;
 }
 ```
 
-Adjust the number of `../` based on directory depth from repository root.
+Simply add `flake` to your module parameters and use `flake.inputs.self.lib.croire` to access the library functions. No path calculations needed!
 
 ### Breaking Changes
 
