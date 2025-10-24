@@ -53,6 +53,11 @@ A unified NixOS configuration repository that manages system configurations for 
   om ci run .#switch
   ```
 
+- **Clean and garbage collect**:
+  ```shell
+  om ci run .#clean
+  ```
+
 ### Additional Commands
 
 - **Check flake validity**:
