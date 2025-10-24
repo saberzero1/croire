@@ -3,16 +3,12 @@
 { flake, ... }:
 {
   imports = [
+    flake.inputs.self.darwinModules.croire-lib
     ./dock
     ./packages
     ./services
     ./system
   ];
-
-  # Make library functions available to all child modules
-  _module.args = {
-    croire-lib = flake.lib.croire;
-  };
 
   # These users can add Nix caches.
   nix = {
