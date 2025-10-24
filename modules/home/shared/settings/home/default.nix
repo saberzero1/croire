@@ -1,10 +1,7 @@
-{ ... }:
+{ flake, ... }:
 {
   imports =
-    builtins.map (fn: ./${fn})
-      (
-        builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
-      )
+    flake.inputs.self.lib.croire.autoImport ./.
     ++ [
       ./files
     ];

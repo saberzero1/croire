@@ -1,10 +1,7 @@
-{ ... }:
+{ flake, ... }:
 let
   casks =
-    builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf ./${fn}))
-      (
-        builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
-      )
+    flake.inputs.self.lib.croire.filesAsNames ./.
     ++ [
       "nikitabobko/tap/aerospace"
     ];

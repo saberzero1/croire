@@ -1,8 +1,6 @@
-{ ... }:
+{ flake, ... }:
 let
-  taps = builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf ./${fn})) (
-    builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
-  );
+  taps = flake.inputs.self.lib.croire.filesAsNames ./.;
 in
 {
   homebrew.taps = taps;
