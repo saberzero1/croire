@@ -58,7 +58,7 @@ let
         d:
         builtins.map (file: d + "/${file}") (
           builtins.filter (file: builtins.hasSuffix ".nix" file && file != "default.nix") (files d)
-          );
+        );
     in
     validFiles dir;
 in

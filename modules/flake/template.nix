@@ -54,7 +54,7 @@
                 let
                   f = filters path;
                 in
-                !(f.nixosOnly || f.darwinOnly);
+                  !(f.nixosOnly || f.darwinOnly);
             };
           };
 
@@ -80,7 +80,7 @@
                 let
                   f = filters path;
                 in
-                !(f.darwinOnly || f.homeOnly);
+                  !(f.darwinOnly || f.homeOnly);
             };
           };
 
@@ -115,7 +115,7 @@
                 let
                   f = filters path;
                 in
-                !(f.nixosOnly || f.homeOnly);
+                  !(f.nixosOnly || f.homeOnly);
             };
           };
       };
