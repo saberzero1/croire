@@ -2,17 +2,43 @@
 
 This directory contains reusable utility functions for the Croire Nix configuration.
 
+⚠️ **Note**: These standalone files are kept for backwards compatibility. New code should use the `croire-lib` module parameter instead.
+
+## Recommended Usage (via croire-lib parameter)
+
+All modules in this repository automatically receive the `croire-lib` parameter from their parent modules. This is the preferred way to use the library functions:
+
+```nix
+{ croire-lib, ... }:
+{
+  # Auto-import all .nix files
+  imports = croire-lib.autoImport ./.;
+  
+  # Get filenames as names
+  casks = croire-lib.filesAsNames ./.;
+  
+  # Recursively import (rare use case)
+  imports = croire-lib.autoImportRecursive ./.;
+}
+```
+
+### Benefits of croire-lib parameter:
+- ✅ No path calculations needed
+- ✅ Type-safe via module system
+- ✅ More readable code
+- ✅ Consistent across all modules
+
 ## Available Functions
 
-### auto-import.nix
+### croire-lib.autoImport
 
 Automatically imports all `.nix` files in a directory except `default.nix`.
 
 **Usage:**
 ```nix
-{ ... }:
+{ croire-lib, ... }:
 {
-  imports = (import ../../../lib/auto-import.nix) ./.;
+  imports = croire-lib.autoImport ./.;
 }
 ```
 
@@ -23,15 +49,15 @@ imports = builtins.map (fn: ./${fn}) (
 );
 ```
 
-### files-as-names.nix
+### croire-lib.filesAsNames
 
 Gets a list of filenames (without `.nix` extension) from a directory, excluding `default.nix`.
 
 **Usage:**
 ```nix
-{ ... }:
+{ croire-lib, ... }:
 let
-  casks = (import ../../../../lib/files-as-names.nix) ./.;
+  casks = croire-lib.filesAsNames ./.;
 in
 {
   homebrew.casks = casks;
@@ -45,32 +71,52 @@ casks = builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.ba
 );
 ```
 
-## Flake Library Functions
+### croire-lib.autoImportRecursive
 
-These functions are also available via the flake library for modules that have access to the `flake` context:
+Recursively imports all `.nix` files in a directory tree (excluding `default.nix`).
 
+**Usage:**
 ```nix
-{ flake, ... }:
+{ croire-lib, ... }:
 {
-  # Auto-import all .nix files
-  imports = flake.lib.autoImport ./.;
-  
-  # Get filenames as names
-  casks = flake.lib.filesAsNames ./.;
-  
-  # Recursively import all .nix files in a directory tree
-  imports = flake.lib.autoImportRecursive ./.;
+  imports = croire-lib.autoImportRecursive ./.;
 }
 ```
 
-See `/modules/flake/lib.nix` for the flake library implementation.
+## How It Works
 
-## Path Calculation
+The library functions are defined in `/modules/flake/lib.nix` as a flake-parts module that exports `flake.lib.croire.*`.
 
-The number of `../` needed depends on the file's depth from the repository root:
+Parent modules pass these functions to their children via `_module.args`:
 
-- `modules/nixos/services/default.nix` → `../../../lib/auto-import.nix`
-- `modules/home/shared/programs/default.nix` → `../../../../lib/auto-import.nix`
-- `modules/home/shared/programs/lazyvim/plugins/default.nix` → `../../../../../../lib/auto-import.nix`
+```nix
+# In parent module (e.g., modules/nixos/default.nix)
+{ flake, ... }:
+{
+  imports = [ ./services ./packages ];
+  
+  _module.args = {
+    croire-lib = flake.lib.croire;
+  };
+}
+```
 
-Count the directory levels from your file to the repository root, then use that many `../`.
+Child modules then receive `croire-lib` as a parameter and can use the functions directly.
+
+## Legacy Usage (not recommended)
+
+The standalone files in this directory (`auto-import.nix`, `files-as-names.nix`) are kept for backwards compatibility but should not be used in new code:
+
+```nix
+# ❌ Old way (not recommended)
+{ ... }:
+{
+  imports = (import ../../../lib/auto-import.nix) ./.;
+}
+
+# ✅ New way (recommended)
+{ croire-lib, ... }:
+{
+  imports = croire-lib.autoImport ./.;
+}
+```

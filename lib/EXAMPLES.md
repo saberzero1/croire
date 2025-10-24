@@ -1,6 +1,6 @@
 # Library Functions - Usage Examples
 
-This document provides practical examples of how to use the library functions.
+This document provides practical examples of how to use the library functions via the `croire-lib` parameter.
 
 ## Example 1: Simple Auto-Import
 
@@ -18,9 +18,9 @@ This document provides practical examples of how to use the library functions.
 
 **After:**
 ```nix
-{ ... }:
+{ croire-lib, ... }:
 {
-  imports = (import ../../../lib/auto-import.nix) ./.;
+  imports = croire-lib.autoImport ./.;
 }
 ```
 
@@ -48,10 +48,10 @@ This document provides practical examples of how to use the library functions.
 
 **After:**
 ```nix
-{ ... }:
+{ croire-lib, ... }:
 {
   imports =
-    (import ../../../lib/auto-import.nix) ./.
+    croire-lib.autoImport ./.
     ++ [
       ./languages
       ./programs
@@ -85,10 +85,10 @@ in
 
 **After:**
 ```nix
-{ ... }:
+{ croire-lib, ... }:
 let
   casks =
-    (import ../../../../lib/files-as-names.nix) ./.
+    croire-lib.filesAsNames ./.
     ++ [
       "nikitabobko/tap/aerospace"
     ];
@@ -98,18 +98,27 @@ in
 }
 ```
 
-## Example 4: Using Flake Library (for modules with flake context)
+## Example 4: Parent Module Passing croire-lib
 
-**File:** `modules/nixos/default.nix` (hypothetical)
+**File:** `modules/nixos/default.nix`
+
+This shows how parent modules make `croire-lib` available to their children:
 
 ```nix
-{ flake, ... }:
+{ flake, pkgs, ... }:
 {
-  # Using flake.lib instead of standalone import
-  imports = flake.lib.autoImport ./services;
+  imports = [
+    ./services
+    ./packages
+    ./system
+  ];
+
+  # Make library functions available to all child modules
+  _module.args = {
+    croire-lib = flake.lib.croire;
+  };
   
-  # Or for getting names
-  casks = flake.lib.filesAsNames ./packages/casks;
+  # ... rest of configuration
 }
 ```
 
@@ -138,7 +147,7 @@ in
 
 **After:**
 ```nix
-{ lib, pkgs, ... }:
+{ croire-lib, lib, pkgs, ... }:
 let
   grammarPackages = builtins.attrValues pkgs.vimPlugins.nvim-treesitter-parsers;
   filterNonPackage = builtins.filter lib.isDerivation;
@@ -147,28 +156,28 @@ let
   allGrammars = filterEmpty (filterBroken (filterNonPackage grammarPackages));
 in
 {
-  imports = (import ../../../../../../lib/auto-import.nix) ./.;
+  imports = croire-lib.autoImport ./.;
 
   programs.lazyvim.extraPackages = allGrammars;
 }
 ```
 
-## Path Calculation Guide
+## How croire-lib Is Passed Down
 
-To determine the correct path:
+The `croire-lib` parameter is automatically available in all modules through the module argument system:
 
-1. Count the number of directory levels from your file to the repository root
-2. Use that many `../` segments
+1. **Flake-parts module** (`/modules/flake/lib.nix`) exports `flake.lib.croire.*`
+2. **Parent modules** receive `flake` context and pass `croire-lib` via `_module.args`
+3. **Child modules** receive `croire-lib` as a parameter
 
-Examples:
-- `modules/nixos/services/default.nix` → 3 levels → `../../../lib/auto-import.nix`
-- `modules/darwin/packages/casks/default.nix` → 4 levels → `../../../../lib/files-as-names.nix`
-- `modules/home/shared/programs/lazyvim/plugins/default.nix` → 6 levels → `../../../../../../lib/auto-import.nix`
+No path calculations needed! Just use `{ croire-lib, ... }:` in your module signature.
 
 ## Benefits
 
-1. **Reduced code duplication**: The pattern appears only once in the library
-2. **Easier maintenance**: Updates to the pattern logic only need to happen in one place
-3. **Better readability**: The intent is clearer with a named function
-4. **Consistency**: All files use the same approach
-5. **Documentation**: The library files are documented with usage examples
+1. **No path calculations**: Access functions via parameter, not relative imports
+2. **Type-safe**: Module system validates the parameter exists
+3. **Reduced code duplication**: Pattern defined once in flake-parts module
+4. **Easier maintenance**: Updates happen in one place
+5. **Better readability**: `croire-lib.autoImport` is clearer than nested builtins
+6. **Consistency**: All modules use the same pattern
+7. **Documentation**: Functions are well-documented
