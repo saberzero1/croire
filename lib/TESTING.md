@@ -2,38 +2,52 @@
 
 This document describes how to test the library functions to ensure they work correctly.
 
-## Manual Testing
+## Testing croire-lib Functions
 
-### Testing auto-import.nix
+The library functions are accessed via the `croire-lib` parameter in modules. Testing is done by verifying the configuration builds successfully.
 
-1. Navigate to any module with a `default.nix` that uses the function
-2. Check that the imports work correctly:
+### Testing autoImport
+
+Check that modules using `croire-lib.autoImport` work correctly:
 
 ```bash
 # From the repository root
-nix-instantiate --eval --strict -E '(import ./modules/nixos/services/default.nix { }).imports'
+# Verify a module can be evaluated
+nix-instantiate --eval --strict -E '
+  let
+    flake = builtins.getFlake (toString ./.);
+    croire-lib = flake.lib.croire;
+  in
+    croire-lib.autoImport ./modules/nixos/services
+'
 ```
 
 Expected: A list of paths to all .nix files in the directory except default.nix
 
-### Testing files-as-names.nix
+### Testing filesAsNames
 
-1. Test with a directory that uses it (e.g., homebrew casks):
+Check that `croire-lib.filesAsNames` extracts filenames correctly:
 
 ```bash
 # From the repository root
-nix-instantiate --eval --strict -E 'let casks = (import ./lib/files-as-names.nix) ./modules/darwin/packages/casks; in casks'
+nix-instantiate --eval --strict -E '
+  let
+    flake = builtins.getFlake (toString ./.);
+    croire-lib = flake.lib.croire;
+  in
+    croire-lib.filesAsNames ./modules/darwin/packages/casks
+'
 ```
 
 Expected: A list of filenames without the .nix extension
 
-### Testing flake.lib functions
+### Testing flake.lib.croire exports
 
 Check that the flake exports the library functions:
 
 ```bash
 # From the repository root
-nix eval .#lib.autoImport --apply 'x: "function exists"'
+nix eval .#lib.croire.autoImport --apply 'x: "function exists"'
 ```
 
 ## Integration Testing
@@ -50,41 +64,26 @@ sudo om ci run .#switch
 
 ## Verification Checklist
 
-- [ ] All 33+ files updated with new import patterns
+- [ ] All 36 modules updated to use `croire-lib` parameter
 - [ ] No syntax errors in modified files
-- [ ] Path calculations are correct (count ../s match directory depth)
-- [ ] lib/ directory created with all utilities
-- [ ] modules/flake/lib.nix created and exports functions
-- [ ] Documentation files created (README.md, TESTING.md)
-- [ ] Legacy files updated with deprecation notices
+- [ ] modules/flake/lib.nix exports `flake.lib.croire` functions
+- [ ] Parent modules pass `croire-lib` via `_module.args`
+- [ ] Documentation updated
 - [ ] Configuration builds successfully
 - [ ] No broken imports
 
 ## Common Issues
 
-### Path Calculation Errors
+### Module Parameter Not Available
 
-If imports fail, verify the path depth:
-```bash
-# Count directory levels from file to repo root
-echo "path/to/module" | awk -F/ '{print NF}'
-```
-
-Use this many `../` in the import path.
+If a module can't find `croire-lib`, verify:
+1. The parent module has `flake` context
+2. The parent module passes `croire-lib` via `_module.args`
+3. The child module declares `croire-lib` in its parameters
 
 ### Syntax Errors
 
 Check for:
-- Missing parentheses around the import
-- Incorrect directory argument (should be `./.`)
+- Missing `croire-lib` in module parameters
+- Incorrect function call syntax
 - Missing semicolons
-
-## Rollback
-
-If issues are found, the original pattern can be restored:
-
-```nix
-imports = builtins.map (fn: ./${fn}) (
-  builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
-);
-```

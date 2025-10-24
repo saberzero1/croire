@@ -1,13 +1,27 @@
 # Library Functions Changelog
 
+## Version 2.0 - 2025-10-24
+
+### Changed
+- **Breaking**: Converted to flake-parts module with `croire-lib` parameter
+- All modules now use `croire-lib` parameter instead of relative imports
+- No more path calculations required
+
+### Removed
+- **Deprecated files removed**: `lib/auto-import.nix`, `lib/files-as-names.nix`
+- **Deprecated scripts removed**: `scripts/import-list.nix`, `scripts/import.nix`, `programs/nix/auto-import.nix`
+- All references to legacy standalone files from documentation
+
+### Added
+- Module argument system using `_module.args` to pass `croire-lib` to child modules
+- Updated all parent modules to provide `croire-lib` parameter
+
 ## Initial Release - 2025-10-24
 
 ### Added
 
 #### Core Library Functions
-- **auto-import.nix**: Standalone function to automatically import all .nix files in a directory
-- **files-as-names.nix**: Standalone function to extract filenames without .nix extension
-- **modules/flake/lib.nix**: Flake-integrated library with three functions:
+- **modules/flake/lib.nix**: Flake-parts module exporting `flake.lib.croire` with three functions:
   - `autoImport`: Auto-import all .nix files in a directory
   - `filesAsNames`: Extract filenames without .nix extension  
   - `autoImportRecursive`: Recursively import all .nix files in a directory tree
@@ -20,7 +34,7 @@
 
 ### Changed
 
-Updated 33 files to use the new centralized library functions:
+Updated 36 modules to use the `croire-lib` parameter:
 
 #### NixOS Modules (2 files)
 - `modules/nixos/services/default.nix`
@@ -62,22 +76,9 @@ Updated 33 files to use the new centralized library functions:
 - `modules/home/shared/settings/home/files/default.nix`
 - `modules/home/shared/settings/xdg/default.nix`
 
-#### Legacy Files (3 files)
-- `programs/nix/auto-import.nix` - Added deprecation notice
-- `scripts/import-list.nix` - Added deprecation notice
-- `scripts/import.nix` - Fixed typo and added deprecation notice
-
-### Deprecated
-
-The following files are deprecated but kept for backwards compatibility:
-- `programs/nix/auto-import.nix`
-- `scripts/import-list.nix`
-
-New code should use `/lib/auto-import.nix` instead.
-
 ### Removed
 
-- 33 instances of the repeated auto-import pattern:
+- 33+ instances of the repeated auto-import pattern:
   ```nix
   builtins.map (fn: ./${fn}) (
     builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))

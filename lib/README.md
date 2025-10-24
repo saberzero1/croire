@@ -1,12 +1,10 @@
 # Library Functions
 
-This directory contains reusable utility functions for the Croire Nix configuration.
+This directory contains documentation for the reusable utility functions available via the `croire-lib` parameter.
 
-⚠️ **Note**: These standalone files are kept for backwards compatibility. New code should use the `croire-lib` module parameter instead.
+## Usage
 
-## Recommended Usage (via croire-lib parameter)
-
-All modules in this repository automatically receive the `croire-lib` parameter from their parent modules. This is the preferred way to use the library functions:
+All modules in this repository automatically receive the `croire-lib` parameter from their parent modules. This provides access to library functions without any import statements:
 
 ```nix
 { croire-lib, ... }:
@@ -22,8 +20,9 @@ All modules in this repository automatically receive the `croire-lib` parameter 
 }
 ```
 
-### Benefits of croire-lib parameter:
+### Benefits:
 - ✅ No path calculations needed
+- ✅ No import statements required
 - ✅ Type-safe via module system
 - ✅ More readable code
 - ✅ Consistent across all modules
@@ -101,22 +100,4 @@ Parent modules pass these functions to their children via `_module.args`:
 }
 ```
 
-Child modules then receive `croire-lib` as a parameter and can use the functions directly.
-
-## Legacy Usage (not recommended)
-
-The standalone files in this directory (`auto-import.nix`, `files-as-names.nix`) are kept for backwards compatibility but should not be used in new code:
-
-```nix
-# ❌ Old way (not recommended)
-{ ... }:
-{
-  imports = (import ../../../lib/auto-import.nix) ./.;
-}
-
-# ✅ New way (recommended)
-{ croire-lib, ... }:
-{
-  imports = croire-lib.autoImport ./.;
-}
-```
+Child modules then receive `croire-lib` as a parameter and can use the functions directly without any import statements.
