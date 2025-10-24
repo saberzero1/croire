@@ -1,7 +1,10 @@
-{ croire-lib, ... }:
+{ ... }:
 {
   imports =
-    croire-lib.autoImport ./.
+    builtins.map (fn: ./${fn})
+      (
+        builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
+      )
     ++ [
       ./home
       ./xdg

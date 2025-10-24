@@ -12,9 +12,6 @@
     ./system
   ];
 
-  # Make library functions available to all child modules
-  _module.args.croire-lib = flake.lib.croire;
-
   # These users can add Nix caches.
   nix.settings.trusted-users = [
     "root"
