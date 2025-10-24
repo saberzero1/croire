@@ -2,6 +2,8 @@
 
 A unified NixOS configuration repository that manages system configurations for both NixOS and macOS (via nix-darwin) using Nix flakes for declarative and reproducible system management.
 
+<img align="right" src="Croire7.png" alt="Croire Logo">
+
 ## Repository Structure
 
 - **`configurations/`**: System-specific configurations
@@ -34,21 +36,25 @@ A unified NixOS configuration repository that manages system configurations for 
 ### Common Commands
 
 - **Build the configuration**:
+
   ```shell
   om ci run .#build
   ```
 
 - **Update flake inputs**:
+
   ```shell
   om ci run .#update
   ```
 
 - **Format Nix files**:
+
   ```shell
   just lint
   ```
 
 - **Activate the configuration**:
+
   ```shell
   om ci run .#switch
   ```
@@ -61,16 +67,19 @@ A unified NixOS configuration repository that manages system configurations for 
 ### Additional Commands
 
 - **Check flake validity**:
+
   ```shell
   just check
   ```
 
 - **Pull latest changes and activate**:
+
   ```shell
   just switch
   ```
 
 - **Enter development shell**:
+
   ```shell
   just dev
   ```
@@ -85,11 +94,13 @@ A unified NixOS configuration repository that manages system configurations for 
 ### Cleaning
 
 - **Garbage collect unused packages**:
+
   ```shell
   just gc
   ```
 
 - **Optimize Nix store**:
+
   ```shell
   just optimize
   ```
