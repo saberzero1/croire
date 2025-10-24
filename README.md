@@ -1,6 +1,4 @@
-<img align="right" src="Croire7.png" alt="Croire Logo">
-
-# Croire
+# Croire <img align="right" src="Croire7.png" alt="Croire Logo">
 
 A unified NixOS configuration repository that manages system configurations for both NixOS and macOS (via nix-darwin) using Nix flakes for declarative and reproducible system management.
 
