@@ -92,6 +92,7 @@ jobs:
       - name: "Optimize Disk Space"
         uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.0"
         with:
+          operate_async: "True"
           operate_sudo: "True"
           general_include: ".+"
           docker_include: ".+"
@@ -103,7 +104,7 @@ jobs:
           homebrew_clean: "True"
           npm_prune: "True"
           npm_clean: "True"
-          os_swap: "True"
+          # os_swap: "True"
 
       - uses: actions/checkout@v4
 
