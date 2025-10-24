@@ -1,5 +1,5 @@
 # Top-level flake glue to get our configuration working
-{ inputs, ... }:
+{ flake, ... }:
 {
   imports = [
     inputs.nixos-unified.flakeModules.default

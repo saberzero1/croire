@@ -1,6 +1,6 @@
 # Reusable utility functions as a flake-parts module
 # This exports library functions that can be used in imports (available early in evaluation)
-{ inputs, ... }:
+{ flake, ... }:
 let
   # Automatically import all .nix files in a directory except default.nix
   # This eliminates the need for the common pattern:
@@ -10,8 +10,8 @@ let
   #
   # IMPORTANT: Can be used in imports because it's available via inputs.self.lib
   # Usage in any module:
-  #   { inputs, ... }: {
-  #     imports = inputs.self.lib.croire.autoImport ./.;
+  #   { flake, ... }: {
+  #     imports = flake.inputs.self.lib.croire.autoImport ./.;
   #   }
   autoImport =
     dir:
@@ -23,8 +23,8 @@ let
   # Useful for generating lists from filenames (e.g., homebrew casks)
   #
   # Usage:
-  #   { inputs, ... }: let
-  #     casks = inputs.self.lib.croire.filesAsNames ./.;
+  #   { flake, ... }: let
+  #     casks = flake.inputs.self.lib.croire.filesAsNames ./.;
   #   in { ... }
   filesAsNames =
     dir:
@@ -36,8 +36,8 @@ let
   # This provides deep auto-importing for nested directory structures
   #
   # Usage:
-  #   { inputs, ... }: {
-  #     imports = inputs.self.lib.croire.autoImportRecursive ./.;
+  #   { flake, ... }: {
+  #     imports = flake.inputs.self.lib.croire.autoImportRecursive ./.;
   #   }
   autoImportRecursive =
     dir:
@@ -64,7 +64,7 @@ let
 in
 {
   # Export to flake.lib.croire for use throughout the configuration
-  # This makes functions available as inputs.self.lib.croire.*
+  # This makes functions available as flake.inputs.self.lib.croire.*
   # These can be used even in imports because inputs.self.lib is available early
   flake.lib.croire = {
     inherit autoImport filesAsNames autoImportRecursive;

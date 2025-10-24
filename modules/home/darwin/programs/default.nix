@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ flake, ... }:
 {
-  imports = inputs.self.lib.croire.autoImport ./.;
+  imports = flake.inputs.self.lib.croire.autoImport ./.;
 }

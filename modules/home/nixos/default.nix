@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ flake, ... }:
 {
   imports =
-    inputs.self.lib.croire.autoImport ./.
+    flake.inputs.self.lib.croire.autoImport ./.
     ++ [
       ./programs
       ./services

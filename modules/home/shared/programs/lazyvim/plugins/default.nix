@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }:
+{ flake, lib, pkgs, ... }:
 let
   grammarPackages = builtins.attrValues pkgs.vimPlugins.nvim-treesitter-parsers;
   filterNonPackage = builtins.filter lib.isDerivation;
@@ -7,7 +7,7 @@ let
   allGrammars = filterEmpty (filterBroken (filterNonPackage grammarPackages));
 in
 {
-  imports = inputs.self.lib.croire.autoImport ./.;
+  imports = flake.inputs.self.lib.croire.autoImport ./.;
 
   programs.lazyvim.extraPackages =
     # with pkgs.vimPlugins;

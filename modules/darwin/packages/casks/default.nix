@@ -1,7 +1,7 @@
-{ inputs, ... }:
+{ flake, ... }:
 let
   casks =
-    inputs.self.lib.croire.filesAsNames ./.
+    flake.inputs.self.lib.croire.filesAsNames ./.
     ++ [
       "nikitabobko/tap/aerospace"
     ];

@@ -1,5 +1,5 @@
 # Allow using this repo in `nix flake init`
-{ inputs, ... }:
+{ flake, ... }:
 {
   flake = rec {
     templates =

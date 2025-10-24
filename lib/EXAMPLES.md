@@ -1,6 +1,6 @@
 # Library Functions - Usage Examples
 
-This document provides practical examples of how to use the library functions via the `croire-lib` parameter.
+This document provides practical examples of how to use the library functions via `flake.inputs.self.lib.croire`.
 
 ## Example 1: Simple Auto-Import
 
@@ -18,9 +18,9 @@ This document provides practical examples of how to use the library functions vi
 
 **After:**
 ```nix
-{ croire-lib, ... }:
+{ flake, ... }:
 {
-  imports = croire-lib.autoImport ./.;
+  imports = flake.inputs.self.lib.croire.autoImport ./.;
 }
 ```
 
@@ -48,10 +48,10 @@ This document provides practical examples of how to use the library functions vi
 
 **After:**
 ```nix
-{ croire-lib, ... }:
+{ flake, ... }:
 {
   imports =
-    croire-lib.autoImport ./.
+    flake.inputs.self.lib.croire.autoImport ./.
     ++ [
       ./languages
       ./programs
@@ -85,10 +85,10 @@ in
 
 **After:**
 ```nix
-{ croire-lib, ... }:
+{ flake, ... }:
 let
   casks =
-    croire-lib.filesAsNames ./.
+    flake.inputs.self.lib.croire.filesAsNames ./.
     ++ [
       "nikitabobko/tap/aerospace"
     ];
@@ -98,31 +98,7 @@ in
 }
 ```
 
-## Example 4: Parent Module Passing croire-lib
-
-**File:** `modules/nixos/default.nix`
-
-This shows how parent modules make `croire-lib` available to their children:
-
-```nix
-{ flake, pkgs, ... }:
-{
-  imports = [
-    ./services
-    ./packages
-    ./system
-  ];
-
-  # Make library functions available to all child modules
-  _module.args = {
-    croire-lib = flake.lib.croire;
-  };
-  
-  # ... rest of configuration
-}
-```
-
-## Example 5: Complex Case with Multiple Patterns
+## Example 4: Complex Case with Multiple Patterns
 
 **File:** `modules/home/shared/programs/lazyvim/plugins/default.nix`
 
@@ -147,7 +123,7 @@ in
 
 **After:**
 ```nix
-{ croire-lib, lib, pkgs, ... }:
+{ flake, lib, pkgs, ... }:
 let
   grammarPackages = builtins.attrValues pkgs.vimPlugins.nvim-treesitter-parsers;
   filterNonPackage = builtins.filter lib.isDerivation;
@@ -156,28 +132,29 @@ let
   allGrammars = filterEmpty (filterBroken (filterNonPackage grammarPackages));
 in
 {
-  imports = croire-lib.autoImport ./.;
+  imports = flake.inputs.self.lib.croire.autoImport ./.;
 
   programs.lazyvim.extraPackages = allGrammars;
 }
 ```
 
-## How croire-lib Is Passed Down
+## How It Works
 
-The `croire-lib` parameter is automatically available in all modules through the module argument system:
+The library functions work through the flake system:
 
 1. **Flake-parts module** (`/modules/flake/lib.nix`) exports `flake.lib.croire.*`
-2. **Parent modules** receive `flake` context and pass `croire-lib` via `_module.args`
-3. **Child modules** receive `croire-lib` as a parameter
+2. **Modules** use the `flake` parameter to access the library via `flake.inputs.self.lib.croire`
+3. **No intermediate arguments** needed - direct access through flake outputs
 
-No path calculations needed! Just use `{ croire-lib, ... }:` in your module signature.
+This works even in the `imports` attribute because `flake.inputs.self.lib` is evaluated early in the Nix evaluation process, unlike module arguments which aren't available until after imports are processed.
 
 ## Benefits
 
-1. **No path calculations**: Access functions via parameter, not relative imports
-2. **Type-safe**: Module system validates the parameter exists
-3. **Reduced code duplication**: Pattern defined once in flake-parts module
-4. **Easier maintenance**: Updates happen in one place
-5. **Better readability**: `croire-lib.autoImport` is clearer than nested builtins
-6. **Consistency**: All modules use the same pattern
-7. **Documentation**: Functions are well-documented
+1. **Works in imports**: Can be used in the `imports` attribute (unlike module arguments)
+2. **No path calculations**: Access functions via flake parameter, not relative imports
+3. **Type-safe**: Nix validates the function exists
+4. **Reduced code duplication**: Pattern defined once in flake-parts module
+5. **Easier maintenance**: Updates happen in one place
+6. **Better readability**: `flake.inputs.self.lib.croire.autoImport` is clearer than nested builtins
+7. **Consistency**: All modules use the same pattern
+8. **Documentation**: Functions are well-documented

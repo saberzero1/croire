@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ flake, ... }:
 let
-  brews = inputs.self.lib.croire.filesAsNames ./.;
+  brews = flake.inputs.self.lib.croire.filesAsNames ./.;
 in
 {
   homebrew.brews = brews;
