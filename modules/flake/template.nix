@@ -1,30 +1,26 @@
 # Allow using this repo in `nix flake init`
-{ flake, ... }:
+{ inputs, ... }:
 {
   flake = rec {
     templates =
       let
-        mkDescription = name:
-          "A ${name} template providing useful tools & settings for Nix-based development";
+        mkDescription =
+          name: "A ${name} template providing useful tools & settings for Nix-based development";
 
-        filters = path: with inputs.nixpkgs.lib; {
-          homeOnly =
-            # NOTE: configurations/home/* is imported in nix-darwin and NixOS
-            hasSuffix "activate-home.nix" path;
-          darwinOnly =
-            hasInfix "configurations/darwin" path
-            || hasInfix "modules/darwin" path;
-          nixosOnly =
-            hasInfix "configurations/nixos" path
-            || hasInfix "modules/nixos" path;
-          alwaysExclude =
-            hasSuffix "LICENSE" path
-            || hasSuffix "README.md" path
-            || hasInfix ".github" path
-            || hasSuffix "template.nix" path
-            || hasSuffix "test.nix" path
-          ;
-        };
+        filters =
+          path: with inputs.nixpkgs.lib; {
+            homeOnly =
+              # NOTE: configurations/home/* is imported in nix-darwin and NixOS
+              hasSuffix "activate-home.nix" path;
+            darwinOnly = hasInfix "configurations/darwin" path || hasInfix "modules/darwin" path;
+            nixosOnly = hasInfix "configurations/nixos" path || hasInfix "modules/nixos" path;
+            alwaysExclude =
+              hasSuffix "LICENSE" path
+              || hasSuffix "README.md" path
+              || hasInfix ".github" path
+              || hasSuffix "template.nix" path
+              || hasSuffix "test.nix" path;
+          };
       in
       {
         default = {
@@ -32,79 +28,96 @@
 
           path = builtins.path {
             path = inputs.self;
-            filter = path: _:
-              !(filters path).alwaysExclude;
+            filter = path: _: !(filters path).alwaysExclude;
           };
         };
 
-        home = let parent = templates.default; in {
-          description = mkDescription "home-manager";
-          welcomeText = ''
-            You have just created a nixos-unified-template flake.nix using home-manager.
+        home =
+          let
+            parent = templates.default;
+          in
+          {
+            description = mkDescription "home-manager";
+            welcomeText = ''
+              You have just created a nixos-unified-template flake.nix using home-manager.
 
-            - Edit `./modules/home/*.nix` to customize your configuration.
-            - Run `nix run` to apply the configuration.
-            - Then, open a new terminal to see your new shell.
+              - Edit `./modules/home/*.nix` to customize your configuration.
+              - Run `nix run` to apply the configuration.
+              - Then, open a new terminal to see your new shell.
 
-            Enjoy!
-          '';
-          path = builtins.path {
-            path = parent.path;
-            filter = path: _:
-              let f = filters path;
-              in
+              Enjoy!
+            '';
+            path = builtins.path {
+              path = parent.path;
+              filter =
+                path: _:
+                let
+                  f = filters path;
+                in
                 !(f.nixosOnly || f.darwinOnly);
+            };
           };
-        };
 
-        nixos = let parent = templates.default; in {
-          description = mkDescription "NixOS";
-          welcomeText = ''
-            You have just created a nixos-unified-template flake.nix using NixOS.
+        nixos =
+          let
+            parent = templates.default;
+          in
+          {
+            description = mkDescription "NixOS";
+            welcomeText = ''
+              You have just created a nixos-unified-template flake.nix using NixOS.
 
-            - Edit `./modules/nixos/*.nix` to customize your configuration.
-            - Run `mv /etc/nixos/*.nix ./configurations/nixos/HOSTNAME/` to import your existing configuration.
-            - Run `nix --extra-experimental-features "nix-command flakes" run` to apply the configuration.
+              - Edit `./modules/nixos/*.nix` to customize your configuration.
+              - Run `mv /etc/nixos/*.nix ./configurations/nixos/HOSTNAME/` to import your existing configuration.
+              - Run `nix --extra-experimental-features "nix-command flakes" run` to apply the configuration.
 
-            Enjoy!
-          '';
-          path = builtins.path {
-            path = parent.path;
-            filter = path: _:
-              let f = filters path;
-              in
+              Enjoy!
+            '';
+            path = builtins.path {
+              path = parent.path;
+              filter =
+                path: _:
+                let
+                  f = filters path;
+                in
                 !(f.darwinOnly || f.homeOnly);
+            };
           };
-        };
 
-        nix-darwin = let parent = templates.default; in {
-          description = mkDescription "nix-darwin";
-          welcomeText = ''
-            You have just created a nixos-unified-template flake.nix using nix-darwin / home-manager.
+        nix-darwin =
+          let
+            parent = templates.default;
+          in
+          {
+            description = mkDescription "nix-darwin";
+            welcomeText = ''
+              You have just created a nixos-unified-template flake.nix using nix-darwin / home-manager.
 
-            - Edit `./modules/{home,darwin}/*.nix` to customize your configuration.
+              - Edit `./modules/{home,darwin}/*.nix` to customize your configuration.
 
-            Then, as first-time activation, run:
+              Then, as first-time activation, run:
 
-            ```
-            sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
-            nix --extra-experimental-features "nix-command flakes" run
-            ```
+              ```
+              sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
+              nix --extra-experimental-features "nix-command flakes" run
+              ```
 
-            Then, open a new terminal to see your new shell.
+              Then, open a new terminal to see your new shell.
 
-            Thereon, you can simply `nix run` whenever changing your configuration.
+              Thereon, you can simply `nix run` whenever changing your configuration.
 
-            Enjoy!
-          '';
-          path = builtins.path {
-            path = parent.path;
-            filter = path: _:
-              let f = filters path;
-              in
+              Enjoy!
+            '';
+            path = builtins.path {
+              path = parent.path;
+              filter =
+                path: _:
+                let
+                  f = filters path;
+                in
                 !(f.nixosOnly || f.homeOnly);
+            };
           };
-        };
       };
 
     # https://omnix.page/om/init.html#spec
@@ -167,10 +180,14 @@
             description = "Your system hostname as shown by `hostname -s`";
             placeholder = "example";
           }
-        ] ++ om.templates.home.params;
+        ]
+        ++ om.templates.home.params;
         tests = {
           default = {
-            systems = [ "x86_64-linux" "aarch64-linux" ];
+            systems = [
+              "x86_64-linux"
+              "aarch64-linux"
+            ];
             params = om.templates.home.tests.default.params // {
               hostname = "example";
             };
@@ -192,10 +209,14 @@
             description = "Your system hostname as shown by `hostname -s`";
             placeholder = "example";
           }
-        ] ++ om.templates.home.params;
+        ]
+        ++ om.templates.home.params;
         tests = {
           default = {
-            systems = [ "x86_64-darwin" "aarch64-darwin" ];
+            systems = [
+              "x86_64-darwin"
+              "aarch64-darwin"
+            ];
             params = om.templates.home.tests.default.params // {
               hostname = "example";
             };
