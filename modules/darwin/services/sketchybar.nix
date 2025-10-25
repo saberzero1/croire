@@ -2,6 +2,9 @@
 {
   services.sketchybar = {
     enable = true;
-    extraPackages = with pkgs.nerd-fonts; [ victor-mono ];
+    extraPackages = with pkgs.nerd-fonts; [ 
+      victor-mono
+      mononoki
+    ];
   };
 }

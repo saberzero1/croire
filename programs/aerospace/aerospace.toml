@@ -275,13 +275,9 @@ if.app-id = 'com.bookry.wavebox'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'dev.zed.Zed'
+if.app-id = 'com.bbmenterprise'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 5'
-
-[[on-window-detected]]
-if.app-id = 'discord'
+if.app-id = 'com.microsoft.teams2'
 run = 'move-node-to-workspace 5'
