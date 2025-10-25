@@ -135,10 +135,6 @@ alt-cmd-ctrl-j = 'move down'
 alt-cmd-ctrl-k = 'move up'
 alt-cmd-ctrl-l = 'move right'
 
-# Splitting (using shift modifier to avoid conflicts)
-shift-alt-cmd-minus = 'split vertical'
-shift-alt-cmd-backslash = 'split horizontal'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-cmd-minus = 'resize smart -50'
 alt-cmd-equal = 'resize smart +50'
