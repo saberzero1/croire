@@ -7,20 +7,17 @@ if [ "$PERCENTAGE" = "" ]; then
   exit 0
 fi
 
-case "${PERCENTAGE}" in
-  9[0-9]|100) ICON=""
-  ;;
-  [6-8][0-9]) ICON=""
-  ;;
-  [3-5][0-9]) ICON=""
-  ;;
-  [1-2][0-9]) ICON=""
-  ;;
-  *) ICON=""
-esac
-
+# Use simpler battery icons matching Waybar style
 if [[ "$CHARGING" != "" ]]; then
-  ICON=""
+  ICON="󰂄"
+elif [ "$PERCENTAGE" -ge 90 ]; then
+  ICON="󱈑"
+elif [ "$PERCENTAGE" -ge 60 ]; then
+  ICON="󱊣"
+elif [ "$PERCENTAGE" -ge 30 ]; then
+  ICON="󱊢"
+else
+  ICON="��"
 fi
 
 # The item invoking this script (name $NAME) will get its icon and label

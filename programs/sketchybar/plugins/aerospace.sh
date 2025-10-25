@@ -2,7 +2,11 @@
 
 # Tokyo Night colors matching Waybar
 if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-    sketchybar --set $NAME label.color=0xffc0caf5  # Tokyo Night foreground
+    sketchybar --set $NAME \
+      label.color=0xff24283b \
+      background.drawing=on
 else
-    sketchybar --set $NAME label.color=0x77c0caf5  # Tokyo Night foreground (transparent)
+    sketchybar --set $NAME \
+      label.color=0xffc0caf5 \
+      background.drawing=off
 fi

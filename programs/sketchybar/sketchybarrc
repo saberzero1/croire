@@ -85,27 +85,27 @@ sketchybar --add item front_app left \
 # === RIGHT SIDE ITEMS ===
 # Order matches Waybar: network, pulseaudio, battery, date, memory, cpu, clock
 sketchybar --add item net right \
-  --set net update_freq=120 icon= icon.color="$CLR_RED" script="$PLUGIN_DIR/wifi.sh"
+  --set net update_freq=120 icon= icon.color="$CLR_RED" label.color="$CLR_RED" script="$PLUGIN_DIR/wifi.sh"
 
 sketchybar --add item volume right \
-  --set volume icon.color="$CLR_YELLOW" script="$PLUGIN_DIR/volume.sh" \
+  --set volume icon.color="$CLR_YELLOW" label.color="$CLR_YELLOW" script="$PLUGIN_DIR/volume.sh" \
   --subscribe volume volume_change
 
 sketchybar --add item battery right \
-  --set battery update_freq=120 icon.color="$CLR_GREEN" script="$PLUGIN_DIR/battery.sh" \
+  --set battery update_freq=120 icon.color="$CLR_GREEN" label.color="$CLR_GREEN" script="$PLUGIN_DIR/battery.sh" \
   --subscribe battery system_woke power_source_change
 
 sketchybar --add item date right \
-  --set date update_freq=3600 icon=󰸗 icon.color="$CLR_CYAN" script="$PLUGIN_DIR/date.sh"
+  --set date update_freq=3600 icon=󰸗 icon.color="$CLR_CYAN" label.color="$CLR_CYAN" script="$PLUGIN_DIR/date.sh"
 
 sketchybar --add item memory right \
-  --set memory update_freq=10 icon.color="$CLR_TEAL" script="$PLUGIN_DIR/memory.sh"
+  --set memory update_freq=10 icon.color="$CLR_TEAL" label.color="$CLR_TEAL" script="$PLUGIN_DIR/memory.sh"
 
 sketchybar --add item cpu right \
-  --set cpu update_freq=1 icon.color="$CLR_BLUE" script="$PLUGIN_DIR/cpu.sh"
+  --set cpu update_freq=1 icon.color="$CLR_BLUE" label.color="$CLR_BLUE" script="$PLUGIN_DIR/cpu.sh"
 
 sketchybar --add item clock right \
-  --set clock update_freq=10 icon=󰅐 icon.color="$CLR_PURPLE" script="$PLUGIN_DIR/clock.sh" label.padding_right="$COMP_PADDING"
+  --set clock update_freq=10 icon=󰅐 icon.color="$CLR_PURPLE" label.color="$CLR_PURPLE" script="$PLUGIN_DIR/clock.sh" label.padding_right="$COMP_PADDING"
 
 # === ITEM GROUPS ===
 LEFT_ITEMS=("${LEFT_SPACE_ITEMS[@]}" front_app)
