@@ -30,10 +30,20 @@ in
       target = ".config/sketchybar/plugins/cpu.sh";
       text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/cpu.sh";
     };
+    date = {
+      executable = true;
+      target = ".config/sketchybar/plugins/date.sh";
+      text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/date.sh";
+    };
     front_app = {
       executable = true;
       target = ".config/sketchybar/plugins/front_app.sh";
       text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/front_app.sh";
+    };
+    memory = {
+      executable = true;
+      target = ".config/sketchybar/plugins/memory.sh";
+      text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/memory.sh";
     };
     space = {
       executable = true;

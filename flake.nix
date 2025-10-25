@@ -119,7 +119,7 @@
     #   url = "github:NotAShelf/nvf/v0.8";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    lazyvim.url = "github:pfassina/lazyvim-nix";
+    lazyvim.url = "github:saberzero1/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {
       url = "github:wez/wezterm/main?dir=nix";

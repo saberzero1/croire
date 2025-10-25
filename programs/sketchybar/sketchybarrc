@@ -4,11 +4,18 @@
 CONFIG_DIR="$HOME/.config/sketchybar"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-# === COLORS ===
+# === COLORS === (Tokyo Night theme matching Waybar)
 CLR_BG=0x00000000          # Transparent bar background
-CLR_COMP_BG=0xff1d2021     # Compartment background (Gruvbox dark)
-CLR_COMP_BORDER=0xff3c3836 # Compartment border (Gruvbox gray)
-CLR_FG=0xffebdbb2          # Foreground (Gruvbox light text)
+CLR_COMP_BG=0xff24283b     # Compartment background (Tokyo Night dark)
+CLR_COMP_BORDER=0xff414868 # Compartment border (Tokyo Night gray)
+CLR_FG=0xffc0caf5          # Foreground (Tokyo Night light text)
+CLR_BLUE=0xff7aa2f7        # Tokyo Night blue (for focused workspace)
+CLR_CYAN=0xff7dcfff        # Tokyo Night cyan (for hover)
+CLR_RED=0xfff7768e         # Tokyo Night red (for critical items)
+CLR_GREEN=0xff9ece6a       # Tokyo Night green (for battery)
+CLR_YELLOW=0xffe0af68      # Tokyo Night yellow (for audio)
+CLR_PURPLE=0xffbb9af7      # Tokyo Night purple (for clock)
+CLR_TEAL=0xff2ac3de        # Tokyo Night teal (for memory)
 
 # === PADDING CONSTANTS
 BAR_PADDING=8             # Outer bar padding (use compartments for outer spacing)
@@ -21,34 +28,35 @@ COMP_PADDING=6             # Compartment outer padding (increased from bar-level
 # pkill -f stats_provider >/dev/null 2>&1
 # /Users/nate/Documents/scripts/stats_provider --cpu temperature &
 
-# === BAR (No outer padding; defer to compartments) ===
-sketchybar --bar position=top height=34 blur_radius=0 color="$CLR_BG" padding_left="$BAR_PADDING" padding_right="$BAR_PADDING"
+# === BAR (38px height to match Waybar, No outer padding; defer to compartments) ===
+sketchybar --bar position=top height=38 blur_radius=0 color="$CLR_BG" padding_left="$BAR_PADDING" padding_right="$BAR_PADDING"
 
 # === WORKSPACES ===
 sketchybar --add event aerospace_workspace_change
-# https://www.nerdfonts.com/cheat-sheet
-# Search for nf-md-* for icons that are actually rendered well at small sizes
-LABELS=("󰆍" "󰏭" "󰖟" "󰆈" "󰊻" "󰢹" "󱓼" "󰣀" "󱓼" "󱓼") # "" "" "" "󱙺" "" "󰎇" "󰖣"
+# Icons matching Waybar configuration for consistent workspace appearance
+LABELS=("󰋜" "󰖟" "󰠮" "󰭹" "󱓷" "󱇧" "󰊢" "󰖲" "󰕧" "󰝚") # Home, Web, Notes, Chat, Books, Dev, Git, Misc, Video, Music
 LEFT_SPACE_ITEMS=()
 INDEX=0
 
 for sid in $(aerospace list-workspaces --all); do
-  label="${LABELS[$INDEX]:-}"
+  label="${LABELS[$INDEX]:-}"
   item="space.$sid"
   LEFT_SPACE_ITEMS+=("$item")
 
   sketchybar --add item "$item" left \
     --subscribe "$item" aerospace_workspace_change \
     --set "$item" \
-      background.color=0xff000000 \
+      background.color=0xff7aa2f7 \
       background.corner_radius=5 \
       background.height=20 \
       background.drawing=off \
-      label="$label" \
-      icon.padding_left="$ICON_PADDING" \
-      icon.padding_right="$ICON_PADDING" \
-      label.padding_left="$LABEL_PADDING" \
-      label.padding_right="$LABEL_PADDING" \
+      icon="$label" \
+      icon.drawing=on \
+      label.drawing=off \
+      icon.padding_left=5 \
+      icon.padding_right=5 \
+      padding_left=5 \
+      padding_right=5 \
       click_script="aerospace workspace $sid" \
       script="$PLUGIN_DIR/aerospace.sh $sid"
 
@@ -59,8 +67,8 @@ done
 sketchybar --default \
   padding_left="$ITEM_PADDING" \
   padding_right="$ITEM_PADDING" \
-  icon.font="FiraCode Nerd Font:Regular:12.0" \
-  label.font="FiraCode Nerd Font:Regular:14.0" \
+  icon.font="mononoki Nerd Font:Regular:12.0" \
+  label.font="mononoki Nerd Font:Regular:14.0" \
   icon.color="$CLR_FG" \
   label.color="$CLR_FG" \
   icon.padding_left="$ICON_PADDING" \
@@ -77,37 +85,40 @@ sketchybar --add item front_app left \
   --subscribe front_app front_app_switched
 
 # === RIGHT SIDE ITEMS ===
+# Items are added in reverse order because Sketchybar displays right-side items right-to-left
 sketchybar --add item clock right \
-  --set clock update_freq=10 icon= script="$PLUGIN_DIR/clock.sh" label.padding_right="$COMP_PADDING" 
-
-sketchybar --add item volume right \
-  --set volume script="$PLUGIN_DIR/volume.sh" \
-  --subscribe volume volume_change
-
-sketchybar --add item battery right \
-  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-  --subscribe battery system_woke power_source_change
-
-sketchybar --add item net right \
-  --set net update_freq=120 icon= script="$PLUGIN_DIR/wifi.sh"
-
-# sketchybar --add item cpu_temp right \
-#   --set cpu_temp icon= script="sketchybar --set cpu_temp label=\$CPU_TEMP" icon.padding_left="$COMP_PADDING" \
-#   --subscribe cpu_temp system_stats
+  --set clock update_freq=10 icon=󰅐 icon.color="$CLR_PURPLE" label.color="$CLR_PURPLE" script="$PLUGIN_DIR/clock.sh" label.padding_right="$COMP_PADDING"
 
 sketchybar --add item cpu right \
-  --set cpu update_freq=1 script="$PLUGIN_DIR/cpu.sh"
+  --set cpu update_freq=1 icon.color="$CLR_BLUE" label.color="$CLR_BLUE" script="$PLUGIN_DIR/cpu.sh"
+
+sketchybar --add item memory right \
+  --set memory update_freq=10 icon.color="$CLR_CYAN" label.color="$CLR_CYAN" script="$PLUGIN_DIR/memory.sh"
+
+sketchybar --add item date right \
+  --set date update_freq=3600 icon=󰸗 icon.color="$CLR_TEAL" label.color="$CLR_TEAL" script="$PLUGIN_DIR/date.sh"
+
+sketchybar --add item battery right \
+  --set battery update_freq=120 icon.color="$CLR_GREEN" label.color="$CLR_GREEN" script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+sketchybar --add item volume right \
+  --set volume icon.color="$CLR_YELLOW" label.color="$CLR_YELLOW" script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
+
+sketchybar --add item net right \
+  --set net update_freq=120 icon= icon.color="$CLR_RED" label.color="$CLR_RED" script="$PLUGIN_DIR/wifi.sh"
 
 # === ITEM GROUPS ===
 LEFT_ITEMS=("${LEFT_SPACE_ITEMS[@]}" front_app)
-RIGHT_ITEMS=(clock volume battery net cpu) # cpu_temp)
+RIGHT_ITEMS=(clock cpu memory date battery volume net)
 
-# === COMPARTMENTS (Outer padding for clean edges; height=26 leaves vertical margin in 34pt bar) ===
+# === COMPARTMENTS (Outer padding for clean edges; height=28 leaves vertical margin in 38pt bar) ===
 sketchybar --add bracket left_compartment "${LEFT_ITEMS[@]}" \
   --set left_compartment \
     background.color="$CLR_COMP_BG" \
-    background.corner_radius=8 \
-    background.height=26 \
+    background.corner_radius=5 \
+    background.height=28 \
     background.border_color="$CLR_COMP_BORDER" \
     background.border_width=1 \
     background.drawing=on
@@ -115,8 +126,8 @@ sketchybar --add bracket left_compartment "${LEFT_ITEMS[@]}" \
 sketchybar --add bracket right_compartment "${RIGHT_ITEMS[@]}" \
   --set right_compartment \
     background.color="$CLR_COMP_BG" \
-    background.corner_radius=8 \
-    background.height=26 \
+    background.corner_radius=5 \
+    background.height=28 \
     background.border_color="$CLR_COMP_BORDER" \
     background.border_width=1 \
     background.padding_left=0 \
