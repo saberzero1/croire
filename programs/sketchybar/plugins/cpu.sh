@@ -14,6 +14,6 @@ if [ "$CPU_PERCENTAGE" = "" ]; then
 fi
 
 # Use a single CPU icon matching Waybar
-ICON=""
+ICON=""
 
 sketchybar --set $NAME icon="$ICON" label="$CPU_PERCENTAGE%"

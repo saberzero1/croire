@@ -23,4 +23,6 @@ else
   MEMORY_PERCENTAGE=$(echo "$MEMORY_PRESSURE" | awk '{printf "%.0f", $1}')
 fi
 
-sketchybar --set "$NAME" icon="" label="${MEMORY_PERCENTAGE}%"
+ICON=""
+
+sketchybar --set "$NAME" icon="$ICON" label="${MEMORY_PERCENTAGE}%"

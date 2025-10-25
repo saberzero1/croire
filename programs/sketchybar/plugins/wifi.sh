@@ -8,7 +8,7 @@ if [ -z "$wifi_name" ]; then
     wifi_name="Offline"
     ICON="󰤮"
 else
-    ICON=""
+    ICON=""
 fi
 
 # Set the Wi-Fi icon and name as the label in SketchyBar

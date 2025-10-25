@@ -17,7 +17,7 @@ in
           "network"
           "pulseaudio"
           "battery"
-          "custom/date"
+          "date"
           "memory"
           "cpu"
           "clock"
@@ -53,8 +53,8 @@ in
             "10" = "󰝚"; # Music
           };
         };
-        "custom/date" = {
-          format = "󰸗 {}";
+        "date" = {
+          format = "󰸗 {+%A, %d %b}";
           interval = 3600;
           exec = "${self}/programs/waybar/waybar-date.sh";
         };
@@ -114,11 +114,11 @@ in
           spacing = 10;
         };
         "cpu" = {
-          format = "{usage}% ";
+          format = " {usage}%";
           tooltip = false;
         };
         "memory" = {
-          format = "{}% ";
+          format = " {}%";
         };
       }
     ];
