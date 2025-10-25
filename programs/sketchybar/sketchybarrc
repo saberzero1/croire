@@ -62,7 +62,6 @@ for sid in $(aerospace list-workspaces --all); do
 
   ((INDEX++))
 done
-done
 
 # === DEFAULTS (Unified paddings for all items/icons/labels) ===
 sketchybar --default \
