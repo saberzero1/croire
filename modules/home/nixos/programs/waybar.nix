@@ -17,7 +17,7 @@ in
           "network"
           "pulseaudio"
           "battery"
-          "date"
+          "clock#date"
           "memory"
           "cpu"
           "clock"
@@ -53,10 +53,10 @@ in
             "10" = "󰝚"; # Music
           };
         };
-        "date" = {
+        "clock#date" = {
           format = "󰸗 {+%A, %d %b}";
-          interval = 3600;
-          exec = "${self}/programs/waybar/waybar-date.sh";
+          # interval = 3600;
+          # exec = "${self}/programs/waybar/waybar-date.sh";
         };
         "custom/power" = {
           format = "󰐥";
@@ -154,12 +154,12 @@ in
       color: #24283b;
       border-radius: 5px;
       }
-      #hyprland-mode, #custom-date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
+      #hyprland-mode, #clock.date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
       background-color: #24283b;
       padding: 5px 10px;
       margin: 5px 0px;
       }
-      #custom-date {
+      #clock.date {
       color: #7dcfff;
       }
       #custom-power {
