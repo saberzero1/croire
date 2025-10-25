@@ -54,7 +54,7 @@ in
           };
         };
         "clock#date" = {
-          format = "󰸗 {+%A, %d %b}";
+          format = "󰸗 {:%A, %d %b}";
           # interval = 3600;
           # exec = "${self}/programs/waybar/waybar-date.sh";
         };
@@ -159,9 +159,6 @@ in
       padding: 5px 10px;
       margin: 5px 0px;
       }
-      #clock.date {
-      color: #7dcfff;
-      }
       #custom-power {
       color: #24283b;
       background-color: #db4b4b;
@@ -171,17 +168,6 @@ in
       margin-bottom: 5px;
       margin-left: 0px;
       padding: 5px 10px;
-      }
-      #clock {
-      color: #bb9af7;
-      border-radius: 0px 5px 5px 0px;
-      margin-right: 10px;
-      }
-      #battery {
-      color: #9ece6a;
-      }
-      #battery.charging {
-      color: #9ece6a;
       }
       #battery.warning:not(.charging) {
       background-color: #f7768e;
@@ -195,11 +181,26 @@ in
       #pulseaudio {
       color: #e0af68;
       }
-      #memory {
+      #battery {
+      color: #9ece6a;
+      }
+      #battery.charging {
+      color: #9ece6a;
+      }
+      #clock.date {
       color: #2ac3de;
+      border-radius: 0px;
+      }
+      #memory {
+      color: #7dcfff;
       }
       #cpu {
       color: #7aa2f7;
+      }
+      #clock {
+      color: #bb9af7;
+      border-radius: 0px 5px 5px 0px;
+      margin-right: 10px;
       }
       #hyprland-mode {
       color: #c0caf5;
