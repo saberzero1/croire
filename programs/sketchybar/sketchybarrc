@@ -65,8 +65,8 @@ done
 sketchybar --default \
   padding_left="$ITEM_PADDING" \
   padding_right="$ITEM_PADDING" \
-  icon.font="FiraCode Nerd Font:Regular:12.0" \
-  label.font="FiraCode Nerd Font:Regular:14.0" \
+  icon.font="mononoki Nerd Font:Regular:12.0" \
+  label.font="mononoki Nerd Font:Regular:14.0" \
   icon.color="$CLR_FG" \
   label.color="$CLR_FG" \
   icon.padding_left="$ICON_PADDING" \
@@ -83,8 +83,9 @@ sketchybar --add item front_app left \
   --subscribe front_app front_app_switched
 
 # === RIGHT SIDE ITEMS ===
-sketchybar --add item clock right \
-  --set clock update_freq=10 icon= script="$PLUGIN_DIR/clock.sh" label.padding_right="$COMP_PADDING" 
+# Order matches Waybar: network, pulseaudio, battery, date, memory, cpu, clock
+sketchybar --add item net right \
+  --set net update_freq=120 icon= script="$PLUGIN_DIR/wifi.sh"
 
 sketchybar --add item volume right \
   --set volume script="$PLUGIN_DIR/volume.sh" \
@@ -94,26 +95,28 @@ sketchybar --add item battery right \
   --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
   --subscribe battery system_woke power_source_change
 
-sketchybar --add item net right \
-  --set net update_freq=120 icon= script="$PLUGIN_DIR/wifi.sh"
+sketchybar --add item date right \
+  --set date update_freq=3600 icon=󰸗 script="$PLUGIN_DIR/date.sh"
 
-# sketchybar --add item cpu_temp right \
-#   --set cpu_temp icon= script="sketchybar --set cpu_temp label=\$CPU_TEMP" icon.padding_left="$COMP_PADDING" \
-#   --subscribe cpu_temp system_stats
+sketchybar --add item memory right \
+  --set memory update_freq=10 script="$PLUGIN_DIR/memory.sh"
 
 sketchybar --add item cpu right \
   --set cpu update_freq=1 script="$PLUGIN_DIR/cpu.sh"
 
+sketchybar --add item clock right \
+  --set clock update_freq=10 icon=󰅐 script="$PLUGIN_DIR/clock.sh" label.padding_right="$COMP_PADDING"
+
 # === ITEM GROUPS ===
 LEFT_ITEMS=("${LEFT_SPACE_ITEMS[@]}" front_app)
-RIGHT_ITEMS=(clock volume battery net cpu) # cpu_temp)
+RIGHT_ITEMS=(net volume battery date memory cpu clock)
 
-# === COMPARTMENTS (Outer padding for clean edges; height=26 leaves vertical margin in 34pt bar) ===
+# === COMPARTMENTS (Outer padding for clean edges; height=28 leaves vertical margin in 38pt bar) ===
 sketchybar --add bracket left_compartment "${LEFT_ITEMS[@]}" \
   --set left_compartment \
     background.color="$CLR_COMP_BG" \
-    background.corner_radius=8 \
-    background.height=26 \
+    background.corner_radius=5 \
+    background.height=28 \
     background.border_color="$CLR_COMP_BORDER" \
     background.border_width=1 \
     background.drawing=on
@@ -121,8 +124,8 @@ sketchybar --add bracket left_compartment "${LEFT_ITEMS[@]}" \
 sketchybar --add bracket right_compartment "${RIGHT_ITEMS[@]}" \
   --set right_compartment \
     background.color="$CLR_COMP_BG" \
-    background.corner_radius=8 \
-    background.height=26 \
+    background.corner_radius=5 \
+    background.height=28 \
     background.border_color="$CLR_COMP_BORDER" \
     background.border_width=1 \
     background.padding_left=0 \
