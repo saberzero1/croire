@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Get memory usage percentage
 MEMORY_PRESSURE=$(memory_pressure 2>/dev/null | grep "System-wide memory free percentage:" | awk '{print 100-$5}' | cut -d% -f1)
