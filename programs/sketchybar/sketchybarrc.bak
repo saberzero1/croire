@@ -33,8 +33,9 @@ sketchybar --bar position=top height=38 blur_radius=0 color="$CLR_BG" padding_le
 
 # === WORKSPACES ===
 sketchybar --add event aerospace_workspace_change
-# Icons matching Waybar configuration for consistent workspace appearance
-LABELS=("󰋜" "󰖟" "󰠮" "󰭹" "󱓷" "󱇧" "󰊢" "󰖲" "󰕧" "󰝚") # Home, Web, Notes, Chat, Books, Dev, Git, Misc, Video, Music
+# https://www.nerdfonts.com/cheat-sheet
+# Search for nf-md-* for icons that are actually rendered well at small sizes
+LABELS=("󰆍" "󰏭" "󰖟" "󰆈" "󰊻" "󰢹" "󱓼" "󰣀" "󱓼" "󱓼") # "" "" "" "󱙺" "" "󰎇" "󰖣"
 LEFT_SPACE_ITEMS=()
 INDEX=0
 
@@ -46,7 +47,7 @@ for sid in $(aerospace list-workspaces --all); do
   sketchybar --add item "$item" left \
     --subscribe "$item" aerospace_workspace_change \
     --set "$item" \
-      background.color=0xff7aa2f7 \
+      background.color=0xff000000 \
       background.corner_radius=5 \
       background.height=20 \
       background.drawing=off \
