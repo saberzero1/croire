@@ -5,7 +5,7 @@ let
 in
 {
   programs.aerospace = {
-    enable = true;
+    enable = false;
     package = pkgs.aerospace;
     launchd = {
       enable = true;
