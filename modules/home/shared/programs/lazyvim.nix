@@ -6,7 +6,7 @@
   ];
 
   programs.lazyvim = {
-    enable = true;
+    enable = false;
 
     pluginSource = "latest";
 

@@ -115,10 +115,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nvf = {
-    #   url = "github:NotAShelf/nvf/v0.8";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nvf = {
+      url = "github:NotAShelf/nvf/v0.8";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lazyvim.url = "github:saberzero1/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     wezterm = {
