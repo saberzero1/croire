@@ -1,6 +1,6 @@
 # This is your nix-darwin configuration.
 # For home configuration, see /modules/home/*
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./dock
@@ -12,7 +12,7 @@
   # These users can add Nix caches.
   nix = {
     enable = false;
-    package = pkgs.nix;
+    package = lib.mkDefault pkgs.nix;
     settings.trusted-users = [
       "root"
       "emile"
