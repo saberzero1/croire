@@ -103,6 +103,11 @@
       libavif
       libsoup_3
       tree-sitter
+      sqlfluff
+      viu
+      chafa
+      ueberzugpp
+      haskellPackages.hoogle
 
       gimp3-with-plugins
       inkscape-with-extensions

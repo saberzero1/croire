@@ -11,6 +11,11 @@ in
       lazygit
       gitFull
       tree-sitter
+      sqlfluff
+      viu
+      chafa
+      ueberzugpp
+      haskellPackages.hoogle
 
       xcodes
       apple-sdk

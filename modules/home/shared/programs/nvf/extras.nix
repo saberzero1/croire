@@ -6,5 +6,6 @@
     lazygit
     ripgrep
     rustup
+    sqlfluff
   ];
 }
