@@ -1,6 +1,11 @@
 # See /modules/darwin/* for actual settings
 # This file is just *top-level* configuration.
-{ flake, lib, ... }:
+{
+  flake,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (flake) inputs;
   inherit (inputs) self;
@@ -47,6 +52,7 @@ in
   # Necessary for using flakes on this system.
   nix = {
     enable = false;
+    package = pkgs.nix;
     settings = {
       experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";

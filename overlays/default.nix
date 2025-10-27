@@ -10,6 +10,7 @@ self: super: {
   # gitbutler = inputs.gitbutler.packages.${self.system}.default;
   # neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
   # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${self.system}.default;
+  nix = inputs.determinate-nix.packages.${self.system}.default;
   nix-direnv = inputs.nix-direnv.packages.${self.system}.default;
   nixgl = inputs.nixgl.packages.${self.system}.default;
   # nixvim = inputs.akira.packages.${self.system}.default;

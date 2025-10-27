@@ -1,10 +1,11 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake
-, pkgs
-, lib
-, config
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -280,11 +281,15 @@ in
   };
 
   # These users can add Nix caches.
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    extra-nix-path = "nixpkgs=flake:nixpkgs";
-    # lazy-trees = true;
-    # eval-cores = 0; # Use all available CPU cores for evaluation
+  nix = {
+    enable = true;
+    package = pkgs.nix;
+    settings = {
+      experimental-features = "nix-command flakes";
+      extra-nix-path = "nixpkgs=flake:nixpkgs";
+      # lazy-trees = true;
+      # eval-cores = 0; # Use all available CPU cores for evaluation
+    };
   };
 
   system = {

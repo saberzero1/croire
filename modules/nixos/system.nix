@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 {
   environment = {
@@ -312,6 +313,7 @@
   };
 
   nix = {
+    package = pkgs.nix;
     channel = {
       enable = true;
     };
