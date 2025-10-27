@@ -5,6 +5,11 @@ in
 {
   programs.nvf.settings.vim.diagnostics = {
     enable = true;
+    config = {
+      signs = true;
+      underline = true;
+      update_in_insert = true; # INFO this might be a performace hit
+    };
     nvim-lint = {
       enable = true;
       lint_after_save = true;
