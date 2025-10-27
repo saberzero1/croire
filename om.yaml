@@ -38,6 +38,24 @@ ci:
           impure: true
         flake-check:
           enable: false
+      caches:
+        required:
+          # nixos cache server
+          - https://cache.nixos.org
+          # nix community's cache server
+          - https://nix-community.cachix.org
+          # cachix's cache server
+          - https://cachix.cachix.org
+          # nixpkgs cache server
+          - https://nixpkgs.cachix.org
+          # omnix cachix binaries
+          - https://om.cachix.org
+          # determinate binaries
+          - https://install.determinate.systems
+          # hyprland cachix binaries
+          - https://hyprland.cachix.org
+          # personal cachix binaries
+          - https://saberzero1.cachix.org
   check:
     ROOT:
       dir: .
@@ -95,6 +113,24 @@ ci:
               - --reload
             systems:
               - aarch64-darwin
+      caches:
+        required:
+          # nixos cache server
+          - https://cache.nixos.org
+          # nix community's cache server
+          - https://nix-community.cachix.org
+          # cachix's cache server
+          - https://cachix.cachix.org
+          # nixpkgs cache server
+          - https://nixpkgs.cachix.org
+          # omnix cachix binaries
+          - https://om.cachix.org
+          # determinate binaries
+          - https://install.determinate.systems
+          # hyprland cachix binaries
+          - https://hyprland.cachix.org
+          # personal cachix binaries
+          - https://saberzero1.cachix.org
   clean:
     ROOT:
       dir: .
@@ -133,3 +169,142 @@ ci:
               - boot
             systems:
               - x86_64-linux
+health:
+  default:
+    nix-version:
+      supported: ">=2.16.0"
+    caches:
+      required:
+        # nixos cache server
+        - https://cache.nixos.org
+        # nix community's cache server
+        - https://nix-community.cachix.org
+        # cachix's cache server
+        - https://cachix.cachix.org
+        # nixpkgs cache server
+        - https://nixpkgs.cachix.org
+        # omnix cachix binaries
+        - https://om.cachix.org
+        # determinate binaries
+        - https://install.determinate.systems
+        # hyprland cachix binaries
+        - https://hyprland.cachix.org
+        # personal cachix binaries
+        - https://saberzero1.cachix.org
+    direnv:
+      required: true
+  build:
+    nix-version:
+      supported: ">=2.16.0"
+    caches:
+      required:
+        # nixos cache server
+        - https://cache.nixos.org
+        # nix community's cache server
+        - https://nix-community.cachix.org
+        # cachix's cache server
+        - https://cachix.cachix.org
+        # nixpkgs cache server
+        - https://nixpkgs.cachix.org
+        # omnix cachix binaries
+        - https://om.cachix.org
+        # determinate binaries
+        - https://install.determinate.systems
+        # hyprland cachix binaries
+        - https://hyprland.cachix.org
+        # personal cachix binaries
+        - https://saberzero1.cachix.org
+    direnv:
+      required: true
+  check:
+    nix-version:
+      supported: ">=2.16.0"
+    caches:
+      required:
+        # nixos cache server
+        - https://cache.nixos.org
+        # nix community's cache server
+        - https://nix-community.cachix.org
+        # cachix's cache server
+        - https://cachix.cachix.org
+        # nixpkgs cache server
+        - https://nixpkgs.cachix.org
+        # omnix cachix binaries
+        - https://om.cachix.org
+        # determinate binaries
+        - https://install.determinate.systems
+        # hyprland cachix binaries
+        - https://hyprland.cachix.org
+        # personal cachix binaries
+        - https://saberzero1.cachix.org
+    direnv:
+      required: true
+  clean:
+    nix-version:
+      supported: ">=2.16.0"
+    caches:
+      required:
+        # nixos cache server
+        - https://cache.nixos.org
+        # nix community's cache server
+        - https://nix-community.cachix.org
+        # cachix's cache server
+        - https://cachix.cachix.org
+        # nixpkgs cache server
+        - https://nixpkgs.cachix.org
+        # omnix cachix binaries
+        - https://om.cachix.org
+        # determinate binaries
+        - https://install.determinate.systems
+        # hyprland cachix binaries
+        - https://hyprland.cachix.org
+        # personal cachix binaries
+        - https://saberzero1.cachix.org
+    direnv:
+      required: true
+  update:
+    nix-version:
+      supported: ">=2.16.0"
+    caches:
+      required:
+        # nixos cache server
+        - https://cache.nixos.org
+        # nix community's cache server
+        - https://nix-community.cachix.org
+        # cachix's cache server
+        - https://cachix.cachix.org
+        # nixpkgs cache server
+        - https://nixpkgs.cachix.org
+        # omnix cachix binaries
+        - https://om.cachix.org
+        # determinate binaries
+        - https://install.determinate.systems
+        # hyprland cachix binaries
+        - https://hyprland.cachix.org
+        # personal cachix binaries
+        - https://saberzero1.cachix.org
+    direnv:
+      required: true
+  switch:
+    nix-version:
+      supported: ">=2.16.0"
+    caches:
+      required:
+        # nixos cache server
+        - https://cache.nixos.org
+        # nix community's cache server
+        - https://nix-community.cachix.org
+        # cachix's cache server
+        - https://cachix.cachix.org
+        # nixpkgs cache server
+        - https://nixpkgs.cachix.org
+        # omnix cachix binaries
+        - https://om.cachix.org
+        # determinate binaries
+        - https://install.determinate.systems
+        # hyprland cachix binaries
+        - https://hyprland.cachix.org
+        # personal cachix binaries
+        - https://saberzero1.cachix.org
+    direnv:
+      required: true
