@@ -13,10 +13,14 @@
   ];
 
   # These users can add Nix caches.
-  nix.settings.trusted-users = [
-    "root"
-    "saberzero1"
-  ];
+  nix = {
+    enable = true;
+    package = lib.mkDefault pkgs.nix;
+    settings.trusted-users = [
+      "root"
+      "saberzero1"
+    ];
+  };
 
   services.openssh.enable = true;
 
