@@ -2,6 +2,7 @@
 # For home configuration, see /modules/home/*
 { flake
 , pkgs
+, lib
 , ...
 }:
 {
