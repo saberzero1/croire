@@ -282,7 +282,7 @@ in
   # These users can add Nix caches.
   nix = {
     enable = true;
-    package = pkgs.nix;
+    # package = pkgs.nix;
     settings = {
       experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";
