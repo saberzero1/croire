@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    flake.inputs.determinate.nixosModules.default
+    # flake.inputs.determinate.nixosModules.default
     ./packages
     ./services
     ./system
