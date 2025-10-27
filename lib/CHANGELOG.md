@@ -1,20 +1,33 @@
 # Library Functions Changelog
 
+## Version 2.1 - 2025-10-27
+
+### Added
+
+#### Core Library Functions
+
+- **modules/flake/lib.nix**: Added `overrideLicense` function to `flake.lib.croire`:
+  - `overrideLicense`: Override the license of a Nix package derivation
+    - This function takes a derivation and a license string as arguments and returns a new derivation with the specified license. It is used to deal with a limitations on evaluation unfree packages in a flake context.
+
 ## Version 2.0 - 2025-10-24
 
 ### Changed
+
 - **Breaking**: Converted to flake-parts module using `flake.inputs.self.lib.croire`
 - All modules now use `flake` parameter to access library functions via `flake.inputs.self.lib.croire`
 - No more path calculations or module arguments required
 - Functions work in `imports` attribute (unlike module arguments)
 
 ### Removed
+
 - **Deprecated files removed**: `lib/auto-import.nix`, `lib/files-as-names.nix`
 - **Deprecated scripts removed**: `scripts/import-list.nix`, `scripts/import.nix`, `programs/nix/auto-import.nix`
 - All references to legacy standalone files from documentation
 - Module argument approach (no longer needed)
 
 ### Added
+
 - Flake-parts module exporting library functions via `flake.lib.croire`
 - Access to functions through `flake.inputs.self.lib.croire` in all modules
 - Comprehensive documentation with before/after examples
@@ -24,12 +37,14 @@
 ### Added
 
 #### Core Library Functions
+
 - **modules/flake/lib.nix**: Flake-parts module exporting `flake.lib.croire` with three functions:
   - `autoImport`: Auto-import all .nix files in a directory
-  - `filesAsNames`: Extract filenames without .nix extension  
+  - `filesAsNames`: Extract filenames without .nix extension
   - `autoImportRecursive`: Recursively import all .nix files in a directory tree
 
 #### Documentation
+
 - **README.md**: Comprehensive usage guide
 - **TESTING.md**: Testing procedures and verification checklist
 - **EXAMPLES.md**: Practical before/after examples
@@ -40,10 +55,12 @@
 Updated 36 modules to use the `croire-lib` parameter:
 
 #### NixOS Modules (2 files)
+
 - `modules/nixos/services/default.nix`
 - `modules/nixos/packages/default.nix`
 
 #### Darwin Modules (5 files)
+
 - `modules/darwin/services/default.nix`
 - `modules/darwin/system/default.nix`
 - `modules/darwin/packages/taps/default.nix`
@@ -51,6 +68,7 @@ Updated 36 modules to use the `croire-lib` parameter:
 - `modules/darwin/packages/casks/default.nix`
 
 #### Home Manager Modules - NixOS (6 files)
+
 - `modules/home/nixos/default.nix`
 - `modules/home/nixos/services/default.nix`
 - `modules/home/nixos/programs/default.nix`
@@ -59,6 +77,7 @@ Updated 36 modules to use the `croire-lib` parameter:
 - `modules/home/nixos/settings/xdg/default.nix`
 
 #### Home Manager Modules - Darwin (6 files)
+
 - `modules/home/darwin/default.nix`
 - `modules/home/darwin/services/default.nix`
 - `modules/home/darwin/programs/default.nix`
@@ -67,6 +86,7 @@ Updated 36 modules to use the `croire-lib` parameter:
 - `modules/home/darwin/settings/xdg/default.nix`
 
 #### Home Manager Modules - Shared (11 files)
+
 - `modules/home/shared/default.nix`
 - `modules/home/shared/languages/default.nix`
 - `modules/home/shared/services/default.nix`
@@ -109,6 +129,7 @@ Updated 36 modules to use the `croire-lib` parameter:
 For new modules or when updating existing ones:
 
 **Old pattern:**
+
 ```nix
 { ... }:
 {
@@ -119,6 +140,7 @@ For new modules or when updating existing ones:
 ```
 
 **New pattern:**
+
 ```nix
 { flake, ... }:
 {
@@ -135,6 +157,7 @@ None. All changes are backwards compatible.
 ### Testing
 
 All changes have been validated to ensure:
+
 - Correct path calculations
 - No syntax errors
 - Proper function signatures

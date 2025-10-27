@@ -11,16 +11,20 @@ All modules in this repository use the `flake` parameter to access library funct
 {
   # Auto-import all .nix files
   imports = flake.inputs.self.lib.croire.autoImport ./.;
-  
+
   # Get filenames as names
   casks = flake.inputs.self.lib.croire.filesAsNames ./.;
-  
+
   # Recursively import (rare use case)
   imports = flake.inputs.self.lib.croire.autoImportRecursive ./.;
+
+  # Override licenses in flake (allows for evaluation of unfree packages in flakes)
+  imports = flake.inputs.self.lib.croire.overrideLicenses pkgs.somePackage;
 }
 ```
 
 ### Benefits:
+
 - ✅ No path calculations needed
 - ✅ Works in imports attribute (unlike module arguments)
 - ✅ Type-safe via Nix
@@ -34,6 +38,7 @@ All modules in this repository use the `flake` parameter to access library funct
 Automatically imports all `.nix` files in a directory except `default.nix`.
 
 **Usage:**
+
 ```nix
 { flake, ... }:
 {
@@ -42,6 +47,7 @@ Automatically imports all `.nix` files in a directory except `default.nix`.
 ```
 
 **Replaces the pattern:**
+
 ```nix
 imports = builtins.map (fn: ./${fn}) (
   builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
@@ -53,6 +59,7 @@ imports = builtins.map (fn: ./${fn}) (
 Gets a list of filenames (without `.nix` extension) from a directory, excluding `default.nix`.
 
 **Usage:**
+
 ```nix
 { flake, ... }:
 let
@@ -64,6 +71,7 @@ in
 ```
 
 **Replaces the pattern:**
+
 ```nix
 casks = builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf ./${fn})) (
   builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir ./.))
@@ -75,6 +83,7 @@ casks = builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.ba
 Recursively imports all `.nix` files in a directory tree (excluding `default.nix`).
 
 **Usage:**
+
 ```nix
 { flake, ... }:
 {
@@ -97,3 +106,18 @@ Modules access these functions using the `flake` parameter, which provides acces
 ```
 
 This approach works even in the `imports` attribute because `flake.inputs.self.lib` is evaluated early in the Nix evaluation process, unlike module arguments which aren't available until after imports are processed.
+
+### flake.inputs.self.lib.croire.overrideLicenses
+
+Overrides licenses in a package set to allow evaluation of unfree packages in flakes.
+
+**Usage:**
+
+```nix
+{ flake, ... }:
+{
+  imports = flake.inputs.self.lib.croire.overrideLicenses pkgs.somePackage;
+}
+```
+
+This function modifies the license attributes of packages to bypass restrictions on unfree software, enabling their evaluation within Nix flakes.

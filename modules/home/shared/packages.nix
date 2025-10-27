@@ -1,4 +1,11 @@
-{ pkgs, ... }:
+{ flake
+, pkgs
+, lib
+, ...
+}:
+let
+  inherit (flake.inputs.self.lib.croire) overrideLicense;
+in
 {
   # Nix packages to install to $HOME
   #
@@ -93,7 +100,8 @@
     pandoc
     ripgrep-all
     rsync
-    unrar
+    (overrideLicense unrar)
+
     unzip
     zoxide
 
