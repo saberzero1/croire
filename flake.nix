@@ -53,21 +53,26 @@
     # Principle inputs (updated by `nix run .#update`)
 
     # Unified Nix sources
-    # nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs";
-    sops-nix.url = "github:Mic92/sops-nix";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    # nixpkgs-stable.url = "github:NixOS/nixpkgs";
+    sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
+    # sops-nix.url = "github:Mic92/sops-nix";
     devenv.url = "github:cachix/devenv";
-    nix-direnv.url = "github:nix-community/nix-direnv";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    nix-direnv.url = "https://flakehub.com/f/nix-community/nix-direnv/*";
+    # nix-direnv.url = "github:nix-community/nix-direnv";
+    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1";
+    # flake-parts.url = "github:hercules-ci/flake-parts";
     #nixos-unified.url = "github:srid/nixos-unified";
     nixos-unified.url = "github:saberzero1/nixos-unified/overlays";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
+    # nixos-hardware.url = "github:NixOS/nixos-hardware";
     systems.url = "github:nix-systems/default";
 
     # Determinate nix
-    # determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    # nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
     determinate-nix.url = "github:DeterminateSystems/nix-src";
 
     # Doom Emacs
@@ -127,7 +132,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-snapd = {
-      url = "github:nix-community/nix-snapd";
+      url = "https://flakehub.com/f/nix-community/nix-snapd/*";
+      # url = "github:nix-community/nix-snapd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-ld = {
@@ -135,10 +141,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl.url = "github:nix-community/nixGL";
-    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/*";
+    # nix-alien.url = "github:thiagokokada/nix-alien";
     ghostty.url = "github:ghostty-org/ghostty";
     gitbutler = {
       url = "github:gitbutlerapp/gitbutler";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helix = {
+      url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
