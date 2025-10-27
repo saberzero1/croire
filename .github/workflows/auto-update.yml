@@ -25,7 +25,7 @@ jobs:
           #   system: aarch64-darwin
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -78,7 +78,10 @@ jobs:
       #       --prefix "${BRANCH_NAME}" \
       #       --cache om \
       #       < $HOME/omci.json
-  cachix-push:
+  flakehub-push:
+    permissions:
+      id-token: "write"
+      contents: "read"
     runs-on: ${{ matrix.runner }}
     strategy:
       matrix:
@@ -110,16 +113,18 @@ jobs:
           npm_clean: "True"
           # os_swap: "True"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Install Determinate Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - uses: cachix/cachix-action@v15
-        with:
-          name: saberzero1
-          extraPullNames: devenv,nixpkgs,nix-community,cachix,om
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      # - uses: cachix/cachix-action@v15
+      #   with:
+      #     name: saberzero1
+      #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om
+      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Install direnv
         run: ${{ matrix.install_command }}
@@ -140,6 +145,14 @@ jobs:
             --systems "${{ matrix.system }}" \
             --results=$HOME/omci.json \
             -- --accept-flake-config
+            
+      # - uses: "DeterminateSystems/determinate-nix-action@v3"
+      - uses: "DeterminateSystems/flakehub-push@main"
+        with:
+          name: "saberzero1/croire"
+          rolling: true
+          visibility: "public"
+          include-output-paths: true
 
       # - name: Build (Linux)
       #   if: runner.os == 'Linux'
