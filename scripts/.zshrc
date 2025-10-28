@@ -5,7 +5,8 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh --disable-up-arrow)"
 
 # direnv
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
+eval "$(direnv-instant hook zsh)"
 
 # starship
 eval "$(starship init zsh)"
