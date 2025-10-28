@@ -6,6 +6,7 @@ in
 self: super: {
   devour-flake = self.callPackage inputs.devour-flake { };
   doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.system}.default;
+  fh = inputs.fh.packages.${self.system}.default;
   ghostty = inputs.ghostty.packages.${self.system}.default;
   # gitbutler = inputs.gitbutler.packages.${self.system}.default;
   # neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;

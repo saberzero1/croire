@@ -122,11 +122,11 @@ jobs:
 
       - uses: "DeterminateSystems/determinate-nix-action@v3"
 
-      - uses: cachix/cachix-action@v15
-        with:
-          name: saberzero1
-          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      # - uses: cachix/cachix-action@v15
+      #   with:
+      #     name: saberzero1
+      #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
+      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Install direnv
         run: ${{ matrix.install_command }}
@@ -153,7 +153,7 @@ jobs:
         with:
           name: "saberzero1/croire"
           rolling: true
-          visibility: "public"
+          visibility: "private"
           include-output-paths: true
 
       # - name: Build (Linux)

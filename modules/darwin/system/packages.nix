@@ -16,6 +16,7 @@ in
       chafa
       ueberzugpp
       haskellPackages.hoogle
+      fh
 
       xcodes
       apple-sdk

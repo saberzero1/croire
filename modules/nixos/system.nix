@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 {
   environment = {
@@ -108,6 +109,7 @@
       chafa
       ueberzugpp
       haskellPackages.hoogle
+      fh
 
       gimp3-with-plugins
       inkscape-with-extensions
