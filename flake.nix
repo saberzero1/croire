@@ -55,7 +55,7 @@
     # Unified Nix sources
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    # nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
     # nixpkgs-stable.url = "github:NixOS/nixpkgs";
     sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
     # sops-nix.url = "github:Mic92/sops-nix";
@@ -113,8 +113,8 @@
 
     # Home-manager
     home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/*";
-      # url = "github:nix-community/home-manager";
+      # url = "https://flakehub.com/f/nix-community/home-manager/*";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
