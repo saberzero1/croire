@@ -111,14 +111,16 @@ jobs:
           homebrew_clean: "True"
           npm_prune: "True"
           npm_clean: "True"
-          # os_swap: "True"
+          os_swap: "True"
 
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
 
-      - name: Install Determinate Nix
-        uses: DeterminateSystems/nix-installer-action@main
+      # - name: Install Determinate Nix
+      #   uses: DeterminateSystems/nix-installer-action@main
+
+      - uses: "DeterminateSystems/determinate-nix-action@v3"
 
       # - uses: cachix/cachix-action@v15
       #   with:
