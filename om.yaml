@@ -148,9 +148,6 @@ ci:
               - sudo
               - nix-collect-garbage
               - -d
-            systems:
-              - x86_64-linux
-              - aarch64-darwin
           optimise-store:
             type: devshell
             command:
@@ -158,9 +155,6 @@ ci:
               - nix
               - store
               - optimise
-            systems:
-              - x86_64-linux
-              - aarch64-darwin
           switch-to-configuration:
             type: devshell
             command:
@@ -169,6 +163,7 @@ ci:
               - boot
             systems:
               - x86_64-linux
+              - aarch64-linux
 health:
   default:
     nix-version:

@@ -32,19 +32,16 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Install direnv
-        # run: sudo apt-get update && sudo apt-get install -y direnv
+      - name: Set up build enviroment
         run: |
+          echo "Setting up direnv"
           nix profile install nixpkgs#direnv
           nix profile install nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-
-      - name: Install omnix
-        run: nix profile install nixpkgs#omnix
-
-      - name: Load environment variables
-        run: |
+          echo "Setting up omnix"
+          nix profile install nixpkgs#omnix
+          echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos
@@ -93,23 +90,23 @@ jobs:
         include:
           - runner: ubuntu-latest
             system: x86_64-linux
-            # install_command: sudo apt-get update && sudo apt-get install -y direnv
+            host_command: sudo hostnamectl set-hostname nixos
+          - runner: ubuntu-latest
+            system: aarch64-linux
             host_command: sudo hostnamectl set-hostname nixos
           - runner: macos-latest
             system: aarch64-darwin
-            # install_command: brew install direnv
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
     needs: update-nix-packages
     steps:
-      - name: "Optimize Disk Space (Linux)"
-        uses: "wimpysworld/nothing-but-nix@main"
+      - name: Optimize Disk Space (Linux)
+        uses: wimpysworld/nothing-but-nix@main
         if: runner.os == 'Linux'
         with:
           hatchet-protocol: 'rampage'
-          # nix-permission-edict: true
 
-      - name: "Optimize Disk Space (Darwin)"
-        uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.0"
+      - name: Optimize Disk Space (Darwin)
+        uses: hugoalh/disk-space-optimizer-ghaction@v0.8.0
         if: runner.os == 'macOS'
         with:
           operate_async: "True"
@@ -126,16 +123,16 @@ jobs:
           npm_clean: "True"
           os_swap: "True"
 
-      - uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
 
-      # - name: Install Determinate Nix
-      #   uses: DeterminateSystems/nix-installer-action@main
+      - name: Install Determinate Nix
+        uses: DeterminateSystems/determinate-nix-action@v3
 
-      - uses: "DeterminateSystems/determinate-nix-action@v3"
-
-      - uses: "DeterminateSystems/flakehub-cache-action@main"
+      - name: Set up FlakeHub cache
+        uses: DeterminateSystems/flakehub-cache-action@main
 
       # - uses: cachix/cachix-action@v15
       #   with:
@@ -143,66 +140,34 @@ jobs:
       #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
       #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: Install direnv
-        # run: sudo apt-get update && sudo apt-get install -y direnv
+      - name: Set up build environment
         run: |
+          echo "Setting up direnv"
           nix profile install nixpkgs#direnv
           nix profile install nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-
-      - name: Install omnix
-        run: nix profile install nixpkgs#omnix
-
-      - name: Load environment variables
-        run: |
-          source ~/.bashrc
+          echo "Setting up omnix"
+          nix profile install nixpkgs#omnix
+          echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
+          echo "Setting hostname"
           ${{ matrix.host_command }}
 
       - name: Omnix build flakes
         run: |
           om ci run .#build \
-            --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
+            --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
             --systems "${{ matrix.system }}" \
             --results=$HOME/omci.json \
             -- --accept-flake-config
-            
-      # - uses: "DeterminateSystems/determinate-nix-action@v3"
-      - uses: "DeterminateSystems/flakehub-push@main"
+
+      - name: Push to FlakeHub
+        uses: DeterminateSystems/flakehub-push@main
         with:
           name: "saberzero1/croire"
           rolling: true
           visibility: "private"
           include-output-paths: true
 
-      # - name: Build (Linux)
-      #   if: runner.os == 'Linux'
-      #   run: nix flake show --json | jq '.packages."x86_64-linux"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
-      #
-      # - name: Build (macOS)
-      #   if: runner.os == 'macOS'
-      #   run: nix flake show --json | jq '.packages."aarch64-darwin"|keys[]'| xargs -I {} nix build .#{} --accept-flake-config --impure
-      #
-      # - name: Build flake (Linux)
-      #   if: runner.os == 'Linux'
-      #   run: |
-      #     om ci run \
-      #     --systems "x86_64-linux" \
-      #     ".#default.ROOT" \
-      #     --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
-      #     -- \
-      #     --accept-flake-config \
-      #     --impure
-      #
-      # - name: Build flake (macOS)
-      #   if: runner.os == 'macOS'
-      #   run: |
-      #     om ci run \
-      #     --systems "aarch64-darwin" \
-      #     ".#default.ROOT" \
-      #     --extra-access-tokens "github.com=${{ secrets.GITHUB_TOKEN }}" \
-      #     -- \
-      #     --accept-flake-config \
-      #     --impure
