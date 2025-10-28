@@ -102,7 +102,7 @@ jobs:
     needs: update-nix-packages
     steps:
       - name: "Optimize Disk Space (Linux)"
-        uses: "whimpysworld/nothing-but-nix@main"
+        uses: "wimpysworld/nothing-but-nix@main"
         if: runner.os == 'Linux'
         with:
           hatchet-protocol: 'rampage'
