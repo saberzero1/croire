@@ -44,6 +44,7 @@ jobs:
 
       - name: Load environment variables
         run: |
+          source ~/.bashrc
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos
@@ -155,6 +156,7 @@ jobs:
 
       - name: Load environment variables
         run: |
+          source ~/.bashrc
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           ${{ matrix.host_command }}
