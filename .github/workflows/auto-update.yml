@@ -35,6 +35,7 @@ jobs:
       - name: Install direnv
         # run: sudo apt-get update && sudo apt-get install -y direnv
         run: |
+          nix profile install nixpkgs#direnv
           nix profile install nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
@@ -44,7 +45,6 @@ jobs:
 
       - name: Load environment variables
         run: |
-          source ~/.bashrc
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos
@@ -146,10 +146,10 @@ jobs:
       - name: Install direnv
         # run: sudo apt-get update && sudo apt-get install -y direnv
         run: |
+          nix profile install nixpkgs#direnv
           nix profile install nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-
 
       - name: Install omnix
         run: nix profile install nixpkgs#omnix
