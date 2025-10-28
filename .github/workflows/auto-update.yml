@@ -36,6 +36,7 @@ jobs:
         # run: sudo apt-get update && sudo apt-get install -y direnv
         run: |
           nix profile install nixpkgs#nix-direnv
+          touch $HOME/.config/direnv/direnvrc
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
 
       - name: Install omnix
@@ -145,6 +146,7 @@ jobs:
         # run: sudo apt-get update && sudo apt-get install -y direnv
         run: |
           nix profile install nixpkgs#nix-direnv
+          touch $HOME/.config/direnv/direnvrc
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
 
 
