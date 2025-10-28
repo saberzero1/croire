@@ -122,6 +122,8 @@ jobs:
 
       - uses: "DeterminateSystems/determinate-nix-action@v3"
 
+      - uses: "DeterminateSystems/flakehub-cache-action@main"
+
       # - uses: cachix/cachix-action@v15
       #   with:
       #     name: saberzero1
