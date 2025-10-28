@@ -33,7 +33,10 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Install direnv
-        run: sudo apt-get update && sudo apt-get install -y direnv
+        # run: sudo apt-get update && sudo apt-get install -y direnv
+        run: |
+          nix profile install nixpkgs#nix-direnv
+          echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
 
       - name: Install omnix
         run: nix profile install nixpkgs#omnix
@@ -88,16 +91,24 @@ jobs:
         include:
           - runner: ubuntu-latest
             system: x86_64-linux
-            install_command: sudo apt-get update && sudo apt-get install -y direnv
+            # install_command: sudo apt-get update && sudo apt-get install -y direnv
             host_command: sudo hostnamectl set-hostname nixos
           - runner: macos-latest
             system: aarch64-darwin
-            install_command: brew install direnv
+            # install_command: brew install direnv
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
     needs: update-nix-packages
     steps:
-      - name: "Optimize Disk Space"
+      - name: "Optimize Disk Space (Linux)"
+        uses: "whimpysworld/nothing-but-nix@main"
+        if: runner.os == 'Linux'
+        with:
+          hatchet-protocol: 'rampage'
+          nix-permission-edict: true
+
+      - name: "Optimize Disk Space (Darwin)"
         uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.0"
+        if: runner.os == 'macOS'
         with:
           operate_async: "True"
           operate_sudo: "True"
@@ -131,7 +142,11 @@ jobs:
       #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Install direnv
-        run: ${{ matrix.install_command }}
+        # run: sudo apt-get update && sudo apt-get install -y direnv
+        run: |
+          nix profile install nixpkgs#nix-direnv
+          echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
+
 
       - name: Install omnix
         run: nix profile install nixpkgs#omnix

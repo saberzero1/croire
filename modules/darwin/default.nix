@@ -1,8 +1,13 @@
 # This is your nix-darwin configuration.
 # For home configuration, see /modules/home/*
-{ pkgs, lib, ... }:
+{ flake
+, pkgs
+, lib
+, ...
+}:
 {
   imports = [
+    flake.inputs.determinate.darwinModules.default
     ./dock
     ./packages
     ./services
@@ -20,6 +25,16 @@
     channel = {
       enable = true;
     };
+  };
+  # Determinate Nix settings
+  # These are written to /etc/nix/nix.custom.conf
+  determinate-nix.customSettings = {
+    eval-cores = 0;
+    experimental-features = "nix-command flakes";
+    trusted-users = [
+      "root"
+      "emile"
+    ];
   };
 
   local = {

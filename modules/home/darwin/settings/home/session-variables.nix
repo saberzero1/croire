@@ -11,6 +11,6 @@ in
       7
     ];
     TS_EXTRA_SEARCH_PATHS = "(~/Work/Repos ~/Work/External/Repos)";
-    SSL_CERT_FILE = "$NIX_SSL_CERT_FILE";
+    SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt"; # "$(echo $NIX_SSL_CERT_FILE)";
   };
 }
