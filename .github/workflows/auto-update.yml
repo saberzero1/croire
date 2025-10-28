@@ -106,7 +106,7 @@ jobs:
         if: runner.os == 'Linux'
         with:
           hatchet-protocol: 'rampage'
-          nix-permission-edict: true
+          # nix-permission-edict: true
 
       - name: "Optimize Disk Space (Darwin)"
         uses: "hugoalh/disk-space-optimizer-ghaction@v0.8.0"
