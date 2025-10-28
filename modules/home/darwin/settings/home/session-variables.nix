@@ -11,5 +11,6 @@ in
       7
     ];
     TS_EXTRA_SEARCH_PATHS = "(~/Work/Repos ~/Work/External/Repos)";
+    SSL_CERT_FILE = "$NIX_SSL_CERT_FILE";
   };
 }
