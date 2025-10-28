@@ -16,7 +16,7 @@
   # These users can add Nix caches.
   nix = {
     enable = true;
-    package = lib.mkDefault pkgs.nix;
+    # package = lib.mkDefault pkgs.nix;
     settings.trusted-users = [
       "root"
       "saberzero1"

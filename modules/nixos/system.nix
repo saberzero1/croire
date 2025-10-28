@@ -313,7 +313,7 @@
   };
 
   nix = {
-    package = pkgs.nix;
+    # package = pkgs.nix;
     channel = {
       enable = true;
     };

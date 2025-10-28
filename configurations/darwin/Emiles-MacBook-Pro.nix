@@ -51,7 +51,7 @@ in
   # Necessary for using flakes on this system.
   nix = {
     enable = false;
-    package = pkgs.nix;
+    # package = pkgs.nix;
     settings = {
       experimental-features = "nix-command flakes";
       extra-nix-path = "nixpkgs=flake:nixpkgs";

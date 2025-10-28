@@ -73,7 +73,7 @@
     # Determinate nix
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     nix.url = "https://flakehub.com/f/DeterminateSystems/nix/*";
-    determinate-nix.url = "github:DeterminateSystems/nix-src";
+    # determinate-nix.url = "github:DeterminateSystems/nix-src";
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*";
 
     # Doom Emacs
