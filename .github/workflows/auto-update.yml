@@ -78,6 +78,8 @@ jobs:
       #       --prefix "${BRANCH_NAME}" \
       #       --cache om \
       #       < $HOME/omci.json
+  # Build flakes using Omnix CI on multiple platforms
+  # Outputs are saved and later used by FlakeHub push job
   build-flakes:
     permissions:
       id-token: write
@@ -160,11 +162,20 @@ jobs:
           om ci run $FLAKE_ITER_FLAKEREF \
             --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
             --systems "$FLAKE_ITER_NIX_SYSTEM" \
-            --include-all-dependencies
+            --results=$HOME/omci-${{ matrix.system }}.json \
+            --include-all-dependencies \
             -- --accept-flake-config
-            # --results=$HOME/omci.json \
-            # -- --accept-flake-config
 
+      - name: Upload Omnix CI results
+        uses: actions/upload-artifact@v4
+        with:
+          name: omci-results-${{ matrix.system }}
+          path: $HOME/omci-${{ matrix.system }}.json
+          retention-days: 1
+
+  # Push to FlakeHub using Omnix CI build outputs
+  # This job rebuilds with Omnix (using cache) to populate the store,
+  # then FlakeHub push includes those output paths
   flakehub-push:
     permissions:
       id-token: write
@@ -197,6 +208,34 @@ jobs:
 
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
+
+      - name: Download Omnix CI results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: omci-results-*
+          path: omci-results
+          merge-multiple: true
+
+      - name: Set up build environment
+        run: |
+          echo "Setting up direnv"
+          nix profile install nixpkgs#direnv
+          nix profile install nixpkgs#nix-direnv
+          mkdir -p $HOME/.config/direnv
+          echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
+          echo "Setting up omnix"
+          nix profile install nixpkgs#omnix
+          echo "Setting up environment"
+          direnv allow .
+          direnv export gha > "$GITHUB_ENV"
+
+      - name: Rebuild with Omnix to populate store for FlakeHub
+        run: |
+          om ci run .#build \
+            --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
+            --systems "x86_64-linux,aarch64-darwin" \
+            --include-all-dependencies \
+            -- --accept-flake-config
 
       - name: Push to FlakeHub
         uses: DeterminateSystems/flakehub-push@main
