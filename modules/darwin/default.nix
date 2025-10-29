@@ -8,6 +8,7 @@
 {
   imports = [
     flake.inputs.determinate.darwinModules.default
+    flake.inputs.mac-app-util.darwinModules.default
     ./dock
     ./packages
     ./services
