@@ -91,9 +91,9 @@ jobs:
           - runner: ubuntu-latest
             system: x86_64-linux
             host_command: sudo hostnamectl set-hostname nixos
-          - runner: ubuntu-24.04-arm
-            system: aarch64-linux
-            host_command: sudo hostnamectl set-hostname nixos
+          # - runner: ubuntu-24.04-arm
+          #   system: aarch64-linux
+          #   host_command: sudo hostnamectl set-hostname nixos
           - runner: macos-latest
             system: aarch64-darwin
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro

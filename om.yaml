@@ -163,7 +163,6 @@ ci:
               - boot
             systems:
               - x86_64-linux
-              - aarch64-linux
 health:
   default:
     nix-version:
