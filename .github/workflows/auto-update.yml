@@ -161,8 +161,9 @@ jobs:
           om ci run .#build \
             --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
             --systems "${{ matrix.system }}" \
-            --results=$HOME/omci.json \
             -- --accept-flake-config
+            # --results=$HOME/omci.json \
+            # -- --accept-flake-config
 
   flakehub-push:
     runs-on: ubuntu-latest
@@ -171,6 +172,11 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    # outputs:
+    #   flake_name: ${{ steps.publish.outputs.flake_name }}
+    #   flake_version: ${{ steps.publish.outputs.flake_version }}
+    #   flakeref_exact: ${{ steps.publish.outputs.flakeref_exact }}
+    #   flakeref_at_least: ${{ steps.publish.outputs.flakeref_at_least }}
     steps:
       - name: Check build results
         run: |
@@ -191,6 +197,7 @@ jobs:
 
       - name: Push to FlakeHub
         uses: DeterminateSystems/flakehub-push@main
+        # id: publish
         with:
           name: "saberzero1/croire"
           rolling: true
