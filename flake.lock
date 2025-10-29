@@ -390,12 +390,12 @@
     },
     "flake-compat_6": {
       "locked": {
-        "lastModified": 1696426674,
-        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
-        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
-        "revCount": 57,
+        "lastModified": 1733328505,
+        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
+        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
+        "revCount": 69,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/edolstra/flake-compat/1.0.1/018afb31-abd1-7bff-a5e4-cff7e18efb7a/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/edolstra/flake-compat/1.1.0/01948eb7-9cba-704f-bbf3-3fa956735b52/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -588,11 +588,11 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
-        "lastModified": 1733312601,
-        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
+        "lastModified": 1760948891,
+        "narHash": "sha256-TmWcdiUUaWk8J4lpjzu4gCGxWY6/Ok7mOK4fIFfBuU4=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
+        "rev": "864599284fc7c0ba6357ed89ed5e2cd5040f0c04",
         "type": "github"
       },
       "original": {
@@ -1030,11 +1030,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1761699379,
-        "narHash": "sha256-2i7z5Nz9JXC8Lty2EpLR0C8THv0sn7fFnsxyanz0sjs=",
+        "lastModified": 1761706960,
+        "narHash": "sha256-460PymGbK3ynQfcrduI197Kd7CocDxsu/zrJoJYhydE=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "a28a897b9f0141e92c9db1da0ffadcf29414dda1",
+        "rev": "40497a42dd899bea471f3e2ab28b892ee6238a2a",
         "type": "github"
       },
       "original": {
@@ -1046,11 +1046,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1761698771,
-        "narHash": "sha256-Cr0tfsIWDIdqirrHYo+FDE7XHmsyCBNSDEa9hCbhn1o=",
+        "lastModified": 1761709065,
+        "narHash": "sha256-DwYs+78IoVNi+l5PRiF5p7/zU+rHdcZqo4ob+89YHJ8=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "5ce636f5201a07666488a9ea58dda539f90559b5",
+        "rev": "198ccad2de4b86b7e4ba59a9647644a914ccdb95",
         "type": "github"
       },
       "original": {
@@ -1373,12 +1373,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1734935829,
-        "narHash": "sha256-/7Y+EZoU8O+N2PgEIvJKwp6qLBuwiOq3MeC0YLezX/w=",
-        "rev": "355a1ed0141b6fd3093e3cb7b3492e6e67913681",
-        "revCount": 62,
+        "lastModified": 1761703712,
+        "narHash": "sha256-OKuNVXmHuZ0zi8T0aGWrBJizIfvdTqV1RiV0IN8GPZs=",
+        "rev": "f7694a0e26d890e285137e1b726b1b44038805c4",
+        "revCount": 63,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/nix-snapd/0.1.62%2Brev-355a1ed0141b6fd3093e3cb7b3492e6e67913681/0193f23c-d665-799e-993b-60ddf04d1665/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/nix-snapd/0.1.63%2Brev-f7694a0e26d890e285137e1b726b1b44038805c4/019a2dba-3cbe-7d83-8d31-2ec19253e96f/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -1637,14 +1637,17 @@
     },
     "nixpkgs-lib_2": {
       "locked": {
-        "lastModified": 1733096140,
-        "narHash": "sha256-1qRH7uAUsyQI7R1Uwl4T+XvdNv778H0Nb5njNrqvylY=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
+        "lastModified": 1754788789,
+        "narHash": "sha256-x2rJ+Ovzq0sCMpgfgGaaqgBSwY+LST+WbZ6TytnT9Rk=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "a73b9c743612e4244d865a2fdee11865283c04e6",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/5487e69da40cbd611ab2cadee0b4637225f7cfae.tar.gz"
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
       }
     },
     "nixpkgs-regression": {
