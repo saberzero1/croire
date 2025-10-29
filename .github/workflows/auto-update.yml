@@ -78,6 +78,8 @@ jobs:
       #       --prefix "${BRANCH_NAME}" \
       #       --cache om \
       #       < $HOME/omci.json
+  # Build flakes using Omnix CI on multiple platforms
+  # Outputs are saved and later used by FlakeHub push job
   build-flakes:
     permissions:
       id-token: write
@@ -171,6 +173,9 @@ jobs:
           path: $HOME/omci-${{ matrix.system }}.json
           retention-days: 1
 
+  # Push to FlakeHub using Omnix CI build outputs
+  # This job rebuilds with Omnix (using cache) to populate the store,
+  # then FlakeHub push includes those output paths
   flakehub-push:
     permissions:
       id-token: write
