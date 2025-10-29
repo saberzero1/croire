@@ -129,7 +129,11 @@ jobs:
           persist-credentials: false
 
       - name: Install Determinate Nix
-        uses: DeterminateSystems/determinate-nix-action@v3
+        uses: DeterminateSystems/nix-installer-action@main
+        # uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Set up GitHub Actions cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
