@@ -9,14 +9,14 @@ in
   # ];
   # https://github.com/marienz/nix-doom-emacs-unstraightened/blob/main/home-manager.nix
   programs = {
-    # doom-emacs = {
-    #   enable = true;
-    #   doomDir = "${self}/programs/doom";
-    #   doomLocalDir = "${config.home.homeDirectory}/.config/doom";
-    #   provideEmacs = false;
-    # };
+    doom-emacs = {
+      enable = true;
+      doomDir = "${self}/programs/doom";
+      doomLocalDir = "${config.home.homeDirectory}/.config/doom";
+      provideEmacs = false;
+    };
     emacs = {
-      enable = false;
+      enable = true;
     };
   };
 }

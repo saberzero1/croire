@@ -1,4 +1,3 @@
 {
-  # services.emacs.enable = true;
-  services.emacs.enable = false;
+  services.emacs.enable = true;
 }
