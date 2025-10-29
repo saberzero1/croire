@@ -215,45 +215,6 @@
         "type": "github"
       }
     },
-    "doomemacs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1760602791,
-        "narHash": "sha256-voIvrHMgs2zFNtYDxVnyBpmSCE3NFZAhhcZsUneDMLw=",
-        "owner": "doomemacs",
-        "repo": "doomemacs",
-        "rev": "f9664ae058d67b8d97cb8a9c40744fefc3e5479f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "doomemacs",
-        "repo": "doomemacs",
-        "type": "github"
-      }
-    },
-    "emacs-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "nix-doom-emacs-unstraightened"
-        ],
-        "nixpkgs-stable": [
-          "nix-doom-emacs-unstraightened"
-        ]
-      },
-      "locked": {
-        "lastModified": 1761703942,
-        "narHash": "sha256-Xr3+TQizQ+f7UP/aHhdy4lXi/f4GzDPQwi2lylHyyNQ=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "9c6b35761a9df8a61e2fe6e1fa6f747841e98cb0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "type": "github"
-      }
-    },
     "false": {
       "locked": {
         "lastModified": 1657739266,
@@ -696,7 +657,7 @@
     },
     "flake-utils_5": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -729,7 +690,7 @@
     },
     "flake-utils_7": {
       "inputs": {
-        "systems": "systems_10"
+        "systems": "systems_9"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1241,29 +1202,6 @@
       "original": {
         "type": "tarball",
         "url": "https://flakehub.com/f/nix-community/nix-direnv/%2A"
-      }
-    },
-    "nix-doom-emacs-unstraightened": {
-      "inputs": {
-        "doomemacs": "doomemacs",
-        "emacs-overlay": "emacs-overlay",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1761727442,
-        "narHash": "sha256-ujGHrDLX5G1sqjq54nGVoRpqEdv1R0RzySUxtC+4WzA=",
-        "owner": "marienz",
-        "repo": "nix-doom-emacs-unstraightened",
-        "rev": "8bfa7cf089da6393e243a1684825191b17b2fb2b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marienz",
-        "repo": "nix-doom-emacs-unstraightened",
-        "type": "github"
       }
     },
     "nix-homebrew": {
@@ -1963,7 +1901,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_7"
+        "systems": "systems_6"
       },
       "locked": {
         "lastModified": 1761514959,
@@ -1993,7 +1931,7 @@
         "nix-systems-x86_64-linux": "nix-systems-x86_64-linux",
         "nixpkgs": "nixpkgs_17",
         "rust-flake": "rust-flake",
-        "systems": "systems_8",
+        "systems": "systems_7",
         "true": "true"
       },
       "locked": {
@@ -2031,7 +1969,6 @@
         "nix-alien": "nix-alien",
         "nix-darwin": "nix-darwin",
         "nix-direnv": "nix-direnv",
-        "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
         "nix-homebrew": "nix-homebrew",
         "nix-index-database": "nix-index-database_2",
         "nix-ld": "nix-ld",
@@ -2044,7 +1981,7 @@
         "omnix": "omnix",
         "sops-nix": "sops-nix",
         "spacebar": "spacebar",
-        "systems": "systems_9",
+        "systems": "systems_8",
         "totten": "totten",
         "wezterm": "wezterm",
         "zen-browser": "zen-browser"
@@ -2213,21 +2150,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_10": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
