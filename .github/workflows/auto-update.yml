@@ -177,7 +177,7 @@ jobs:
           echo "A dependent in the build matrix failed."
           exit 1
         if: |
-          contains(needs.*.result, 'failuire') ||
+          contains(needs.*.result, 'failure') ||
           contains(needs.*.result, 'cancelled')
 
       - name: Checkout repository
