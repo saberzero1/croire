@@ -541,14 +541,15 @@
       "locked": {
         "lastModified": 1760948891,
         "narHash": "sha256-TmWcdiUUaWk8J4lpjzu4gCGxWY6/Ok7mOK4fIFfBuU4=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
         "rev": "864599284fc7c0ba6357ed89ed5e2cd5040f0c04",
-        "revCount": 403,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/hercules-ci/flake-parts/0.1.403%2Brev-864599284fc7c0ba6357ed89ed5e2cd5040f0c04/019a02b2-ade2-7b11-a000-c543a2649604/source.tar.gz"
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/hercules-ci/flake-parts/0.1"
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
       }
     },
     "flake-parts_5": {
