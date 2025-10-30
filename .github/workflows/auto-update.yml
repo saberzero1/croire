@@ -96,15 +96,9 @@ jobs:
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
     needs: update-nix-packages
     steps:
-      - name: Optimize Disk Space (Linux)
-        uses: wimpysworld/nothing-but-nix@main
-        if: runner.os == 'Linux'
-        with:
-          hatchet-protocol: 'rampage'
-
-      - name: Optimize Disk Space (Darwin)
+      - name: Optimize Disk Space
         uses: hugoalh/disk-space-optimizer-ghaction@v0.8.0
-        if: runner.os == 'macOS'
+        # if: runner.os == 'macOS'
         with:
           operate_async: "True"
           operate_sudo: "True"
@@ -119,6 +113,12 @@ jobs:
           npm_prune: "True"
           npm_clean: "True"
           os_swap: "True"
+
+      - name: Optimize Disk Space (Linux)
+        uses: wimpysworld/nothing-but-nix@main
+        if: runner.os == 'Linux'
+        with:
+          hatchet-protocol: 'rampage'
 
       - name: Checkout repository
         uses: actions/checkout@v5
