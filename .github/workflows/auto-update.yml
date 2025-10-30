@@ -199,6 +199,21 @@ jobs:
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
 
+      - name: Set up build environment
+        run: |
+          echo "Setting up direnv"
+          nix profile install nixpkgs#direnv
+          nix profile install nixpkgs#nix-direnv
+          mkdir -p $HOME/.config/direnv
+          echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
+          echo "Setting up omnix"
+          nix profile install nixpkgs#omnix
+          echo "Setting up environment"
+          direnv allow .
+          direnv export gha > "$GITHUB_ENV"
+          echo "Setting hostname"
+          sudo hostnamectl set-hostname nixos
+
       - name: Push to FlakeHub
         uses: DeterminateSystems/flakehub-push@main
         id: publish
