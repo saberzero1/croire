@@ -86,10 +86,10 @@
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*";
 
     # Doom Emacs
-    nix-doom-emacs-unstraightened = {
-      url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-doom-emacs-unstraightened = {
+    #   url = "github:marienz/nix-doom-emacs-unstraightened";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # CI
     devour-flake = {
