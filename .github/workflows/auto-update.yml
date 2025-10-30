@@ -210,7 +210,7 @@ jobs:
           nix profile install nixpkgs#omnix
           echo "Setting up environment"
           direnv allow .
-          direnv export gha > "$GITHUB_ENV"
+          # direnv export gha > "$GITHUB_ENV"
           echo "Setting hostname"
           sudo hostnamectl set-hostname nixos
 

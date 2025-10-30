@@ -71,7 +71,7 @@
     nix-direnv.url = "https://flakehub.com/f/nix-community/nix-direnv/*";
     # nix-direnv.url = "github:nix-community/nix-direnv";
     direnv-instant.url = "github:Mic92/direnv-instant";
-    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1";
+    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/*";
     # flake-parts.url = "github:hercules-ci/flake-parts";
     #nixos-unified.url = "github:srid/nixos-unified";
     nixos-unified.url = "github:saberzero1/nixos-unified/overlays";
