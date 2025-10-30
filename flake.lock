@@ -823,11 +823,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1761760247,
-        "narHash": "sha256-wsYY+Z/pim/4TabIIMHGFD+MAoUbxuqAblB7DjMe6gw=",
+        "lastModified": 1761794993,
+        "narHash": "sha256-OxQty78Zg6VoAYfBAHwcuKfn7MQCOc/CJGhoce0jKeo=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "a4d54dca1c50ea1a347da796735aacb66d69eaa0",
+        "rev": "e70ca0b9b52326967525e4cc905a0d1c99b0f351",
         "type": "github"
       },
       "original": {
@@ -1082,11 +1082,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1761773115,
-        "narHash": "sha256-fTy11uFHsIO2jzE2uPzh3YsIu2j5uE2fs+oiWX0dQyo=",
+        "lastModified": 1761792508,
+        "narHash": "sha256-CZuXvJhY/JxIhqXtpDnke3NAJa0+6SislQ+Dg9GFMqo=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "e05833487a53b9ed3eac4e9d8d7ec566e6a4ac1c",
+        "rev": "5315635cdd35b04fe1311b8dd4be6015b236e16b",
         "type": "github"
       },
       "original": {
@@ -1098,11 +1098,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1761775603,
-        "narHash": "sha256-lGv9um8Y9MgDN3YXXJPIj9PZOlsyhDRATW2pK1ATRWU=",
+        "lastModified": 1761795350,
+        "narHash": "sha256-qM19Cu+oFldox76rsvBjQiYQmmWTGnI2ffFwAPzyeks=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "cd0b33c5388be8209803fb5f91e3ab54ca631b45",
+        "rev": "44e17cd846e01b90496a95cf2a291e02cd7876a7",
         "type": "github"
       },
       "original": {
@@ -1209,11 +1209,11 @@
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
-        "lastModified": 1761696321,
-        "narHash": "sha256-UpAmPtmsO9g7+uECR+NsjuKCYPa5SFj2akkjLc51k8I=",
+        "lastModified": 1761782651,
+        "narHash": "sha256-rGKfDY/+xIbPfBiDviaeVJN/jMviSwo/wM5tlvjeMws=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "37853aa4419e22dc2b7544e4238dd880af673bc8",
+        "rev": "9f8a1da0a811905edf9b941fb6d8bb7f8fcde4ea",
         "type": "github"
       },
       "original": {
@@ -1225,11 +1225,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1761695393,
-        "narHash": "sha256-BMoy/in1jne82gM2LEiBG6hhiyllyvmSNBf4Vhrho7s=",
+        "lastModified": 1761780561,
+        "narHash": "sha256-/ot1FImb9KHMo3jD9oHtSBuytZZcd5UzmisfxaB1MaI=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "c2781d3db3efa3a86d9f383a0886567ff38e4d63",
+        "rev": "c75f5478390ec0865d8090b81fe0cd38328d3779",
         "type": "github"
       },
       "original": {
@@ -1791,11 +1791,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1761594641,
-        "narHash": "sha256-sImk6SJQASDLQo8l+0zWWaBgg7TueLS6lTvdH5pBZpo=",
+        "lastModified": 1761656231,
+        "narHash": "sha256-EiED5k6gXTWoAIS8yQqi5mAX6ojnzpHwAQTS3ykeYMg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1666250dbe4141e4ca8aaf89b40a3a51c2e36144",
+        "rev": "e99366c665bdd53b7b500ccdc5226675cfc51f45",
         "type": "github"
       },
       "original": {
@@ -1884,12 +1884,12 @@
     },
     "nixpkgs_18": {
       "locked": {
-        "lastModified": 1761373498,
-        "narHash": "sha256-Q/uhWNvd7V7k1H1ZPMy/vkx3F8C13ZcdrKjO7Jv7v0c=",
-        "rev": "6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce",
-        "revCount": 883951,
+        "lastModified": 1761672384,
+        "narHash": "sha256-o9KF3DJL7g7iYMZq9SWgfS1BFlNbsm6xplRjVlOCkXI=",
+        "rev": "08dacfca559e1d7da38f3cf05f1f45ee9bfd213c",
+        "revCount": 886100,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.883951%2Brev-6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce/019a1fdc-d873-7c43-b344-e10191e3d592/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.886100%2Brev-08dacfca559e1d7da38f3cf05f1f45ee9bfd213c/019a329e-32b1-7e68-9599-4784bdd5f623/source.tar.gz"
       },
       "original": {
         "type": "tarball",
