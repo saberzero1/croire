@@ -2,6 +2,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
+  enableInstant = true;
 in
 {
   imports = [
@@ -11,14 +12,18 @@ in
   programs = {
     direnv = {
       enable = true;
-      enableZshIntegration = true;
+      # These should be set to false when using direnv-instant
+      enableBashIntegration = !enableInstant;
+      enableZshIntegration = !enableInstant;
+      enableFishIntegration = !enableInstant;
+      enableNushellIntegration = !enableInstant;
       nix-direnv = {
         enable = true;
         package = pkgs.nix-direnv;
       };
     };
     direnv-instant = {
-      enable = true;
+      enable = enableInstant;
     };
   };
 }

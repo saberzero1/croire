@@ -22,10 +22,6 @@
       # atuin
       # eval "$(atuin init zsh --disable-up-arrow)"
       #
-      # direnv
-      # eval "$(direnv hook zsh)"
-      eval "$(direnv-instant hook zsh)"
-      #
       # starship
       eval "$(starship init zsh)"
       #
@@ -42,6 +38,10 @@
       #
       # source shortcuts
       source "${config.home.homeDirectory}/.config/zsh/scripts/shortcuts"
+      #
+      # direnv
+      # eval "$(direnv hook zsh)"
+      eval "$(direnv-instant hook zsh)"
       #
       # tmux
       bindkey -s "^F" "tmux-sessionizer\n"
