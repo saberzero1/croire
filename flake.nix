@@ -139,10 +139,10 @@
     };
     lazyvim.url = "github:saberzero1/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    wezterm = {
-      url = "github:wez/wezterm/main?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # wezterm = {
+    #   url = "github:wez/wezterm/main?dir=nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-snapd = {
       url = "https://flakehub.com/f/nix-community/nix-snapd/*";
       # url = "github:nix-community/nix-snapd";
