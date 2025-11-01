@@ -105,7 +105,7 @@ in
     };
 
     nvidia = {
-      open = false;
+      open = true;
 
       modesetting = {
         enable = true;
@@ -127,8 +127,8 @@ in
         # sync.enable = true;
         # reverseSync.enable = true;
 
-        intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:65:0:0";
       };
 
       package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -160,7 +160,8 @@ in
     xserver = {
       enable = true;
       videoDrivers = [
-        "nvidia" # "amdgpu"
+        "amdgpu"
+        "nvidia"
         # "nouveau"
       ];
     };
