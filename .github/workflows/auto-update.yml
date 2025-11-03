@@ -141,6 +141,8 @@ jobs:
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
           nix profile install nixpkgs#omnix
+          echo "Setting up cachix"
+          nix profile install --accept-flake-config nixpkgs#cachix
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
