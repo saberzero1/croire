@@ -132,13 +132,11 @@ jobs:
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
 
-      - name: Set up Cachix cache
-        uses: cachix/cachix-action@v15
-        with:
-          name: saberzero1
-          useDaemon: false
-          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      # - uses: cachix/cachix-action@v15
+      #   with:
+      #     name: saberzero1
+      #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
+      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Set up build environment
         run: |
@@ -149,8 +147,6 @@ jobs:
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
           nix profile install nixpkgs#omnix
-          echo "Setting up cachix"
-          nix profile install --accept-flake-config nixpkgs#cachix
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
@@ -202,14 +198,6 @@ jobs:
 
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
-
-      - name: Set up Cachix cache
-        uses: cachix/cachix-action@v15
-        with:
-          name: saberzero1
-          useDaemon: false
-          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Set up build environment
         run: |
