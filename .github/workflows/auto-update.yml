@@ -1,4 +1,3 @@
-
 name: Update Dependencies
 
 on:
@@ -43,7 +42,7 @@ jobs:
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
-          sudo hostnamectl set-hostname nixos
+          sudo hostnamectl set-hostname nixos-acer
 
       - name: Omnix update flakes
         run: |
@@ -90,7 +89,7 @@ jobs:
         include:
           - runner: ubuntu-latest
             system: x86_64-linux
-            host_command: sudo hostnamectl set-hostname nixos
+            host_command: sudo hostnamectl set-hostname nixos-acer
           - runner: macos-latest
             system: aarch64-darwin
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
@@ -212,7 +211,7 @@ jobs:
           direnv allow .
           # direnv export gha > "$GITHUB_ENV"
           echo "Setting hostname"
-          sudo hostnamectl set-hostname nixos
+          sudo hostnamectl set-hostname nixos-acer
 
       - name: Push to FlakeHub
         uses: DeterminateSystems/flakehub-push@main
