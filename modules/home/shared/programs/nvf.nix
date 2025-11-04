@@ -14,7 +14,7 @@
     settings = {
       vim = {
         enableLuaLoader = true;
-        package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+        package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
         viAlias = true;
         vimAlias = true;
         withNodeJs = true;

@@ -5,19 +5,19 @@ in
 
 self: super: {
   devour-flake = self.callPackage inputs.devour-flake { };
-  # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.system}.default;
-  fh = inputs.fh.packages.${self.system}.default;
-  ghostty = inputs.ghostty.packages.${self.system}.default;
-  # gitbutler = inputs.gitbutler.packages.${self.system}.default;
-  # neovim = inputs.neovim-nightly-overlay.packages.${self.system}.default;
-  # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${self.system}.default;
-  # nix = inputs.determinate-nix.packages.${self.system}.default;
-  nix-direnv = inputs.nix-direnv.packages.${self.system}.default;
-  nixgl = inputs.nixgl.packages.${self.system}.default;
-  # nixvim = inputs.akira.packages.${self.system}.default;
-  omnix = inputs.omnix.packages.${self.system}.default;
-  # wezterm = inputs.wezterm.packages.${self.system}.default;
-  # zed-latest = inputs.zed.packages.${self.system}.default;
+  # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  ghostty = inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # gitbutler = inputs.gitbutler.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # neovim = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # nix = inputs.determinate-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # wezterm = inputs.wezterm.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # zed-latest = inputs.zed.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 }
 
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix

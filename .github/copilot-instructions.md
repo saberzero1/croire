@@ -36,9 +36,10 @@ Croire is a unified NixOS configuration repository that manages system configura
 ### Building and Testing
 
 - **Lint Nix files**: `just lint` (runs `nix fmt`)
-- **Check flake**: `just check` (runs `nix flake check`)
+- **Check flake**: `just check` (runs `om ci run .#check`)
 - **Check all systems**: `just check-all`
-- **Update flake inputs**: `just update` (runs `nix flake update`)
+- **Update flake inputs**: `just update` (runs `om ci run .#update`)
+- **Build with --abort-on-warn** `just build-warn` (runs `om ci run .#build -- --abort-on-warn --show-trace`)
 - **Build and activate configuration**:
   - Linux: `just build` (runs `om ci run .#switch`)
   - macOS: `just build` (runs `sudo om ci run .#switch`)
@@ -87,6 +88,7 @@ Croire is a unified NixOS configuration repository that manages system configura
 ## Cachix Caches
 
 The repository uses multiple binary caches for faster builds:
+
 - nixos cache
 - nix-community cache
 - personal cache (saberzero1.cachix.org)

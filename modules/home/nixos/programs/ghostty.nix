@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ flake, pkgs, ... }:
+let
+  inherit (flake) inputs;
+in
 {
   programs.ghostty = {
     enable = true;
@@ -30,7 +33,6 @@
         "+ss14"
         "+ss15"
       ];
-
       theme = "dark:TokyoNight Storm,light:TokyoNight Day";
       shell-integration = "zsh";
     };

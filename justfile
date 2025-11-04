@@ -12,7 +12,7 @@ default:
 # Update nix flake
 [group('Main')]
 update:
-  nix flake update
+  om ci run .#update
 
 # Lint nix files
 [group('Dev')]
@@ -22,7 +22,7 @@ lint:
 # Check nix flake
 [group('Dev')]
 check:
-  nix flake check
+  om ci run .#check
 
 # Check nix flake for all systems
 [group('Dev')]
@@ -38,6 +38,11 @@ dev:
 [group('Main')]
 run:
   nix run
+
+# Test for warnings
+[group('Dev')]
+build-warn:
+  om ci run .#build -- --abort-on-warn --show-trace
 
 # Activate default configuration
 [group('Main')]
@@ -123,7 +128,8 @@ gc:
 [group('Clean')]
 [unix]
 clean:
-  sudo /run/current-system/bin/switch-to-configuration boot
+  om ci run .#clean
+  # sudo /run/current-system/bin/switch-to-configuration boot
 
 # Hard link nix stores
 [group('Clean')]

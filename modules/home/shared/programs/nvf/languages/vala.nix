@@ -1,6 +1,6 @@
 {
   programs.nvf.settings.vim.languages.vala = {
-    enable = true;
+    enable = false;
     lsp = {
       enable = true;
       servers = "vala_ls";
