@@ -5,7 +5,7 @@
     matplotlib
     seaborn
     pip
-    scikitlearn
+    scikit-learn
     numpy
     python-dotenv
     black
