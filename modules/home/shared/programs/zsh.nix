@@ -40,8 +40,8 @@
       source "${config.home.homeDirectory}/.config/zsh/scripts/shortcuts"
       #
       # direnv
-      # eval "$(direnv hook zsh)"
-      eval "$(direnv-instant hook zsh)"
+      eval "$(direnv hook zsh)"
+      # eval "$(direnv-instant hook zsh)"
       #
       # tmux
       bindkey -s "^F" "tmux-sessionizer\n"

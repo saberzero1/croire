@@ -16,7 +16,7 @@ in
     #   provideEmacs = false;
     # };
     emacs = {
-      enable = true;
+      enable = false;
     };
   };
 }

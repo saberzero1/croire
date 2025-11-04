@@ -2,7 +2,7 @@
 let
   inherit (flake) inputs;
   inherit (inputs) self;
-  enableInstant = true;
+  enableInstant = false;
 in
 {
   imports = [
