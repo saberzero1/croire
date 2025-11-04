@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Install Determinate Nix
-        uses: DeterminateSystems/nix-installer-action@main
+        uses: DeterminateSystems/nix-installer-action@v3
 
       - name: Set up build enviroment
         run: |
@@ -132,6 +132,14 @@ jobs:
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
 
+      - name: Set up Cachix cache
+        uses: cachix/cachix-action@v15
+        with:
+          name: saberzero1
+          useDaemon: false
+          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
       - name: Set up build environment
         run: |
           echo "Setting up direnv"
@@ -148,13 +156,6 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           echo "Setting hostname"
           ${{ matrix.host_command }}
-
-      - name: Set up Cachix cache
-        uses: cachix/cachix-action@v15
-        with:
-          name: saberzero1
-          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Omnix build flakes
         env:
@@ -201,6 +202,14 @@ jobs:
 
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
+
+      - name: Set up Cachix cache
+        uses: cachix/cachix-action@v15
+        with:
+          name: saberzero1
+          useDaemon: false
+          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Set up build environment
         run: |
