@@ -37,6 +37,15 @@ in
       terminal = false;
       mimeType = [ "text/plain" ];
     };
+    "geforce-now-offloaded" = {
+      name = "GeForce NOW (Offloaded)";
+      comment = "Cloud Gaming";
+      icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
+      exec = "${pkgs.bash}/bin/bash -c nvidia-offload com.nvidia.geforcenow";
+      categories = [ "Application" ];
+      terminal = false;
+      mimeType = [ "text/plain" ];
+    };
     "obsidian" = {
       name = "Obsidian";
       comment = "Knowledge Management";
