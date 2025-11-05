@@ -41,7 +41,7 @@ in
       name = "GeForce NOW (Offloaded)";
       comment = "Cloud Gaming";
       icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
-      exec = "${pkgs.bash}/bin/bash -c nvidia-offload com.nvidia.geforcenow";
+      exec = "nvidia-offload com.nvidia.geforcenow";
       categories = [ "Application" ];
       terminal = false;
       mimeType = [ "text/plain" ];
