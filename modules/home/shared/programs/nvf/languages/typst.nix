@@ -3,7 +3,7 @@
     enable = true;
     format = {
       enable = true;
-      type = "typstfmt";
+      type = "typstyle";
     };
     lsp = {
       enable = true;
