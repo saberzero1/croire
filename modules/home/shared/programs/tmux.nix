@@ -11,7 +11,6 @@
     keyMode = "vi";
     secureSocket = false;
     shell = "${pkgs.zsh}/bin/zsh";
-    tmuxp.enable = true;
     plugins = with pkgs.tmuxPlugins; [
       fpp # Facebook Path Picker
       yank

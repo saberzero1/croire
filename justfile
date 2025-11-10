@@ -59,9 +59,9 @@ build:
   # skhd --stop-service || true
   # sudo nix run .#activate
   sudo om ci run .#switch
+  aerospace reload-config
   sketchybar --reload
   # skhd --start-service
-  aerospace reload-config
 
 # Activate default configuration
 [group('Main')]

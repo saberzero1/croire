@@ -99,20 +99,6 @@ ci:
           activate-configuration:
             type: app
             name: activate
-          reload-aerospace:
-            type: devshell
-            command:
-              - aerospace
-              - reload-config
-            systems:
-              - aarch64-darwin
-          reload-sketchybar:
-            type: devshell
-            command:
-              - sketchybar
-              - --reload
-            systems:
-              - aarch64-darwin
       caches:
         required:
           # nixos cache server

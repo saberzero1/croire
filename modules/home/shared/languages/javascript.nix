@@ -8,7 +8,6 @@
       eslint_d
       svelte-language-server
       typescript-language-server
-      ts-node
       sass
       serve
       npm
