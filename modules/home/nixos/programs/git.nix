@@ -14,13 +14,6 @@
       lfs = {
         enable = true;
       };
-      /*
-        signing = {
-        # key = null;
-        signByDefault = true;
-        gpgPath = "${pkgs.gnupg}/bin/gpg2";
-        };
-      */
       settings = {
         user = {
           name = "saberzero1";

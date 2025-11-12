@@ -177,12 +177,6 @@ in
 
         # You can choose a specific set of servers from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
         # server_names = [ ... ];
-        /*
-          server_names = [
-            "doh-cleanbrowsing-adult"
-            "cleanbrowsing-adult-doh"
-          ];
-        */
       };
     };
   };
@@ -297,14 +291,4 @@ in
 
   # public key
   # programs.git.signing.key = "41AEE99107640F10";
-
-  /*
-    specialArgs = {
-     nixosPublicKey =
-     if config.networking.hostName == "nixos" then "41AEE99107640F10"
-     else if config.networking.hostName == "croire" then null
-     else if config.networking.hostName == "croire-low" then "198769D1B0D0DF8C"
-     else null;
-     };
-  */
 }
