@@ -873,11 +873,11 @@
         "unstablePkgs": "unstablePkgs"
       },
       "locked": {
-        "lastModified": 1762907834,
-        "narHash": "sha256-NDAXpw/04STDSrq5M+dt6PvpMmWFDZhww3+h8OB3b9E=",
+        "lastModified": 1762926799,
+        "narHash": "sha256-Sog0KRGxIsI4T2eaRBkuQOsTirVN7TTga/zeCdHAhRg=",
         "owner": "gitbutlerapp",
         "repo": "gitbutler",
-        "rev": "dadd5be9ba717e6a082a27123b8673901204e4cc",
+        "rev": "82a40c9b331a9353dbb7c4ead0de06c677442652",
         "type": "github"
       },
       "original": {
@@ -916,12 +916,12 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1762875534,
-        "narHash": "sha256-RM3zq2CwhiMlbATFPs5z82tQJ4HcQPnN65RMBHDETYA=",
-        "rev": "f828de34fac5a489e4373ea3dd5712c5f1af229e",
-        "revCount": 7005,
+        "lastModified": 1762914453,
+        "narHash": "sha256-AVc35rhjWimNIBr+kQvjX6tYJNKlm/RA/X2mfPZ+BhM=",
+        "rev": "24b187a4bc4fed3c11541f6f4bd4f3a887842394",
+        "revCount": 7008,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.7005%2Brev-f828de34fac5a489e4373ea3dd5712c5f1af229e/019a73ff-546c-7fa6-8949-7e7a6a3f0801/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.7008%2Brev-24b187a4bc4fed3c11541f6f4bd4f3a887842394/019a7692-ac35-7b12-b28b-469db7002c24/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -988,11 +988,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1762915618,
-        "narHash": "sha256-Et6BQ+ODjUoyeuWGWf6IDRCokXnqIaZORFe+sSvth24=",
+        "lastModified": 1762926396,
+        "narHash": "sha256-jnqX5rhoyTutEq5L2NBU+VyB3DBh4iLUvpzgwh36VbU=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "b0e76c4123067eb2578a98d07847e7ec81cbd50f",
+        "rev": "06d43cf73e7cd61c9bed3c0fa37a50e8ae2e825e",
         "type": "github"
       },
       "original": {
@@ -1004,11 +1004,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1762918695,
-        "narHash": "sha256-fLN0R6R2+d5p9dKRvWzJseCm5VuUvdwxyQt+AeaautY=",
+        "lastModified": 1762924151,
+        "narHash": "sha256-PKF8xj8gWDJu4b1is3BacYLsFixOWHeAPTx2eALq/DE=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "cbd4d8dc59540a9f823d790b1f544bf3a9c0835f",
+        "rev": "2c87ce014682c633fb26406f35a1626fc72a5808",
         "type": "github"
       },
       "original": {
