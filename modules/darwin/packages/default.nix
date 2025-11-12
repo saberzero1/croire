@@ -1,4 +1,13 @@
-{ ... }:
+{ flake, ... }:
+let
+  flakeTaps = {
+    "homebrew/homebrew-bundle" = flake.inputs.homebrew-bundle;
+    "homebrew/homebrew-core" = flake.inputs.homebrew-core;
+    "homebrew/homebrew-cask" = flake.inputs.homebrew-cask;
+    "FelizKratz/homebrew-formulae" = flake.inputs.homebrew-felixkratz-tap;
+    "nikitabobko/homebrew-tap" = flake.inputs.homebrew-nikitabobko-tap;
+  };
+in
 {
   imports = [
     ./casks
@@ -7,30 +16,30 @@
     ./taps
   ];
 
+  nix-homebrew = {
+    enable = true;
+    # enableRosetta = true;
+    user = "emile";
+    taps = flakeTaps;
+    autoMigrate = true;
+    # mutableTaps = false;
+  };
+
   homebrew = {
     enable = true;
 
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "zap";
-      # cleanup = "none";
+      # cleanup = "zap";
+      cleanup = "none";
     };
 
     global = {
       autoUpdate = true;
-      brewfile = true;
+      # brewfile = true;
     };
 
-    taps = [
-      {
-        name = "FelizKratz/homebrew-formulae";
-        clone_target = "git@github.com:FelixKratz/homebrew-formulae.git";
-      }
-      {
-        name = "nikitabobko/tap";
-        clone_target = "git@github.com:nikitabobko/homebrew-tap.git";
-      }
-    ];
+    taps = builtins.attrNames flakeTaps;
   };
 }

@@ -117,7 +117,8 @@ alt-cmd-q = 'close'
 alt-cmd-c = 'reload-config'
 
 # Launcher (using macOS Spotlight as equivalent to wofi)
-alt-cmd-o = '''exec-and-forget osascript -e 'tell application "System Events" to keystroke space using {command down}' '''
+# alt-cmd-o = '''exec-and-forget osascript -e 'tell application "System Events" to keystroke space using {command down}' '''
+alt-cmd-o = '''exec-and-forget open -a Sol'''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-cmd-slash = 'layout tiles horizontal vertical'

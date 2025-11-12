@@ -118,6 +118,15 @@
       url = "github:Homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-felixkratz-tap = {
+      url = "github:FelixKratz/homebrew-formulae";
+      flake = false;
+    };
+    homebrew-nikitabobko-tap = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
+
     mac-app-util.url = "github:hraban/mac-app-util";
     spacebar.url = "github:cmacrae/spacebar/v1.4.0";
 

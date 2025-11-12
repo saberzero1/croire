@@ -1,1 +1,1 @@
-"gitbutler"
+gitbutler

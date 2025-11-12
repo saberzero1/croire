@@ -1,1 +1,1 @@
-"font-sf-pro"
+font-sf-pro

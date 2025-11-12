@@ -1,1 +1,1 @@
-"gimp"
+homebrew/cask/gimp

@@ -31,6 +31,18 @@ let
     builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf fn)) (
       builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
+  # Get a list of the contents of all .nix files in a directory as strings
+  # Useful for importing lists of items defined in .nix files (e.g., homebrew casks)
+  #
+  # Usage:
+  #   { flake, ... }: let
+  #     casks = flake.inputs.self.lib.croire.filesAsStrings ./.
+  #   in { ... }
+  filesAsStrings =
+    dir:
+    builtins.map (fn: builtins.readFile (dir + "/${fn}")) (
+      builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+    );
 
   # Recursively import all .nix files in a directory tree (excluding default.nix)
   # This provides deep auto-importing for nested directory structures
@@ -93,6 +105,7 @@ in
     inherit
       autoImport
       filesAsNames
+      filesAsStrings
       autoImportRecursive
       overrideLicense
       ;

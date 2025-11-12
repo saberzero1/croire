@@ -1,5 +1,15 @@
 # Library Functions Changelog
 
+## Version 2.2 - 2025-11-12
+
+### Added
+
+#### Core Library Functions
+
+- **modules/flake/lib.nix**: added `filesAsStrings` function to `flake.lib.croire`:
+  - `filesAsString`: Similarly to `filesAsNames`, but uses the file's content instead of the name.
+    - This function takes a directory path as an argument and returns a list of strings, each representing the content of a .nix file in the specified directory. It is useful for scenarios where the content of configuration files needs to be processed or analyzed, such as Homebrew overrides.
+
 ## Version 2.1 - 2025-10-27
 
 ### Added

@@ -1,1 +1,1 @@
-"windows-app"
+windows-app

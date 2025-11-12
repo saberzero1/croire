@@ -1,1 +1,1 @@
-"sf-symbols"
+sf-symbols

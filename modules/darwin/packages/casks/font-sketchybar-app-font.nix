@@ -1,1 +1,1 @@
-"font-sketchybar-app-font"
+font-sketchybar-app-font

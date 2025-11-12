@@ -1,1 +1,1 @@
-"font-sf-mono"
+font-sf-mono

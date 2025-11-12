@@ -1,1 +1,1 @@
-"ghostty"
+ghostty

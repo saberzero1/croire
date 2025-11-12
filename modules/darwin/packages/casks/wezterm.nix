@@ -1,1 +1,1 @@
-"wezterm"
+wezterm

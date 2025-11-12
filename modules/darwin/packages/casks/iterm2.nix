@@ -1,1 +1,1 @@
-"iterm2"
+iterm2

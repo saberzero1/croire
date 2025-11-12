@@ -1,10 +1,6 @@
 { flake, ... }:
 let
-  casks =
-    flake.inputs.self.lib.croire.filesAsNames ./.
-    ++ [
-      "nikitabobko/tap/aerospace"
-    ];
+  casks = flake.inputs.self.lib.croire.filesAsStrings ./.;
 in
 {
   homebrew.casks = casks;
