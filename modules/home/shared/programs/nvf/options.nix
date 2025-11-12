@@ -16,18 +16,6 @@ in
       confirm = true;
       cursorline = true;
       expandtab = true;
-      /*
-        fillchars = lua ''
-          {
-            foldopen = "",
-            foldclose = "",
-            fold = " ",
-            foldsep = " ",
-            diff = "╱",
-            eob = " ",
-          }
-        '';
-      */
       foldlevel = 99;
       formatexpr = "v:lua.require'conform'.formatexpr()";
       formatoptions = "jcroqlnt";

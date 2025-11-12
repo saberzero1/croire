@@ -11,12 +11,6 @@ in
         enable = true;
       };
       mappings = {
-        /*
-            confirm = "<CR>";
-            complete = "<S-Space>";
-            next = "<C-n>";
-            previous = "<C-p>";
-        */
         close = null;
         complete = null;
         confirm = null;
@@ -33,13 +27,6 @@ in
           # module = "blink-cmp-copilot";
           module = "blink-copilot";
         };
-        /*
-          "blink-cmp-avante" = {
-            enable = true;
-            package = pkgs.vimPlugins.blink-cmp-avante;
-            module = "blink-cmp-avante";
-          };
-        */
       };
       setupOpts = {
         fuzzy = {

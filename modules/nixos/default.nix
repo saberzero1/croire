@@ -33,18 +33,6 @@
     gamescope = {
       enable = true;
       package = pkgs.gamescope;
-      /*
-        args = [
-        "-b"
-        "-W 1920"
-        "-H 1080"
-        "-r 60"
-        "--backend sdl"
-        "--expose-wayland"
-        "--prefer-vk-device"
-        "--force-grab-cursor"
-        ];
-      */
     };
 
     appimage = {

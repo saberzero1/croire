@@ -22,14 +22,39 @@ Croire is a unified NixOS configuration repository that manages system configura
   - `home/`: Home Manager user configurations
 - `modules/`: Reusable NixOS/Darwin/Home Manager modules
   - `nixos/`: NixOS-specific modules
+    - `packages/`: System-wide package management
+    - `services/`: System services configuration
+    - `system/`: System-level settings (fonts, security, settings)
   - `darwin/`: macOS-specific modules
+    - `dock/`: macOS Dock configuration
+    - `packages/`: Homebrew package management (casks, formulae, masApps, taps)
+    - `services/`: System services configuration
+    - `system/`: System-level settings (fonts, packages, security, settings)
   - `home/`: Home Manager modules
+    - `darwin/`: macOS-specific user configurations
+    - `nixos/`: NixOS-specific user configurations
+    - `shared/`: Cross-platform user configurations
   - `flake/`: Flake-level modules
 - `programs/`: Application-specific configurations and dotfiles
 - `overlays/`: Nix package overlays for custom/modified packages
 - `scripts/`: Helper scripts for system management
 - `flake.nix`: Main flake configuration defining inputs and outputs
 - `justfile`: Command definitions for common operations
+
+### Module Organization
+
+NixOS and Darwin modules are now aligned with a consistent structure:
+
+- Both use `packages/`, `services/`, and `system/` subdirectories
+- System-level settings (fonts, security) are organized under `system/` for both platforms
+- Each directory with a `default.nix` includes a README.md documenting its purpose
+- Platform-specific differences are maintained only where necessary (e.g., Darwin's `dock/`)
+
+Home Manager modules are organized into three categories:
+
+- `shared/`: Configurations that work across all platforms (editors, shell, languages)
+- `nixos/`: Linux-specific programs and settings (Wayland, Hyprland, etc.)
+- `darwin/`: macOS-specific programs and settings (Homebrew integration, etc.)
 
 ## Development Workflow
 
@@ -65,9 +90,14 @@ Croire is a unified NixOS configuration repository that manages system configura
 ### File Organization
 
 - Place system-wide configurations in `modules/nixos/` or `modules/darwin/`
+  - For NixOS: Use `packages/`, `services/`, or `system/` subdirectories
+  - For Darwin: Use `dock/`, `packages/`, `services/`, or `system/` subdirectories
 - Place user-specific configurations in `modules/home/`
+  - Use `shared/` for cross-platform configurations
+  - Use `nixos/` or `darwin/` for platform-specific settings
 - Place application dotfiles and configurations in `programs/`
 - Use descriptive names for modules and options
+- Each directory with a `default.nix` should have a corresponding README.md
 
 ### Module Conventions
 
@@ -75,15 +105,27 @@ Croire is a unified NixOS configuration repository that manages system configura
 - Provide sensible defaults with `mkDefault`
 - Use `mkIf` and `mkMerge` for conditional configuration
 - Document non-obvious options with descriptions
+- Use `autoImport` pattern in `default.nix` files to automatically discover and import modules
+- Keep platform-specific and shared code properly separated in Home Manager modules
 
 ## Key Inputs & Dependencies
 
 - **nixpkgs**: Main package repository (tracking unstable)
 - **home-manager**: User environment management
 - **nix-darwin**: macOS system configuration
-- **nixos-unified**: Unified configuration framework
+- **nixos-unified**: Unified configuration framework for automatic module discovery
 - **sops-nix**: Secret management
 - **Various program-specific inputs**: See `flake.nix` for full list
+
+### Module Discovery
+
+The repository uses `nixos-unified` for automatic module discovery:
+
+- NixOS configurations automatically import from `modules/nixos/`
+- Darwin configurations automatically import from `modules/darwin/`
+- Home Manager configurations automatically import from `modules/home/`
+- Each platform's `default.nix` uses the `autoImport` helper to recursively load all modules
+- This eliminates the need for manual import statements in most cases
 
 ## Cachix Caches
 
