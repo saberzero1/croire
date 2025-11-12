@@ -4,6 +4,8 @@ let
   inherit (inputs) self;
 in
 {
+  imports = flake.inputs.self.lib.croire.autoImport ./.;
+
   system = {
     userActivationScripts = {
       postUserActivation.text = ''

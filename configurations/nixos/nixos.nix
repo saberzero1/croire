@@ -13,10 +13,6 @@ in
 {
   imports = [
     self.nixosModules.default
-    self.nixosModules.fonts
-    self.nixosModules.security
-    self.nixosModules.services
-    self.nixosModules.system
     inputs.nix-snapd.nixosModules.default
     {
       services.snap.enable = false;
