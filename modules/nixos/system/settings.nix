@@ -129,7 +129,6 @@ in
       vscode-extensions.asvetliakov.vscode-neovim
 
       bun
-      gfn-electron
       pipewire
       libnss_nis
 
