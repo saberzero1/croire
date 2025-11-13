@@ -57,6 +57,8 @@ in
 
       # hyprland build dependencies
       # epoll-shim
+      libxau
+      libxcb
       libexecinfo
       libnotify
       tracy
