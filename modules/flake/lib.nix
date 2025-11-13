@@ -2,6 +2,22 @@
 # This exports library functions that can be used in imports (available early in evaluation)
 { flake, ... }:
 let
+  # https://noogle.dev/f/lib/strings/hasSuffix
+  hasSuffix =
+    suffix: content:
+    let
+      lenContent = builtins.stringLength content;
+      lenSuffix = builtins.stringLength suffix;
+    in
+    # Before 23.05, paths would be copied to the store before converting them
+    # to strings and comparing. This was surprising and confusing.
+    warnIf (isPath suffix)
+      ''
+        lib.strings.hasSuffix: The first argument (${toString suffix}) is a path value, but only strings are supported.
+            There is almost certainly a bug in the calling code, since this function always returns `false` in such a case.
+            This function also copies the path to the Nix store, which may not be what you want.
+            This behavior is deprecated and will throw an error in the future.''
+      (lenContent >= lenSuffix && substring (lenContent - lenSuffix) lenContent content == suffix);
   # Automatically import all .nix files in a directory except default.nix
   # This eliminates the need for the common pattern:
   #   builtins.map (fn: ./${fn}) (
@@ -16,7 +32,7 @@ let
   autoImport =
     dir:
     builtins.map (fn: dir + "/${fn}") (
-      builtins.filter (fn: builtins.hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+      builtins.filter (fn: hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
 
   # Get a list of filenames (without .nix extension) from a directory
@@ -29,7 +45,7 @@ let
   filesAsNames =
     dir:
     builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf fn)) (
-      builtins.filter (fn: builtins.hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+      builtins.filter (fn: hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
   # Get a list of the contents of all .nix files in a directory as strings
   # Useful for importing lists of items defined in .nix files (e.g., homebrew casks)
@@ -41,7 +57,7 @@ let
   filesAsStrings =
     dir:
     builtins.map (fn: builtins.readFile (dir + "/${fn}")) (
-      builtins.filter (fn: builtins.hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+      builtins.filter (fn: hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
 
   # Recursively import all .nix files in a directory tree (excluding default.nix)
@@ -69,7 +85,7 @@ let
       validFiles =
         d:
         builtins.map (file: d + "/${file}") (
-          builtins.filter (file: builtins.hasSuffix ".nix" file && file != "default.nix") (files d)
+          builtins.filter (file: hasSuffix ".nix" file && file != "default.nix") (files d)
         );
     in
     validFiles dir;
