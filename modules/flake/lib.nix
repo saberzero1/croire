@@ -16,7 +16,7 @@ let
   autoImport =
     dir:
     builtins.map (fn: dir + "/${fn}") (
-      builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+      builtins.filter (fn: builtins.hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
 
   # Get a list of filenames (without .nix extension) from a directory
@@ -29,7 +29,7 @@ let
   filesAsNames =
     dir:
     builtins.map (fn: builtins.replaceStrings [ ".nix" ] [ "" ] (builtins.baseNameOf fn)) (
-      builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+      builtins.filter (fn: builtins.hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
   # Get a list of the contents of all .nix files in a directory as strings
   # Useful for importing lists of items defined in .nix files (e.g., homebrew casks)
@@ -41,7 +41,7 @@ let
   filesAsStrings =
     dir:
     builtins.map (fn: builtins.readFile (dir + "/${fn}")) (
-      builtins.filter (fn: fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
+      builtins.filter (fn: builtins.hasSuffix ".nix" fn && fn != "default.nix") (builtins.attrNames (builtins.readDir dir))
     );
 
   # Recursively import all .nix files in a directory tree (excluding default.nix)
