@@ -19,7 +19,7 @@ let
             There is almost certainly a bug in the calling code, since this function always returns `false` in such a case.
             This function also copies the path to the Nix store, which may not be what you want.
             This behavior is deprecated and will throw an error in the future.''
-      (lenContent >= lenSuffix && substring (lenContent - lenSuffix) lenContent content == suffix);
+      (lenContent >= lenSuffix && builtins.substring (lenContent - lenSuffix) lenContent content == suffix);
   # Automatically import all .nix files in a directory except default.nix
   # This eliminates the need for the common pattern:
   #   builtins.map (fn: ./${fn}) (
