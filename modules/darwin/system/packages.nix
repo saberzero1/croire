@@ -14,7 +14,7 @@ in
       sqlfluff
       viu
       chafa
-      ueberzugpp
+      # ueberzugpp
       haskellPackages.hoogle
       fh
 
