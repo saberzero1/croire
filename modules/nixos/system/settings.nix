@@ -52,7 +52,7 @@ in
       mako
       hyprland
       slurp
-      wl-keyboard
+      # wl-keyboard
       grim
 
       # hyprland build dependencies
