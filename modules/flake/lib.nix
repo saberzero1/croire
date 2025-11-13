@@ -2,6 +2,8 @@
 # This exports library functions that can be used in imports (available early in evaluation)
 { flake, ... }:
 let
+  # https://noogle.dev/f/lib/warnIf
+  warnIf = cond: msg: if cond then builtins.warn msg else x: x;
   # https://noogle.dev/f/lib/strings/hasSuffix
   hasSuffix =
     suffix: content:
@@ -11,7 +13,7 @@ let
     in
     # Before 23.05, paths would be copied to the store before converting them
     # to strings and comparing. This was surprising and confusing.
-    warnIf (isPath suffix)
+    warnIf (builtins.isPath suffix)
       ''
         lib.strings.hasSuffix: The first argument (${toString suffix}) is a path value, but only strings are supported.
             There is almost certainly a bug in the calling code, since this function always returns `false` in such a case.
