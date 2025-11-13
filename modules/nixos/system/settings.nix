@@ -56,7 +56,7 @@ in
       grim
 
       # hyprland build dependencies
-      epoll-shim
+      # epoll-shim
       libexecinfo
       libnotify
       tracy
