@@ -378,9 +378,9 @@ in
     nix-ld = {
       enable = true;
       package = pkgs.nix-ld;
-      dev = {
-        enable = true;
-      };
+      # dev = {
+      #   enable = true;
+      # };
     };
 
     npm = {
