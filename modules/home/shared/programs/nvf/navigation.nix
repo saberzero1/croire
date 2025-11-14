@@ -28,8 +28,7 @@ in
       quickfile = {
         enabled = true;
       };
-      terminal = {
-      };
+      terminal = { };
       indent = {
         enabled = true;
       };

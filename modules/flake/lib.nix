@@ -12,7 +12,7 @@ let
       lenSuffix = builtins.stringLength suffix;
     in
     # Before 23.05, paths would be copied to the store before converting them
-    # to strings and comparing. This was surprising and confusing.
+      # to strings and comparing. This was surprising and confusing.
     warnIf (builtins.isPath suffix)
       ''
         lib.strings.hasSuffix: The first argument (${toString suffix}) is a path value, but only strings are supported.

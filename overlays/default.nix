@@ -18,7 +18,7 @@ self: super: {
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # wezterm = inputs.wezterm.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # zed-latest = inputs.zed.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  
+
   # Gaming packages from play.nix
   proton-cachyos = inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.proton-cachyos or null;
   procon2-init = inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
