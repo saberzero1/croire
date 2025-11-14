@@ -179,6 +179,14 @@
     };
     # zed.url = "github:zed-industries/zed";
 
+    # Gaming
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    play-nix = {
+      url = "github:TophC7/play.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.chaotic.follows = "chaotic";
+    };
+
     # Dotfiles
     totten = {
       url = "github:saberzero1/totten/master";
