@@ -174,6 +174,10 @@ in
   console = {
     enable = true;
     font = "Monaspace Neon";
+    packages = with pkgs; [
+      monaspace
+      terminus_font
+    ];
     keyMap = "us";
   };
 
