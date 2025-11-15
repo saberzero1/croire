@@ -58,7 +58,7 @@
       vscodium.fhs
 
       # Espanso
-      espanso-wayland
+      # espanso-wayland
 
       # Graphic Drivers
       # driversi686Linux.amdvlk (deprecated, replacement is enabled by default nowadays)
