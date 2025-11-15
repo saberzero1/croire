@@ -15,8 +15,8 @@ in
       # These should be set to false when using direnv-instant
       enableBashIntegration = !enableInstant;
       enableZshIntegration = !enableInstant;
-      enableFishIntegration = !enableInstant;
-      enableNushellIntegration = !enableInstant;
+      # enableFishIntegration = !enableInstant;
+      # enableNushellIntegration = !enableInstant;
       nix-direnv = {
         enable = true;
         package = pkgs.nix-direnv;
