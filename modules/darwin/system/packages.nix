@@ -32,6 +32,7 @@ in
       sbarlua
 
       ispell
+      kvazaar
     ];
   };
 }
