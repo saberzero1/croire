@@ -33,6 +33,7 @@ in
 
       ispell
       kvazaar
+      fish
     ];
   };
 }
