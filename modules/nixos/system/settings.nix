@@ -133,7 +133,6 @@ in
       bun
       pipewire
       libnss_nis
-      kvazaar
 
       # opencode
       electron-chromedriver
