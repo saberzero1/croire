@@ -21,6 +21,7 @@
     tkinter
     async-tkinter-loop
     customtkinter
+    pexpect
   ];
 
 }
