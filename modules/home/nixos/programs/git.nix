@@ -1,10 +1,16 @@
 { pkgs, config, ... }:
+let
+  signingPublicKeyPath = "${config.home.homeDirectory}/.ssh/saberzero1-github.pub";
+  signingPublicKey =
+    if builtins.pathExists signingPublicKeyPath then pkgs.lib.readFile signingPublicKeyPath else null;
+in
 {
   programs = {
     git = {
       signing = {
-        key = null;
+        key = signingPublicKey;
         signByDefault = true;
+        format = "ssh";
       };
       enable = true;
       package = pkgs.gitFull;
@@ -25,8 +31,9 @@
           autocrlf = "input";
         };
         commit.gpgsign = true;
+        tag.gpgsign = true;
         gpg.format = "ssh";
-        user.signingkey = "${config.home.homeDirectory}/.ssh/saberzero1-github.pub";
+        user.signingkey = signingPublicKeyPath;
         pull.rebase = true;
         rebase.autoStash = true;
       };
@@ -42,6 +49,5 @@
       };
       enableGitIntegration = true;
     };
-
   };
 }

@@ -20,7 +20,7 @@ in
     eza
 
     # Nix dev
-    # cachix
+    cachix
     nil # Nix language server
     nix-info
     nixpkgs-fmt
@@ -93,7 +93,7 @@ in
     # nodejs
 
     # Utility
-    ffmpeg-full
+    # ffmpeg-full
     fzf
     jq
     just

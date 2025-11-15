@@ -22,7 +22,7 @@ in
     matchBlocks = {
       "*" = {
         forwardAgent = false;
-        addKeysToAgent = "ask";
+        addKeysToAgent = "yes";
         compression = false;
         serverAliveInterval = 0;
         serverAliveCountMax = 3;
