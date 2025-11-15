@@ -32,8 +32,6 @@ in
       sbarlua
 
       ispell
-      kvazaar
-      fish
     ];
   };
 }
