@@ -5,24 +5,28 @@ in
 
 self: super: {
   devour-flake = self.callPackage inputs.devour-flake { };
-  direnv = super.direnv.overrideAttrs (oldAttrs: {
-    # Remove fish from nativeCheckInputs to avoid unnecessary dependency
-    nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
-      oldAttrs.nativeCheckInputs or [ ]
-    );
-    checkPhase = ''
-      runHook preCheck
-      make test-go test-bash test-zsh
-      runHook postCheck
-    '';
-  });
+  # direnv = super.direnv.overrideAttrs (oldAttrs: {
+  #   # Remove fish from nativeCheckInputs to avoid unnecessary dependency
+  #   nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
+  #     oldAttrs.nativeCheckInputs or [ ]
+  #   );
+  #   checkPhase = ''
+  #     runHook preCheck
+  #     make test-go test-bash test-zsh
+  #     runHook postCheck
+  #   '';
+  # });
   # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # fish = super.fish.overrideAttrs (oldAttrs: {
-  #   # Disable tests until fixed upstream
+  #   # Disable all tests
   #   doCheck = false;
   #   checkPhase = "";
   #   cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+  #     "BUILD_DOCS=OFF"
+  #     "INSTALL_DOCS=OFF"
+  #     "-DENABLE_TESTS=OFF"
+  #     "-DFISH_TESTS=OFF"
   #     "-DBUILD_TESTING=OFF"
   #   ];
   # });
@@ -31,8 +35,7 @@ self: super: {
   # neovim = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nix = inputs.determinate-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  nix-direnv =
-    inputs.nix-direnv;
+  nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
