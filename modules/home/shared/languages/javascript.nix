@@ -2,7 +2,6 @@
 {
   home.packages =
     (with pkgs.nodePackages; [
-      live-server
       typescript
       prettier
       eslint_d

@@ -7,11 +7,11 @@
     };
     format = {
       enable = true;
-      type = "prettier";
+      type = [ "prettier" ];
     };
     lsp = {
       enable = true;
-      servers = "ts_ls";
+      servers = [ "ts_ls" ];
     };
     treesitter = {
       enable = true;

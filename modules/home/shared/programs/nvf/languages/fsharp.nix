@@ -3,11 +3,11 @@
     enable = true;
     format = {
       enable = true;
-      type = "fantomas";
+      type = [ "fantomas" ];
     };
     lsp = {
       enable = true;
-      servers = "fsautocomplete";
+      servers = [ "fsautocomplete" ];
     };
     treesitter = {
       enable = true;

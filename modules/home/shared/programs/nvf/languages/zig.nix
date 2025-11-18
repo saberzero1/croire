@@ -7,7 +7,7 @@
     };
     lsp = {
       enable = true;
-      servers = "zls";
+      servers = [ "zls" ];
     };
     treesitter = {
       enable = true;

@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      servers = "yaml-language-server";
+      servers = [ "yaml-language-server" ];
     };
     treesitter = {
       enable = true;

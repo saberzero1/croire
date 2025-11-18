@@ -5,6 +5,19 @@ in
 
 self: super: {
   devour-flake = self.callPackage inputs.devour-flake { };
+  direnv =
+    inputs.nixpkgs.packages.${self.pkgs.stdenv.hostPlatform.system}.direnv.overrideAttrs
+      (oldAttrs: {
+        # Remove fish from nativeCheckInputs to avoid unnecessary dependency
+        nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
+          oldAttrs.nativeCheckInputs or [ ]
+        );
+        checkPhase = ''
+          runHook preCheck
+          make test-go test-bash test-zsh test-nushell
+          runHook postCheck
+        '';
+      });
   # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   ghostty = inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
@@ -12,7 +25,19 @@ self: super: {
   # neovim = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nix = inputs.determinate-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  nix-direnv =
+    inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
+      (oldAttrs: {
+        # Remove fish from nativeCheckInputs to avoid unnecessary dependency
+        nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
+          oldAttrs.nativeCheckInputs or [ ]
+        );
+        checkPhase = ''
+          runHook preCheck
+          make test-go test-bash test-zsh test-nushell
+          runHook postCheck
+        '';
+      });
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
@@ -20,8 +45,10 @@ self: super: {
   # zed-latest = inputs.zed.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
   # Gaming packages from play.nix
-  proton-cachyos = inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.proton-cachyos or null;
-  procon2-init = inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
+  proton-cachyos =
+    inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.proton-cachyos or null;
+  procon2-init =
+    inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
 }
 
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix

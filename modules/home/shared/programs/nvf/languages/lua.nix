@@ -7,7 +7,7 @@
     };
     format = {
       enable = true;
-      type = "stylua";
+      type = [ "stylua" ];
     };
     lsp = {
       enable = true;

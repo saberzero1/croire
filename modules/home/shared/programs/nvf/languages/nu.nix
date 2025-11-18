@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      servers = "nushell";
+      servers = [ "nushell" ];
     };
     treesitter = {
       enable = true;

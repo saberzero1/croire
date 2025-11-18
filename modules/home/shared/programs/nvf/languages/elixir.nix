@@ -6,11 +6,11 @@
     };
     format = {
       enable = true;
-      type = "mix";
+      type = [ "mix" ];
     };
     lsp = {
       enable = true;
-      servers = "elixirls";
+      servers = [ "elixirls" ];
     };
     treesitter = {
       enable = true;

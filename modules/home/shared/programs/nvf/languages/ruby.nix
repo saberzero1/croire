@@ -7,11 +7,11 @@
     };
     format = {
       enable = true;
-      type = "rubocop";
+      type = [ "rubocop" ];
     };
     lsp = {
       enable = true;
-      servers = "solargraph";
+      servers = [ "solargraph" ];
     };
     treesitter = {
       enable = true;

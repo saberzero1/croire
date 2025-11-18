@@ -3,11 +3,11 @@
     enable = true;
     format = {
       enable = true;
-      type = "typstyle";
+      type = [ "typstyle" ];
     };
     lsp = {
       enable = true;
-      servers = "tinymist";
+      servers = [ "tinymist" ];
     };
     treesitter = {
       enable = true;

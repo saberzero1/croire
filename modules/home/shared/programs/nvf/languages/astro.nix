@@ -1,17 +1,17 @@
 {
   programs.nvf.settings.vim.languages.astro = {
-    enable = true;
+    enable = false;
     extraDiagnostics = {
       enable = true;
       types = [ "eslint_d" ];
     };
     format = {
       enable = true;
-      type = "prettier";
+      type = [ "prettier" ];
     };
     lsp = {
       enable = true;
-      servers = "astro";
+      servers = [ "astro" ];
     };
     treesitter = {
       enable = true;

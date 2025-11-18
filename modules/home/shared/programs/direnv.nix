@@ -15,7 +15,7 @@ in
       # These should be set to false when using direnv-instant
       enableBashIntegration = !enableInstant;
       enableZshIntegration = !enableInstant;
-      enableFishIntegration = !enableInstant;
+      enableFishIntegration = false;
       enableNushellIntegration = !enableInstant;
       nix-direnv = {
         enable = true;

@@ -3,11 +3,11 @@
     enable = true;
     format = {
       enable = true;
-      type = "prettier";
+      type = [ "prettier" ];
     };
     lsp = {
       enable = true;
-      servers = "cssls";
+      servers = [ "cssls" ];
     };
   };
 }

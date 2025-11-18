@@ -3,7 +3,7 @@
     enable = true;
     format = {
       enable = true;
-      type = "hclfmt";
+      type = [ "hclfmt" ];
     };
     lsp = {
       enable = true;

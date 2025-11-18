@@ -7,11 +7,11 @@
     };
     format = {
       enable = true;
-      type = "gofmt";
+      type = [ "gofmt" ];
     };
     lsp = {
       enable = true;
-      servers = "gopls";
+      servers = [ "gopls" ];
     };
     treesitter = {
       enable = true;

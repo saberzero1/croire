@@ -4,11 +4,11 @@
     enable = pkgs.stdenv.isLinux;
     format = {
       enable = true;
-      type = "nimpretty";
+      type = [ "nimpretty" ];
     };
     lsp = {
       enable = true;
-      servers = "nimlsp";
+      servers = [ "nimlsp" ];
     };
     treesitter = {
       enable = true;

@@ -8,11 +8,11 @@
     format = {
       enable = true;
       extraFiletypes = [ "mdx" ];
-      type = "prettierd";
+      type = [ "prettierd" ];
     };
     lsp = {
       enable = true;
-      servers = "marksman";
+      servers = [ "marksman" ];
     };
     treesitter = {
       enable = true;

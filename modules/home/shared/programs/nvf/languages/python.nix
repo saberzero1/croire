@@ -7,11 +7,11 @@
     };
     format = {
       enable = true;
-      type = "black";
+      type = [ "black" ];
     };
     lsp = {
       enable = true;
-      servers = "basedpyright";
+      servers = [ "basedpyright" ];
     };
     treesitter = {
       enable = true;

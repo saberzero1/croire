@@ -8,11 +8,11 @@
     };
     format = {
       enable = true;
-      type = "sqlfluff";
+      type = [ "sqlfluff" ];
     };
     lsp = {
       enable = true;
-      servers = "sqls";
+      servers = [ "sqls" ];
     };
     treesitter = {
       enable = true;

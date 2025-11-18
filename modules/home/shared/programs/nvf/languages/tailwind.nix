@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      servers = "tailwindcss";
+      servers = [ "tailwindcss" ];
     };
   };
 }

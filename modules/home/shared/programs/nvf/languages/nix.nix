@@ -12,8 +12,8 @@
       };
       format = {
         enable = true;
-        package = pkgs.nixfmt;
-        type = "nixfmt";
+        # package = pkgs.nixfmt;
+        type = [ "nixfmt" ];
       };
       lsp = {
         enable = true;

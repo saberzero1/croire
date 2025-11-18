@@ -3,7 +3,7 @@
     enable = true;
     lsp = {
       enable = true;
-      servers = "helm-ls";
+      servers = [ "helm-ls" ];
     };
     treesitter = {
       enable = true;

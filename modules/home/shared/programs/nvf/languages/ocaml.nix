@@ -3,11 +3,11 @@
     enable = true;
     format = {
       enable = true;
-      type = "ocamlformat";
+      type = [ "ocamlformat" ];
     };
     lsp = {
       enable = true;
-      servers = "ocaml-lsp";
+      servers = [ "ocaml-lsp" ];
     };
     treesitter = {
       enable = true;

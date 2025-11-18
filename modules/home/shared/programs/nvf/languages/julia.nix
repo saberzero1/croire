@@ -4,7 +4,7 @@
     enable = false;
     lsp = {
       enable = pkgs.stdenv.isLinux;
-      servers = "julials";
+      servers = [ "julials" ];
     };
   };
 }
