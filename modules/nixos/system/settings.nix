@@ -35,11 +35,11 @@ in
       gnome-shell
       gnome-shell-extensions
       gnome-browser-connector
-      gnomeExtensions.burn-my-windows
-      gnomeExtensions.app-icons-taskbar
-      gnomeExtensions.espresso
-      gnomeExtensions.memento-mori
-      gnomeExtensions.paperwm
+      # gnomeExtensions.burn-my-windows
+      # gnomeExtensions.app-icons-taskbar
+      # gnomeExtensions.espresso
+      # gnomeExtensions.memento-mori
+      # gnomeExtensions.paperwm
       gnome-remote-desktop
       nautilus
       nautilus-python
