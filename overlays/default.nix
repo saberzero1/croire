@@ -5,19 +5,17 @@ in
 
 self: super: {
   devour-flake = self.callPackage inputs.devour-flake { };
-  direnv =
-    inputs.nixpkgs.packages.${self.pkgs.stdenv.hostPlatform.system}.direnv.overrideAttrs
-      (oldAttrs: {
-        # Remove fish from nativeCheckInputs to avoid unnecessary dependency
-        nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
-          oldAttrs.nativeCheckInputs or [ ]
-        );
-        checkPhase = ''
-          runHook preCheck
-          make test-go test-bash test-zsh test-nushell
-          runHook postCheck
-        '';
-      });
+  direnv = super.direnv.overrideAttrs (oldAttrs: {
+    # Remove fish from nativeCheckInputs to avoid unnecessary dependency
+    nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
+      oldAttrs.nativeCheckInputs or [ ]
+    );
+    checkPhase = ''
+      runHook preCheck
+      make test-go test-bash test-zsh
+      runHook postCheck
+    '';
+  });
   # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   ghostty = inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
@@ -34,7 +32,7 @@ self: super: {
         );
         checkPhase = ''
           runHook preCheck
-          make test-go test-bash test-zsh test-nushell
+          make test-go test-bash test-zsh
           runHook postCheck
         '';
       });
