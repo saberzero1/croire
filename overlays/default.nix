@@ -18,6 +18,14 @@ self: super: {
   });
   # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  fish = super.fish.overrideAttrs (oldAttrs: {
+    # Disable tests until fixed upstream
+    doCheck = false;
+    checkPhase = "";
+    cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+      "-DBUILD_TESTING=OFF"
+    ];
+  });
   ghostty = inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # gitbutler = inputs.gitbutler.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # neovim = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;

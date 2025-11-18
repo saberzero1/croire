@@ -12,6 +12,7 @@ in
   programs = {
     direnv = {
       enable = true;
+      package = pkgs.direnv;
       # These should be set to false when using direnv-instant
       enableBashIntegration = !enableInstant;
       enableZshIntegration = !enableInstant;
