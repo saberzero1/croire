@@ -18,32 +18,21 @@ self: super: {
   });
   # doom-emacs = inputs.nix-doom-emacs-unstraightened.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  fish = super.fish.overrideAttrs (oldAttrs: {
-    # Disable tests until fixed upstream
-    doCheck = false;
-    checkPhase = "";
-    cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-      "-DBUILD_TESTING=OFF"
-    ];
-  });
+  # fish = super.fish.overrideAttrs (oldAttrs: {
+  #   # Disable tests until fixed upstream
+  #   doCheck = false;
+  #   checkPhase = "";
+  #   cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+  #     "-DBUILD_TESTING=OFF"
+  #   ];
+  # });
   ghostty = inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # gitbutler = inputs.gitbutler.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # neovim = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nix = inputs.determinate-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nix-direnv =
-    inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
-      (oldAttrs: {
-        # Remove fish from nativeCheckInputs to avoid unnecessary dependency
-        nativeCheckInputs = builtins.filter (pkg: pkg != self.pkgs.fish) (
-          oldAttrs.nativeCheckInputs or [ ]
-        );
-        checkPhase = ''
-          runHook preCheck
-          make test-go test-bash test-zsh
-          runHook postCheck
-        '';
-      });
+    inputs.nix-direnv;
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
