@@ -200,7 +200,7 @@
     };
 
     # Omnix
-    omnix.url = "github:juspay/omnix";
+    omnix.url = "github:saberzero1/omnix";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
