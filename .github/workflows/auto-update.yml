@@ -44,6 +44,11 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos-acer
 
+      # - name: Omnix update flakes
+      #   run: |
+      #     om ci run .#update \
+      #       --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
+
       - name: Omnix update flakes
         run: |
           om run update \
@@ -137,13 +142,6 @@ jobs:
       #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
       #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      # - uses: cachix/cachix-action@v15
-      #   with:
-      #     name: nixpkgs
-      #     skipPush: true
-      #     extraPullNames: devenv,nix-community,cachix,om,hyprland
-      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-
       - name: Set up build environment
         run: |
           echo "Setting up direnv"
@@ -159,12 +157,25 @@ jobs:
           echo "Setting hostname"
           ${{ matrix.host_command }}
 
+      # - name: Omnix build flakes
+      #   env:
+      #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
+      #     FLAKE_ITER_FLAKEREF: ".#build"
+      #   run: |
+      #     om ci run $FLAKE_ITER_FLAKEREF \
+      #       --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
+      #       --systems "$FLAKE_ITER_NIX_SYSTEM" \
+      #       --include-all-dependencies \
+      #       -- --accept-flake-config
+      #       # --results=$HOME/omci.json \
+      #       # -- --accept-flake-config
+
       - name: Omnix build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: "."
+          FLAKE_ITER_FLAKEREF: "ci-build"
         run: |
-          om ci run $FLAKE_ITER_FLAKEREF \
+          om run $FLAKE_ITER_FLAKEREF \
             --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
             --systems "$FLAKE_ITER_NIX_SYSTEM" \
             --include-all-dependencies \
