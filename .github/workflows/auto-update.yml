@@ -174,9 +174,9 @@ jobs:
       - name: Omnix build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: "ci-build"
+          FLAKE_ITER_FLAKEREF: "."
         run: |
-          om run ci $FLAKE_ITER_FLAKEREF
+          om run ci $FLAKE_ITER_FLAKEREF \
             --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
             --systems "$FLAKE_ITER_NIX_SYSTEM" \
             --include-all-dependencies \
