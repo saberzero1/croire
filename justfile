@@ -12,7 +12,7 @@ default:
 # Update nix flake
 [group('Main')]
 update:
-  om ci run .#update
+  om ci run . --max-concurrency 0 --config om/update.yaml
 
 # Lint nix files
 [group('Dev')]
@@ -22,7 +22,7 @@ lint:
 # Check nix flake
 [group('Dev')]
 check:
-  om ci run .#check
+  om ci run . --max-concurrency 0 --config om/check.yaml
 
 # Check nix flake for all systems
 [group('Dev')]
@@ -42,7 +42,7 @@ run:
 # Test for warnings
 [group('Dev')]
 build-warn:
-  om ci run .#build -- --abort-on-warn --show-trace
+  om ci run . --max-concurrency 0 --config om/build.yaml -- --abort-on-warn --show-trace
 
 # Activate default configuration
 [group('Main')]
@@ -50,7 +50,7 @@ build-warn:
 build:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   # nix run .#activate
-  om ci run .#switch
+  om ci run . --max-concurrency 0 --config om/switch.yaml
 
 # Activate default configuration
 [group('Main')]
@@ -58,7 +58,7 @@ build:
 build:
   # skhd --stop-service || true
   # sudo nix run .#activate
-  sudo om ci run .#switch
+  sudo om ci run . --max-concurrency 0 --config om/switch.yaml
   aerospace reload-config
   sketchybar --reload
   # skhd --start-service
@@ -128,7 +128,7 @@ gc:
 [group('Clean')]
 [unix]
 clean:
-  om ci run .#clean
+  sudo om ci run . --max-concurrency 0 --config om/clean.yaml
   # sudo /run/current-system/bin/switch-to-configuration boot
 
 # Hard link nix stores

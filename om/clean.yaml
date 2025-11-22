@@ -1,0 +1,41 @@
+dir: .
+steps:
+  collect-garbage:
+    type: devshell
+    command:
+      - sudo
+      - nix-collect-garbage
+      - -d
+  optimise-store:
+    type: devshell
+    command:
+      - sudo
+      - nix
+      - store
+      - optimise
+  switch-to-configuration:
+    type: devshell
+    command:
+      - sudo
+      - /run/current-system/bin/switch-to-configuration
+      - boot
+    systems:
+      - x86_64-linux
+caches:
+  required:
+    # nixos cache server
+    - https://cache.nixos.org
+    # nix community's cache server
+    - https://nix-community.cachix.org
+    # cachix's cache server
+    - https://cachix.cachix.org
+    # nixpkgs cache server
+    - https://nixpkgs.cachix.org
+    # omnix cachix binaries
+    - https://om.cachix.org
+    # determinate binaries
+    - https://install.determinate.systems
+    # hyprland cachix binaries
+    - https://hyprland.cachix.org
+    # personal cachix binaries
+    - https://saberzero1.cachix.org
