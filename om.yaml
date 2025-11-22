@@ -1,14 +1,13 @@
 ci:
   default:
-    ".":
+    ROOT:
       dir: .
       steps:
         lockfile:
           enable: false
         build:
-          enable: true
-          impure: true
-        flakeCheck:
+          enable: false
+        flake-check:
           enable: false
       caches:
         required:
@@ -29,7 +28,7 @@ ci:
           # personal cachix binaries
           - https://saberzero1.cachix.org
   build:
-    ".":
+    ROOT:
       dir: .
       steps:
         lockfile:
@@ -58,7 +57,7 @@ ci:
           # personal cachix binaries
           - https://saberzero1.cachix.org
   check:
-    ".":
+    ROOT:
       dir: .
       steps:
         lockfile:
@@ -68,7 +67,7 @@ ci:
         flake-check:
           enable: true
   update:
-    ".":
+    ROOT:
       dir: .
       steps:
         lockfile:
@@ -86,7 +85,7 @@ ci:
               - update
               - --accept-flake-config
   switch:
-    ".":
+    ROOT:
       dir: .
       steps:
         lockfile:
@@ -100,6 +99,20 @@ ci:
           activate-configuration:
             type: app
             name: activate
+          reload-aerospace:
+            type: devshell
+            command:
+              - aerospace
+              - reload-config
+            systems:
+              - aarch64-darwin
+          reload-sketchybar:
+            type: devshell
+            command:
+              - sketchybar
+              - --reload
+            systems:
+              - aarch64-darwin
       caches:
         required:
           # nixos cache server
@@ -119,7 +132,7 @@ ci:
           # personal cachix binaries
           - https://saberzero1.cachix.org
   clean:
-    ".":
+    ROOT:
       dir: .
       steps:
         lockfile:
