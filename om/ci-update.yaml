@@ -1,15 +1,13 @@
 dir: .
 steps:
-  build:
+  update-flake:
     type: devshell
     command:
       - nix
-      - run
-      - .#build
-      - --extra-access-tokens "$EXTRA_ACCESS_TOKEN"
-      - --systems "$FLAKE_ITER_NIX_SYSTEM"
-      - --include-all-dependencies
+      - flake
+      - update
       - --accept-flake-config
+      - --extra-access-token $EXTRA_ACCESS_TOKEN
 caches:
   required:
     # nixos cache server

@@ -50,9 +50,10 @@ jobs:
       #       --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
 
       - name: Omnix update flakes
+        env:
+          EXTRA_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          om run update \
-            --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
+          om run update
 
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -172,14 +173,15 @@ jobs:
 
       - name: Omnix build flakes
         env:
+          EXTRA_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
           FLAKE_ITER_FLAKEREF: "ci-build"
         run: |
-          om run $FLAKE_ITER_FLAKEREF \
-            --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
-            --systems "$FLAKE_ITER_NIX_SYSTEM" \
-            --include-all-dependencies \
-            -- --accept-flake-config
+          om run $FLAKE_ITER_FLAKEREF
+            # --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
+            # --systems "$FLAKE_ITER_NIX_SYSTEM" \
+            # --include-all-dependencies \
+            # -- --accept-flake-config
             # --results=$HOME/omci.json \
             # -- --accept-flake-config
 
