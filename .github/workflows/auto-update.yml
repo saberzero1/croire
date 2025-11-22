@@ -38,7 +38,7 @@ jobs:
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
-          nix profile install nixpkgs#omnix
+          nix profile install github:saberzero1/omnix
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
@@ -46,7 +46,7 @@ jobs:
 
       - name: Omnix update flakes
         run: |
-          om ci run .#update \
+          om run update \
             --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
 
       - name: Push changes
@@ -137,12 +137,12 @@ jobs:
       #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
       #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - uses: cachix/cachix-action@v15
-        with:
-          name: nixpkgs
-          skipPush: true
-          extraPullNames: devenv,nix-community,cachix,om,hyprland
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      # - uses: cachix/cachix-action@v15
+      #   with:
+      #     name: nixpkgs
+      #     skipPush: true
+      #     extraPullNames: devenv,nix-community,cachix,om,hyprland
+      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Set up build environment
         run: |
@@ -152,7 +152,7 @@ jobs:
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
-          nix profile install nixpkgs#omnix
+          nix profile install github:saberzero1/omnix
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
@@ -162,7 +162,7 @@ jobs:
       - name: Omnix build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: ".#build"
+          FLAKE_ITER_FLAKEREF: "."
         run: |
           om ci run $FLAKE_ITER_FLAKEREF \
             --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
@@ -213,7 +213,7 @@ jobs:
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
-          nix profile install nixpkgs#omnix
+          nix profile install github:saberzero1/omnix
           echo "Setting up environment"
           direnv allow .
           # direnv export gha > "$GITHUB_ENV"
