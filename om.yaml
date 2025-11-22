@@ -1,13 +1,14 @@
 ci:
   default:
-    ROOT:
+    ".":
       dir: .
       steps:
         lockfile:
           enable: false
         build:
-          enable: false
-        flake-check:
+          enable: true
+          impure: true
+        flakeCheck:
           enable: false
       caches:
         required:
