@@ -23,6 +23,7 @@ in
       pre-commit
 
       bun
+      go
 
       # opencode
 
