@@ -15,7 +15,6 @@ concurrency:
  
 env:
   NIXPKGS_ALLOW_UNFREE: 1
-  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   update-nix-packages:
@@ -31,7 +30,7 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/determinate-nix-action@main
         with:
-          github-token: "$GH_TOKEN"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Set up build enviroment
         run: |
@@ -137,7 +136,7 @@ jobs:
       - name: Install Determinate Nix
         uses: DeterminateSystems/determinate-nix-action@main
         with:
-          github-token: "$GH_TOKEN"
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Set up GitHub Actions cache
         uses: DeterminateSystems/magic-nix-cache-action@main
