@@ -171,22 +171,22 @@ jobs:
       #       # --results=$HOME/omci.json \
       #       # -- --accept-flake-config
 
-      - name: Omnix build flakes
-        env:
-          FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: ".#build"
-        run: |
-          om run ci $FLAKE_ITER_FLAKEREF \
-            --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
-            --systems "$FLAKE_ITER_NIX_SYSTEM" \
-            --include-all-dependencies \
-            -- --accept-flake-config
+      # - name: Omnix build flakes
+      #   env:
+      #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
+      #     FLAKE_ITER_FLAKEREF: ".#build"
+      #   run: |
+      #     om run ci $FLAKE_ITER_FLAKEREF \
+      #       --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
+      #       --systems "$FLAKE_ITER_NIX_SYSTEM" \
+      #       --include-all-dependencies \
+      #       -- --accept-flake-config
             # --results=$HOME/omci.json \
             # -- --accept-flake-config
       - name: Omnix build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: ".#nix-build-all"
+          FLAKE_ITER_FLAKEREF: ".#build"
         run: |
           om ci run $FLAKE_ITER_FLAKEREF \
             --extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" \
