@@ -197,7 +197,9 @@ jobs:
         run: |
           om ci run $FLAKE_ITER_FLAKEREF \
             --systems "$FLAKE_ITER_NIX_SYSTEM" \
-            --include-all-dependencies
+            --include-all-dependencies \
+            --parallel \
+            --max-concurrency 0
             # --include-all-dependencies \
             # -- --accept-flake-config
 

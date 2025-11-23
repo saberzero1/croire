@@ -7,7 +7,7 @@ ci:
           enable: false
         build:
           enable: false
-        flake-check:
+        flakeCheck:
           enable: false
       caches:
         required:
@@ -36,7 +36,7 @@ ci:
         build:
           enable: true
           impure: true
-        flake-check:
+        flakeCheck:
           enable: false
       caches:
         required:
@@ -64,7 +64,7 @@ ci:
           enable: false
         build:
           enable: false
-        flake-check:
+        flakeCheck:
           enable: true
   update:
     ROOT:
@@ -74,7 +74,7 @@ ci:
           enable: false
         build:
           enable: false
-        flake-check:
+        flakeCheck:
           enable: false
         custom:
           update-flake:
@@ -93,7 +93,7 @@ ci:
         build:
           enable: true
           impure: true
-        flake-check:
+        flakeCheck:
           enable: false
         custom:
           activate-configuration:
@@ -139,7 +139,7 @@ ci:
           enable: false
         build:
           enable: false
-        flake-check:
+        flakeCheck:
           enable: false
         custom:
           collect-garbage:
