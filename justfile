@@ -58,9 +58,9 @@ build:
 build:
   # skhd --stop-service || true
   # sudo nix run .#activate
-  sudo om ci run .#switch.ROOT --max-concurrency 0 --parallel
-  aerospace reload-config
-  sketchybar --reload
+  om ci run .#switch.ROOT --max-concurrency 0 --parallel
+  # aerospace reload-config
+  # sketchybar --reload
   # skhd --start-service
 
 # Activate default configuration

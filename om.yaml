@@ -3,12 +3,12 @@ ci:
     ROOT:
       dir: .
       steps:
-        lockfile:
-          enable: false
-        build:
-          enable: false
-        flakeCheck:
-          enable: false
+        custom:
+          hello:
+            type: devshell
+            command:
+              - echo
+              - "Hello world"
       caches:
         required:
           # nixos cache server
@@ -31,13 +31,9 @@ ci:
     ROOT:
       dir: .
       steps:
-        lockfile:
-          enable: false
         build:
           enable: true
           impure: true
-        flakeCheck:
-          enable: false
       caches:
         required:
           # nixos cache server
@@ -60,22 +56,12 @@ ci:
     ROOT:
       dir: .
       steps:
-        lockfile:
-          enable: false
-        build:
-          enable: false
         flakeCheck:
           enable: true
   update:
     ROOT:
       dir: .
       steps:
-        lockfile:
-          enable: false
-        build:
-          enable: false
-        flakeCheck:
-          enable: false
         custom:
           update-flake:
             type: devshell
@@ -88,13 +74,9 @@ ci:
     ROOT:
       dir: .
       steps:
-        lockfile:
-          enable: false
         build:
           enable: true
           impure: true
-        flakeCheck:
-          enable: false
         custom:
           activate-configuration:
             type: app
@@ -135,12 +117,6 @@ ci:
     ROOT:
       dir: .
       steps:
-        lockfile:
-          enable: false
-        build:
-          enable: false
-        flakeCheck:
-          enable: false
         custom:
           collect-garbage:
             type: devshell
