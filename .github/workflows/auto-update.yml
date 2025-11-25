@@ -15,6 +15,7 @@ concurrency:
  
 env:
   NIXPKGS_ALLOW_UNFREE: 1
+  OMNIX_SOURCE: github:saberzero1/omnix/copilot/fix-addstringcontext-issue
 
 jobs:
   update-nix-packages:
@@ -35,12 +36,12 @@ jobs:
       - name: Set up build enviroment
         run: |
           echo "Setting up direnv"
-          nix profile install nixpkgs#direnv
-          nix profile install nixpkgs#nix-direnv
+          nix profile add nixpkgs#direnv
+          nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
-          nix profile install github:saberzero1/omnix
+          nix profile add $OMNIX_SOURCE
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
@@ -153,12 +154,12 @@ jobs:
       - name: Set up build environment
         run: |
           echo "Setting up direnv"
-          nix profile install nixpkgs#direnv
-          nix profile install nixpkgs#nix-direnv
+          nix profile add nixpkgs#direnv
+          nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
-          nix profile install github:saberzero1/omnix
+          nix profile add $OMNIX_SOURCE
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
@@ -239,12 +240,12 @@ jobs:
       - name: Set up build environment
         run: |
           echo "Setting up direnv"
-          nix profile install nixpkgs#direnv
-          nix profile install nixpkgs#nix-direnv
+          nix profile add nixpkgs#direnv
+          nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
-          nix profile install github:saberzero1/omnix
+          nix profile add $OMNIX_SOURCE
           echo "Setting up environment"
           direnv allow .
           # direnv export gha > "$GITHUB_ENV"
