@@ -1103,11 +1103,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1764104611,
-        "narHash": "sha256-Ft7IDnFFFClYvunkGdCkkmu9RbK6SWXgs4oNG3eswDk=",
+        "lastModified": 1764105264,
+        "narHash": "sha256-S7W8njgEP0Tl6OoyAWIZEiQGcWpso2gO1YPH2bEjWlM=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "da3270ad7cf6c786c5f5063ad8d2c20288ce1ee8",
+        "rev": "acc277efba95dded1ddefe56eef6c4e8aac217a7",
         "type": "github"
       },
       "original": {
@@ -2134,16 +2134,15 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1764102687,
+        "lastModified": 1764106117,
         "narHash": "sha256-GwuObIdqx/XgnVN5GYazNYOn+SdQULEuCiEGVjpVrBo=",
         "owner": "saberzero1",
         "repo": "omnix",
-        "rev": "c3194fb3f8aa114349d80e583133180dc601728c",
+        "rev": "86f33e1aec55cdfa558f4176ed100623dafee384",
         "type": "github"
       },
       "original": {
         "owner": "saberzero1",
-        "ref": "copilot/fix-addstringcontext-issue",
         "repo": "omnix",
         "type": "github"
       }

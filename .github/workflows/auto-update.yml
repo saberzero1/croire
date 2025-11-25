@@ -15,7 +15,7 @@ concurrency:
  
 env:
   NIXPKGS_ALLOW_UNFREE: 1
-  OMNIX_SOURCE: github:saberzero1/omnix/copilot/fix-addstringcontext-issue
+  OMNIX_SOURCE: github:saberzero1/omnix
 
 jobs:
   update-nix-packages:
@@ -194,7 +194,7 @@ jobs:
       - name: Omnix build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: ".#build.ROOT"
+          FLAKE_ITER_FLAKEREF: ".#build"
         run: |
           om ci run $FLAKE_ITER_FLAKEREF \
             --systems "$FLAKE_ITER_NIX_SYSTEM" \

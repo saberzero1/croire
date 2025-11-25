@@ -200,7 +200,7 @@
     };
 
     # Omnix
-    omnix.url = "github:saberzero1/omnix/copilot/fix-addstringcontext-issue";
+    omnix.url = "github:saberzero1/omnix";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
