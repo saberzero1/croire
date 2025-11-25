@@ -14,6 +14,9 @@ default:
 update:
   om ci run .#update.ROOT --max-concurrency 0 --parallel
 
+update-with-token:
+  nix flake update --option access-tokens "github.com=$(gh auth token)"
+
 # Lint nix files
 [group('Dev')]
 lint:
