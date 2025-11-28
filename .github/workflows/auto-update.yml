@@ -145,12 +145,12 @@ jobs:
       - name: Set up FlakeHub cache
         uses: DeterminateSystems/flakehub-cache-action@main
 
-      - name: Set up Cachix
-        uses: cachix/cachix-action@v15
-        with:
-          name: saberzero1
-          extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      # - name: Set up Cachix
+      #   uses: cachix/cachix-action@v15
+      #   with:
+      #     name: saberzero1
+      #     extraPullNames: devenv,nixpkgs,nix-community,cachix,om,hyprland
+      #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Set up build environment
         run: |
@@ -159,6 +159,13 @@ jobs:
           nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
+          echo "Setting up cachix"
+          nix profile add --accept-flake-config nixpkgs#cachix
+          echo "cachix use devenv" >> $HOME/.config/direnv/direnvrc
+          echo "cachix use nixpkgs" >> $HOME/.config/direnv/direnvrc
+          echo "cachix use nix-community" >> $HOME/.config/direnv/direnvrc
+          echo "cachix use cachix" >> $HOME/.config/direnv/direnvrc
+          echo "cachix use hyprland" >> $HOME/.config/direnv/direnvrc
           echo "Setting up omnix"
           nix profile add $OMNIX_SOURCE
           echo "Setting up environment"
