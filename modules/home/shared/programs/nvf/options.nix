@@ -65,6 +65,7 @@ in
     preventJunkFiles = true;
     searchCase = "smart";
     syntaxHighlighting = true;
+    hideSearchHighlight = true;
     undoFile = {
       enable = true;
     };

@@ -1,8 +1,3 @@
-{ flake, ... }:
-let
-  inherit (flake) inputs;
-  inherit (inputs) self;
-in
 {
   services.hypridle = {
     enable = true;
@@ -15,16 +10,16 @@ in
 
       listener = [
         {
-          timeout = 300; # 5 minutes
+          timeout = 3600; # 60 minutes
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 330; # 5.5 minutes
+          timeout = 3630; # 60.5 minutes
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 1800; # 30 minutes
+          timeout = 7200; # 120 minutes
           on-timeout = "systemctl suspend";
         }
       ];
