@@ -124,7 +124,7 @@ in
       haskellPackages.hoogle
       fh
 
-      gimp3-with-plugins
+      # gimp3-with-plugins
       inkscape-with-extensions
 
       vscodium.fhs
