@@ -54,6 +54,7 @@ build:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   # nix run .#activate
   om ci run .#switch --max-concurrency 0 --parallel
+  df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
 
 # Activate default configuration
 [group('Main')]
@@ -131,7 +132,9 @@ gc:
 [group('Clean')]
 [unix]
 clean:
+  df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   sudo om ci run .#clean --max-concurrency 0 --parallel
+  df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   # sudo /run/current-system/bin/switch-to-configuration boot
 
 # Hard link nix stores
