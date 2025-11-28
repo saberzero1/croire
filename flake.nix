@@ -133,7 +133,7 @@
       flake = false;
     };
 
-    mac-app-util.url = "github:hraban/mac-app-util";
+    # mac-app-util.url = "github:hraban/mac-app-util";
     spacebar.url = "github:cmacrae/spacebar/v1.4.0";
 
     # Home-manager
