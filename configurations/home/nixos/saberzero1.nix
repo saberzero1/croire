@@ -9,6 +9,6 @@
 
   home = {
     username = "saberzero1";
-    stateVersion = "24.11";
+    stateVersion = "25.11";
   };
 }

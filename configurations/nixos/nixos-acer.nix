@@ -233,6 +233,12 @@ in
       "getty@tty1" = {
         enable = false;
       };
+      # Workaround for start vconsole-setup service error during boot
+      # Remove this after they are done bikeshedding over here:
+      # https://github.com/NixOS/nixpkgs/pull/430883
+      systemd-vconsole-setup.after = [
+        "local-fs.target"
+      ];
     };
   };
 
@@ -294,7 +300,7 @@ in
   };
 
   system = {
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 
   time = {
