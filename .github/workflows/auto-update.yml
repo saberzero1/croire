@@ -211,7 +211,10 @@ jobs:
             --systems "$FLAKE_ITER_NIX_SYSTEM" \
             --include-all-dependencies \
             --parallel \
-            --max-concurrency 0
+            --max-concurrency 0 \
+            --github-output \
+            --no-ui \
+            --verbose 4
             # --include-all-dependencies \
             # -- --accept-flake-config
 
