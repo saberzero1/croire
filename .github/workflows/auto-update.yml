@@ -48,7 +48,7 @@ jobs:
           sudo hostnamectl set-hostname nixos-acer
 
       - name: Omnix update flakes
-        run: om ci run .#update
+        run: om --accept-flake-config ci run .#update
           # om ci run .#update \
           #   --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
 
@@ -207,7 +207,7 @@ jobs:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
           FLAKE_ITER_FLAKEREF: ".#build"
         run: |
-          om ci run $FLAKE_ITER_FLAKEREF \
+          om --accept-flake-config ci run $FLAKE_ITER_FLAKEREF \
             --systems "$FLAKE_ITER_NIX_SYSTEM" \
             --include-all-dependencies \
             --parallel \
