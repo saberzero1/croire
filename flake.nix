@@ -188,7 +188,7 @@
     # Gaming
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     play-nix = {
-      url = "github:TophC7/play.nix";
+      url = "github:TophC7/play.nix?rev=034de59808387ffa9e5d677860c96cceffa570f9";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.chaotic.follows = "chaotic";
     };
