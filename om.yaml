@@ -34,7 +34,6 @@ ci:
         build:
           enable: true
           impure: true
-          parallel: true
       caches:
         required:
           # nixos cache server
@@ -78,7 +77,6 @@ ci:
         build:
           enable: true
           impure: true
-          parallel: true
         custom:
           activate-configuration:
             type: app
