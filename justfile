@@ -12,7 +12,7 @@ default:
 # Update nix flake
 [group('Main')]
 update:
-  om ci run .#update --max-concurrency 0 --parallel
+  om --accept-flake-config ci run .#update --max-concurrency 0 --parallel
 
 update-with-token:
   nix flake update --option access-tokens "github.com=$(gh auth token)"
@@ -25,7 +25,7 @@ lint:
 # Check nix flake
 [group('Dev')]
 check:
-  om ci run .#check --max-concurrency 0 --parallel
+  om --accept-flake-config ci run .#check --max-concurrency 0 --parallel
 
 # Check nix flake for all systems
 [group('Dev')]
@@ -45,7 +45,7 @@ run:
 # Test for warnings
 [group('Dev')]
 build-warn:
-  om ci run . --max-concurrency 0 --config om/build.yaml -- --abort-on-warn --show-trace
+  om --accept-flake-config ci run . --max-concurrency 0 --config om/build.yaml -- --abort-on-warn --show-trace
 
 # Activate default configuration
 [group('Main')]
@@ -53,7 +53,7 @@ build-warn:
 build:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   # nix run .#activate
-  om ci run .#switch --max-concurrency 0 --parallel
+  om --accept-flake-config ci run .#switch --max-concurrency 0 --parallel
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
 
 # Activate default configuration
@@ -62,7 +62,7 @@ build:
 build:
   # skhd --stop-service || true
   # sudo nix run .#activate
-  om ci run .#switch --max-concurrency 0 --parallel
+  om --accept-flake-config ci run .#switch --max-concurrency 0 --parallel
   # aerospace reload-config
   # sketchybar --reload
   # skhd --start-service
@@ -133,7 +133,7 @@ gc:
 [unix]
 clean:
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
-  sudo om ci run .#clean --max-concurrency 0 --parallel
+  sudo om --accept-flake-config ci run .#clean --max-concurrency 0 --parallel
   df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
   # sudo /run/current-system/bin/switch-to-configuration boot
 
