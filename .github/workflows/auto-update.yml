@@ -40,17 +40,17 @@ jobs:
           nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-          echo "Setting up omnix"
-          nix profile add $OMNIX_SOURCE
+          # echo "Setting up omnix"
+          # nix profile add $OMNIX_SOURCE
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos-acer
 
       - name: Omnix update flakes
-        run: om --accept-flake-config ci run .#update
-          # om ci run .#update \
-          #   --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
+        # run: om --accept-flake-config ci run .#update
+        run: om ci run .#update \
+            --extra-access-tokens ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Omnix update flakes
       #   env:
@@ -99,9 +99,11 @@ jobs:
           - runner: ubuntu-latest
             system: x86_64-linux
             host_command: sudo hostnamectl set-hostname nixos-acer
+            build_command: nh os build -L --json --accept-flake-config --no-update-lock-file --impure .
           - runner: macos-latest
             system: aarch64-darwin
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
+            build_command: nh darwin build -L --json --accept-flake-config --no-update-lock-file --impure .
     needs: update-nix-packages
     steps:
       - name: Optimize Disk Space
@@ -169,8 +171,10 @@ jobs:
           # echo "cachix use nix-community" >> $HOME/.config/direnv/direnvrc
           # echo "cachix use cachix" >> $HOME/.config/direnv/direnvrc
           # echo "cachix use hyprland" >> $HOME/.config/direnv/direnvrc
-          echo "Setting up omnix"
-          nix profile add $OMNIX_SOURCE
+          # echo "Setting up omnix"
+          # nix profile add $OMNIX_SOURCE
+          echo "Setting up nh"
+          nix profile add nixpkgs#nh
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
@@ -202,19 +206,24 @@ jobs:
       #       -- --accept-flake-config
             # --results=$HOME/omci.json \
             # -- --accept-flake-config
-      - name: Omnix build flakes
+      - name: NH build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
           FLAKE_ITER_FLAKEREF: ".#build"
-        run: |
-          om --accept-flake-config ci run $FLAKE_ITER_FLAKEREF \
-            --systems "$FLAKE_ITER_NIX_SYSTEM" \
-            --include-all-dependencies \
-            --parallel \
-            --max-concurrency 0 \
-            --github-output \
-            --no-ui \
-            --verbose 4
+        run: ${{ system.build_command }}
+      # - name: Omnix build flakes
+      #   env:
+      #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
+      #     FLAKE_ITER_FLAKEREF: ".#build"
+      #   run: |
+      #     om --accept-flake-config ci run $FLAKE_ITER_FLAKEREF \
+      #       --systems "$FLAKE_ITER_NIX_SYSTEM" \
+      #       --include-all-dependencies \
+      #       --parallel \
+      #       --max-concurrency 0 \
+      #       --github-output \
+      #       --no-ui \
+      #       --verbose 4
             # --include-all-dependencies \
             # -- --accept-flake-config
 
@@ -258,8 +267,10 @@ jobs:
           nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-          echo "Setting up omnix"
-          nix profile add $OMNIX_SOURCE
+          # echo "Setting up omnix"
+          # nix profile add $OMNIX_SOURCE
+          echo "Setting up nh"
+          nix profile add nixpkgs#nh
           echo "Setting up environment"
           direnv allow .
           # direnv export gha > "$GITHUB_ENV"
