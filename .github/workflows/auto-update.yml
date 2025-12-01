@@ -103,9 +103,9 @@ jobs:
             host_name: nixos-acer
           - runner: macos-latest
             system: aarch64-darwin
-            host_command: sudo scutil --set HostName Emiles-Macbook-Pro
+            host_command: sudo scutil --set HostName Emiles-MacBook-Pro
             build_command: darwin
-            host_name: Emiles-Macbook-Pro
+            host_name: Emiles-MacBook-Pro
     needs: update-nix-packages
     steps:
       - name: Optimize Disk Space
