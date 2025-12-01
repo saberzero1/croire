@@ -15,7 +15,7 @@ concurrency:
  
 env:
   NIXPKGS_ALLOW_UNFREE: 1
-  OMNIX_SOURCE: github:saberzero1/omnix
+  OMNIX_SOURCE: github:saberzero1/omnix/copilot/fix-native-devour-flake-build
 
 jobs:
   update-nix-packages:
