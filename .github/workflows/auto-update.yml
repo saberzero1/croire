@@ -40,8 +40,8 @@ jobs:
           nix profile add nixpkgs#nix-direnv
           mkdir -p $HOME/.config/direnv
           echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-          # echo "Setting up omnix"
-          # nix profile add $OMNIX_SOURCE
+          echo "Setting up omnix"
+          nix profile add $OMNIX_SOURCE
           echo "Setting up environment"
           direnv allow .
           direnv export gha > "$GITHUB_ENV"
