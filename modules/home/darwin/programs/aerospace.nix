@@ -11,6 +11,6 @@ in
       enable = true;
       keepAlive = true;
     };
-    userSettings = pkgs.lib.importTOML "${self}/programs/aerospace/aerospace.toml";
+    settings = pkgs.lib.importTOML "${self}/programs/aerospace/aerospace.toml";
   };
 }
