@@ -214,7 +214,7 @@ jobs:
           FLAKE_ITER_FLAKEREF: "."
           NH_FLAKE: "./flake.nix"
         run: |
-          nh ${{ matrix.build_command }} build -L --json --accept-flake-config --no-update-lock-file -d never --out-link result.json --impure --host-name ${{ matrix.host_name }} $FLAKE_ITER_FLAKEREF
+          nh ${{ matrix.build_command }} build -L --json --accept-flake-config --no-update-lock-file -d never -o result.json --impure -H ${{ matrix.host_name }} $FLAKE_ITER_FLAKEREF
       # - name: Omnix build flakes
       #   env:
       #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
