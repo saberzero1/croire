@@ -99,11 +99,11 @@ jobs:
           - runner: ubuntu-latest
             system: x86_64-linux
             host_command: sudo hostnamectl set-hostname nixos-acer
-            build_command: nh os build -L --json --accept-flake-config --no-update-lock-file --impure .
+            build_command: os
           - runner: macos-latest
             system: aarch64-darwin
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
-            build_command: nh darwin build -L --json --accept-flake-config --no-update-lock-file --impure .
+            build_command: darwin
     needs: update-nix-packages
     steps:
       - name: Optimize Disk Space
@@ -210,7 +210,8 @@ jobs:
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
           FLAKE_ITER_FLAKEREF: ".#build"
-        run: ${{ matrix.build_command }}
+        run: |
+          nh ${{ matrix.build_command }} build -L --json --accept-flake-config --no-update-lock-file --impure .
       # - name: Omnix build flakes
       #   env:
       #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
