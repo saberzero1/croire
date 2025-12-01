@@ -100,10 +100,12 @@ jobs:
             system: x86_64-linux
             host_command: sudo hostnamectl set-hostname nixos-acer
             build_command: os
+            host_name: nixos-acer
           - runner: macos-latest
             system: aarch64-darwin
             host_command: sudo scutil --set HostName Emiles-Macbook-Pro
             build_command: darwin
+            host_name: Emiles-Macbook-Pro
     needs: update-nix-packages
     steps:
       - name: Optimize Disk Space
@@ -209,9 +211,10 @@ jobs:
       - name: NH build flakes
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: ".#build"
+          FLAKE_ITER_FLAKEREF: "."
+          NH_FLAKE: "./flake.nix"
         run: |
-          nh ${{ matrix.build_command }} build -L --json --accept-flake-config --no-update-lock-file --impure .
+          nh ${{ matrix.build_command }} build -L --json --accept-flake-config --no-update-lock-file -d never --out-link result.json --impure --host-name ${{ matrix.host_name }} $FLAKE_ITER_FLAKEREF
       # - name: Omnix build flakes
       #   env:
       #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
