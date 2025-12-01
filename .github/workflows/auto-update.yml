@@ -210,7 +210,7 @@ jobs:
         env:
           FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
           FLAKE_ITER_FLAKEREF: ".#build"
-        run: ${{ system.build_command }}
+        run: ${{ matrix.build_command }}
       # - name: Omnix build flakes
       #   env:
       #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
