@@ -22,6 +22,7 @@ in
         enable = true;
         package = pkgs.nix-direnv;
       };
+      stdlib = '''';
     };
     direnv-instant = {
       enable = enableInstant;

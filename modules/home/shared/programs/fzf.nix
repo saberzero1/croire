@@ -1,5 +1,11 @@
-{ ... }:
 {
   # Type `<ctrl> + r` to fuzzy search your shell history
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    tmux = {
+      enableShellIntegration = true;
+    };
+  };
 }

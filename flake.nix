@@ -200,7 +200,7 @@
     };
 
     # Omnix
-    omnix.url = "github:saberzero1/omnix";
+    omnix.url = "github:saberzero1/omnix/copilot/fix-native-devour-flake-build";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

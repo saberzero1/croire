@@ -1850,15 +1850,16 @@
         "true": "true"
       },
       "locked": {
-        "lastModified": 1764536091,
-        "narHash": "sha256-yBGP/ADHtXr4Yafkn3x9lG6KkoMzufGqq4d7wZicMXA=",
+        "lastModified": 1764579247,
+        "narHash": "sha256-FNU0jiB1pNWVGLZ/KQUSlLBeAo+mZsGGqCD/0QREBXg=",
         "owner": "saberzero1",
         "repo": "omnix",
-        "rev": "31ef6922e6eba1118f4cf1de0d412cd56f2d6688",
+        "rev": "22bbe64ea8bc81a9fa5b5f29167942c253f1d6b6",
         "type": "github"
       },
       "original": {
         "owner": "saberzero1",
+        "ref": "copilot/fix-native-devour-flake-build",
         "repo": "omnix",
         "type": "github"
       }
