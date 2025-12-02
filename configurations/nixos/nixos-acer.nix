@@ -1,10 +1,11 @@
 # This is your nixos configuration.
 # For home configuration, see /modules/home/*
-{ flake
-, pkgs
-, lib
-, config
-, ...
+{
+  flake,
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -240,9 +241,9 @@ in
       # Workaround for start vconsole-setup service error during boot
       # Remove this after they are done bikeshedding over here:
       # https://github.com/NixOS/nixpkgs/pull/430883
-      # systemd-vconsole-setup.after = [
-      #   "local-fs.target"
-      # ];
+      systemd-vconsole-setup.after = [
+        "local-fs.target"
+      ];
     };
   };
 
