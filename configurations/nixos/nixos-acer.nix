@@ -56,6 +56,9 @@ in
           device = "/dev/disk/by-uuid/32b0cce0-aa62-475b-ab71-4fb3a3d7c980";
         };
       };
+      systemd = {
+        enable = true;
+      };
     };
     kernelModules = [
       "kvm-amd"
@@ -220,9 +223,10 @@ in
   };
 
   swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/baf9ca74-9273-4384-94d0-bfec444bffd4";
-    }
+    # {
+    #   # device = "/dev/disk/by-uuid/baf9ca74-9273-4384-94d0-bfec444bffd4";
+    #   device = "/dev/disk/by-uuid/9c8122d3-6cfc-4635-8214-0e31ab5587cb";
+    # }
   ];
 
   systemd = {
@@ -236,9 +240,9 @@ in
       # Workaround for start vconsole-setup service error during boot
       # Remove this after they are done bikeshedding over here:
       # https://github.com/NixOS/nixpkgs/pull/430883
-      systemd-vconsole-setup.after = [
-        "local-fs.target"
-      ];
+      # systemd-vconsole-setup.after = [
+      #   "local-fs.target"
+      # ];
     };
   };
 
