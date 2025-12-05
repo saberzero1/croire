@@ -63,7 +63,7 @@ in
     kernelModules = [
       "kvm-amd"
     ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_18;
     kernelParams = [
       "usbcore.autosuspend=-1"
     ];
