@@ -49,6 +49,7 @@ in
         "usbhid"
         "usb_storage"
         "sd_mod"
+        "nvidia_uvm"
       ];
       kernelModules = [ ];
       luks.devices = {
@@ -62,8 +63,9 @@ in
     };
     kernelModules = [
       "kvm-amd"
+      "nvidia_uvm"
     ];
-    kernelPackages = pkgs.linuxPackages_6_18;
+    # kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "usbcore.autosuspend=-1"
     ];
@@ -123,14 +125,13 @@ in
           enableOffloadCmd = true;
           offloadCmdMainProgram = "nvidia-offload";
         };
+        allowExternalGpu = true;
         # sync.enable = true;
         # reverseSync.enable = true;
 
         nvidiaBusId = "PCI:1:0:0";
         amdgpuBusId = "PCI:65:0:0";
       };
-
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     graphics = {
