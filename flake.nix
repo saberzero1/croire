@@ -171,10 +171,10 @@
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/*";
     # nix-alien.url = "github:thiagokokada/nix-alien";
     ghostty.url = "github:ghostty-org/ghostty";
-    gitbutler = {
-      url = "github:gitbutlerapp/gitbutler";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # gitbutler = {
+    #   url = "github:gitbutlerapp/gitbutler";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
