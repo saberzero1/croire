@@ -43,6 +43,13 @@
       eval "$(direnv hook zsh)"
       # eval "$(direnv-instant hook zsh)"
       #
+      # fzf
+      # https://nixos.wiki/wiki/Fzf#zsh
+      if [ -n "${commands[fzf-share]}" ]; then
+        source "$(fzf-share)/key-bindings.zsh"
+        source "$(fzf-share)/completion.zsh"
+      fi
+      #
       # tmux
       bindkey -s "^F" "tmux-sessionizer\n"
     '';
