@@ -192,6 +192,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.chaotic.follows = "chaotic";
     };
+    geforce-infinity = {
+      url = "github:saberzero1/GeForce-Infinity";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Dotfiles
     totten = {
