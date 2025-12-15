@@ -1,7 +1,8 @@
-{ flake
-, pkgs
-, config
-, ...
+{
+  flake,
+  pkgs,
+  config,
+  ...
 }:
 let
   inherit (flake) inputs;
@@ -42,6 +43,15 @@ in
       comment = "Cloud Gaming";
       icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
       exec = "nvidia-offload com.nvidia.geforcenow";
+      categories = [ "Application" ];
+      terminal = false;
+      mimeType = [ "text/plain" ];
+    };
+    "geforce-now-infinity-offloaded" = {
+      name = "GeForce NOW Infinity (Offloaded)";
+      comment = "Cloud Gaming";
+      icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
+      exec = "nvidia-offload /etc/profiles/per-user/saberzero1/bin/geforce-infinity";
       categories = [ "Application" ];
       terminal = false;
       mimeType = [ "text/plain" ];

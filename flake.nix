@@ -193,7 +193,7 @@
       inputs.chaotic.follows = "chaotic";
     };
     geforce-infinity = {
-      url = "github:saberzero1/GeForce-Infinity";
+      url = "github:saberzero1/GeForce-Infinity/copilot/add-nix-flake-support";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
