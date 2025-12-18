@@ -1,8 +1,7 @@
-{
-  flake,
-  pkgs,
-  config,
-  ...
+{ flake
+, pkgs
+, config
+, ...
 }:
 let
   inherit (flake) inputs;
@@ -51,7 +50,7 @@ in
       name = "GeForce NOW Infinity (Offloaded)";
       comment = "Cloud Gaming";
       icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
-      exec = "nvidia-offload /etc/profiles/per-user/saberzero1/bin/geforce-infinity";
+      exec = "gamescoperun -x '-W 2560 -H 1440' geforce-infinity";
       categories = [ "Application" ];
       terminal = false;
       mimeType = [ "text/plain" ];

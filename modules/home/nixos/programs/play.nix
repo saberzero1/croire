@@ -13,27 +13,37 @@ in
     inputs.play-nix.homeManagerModules.play
   ];
 
+  # Configure monitors for automatic gamescope settings
+  monitors = [
+    {
+      name = "eDP-1"; # Adjust based on your monitor
+      primary = true;
+      width = 2560;
+      height = 1440;
+      refreshRate = 165;
+      hdr = false;
+      vrr = false;
+    }
+  ];
+
   # Gaming configuration using play.nix
   play = {
-    # Configure monitors for automatic gamescope settings
-    monitors = [
-      {
-        name = "eDP-1"; # Adjust based on your monitor
-        primary = true;
-        width = 2560;
-        height = 1440;
-        refreshRate = 165;
-        hdr = false;
-        vrr = false;
-      }
-    ];
-
     # Enable gamescope wrapper with intelligent defaults
     gamescoperun = {
       enable = true;
       defaultHDR = false; # Disable HDR by default for NVIDIA
       defaultWSI = true; # Wayland Surface Interface
       defaultSystemd = false; # Don't use systemd-run by default
+      baseOptions = {
+        "output-width" = 2560;
+        "output-height" = 1440;
+      };
+      environment = {
+        __NV_PRIME_RENDER_OFFLOAD = "1";
+        __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        __VK_LAYER_NV_optimus = "NVIDIA_only";
+      };
     };
 
     # Create Steam wrapper that runs through gamescope
