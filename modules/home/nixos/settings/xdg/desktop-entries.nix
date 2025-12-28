@@ -50,7 +50,7 @@ in
       name = "GeForce NOW Infinity (Offloaded)";
       comment = "Cloud Gaming";
       icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
-      exec = "gamescoperun -x '-W 2560 -H 1440' geforce-infinity";
+      exec = "gamescoperun -x \"-W 2560 -H 1440\" geforce-infinity";
       categories = [ "Application" ];
       terminal = false;
       mimeType = [ "text/plain" ];
