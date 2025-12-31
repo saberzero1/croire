@@ -22,6 +22,8 @@
       "https://hyprland.cachix.org"
       # personal cachix binaries
       "https://saberzero1.cachix.org"
+      # sash cachix binaries
+      "https://sash.cachix.org"
     ];
 
     # will be appended to the system-level trusted-public-keys
@@ -49,6 +51,8 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       # personal cachix binaries public key
       "saberzero1.cachix.org-1:VjGzK8nJmRf+ghLAmi3SSNswTSLdg53IGdqhQJMdQdk="
+      # sash cachix binaries public key
+      "sash.cachix.org-1:O4mYArEPtU859GLhV67RWcs9sdAa0mLyS+CBzDHGLNs="
     ];
 
     extra-experimental-features = "nix-command flakes";
@@ -205,6 +209,7 @@
 
     # Omnix
     omnix.url = "github:saberzero1/omnix/copilot/fix-native-devour-flake-build";
+    sash.url = "git+ssh://git@github.com/saberzero1/sash";
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
