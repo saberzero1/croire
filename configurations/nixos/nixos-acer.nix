@@ -216,9 +216,6 @@ in
     wireless = {
       allowAuxiliaryImperativeNetworks = true;
       dbusControlled = true;
-      userControlled = {
-        group = "networkmanager";
-      };
     };
   };
 
@@ -264,6 +261,7 @@ in
           "plugdev"
           "docker"
           "input"
+          "wpa_supplicant"
         ];
         name = "saberzero1";
         home = "/home/saberzero1";

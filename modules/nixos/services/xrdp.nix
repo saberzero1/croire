@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.xrdp = {
     enable = false;

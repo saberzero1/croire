@@ -1,4 +1,3 @@
-{ ... }:
 {
   # Yubikey
   services.yubikey-agent = {

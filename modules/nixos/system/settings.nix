@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with pkgs;
 let
@@ -109,7 +110,7 @@ in
       iwgtk
       iperf2
       sshpass
-      uget
+      # uget
       wget2
       gnumake
       _7zz

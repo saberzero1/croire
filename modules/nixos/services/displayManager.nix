@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.displayManager = {
     enable = true;

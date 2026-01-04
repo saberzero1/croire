@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.restic = {
     server = {

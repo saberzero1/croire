@@ -57,7 +57,7 @@ in
       jsdoc
       json
       json5
-      jsonc
+      # jsonc
       julia
       just
       kotlin

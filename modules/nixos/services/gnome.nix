@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.gnome = {
     gnome-browser-connector = {

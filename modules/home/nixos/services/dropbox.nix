@@ -1,5 +1,5 @@
 {
-  services.openssh = {
+  services.dropbox = {
     enable = true;
   };
 }

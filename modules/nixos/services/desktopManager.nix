@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.desktopManager = {
     gnome = {
