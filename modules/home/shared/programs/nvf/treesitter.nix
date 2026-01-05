@@ -11,13 +11,13 @@ in
       enable = true;
     };
     fold = true;
-    grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+    grammars = with pkgs.vimPlugins.nvim-treesitter.grammarPlugins; [
       asm
       astro
       bash
       blade
       #c
-      c-sharp
+      c_sharp
       clojure
       comment
       cmake
@@ -35,8 +35,8 @@ in
       erlang
       # fish
       fsharp
-      git-config
-      git-rebase
+      git_config
+      git_rebase
       gitattributes
       gitcommit
       gitignore
@@ -53,7 +53,7 @@ in
       java
       javascript
       jinja
-      jinja-inline
+      jinja_inline
       jsdoc
       json
       json5
@@ -68,9 +68,9 @@ in
       luap
       make
       #markdown
-      #markdown-inline
+      #markdown_inline
       nim
-      nim-format-string
+      nim_format_string
       nix
       nu
       ocaml
@@ -89,7 +89,7 @@ in
       rust
       scala
       sql
-      ssh-config
+      ssh_config
       svelte
       sway
       tmux
