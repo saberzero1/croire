@@ -13,7 +13,7 @@
     defaultEditor = true;
     settings = {
       vim = {
-        enableLuaLoader = true;
+        # enableLuaLoader = true;
         package = flake.inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
         viAlias = true;
         vimAlias = true;

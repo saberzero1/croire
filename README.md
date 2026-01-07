@@ -28,6 +28,7 @@ A unified NixOS configuration repository that manages system configurations for 
 - **flake-parts**: Modular flake framework
 - **just**: Command runner (alternative to make)
 - **omnix (om)**: Nix CLI tool for building and managing configurations
+- **sash**: SSH connection manager for modularized bash configurations
 
 ## Usage
 

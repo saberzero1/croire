@@ -110,7 +110,7 @@ in
       enable = true;
     };
     textobjects = {
-      enable = true;
+      enable = false;
       setupOpts = {
         move = {
           enable = true;
@@ -140,17 +140,6 @@ in
     };
     indent = {
       enable = true;
-    };
-    incrementalSelection = {
-      enable = true;
-    };
-    mappings = {
-      incrementalSelection = {
-        init = "<C-space>";
-        incrementByNode = "<C-space>";
-        decrementByNode = "<bs>";
-        incrementByScope = null;
-      };
     };
   };
   programs.nvf.settings.vim.mini.ai = {

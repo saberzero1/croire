@@ -153,8 +153,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      url = "github:NotAShelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:NotAShelf/nvf/main";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     lazyvim.url = "github:saberzero1/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -208,8 +208,11 @@
     };
 
     # Omnix
-    omnix.url = "github:saberzero1/omnix/copilot/fix-native-devour-flake-build";
-    sash.url = "git+ssh://git@github.com/saberzero1/sash";
+    omnix.url = "github:juspay/omnix";
+    sash = {
+      url = "https://flakehub.com/f/saberzero1/sash/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html

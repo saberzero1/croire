@@ -18,7 +18,7 @@
         enable = false;
       };
       codewindow = {
-        enable = true;
+        enable = false;
       };
     };
     utility.snacks-nvim = {
