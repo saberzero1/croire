@@ -17,6 +17,10 @@ let
 in
 {
   environment = {
+    pathsToLink = [
+      "/share/uwsm"
+    ];
+
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
@@ -65,6 +69,7 @@ in
       wayland-protocols
       hyprland-protocols
       udis86
+      kitty
 
       dbus
       vulkan-tools
@@ -209,6 +214,7 @@ in
   };
 
   systemd = {
+    packages = with pkgs; [ uwsm ];
     user = {
       tmpfiles = {
         rules = [ ];
@@ -369,13 +375,14 @@ in
         hyprland = {
           prettyName = "Hyprland";
           comment = "Hyprland compositor managed by UWSM";
-          binPath = "/run/current-system/sw/bin/Hyprland";
+          binPath = "/run/current-system/sw/bin/start-hyprland";
         };
       };
     };
 
     hyprland = {
       enable = true;
+      withUWSM = true;
     };
 
     nano = {
@@ -421,7 +428,7 @@ in
       enable = true;
       user = "saberzero1";
     };
-    defaultSession = "hyprland";
+    defaultSession = "hyprland-uwsm";
   };
 
 }

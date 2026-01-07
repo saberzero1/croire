@@ -12,8 +12,11 @@ in
     windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       systemd = {
         enable = true;
+        variables = [ "--all" ];
       };
       settings = {
         monitor = ",preferred,auto,1";
@@ -98,16 +101,16 @@ in
         };
 
         # Window rules
-        windowrulev2 = [
-          "workspace 1, class:^(ghostty)$"
-          "workspace 1, class:^(wezterm)$"
-          "workspace 2, class:^(obsidian)$"
-          "workspace 3, class:^(zen)$"
-          "workspace 4, class:^(zed)$"
-          "workspace 4, class:^(codium-url-handler)$"
-          "workspace 4, class:^(wine)$"
-          "workspace 5, class:^(discord)$"
-          "float, class:^(com.github.finefindus.eyedropper)$"
+        windowrule = [
+          "workspace 1, match:class ^(ghostty)$"
+          "workspace 1, match:class ^(wezterm)$"
+          "workspace 2, match:class ^(obsidian)$"
+          "workspace 3, match:class ^(zen)$"
+          "workspace 4, match:class ^(zed)$"
+          "workspace 4, match:class ^(codium-url-handler)$"
+          "workspace 4, match:class ^(wine)$"
+          "workspace 5, match:class ^(discord)$"
+          "float true, match:class ^(com.github.finefindus.eyedropper)$"
         ];
 
         # Keybindings
