@@ -50,7 +50,7 @@
       bind-key 1 run-shell -c '#{pane_current_path}' "tmux select-window -t 1 || tmux new-window -t 1 -n 'scratch' -c '#{pane_current_path}' $SHELL";
       bind-key 2 run-shell -c '#{pane_current_path}' "tmux select-window -t 2 || tmux new-window -t 2 -n 'editor' -c '#{pane_current_path}' nvim";
       bind-key 3 run-shell -c '#{pane_current_path}' "tmux select-window -t 3 || tmux new-window -t 3 -n 'watcher' -c '#{pane_current_path}' $SHELL";
-      bind-key 4 run-shell -c '#{pane_current_path}' "tmux select-window -t 4 || tmux new-window -t 4 -n 'remote' -c '#{pane_current_path}' $SHELL";
+      bind-key 4 run-shell -c '#{pane_current_path}' "tmux select-window -t 4 || tmux new-window -t 4 -n 'remote' -c '#{pane_current_path}' opencode";
       bind-key 5 run-shell -c '#{pane_current_path}' "tmux select-window -t 5 || tmux new-window -t 5 -n 'git' -c '#{pane_current_path}' lazygit";
       bind-key 6 run-shell -c '#{pane_current_path}' "tmux select-window -t 6 || tmux new-window -t 6 -c '#{pane_current_path}'";
       bind-key 7 run-shell -c '#{pane_current_path}' "tmux select-window -t 7 || tmux new-window -t 7 -c '#{pane_current_path}'";
