@@ -23,5 +23,11 @@ in
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.opencode.commands
     commands = { };
     rules = '''';
+    # Plugins configuration
+    plugins = [
+      "opencode-ignore"
+      "@simonwjackson/opencode-direnv"
+      "code-yeongyu/oh-my-opencode"
+    ];
   };
 }
