@@ -1,7 +1,4 @@
 { pkgs, ... }:
-let
-  opencodeModel = "github-copilot/gpt-5-mini";
-in
 {
   programs.opencode = {
     enable = true;
@@ -11,14 +8,19 @@ in
       "autoupdate" = "notify";
       "share" = "disabled";
       "theme" = "tokyonight";
-      "model" = opencodeModel;
       "tui" = {
         "scroll_speed" = 3;
         "scroll_acceleration" = {
           "enabled" = true;
         };
       };
+      "plugin" = [
+        "opencode-ignore"
+        "@simonwjackson/opencode-direnv"
+        "oh-my-opencode"
+      ];
     };
+    # opencode.ai/zen/v1/models for models
     agents = { };
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.opencode.commands
     commands = { };

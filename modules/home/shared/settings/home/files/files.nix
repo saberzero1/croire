@@ -29,6 +29,7 @@ in
           "starship/starship.toml"
           "yazi/flavors/tokyo-night.yazi"
           # "tmux/scripts/directories"
+          "opencode/oh-my-opencode.json"
         ]
         ++ extras
       )
