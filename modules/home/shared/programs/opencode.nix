@@ -18,6 +18,20 @@ in
           "enabled" = true;
         };
       };
+      # Plugin configurations
+      "plugins" = {
+        "opencode-ignore" = {
+          "enabled" = true;
+          "respectGitignore" = true;
+        };
+        "opencode-direnv" = {
+          "enabled" = true;
+          "autoLoad" = true;
+        };
+        "oh-my-opencode" = {
+          "enabled" = true;
+        };
+      };
     };
     agents = { };
     # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.opencode.commands
