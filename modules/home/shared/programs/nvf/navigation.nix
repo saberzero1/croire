@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.nvf.settings.vim = {
     navigation = {
@@ -64,6 +65,7 @@
         picker = {
           enabled = true;
           ui_select = true;
+          db.sqlite3_path = "${pkgs.sqlite}/bin/sqlite3";
         };
       };
     };
