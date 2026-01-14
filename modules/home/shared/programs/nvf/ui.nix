@@ -33,6 +33,15 @@
             "vim.lsp.util.stylize_markdown" = true;
             "cmp.entry.get_documentation" = true;
           };
+          signature = {
+            enabled = true;
+            auto_open = {
+              enabled = true;
+              trigger = true;
+              luasnip = true;
+              throttle = 50;
+            };
+          };
         };
         routes = [
           {

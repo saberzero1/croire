@@ -88,6 +88,7 @@ in
       ruby
       rust
       scala
+      scss
       sql
       ssh_config
       svelte
@@ -102,6 +103,7 @@ in
       #vim
       #vimdoc
       vue
+      wgsl
       xml
       yaml
       zig
