@@ -791,6 +791,24 @@
         "type": "github"
       }
     },
+    "flake-utils_8": {
+      "inputs": {
+        "systems": "systems_12"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "geforce-infinity": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -2572,6 +2590,7 @@
         "sops-nix": "sops-nix",
         "spacebar": "spacebar",
         "systems": "systems_11",
+        "tmux-sessionizer": "tmux-sessionizer",
         "totten": "totten",
         "zen-browser": "zen-browser"
       }
@@ -2782,6 +2801,21 @@
         "type": "github"
       }
     },
+    "systems_12": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "systems_2": {
       "locked": {
         "lastModified": 1681028828,
@@ -2899,6 +2933,27 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tmux-sessionizer": {
+      "inputs": {
+        "flake-utils": "flake-utils_8",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768560291,
+        "narHash": "sha256-McRmMn4WWhkLdJzVz8BhtXO0Go+tLFI91GvHH1xgFlk=",
+        "owner": "saberzero1",
+        "repo": "tmux-sessionizer",
+        "rev": "8f942f440d1e00ccc7d78b32b1822438eeb4d36e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saberzero1",
+        "repo": "tmux-sessionizer",
         "type": "github"
       }
     },

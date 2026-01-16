@@ -215,6 +215,10 @@
 
     # Omnix
     omnix.url = "github:juspay/omnix";
+    tmux-sessionizer = {
+      url = "github:saberzero1/tmux-sessionizer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sash = {
       url = "https://flakehub.com/f/saberzero1/sash/0.1";
       inputs.nixpkgs.follows = "nixpkgs";

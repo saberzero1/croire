@@ -39,6 +39,7 @@ self: super: {
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  tmux-sessionizer = inputs.tmux-sessionizer.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # wezterm = inputs.wezterm.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # zed-latest = inputs.zed.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
