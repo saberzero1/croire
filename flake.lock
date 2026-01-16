@@ -1132,11 +1132,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1768529039,
-        "narHash": "sha256-AtaXtk6HEbhIqanRaGmRBUqdbeQjbb1Yu8rm+P3vmTs=",
+        "lastModified": 1768561274,
+        "narHash": "sha256-n37ejgQu9nRg/MM8M6IeaQfCpcuJsM+gLjXUmIFvUP4=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "3875b498c800b62c31946165a7fc3ea6afb8e037",
+        "rev": "b32419fe7f6d56bca5268828ed176a93b2fc3e6a",
         "type": "github"
       },
       "original": {
@@ -1148,11 +1148,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1768533877,
-        "narHash": "sha256-+dBH7gtNxpGGFxaWns5N36tKvfc1ujb3wk0OtPGAfiY=",
+        "lastModified": 1768563886,
+        "narHash": "sha256-K+tdrffQK7Oz/gHLqpDImUyK+FqOzVXFua8hswwoEks=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "84ef04ea44cf62d284109bfa7a41c72064860ef0",
+        "rev": "dbe24a7e27f413a7dc195c624e073dc62b449768",
         "type": "github"
       },
       "original": {
@@ -1268,11 +1268,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1768492847,
-        "narHash": "sha256-oEphfkN6TGm9YCR6xQZVunte+lIGu73hwOohQio3fnA=",
+        "lastModified": 1768551081,
+        "narHash": "sha256-1vJtgCsQL2wlM4cGTg52RRWuliD5B50gQOKoLH9jSVs=",
         "ref": "refs/heads/main",
-        "rev": "ac9df44788492fd1d12da8ec0fbbf691386c45a4",
-        "revCount": 6810,
+        "rev": "0b13d398fe597c9b30beb8207828586718b8a9b0",
+        "revCount": 6811,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -1770,11 +1770,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768220509,
-        "narHash": "sha256-8wMrJP/Xk5Dkm0TxzaERLt3eGFEhHTWaJKUpK3AoL4o=",
+        "lastModified": 1768561867,
+        "narHash": "sha256-prGOZ+w3pZfGTRxworKcJliCNsewF0L4HUPjgU/6eaw=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "7b1d394e7d9112d4060e12ef3271b38a7c43e83b",
+        "rev": "8b720b9662d4dd19048664b7e4216ce530591adc",
         "type": "github"
       },
       "original": {
