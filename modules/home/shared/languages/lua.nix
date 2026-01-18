@@ -45,8 +45,8 @@
     rest-nvim
     # rocks-config-nvim
     # rocks-dev-nvim
-    rocks-git-nvim
-    rocks-nvim
+    # rocks-git-nvim
+    # rocks-nvim
     rtp-nvim
     say
     serpent
