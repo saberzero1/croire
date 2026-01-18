@@ -43,7 +43,7 @@
     plenary-nvim
     readline
     rest-nvim
-    rocks-config-nvim
+    # rocks-config-nvim
     # rocks-dev-nvim
     rocks-git-nvim
     rocks-nvim
