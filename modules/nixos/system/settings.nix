@@ -31,7 +31,7 @@ in
       (GPUOffloadApp steam "steam")
       obsidian
       discord
-      nexusmods-app
+      # nexusmods-app
       steamtinkerlaunch
       wofi
       wofi-pass
