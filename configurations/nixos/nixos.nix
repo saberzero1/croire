@@ -52,7 +52,7 @@ in
     kernelModules = [
       "kvm-intel"
     ];
-    kernelPackages = pkgs.linuxPackages_6_17;
+    # kernelPackages = pkgs.linuxPackages_6_17;
     kernelParams = [
       "usbcore.autosuspend=-1"
     ];
