@@ -147,6 +147,7 @@ in
       # kubernetes
       k9s
       kubernetes-helm
+      kubernetes-polaris # linting tool for kubernetes
       kubectl
       # kty
       kind # local kubernetes clusters
