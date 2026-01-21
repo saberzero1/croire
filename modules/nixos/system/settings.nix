@@ -143,6 +143,18 @@ in
       electron-chromedriver
 
       go
+
+      # kubernetes
+      k9s
+      kubernetes-helm
+      kubectl
+      # kty
+      kind # local kubernetes clusters
+      kail # log viewer for kubernetes
+      helmsman
+      helmfile
+      helm-docs
+
     ];
     # Most of these are optional programs added by services.gnome.core-services
     # and etc., but the module sets other useful options so it is better to

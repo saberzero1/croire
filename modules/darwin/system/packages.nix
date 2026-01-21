@@ -33,6 +33,17 @@ in
       sbarlua
 
       ispell
+
+      # kubernetes
+      k9s
+      kubernetes-helm
+      kubectl
+      # kty
+      kind # local kubernetes clusters
+      kail # log viewer for kubernetes
+      helmsman
+      helmfile
+      helm-docs
     ];
   };
 }

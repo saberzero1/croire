@@ -30,7 +30,7 @@
   };
   # Determinate Nix settings
   # These are written to /etc/nix/nix.custom.conf
-  determinate-nix.customSettings = {
+  determinateNix.customSettings = {
     eval-cores = 0;
     experimental-features = "nix-command flakes";
     trusted-users = [
