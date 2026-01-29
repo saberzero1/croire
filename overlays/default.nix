@@ -3,7 +3,38 @@ let
   inherit (flake) inputs;
 in
 
-self: super: {
+self: super:
+let
+  # Import stable nixpkgs for Swift-dependent packages (Swift broken in unstable with clang-21)
+  # See: https://github.com/NixOS/nixpkgs/issues/461474
+  # Only needed on Darwin where Swift is used for dotnet, dockutil, xcodes, etc.
+  pkgsStable = import inputs.nixpkgs-stable {
+    inherit (super.stdenv.hostPlatform) system;
+    config.allowUnfree = true;
+  };
+
+  # Swift-related overrides only apply on Darwin
+  # NOTE: dotnet-sdk is completely broken on Darwin (nixpkgs #450126) - use Homebrew instead
+  # Only Swift packages (dockutil, xcodes) are pinned to stable where Swift 5.8 works
+  swiftOverrides =
+    if super.stdenv.hostPlatform.isDarwin then
+      {
+        # Swift and Swift-dependent packages from stable nixpkgs (clang-21 breaks Swift 5.10.1)
+        # These will be removed once Swift is fixed in nixpkgs-unstable
+        inherit (pkgsStable)
+          swift
+          swiftpm
+          swiftPackages
+          # Packages that depend on Swift
+          dockutil
+          xcodes
+          ;
+      }
+    else
+      { };
+in
+swiftOverrides
+  // {
   devour-flake = self.callPackage inputs.devour-flake { };
   # direnv = super.direnv.overrideAttrs (oldAttrs: {
   #   # Remove fish from nativeCheckInputs to avoid unnecessary dependency

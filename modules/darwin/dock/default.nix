@@ -77,7 +77,8 @@ in
       createEntries = concatMapStrings
         (
           entry:
-          "${dockutil}/bin/dockutil --no-restart --add '${entry.path}' --section ${entry.section} ${entry.options}\n"
+          "${dockutil}/bin/dockutil --no-restart --add '${entry.path}' --section ${entry.section} ${entry.options}
+\n"
         )
         cfg.entries;
     in

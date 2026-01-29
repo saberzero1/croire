@@ -18,9 +18,9 @@ in
       haskellPackages.hoogle
       fh
 
-      # xcodes # Moved to homebrew cask - Swift build broken in nixpkgs (issue #462451)
+      xcodes
       apple-sdk
-      pre-commit
+      # pre-commit # Moved to Homebrew - nixpkgs version has dotnet dependency issues on Darwin
 
       bun
       go

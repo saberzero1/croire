@@ -67,7 +67,8 @@
     # Unified Nix sources
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+    # Pin to nixpkgs-24.11 for Swift packages (Swift broken in unstable with clang-21, issue #461474)
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     # nixpkgs-stable.url = "github:NixOS/nixpkgs";
     sops-nix.url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
     # sops-nix.url = "github:Mic92/sops-nix";
