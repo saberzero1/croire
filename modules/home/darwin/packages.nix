@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     # Mac
     fswatch
-    dockutil
+    # dockutil # Moved to homebrew formula - Swift build broken in nixpkgs (issue #462451)
     # aerospace
 
     # sketchybar

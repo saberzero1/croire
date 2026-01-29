@@ -18,7 +18,7 @@ in
       haskellPackages.hoogle
       fh
 
-      xcodes
+      # xcodes # Moved to homebrew cask - Swift build broken in nixpkgs (issue #462451)
       apple-sdk
       pre-commit
 
