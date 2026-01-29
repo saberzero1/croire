@@ -203,11 +203,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1769601151,
-        "narHash": "sha256-JNOJ+28bSrD3+kRgUbCArVi6hDU+L2e6I35PWf0HbnI=",
+        "lastModified": 1769685317,
+        "narHash": "sha256-C/xUhG+q312YjDm88lzNXMcVfOUm8we4/fSDXKzY3eE=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "b2ef1164b4f330d6b11c6ad3da962452eab7b3bb",
+        "rev": "8ce7494b9fc93657d74618f8f83cdf45ad6d7b4f",
         "type": "github"
       },
       "original": {
@@ -1036,11 +1036,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769638001,
-        "narHash": "sha256-hGwdJ/+oo+IRo2TiWV/V8BWWptQihcdFV/olTONaHqg=",
+        "lastModified": 1769699427,
+        "narHash": "sha256-dAQt3qXugGhg92A+jqaUcmH0elbgEN/mV4vy1+ohLZk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bd9f031efc634be4b80c5090b9171cc3a9f8e49c",
+        "rev": "2a08ab21abc8b482f41c521b5f9b0df5b18a67eb",
         "type": "github"
       },
       "original": {
@@ -1132,11 +1132,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1769676865,
-        "narHash": "sha256-MSeSDErnqYKKuzSzT5a/RPkMsR4K21OLEIglEJdemfk=",
+        "lastModified": 1769695665,
+        "narHash": "sha256-Uaryr4SBnp/pjxc71G8IAx7ZMG1vLhM6oLG+QyJx4Vo=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "dabd682f7a2e7c44700f8686edc2646f98185eea",
+        "rev": "daa0d8024441a179dd3991a5c9ca90a3fbda0560",
         "type": "github"
       },
       "original": {
@@ -1148,11 +1148,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1769677155,
-        "narHash": "sha256-C1oUIgG+Rt3rvGRZRctUhiVU4gLI2IDdbOXARs3if0c=",
+        "lastModified": 1769701506,
+        "narHash": "sha256-oF4VSRM0BCkagDoqnhIaUS62Cmw9U4qOCWpzilPm9X8=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "a3ce9a6f200f0de048bd7e84c6075305c1eae305",
+        "rev": "714f95ad984fa25119f9f8fd58c61560b3ebca46",
         "type": "github"
       },
       "original": {
@@ -1268,11 +1268,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1769643521,
-        "narHash": "sha256-TzXKsq2GaHiOX55g1yn+WvkMDeXM1wZniPbXgH3/IT4=",
+        "lastModified": 1769694617,
+        "narHash": "sha256-sBndsTEWfHREb1bKdEy0RI0qShcVMgOVXguEdLMR7KA=",
         "ref": "refs/heads/main",
-        "rev": "22e53345ba4c8cb4e6551068d8d90c1679e8db1a",
-        "revCount": 6842,
+        "rev": "c92fb5e85f4a5fd3a0f5ffb5892f6a61cfe1be2b",
+        "revCount": 6845,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
