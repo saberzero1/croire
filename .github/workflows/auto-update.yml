@@ -52,9 +52,10 @@ jobs:
         # run: om ci run .#update \
             # --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
             # --accept-flake-config
-        run: nix flake update --flake . \
+        run: nix flake update --flake \
             --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
-            --accept-flake-config
+            --accept-flake-config \
+            .
 
       # - name: Omnix update flakes
       #   env:
