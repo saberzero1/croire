@@ -259,6 +259,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Set up Determinate Nix
         uses: DeterminateSystems/determinate-nix-action@main
@@ -287,10 +289,10 @@ jobs:
         uses: DeterminateSystems/flakehub-push@main
         id: publish
         with:
+          repository: "saberzero1/croire"
           name: "saberzero1/croire"
-          source-branch: "master"
           rolling: true
           visibility: "private"
           include-output-paths: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # github-token: ${{ secrets.GITHUB_TOKEN }}
 
