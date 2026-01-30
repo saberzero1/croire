@@ -288,6 +288,7 @@ jobs:
         id: publish
         with:
           name: "saberzero1/croire"
+          source-branch: "master"
           rolling: true
           visibility: "private"
           include-output-paths: true
