@@ -36,7 +36,7 @@
       # thefuck
 
       # Backup and Sync
-      pika-backup
+      # pika-backup
       restic
       rclone
       # rclone-browser
