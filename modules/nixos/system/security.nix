@@ -62,7 +62,6 @@
       sudo
       wpa_supplicant
       wpa_supplicant_gui
-      pika-backup
     ];
   };
 
