@@ -10,7 +10,7 @@
     escapeTime = 0;
     keyMode = "vi";
     secureSocket = false;
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.nushell}/bin/nu";
     plugins = with pkgs.tmuxPlugins; [
       fpp # Facebook Path Picker
       yank

@@ -17,7 +17,8 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
     LAZY = "${config.home.homeDirectory}/share/lazy-nvim";
-    SHELL = "${pkgs.zsh}/bin/zsh";
+    SHELL = "${pkgs.nushell}/bin/nu";
+    # SHELL = "${pkgs.zsh}/bin/zsh";
   }
   // just
   // tmux_sessionizer;

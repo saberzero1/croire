@@ -1,9 +1,7 @@
 { ... }:
 {
   home = {
-    shellAliases = {
-      "reload-rclone" = "launchd --user restart rCloneMounts.service";
-    };
+    shellAliases = { };
     sessionVariables = { };
   };
 }

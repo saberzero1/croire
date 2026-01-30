@@ -1,6 +1,5 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 let
-  inherit (flake) inputs;
   fontFeatures = [
     "calt"
     "clig"
@@ -36,7 +35,7 @@ in
       font-family-bold-italic = "Monaspace Krypton";
       font-feature = fontFeatures;
       theme = "dark:TokyoNight Storm,light:TokyoNight Day";
-      shell-integration = "zsh";
+      shell-integration = "none"; # nushell handles its own integration
     };
   };
 }

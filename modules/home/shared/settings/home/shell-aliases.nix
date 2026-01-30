@@ -1,5 +1,46 @@
 { pkgs, ... }:
 let
+  # Shell-specific scripts for commands that use bash syntax incompatible with nushell
+  shellScripts = [
+    (pkgs.writeShellScriptBin "gj" ''
+      # Global justfile choose (with stderr suppression)
+      ${pkgs.just}/bin/just --global-justfile --choose 2>/dev/null
+    '')
+    (pkgs.writeShellScriptBin "disk" ''
+      # Show disk usage
+      df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
+    '')
+    (pkgs.writeShellScriptBin "path" ''
+      # Print PATH variable separated by newlines
+      echo "''${PATH//:/\\n}"
+    '')
+    (pkgs.writeShellScriptBin "reload" ''
+      # Reload shell
+      exec "$SHELL" -l
+    '')
+    (pkgs.writeShellScriptBin "nixfu" ''
+      # Nix flake update with GitHub token
+      nix flake update --option access-tokens "github.com=$(${pkgs.gh}/bin/gh auth token)"
+    '')
+    (pkgs.writeShellScriptBin "now" ''
+      # Date and time
+      date '+%Y-%m-%d %A %T %Z'
+    '')
+    (pkgs.writeShellScriptBin "week" ''
+      # Get current week number
+      date +%V
+    '')
+    (pkgs.writeShellScriptBin "weather" ''
+      # Get weather in a short format
+      curl -s 'wttr.in/?format=3'
+    '')
+    (pkgs.writeShellScriptBin "t" ''
+      # List files in tree format (alias for tree command)
+      ${pkgs.tree}/bin/tree --dirsfirst "$@"
+    '')
+  ];
+in
+let
   cd = {
     "-" = "cd -"; # Go back to previous directory
     ".." = "cd .."; # Go up one directory
@@ -38,7 +79,7 @@ let
   just = {
     j = "${pkgs.just}/bin/just --choose";
     jj = "${pkgs.just}/bin/just --global-justfile";
-    gj = "${pkgs.just}/bin/just --global-justfile --choose 2>/dev/null";
+    # Note: gj moved to shell-specific scripts due to 2>/dev/null syntax
   };
   ls = {
     ls = "${pkgs.eza}/bin/eza --icons --long --group-directories-first";
@@ -52,7 +93,7 @@ let
   };
   nix = {
     nixf = "nix flake";
-    nixfu = "nix flake update --option access-tokens \"github.com=$(gh auth token)\"";
+    # Note: nixfu moved to shell scripts due to $() command substitution
   };
   npm = {
     npb = "npm build"; # Build npm project
@@ -71,17 +112,12 @@ let
     npy = "npm why"; # Explain why a package is installed
   };
   utility = {
-    disk = "df -H --output=pcent,avail,target | grep \/$ | sed \"s# \\\/##\" | sed \"s#% *#%#g\" | sed \"s#^#Disk usage:#\" \| sed \"s#%#% (#\" \| sed \"s#\\$# available)#\""; # Show disk usage
-    h = "history"; # Show command history
-    now = "date '+%Y-%m-%d %A %T %Z'"; # Date and time
+    # Note: disk, path, reload moved to shell-specific scripts due to bash syntax
+    # Note: now, week, weather, tree moved to shell scripts - conflict with nushell builtins
+    # Note: h (history) removed - nushell has different history semantics
     ports = "sudo lsof -i -P"; # List open ports
     p = "pwd"; # Print working directory
-    path = "echo \${PATH//:/\\n}"; # Print PATH variable separated by newlines
-    reload = "exec $SHELL -l"; # Reload shell
-    tree = "tree --dirsfirst"; # List files in tree format
     ts = "tmux-sessionizer"; # Tmux sessionizer
-    week = "date +%V"; # Get current week number
-    weather = "curl -s 'wttr.in/?format=3'"; # Get weather in a short format
   };
   vi = {
     vi = "${pkgs.neovim}/bin/nvim";
@@ -105,4 +141,7 @@ in
   // utility
   // vi
   // yazi;
+
+  # Add shell-specific scripts as packages
+  home.packages = shellScripts;
 }
