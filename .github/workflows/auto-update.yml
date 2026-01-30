@@ -288,6 +288,8 @@ jobs:
       - name: Push to FlakeHub
         uses: DeterminateSystems/flakehub-push@main
         id: publish
+        env:
+          GIT_TERMINAL_PROMPT: "0"
         with:
           repository: "saberzero1/croire"
           name: "saberzero1/croire"
