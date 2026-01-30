@@ -5,5 +5,6 @@
     package = pkgs.zoxide;
     enableZshIntegration = true;
     enableBashIntegration = true;
+    enableNushellIntegration = true;
   };
 }

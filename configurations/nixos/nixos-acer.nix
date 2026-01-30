@@ -252,7 +252,7 @@ in
       plugdev = { };
     };
     mutableUsers = true;
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.nushell;
     users = {
       "saberzero1" = {
         extraGroups = [

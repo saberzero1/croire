@@ -9,5 +9,6 @@ in
     settings = pkgs.lib.importTOML "${self}/programs/starship/starship.toml";
     enableZshIntegration = true;
     enableBashIntegration = true;
+    enableNushellIntegration = true;
   };
 }

@@ -3,6 +3,7 @@
   programs.lazygit = {
     enable = true;
     package = pkgs.lazygit;
+    enableNushellIntegration = true;
     settings = {
       gui = {
         nerdFontsVersion = "3";

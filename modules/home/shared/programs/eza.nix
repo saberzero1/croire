@@ -5,6 +5,7 @@
     package = pkgs.eza;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
     icons = "always";
     git = true;
     theme = {

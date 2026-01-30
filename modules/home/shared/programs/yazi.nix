@@ -26,6 +26,7 @@ in
 
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
 
     settings = { };
 
