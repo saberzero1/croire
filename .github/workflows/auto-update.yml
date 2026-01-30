@@ -101,13 +101,11 @@ jobs:
           - runner: ubuntu-latest
             system: x86_64-linux
             host_command: sudo hostnamectl set-hostname nixos-acer
-            build_command: os
-            host_name: nixos-acer
+            build_target: nixosConfigurations.nixos-acer.config.system.build.toplevel
           - runner: macos-latest
             system: aarch64-darwin
             host_command: sudo scutil --set HostName Emiles-MacBook-Pro
-            build_command: darwin
-            host_name: Emiles-MacBook-Pro
+            build_target: darwinConfigurations.Emiles-MacBook-Pro.system
     needs: update-nix-packages
     steps:
       - name: Optimize Disk Space
@@ -162,28 +160,7 @@ jobs:
       #     authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Set up build environment
-        run: |
-          echo "Setting up direnv"
-          nix profile add nixpkgs#direnv
-          nix profile add nixpkgs#nix-direnv
-          mkdir -p $HOME/.config/direnv
-          echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-          # echo "Setting up cachix"
-          # nix profile add --accept-flake-config nixpkgs#cachix
-          # echo "cachix use devenv" >> $HOME/.config/direnv/direnvrc
-          # echo "cachix use nixpkgs" >> $HOME/.config/direnv/direnvrc
-          # echo "cachix use nix-community" >> $HOME/.config/direnv/direnvrc
-          # echo "cachix use cachix" >> $HOME/.config/direnv/direnvrc
-          # echo "cachix use hyprland" >> $HOME/.config/direnv/direnvrc
-          # echo "Setting up omnix"
-          # nix profile add $OMNIX_SOURCE
-          echo "Setting up nh"
-          nix profile add nixpkgs#nh
-          echo "Setting up environment"
-          direnv allow .
-          direnv export gha > "$GITHUB_ENV"
-          echo "Setting hostname"
-          ${{ matrix.host_command }}
+        run: ${{ matrix.host_command }}
 
       # - name: Omnix build flakes
       #   env:
@@ -210,13 +187,12 @@ jobs:
       #       -- --accept-flake-config
             # --results=$HOME/omci.json \
             # -- --accept-flake-config
-      - name: NH build flakes
-        env:
-          FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
-          FLAKE_ITER_FLAKEREF: "."
-          # NH_FLAKE: "./flake.nix"
+      - name: Build configuration
         run: |
-          nh ${{ matrix.build_command }} build -L --json --accept-flake-config --no-update-lock-file -d never -o result.json --impure -H ${{ matrix.host_name }} --no-nom $FLAKE_ITER_FLAKEREF
+          nix build .#${{ matrix.build_target }} \
+            --accept-flake-config \
+            --no-update-lock-file \
+            --print-build-logs
       # - name: Omnix build flakes
       #   env:
       #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
@@ -268,28 +244,13 @@ jobs:
       # - name: Set up FlakeHub cache
       #   uses: DeterminateSystems/flakehub-cache-action@main
 
-      - name: Set up build environment
-        run: |
-          echo "Setting up direnv"
-          nix profile add nixpkgs#direnv
-          nix profile add nixpkgs#nix-direnv
-          mkdir -p $HOME/.config/direnv
-          echo "source $HOME/.nix-profile/share/nix-direnv/direnvrc" >> $HOME/.config/direnv/direnvrc
-          echo "Setting up omnix"
-          nix profile add $OMNIX_SOURCE
-          echo "Setting up nh"
-          nix profile add nixpkgs#nh
-          echo "Setting up environment"
-          direnv allow .
-          # direnv export gha > "$GITHUB_ENV"
-          echo "Setting hostname"
-          sudo hostnamectl set-hostname nixos-acer
-
       - name: Push to FlakeHub
         uses: DeterminateSystems/flakehub-push@main
         id: publish
         env:
           GIT_TERMINAL_PROMPT: "0"
+          GIT_ADVICE: "0"
+          GIT_CONFIG_NOSYSTEM: "1"
         with:
           repository: "saberzero1/croire"
           name: "saberzero1/croire"
