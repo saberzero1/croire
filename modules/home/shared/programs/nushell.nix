@@ -241,7 +241,7 @@
     # Environment Variables
     # ─────────────────────────────────────────────────────────────────────────────
     environmentVariables = {
-      SHELL = ''"${pkgs.nushell}/bin/nu"'';
+      SHELL = "${pkgs.nushell}/bin/nu";
       # Example environment variables (set as nushell values)
       # FOO = "bar";
       # SOME_NUMBER = 42;

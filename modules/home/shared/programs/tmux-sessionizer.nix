@@ -6,6 +6,7 @@
 
   programs.tmux-sessionizer = {
     enable = true;
+    enableNushell = true;
     package = pkgs.tmux-sessionizer;
     searchPaths = [
       "~/Repos"
