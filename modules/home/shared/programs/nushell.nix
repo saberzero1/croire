@@ -92,7 +92,7 @@
       # bracketed_paste = true;
 
       # Edit mode
-      # edit_mode = "emacs";  # "emacs" or "vi"
+      edit_mode = "vi"; # "emacs" or "vi"
 
       # Shell integration
       # shell_integration = {
