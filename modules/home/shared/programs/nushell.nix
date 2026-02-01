@@ -31,18 +31,18 @@
       # };
 
       # Completions
-      # completions = {
-      #   case_sensitive = false;
-      #   quick = true;
-      #   partial = true;
-      #   algorithm = "fuzzy";  # "prefix" or "fuzzy"
-      #   sort = "smart";  # "smart" or "alphabetical"
-      #   external = {
-      #     enable = true;
-      #     max_results = 100;
-      #     # completer = ...;  # Custom completer function
-      #   };
-      # };
+      completions = {
+        case_sensitive = false;
+        quick = true;
+        partial = true;
+        algorithm = "fuzzy";  # "prefix" or "fuzzy"
+        sort = "smart";  # "smart" or "alphabetical"
+        external = {
+          enable = true;
+          max_results = 100;
+          # completer = ...;  # Custom completer function
+        };
+      };
 
       # Table display
       # table = {
@@ -176,6 +176,9 @@
         mode: [emacs vi_normal vi_insert]
         event: { send: executehostcommand cmd: "tmux-sessionizer" }
       })
+
+      # Carapace
+      source $"($nu.cache-dir)/carapace.nu"
     '';
 
     # ─────────────────────────────────────────────────────────────────────────────
@@ -196,19 +199,24 @@
       # $env.XDG_CACHE_HOME = ($env.HOME | path join ".cache")
 
       # NU_LIB_DIRS for custom modules
-      # $env.NU_LIB_DIRS = [
-      #   ($env.HOME | path join ".config/nushell/scripts")
-      #   ($env.HOME | path join ".local/share/nushell")
-      # ]
+      $env.NU_LIB_DIRS = [
+        ($env.HOME | path join ".config/nushell/scripts")
+        ($env.HOME | path join ".local/share/nushell")
+      ]
 
       # NU_PLUGIN_DIRS for plugins
-      # $env.NU_PLUGIN_DIRS = [
-      #   ($env.HOME | path join ".config/nushell/plugins")
-      # ]
+      $env.NU_PLUGIN_DIRS = [
+        ($env.HOME | path join ".config/nushell/plugins")
+      ]
 
       # VI indicators
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
       $env.PROMPT_INDICATOR_VI_INSERT = ""
+
+      # Carapace
+      $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+      mkdir $"($nu.cache-dir)"
+      carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
     '';
 
     # ─────────────────────────────────────────────────────────────────────────────
