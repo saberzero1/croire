@@ -83,7 +83,7 @@
       # float_precision = 2;
 
       # Buffer editor
-      # buffer_editor = "hx";
+      buffer_editor = "nvim";
 
       # Use ANSI colors
       # use_ansi_coloring = true;
@@ -124,11 +124,11 @@
       # keybindings = [];
 
       # Cursor shape
-      # cursor_shape = {
-      #   emacs = "line";  # "block", "underscore", "line", "blink_block", "blink_underscore", "blink_line", "inherit"
-      #   vi_insert = "block";
-      #   vi_normal = "underscore";
-      # };
+      cursor_shape = {
+        emacs = "line"; # "block", "underscore", "line", "blink_block", "blink_underscore", "blink_line", "inherit"
+        vi_insert = "line";
+        vi_normal = "block";
+      };
 
       # Color config
       # color_config = { };
@@ -169,13 +169,13 @@
       # $env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME | path join ".local/bin"))
 
       # Keybindings
-      # $env.config.keybindings = ($env.config.keybindings | append {
-      #   name: tmux_sessionizer
-      #   modifier: control
-      #   keycode: char_f
-      #   mode: [emacs vi_normal vi_insert]
-      #   event: { send: executehostcommand cmd: "tmux-sessionizer" }
-      # })
+      $env.config.keybindings = ($env.config.keybindings | append {
+        name: tmux_sessionizer
+        modifier: control
+        keycode: char_f
+        mode: [emacs vi_normal vi_insert]
+        event: { send: executehostcommand cmd: "tmux-sessionizer" }
+      })
     '';
 
     # ─────────────────────────────────────────────────────────────────────────────
@@ -187,8 +187,8 @@
       # ───────────────────────────────────────────────────────────────────────────
 
       # Editor
-      # $env.EDITOR = "hx"
-      # $env.VISUAL = "hx"
+      $env.EDITOR = "nvim"
+      $env.VISUAL = "nvim"
 
       # XDG directories
       # $env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
@@ -205,6 +205,10 @@
       # $env.NU_PLUGIN_DIRS = [
       #   ($env.HOME | path join ".config/nushell/plugins")
       # ]
+
+      # VI indicators
+      $env.PROMPT_INDICATOR_VI_NORMAL = ""
+      $env.PROMPT_INDICATOR_VI_INSERT = ""
     '';
 
     # ─────────────────────────────────────────────────────────────────────────────
