@@ -200,11 +200,9 @@
     };
 
     # Gaming
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     play-nix = {
       url = "github:TophC7/play.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.chaotic.follows = "chaotic";
     };
     geforce-infinity = {
       url = "github:saberzero1/GeForce-Infinity/copilot/add-nix-flake-support";

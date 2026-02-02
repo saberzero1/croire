@@ -20,10 +20,16 @@
   nix = {
     enable = false;
     # package = lib.mkDefault pkgs.nix;
-    settings.trusted-users = [
-      "root"
-      "emile"
-    ];
+    settings = {
+      trusted-users = [
+        "root"
+        "emile"
+      ];
+      inherit (flake.nixConfig)
+        trusted-public-keys
+        trusted-substituters
+        ;
+    };
     channel = {
       enable = true;
     };

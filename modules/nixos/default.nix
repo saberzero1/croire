@@ -17,10 +17,16 @@
   nix = {
     enable = true;
     # package = lib.mkDefault pkgs.nix;
-    settings.trusted-users = [
-      "root"
-      "saberzero1"
-    ];
+    settings = {
+      trusted-users = [
+        "root"
+        "saberzero1"
+      ];
+      inherit (flake.nixConfig)
+        trusted-public-keys
+        trusted-substituters
+        ;
+    };
   };
 
   services.openssh.enable = true;
