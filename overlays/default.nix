@@ -70,7 +70,41 @@ swiftOverrides
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  tmux-sessionizer = inputs.tmux-sessionizer.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # tmux-sessionizer: base package from flake input (no nushell dependency)
+  tmux-sessionizer =
+    inputs.tmux-sessionizer.packages.${super.stdenv.hostPlatform.system}.tmux-sessionizer;
+
+  # tmux-sessionizer-nu: rebuild locally to use our nushell (with doCheck=false)
+  # The flake's prebuilt package uses its own nushell which fails to build
+  tmux-sessionizer-nu = super.stdenv.mkDerivation {
+    pname = "tmux-sessionizer-nu";
+    version = "0.1.0";
+    src = inputs.tmux-sessionizer;
+    nativeBuildInputs = [ super.makeWrapper ];
+    buildInputs = [ self.nushell ];
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/bin
+      cp tmux-sessionizer.nu $out/bin/tmux-sessionizer.nu
+      chmod +x $out/bin/tmux-sessionizer.nu
+      wrapProgram $out/bin/tmux-sessionizer.nu \
+        --prefix PATH : ${
+          super.lib.makeBinPath [
+            self.nushell
+            super.tmux
+            super.fzf
+            super.findutils
+            super.procps
+            super.coreutils
+          ]
+        }
+      runHook postInstall
+    '';
+    meta = {
+      description = "Fuzzy-finder for tmux sessions (Nushell version)";
+      mainProgram = "tmux-sessionizer.nu";
+    };
+  };
   # wezterm = inputs.wezterm.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # zed-latest = inputs.zed.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
@@ -80,6 +114,16 @@ swiftOverrides
   procon2-init =
     inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
   sash = inputs.sash.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+
+  # Nushell: skip tests that fail in Nix sandbox (permission denied in path_is_a_list_in_repl)
+  nushell = super.nushell.overrideAttrs (oldAttrs: {
+    doCheck = false;
+    checkPhase = "";
+    cargoTestFlags = [
+      "--skip"
+      "this_test_does_not_exist"
+    ];
+  });
 }
 
 # shamelessly stolen from https://github.com/Sileanth/nixosik/blob/63354cf060e9ba895ccde81fd6ccb668b7afcfc5/overlays/default.nix

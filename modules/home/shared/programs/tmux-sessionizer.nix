@@ -8,6 +8,8 @@
     enable = true;
     enableNushell = true;
     package = pkgs.tmux-sessionizer;
+    # Use our rebuilt tmux-sessionizer-nu from overlay (uses our nushell with doCheck=false)
+    nushellPackage = pkgs.tmux-sessionizer-nu;
     searchPaths = [
       "~/Repos"
       "~/Documents/Repos"

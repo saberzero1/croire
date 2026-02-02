@@ -1,8 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.nushell = {
     enable = true;
-    package = pkgs.nushell;
 
     # ─────────────────────────────────────────────────────────────────────────────
     # Configuration Files
@@ -23,20 +22,20 @@
       show_banner = false;
 
       # History settings
-      # history = {
-      #   max_size = 100000;
-      #   sync_on_enter = true;
-      #   file_format = "sqlite";  # "plaintext" or "sqlite"
-      #   isolation = false;
-      # };
+      history = {
+        max_size = 100000;
+        sync_on_enter = true;
+        file_format = "sqlite"; # "plaintext" or "sqlite"
+        isolation = false;
+      };
 
       # Completions
       completions = {
         case_sensitive = false;
         quick = true;
         partial = true;
-        algorithm = "fuzzy";  # "prefix" or "fuzzy"
-        sort = "smart";  # "smart" or "alphabetical"
+        algorithm = "fuzzy"; # "prefix" or "fuzzy"
+        sort = "smart"; # "smart" or "alphabetical"
         external = {
           enable = true;
           max_results = 100;
@@ -162,11 +161,8 @@
       # Custom configuration
       # ───────────────────────────────────────────────────────────────────────────
 
-      # zoxide integration
-      # source ~/.cache/zoxide/init.nu
-
       # Custom PATH additions
-      # $env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME | path join ".local/bin"))
+      $env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME | path join ".local/bin"))
 
       # Keybindings
       $env.config.keybindings = ($env.config.keybindings | append {
@@ -178,7 +174,10 @@
       })
 
       # Carapace
-      source $"($nu.cache-dir)/carapace.nu"
+      source "~/.config/nushell/integration/carapace.nu"
+
+      # Zoxide
+      source "~/.config/nushell/integration/zoxide.nu"
     '';
 
     # ─────────────────────────────────────────────────────────────────────────────
@@ -194,9 +193,9 @@
       $env.VISUAL = "nvim"
 
       # XDG directories
-      # $env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
-      # $env.XDG_DATA_HOME = ($env.HOME | path join ".local/share")
-      # $env.XDG_CACHE_HOME = ($env.HOME | path join ".cache")
+      $env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
+      $env.XDG_DATA_HOME = ($env.HOME | path join ".local/share")
+      $env.XDG_CACHE_HOME = ($env.HOME | path join ".cache")
 
       # NU_LIB_DIRS for custom modules
       $env.NU_LIB_DIRS = [
@@ -215,8 +214,6 @@
 
       # Carapace
       $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-      mkdir $"($nu.cache-dir)"
-      carapace _carapace nushell | save --force $"($nu.cache-dir)/carapace.nu"
     '';
 
     # ─────────────────────────────────────────────────────────────────────────────
@@ -270,5 +267,19 @@
     #   query        # SQL-like querying
     #   skim         # Fuzzy finder integration
     # ];
+  };
+  home.file = {
+    "carapace.nu" = {
+      target = ".config/nushell/integration/carapace.nu";
+      text = ''
+        carapace _carapace
+      '';
+    };
+    "zoxide.nu" = {
+      target = ".config/nushell/integration/zoxide.nu";
+      text = ''
+        zoxide init nushell
+      '';
+    };
   };
 }
