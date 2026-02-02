@@ -4,7 +4,7 @@
     deadnix
     nixd
     nixpkgs-fmt
-    nixfmt-rfc-style
+    nixfmt
     statix
   ];
 }

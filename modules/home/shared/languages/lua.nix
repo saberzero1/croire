@@ -20,7 +20,6 @@
     luarocks-nix
     luarocks-build-rust-mlua
     luarocks-build-treesitter-parser
-    luasnip
     luasql-sqlite3
     luassert
     luasystem
@@ -40,7 +39,6 @@
     nvim-nio
     pathlib-nvim
     penlight
-    plenary-nvim
     readline
     rest-nvim
     # rocks-config-nvim
