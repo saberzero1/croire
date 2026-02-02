@@ -70,6 +70,7 @@ swiftOverrides
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # nixvim = inputs.akira.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  opencode = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # tmux-sessionizer: base package from flake input (no nushell dependency)
   tmux-sessionizer =
     inputs.tmux-sessionizer.packages.${super.stdenv.hostPlatform.system}.tmux-sessionizer;

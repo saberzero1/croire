@@ -47,6 +47,14 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos-acer
 
+      - name: Update opencode to latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LATEST_TAG=$(gh api repos/anomalyco/opencode/releases/latest --jq '.tag_name')
+          echo "Latest opencode release: $LATEST_TAG"
+          sed -i "s|github:anomalyco/opencode?ref=v[^\"]*|github:anomalyco/opencode?ref=$LATEST_TAG|" flake.nix
+
       - name: Omnix update flakes
         # run: om --accept-flake-config ci run .#update
         # run: om ci run .#update \
@@ -63,7 +71,7 @@ jobs:
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          file_pattern: "flake.lock programs/nvim/lazy-lock.json"
+          file_pattern: "flake.nix flake.lock programs/nvim/lazy-lock.json"
           skip_checkout: false
           skip_dirty_check: false
           skip_fetch: false
