@@ -190,7 +190,7 @@
     };
     # zed.url = "github:zed-industries/zed";
     opencode = {
-      url = "github:anomalyco/opencode?ref=v1.1.48";
+      url = "github:anomalyco/opencode?ref=v1.1.49";
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
