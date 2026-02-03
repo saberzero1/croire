@@ -1003,12 +1003,12 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1769959637,
-        "narHash": "sha256-4vz/KMdA1zatjoh1KsL6diCyhCT6hRwx+KColuh14VU=",
-        "rev": "583dba4cc4c8d9a6963efb74d32159ef1446473d",
-        "revCount": 7185,
+        "lastModified": 1770075644,
+        "narHash": "sha256-OqDSAGkUqrXj1M2cJTroPH7Q3eTSqR3DkF3WoEvUFUg=",
+        "rev": "d2587a7ce3086a9fa27171178f92d2ad84f57be2",
+        "revCount": 7190,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.7185%2Brev-583dba4cc4c8d9a6963efb74d32159ef1446473d/019c1a4c-0d5d-7aae-9368-6a8f69f008c8/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/helix-editor/helix/0.1.7190%2Brev-d2587a7ce3086a9fa27171178f92d2ad84f57be2/019c220c-f39d-7379-af41-56921eb1ef3b/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -1138,11 +1138,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1770087623,
-        "narHash": "sha256-9GrPh62iSNzxBgMIRr+qnomgHfFfcV6MvMqloNhokGg=",
+        "lastModified": 1770103405,
+        "narHash": "sha256-YhTNsK71hQGDT4QvHtzrNB+H2Cq5EHW9dAQVmE6/LtY=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "7517fc4111e21f4530ba5f7354530ae00c63ff9f",
+        "rev": "8538a35922e694772cd70cd19127882b36c3fa8c",
         "type": "github"
       },
       "original": {
@@ -1154,11 +1154,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1770091530,
-        "narHash": "sha256-v2/l0HERX5GqGa77YPsjefxoePZ1j2dXH7efwGt3yxA=",
+        "lastModified": 1770099652,
+        "narHash": "sha256-gtANbwLFne+aup4+4RSZOEm8pPeAZlz1Dt1FbyFDYWQ=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "5daa8ada8b5edd560016c7cacadf4ab80dfb3000",
+        "rev": "b0a05a81190f4751490c4e0e64be29626d5966d9",
         "type": "github"
       },
       "original": {
@@ -3129,11 +3129,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770084720,
-        "narHash": "sha256-sJ5y8Pf7YgIHTXpG2lSEVUR+p4ElNoUtG+D7KwIv+Qg=",
+        "lastModified": 1770097899,
+        "narHash": "sha256-FKRpvwWR96VDW4bdsxIrZgIAXvdXqsCTaV1HghCJBoQ=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "5001ef6256122be3f15056427f20858429e9c10c",
+        "rev": "615a27db86f3fddd0f096b5e9ea832795a4608d1",
         "type": "github"
       },
       "original": {
