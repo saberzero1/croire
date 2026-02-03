@@ -117,17 +117,20 @@ swiftOverrides
   sash = inputs.sash.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
   # tirith: Terminal security - guards against homograph attacks, ANSI injection, pipe-to-shell attacks
+  # Tests disabled: init_bash_output and init_zsh_output require bash/zsh in sandbox
   tirith = super.rustPlatform.buildRustPackage {
     pname = "tirith";
     version = "0.1.2";
     src = inputs.tirith;
     cargoLock.lockFile = "${inputs.tirith}/Cargo.lock";
+    doCheck = false;
     nativeBuildInputs = [ super.installShellFiles ];
     postInstall = ''
       # Install shell integration scripts
-      install -Dm644 $src/shell/tirith.zsh $out/share/tirith/tirith.zsh
-      install -Dm644 $src/shell/tirith.bash $out/share/tirith/tirith.bash
-      install -Dm644 $src/shell/tirith.fish $out/share/tirith/tirith.fish
+      install -Dm644 $src/shell/tirith.sh $out/share/tirith/tirith.sh
+      install -Dm644 $src/shell/lib/zsh-hook.zsh $out/share/tirith/lib/zsh-hook.zsh
+      install -Dm644 $src/shell/lib/bash-hook.bash $out/share/tirith/lib/bash-hook.bash
+      install -Dm644 $src/shell/lib/fish-hook.fish $out/share/tirith/lib/fish-hook.fish
     '';
     meta = with super.lib; {
       description = "Terminal security - guards against homograph attacks, ANSI injection, and pipe-to-shell attacks";
