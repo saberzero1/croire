@@ -312,7 +312,7 @@ in
         # echo "Sketchybar setup done"
 
         echo "Setting wallpaper"
-        /usr/bin/osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"${wallpaper}\""
+        /usr/bin/osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"${wallpaper}\"" || echo "Warning: Failed to set wallpaper (Finder timeout). This is non-critical."
 
         sudo chown -R ${primaryUser}:staff "${primaryUserHome}/.config"
         # skhd --restart-service

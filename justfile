@@ -164,6 +164,16 @@ configs:
   @echo "Home configurations:"
   @nix eval .#homeConfigurations --apply 'x: builtins.attrNames x' 2>/dev/null || echo "  (none)"
 
+# List available modules
+[group('Util')]
+modules:
+  @echo "Darwin modules:"
+  @nix eval .#darwinModules --apply 'x: builtins.attrNames x' 2>/dev/null || echo "  (none)"
+  @echo "NixOS modules:"
+  @nix eval .#nixosModules --apply 'x: builtins.attrNames x' 2>/dev/null || echo "  (none)"
+  @echo "Home modules:"
+  @nix eval .#homeModules --apply 'x: builtins.attrNames x' 2>/dev/null || echo "  (none)"
+
 ############################################################################
 # Cleanup Commands
 ############################################################################

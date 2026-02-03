@@ -10,10 +10,12 @@
         filters =
           path: with inputs.nixpkgs.lib; {
             homeOnly =
-              # NOTE: configurations/home/* is imported in nix-darwin and NixOS
+              # NOTE: homes/* is imported in nix-darwin and NixOS
               hasSuffix "activate-home.nix" path;
-            darwinOnly = hasInfix "configurations/darwin" path || hasInfix "modules/darwin" path;
-            nixosOnly = hasInfix "configurations/nixos" path || hasInfix "modules/nixos" path;
+            darwinOnly =
+              hasInfix "hosts/darwin" path || hasInfix "modules/darwin" path || hasInfix "_features/darwin" path;
+            nixosOnly =
+              hasInfix "hosts/nixos" path || hasInfix "modules/nixos" path || hasInfix "_features/nixos" path;
             alwaysExclude =
               hasSuffix "LICENSE" path
               || hasSuffix "README.md" path
@@ -68,7 +70,7 @@
               You have just created a nixos-unified-template flake.nix using NixOS.
 
               - Edit `./modules/nixos/*.nix` to customize your configuration.
-              - Run `mv /etc/nixos/*.nix ./configurations/nixos/HOSTNAME/` to import your existing configuration.
+              - Run `mv /etc/nixos/*.nix ./hosts/nixos/HOSTNAME.nix` to import your existing configuration.
               - Run `nix --extra-experimental-features "nix-command flakes" run` to apply the configuration.
 
               Enjoy!

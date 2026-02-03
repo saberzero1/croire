@@ -25,10 +25,8 @@ let
         inherit inputs;
       };
       modules = [
-        # Base NixOS module (legacy - includes all system config)
-        config.flake.nixosModules.base
-        # Feature modules (new dendritic pattern) - available for selective use:
-        # config.flake.nixosModules.system  # Consolidated system settings
+        # System feature module (dendritic pattern)
+        config.flake.nixosModules.system
         # Host-specific configuration
         (self + /hosts/nixos/${name}.nix)
         # Home-manager integration (if user specified)
@@ -48,16 +46,15 @@ let
                 };
                 users.${user} = {
                   imports = [
-                    # Base home-manager module (legacy - includes all home config)
-                    config.flake.homeModules.base
-                    config.flake.homeModules.linux-only
-                    # Feature modules available for selective use (instead of base):
-                    # config.flake.homeModules.git
-                    # config.flake.homeModules.shell
-                    # config.flake.homeModules.editors
-                    # config.flake.homeModules.terminal
-                    # config.flake.homeModules.development
-                    # config.flake.homeModules.services
+                    # Feature modules (dendritic pattern)
+                    config.flake.homeModules.git
+                    config.flake.homeModules.shell
+                    config.flake.homeModules.editors
+                    config.flake.homeModules.terminal
+                    config.flake.homeModules.development
+                    config.flake.homeModules.services
+                    # Platform-specific desktop environment
+                    config.flake.homeModules.linuxDesktop
                     # User-specific configuration
                     homeConfig
                   ];
@@ -87,10 +84,8 @@ let
         inherit inputs;
       };
       modules = [
-        # Base Darwin module (legacy - includes all system config)
-        config.flake.darwinModules.base
-        # Feature modules (new dendritic pattern) - available for selective use:
-        # config.flake.darwinModules.system  # Consolidated system settings
+        # System feature module (dendritic pattern)
+        config.flake.darwinModules.system
         # Host-specific configuration
         (self + /hosts/darwin/${name}.nix)
         # Home-manager integration (if user specified)
@@ -110,16 +105,15 @@ let
                 };
                 users.${user} = {
                   imports = [
-                    # Base home-manager module (legacy - includes all home config)
-                    config.flake.homeModules.base
-                    config.flake.homeModules.darwin-only
-                    # Feature modules available for selective use (instead of base):
-                    # config.flake.homeModules.git
-                    # config.flake.homeModules.shell
-                    # config.flake.homeModules.editors
-                    # config.flake.homeModules.terminal
-                    # config.flake.homeModules.development
-                    # config.flake.homeModules.services
+                    # Feature modules (dendritic pattern)
+                    config.flake.homeModules.git
+                    config.flake.homeModules.shell
+                    config.flake.homeModules.editors
+                    config.flake.homeModules.terminal
+                    config.flake.homeModules.development
+                    config.flake.homeModules.services
+                    # Platform-specific desktop environment
+                    config.flake.homeModules.darwinDesktop
                     # User-specific configuration
                     homeConfig
                   ];
@@ -151,15 +145,13 @@ let
         inherit inputs;
       };
       modules = [
-        # Base home-manager module (legacy - includes all home config)
-        config.flake.homeModules.base
-        # Feature modules available for selective use (instead of base):
-        # config.flake.homeModules.git
-        # config.flake.homeModules.shell
-        # config.flake.homeModules.editors
-        # config.flake.homeModules.terminal
-        # config.flake.homeModules.development
-        # config.flake.homeModules.services
+        # Feature modules (dendritic pattern)
+        config.flake.homeModules.git
+        config.flake.homeModules.shell
+        config.flake.homeModules.editors
+        config.flake.homeModules.terminal
+        config.flake.homeModules.development
+        config.flake.homeModules.services
         # User-specific configuration
         (self + /homes/${name}.nix)
       ]

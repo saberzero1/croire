@@ -23,16 +23,6 @@ in
           enable = true;
           package = pkgs.gitFull;
 
-          # User identity
-          userName = "saberzero1";
-          userEmail = "github@emilebangma.com";
-
-          # Signing configuration
-          signing = {
-            key = signingKeyPath;
-            signByDefault = true;
-          };
-
           # Common ignores
           ignores = [
             "*.swp"
@@ -52,7 +42,19 @@ in
             }
           ];
 
-          extraConfig = {
+          # Signing configuration
+          signing = {
+            key = signingKeyPath;
+            signByDefault = true;
+          };
+
+          # Git settings (new format)
+          settings = {
+            user = {
+              name = "saberzero1";
+              email = "github@emilebangma.com";
+              signingkey = signingKeyPath;
+            };
             init.defaultBranch = "master";
             core = {
               editor = "nvim";
@@ -61,7 +63,6 @@ in
             commit.gpgsign = true;
             tag.gpgsign = true;
             gpg.format = "ssh";
-            user.signingkey = signingKeyPath;
             pull.rebase = true;
             rebase.autoStash = true;
           };
