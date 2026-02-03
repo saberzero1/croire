@@ -141,7 +141,7 @@
       # };
 
       # Recursion limit
-      # recursion_limit = 50;
+      recursion_limit = 50;
 
       # Plugin GC
       # plugin_gc = {
