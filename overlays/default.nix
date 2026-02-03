@@ -116,6 +116,27 @@ swiftOverrides
     inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
   sash = inputs.sash.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
+  # tirith: Terminal security - guards against homograph attacks, ANSI injection, pipe-to-shell attacks
+  tirith = super.rustPlatform.buildRustPackage {
+    pname = "tirith";
+    version = "0.1.2";
+    src = inputs.tirith;
+    cargoLock.lockFile = "${inputs.tirith}/Cargo.lock";
+    nativeBuildInputs = [ super.installShellFiles ];
+    postInstall = ''
+      # Install shell integration scripts
+      install -Dm644 $src/shell/tirith.zsh $out/share/tirith/tirith.zsh
+      install -Dm644 $src/shell/tirith.bash $out/share/tirith/tirith.bash
+      install -Dm644 $src/shell/tirith.fish $out/share/tirith/tirith.fish
+    '';
+    meta = with super.lib; {
+      description = "Terminal security - guards against homograph attacks, ANSI injection, and pipe-to-shell attacks";
+      homepage = "https://github.com/sheeki03/tirith";
+      license = licenses.asl20;
+      mainProgram = "tirith";
+    };
+  };
+
   # Nushell: skip tests that fail in Nix sandbox (permission denied in path_is_a_list_in_repl)
   nushell = super.nushell.overrideAttrs (oldAttrs: {
     doCheck = false;

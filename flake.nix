@@ -230,6 +230,12 @@
       url = "https://flakehub.com/f/saberzero1/sash/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Terminal security - guards against homograph attacks, ANSI injection, pipe-to-shell attacks
+    tirith = {
+      url = "github:sheeki03/tirith/v0.1.2";
+      flake = false;
+    };
   };
 
   # Wired using https://nixos-unified.org/autowiring.html
