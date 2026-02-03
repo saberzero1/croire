@@ -9,6 +9,7 @@ Croire is a unified NixOS configuration repository using the **dendritic pattern
 This repository uses the [dendritic pattern](https://github.com/mightyiam/dendritic):
 - Every `.nix` file in `modules/` is a flake-parts top-level module
 - Modules are auto-imported via [import-tree](https://github.com/vic/import-tree)
+- Files in directories prefixed with `_` (like `_features/`) are excluded from auto-import
 - Legacy modules are preserved in `lib/modules/` and imported by base modules
 
 ## Technologies & Tools
@@ -27,12 +28,23 @@ This repository uses the [dendritic pattern](https://github.com/mightyiam/dendri
 croire/
 ├── modules/              # Dendritic top-level modules (auto-imported)
 │   ├── systems.nix       # Defines all NixOS/Darwin/Home configurations
-│   ├── darwin-base.nix   # Exports darwinModules.base
-│   ├── nixos-base.nix    # Exports nixosModules.base
-│   ├── home-base.nix     # Exports homeModules.{base,darwin-only,linux-only}
+│   ├── darwin-base.nix   # Registry: exports darwinModules.*
+│   ├── nixos-base.nix    # Registry: exports nixosModules.*
+│   ├── home-base.nix     # Registry: exports homeModules.*
 │   ├── overlays.nix      # Exports flake.overlays.default
 │   ├── per-system.nix    # Defines perSystem (formatter, devShells, packages)
-│   └── lib.nix           # Exports flake.lib.croire utilities
+│   ├── lib.nix           # Exports flake.lib.croire utilities
+│   │
+│   └── _features/        # Feature modules (excluded from auto-import)
+│       ├── git.nix           # homeModules.git
+│       ├── shell.nix         # homeModules.shell
+│       ├── editors.nix       # homeModules.editors
+│       ├── terminal.nix      # homeModules.terminal
+│       ├── development.nix   # homeModules.development
+│       ├── services.nix      # homeModules.services
+│       ├── darwin-system.nix # darwinModules.system
+│       └── nixos-system.nix  # nixosModules.system
+│
 ├── lib/modules/          # Legacy modules (imported by base modules)
 │   ├── darwin/           # Darwin system modules
 │   │   ├── dock/         # macOS Dock configuration
@@ -70,6 +82,36 @@ croire/
 | `overlays.default` | Package overlays |
 | `lib.croire.*` | Utility functions |
 
+### Module Outputs
+
+#### Darwin Modules (`darwinModules.*`)
+
+| Module | Description |
+|--------|-------------|
+| `darwinModules.base` | Legacy base configuration |
+| `darwinModules.system` | Consolidated system config (fonts, security, settings) |
+
+#### NixOS Modules (`nixosModules.*`)
+
+| Module | Description |
+|--------|-------------|
+| `nixosModules.base` | Legacy base configuration |
+| `nixosModules.system` | Consolidated system config (fonts, security, hardware) |
+
+#### Home Manager Modules (`homeModules.*`)
+
+| Module | Description |
+|--------|-------------|
+| `homeModules.base` | Legacy base configuration |
+| `homeModules.darwin-only` | macOS-specific settings |
+| `homeModules.linux-only` | Linux-specific settings |
+| `homeModules.git` | Git, lazygit, gh, diff-so-fancy |
+| `homeModules.shell` | Zsh, nushell, starship, zoxide, direnv, fzf |
+| `homeModules.editors` | Neovim (nvf/lazyvim), helix, emacs |
+| `homeModules.terminal` | Tmux, ghostty, wezterm |
+| `homeModules.development` | Languages, bat, eza, ripgrep, yazi, btop |
+| `homeModules.services` | Espanso, emacs daemon, mako, wlsunset |
+
 ## Development Workflow
 
 ### Building and Testing
@@ -81,6 +123,8 @@ croire/
 - **Build and activate**:
   - Linux: `just build`
   - macOS: `just build`
+- **List modules**: `just modules`
+- **List configurations**: `just configs`
 
 ### Home Manager (Standalone)
 
@@ -99,25 +143,44 @@ just home-switch emile
 - `just switch` - Pull and build/activate
 - `just clean-all` - Full cleanup
 - `just configs` - List available configurations
+- `just modules` - List available modules
 
 ## Code Style & Conventions
 
-### Dendritic Modules
+### Feature Modules (New Pattern)
 
-New features should be added as flake-parts modules in `modules/`:
+New features should be added in `modules/_features/`:
 
 ```nix
-# modules/my-feature.nix
-{ inputs, config, ... }:
+# modules/_features/my-feature.nix
+{ inputs, lib, ... }:
+let
+  inherit (inputs) self;
+in
 {
-  flake.darwinModules.myFeature = { ... }: {
-    # Darwin configuration
-  };
-
-  flake.nixosModules.myFeature = { ... }: {
-    # NixOS configuration
+  flake.homeModules.myFeature = { pkgs, config, lib, ... }:
+  let
+    inherit (pkgs.stdenv) isDarwin isLinux;
+  in
+  {
+    programs.myProgram = {
+      enable = true;
+      extraConfig = lib.optionalString isDarwin "darwin-specific";
+    };
   };
 }
+```
+
+Then register it in `modules/home-base.nix`:
+
+```nix
+featureModules = {
+  myFeature = import ./_features/my-feature.nix { inherit inputs lib; };
+};
+
+flake.homeModules = {
+  inherit (featureModules.myFeature.flake.homeModules) myFeature;
+};
 ```
 
 ### Legacy Modules
@@ -133,7 +196,7 @@ Existing modules in `lib/modules/` follow the old pattern with `{ flake, pkgs, .
 
 ### File Organization
 
-- **New features**: Add to `modules/` as flake-parts modules
+- **New features**: Add to `modules/_features/` and register in base modules
 - **Host-specific settings**: Add to `hosts/{darwin,nixos}/`
 - **User settings**: Add to `homes/` or `lib/modules/home/`
 - **Dotfiles**: Add to `programs/`
@@ -169,6 +232,8 @@ Available via `flake.lib.croire`:
 ## Important Notes
 
 - This uses the **dendritic pattern** - every file in `modules/` is auto-imported
+- Files in `modules/_features/` are NOT auto-imported (underscore prefix)
+- Feature modules are registered via base modules (home-base.nix, etc.)
 - Legacy modules in `lib/modules/` are preserved for compatibility
 - Host configurations are in `hosts/`, not `configurations/`
 - Home-manager has standalone outputs (`homeConfigurations`)

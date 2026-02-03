@@ -2,6 +2,20 @@
 
 Configures cross-platform user programs.
 
+> **Note**: Many of these modules are superseded by feature modules in `modules/_features/`.
+> The feature modules provide the same functionality but are designed for selective import.
+> This legacy structure is kept for backwards compatibility with the `homeModules.base` module.
+
+## Migration Status
+
+| Feature Module | Supersedes |
+|----------------|------------|
+| `homeModules.git` | (git config in ssh.nix) |
+| `homeModules.shell` | `zsh.nix`, `nushell.nix`, `starship.nix`, `zoxide.nix`, `direnv.nix`, `fzf.nix`, `carapace.nix` |
+| `homeModules.editors` | `helix.nix`, `emacs.nix` (imports `nvf/`, `lazyvim/`) |
+| `homeModules.terminal` | `tmux.nix`, `tmux-sessionizer.nix` |
+| `homeModules.development` | `bat.nix`, `eza.nix`, `ripgrep.nix`, `yazi.nix`, `btop.nix`, `languages/*` |
+
 ## Categories
 
 - **Editors**: Neovim (via LazyVim and nvf), Helix, Emacs
@@ -13,7 +27,7 @@ Configures cross-platform user programs.
 ## Structure
 
 - Individual program configuration files at root level
-- `lazyvim/` and `nvf/` subdirectories for complex Neovim configurations
+- `lazyvim/` and `nvf/` subdirectories for complex Neovim configurations (imported by feature modules)
 
 ## Purpose
 
