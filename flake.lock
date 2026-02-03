@@ -1138,11 +1138,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1770142986,
-        "narHash": "sha256-kRDOp36fapOGmdkzO0hiSlB9GJqcXBe17UcTeSyAXmU=",
+        "lastModified": 1770149689,
+        "narHash": "sha256-7J1r6GKA28OUKkoJZsuoBBpMatlmbh8R/fgwFVYcxIU=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "495e52a5122d7cd0e51576588341f12b872463c5",
+        "rev": "77edfa092f8d805feab1a5e65fd0e0fdb036f7cb",
         "type": "github"
       },
       "original": {
@@ -1154,11 +1154,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1770145997,
-        "narHash": "sha256-De5yILoaq0mCEzRoBsmT/GY0ZICgE5ZZYrbxDunDzqA=",
+        "lastModified": 1770152235,
+        "narHash": "sha256-ojWVZhjwQ3x4n6aMwNnagjk/Ppo5tR53HyMdX6KarWQ=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "53d52ea5da4dda9c4a0d58ce26992d3910937c3f",
+        "rev": "d39cbf08a7693b510e0761706730f6348b8db4ce",
         "type": "github"
       },
       "original": {
@@ -1274,11 +1274,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1770079745,
-        "narHash": "sha256-R1jcgcb7y4QSJVR3vorQefKazXw5cYG9nUhhOnTPQxk=",
+        "lastModified": 1770151481,
+        "narHash": "sha256-yMq5Rs6ldsMBfhunttmtfJBcIx6w2u54TiLKalVgSGU=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "30756d871845a6058a840642ab1a4c3979f6d782",
+        "rev": "cd7bdc7a43542370b5f57b97b25302a24abce126",
         "type": "github"
       },
       "original": {
@@ -1545,6 +1545,21 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprwire",
+        "type": "github"
+      }
+    },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1763762820,
+        "narHash": "sha256-ZvYKbFib3AEwiNMLsejb/CWs/OL/srFQ8AogkebEPF0=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "3c23749d8013ec6daa1d7255057590e9ca726646",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
         "type": "github"
       }
     },
@@ -2091,22 +2106,6 @@
         "url": "https://flakehub.com/f/NixOS/nixos-hardware/0.1"
       }
     },
-    "nixos-unified": {
-      "locked": {
-        "lastModified": 1764590823,
-        "narHash": "sha256-bzJRZgc/LCik8uOkXMAycY1peDXLsW0w8yYyMqTRGao=",
-        "owner": "saberzero1",
-        "repo": "nixos-unified",
-        "rev": "24c81eeb6e377301e5a9b79d05e8bb57c63b41d7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "saberzero1",
-        "ref": "overlays",
-        "repo": "nixos-unified",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1761597516,
@@ -2615,6 +2614,7 @@
         "homebrew-nikitabobko-tap": "homebrew-nikitabobko-tap",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
+        "import-tree": "import-tree",
         "lazyvim": "lazyvim",
         "mix-nix": "mix-nix",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -2627,7 +2627,6 @@
         "nix-snapd": "nix-snapd",
         "nixgl": "nixgl_2",
         "nixos-hardware": "nixos-hardware",
-        "nixos-unified": "nixos-unified",
         "nixpkgs": "nixpkgs_12",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nvf": "nvf",

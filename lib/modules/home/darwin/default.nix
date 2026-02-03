@@ -1,0 +1,8 @@
+{ flake, ... }:
+{
+  imports = flake.inputs.self.lib.croire.autoImport ./. ++ [
+    ./programs
+    ./services
+    ./settings
+  ];
+}

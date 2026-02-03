@@ -5,11 +5,12 @@
 #     .foo = { source = "foo"; outOfStoreSymlink = true; recursive = true; };
 #     .bar = { source = "foo/bar"; outOfStoreSymlink = true; };
 #   };
-{ pkgs
-, hm
-, context
-, runtimeRoot
-, ...
+{
+  pkgs,
+  hm,
+  context,
+  runtimeRoot,
+  ...
 }:
 
 let
@@ -38,7 +39,7 @@ let
           pathStr = toString path;
           name = hm.strings.storeFileName (baseNameOf pathStr);
         in
-        pkgs.runCommandLocal name { } ''ln -s ${lib.strings.escapeShellArg pathStr} $out'';
+        pkgs.runCommandLocal name { } "ln -s ${lib.strings.escapeShellArg pathStr} $out";
     in
     file: _mkOutOfStoreSymlink (runtimePath file);
 
@@ -46,14 +47,12 @@ let
   mkRecursiveOutOfStoreSymlink =
     path: link:
     builtins.listToAttrs (
-      map
-        (file: {
-          name = link + "${lib.removePrefix (toString path) (toString file)}";
-          value = {
-            source = mkOutOfStoreSymlink file;
-          };
-        })
-        (lib.filesystem.listFilesRecursive path)
+      map (file: {
+        name = link + "${lib.removePrefix (toString path) (toString file)}";
+        value = {
+          source = mkOutOfStoreSymlink file;
+        };
+      }) (lib.filesystem.listFilesRecursive path)
     );
 
   # Remove custom attributes from attribute set.
@@ -67,24 +66,22 @@ let
 
 in
 fileAttrs:
-lib.attrsets.concatMapAttrs
-  (
-    name: value:
-    # Make outOfStoreSymlinks
-    if value.outOfStoreSymlink or false then
-      if value.recursive or false then
-        lib.attrsets.mapAttrs (_: attrs: attrs // rmopts value)
-          (
-            mkRecursiveOutOfStoreSymlink value.source name
-          )
-      else
-        {
-          "${name}" = {
-            source = mkOutOfStoreSymlink value.source;
-          } // rmopts value;
-        }
-    # Handle all other cases as usual
+lib.attrsets.concatMapAttrs (
+  name: value:
+  # Make outOfStoreSymlinks
+  if value.outOfStoreSymlink or false then
+    if value.recursive or false then
+      lib.attrsets.mapAttrs (_: attrs: attrs // rmopts value) (
+        mkRecursiveOutOfStoreSymlink value.source name
+      )
     else
-      { "${name}" = value; }
-  )
-  fileAttrs
+      {
+        "${name}" = {
+          source = mkOutOfStoreSymlink value.source;
+        }
+        // rmopts value;
+      }
+  # Handle all other cases as usual
+  else
+    { "${name}" = value; }
+) fileAttrs

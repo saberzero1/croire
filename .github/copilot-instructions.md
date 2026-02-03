@@ -2,7 +2,14 @@
 
 ## Repository Overview
 
-Croire is a unified NixOS configuration repository that manages system configurations for NixOS and macOS (via nix-darwin) systems. It uses Nix flakes for declarative and reproducible system management.
+Croire is a unified NixOS configuration repository using the **dendritic pattern** for managing system configurations across NixOS and macOS (via nix-darwin). It uses flake-parts with import-tree for automatic module discovery.
+
+## Architecture
+
+This repository uses the [dendritic pattern](https://github.com/mightyiam/dendritic):
+- Every `.nix` file in `modules/` is a flake-parts top-level module
+- Modules are auto-imported via [import-tree](https://github.com/vic/import-tree)
+- Legacy modules are preserved in `lib/modules/` and imported by base modules
 
 ## Technologies & Tools
 
@@ -11,154 +18,166 @@ Croire is a unified NixOS configuration repository that manages system configura
 - **nix-darwin**: Nix-based system configuration for macOS
 - **Home Manager**: User environment and dotfiles management
 - **flake-parts**: Modular flake framework
+- **import-tree**: Automatic module discovery for dendritic pattern
 - **just**: Command runner (alternative to make)
-- **omnix (om)**: Nix CLI tool for building and managing configurations
 
 ## Repository Structure
 
-- `configurations/`: System-specific configurations
-  - `nixos/`: NixOS system configurations
-  - `darwin/`: macOS system configurations (using nix-darwin)
-  - `home/`: Home Manager user configurations
-- `modules/`: Reusable NixOS/Darwin/Home Manager modules
-  - `nixos/`: NixOS-specific modules
-    - `packages/`: System-wide package management
-    - `services/`: System services configuration
-    - `system/`: System-level settings (fonts, security, settings)
-  - `darwin/`: macOS-specific modules
-    - `dock/`: macOS Dock configuration
-    - `packages/`: Homebrew package management (casks, formulae, masApps, taps)
-    - `services/`: System services configuration
-    - `system/`: System-level settings (fonts, packages, security, settings)
-  - `home/`: Home Manager modules
-    - `darwin/`: macOS-specific user configurations
-    - `nixos/`: NixOS-specific user configurations
-    - `shared/`: Cross-platform user configurations
-  - `flake/`: Flake-level modules
-- `programs/`: Application-specific configurations and dotfiles
-- `overlays/`: Nix package overlays for custom/modified packages
-- `scripts/`: Helper scripts for system management
-- `flake.nix`: Main flake configuration defining inputs and outputs
-- `justfile`: Command definitions for common operations
+```
+croire/
+├── modules/              # Dendritic top-level modules (auto-imported)
+│   ├── systems.nix       # Defines all NixOS/Darwin/Home configurations
+│   ├── darwin-base.nix   # Exports darwinModules.base
+│   ├── nixos-base.nix    # Exports nixosModules.base
+│   ├── home-base.nix     # Exports homeModules.{base,darwin-only,linux-only}
+│   ├── overlays.nix      # Exports flake.overlays.default
+│   ├── per-system.nix    # Defines perSystem (formatter, devShells, packages)
+│   └── lib.nix           # Exports flake.lib.croire utilities
+├── lib/modules/          # Legacy modules (imported by base modules)
+│   ├── darwin/           # Darwin system modules
+│   │   ├── dock/         # macOS Dock configuration
+│   │   ├── packages/     # Homebrew packages (casks, formulae, masApps, taps)
+│   │   ├── services/     # System services
+│   │   └── system/       # System settings (fonts, security, preferences)
+│   ├── nixos/            # NixOS system modules
+│   │   ├── packages/     # System packages
+│   │   ├── services/     # System services
+│   │   └── system/       # System settings
+│   ├── home/             # Home-manager modules
+│   │   ├── shared/       # Cross-platform (editors, shell, languages)
+│   │   ├── darwin/       # macOS-specific
+│   │   └── nixos/        # NixOS-specific (Wayland, Hyprland)
+│   └── flake/            # Flake utilities (templates, lib)
+├── hosts/                # Host-specific configurations
+│   ├── darwin/           # macOS hosts
+│   └── nixos/            # NixOS hosts
+├── homes/                # Standalone home-manager configurations
+├── programs/             # Application dotfiles and configurations
+├── overlays/             # Nix package overlays
+├── configurations/       # Legacy configurations (referenced by hosts/)
+├── scripts/              # Helper scripts
+├── flake.nix             # Main flake (flake-parts + import-tree)
+└── justfile              # Command definitions
+```
 
-### Module Organization
+## Flake Outputs
 
-NixOS and Darwin modules are now aligned with a consistent structure:
-
-- Both use `packages/`, `services/`, and `system/` subdirectories
-- System-level settings (fonts, security) are organized under `system/` for both platforms
-- Each directory with a `default.nix` includes a README.md documenting its purpose
-- Platform-specific differences are maintained only where necessary (e.g., Darwin's `dock/`)
-
-Home Manager modules are organized into three categories:
-
-- `shared/`: Configurations that work across all platforms (editors, shell, languages)
-- `nixos/`: Linux-specific programs and settings (Wayland, Hyprland, etc.)
-- `darwin/`: macOS-specific programs and settings (Homebrew integration, etc.)
+| Output | Description |
+|--------|-------------|
+| `darwinConfigurations.Emiles-MacBook-Pro` | macOS system |
+| `nixosConfigurations.{nixos,nixos-acer}` | NixOS systems |
+| `homeConfigurations.{emile,saberzero1}` | Standalone home-manager |
+| `overlays.default` | Package overlays |
+| `lib.croire.*` | Utility functions |
 
 ## Development Workflow
 
 ### Building and Testing
 
-- **Lint Nix files**: `just lint` (runs `nix fmt`)
-- **Check flake**: `just check` (runs `om ci run .#check`)
+- **Format Nix files**: `just lint` (runs `nix fmt`)
+- **Check flake**: `just check` (runs `nix flake check`)
 - **Check all systems**: `just check-all`
-- **Update flake inputs**: `just update` (runs `om ci run .#update`)
-- **Build with --abort-on-warn** `just build-warn` (runs `om ci run .#build -- --abort-on-warn --show-trace`)
-- **Build and activate configuration**:
-  - Linux: `just build` (runs `om ci run .#switch`)
-  - macOS: `just build` (runs `sudo om ci run .#switch`)
+- **Update flake inputs**: `just update`
+- **Build and activate**:
+  - Linux: `just build`
+  - macOS: `just build`
+
+### Home Manager (Standalone)
+
+```shell
+# Build
+nix build .#homeConfigurations.emile.activationPackage
+
+# Build and activate
+just home-switch emile
+```
 
 ### Common Commands
 
-- `just` or `just default`: List all available commands
-- `just dev`: Enter development shell
-- `just pull`: Pull latest changes from repository
-- `just switch`: Pull and build/activate configuration
-- `just clean-all`: Run all cleanup commands (garbage collection, optimize store)
+- `just` - List all available commands
+- `just dev` - Enter development shell
+- `just switch` - Pull and build/activate
+- `just clean-all` - Full cleanup
+- `just configs` - List available configurations
 
 ## Code Style & Conventions
 
-### Nix Code
+### Dendritic Modules
 
-- Use Nix's formatter (`nix fmt`) for consistent code style
+New features should be added as flake-parts modules in `modules/`:
+
+```nix
+# modules/my-feature.nix
+{ inputs, config, ... }:
+{
+  flake.darwinModules.myFeature = { ... }: {
+    # Darwin configuration
+  };
+
+  flake.nixosModules.myFeature = { ... }: {
+    # NixOS configuration
+  };
+}
+```
+
+### Legacy Modules
+
+Existing modules in `lib/modules/` follow the old pattern with `{ flake, pkgs, ... }` arguments. These are imported by the dendritic base modules.
+
+### Nix Code Style
+
+- Use `nix fmt` for consistent formatting
 - Follow functional programming principles
 - Prefer declarative over imperative approaches
-- Use `lib` utilities from nixpkgs for common operations
-- Keep modules modular and composable
+- Use `lib` utilities from nixpkgs
 
 ### File Organization
 
-- Place system-wide configurations in `modules/nixos/` or `modules/darwin/`
-  - For NixOS: Use `packages/`, `services/`, or `system/` subdirectories
-  - For Darwin: Use `dock/`, `packages/`, `services/`, or `system/` subdirectories
-- Place user-specific configurations in `modules/home/`
-  - Use `shared/` for cross-platform configurations
-  - Use `nixos/` or `darwin/` for platform-specific settings
-- Place application dotfiles and configurations in `programs/`
-- Use descriptive names for modules and options
-- Each directory with a `default.nix` should have a corresponding README.md
-
-### Module Conventions
-
-- Define clear module options using `mkOption`
-- Provide sensible defaults with `mkDefault`
-- Use `mkIf` and `mkMerge` for conditional configuration
-- Document non-obvious options with descriptions
-- Use `autoImport` pattern in `default.nix` files to automatically discover and import modules
-- Keep platform-specific and shared code properly separated in Home Manager modules
+- **New features**: Add to `modules/` as flake-parts modules
+- **Host-specific settings**: Add to `hosts/{darwin,nixos}/`
+- **User settings**: Add to `homes/` or `lib/modules/home/`
+- **Dotfiles**: Add to `programs/`
 
 ## Key Inputs & Dependencies
 
 - **nixpkgs**: Main package repository (tracking unstable)
+- **flake-parts**: Modular flake framework
+- **import-tree**: Automatic module discovery
 - **home-manager**: User environment management
 - **nix-darwin**: macOS system configuration
-- **nixos-unified**: Unified configuration framework for automatic module discovery
 - **sops-nix**: Secret management
-- **Various program-specific inputs**: See `flake.nix` for full list
 
-### Module Discovery
+## Library Functions
 
-The repository uses `nixos-unified` for automatic module discovery:
+Available via `flake.lib.croire`:
 
-- NixOS configurations automatically import from `modules/nixos/`
-- Darwin configurations automatically import from `modules/darwin/`
-- Home Manager configurations automatically import from `modules/home/`
-- Each platform's `default.nix` uses the `autoImport` helper to recursively load all modules
-- This eliminates the need for manual import statements in most cases
+- `autoImport dir` - Import all `.nix` files in directory
+- `filesAsNames dir` - Get filenames without `.nix` extension
+- `filesAsStrings dir` - Read file contents as strings
+- `autoImportRecursive dir` - Recursively import all `.nix` files
+- `overrideLicense pkg` - Override package license
 
-## Cachix Caches
+## Binary Caches
 
-The repository uses multiple binary caches for faster builds:
-
-- nixos cache
-- nix-community cache
-- personal cache (saberzero1.cachix.org)
-- hyprland cache
-- omnix cache
-
-## Building Changes
-
-When making changes to the configuration:
-
-1. Edit the relevant module or configuration file
-2. Run `just lint` to format code
-3. Run `just check` to validate the flake
-4. Test with `just build` (may require sudo on macOS)
-5. Verify the changes work as expected
+- `cache.nixos.org` - Official NixOS
+- `nix-community.cachix.org` - Community packages
+- `saberzero1.cachix.org` - Personal builds
+- `hyprland.cachix.org` - Hyprland
+- `om.cachix.org` - Omnix
+- `sash.cachix.org` - Sash
 
 ## Important Notes
 
-- This is a personal system configuration repository
-- Changes affect real systems when activated
-- Always test configurations before deploying to production systems
-- Use `nix flake check` before committing to catch errors early
-- The repository supports both Linux (NixOS) and macOS (nix-darwin)
-- Configuration is highly modular - look for existing patterns before adding new ones
+- This uses the **dendritic pattern** - every file in `modules/` is auto-imported
+- Legacy modules in `lib/modules/` are preserved for compatibility
+- Host configurations are in `hosts/`, not `configurations/`
+- Home-manager has standalone outputs (`homeConfigurations`)
+- Always run `nix flake check` before committing
 
 ## Additional Resources
 
-- Main README: See `/README.md` for hash generation and maintenance commands
-- Nix documentation: https://nixos.org/manual/nix/stable/
-- NixOS manual: https://nixos.org/manual/nixos/stable/
-- Home Manager manual: https://nix-community.github.io/home-manager/
+- [Dendritic Pattern](https://github.com/mightyiam/dendritic)
+- [import-tree](https://github.com/vic/import-tree)
+- [flake-parts](https://flake.parts/)
+- [Nix documentation](https://nixos.org/manual/nix/stable/)
+- [Home Manager manual](https://nix-community.github.io/home-manager/)
