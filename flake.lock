@@ -1548,6 +1548,21 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1763762820,
+        "narHash": "sha256-ZvYKbFib3AEwiNMLsejb/CWs/OL/srFQ8AogkebEPF0=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "3c23749d8013ec6daa1d7255057590e9ca726646",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "inspect": {
       "flake": false,
       "locked": {
@@ -2091,22 +2106,6 @@
         "url": "https://flakehub.com/f/NixOS/nixos-hardware/0.1"
       }
     },
-    "nixos-unified": {
-      "locked": {
-        "lastModified": 1764590823,
-        "narHash": "sha256-bzJRZgc/LCik8uOkXMAycY1peDXLsW0w8yYyMqTRGao=",
-        "owner": "saberzero1",
-        "repo": "nixos-unified",
-        "rev": "24c81eeb6e377301e5a9b79d05e8bb57c63b41d7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "saberzero1",
-        "ref": "overlays",
-        "repo": "nixos-unified",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1761597516,
@@ -2615,6 +2614,7 @@
         "homebrew-nikitabobko-tap": "homebrew-nikitabobko-tap",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
+        "import-tree": "import-tree",
         "lazyvim": "lazyvim",
         "mix-nix": "mix-nix",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -2627,7 +2627,6 @@
         "nix-snapd": "nix-snapd",
         "nixgl": "nixgl_2",
         "nixos-hardware": "nixos-hardware",
-        "nixos-unified": "nixos-unified",
         "nixpkgs": "nixpkgs_12",
         "nixpkgs-stable": "nixpkgs-stable_2",
         "nvf": "nvf",

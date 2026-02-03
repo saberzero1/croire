@@ -1,23 +1,53 @@
 # Croire <img align="right" src="Croire7.png" alt="Croire Logo">
 
-A unified NixOS configuration repository that manages system configurations for both NixOS and macOS (via nix-darwin) using Nix flakes for declarative and reproducible system management.
+A unified NixOS configuration repository using the **dendritic pattern** for managing system configurations across NixOS and macOS (via nix-darwin) with Nix flakes.
+
+## Architecture
+
+This repository uses the [dendritic pattern](https://github.com/mightyiam/dendritic) with [import-tree](https://github.com/vic/import-tree) for automatic module discovery. Every `.nix` file in `modules/` is a flake-parts top-level module that gets auto-imported.
 
 ## Repository Structure
 
-- **`configurations/`**: System-specific configurations
-  - `nixos/`: NixOS system configurations
-  - `darwin/`: macOS system configurations (using nix-darwin)
-  - `home/`: Home Manager user configurations
-- **`modules/`**: Reusable NixOS/Darwin/Home Manager modules
-  - `nixos/`: NixOS-specific modules
-  - `darwin/`: macOS-specific modules
-  - `home/`: Home Manager modules
-  - `flake/`: Flake-level modules
-- **`programs/`**: Application-specific configurations and dotfiles
-- **`overlays/`**: Nix package overlays for custom/modified packages
-- **`scripts/`**: Helper scripts for system management
-- **`flake.nix`**: Main flake configuration defining inputs and outputs
-- **`justfile`**: Command definitions for common operations
+```
+croire/
+├── modules/              # Dendritic top-level modules (auto-imported by import-tree)
+│   ├── systems.nix       # Defines all NixOS/Darwin/Home configurations
+│   ├── darwin-base.nix   # Exports darwinModules.base
+│   ├── nixos-base.nix    # Exports nixosModules.base
+│   ├── home-base.nix     # Exports homeModules.{base,darwin-only,linux-only}
+│   ├── overlays.nix      # Exports flake.overlays.default
+│   ├── per-system.nix    # Defines perSystem (formatter, devShells, packages)
+│   └── lib.nix           # Exports flake.lib.croire utilities
+├── lib/modules/          # Legacy modules (imported by base modules)
+│   ├── darwin/           # Darwin system modules (dock, packages, services, system)
+│   ├── nixos/            # NixOS system modules (packages, services, system)
+│   ├── home/             # Home-manager modules (shared, darwin, nixos)
+│   └── flake/            # Flake utilities (templates, etc.)
+├── hosts/                # Host-specific configurations
+│   ├── darwin/           # macOS hosts (e.g., Emiles-MacBook-Pro.nix)
+│   └── nixos/            # NixOS hosts (e.g., nixos.nix, nixos-acer.nix)
+├── homes/                # Standalone home-manager configurations
+│   ├── emile.nix         # Darwin user
+│   └── saberzero1.nix    # NixOS user
+├── programs/             # Application-specific dotfiles and configurations
+├── overlays/             # Nix package overlays
+├── configurations/       # Legacy configurations (referenced by hosts/)
+├── scripts/              # Helper scripts
+├── flake.nix             # Main flake using flake-parts + import-tree
+└── justfile              # Command definitions
+```
+
+## Flake Outputs
+
+| Output | Description |
+|--------|-------------|
+| `darwinConfigurations.Emiles-MacBook-Pro` | macOS system configuration |
+| `nixosConfigurations.nixos` | NixOS desktop configuration |
+| `nixosConfigurations.nixos-acer` | NixOS laptop configuration |
+| `homeConfigurations.emile` | Standalone home-manager (Darwin) |
+| `homeConfigurations.saberzero1` | Standalone home-manager (NixOS) |
+| `overlays.default` | Package overlays |
+| `lib.croire.*` | Utility functions |
 
 ## Technologies & Tools
 
@@ -26,85 +56,109 @@ A unified NixOS configuration repository that manages system configurations for 
 - **nix-darwin**: Nix-based system configuration for macOS
 - **Home Manager**: User environment and dotfiles management
 - **flake-parts**: Modular flake framework
+- **import-tree**: Automatic module discovery for dendritic pattern
 - **just**: Command runner (alternative to make)
 - **omnix (om)**: Nix CLI tool for building and managing configurations
-- **sash**: SSH connection manager for modularized bash configurations
 
 ## Usage
 
-### Common Commands
+### Quick Start
 
-- **Build the configuration**:
+```shell
+# Build and activate system configuration
+just build
 
-  ```shell
-  om ci run .#build
-  ```
+# Update flake inputs
+just update
 
-- **Update flake inputs**:
+# Enter development shell
+just dev
+```
 
-  ```shell
-  om ci run .#update
-  ```
+### System Commands
 
-- **Format Nix files**:
+| Command | Description |
+|---------|-------------|
+| `just build` | Build and activate system configuration |
+| `just switch` | Pull latest changes and activate |
+| `just update` | Update all flake inputs |
+| `just check` | Check flake validity |
+| `just check-all` | Check flake for all systems |
 
-  ```shell
-  just lint
-  ```
+### Home Manager (Standalone)
 
-- **Activate the configuration**:
+```shell
+# Build home-manager configuration
+nix build .#homeConfigurations.emile.activationPackage
 
-  ```shell
-  om ci run .#switch
-  ```
+# Activate home-manager
+nix run .#homeConfigurations.emile.activationPackage
+```
 
-- **Clean and garbage collect**:
-  ```shell
-  om ci run .#clean
-  ```
+### Development
 
-### Additional Commands
+| Command | Description |
+|---------|-------------|
+| `just dev` | Enter development shell |
+| `just lint` | Format Nix files |
+| `just repl` | Open Nix REPL |
+| `just build-warn` | Build with warnings as errors |
 
-- **Check flake validity**:
+### Maintenance
 
-  ```shell
-  just check
-  ```
+| Command | Description |
+|---------|-------------|
+| `just gc` | Garbage collect unused packages |
+| `just optimize` | Hard-link duplicate store paths |
+| `just clean` | Remove old generations |
+| `just clean-all` | Full cleanup (gc + optimize) |
+| `just repair` | Repair Nix store (slow) |
 
-- **Pull latest changes and activate**:
+## Dendritic Pattern
 
-  ```shell
-  just switch
-  ```
+The dendritic pattern organizes configuration by **feature** rather than platform hierarchy:
 
-- **Enter development shell**:
+1. **Every file is a module**: All `.nix` files in `modules/` are flake-parts modules
+2. **Automatic importing**: `import-tree` discovers and imports all modules
+3. **Feature-based organization**: Each file implements a single feature
+4. **Cross-cutting concerns**: Features can span multiple configuration types
 
-  ```shell
-  just dev
-  ```
+### Adding a New Feature
 
-- **List all available commands**:
-  ```shell
-  just
-  ```
+Create a new file in `modules/`:
 
-## Maintenance
+```nix
+# modules/my-feature.nix
+{ inputs, config, ... }:
+{
+  # Export to flake outputs
+  flake.darwinModules.myFeature = { ... }: {
+    # Darwin-specific configuration
+  };
 
-### Cleaning
+  flake.nixosModules.myFeature = { ... }: {
+    # NixOS-specific configuration
+  };
+}
+```
 
-- **Garbage collect unused packages**:
+### Library Functions
 
-  ```shell
-  just gc
-  ```
+Available via `flake.lib.croire`:
 
-- **Optimize Nix store**:
+- `autoImport dir` - Import all `.nix` files in a directory
+- `filesAsNames dir` - Get filenames without `.nix` extension
+- `filesAsStrings dir` - Read file contents as strings
+- `autoImportRecursive dir` - Recursively import all `.nix` files
+- `overrideLicense pkg` - Override package license metadata
 
-  ```shell
-  just optimize
-  ```
+## Binary Caches
 
-- **Run all cleanup commands**:
-  ```shell
-  just clean-all
-  ```
+This flake uses multiple binary caches for faster builds:
+
+- `cache.nixos.org` - Official NixOS cache
+- `nix-community.cachix.org` - Nix community packages
+- `saberzero1.cachix.org` - Personal builds
+- `hyprland.cachix.org` - Hyprland packages
+- `om.cachix.org` - Omnix packages
+- `sash.cachix.org` - Sash packages

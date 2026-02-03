@@ -1,5 +1,5 @@
 {
-  description = "Unified NixOS configuration.";
+  description = "Unified NixOS configuration using dendritic patterns.";
 
   # the nixConfig here only affects the flake itself, not the system configuration!
   nixConfig = {
@@ -84,8 +84,8 @@
     };
     # flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    #nixos-unified.url = "github:srid/nixos-unified";
-    nixos-unified.url = "github:saberzero1/nixos-unified/overlays";
+    # Dendritic pattern: auto-import all modules as top-level flake-parts modules
+    import-tree.url = "github:vic/import-tree";
     nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1";
     # nixos-hardware.url = "github:NixOS/nixos-hardware";
     systems.url = "github:nix-systems/default";
@@ -238,16 +238,8 @@
     };
   };
 
-  # Wired using https://nixos-unified.org/autowiring.html
-  outputs =
-    inputs:
-    inputs.nixos-unified.lib.mkFlake {
-      inherit inputs;
-      root = ./.;
-      systems = [
-        "x86_64-linux"
-        # "aarch64-linux"
-        "aarch64-darwin"
-      ];
-    };
+  # Wired using dendritic pattern with flake-parts + import-tree
+  # Every .nix file in modules/ is a top-level flake-parts module
+  # https://github.com/mightyiam/dendritic
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
