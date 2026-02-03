@@ -200,9 +200,14 @@
     };
 
     # Gaming
+    mix-nix = {
+      url = "github:TophC7/mix.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     play-nix = {
       url = "github:TophC7/play.nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.mix-nix.follows = "mix-nix";
     };
     geforce-infinity = {
       url = "github:saberzero1/GeForce-Infinity/copilot/add-nix-flake-support";
