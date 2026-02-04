@@ -1,3 +1,0 @@
-{
-  services.emacs.enable = false;
-}

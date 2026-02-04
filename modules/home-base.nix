@@ -1,10 +1,7 @@
 # Dendritic pattern: Home Manager module registry
-# Bridges old module structure with new dendritic pattern
-# Collects all home-manager modules into flake.homeModules
+# Collects all home-manager feature modules into flake.homeModules
 { inputs, lib, ... }:
 let
-  inherit (inputs) self;
-
   # Feature modules - unified configurations that work across platforms
   # Located in ./_features/ to avoid auto-import by import-tree (paths with /_ are ignored)
   featureModules = {
@@ -21,14 +18,8 @@ let
   };
 in
 {
-  # Export all home-manager modules
+  # Export all home-manager feature modules
   flake.homeModules = {
-    # Legacy base modules
-    base = self + /lib/modules/home;
-    darwin-only = self + /lib/modules/home/darwin-only.nix;
-    linux-only = self + /lib/modules/home/linux-only.nix;
-
-    # Feature modules (new dendritic pattern)
     inherit (featureModules.git.flake.homeModules) git;
     inherit (featureModules.shell.flake.homeModules) shell;
     inherit (featureModules.editors.flake.homeModules) editors;

@@ -21,11 +21,11 @@ in
       imports = [
         # NVF (Neovim via nvf)
         inputs.nvf.homeManagerModules.default
-        (self + /lib/modules/home/shared/programs/nvf)
+        (self + /modules/_features/_imports/nvf)
 
         # LazyVim (disabled by default)
         inputs.lazyvim.homeManagerModules.default
-        (self + /lib/modules/home/shared/programs/lazyvim)
+        (self + /modules/_features/_imports/lazyvim)
       ];
 
       programs = {

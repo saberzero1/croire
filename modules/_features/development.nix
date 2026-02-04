@@ -20,7 +20,7 @@ in
       imports = [
         inputs.tmux-sessionizer.homeManagerModules.default
         # Import all language configurations
-        (self + /lib/modules/home/shared/languages)
+        (self + /modules/_features/_imports/languages)
       ];
 
       programs = {

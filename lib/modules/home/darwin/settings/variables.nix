@@ -1,7 +1,0 @@
-{ ... }:
-{
-  home = {
-    shellAliases = { };
-    sessionVariables = { };
-  };
-}
