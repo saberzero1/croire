@@ -15,8 +15,232 @@ in
     }:
     let
       inherit (pkgs.stdenv) isDarwin isLinux;
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Shell-specific scripts (bash syntax incompatible with nushell)
+      # ─────────────────────────────────────────────────────────────────────────
+      shellScripts = [
+        (pkgs.writeShellScriptBin "gj" ''
+          # Global justfile choose (with stderr suppression)
+          ${pkgs.just}/bin/just --global-justfile --choose 2>/dev/null
+        '')
+        (pkgs.writeShellScriptBin "disk" ''
+          # Show disk usage
+          df -H --output=pcent,avail,target | grep \/$ | sed "s# \/##" | sed "s#% *#%#g" | sed "s#^#Disk usage:#" | sed "s#%#% (#" | sed "s#\$# available)#"
+        '')
+        (pkgs.writeShellScriptBin "path" ''
+          # Print PATH variable separated by newlines
+          echo "''${PATH//:/\\n}"
+        '')
+        (pkgs.writeShellScriptBin "reload" ''
+          # Reload shell
+          exec "$SHELL" -l
+        '')
+        (pkgs.writeShellScriptBin "nixfu" ''
+          # Nix flake update with GitHub token
+          nix flake update --option access-tokens "github.com=$(${pkgs.gh}/bin/gh auth token)"
+        '')
+        (pkgs.writeShellScriptBin "now" ''
+          # Date and time
+          date '+%Y-%m-%d %A %T %Z'
+        '')
+        (pkgs.writeShellScriptBin "week" ''
+          # Get current week number
+          date +%V
+        '')
+        (pkgs.writeShellScriptBin "weather" ''
+          # Get weather in a short format
+          curl -s 'wttr.in/?format=3'
+        '')
+        (pkgs.writeShellScriptBin "t" ''
+          # List files in tree format (alias for tree command)
+          ${pkgs.tree}/bin/tree --dirsfirst "$@"
+        '')
+      ];
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Shell aliases (cross-shell compatible)
+      # ─────────────────────────────────────────────────────────────────────────
+      cdAliases = {
+        "-" = "cd -";
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
+        "....." = "cd ../../../..";
+        "......" = "cd ../../../../..";
+        "......." = "cd ../../../../../..";
+        "........" = "cd ../../../../../../..";
+        "........." = "cd ../../../../../../../..";
+        ".........." = "cd ../../../../../../../../..";
+        "..........." = "cd ../../../../../../../../../..";
+        "~" = "cd ~";
+      };
+
+      gitAliases = {
+        g = "git";
+        ga = "git add";
+        gaa = "git add --all";
+        gb = "git branch";
+        gco = "git checkout";
+        gcm = "git commit -m";
+        gca = "git commit --amend --no-edit";
+        gcma = "git commit --amend";
+        gd = "git diff";
+        gdc = "git diff --cached";
+        gf = "git fetch";
+        gfa = "git fetch --all";
+        gl = "git log --oneline --reverse --graph --decorate --all";
+        gp = "git pull";
+        gpa = "git pull --all";
+        gpu = "git push";
+        gs = "git status";
+      };
+
+      justAliases = {
+        j = "${pkgs.just}/bin/just --choose";
+        jj = "${pkgs.just}/bin/just --global-justfile";
+      };
+
+      lsAliases = {
+        ls = "${pkgs.eza}/bin/eza --icons --long --group-directories-first";
+        lsa = "${pkgs.eza}/bin/eza --icons --long --all --group-directories-first";
+        lsd = "${pkgs.eza}/bin/eza --icons --long --group-directories-first --tree";
+        lsae = "${pkgs.eza}/bin/eza --icons --long --all --group-directories-first --tree";
+        ll = "${pkgs.eza}/bin/eza --icons --long";
+        la = "${pkgs.eza}/bin/eza --icons --long --all";
+        lld = "${pkgs.eza}/bin/eza --icons --long --tree";
+        lae = "${pkgs.eza}/bin/eza --icons --long --all --tree";
+      };
+
+      nixAliases = {
+        nixf = "nix flake";
+      };
+
+      npmAliases = {
+        npb = "npm build";
+        npc = "npm cache";
+        npd = "npm dev";
+        npg = "npm global";
+        npi = "npm install";
+        npl = "npm list";
+        npp = "npm publish";
+        npr = "npm run";
+        nprw = "npm run watch";
+        nps = "npm start";
+        npsv = "npm serve";
+        npt = "npm test";
+        npu = "npm update";
+        npy = "npm why";
+      };
+
+      utilityAliases = {
+        ports = "sudo lsof -i -P";
+        p = "pwd";
+        ts = "tmux-sessionizer";
+      };
+
+      viAliases = {
+        vi = "${pkgs.neovim}/bin/nvim";
+        vim = "${pkgs.neovim}/bin/nvim";
+        vimdiff = "${pkgs.neovim}/bin/nvim -d";
+      };
+
+      yaziAliases = {
+        y = "${pkgs.yazi}/bin/yazi";
+      };
+
+      # Platform-specific aliases
+      darwinAliases = lib.optionalAttrs isDarwin {
+        "reload-rclone" = "launchctl kickstart -k gui/$(id -u)/rCloneMounts.service";
+      };
+
+      linuxAliases = lib.optionalAttrs isLinux {
+        "power-down" = "shutdown --poweroff --no-wall 0";
+      };
+
+      allAliases =
+        cdAliases
+        // gitAliases
+        // justAliases
+        // lsAliases
+        // nixAliases
+        // npmAliases
+        // utilityAliases
+        // viAliases
+        // yaziAliases
+        // darwinAliases
+        // linuxAliases;
     in
     {
+      # ─────────────────────────────────────────────────────────────────────────
+      # Session Configuration
+      # ─────────────────────────────────────────────────────────────────────────
+      home.sessionVariables = {
+        # XDG Base Directory - required for nushell to find config on macOS
+        XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+        XDG_DATA_HOME = "${config.home.homeDirectory}/.local/share";
+        XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
+        XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
+        # Editor settings
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+        LAZY = "${config.home.homeDirectory}/share/lazy-nvim";
+        SHELL = "${pkgs.nushell}/bin/nu";
+        # Just settings
+        JUST_CHOOSER = "${pkgs.fzf}/bin/fzf";
+        JUST_COLOR = "always";
+        JUST_TIMESTAMP = "true";
+        JUST_TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
+        JUST_UNSTABLE = "true";
+        # Tmux sessionizer settings
+        TS_SEARCH_PATHS = "(~/Repos ~/Documents/Repos ~/Work/Repos ~/Work/External/Repos)";
+        TS_MAX_DEPTH = "3";
+      }
+      // lib.optionalAttrs isDarwin {
+        # Darwin-specific session variables
+        HOMEBREW_AUTO_UPDATE_SEC = toString (60 * 60 * 24 * 7); # 1 week
+        TS_EXTRA_SEARCH_PATHS = "(~/Work/Repos ~/Work/External/Repos)";
+        SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
+      }
+      // lib.optionalAttrs isLinux {
+        # Linux-specific session variables (Wayland/Hyprland)
+        TERM = "xterm-ghostty";
+        DL_VIDEODRIVER = "wayland";
+        QT_QPA_PLATFORM = "wayland";
+        QT_QPA_PLATFORMTHEME = "qt5ct";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        _JAVA_AWT_WM_NONREPARENTING = "1";
+        MOZ_ENABLE_WAYLAND = "1";
+        QT_QPA_PLATFORM_PLUGIN_PATH = "${pkgs.libsForQt5.qt5.qtbase.bin}/lib/qt-${pkgs.libsForQt5.qt5.qtbase.version}/plugins";
+        NIXOS_OZONE_WL = "1";
+        LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib";
+        TS_EXTRA_SEARCH_PATHS = "";
+      };
+
+      home.sessionPath = [
+        "${config.home.homeDirectory}/.config/just"
+        "${config.home.homeDirectory}/.config/tmux/scripts"
+        "${config.home.homeDirectory}/.local/bin"
+      ];
+
+      # Cross-shell aliases
+      home.shellAliases = allAliases;
+
+      # Shell-specific script packages (platform-specific uuid script)
+      home.packages =
+        shellScripts
+        ++ lib.optionals isDarwin [
+          (pkgs.writeShellScriptBin "uuid" ''
+            # Generate UUID, copy to clipboard (macOS), and print
+            uuidgen | tr -d '\n' | tr '[:upper:]' '[:lower:]' | pbcopy && pbpaste && echo
+          '')
+        ]
+        ++ lib.optionals isLinux [
+          (pkgs.writeShellScriptBin "uuid" ''
+            # Generate UUID, copy to clipboard (Wayland), and print
+            uuidgen | tr -d '\n' | tr '[:upper:]' '[:lower:]' | ${pkgs.wl-clipboard}/bin/wl-copy -n && ${pkgs.wl-clipboard}/bin/wl-paste
+          '')
+        ];
       programs = {
         # ─────────────────────────────────────────────────────────────────────────
         # Zsh - Primary interactive shell
@@ -32,15 +256,6 @@ in
           enableVteIntegration = false;
 
           initContent = ''
-            # zoxide
-            eval "$(zoxide init --cmd cd zsh)"
-
-            # starship prompt
-            eval "$(starship init zsh)"
-
-            # pay-respects (thefuck replacement)
-            eval $(pay-respects zsh --alias fuck --nocnf)
-
             ${lib.optionalString isDarwin ''
               # Homebrew on macOS
               if [[ $(uname -m) == 'arm64' ]]; then
@@ -198,6 +413,10 @@ in
           enable = true;
           enableZshIntegration = true;
           enableNushellIntegration = true;
+          options = [
+            "--cmd"
+            "cd"
+          ];
         };
 
         direnv = {
@@ -217,10 +436,27 @@ in
           enableZshIntegration = true;
           enableNushellIntegration = true;
         };
+
+        # Pay-respects - thefuck replacement (cross-platform)
+        pay-respects = {
+          enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableNushellIntegration = true;
+          package = pkgs.pay-respects;
+          options = [
+            "--alias"
+            "fuck"
+            "--nocnf"
+          ];
+        };
       };
 
-      # Nushell integration files
+      # ─────────────────────────────────────────────────────────────────────────
+      # Shell configuration files
+      # ─────────────────────────────────────────────────────────────────────────
       home.file = {
+        # Nushell integration files
         "carapace.nu" = {
           target = ".config/nushell/integration/carapace.nu";
           text = "carapace _carapace";
@@ -228,6 +464,19 @@ in
         "zoxide.nu" = {
           target = ".config/nushell/integration/zoxide.nu";
           text = "zoxide init nushell";
+        };
+
+        # Starship config
+        starship = {
+          target = ".config/starship/starship.toml";
+          source = "${self}/programs/starship/starship.toml";
+        };
+
+        # Zsh scripts (executable)
+        "zsh-shortcuts" = {
+          target = ".config/zsh/scripts/shortcuts";
+          source = "${self}/programs/zsh/scripts/shortcuts";
+          executable = true;
         };
       };
     };

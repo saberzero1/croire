@@ -148,5 +148,21 @@ in
           '';
         })
       ];
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Terminal configuration files
+      # ─────────────────────────────────────────────────────────────────────────
+      home.file = {
+        wezterm = {
+          target = ".config/wezterm";
+          source = "${self}/programs/wezterm";
+          recursive = true;
+        };
+        ghostty = lib.mkIf isDarwin {
+          target = ".config/ghostty";
+          source = "${self}/programs/ghostty";
+          recursive = true;
+        };
+      };
     };
 }

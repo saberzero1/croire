@@ -16,6 +16,7 @@ in
     }:
     let
       inherit (pkgs.stdenv) isDarwin isLinux;
+      inherit (flake) inputs;
     in
     lib.mkIf isLinux {
       # ─────────────────────────────────────────────────────────────────────────
@@ -31,6 +32,101 @@ in
         theme = {
           name = "storm";
           package = pkgs.tokyonight-gtk-theme;
+        };
+      };
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # dconf Settings (GNOME integration)
+      # ─────────────────────────────────────────────────────────────────────────
+      dconf.settings = {
+        "org/gnome/desktop/background" = {
+          color-shading-type = "solid";
+          picture-options = "zoom";
+          picture-uri = "file://${config.home.homeDirectory}/.assets/backgrounds/wallpaper.png";
+          picture-uri-dark = "file://${config.home.homeDirectory}/.assets/backgrounds/wallpaper.png";
+        };
+        "org/gnome/shell" = {
+          favorite-apps = [
+            "ranger.desktop"
+            "zen.desktop"
+            "obsidian.desktop"
+            "discord.desktop"
+            "nvim.desktop"
+          ];
+        };
+      };
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Monitor Configuration (for play.nix)
+      # ─────────────────────────────────────────────────────────────────────────
+      monitors = [
+        {
+          name = "eDP-1";
+          primary = true;
+          width = 2560;
+          height = 1440;
+          refreshRate = 165;
+          hdr = false;
+          vrr = false;
+        }
+      ];
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Gaming Configuration (play.nix)
+      # ─────────────────────────────────────────────────────────────────────────
+      play = {
+        gamescoperun = {
+          enable = true;
+          defaultHDR = false;
+          defaultWSI = true;
+          defaultSystemd = false;
+          baseOptions = {
+            "output-width" = 2560;
+            "output-height" = 1440;
+          };
+          environment = {
+            __NV_PRIME_RENDER_OFFLOAD = "1";
+            __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+            __VK_LAYER_NV_optimus = "NVIDIA_only";
+          };
+        };
+        wrappers = {
+          steam-gamescope = {
+            enable = true;
+            command = "${lib.getExe pkgs.steam} -bigpicture -tenfoot";
+            useHDR = false;
+            useSystemd = true;
+            extraOptions = {
+              "steam" = true;
+              "fsr-upscaling" = true;
+            };
+            environment = {
+              STEAM_FORCE_DESKTOPUI_SCALING = 1;
+              STEAM_GAMEPADUI = 1;
+              __NV_PRIME_RENDER_OFFLOAD = 1;
+              __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
+              __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+              __VK_LAYER_NV_optimus = "NVIDIA_only";
+            };
+          };
+        };
+      };
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # GeForce NOW Infinity
+      # ─────────────────────────────────────────────────────────────────────────
+      programs.geforce-infinity = {
+        enable = true;
+        settings = {
+          resolution = {
+            width = 2560;
+            height = 1440;
+          };
+          fps = 120;
+          accentColor = "#663399"; # RebeccaPurple
+          rpcEnabled = false;
+          notify = false;
         };
       };
 
@@ -593,9 +689,12 @@ in
       };
 
       # ─────────────────────────────────────────────────────────────────────────
-      # Hyprland Services
+      # Linux Desktop Services
       # ─────────────────────────────────────────────────────────────────────────
       services = {
+        # Dropbox sync
+        dropbox.enable = true;
+
         # Hypridle - idle daemon
         hypridle = {
           enable = true;
@@ -725,5 +824,17 @@ in
           zen-browser.packages."x86_64-linux".twilight
           nix-alien.packages."x86_64-linux".nix-alien
         ]);
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Linux Desktop Configuration Files
+      # ─────────────────────────────────────────────────────────────────────────
+      home.file = {
+        # Shared assets (backgrounds)
+        backgrounds = {
+          target = ".assets/backgrounds";
+          source = "${self}/assets/backgrounds";
+          recursive = true;
+        };
+      };
     };
 }

@@ -14,6 +14,7 @@ let
     terminal = import ./_features/terminal.nix { inherit inputs lib; };
     development = import ./_features/development.nix { inherit inputs lib; };
     services = import ./_features/services.nix { inherit inputs lib; };
+    xdg = import ./_features/xdg.nix { inherit inputs lib; };
     # Platform-specific desktop environments
     linuxDesktop = import ./_features/linux-desktop.nix { inherit inputs lib; };
     darwinDesktop = import ./_features/darwin-desktop.nix { inherit inputs lib; };
@@ -34,6 +35,7 @@ in
     inherit (featureModules.terminal.flake.homeModules) terminal;
     inherit (featureModules.development.flake.homeModules) development;
     inherit (featureModules.services.flake.homeModules) services;
+    inherit (featureModules.xdg.flake.homeModules) xdg;
     # Platform-specific desktop environments
     inherit (featureModules.linuxDesktop.flake.homeModules) linuxDesktop;
     inherit (featureModules.darwinDesktop.flake.homeModules) darwinDesktop;

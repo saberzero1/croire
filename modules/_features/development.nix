@@ -135,6 +135,51 @@ in
             tmux neww -kdS -n 'git' -a -t 5 'lazygit'
           '';
         };
+
+        # Zed editor (Linux only - Darwin version installed via Homebrew)
+        zed-editor = lib.mkIf isLinux {
+          enable = false; # Disabled by default
+          package = pkgs.zed;
+          extraPackages = with pkgs; [
+            nodejs_latest
+            nixd
+            jq
+          ];
+          extensions = [
+            "awk"
+            "csharp"
+            "csv"
+            "cython"
+            "discord-presence"
+            "docker-compose"
+            "dockerfile"
+            "ejs"
+            "elixir"
+            "env"
+            "erlang"
+            "ini"
+            "java"
+            "just"
+            "libsql-context-server"
+            "live-server"
+            "lua"
+            "make"
+            "nix"
+            "python"
+            "python-requirements"
+            "scss"
+            "sql"
+            "ssh-config"
+            "tmux"
+            "tokyo-night"
+            "tree-sitter-query"
+            "vscode-icons"
+            "xml"
+            "zig"
+          ];
+          userKeymaps = pkgs.lib.importJSON "${self}/programs/zed/keymap.json";
+          userSettings = pkgs.lib.importJSON "${self}/programs/zed/settings.json";
+        };
       };
 
       # ─────────────────────────────────────────────────────────────────────────
@@ -176,12 +221,40 @@ in
       # Development configuration files
       # ─────────────────────────────────────────────────────────────────────────
       home.file = {
+        # File managers
+        ranger = {
+          target = ".config/ranger";
+          source = "${self}/programs/ranger";
+          recursive = true;
+        };
+
+        # Backup/sync
+        rclone = {
+          target = ".config/rclone";
+          source = "${self}/programs/rclone";
+          recursive = true;
+        };
+
+        # Bat syntax highlighting
         bat = {
           target = ".config/bat";
           source = "${self}/programs/bat";
           recursive = true;
         };
 
+        # Yazi file manager theme
+        "yazi-tokyo-night" = {
+          target = ".config/yazi/flavors/tokyo-night.yazi";
+          source = "${self}/programs/yazi/flavors/tokyo-night.yazi";
+        };
+
+        # Just task runner
+        justfile = {
+          target = ".config/just/justfile";
+          source = "${self}/programs/just/justfile";
+        };
+
+        # OpenCode AI assistant
         oh-my-opencode = {
           target = ".config/opencode/oh-my-opencode.json";
           source = "${self}/programs/opencode/oh-my-opencode.json";

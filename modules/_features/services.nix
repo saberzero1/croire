@@ -127,65 +127,93 @@ in
       };
 
       # ===========================================
-      # Darwin Sketchybar Configuration Files
+      # Service Configuration Files
       # ===========================================
-      home.file = lib.mkIf isDarwin {
-        sketchybarrc = {
+      home.file = {
+        # Espanso text expansion config (from totten flake input)
+        espanso = {
+          target = ".config/espanso";
+          source = "${flake.inputs.totten}";
+          recursive = true;
+        };
+
+        # ───────────────────────────────────────────────────────────────────────
+        # Darwin-only service files
+        # ───────────────────────────────────────────────────────────────────────
+
+        # SKHD scripts (executables)
+        "skhd-kill-last-instance" = lib.mkIf isDarwin {
+          target = ".config/skhd/scripts/kill_last_instance.sh";
+          source = "${self}/programs/skhd/scripts/kill_last_instance.sh";
+          executable = true;
+        };
+
+        # Yabai config (executable)
+        yabairc = lib.mkIf isDarwin {
+          target = ".config/yabai/yabairc";
+          source = "${self}/programs/yabai/yabairc";
+          executable = true;
+        };
+
+        # ───────────────────────────────────────────────────────────────────────
+        # Darwin Sketchybar Configuration Files
+        # ───────────────────────────────────────────────────────────────────────
+        sketchybarrc = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/sketchybarrc";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/sketchybarrc";
         };
-        aerospace = {
+        "sketchybar-aerospace" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/aerospace.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/aerospace.sh";
         };
-        battery = {
+        "sketchybar-battery" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/battery.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/battery.sh";
         };
-        clock = {
+        "sketchybar-clock" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/clock.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/clock.sh";
         };
-        cpu = {
+        "sketchybar-cpu" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/cpu.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/cpu.sh";
         };
-        date = {
+        "sketchybar-date" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/date.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/date.sh";
         };
-        front_app = {
+        "sketchybar-front-app" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/front_app.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/front_app.sh";
         };
-        memory = {
+        "sketchybar-memory" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/memory.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/memory.sh";
         };
-        space = {
+        "sketchybar-space" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/space.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/space.sh";
         };
-        volume = {
+        "sketchybar-volume" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/volume.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/volume.sh";
         };
-        wifi = {
+        "sketchybar-wifi" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/sketchybar/plugins/wifi.sh";
           text = pkgs.lib.readFile "${self}/programs/sketchybar/plugins/wifi.sh";
         };
-        finder-move = {
+        "aerospace-finder-move" = lib.mkIf isDarwin {
           executable = true;
           target = ".config/aerospace/finder-move.sh";
           text = pkgs.lib.readFile "${self}/programs/aerospace/finder-move.sh";

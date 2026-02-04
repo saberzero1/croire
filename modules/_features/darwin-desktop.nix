@@ -49,5 +49,23 @@ in
         fswatch
         dockutil
       ];
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # macOS Configuration Files
+      # ─────────────────────────────────────────────────────────────────────────
+      home.file = {
+        # Aerospace tiling window manager config
+        "aerospace-config" = {
+          target = ".config/aerospace/aerospace.toml";
+          source = "${self}/programs/aerospace/aerospace.toml";
+        };
+
+        # Shared assets (backgrounds)
+        backgrounds = {
+          target = ".assets/backgrounds";
+          source = "${self}/assets/backgrounds";
+          recursive = true;
+        };
+      };
     };
 }

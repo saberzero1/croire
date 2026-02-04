@@ -53,8 +53,12 @@ let
                     config.flake.homeModules.terminal
                     config.flake.homeModules.development
                     config.flake.homeModules.services
+                    config.flake.homeModules.xdg
                     # Platform-specific desktop environment
                     config.flake.homeModules.linuxDesktop
+                    # Linux-specific external modules (gaming)
+                    inputs.geforce-infinity.homeManagerModules.default
+                    inputs.play-nix.homeManagerModules.play
                     # User-specific configuration
                     homeConfig
                   ];
@@ -112,6 +116,7 @@ let
                     config.flake.homeModules.terminal
                     config.flake.homeModules.development
                     config.flake.homeModules.services
+                    config.flake.homeModules.xdg
                     # Platform-specific desktop environment
                     config.flake.homeModules.darwinDesktop
                     # User-specific configuration
@@ -152,6 +157,7 @@ let
         config.flake.homeModules.terminal
         config.flake.homeModules.development
         config.flake.homeModules.services
+        config.flake.homeModules.xdg
         # User-specific configuration
         (self + /homes/${name}.nix)
       ]

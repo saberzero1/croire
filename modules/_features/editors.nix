@@ -125,5 +125,21 @@ in
           enable = false;
         };
       };
+
+      # ─────────────────────────────────────────────────────────────────────────
+      # Editor configuration files
+      # ─────────────────────────────────────────────────────────────────────────
+      home.file = {
+        doom = {
+          target = ".config/doom";
+          source = "${self}/programs/doom";
+          recursive = true;
+        };
+        emacs = {
+          target = ".config/emacs";
+          source = "${self}/programs/emacs";
+          recursive = true;
+        };
+      };
     };
 }
