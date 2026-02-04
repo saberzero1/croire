@@ -98,6 +98,20 @@ in
       };
 
       # ===========================================
+      # Shell Configuration
+      # ===========================================
+      # Add nushell to the list of allowed shells
+      environment.shells = with pkgs; [
+        bashInteractive
+        zsh
+        nushell
+      ];
+
+      # Enable shell programs
+      programs.bash.enable = true;
+      programs.zsh.enable = true;
+
+      # ===========================================
       # Fonts
       # ===========================================
       fonts = {
@@ -183,6 +197,9 @@ in
           helmsman
           helmfile
           helm-docs
+
+          # Shell
+          nushell
         ];
 
         variables = {
@@ -471,6 +488,13 @@ in
 
           postActivation.text = ''
             echo "Running postActivation script"
+
+            # Ensure nushell is in /etc/shells
+            if ! grep -q "/run/current-system/sw/bin/nu" /etc/shells; then
+              echo "Adding nushell to /etc/shells"
+              echo "/run/current-system/sw/bin/nu" | sudo tee -a /etc/shells > /dev/null
+            fi
+
             apps_source="${primaryUserHome}/Applications/Home Manager Apps"
             moniker="Nix Trampolines"
             app_target_base="$HOME/Applications"
