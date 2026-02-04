@@ -124,6 +124,20 @@ in
         emacs = {
           enable = false;
         };
+
+        # ─────────────────────────────────────────────────────────────────────────
+        # VSCode/VSCodium (disabled by default)
+        # ─────────────────────────────────────────────────────────────────────────
+        vscode = {
+          enable = false;
+          profiles = {
+            default = {
+              enableExtensionUpdateCheck = true;
+            };
+          };
+          mutableExtensionsDir = true;
+          package = pkgs.vscodium.fhs;
+        };
       };
 
       # ─────────────────────────────────────────────────────────────────────────

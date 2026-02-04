@@ -59,6 +59,28 @@ in
         # jq - JSON processor
         jq.enable = true;
 
+        # nh - Nix helper tool
+        nh = {
+          enable = true;
+          flake = null;
+          homeFlake = null;
+          osFlake = null;
+          darwinFlake = null;
+        };
+
+        # bun - JavaScript runtime
+        bun = {
+          enable = true;
+          settings = {
+            smol = false;
+            telemetry = false;
+            install = {
+              auto = "disable";
+              saveTextLockfile = true;
+            };
+          };
+        };
+
         # yazi - Terminal file manager
         yazi = {
           enable = true;

@@ -229,6 +229,10 @@ in
       # Shell-specific script packages (platform-specific uuid script)
       home.packages =
         shellScripts
+        ++ [
+          # tirith: Terminal security - guards against homograph attacks, ANSI injection, pipe-to-shell attacks
+          pkgs.tirith
+        ]
         ++ lib.optionals isDarwin [
           (pkgs.writeShellScriptBin "uuid" ''
             # Generate UUID, copy to clipboard (macOS), and print
@@ -273,6 +277,9 @@ in
 
             # direnv
             eval "$(direnv hook zsh)"
+
+            # tirith - terminal security
+            eval "$(${pkgs.tirith}/bin/tirith init)"
 
             # tmux sessionizer keybinding
             bindkey -s "^F" "tmux-sessionizer\n"
@@ -355,6 +362,35 @@ in
 
             # Zoxide
             source "~/.config/nushell/integration/zoxide.nu"
+
+            # ───────────────────────────────────────────────────────────────────────────
+            # tirith - terminal security
+            # Guards against homograph attacks, ANSI injection, pipe-to-shell attacks
+            # ───────────────────────────────────────────────────────────────────────────
+
+            # Define tirith check command
+            def --env tirith-check [cmd: string] {
+              let result = (${pkgs.tirith}/bin/tirith check --shell posix -- $cmd | complete)
+              if $result.exit_code == 1 {
+                # Command blocked - return error to prevent execution
+                error make { msg: "tirith: command blocked" }
+              }
+              # exit_code 0 = allow, exit_code 2 = warn (already printed to stderr)
+            }
+
+            # Add pre_execution hook for tirith
+            $env.config.hooks.pre_execution = ($env.config.hooks.pre_execution | default [] | append {||
+              # Get the current commandline being executed
+              let cmd = (commandline)
+              if ($cmd | str trim | is-not-empty) {
+                # Run tirith check - if it returns exit code 1, the command is blocked
+                let result = (do { ${pkgs.tirith}/bin/tirith check --shell posix -- $cmd } | complete)
+                if $result.exit_code == 1 {
+                  # Print block message (already printed by tirith) and clear the line
+                  commandline edit ""
+                }
+              }
+            })
           '';
 
           extraEnv = ''
