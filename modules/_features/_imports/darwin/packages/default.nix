@@ -1,3 +1,5 @@
+# Darwin Homebrew Package Management
+# Consolidated casks, formulae, masApps, and taps configuration
 { flake, ... }:
 let
   flakeTaps = {
@@ -9,20 +11,11 @@ let
   };
 in
 {
-  imports = [
-    ./casks
-    ./formulae
-    ./masApps
-    ./taps
-  ];
-
   nix-homebrew = {
     enable = true;
-    # enableRosetta = true;
     user = "emile";
     taps = flakeTaps;
     autoMigrate = true;
-    # mutableTaps = false;
   };
 
   homebrew = {
@@ -31,15 +24,58 @@ in
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      # cleanup = "zap";
       cleanup = "none";
     };
 
     global = {
       autoUpdate = true;
-      # brewfile = true;
     };
 
     taps = builtins.attrNames flakeTaps;
+
+    # =========================================
+    # Homebrew Casks (GUI Applications)
+    # =========================================
+    casks = [
+      "aerospace"
+      "calibre"
+      "docker"
+      "dotnet-sdk"
+      "espanso"
+      "firefox"
+      "font-sf-mono"
+      "font-sf-pro"
+      "font-sketchybar-app-font"
+      "ghostty"
+      "gitbutler"
+      "homebrew/cask/gimp"
+      "iterm2"
+      "keymapp"
+      "macfuse"
+      "nordlayer"
+      "obsidian"
+      "sf-symbols"
+      "sol"
+      "utm"
+      "wavebox"
+      "wezterm"
+      "windows-app"
+      "zen"
+    ];
+
+    # =========================================
+    # Homebrew Formulae (CLI Tools)
+    # =========================================
+    brews = [
+      "docker"
+      "nowplaying-cli"
+      "pre-commit"
+      "switchaudio-osx"
+    ];
+
+    # =========================================
+    # Mac App Store Apps
+    # =========================================
+    masApps = { };
   };
 }

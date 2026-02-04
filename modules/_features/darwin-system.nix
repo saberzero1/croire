@@ -30,6 +30,8 @@ in
         ./_imports/darwin/dock
         # Import packages (homebrew casks, formulae, masApps, taps)
         ./_imports/darwin/packages
+        # Shared fonts
+        ./_imports/fonts.nix
       ];
 
       # ===========================================
@@ -111,21 +113,7 @@ in
       programs.bash.enable = true;
       programs.zsh.enable = true;
 
-      # ===========================================
-      # Fonts
-      # ===========================================
-      fonts = {
-        packages = with pkgs; [
-          fira-code
-          monaspace
-          nerd-fonts.monaspace
-          fira-code-symbols
-          nerd-fonts.fira-code
-          nerd-fonts.fira-mono
-          nerd-fonts.droid-sans-mono
-          nerd-fonts.mononoki
-        ];
-      };
+      # Fonts are imported from ./_imports/fonts.nix
 
       # ===========================================
       # Security
@@ -153,54 +141,32 @@ in
       # System Packages
       # ===========================================
       environment = {
-        systemPackages = with pkgs; [
-          # Security & SSH
-          openssh
-          libressl
-          gnupg
-          sshpass
-          cacert
+        systemPackages =
+          let
+            sharedPkgs = import ./_imports/shared-packages.nix { inherit pkgs; };
+          in
+          sharedPkgs.kubernetes
+          ++ sharedPkgs.devTools
+          ++ sharedPkgs.security
+          ++ sharedPkgs.git
+          ++ (with pkgs; [
+            # Darwin-specific security
+            openssh
+            libressl
+            cacert
 
-          # Git tooling
-          diff-so-fancy
-          gh
-          lazygit
-          gitFull
+            # Apple development
+            xcodes
+            apple-sdk
 
-          # Development tools
-          tree-sitter
-          sqlfluff
-          viu
-          chafa
-          haskellPackages.hoogle
-          fh
-          bun
-          go
-          ispell
+            # Sketchybar
+            lua54Packages.lua
+            sketchybar-app-font
+            sbarlua
 
-          # Apple development
-          xcodes
-          apple-sdk
-
-          # Sketchybar
-          lua54Packages.lua
-          sketchybar-app-font
-          sbarlua
-
-          # Kubernetes
-          k9s
-          kubernetes-helm
-          kubernetes-polaris
-          kubectl
-          kind
-          kail
-          helmsman
-          helmfile
-          helm-docs
-
-          # Shell
-          nushell
-        ];
+            # Shell
+            nushell
+          ]);
 
         variables = {
           NIX_CONFIG = ''

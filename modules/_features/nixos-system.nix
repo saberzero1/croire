@@ -26,8 +26,13 @@ in
       GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
     in
     {
+      # Import shared fonts
+      imports = [
+        (self + /modules/_features/_imports/fonts.nix)
+      ];
+
       # ===========================================
-      # Fonts
+      # Fonts (NixOS-specific settings)
       # ===========================================
       fonts = {
         enableDefaultPackages = true;
@@ -42,15 +47,8 @@ in
           };
           enable = true;
         };
+        # Additional NixOS-only fonts
         packages = with pkgs; [
-          fira-code
-          monaspace
-          nerd-fonts.monaspace
-          fira-code-symbols
-          nerd-fonts.fira-code
-          nerd-fonts.fira-mono
-          nerd-fonts.droid-sans-mono
-          nerd-fonts.mononoki
           # JP Fonts
           migu
         ];
@@ -118,146 +116,131 @@ in
           MOZ_ENABLE_WAYLAND = "1";
         };
 
-        systemPackages = with pkgs; [
-          # Security & SSH
-          gnupg
-          sshpass
-          seahorse
-          sudo
-          wpa_supplicant
-          wpa_supplicant_gui
+        systemPackages =
+          let
+            sharedPkgs = import (self + /modules/_features/_imports/shared-packages.nix) { inherit pkgs; };
+          in
+          sharedPkgs.kubernetes
+          ++ sharedPkgs.devTools
+          ++ sharedPkgs.security
+          ++ sharedPkgs.git
+          ++ (with pkgs; [
+            # NixOS-specific security
+            seahorse
+            sudo
+            wpa_supplicant
+            wpa_supplicant_gui
 
-          # Desktop applications
-          vlc
-          (GPUOffloadApp steam "steam")
-          obsidian
-          discord
-          steamtinkerlaunch
-          wofi
-          wofi-pass
+            # Desktop applications
+            vlc
+            (GPUOffloadApp steam "steam")
+            obsidian
+            discord
+            steamtinkerlaunch
+            wofi
+            wofi-pass
 
-          # GNOME
-          gdm
-          gnome-shell
-          gnome-shell-extensions
-          gnome-browser-connector
-          gnome-remote-desktop
-          nautilus
-          nautilus-python
-          nautilus-open-any-terminal
+            # GNOME
+            gdm
+            gnome-shell
+            gnome-shell-extensions
+            gnome-browser-connector
+            gnome-remote-desktop
+            nautilus
+            nautilus-python
+            nautilus-open-any-terminal
 
-          # Remote desktop
-          xrdp
-          freerdp
+            # Remote desktop
+            xrdp
+            freerdp
 
-          # Wayland & Hyprland
-          albert
-          wlsunset
-          uwsm
-          mako
-          hyprland
-          slurp
-          grim
-          kitty
+            # Wayland & Hyprland
+            albert
+            wlsunset
+            uwsm
+            mako
+            hyprland
+            slurp
+            grim
+            kitty
 
-          # Hyprland build dependencies
-          libxau
-          libxcb
-          libexecinfo
-          libnotify
-          tracy
-          wayland-protocols
-          hyprland-protocols
-          udis86
+            # Hyprland build dependencies
+            libxau
+            libxcb
+            libexecinfo
+            libnotify
+            tracy
+            wayland-protocols
+            hyprland-protocols
+            udis86
 
-          # System utilities
-          dbus
-          vulkan-tools
-          lsof
-          ghostty
-          pre-commit
-          ispell
+            # System utilities
+            dbus
+            vulkan-tools
+            lsof
+            ghostty
+            pre-commit
 
-          # Keyboard & hardware
-          libusb1
-          wally-cli
-          zsa-udev-rules
-          qmk
+            # Keyboard & hardware
+            libusb1
+            wally-cli
+            zsa-udev-rules
+            qmk
 
-          # GTK & webkit
-          gtk3
-          webkitgtk_6_0
-          libuuid
+            # GTK & webkit
+            gtk3
+            webkitgtk_6_0
+            libuuid
 
-          # Wine
-          wineWowPackages.stable
-          wine
-          (pkgs.wine.override { wineBuild = "wine64"; })
-          wine64
-          wineWowPackages.staging
-          winetricks
+            # Wine
+            wineWowPackages.stable
+            wine
+            (pkgs.wine.override { wineBuild = "wine64"; })
+            wine64
+            wineWowPackages.staging
+            winetricks
 
-          # Document viewers
-          evince
-          foliate
+            # Document viewers
+            evince
+            foliate
 
-          # Audio
-          pulseaudioFull
-          avizo
-          libnotify
-          fuzzel
+            # Audio
+            pulseaudioFull
+            avizo
+            libnotify
+            fuzzel
 
-          # Core utilities
-          gnugrep
-          gnused
-          glib
-          glibc
-          libxml2
-          libxslt
-          zlib
-          pkg-config
-          nss
-          libnss_nis
-          curlFull
-          iwgtk
-          iperf2
-          sshpass
-          wget2
-          gnumake
-          _7zz
-          parallel
-          libavif
-          libsoup_3
-          tree-sitter
-          sqlfluff
-          viu
-          chafa
-          haskellPackages.hoogle
-          fh
+            # Core utilities
+            gnugrep
+            gnused
+            glib
+            glibc
+            libxml2
+            libxslt
+            zlib
+            pkg-config
+            nss
+            libnss_nis
+            curlFull
+            iwgtk
+            iperf2
+            wget2
+            gnumake
+            _7zz
+            parallel
+            libavif
+            libsoup_3
 
-          # Graphics
-          inkscape-with-extensions
-          vscodium.fhs
-          vscode-extensions.asvetliakov.vscode-neovim
+            # Graphics
+            inkscape-with-extensions
+            vscodium.fhs
+            vscode-extensions.asvetliakov.vscode-neovim
 
-          # Development
-          bun
-          pipewire
-          libnss_nis
-          electron-chromedriver
-          go
-
-          # Kubernetes
-          k9s
-          kubernetes-helm
-          kubernetes-polaris
-          kubectl
-          kind
-          kail
-          helmsman
-          helmfile
-          helm-docs
-        ];
+            # Development (NixOS-specific)
+            pipewire
+            libnss_nis
+            electron-chromedriver
+          ]);
 
         gnome = {
           excludePackages = [

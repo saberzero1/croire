@@ -10,7 +10,7 @@ This repository uses the [dendritic pattern](https://github.com/mightyiam/dendri
 - Every `.nix` file in `modules/` is a flake-parts top-level module
 - Modules are auto-imported via [import-tree](https://github.com/vic/import-tree)
 - Files in directories prefixed with `_` (like `_features/`) are excluded from auto-import
-- Legacy modules are preserved in `lib/modules/` and imported by base modules
+- Shared imports live in `modules/_features/_imports/` (fonts, languages, darwin-specific configs)
 
 ## Technologies & Tools
 
@@ -36,6 +36,12 @@ croire/
 │   ├── lib.nix           # Exports flake.lib.croire utilities
 │   │
 │   └── _features/        # Feature modules (excluded from auto-import)
+│       ├── _imports/         # Shared imports for feature modules
+│       │   ├── darwin/       # Darwin-specific (dock, homebrew packages)
+│       │   ├── fonts.nix     # Shared font configuration
+│       │   ├── languages/    # Language toolchains (python, rust, go, etc.)
+│       │   ├── lazyvim/      # LazyVim configuration
+│       │   └── nvf/          # NVF neovim configuration
 │       ├── git.nix           # homeModules.git
 │       ├── shell.nix         # homeModules.shell
 │       ├── editors.nix       # homeModules.editors
@@ -45,28 +51,12 @@ croire/
 │       ├── darwin-system.nix # darwinModules.system
 │       └── nixos-system.nix  # nixosModules.system
 │
-├── lib/modules/          # Legacy modules (imported by base modules)
-│   ├── darwin/           # Darwin system modules
-│   │   ├── dock/         # macOS Dock configuration
-│   │   ├── packages/     # Homebrew packages (casks, formulae, masApps, taps)
-│   │   ├── services/     # System services
-│   │   └── system/       # System settings (fonts, security, preferences)
-│   ├── nixos/            # NixOS system modules
-│   │   ├── packages/     # System packages
-│   │   ├── services/     # System services
-│   │   └── system/       # System settings
-│   ├── home/             # Home-manager modules
-│   │   ├── shared/       # Cross-platform (editors, shell, languages)
-│   │   ├── darwin/       # macOS-specific
-│   │   └── nixos/        # NixOS-specific (Wayland, Hyprland)
-│   └── flake/            # Flake utilities (templates, lib)
 ├── hosts/                # Host-specific configurations
 │   ├── darwin/           # macOS hosts
 │   └── nixos/            # NixOS hosts
 ├── homes/                # Standalone home-manager configurations
 ├── programs/             # Application dotfiles and configurations
 ├── overlays/             # Nix package overlays
-├── configurations/       # Legacy configurations (referenced by hosts/)
 ├── scripts/              # Helper scripts
 ├── flake.nix             # Main flake (flake-parts + import-tree)
 └── justfile              # Command definitions
@@ -88,29 +78,27 @@ croire/
 
 | Module | Description |
 |--------|-------------|
-| `darwinModules.base` | Legacy base configuration |
-| `darwinModules.system` | Consolidated system config (fonts, security, settings) |
+| `darwinModules.system` | Consolidated system config (fonts, security, settings, dock, packages) |
 
 #### NixOS Modules (`nixosModules.*`)
 
 | Module | Description |
 |--------|-------------|
-| `nixosModules.base` | Legacy base configuration |
-| `nixosModules.system` | Consolidated system config (fonts, security, hardware) |
+| `nixosModules.system` | Consolidated system config (fonts, security, hardware, services) |
 
 #### Home Manager Modules (`homeModules.*`)
 
 | Module | Description |
 |--------|-------------|
-| `homeModules.base` | Legacy base configuration |
-| `homeModules.darwin-only` | macOS-specific settings |
-| `homeModules.linux-only` | Linux-specific settings |
 | `homeModules.git` | Git, lazygit, gh, diff-so-fancy |
 | `homeModules.shell` | Zsh, nushell, starship, zoxide, direnv, fzf |
 | `homeModules.editors` | Neovim (nvf/lazyvim), helix, emacs |
 | `homeModules.terminal` | Tmux, ghostty, wezterm |
 | `homeModules.development` | Languages, bat, eza, ripgrep, yazi, btop |
 | `homeModules.services` | Espanso, emacs daemon, mako, wlsunset |
+| `homeModules.xdg` | XDG config, MIME apps, desktop entries |
+| `homeModules.linuxDesktop` | Hyprland, Wayland, GTK (Linux only) |
+| `homeModules.darwinDesktop` | Aerospace, dock (macOS only) |
 
 ## Development Workflow
 
@@ -147,7 +135,7 @@ just home-switch emile
 
 ## Code Style & Conventions
 
-### Feature Modules (New Pattern)
+### Feature Modules
 
 New features should be added in `modules/_features/`:
 
@@ -183,9 +171,14 @@ flake.homeModules = {
 };
 ```
 
-### Legacy Modules
+### Shared Imports
 
-Existing modules in `lib/modules/` follow the old pattern with `{ flake, pkgs, ... }` arguments. These are imported by the dendritic base modules.
+Reusable configurations live in `modules/_features/_imports/`:
+- **fonts.nix** - Shared font packages for Darwin and NixOS
+- **darwin/** - Darwin-specific imports (dock, homebrew packages)
+- **languages/** - Language toolchain packages
+- **nvf/** - NVF neovim language configs
+- **lazyvim/** - LazyVim language configs
 
 ### Nix Code Style
 
@@ -197,8 +190,9 @@ Existing modules in `lib/modules/` follow the old pattern with `{ flake, pkgs, .
 ### File Organization
 
 - **New features**: Add to `modules/_features/` and register in base modules
+- **Shared configs**: Add to `modules/_features/_imports/`
 - **Host-specific settings**: Add to `hosts/{darwin,nixos}/`
-- **User settings**: Add to `homes/` or `lib/modules/home/`
+- **User settings**: Add to `homes/`
 - **Dotfiles**: Add to `programs/`
 
 ## Key Inputs & Dependencies
@@ -234,8 +228,8 @@ Available via `flake.lib.croire`:
 - This uses the **dendritic pattern** - every file in `modules/` is auto-imported
 - Files in `modules/_features/` are NOT auto-imported (underscore prefix)
 - Feature modules are registered via base modules (home-base.nix, etc.)
-- Legacy modules in `lib/modules/` are preserved for compatibility
-- Host configurations are in `hosts/`, not `configurations/`
+- Shared imports live in `modules/_features/_imports/`
+- Host configurations are in `hosts/`
 - Home-manager has standalone outputs (`homeConfigurations`)
 - Always run `nix flake check` before committing
 

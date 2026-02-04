@@ -20,6 +20,12 @@ croire/
 │   ├── lib.nix           # Exports flake.lib.croire utilities
 │   │
 │   └── _features/        # Feature modules (excluded from auto-import)
+│       ├── _imports/         # Shared imports for feature modules
+│       │   ├── darwin/       # Darwin-specific imports (dock, packages)
+│       │   ├── fonts.nix     # Shared font configuration
+│       │   ├── languages/    # Language toolchains
+│       │   ├── lazyvim/      # LazyVim configuration
+│       │   └── nvf/          # NVF neovim configuration
 │       ├── git.nix           # homeModules.git
 │       ├── shell.nix         # homeModules.shell
 │       ├── editors.nix       # homeModules.editors
@@ -29,11 +35,6 @@ croire/
 │       ├── darwin-system.nix # darwinModules.system
 │       └── nixos-system.nix  # nixosModules.system
 │
-├── lib/modules/          # Legacy modules (imported by base modules)
-│   ├── darwin/           # Darwin system modules (dock, packages, services, system)
-│   ├── nixos/            # NixOS system modules (packages, services, system)
-│   ├── home/             # Home-manager modules (shared, darwin, nixos)
-│   └── flake/            # Flake utilities (templates, etc.)
 ├── hosts/                # Host-specific configurations
 │   ├── darwin/           # macOS hosts (e.g., Emiles-MacBook-Pro.nix)
 │   └── nixos/            # NixOS hosts (e.g., nixos.nix, nixos-acer.nix)
@@ -42,7 +43,6 @@ croire/
 │   └── saberzero1.nix    # NixOS user
 ├── programs/             # Application-specific dotfiles and configurations
 ├── overlays/             # Nix package overlays
-├── configurations/       # Legacy configurations (referenced by hosts/)
 ├── scripts/              # Helper scripts
 ├── flake.nix             # Main flake using flake-parts + import-tree
 └── justfile              # Command definitions
@@ -66,14 +66,12 @@ croire/
 
 | Module | Description |
 |--------|-------------|
-| `darwinModules.base` | Legacy base configuration (imports all from `lib/modules/darwin/`) |
-| `darwinModules.system` | Consolidated system config (fonts, security, settings, packages) |
+| `darwinModules.system` | Consolidated system config (fonts, security, settings, packages, dock) |
 
 #### NixOS Modules (`nixosModules.*`)
 
 | Module | Description |
 |--------|-------------|
-| `nixosModules.base` | Legacy base configuration (imports all from `lib/modules/nixos/`) |
 | `nixosModules.system` | Consolidated system config (fonts, security, hardware, services) |
 
 #### Home Manager Modules (`homeModules.*`)
@@ -82,15 +80,15 @@ Feature-based modules that work across Darwin and NixOS:
 
 | Module | Description |
 |--------|-------------|
-| `homeModules.base` | Legacy base configuration (imports all from `lib/modules/home/`) |
-| `homeModules.darwin-only` | macOS-specific settings |
-| `homeModules.linux-only` | Linux-specific settings |
 | `homeModules.git` | Git, lazygit, gh, diff-so-fancy |
 | `homeModules.shell` | Zsh, nushell, starship, zoxide, direnv, fzf, carapace |
 | `homeModules.editors` | Neovim (nvf/lazyvim), helix, emacs |
 | `homeModules.terminal` | Tmux, ghostty, wezterm |
 | `homeModules.development` | Languages, bat, eza, ripgrep, yazi, btop |
-| `homeModules.services` | Espanso, emacs daemon, mako, wlsunset, skhd, sketchybar |
+| `homeModules.services` | Espanso, emacs daemon, mako, wlsunset |
+| `homeModules.xdg` | XDG config, MIME apps, desktop entries |
+| `homeModules.linuxDesktop` | Hyprland, Wayland, GTK (Linux only) |
+| `homeModules.darwinDesktop` | Aerospace, dock (macOS only) |
 
 ## Technologies & Tools
 
@@ -176,6 +174,7 @@ The dendritic pattern organizes configuration by **feature** rather than platfor
 │ ├── nixos-base.nix    ← Registry for nixosModules.*             │
 │ ├── home-base.nix     ← Registry for homeModules.*              │
 │ └── _features/        ← Feature module implementations          │
+│     ├── _imports/     ← Shared imports (fonts, languages, etc.) │
 │     ├── git.nix       → homeModules.git                         │
 │     ├── shell.nix     → homeModules.shell                       │
 │     ├── editors.nix   → homeModules.editors                     │
@@ -236,25 +235,6 @@ Feature modules can be imported selectively in your configuration:
   ];
 }
 ```
-
-Or use the legacy `base` module which includes everything:
-
-```nix
-{
-  imports = [
-    inputs.croire.homeModules.base
-  ];
-}
-```
-
-### Migration Path
-
-The repository currently uses **both** legacy and feature modules:
-
-- **Legacy modules** (`base`): Import entire configuration trees from `lib/modules/`
-- **Feature modules**: Standalone, composable configurations in `modules/_features/`
-
-For existing configurations, the `base` modules are used. New configurations can choose to import feature modules selectively for better composability.
 
 ### Library Functions
 
