@@ -43,7 +43,7 @@ in
     touchIdAuth = true;
   };
 
-  # Dock configuration is set in lib/modules/darwin/default.nix
+  # Dock configuration is set in modules/_features/darwin-system.nix
 
   # Trusted users for Nix
   nix.settings.trusted-users = [

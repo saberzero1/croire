@@ -14,10 +14,7 @@ in
 {
   # Export all darwin modules
   flake.darwinModules = {
-    # Legacy base module
-    base = self + /lib/modules/darwin;
-
-    # Feature modules (new dendritic pattern)
+    # Feature modules (dendritic pattern)
     inherit (featureModules.system.flake.darwinModules) system;
   };
 }

@@ -14,10 +14,7 @@ in
 {
   # Export all nixos modules
   flake.nixosModules = {
-    # Legacy base module
-    base = self + /lib/modules/nixos;
-
-    # Feature modules (new dendritic pattern)
+    # Feature modules (dendritic pattern)
     inherit (featureModules.system.flake.nixosModules) system;
   };
 }

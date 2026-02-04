@@ -26,10 +26,10 @@ in
       imports = [
         flake.inputs.determinate.darwinModules.default
         flake.inputs.nix-homebrew.darwinModules.nix-homebrew
-        # Import dock module from legacy (has custom options)
-        (self + /lib/modules/darwin/dock)
+        # Import dock module (has custom options)
+        ./_imports/darwin/dock
         # Import packages (homebrew casks, formulae, masApps, taps)
-        (self + /lib/modules/darwin/packages)
+        ./_imports/darwin/packages
       ];
 
       # ===========================================
