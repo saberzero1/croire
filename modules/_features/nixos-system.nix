@@ -28,9 +28,8 @@ in
     {
       # Import shared fonts
       imports = [
+        flake.inputs.determinate.nixosModules.default
         (self + /modules/_features/_imports/fonts.nix)
-        # Binary caches
-        ./_imports/binary-caches.nix
       ];
 
       # ===========================================
@@ -494,7 +493,21 @@ in
       # ===========================================
       # System Settings
       # ===========================================
-      nix.channel.enable = true;
+      nix = {
+        channel.enable = true;
+        settings =
+          let
+            cache = import (self + /modules/_features/_imports/binary-caches.nix);
+          in
+          {
+            trusted-users = [
+              "root"
+              "saberzero1"
+            ];
+            inherit (cache) substituters trusted-public-keys;
+          };
+      };
+
       system.switch.enable = true;
 
       zramSwap = {

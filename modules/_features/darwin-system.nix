@@ -32,8 +32,6 @@ in
         ./_imports/darwin/packages
         # Shared fonts
         ./_imports/fonts.nix
-        # Binary caches
-        ./_imports/binary-caches.nix
       ];
 
       # ===========================================
@@ -52,14 +50,19 @@ in
       };
 
       # Determinate Nix settings (written to /etc/nix/nix.custom.conf)
-      determinateNix.customSettings = {
-        eval-cores = 0;
-        experimental-features = "nix-command flakes";
-        trusted-users = [
-          "root"
-          "emile"
-        ];
-      };
+      determinateNix.customSettings =
+        let
+          cache = import (self + /modules/_features/_imports/binary-caches.nix);
+        in
+        {
+          eval-cores = 0;
+          experimental-features = "nix-command flakes";
+          trusted-users = [
+            "root"
+            "emile"
+          ];
+          inherit (cache) substituters trusted-public-keys;
+        };
 
       # Dock configuration
       local = {
