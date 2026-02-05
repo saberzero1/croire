@@ -188,8 +188,8 @@ clean-old:
 [group('Clean')]
 [unix]
 gc:
-  sudo nix-collect-garbage -d
-  nix-collect-garbage -d
+  sudo nh clean all || nix-collect-garbage -d
+  nh clean all || nix-collect-garbage -d
 
 # Remove old generations
 [group('Clean')]
@@ -197,7 +197,7 @@ gc:
 clean:
   @echo "Before cleanup:"
   @df -h / | tail -1
-  sudo nix-collect-garbage -d
+  nh clean all || nix-collect-garbage -d
   nix-collect-garbage -d
   @echo "After cleanup:"
   @df -h / | tail -1
