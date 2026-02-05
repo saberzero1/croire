@@ -39,7 +39,7 @@ in
     casks = [
       "aerospace"
       "calibre"
-      "docker"
+      "docker-desktop"
       "dotnet-sdk"
       "espanso"
       "firefox"
