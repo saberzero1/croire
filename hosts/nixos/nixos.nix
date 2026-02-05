@@ -196,6 +196,11 @@ in
     ];
   };
 
+  determinateNix.customSettings.trusted-users = [
+    "root"
+    "saberzero1"
+  ];
+
   system.stateVersion = "24.11";
   time.timeZone = lib.mkForce "Europe/Amsterdam";
 }

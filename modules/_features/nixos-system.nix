@@ -29,6 +29,8 @@ in
       # Import shared fonts
       imports = [
         (self + /modules/_features/_imports/fonts.nix)
+        # Binary caches
+        ./_imports/binary-caches.nix
       ];
 
       # ===========================================
