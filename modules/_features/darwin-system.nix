@@ -76,6 +76,24 @@ in
       };
 
       # ===========================================
+      # Resource Limits
+      # ===========================================
+      # Increase file descriptor limits (fixes "Too many open files" warnings during Nix builds)
+      launchd.daemons.limit-maxfiles = {
+        serviceConfig = {
+          Label = "limit.maxfiles";
+          ProgramArguments = [
+            "launchctl"
+            "limit"
+            "maxfiles"
+            "65536" # soft limit
+            "1048576" # hard limit
+          ];
+          RunAtLoad = true;
+        };
+      };
+
+      # ===========================================
       # Shell Configuration
       # ===========================================
       # Add nushell to the list of allowed shells
@@ -150,6 +168,11 @@ in
             extra-trusted-users = emile
           '';
         };
+
+        # Set shell ulimit for interactive sessions
+        extraInit = ''
+          ulimit -n 65536
+        '';
       };
 
       # ===========================================
