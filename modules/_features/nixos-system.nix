@@ -500,6 +500,9 @@ in
             cache = import (self + /modules/_features/_imports/binary-caches.nix);
           in
           {
+            eval-cores = 0;
+            experimental-features = "nix-command flakes";
+            extra-nix-path = "nixpkgs=flake:nixpkgs";
             trusted-users = [
               "root"
               "saberzero1"

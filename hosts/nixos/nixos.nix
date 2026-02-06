@@ -187,15 +187,6 @@ in
 
   virtualisation.docker.enable = true;
 
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    extra-nix-path = "nixpkgs=flake:nixpkgs";
-    trusted-users = [
-      "root"
-      "saberzero1"
-    ];
-  };
-
   system.stateVersion = "24.11";
   time.timeZone = lib.mkForce "Europe/Amsterdam";
 }
