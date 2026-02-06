@@ -140,19 +140,19 @@ in
         # This avoids version mismatches between system and home-manager
         package = null;
         portalPackage = null;
-        systemd = {
-          enable = true;
-          variables = [ "--all" ];
-        };
+        # Disable Home Manager's systemd integration - UWSM handles this
+        # (programs.hyprland.withUWSM = true in nixos-system.nix)
+        systemd.enable = false;
         settings = {
           monitor = ",preferred,auto,1";
 
           exec-once = [
-            "hyprlock || hyperctl dispatch exit"
+            # Import environment variables for systemd user services
             "systemctl --user import-environment"
-            "hyprpaper"
+            # Notification services
             "avizo-service"
             "mako"
+            # Authentication agents
             "eval $(ssh-agent -s)"
             "eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
           ];

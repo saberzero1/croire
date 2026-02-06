@@ -141,15 +141,13 @@ in
             wofi
             wofi-pass
 
-            # GNOME
-            gdm
-            gnome-shell
-            gnome-shell-extensions
-            gnome-browser-connector
-            gnome-remote-desktop
+            # GNOME (minimal - for nautilus file manager)
             nautilus
             nautilus-python
             nautilus-open-any-terminal
+
+            # Greetd
+            tuigreet
 
             # Remote desktop
             xrdp
@@ -390,13 +388,34 @@ in
       # ===========================================
       # Services
       # ===========================================
-      services.displayManager = {
-        autoLogin = {
-          enable = true;
-          user = "saberzero1";
+      # Greetd display manager with tuigreet (Tokyo Night themed)
+      # Theme style based on docs screenshot, mapped to Tokyo Night palette:
+      # docs:   border=magenta; text=cyan;    prompt=green;  time=red;     action=blue;   button=yellow; container=black; input=red
+      # tokyo:  border=purple;  text=cyan;    prompt=green;  time=pink;    action=blue;   button=yellow; container=bg;    input=pink
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session = {
+            # Tokyo Night color mapping (matching docs screenshot style):
+            # - border: #bb9af7 (purple - like magenta)
+            # - text: #7dcfff (cyan)
+            # - prompt: #9ece6a (green)
+            # - time: #f7768e (pink/red)
+            # - action: #7aa2f7 (blue)
+            # - button: #e0af68 (yellow/orange)
+            # - container: #1a1b26 (dark background)
+            # - input: #f7768e (pink/red)
+            command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-user-session --sessions /run/current-system/sw/share/wayland-sessions --cmd 'uwsm start -e -D Hyprland hyprland.desktop' --asterisks --theme 'border=#bb9af7;text=#7dcfff;prompt=#9ece6a;time=#f7768e;action=#7aa2f7;button=#e0af68;container=#1a1b26;input=#f7768e'";
+            user = "greeter";
+          };
         };
-        defaultSession = "hyprland-uwsm";
       };
+
+      # Greetd session environments
+      environment.etc."greetd/environments".text = ''
+        hyprland-uwsm
+        Hyprland
+      '';
 
       # ===========================================
       # Systemd
