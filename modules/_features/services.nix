@@ -18,7 +18,15 @@ in
     let
       inherit (pkgs.stdenv) isDarwin isLinux;
     in
+    let
+      espansoPackage = pkgs.espanso-wayland;
+    in
     {
+      # ===========================================
+      # Packages
+      # ===========================================
+      home.packages = lib.mkIf isLinux [ espansoPackage ];
+
       # ===========================================
       # Cross-platform Services
       # ===========================================
@@ -28,15 +36,12 @@ in
         emacs.enable = false;
 
         # Espanso - text expansion
+        # Disabled: using custom xdg.configFile with mkOutOfStoreSymlink instead
         # On macOS, espanso is installed via Homebrew to maintain stable accessibility permissions.
-        # Nix-installed binaries have changing hashes that cause macOS to revoke permissions on rebuild.
+        # Nix-installed binaries have changing hashes that cause macOS to revoke accessibility permissions.
         # See: https://github.com/nix-community/home-manager/issues/8179
         espanso = lib.mkIf isLinux {
-          enable = true;
-          package = pkgs.espanso;
-          package-wayland = pkgs.espanso-wayland;
-          waylandSupport = true;
-          x11Support = true;
+          enable = false;
         };
 
         # ===========================================
@@ -129,14 +134,30 @@ in
       # ===========================================
       # Service Configuration Files
       # ===========================================
-      home.file = {
-        # Espanso text expansion config (from totten flake input)
-        espanso = {
-          target = ".config/espanso";
-          source = "${flake.inputs.totten}";
-          recursive = true;
-        };
 
+      # Espanso text expansion config (from totten flake input)
+      # Using mkOutOfStoreSymlink to create a direct symlink to the totten repo,
+      # avoiding the empty file issue that occurs with recursive source copying.
+      xdg.configFile."espanso".source = config.lib.file.mkOutOfStoreSymlink "${flake.inputs.totten}";
+
+      # Custom systemd service for Espanso (since home-manager module is disabled)
+      systemd.user.services.espanso = lib.mkIf isLinux {
+        Unit = {
+          Description = "Espanso: cross platform text expander in Rust";
+          After = [ "graphical-session.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${espansoPackage}/bin/espanso daemon";
+          Restart = "on-failure";
+          RestartSec = 3;
+        };
+        Install = {
+          WantedBy = [ "default.target" ];
+        };
+      };
+
+      home.file = {
         # ───────────────────────────────────────────────────────────────────────
         # Darwin-only service files
         # ───────────────────────────────────────────────────────────────────────
