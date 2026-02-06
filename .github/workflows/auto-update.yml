@@ -47,13 +47,36 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
           sudo hostnamectl set-hostname nixos-acer
 
-      - name: Update opencode to latest release
+      - name: Update GitHub inputs with pinned release tags
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          LATEST_TAG=$(gh api repos/anomalyco/opencode/releases/latest --jq '.tag_name')
-          echo "Latest opencode release: $LATEST_TAG"
-          sed -i "s|github:anomalyco/opencode?ref=v[^\"]*|github:anomalyco/opencode?ref=$LATEST_TAG|" flake.nix
+          # Find all GitHub flake inputs with explicit version tags (?ref=v*)
+          # Pattern: github:owner/repo?ref=vX.Y.Z
+          grep -oP 'github:[^/]+/[^?]+\?ref=v[^"]+' flake.nix | sort -u | while read -r input; do
+            # Extract owner/repo and current tag
+            REPO=$(echo "$input" | sed 's|github:\([^?]*\)?ref=.*|\1|')
+            CURRENT_TAG=$(echo "$input" | sed 's|.*?ref=\(.*\)|\1|')
+            
+            echo "Checking $REPO (current: $CURRENT_TAG)"
+            
+            # Fetch latest release tag from GitHub API
+            LATEST_TAG=$(gh api "repos/$REPO/releases/latest" --jq '.tag_name' 2>/dev/null || echo "")
+            
+            if [ -z "$LATEST_TAG" ]; then
+              echo "  No releases found for $REPO, skipping"
+              continue
+            fi
+            
+            if [ "$CURRENT_TAG" = "$LATEST_TAG" ]; then
+              echo "  Already at latest: $LATEST_TAG"
+            else
+              echo "  Updating: $CURRENT_TAG -> $LATEST_TAG"
+              # Escape special characters in the repo path for sed
+              ESCAPED_REPO=$(echo "$REPO" | sed 's|/|\\/|g')
+              sed -i "s|github:${ESCAPED_REPO}?ref=v[^\"]*|github:${REPO}?ref=${LATEST_TAG}|" flake.nix
+            fi
+          done
 
       - name: Omnix update flakes
         # run: om --accept-flake-config ci run .#update
