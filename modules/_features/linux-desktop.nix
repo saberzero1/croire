@@ -210,17 +210,18 @@ in
           master.new_status = "master";
           misc.force_default_wallpaper = 0;
 
-          # Window rules
+          # Window rules (v3 syntax - Hyprland 0.48+)
+          # Format: "match:class <regex>, <effect> <value>"
           windowrule = [
-            "workspace 1, match:class ^(ghostty)$"
-            "workspace 1, match:class ^(wezterm)$"
-            "workspace 2, match:class ^(obsidian)$"
-            "workspace 3, match:class ^(zen)$"
-            "workspace 4, match:class ^(zed)$"
-            "workspace 4, match:class ^(codium-url-handler)$"
-            "workspace 4, match:class ^(wine)$"
-            "workspace 5, match:class ^(discord)$"
-            "float true, match:class ^(com.github.finefindus.eyedropper)$"
+            "match:class ^(ghostty)$, workspace 1"
+            "match:class ^(wezterm)$, workspace 1"
+            "match:class ^(obsidian)$, workspace 2"
+            "match:class ^(zen)$, workspace 3"
+            "match:class ^(zed)$, workspace 4"
+            "match:class ^(codium-url-handler)$, workspace 4"
+            "match:class ^(wine)$, workspace 4"
+            "match:class ^(discord)$, workspace 5"
+            "match:class ^(com.github.finefindus.eyedropper)$, float on"
           ];
 
           # Keybindings
@@ -423,29 +424,24 @@ in
                 disable-scroll = true;
                 all-outputs = true;
                 format = "{icon}";
+                on-click = "activate";
                 persistent-workspaces = {
-                  "1" = [ ];
-                  "2" = [ ];
-                  "3" = [ ];
-                  "4" = [ ];
-                  "5" = [ ];
-                  "6" = [ ];
-                  "7" = [ ];
-                  "8" = [ ];
-                  "9" = [ ];
-                  "10" = [ ];
+                  "*" = 10;
                 };
                 format-icons = {
-                  "1" = "";
-                  "2" = "";
-                  "3" = "";
-                  "4" = "";
-                  "5" = "";
-                  "6" = "";
-                  "7" = "";
-                  "8" = "";
-                  "9" = "";
-                  "10" = "";
+                  "1" = "󰲠";
+                  "2" = "󰲢";
+                  "3" = "󰲤";
+                  "4" = "󰲦";
+                  "5" = "󰲨";
+                  "6" = "󰲪";
+                  "7" = "󰲬";
+                  "8" = "󰲮";
+                  "9" = "󰲰";
+                  "10" = "󰿬";
+                  "active" = "";
+                  "default" = "";
+                  "empty" = "";
                 };
               };
               "clock#date" = {
@@ -513,7 +509,7 @@ in
             * {
               border: none;
               border-radius: 0;
-              font-family: mononoki Nerd Font;
+              font-family: "Symbols Nerd Font", "mononoki Nerd Font", monospace;
               font-size: 14px;
               min-height: 0;
             }
@@ -531,7 +527,7 @@ in
               padding: 5px 10px;
               color: #c0caf5;
             }
-            #workspaces button.focused {
+            #workspaces button.active {
               color: #24283b;
               background-color: #7aa2f7;
               border-radius: 5px;
@@ -540,6 +536,9 @@ in
               background-color: #7dcfff;
               color: #24283b;
               border-radius: 5px;
+            }
+            #workspaces button.empty {
+              color: #565f89;
             }
             #hyprland-mode, #clock.date, #clock, #battery, #pulseaudio, #network, #cpu, #memory {
               background-color: #24283b;
