@@ -231,6 +231,7 @@ in
             libsoup_3
 
             # Graphics
+            wf-recorder
             inkscape-with-extensions
             vscodium.fhs
             vscode-extensions.asvetliakov.vscode-neovim
