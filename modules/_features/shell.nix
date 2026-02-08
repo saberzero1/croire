@@ -357,8 +357,11 @@ in
               event: { send: executehostcommand cmd: "tmux-sessionizer" }
             })
 
-            # Carapace completions
+            # Carapace completions (for tools that have native nushell completions)
             source "~/.config/nushell/integration/carapace.nu"
+            let carapace_completer = {|spans: list<string>|
+              CARAPACE_LENIENT=1 carapace $spans.0 nushell ...$spans | from json
+            }
 
             # Zoxide completions
             source "~/.config/nushell/integration/zoxide.nu"
@@ -376,6 +379,27 @@ in
                   $'"($expanded_path | str replace --all "\"" "\\\"")"'
                 } else {$value}
               }
+            }
+
+            let external_completer = {|spans|
+              let expanded_alias = scope aliases
+              | where name == $spans.0
+              | get -o 0.expansion
+
+              let spans = if $expanded_alias != null {
+                $spans
+                | skip 1
+                | prepend ($expanded_alias | split row ' ' | take 1)
+              } else {
+                $spans
+              }
+
+              match $spans.0 {
+                nu => $fish_completer
+                git => $fish_completer
+                asdf => $fish_completer
+                _ => $carapace_completer
+              } | do $in $spans
             }
 
             # ───────────────────────────────────────────────────────────────────────────
@@ -435,6 +459,11 @@ in
 
             # Carapace bridges
             $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+
+            $env.config.completions.external {
+              enable = true
+              completer = $external_completer
+            }
           '';
 
           extraLogin = "";
