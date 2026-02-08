@@ -33,7 +33,7 @@ in
       elixir
       elm
       erlang
-      # fish
+      fish
       fsharp
       git_config
       git_rebase

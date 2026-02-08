@@ -360,8 +360,23 @@ in
             # Carapace completions
             source "~/.config/nushell/integration/carapace.nu"
 
-            # Zoxide
+            # Zoxide completions
             source "~/.config/nushell/integration/zoxide.nu"
+
+            # Fish completions (for tools that don't have native nushell completions, but have fish completions)
+            let fish_completer = {|spans|
+              fish --command $"complete '--do-complete=($spans | str replace --all "'" "\\'" | str join ' ')'"
+              | from tsv --flexible --noheaders --no-infer
+              | rename value description
+              | update value {|row|
+                let value = $row.value
+                let need_quote = ['\' ',' '[' ']' '(' ')' ' ' '\t' "'" '"' '`'] | any {$in in $value}
+                if ($need_quote and ($value | path exists)) {
+                  let expanded_path = if ($value starts-with ~) {$value | path expand --no-symlink} else {$value}
+                  $'"($expanded_path | str replace --all "\"" "\\\"")"'
+                } else {$value}
+              }
+            }
 
             # ───────────────────────────────────────────────────────────────────────────
             # tirith - terminal security
@@ -486,6 +501,11 @@ in
             "--nocnf"
           ];
         };
+
+        # ─────────────────────────────────────────────────────────────────────────
+        # Fish - Solely for Nushell completions (not used as primary shell)
+        # ─────────────────────────────────────────────────────────────────────────
+        fish.enable = true;
       };
 
       # ─────────────────────────────────────────────────────────────────────────
