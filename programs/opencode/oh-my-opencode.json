@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "opencode/kimi-k2.5"
+      "model": "opencode/claude-opus-4-5"
     },
     "hephaestus": {
       "model": "opencode/gpt-5.2-codex"
@@ -20,16 +20,16 @@
       "model": "opencode/gemini-3-flash"
     },
     "prometheus": {
-      "model": "opencode/kimi-k2.5"
+      "model": "opencode/claude-opus-4-5"
     },
     "metis": {
-      "model": "opencode/kimi-k2.5"
+      "model": "opencode/claude-opus-4-5"
     },
     "momus": {
       "model": "opencode/gpt-5.2"
     },
     "atlas": {
-      "model": "opencode/kimi-k2.5"
+      "model": "opencode/claude-sonnet-4-5"
     }
   },
   "categories": {
