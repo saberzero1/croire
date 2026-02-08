@@ -304,6 +304,7 @@ in
             "application/xhtml+xml" = [ "zen.desktop" ];
             "application/x-extension-xhtml" = [ "zen.desktop" ];
             "application/x-extension-xht" = [ "zen.desktop" ];
+            "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
           };
         };
         portal = {
