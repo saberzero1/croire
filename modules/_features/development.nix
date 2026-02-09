@@ -239,7 +239,7 @@ in
         man-pages
 
         # Desktop utilities
-        opencode-desktop
+        # opencode-desktop
       ];
 
       # ─────────────────────────────────────────────────────────────────────────
