@@ -237,6 +237,9 @@ in
         # Documentation
         tldr
         man-pages
+
+        # Desktop utilities
+        opencode-desktop
       ];
 
       # ─────────────────────────────────────────────────────────────────────────
