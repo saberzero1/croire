@@ -230,6 +230,8 @@ in
       home.packages =
         shellScripts
         ++ [
+          pkgs.fish # Solely for Nushell completions (not used as primary shell)
+          pkgs.carapace # Cross-shell completion generator (used for Nushell completions)
           # tirith: Terminal security - guards against homograph attacks, ANSI injection, pipe-to-shell attacks
           pkgs.tirith
         ]
@@ -360,7 +362,7 @@ in
             # Carapace completions (for tools that have native nushell completions)
             source "~/.config/nushell/integration/carapace.nu"
             let carapace_completer = {|spans: list<string>|
-              CARAPACE_LENIENT=1 carapace $spans.0 nushell ...$spans | from json
+              CARAPACE_LENIENT=1 ${pkgs.carapace}/bin/carapace $spans.0 nushell ...$spans | from json
             }
 
             # Zoxide completions
@@ -368,7 +370,7 @@ in
 
             # Fish completions (for tools that don't have native nushell completions, but have fish completions)
             let fish_completer = {|spans|
-              fish --command $"complete '--do-complete=($spans | str replace --all "'" "\\'" | str join ' ')'"
+              ${pkgs.fish}/bin/fish --command $"complete '--do-complete=($spans | str replace --all "'" "\\'" | str join ' ')'"
               | from tsv --flexible --noheaders --no-infer
               | rename value description
               | update value {|row|
@@ -472,6 +474,8 @@ in
 
           environmentVariables = {
             SHELL = "${pkgs.nushell}/bin/nu";
+            PROMPT_INDICATOR_VI_NORMAL = "";
+            PROMPT_INDICATOR_VI_INSERT = "";
           };
         };
 
