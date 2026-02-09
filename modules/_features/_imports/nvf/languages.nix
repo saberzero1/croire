@@ -49,6 +49,10 @@ in
         enable = true;
         autotagHtml = true;
       };
+      lsp = {
+        enable = true;
+        servers = [ "emmet-ls" ];
+      };
     };
 
     java = {
@@ -414,7 +418,7 @@ in
         debugger = "lldb-vscode";
       };
       lsp = {
-        enable = true;
+        enable = false;
         servers = [ "zls" ];
       };
       treesitter.enable = true;
