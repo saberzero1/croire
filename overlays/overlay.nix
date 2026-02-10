@@ -161,20 +161,24 @@ swiftOverrides
           install -m 444 -D resources/app.asar $out/share/obsidian/app.asar
           install -m 444 -D resources/obsidian.asar $out/share/obsidian/obsidian.asar
 
-          # Wrapper that always includes app.asar (needed for single-instance IPC)
-          # Wayland flags only added when not in CLI mode (no args or GUI-related args)
+          # Smart wrapper that handles:
+          # 1. Fresh launch (Obsidian not running): start with app.asar + Wayland flags
+          # 2. CLI/TUI mode (Obsidian running): connect without Wayland flags
+          #
+          # When Obsidian is running, Electron's single-instance mechanism forwards args
+          # to the existing process. Wayland flags get interpreted as CLI commands.
           cat > $out/bin/obsidian << 'WRAPPER'
           #!${super.bash}/bin/bash
           ELECTRON="${super.electron}/bin/electron"
           APP_ASAR="$out/share/obsidian/app.asar"
 
-          # If any arguments are passed, assume CLI mode (no Wayland flags)
-          # GUI mode is only when launching with no arguments
-          if [[ $# -gt 0 ]]; then
-            # CLI mode: no Wayland flags (they interfere with CLI parsing)
+          # Check if Obsidian is already running (look for electron process with obsidian asar)
+          if pgrep -f "electron.*obsidian" > /dev/null 2>&1; then
+            # Obsidian is running: connect to existing instance (CLI/TUI mode)
+            # No Wayland flags - they'd be forwarded to Obsidian CLI as commands
             exec "$ELECTRON" "$APP_ASAR" "$@"
           else
-            # GUI mode: add Wayland flags if appropriate
+            # Obsidian not running: launch fresh instance with Wayland support
             WAYLAND_FLAGS=""
             if [[ -n "$NIXOS_OZONE_WL" && -n "$WAYLAND_DISPLAY" ]]; then
               WAYLAND_FLAGS="--ozone-platform=wayland"
