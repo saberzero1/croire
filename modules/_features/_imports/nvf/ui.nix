@@ -1,83 +1,86 @@
 {
-  programs.nvf.settings.vim.ui = {
-    borders = {
-      enable = true;
-      globalStyle = "rounded";
-      plugins = {
-        which-key = {
+  programs.nvf.settings.vim = {
+    mini.icons.enable = true;
+    ui = {
+      borders = {
+        enable = true;
+        globalStyle = "rounded";
+        plugins = {
+          which-key = {
+            enable = true;
+          };
+        };
+      };
+      breadcrumbs = {
+        enable = true;
+        navbuddy = {
           enable = true;
         };
       };
-    };
-    breadcrumbs = {
-      enable = true;
-      navbuddy = {
+      colorizer = {
         enable = true;
       };
-    };
-    colorizer = {
-      enable = true;
-    };
-    fastaction = {
-      enable = true;
-    };
-    illuminate = {
-      enable = true;
-    };
-    noice = {
-      enable = true;
-      setupOpts = {
-        lsp = {
-          override = {
-            "vim.lsp.util.convert_input_to_markdown_lines" = true;
-            "vim.lsp.util.stylize_markdown" = true;
-            "cmp.entry.get_documentation" = true;
-          };
-          signature = {
-            enabled = true;
-            auto_open = {
+      fastaction = {
+        enable = true;
+      };
+      illuminate = {
+        enable = true;
+      };
+      noice = {
+        enable = true;
+        setupOpts = {
+          lsp = {
+            override = {
+              "vim.lsp.util.convert_input_to_markdown_lines" = true;
+              "vim.lsp.util.stylize_markdown" = true;
+              "cmp.entry.get_documentation" = true;
+            };
+            signature = {
               enabled = true;
-              trigger = true;
-              luasnip = true;
-              throttle = 50;
+              auto_open = {
+                enabled = true;
+                trigger = true;
+                luasnip = true;
+                throttle = 50;
+              };
             };
           };
-        };
-        routes = [
-          {
-            filter = {
-              event = "msg_show";
-              any = [
-                { find = "%d+L, %d+B"; }
-                { find = "; after #%d+"; }
-                { find = "; before #%d+"; }
-              ];
-            };
-            view = "mini";
-          }
-        ];
-        presets = {
-          bottom_search = true;
-          command_palette = true;
-          long_message_to_split = true;
+          routes = [
+            {
+              filter = {
+                event = "msg_show";
+                any = [
+                  { find = "%d+L, %d+B"; }
+                  { find = "; after #%d+"; }
+                  { find = "; before #%d+"; }
+                ];
+              };
+              view = "mini";
+            }
+          ];
+          presets = {
+            bottom_search = true;
+            command_palette = true;
+            long_message_to_split = true;
+          };
         };
       };
-    };
-    smartcolumn = {
-      enable = true;
-      setupOpts = {
-        colorcolumn = "80";
-        disabled_filetypes = [
-          "help"
-          "text"
-          "markdown"
-          "NvimTree"
-          "alpha"
-          "dashboard"
-          "ministarter"
-          "snacks_dashboard"
-          "startify"
-        ];
+      smartcolumn = {
+        enable = true;
+        setupOpts = {
+          colorcolumn = "80";
+          disabled_filetypes = [
+            "help"
+            "text"
+            "markdown"
+            "NvimTree"
+            "alpha"
+            "dashboard"
+            "ministarter"
+            "snacks_dashboard"
+            "startify"
+          ];
+        };
       };
     };
   };

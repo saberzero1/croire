@@ -67,10 +67,12 @@ in
     # Homebrew Formulae (CLI Tools)
     # =========================================
     brews = [
+      "coreutils"
       "docker"
       "nowplaying-cli"
       "pre-commit"
       "switchaudio-osx"
+      "tree-sitter-cli"
     ];
 
     # =========================================
