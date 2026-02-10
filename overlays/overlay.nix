@@ -119,4 +119,83 @@ swiftOverrides
       "this_test_does_not_exist"
     ];
   });
+
+  # Obsidian: override to 1.11.7 for new CLI features
+  # See: https://help.obsidian.md/cli
+  # Fix: Wayland flags must come BEFORE app.asar, otherwise they're passed to Obsidian's CLI
+  obsidian =
+    let
+      version = "1.11.7";
+      src = super.fetchurl {
+        url =
+          if super.stdenv.hostPlatform.isDarwin then
+            "https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/Obsidian-${version}.dmg"
+          else
+            "https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz";
+        hash =
+          if super.stdenv.hostPlatform.isDarwin then
+            "sha256-TRE9ymNtpcp7gEbuuSfJxvYDXLDVNz+o4+RSNyHZgmE="
+          else
+            "sha256-HrqeFJ2C5uZw0IBtD9y607V6007fOwnA0KnA83cwWjg=";
+      };
+    in
+    if super.stdenv.hostPlatform.isDarwin then
+      super.obsidian.overrideAttrs (oldAttrs: {
+        inherit version src;
+      })
+    else
+      # Linux: rebuild with wrapper that properly handles CLI
+      # The app.asar contains Electron's single-instance logic which routes CLI to running instance
+      super.stdenv.mkDerivation {
+        pname = "obsidian";
+        inherit version src;
+        inherit (super.obsidian) icon desktopItem meta;
+        nativeBuildInputs = [
+          super.makeWrapper
+          super.imagemagick
+        ];
+        installPhase = ''
+          runHook preInstall
+          mkdir -p $out/bin
+
+          install -m 444 -D resources/app.asar $out/share/obsidian/app.asar
+          install -m 444 -D resources/obsidian.asar $out/share/obsidian/obsidian.asar
+
+          # Wrapper that always includes app.asar (needed for single-instance IPC)
+          # Wayland flags only added when not in CLI mode (no args or GUI-related args)
+          cat > $out/bin/obsidian << 'WRAPPER'
+          #!${super.bash}/bin/bash
+          ELECTRON="${super.electron}/bin/electron"
+          APP_ASAR="$out/share/obsidian/app.asar"
+
+          # If any arguments are passed, assume CLI mode (no Wayland flags)
+          # GUI mode is only when launching with no arguments
+          if [[ $# -gt 0 ]]; then
+            # CLI mode: no Wayland flags (they interfere with CLI parsing)
+            exec "$ELECTRON" "$APP_ASAR" "$@"
+          else
+            # GUI mode: add Wayland flags if appropriate
+            WAYLAND_FLAGS=""
+            if [[ -n "$NIXOS_OZONE_WL" && -n "$WAYLAND_DISPLAY" ]]; then
+              WAYLAND_FLAGS="--ozone-platform=wayland"
+            fi
+            exec "$ELECTRON" $WAYLAND_FLAGS "$APP_ASAR" "$@"
+          fi
+          WRAPPER
+          chmod +x $out/bin/obsidian
+
+          # Substitute the actual path
+          substituteInPlace $out/bin/obsidian \
+            --replace-fail '$out' "$out"
+
+          install -m 444 -D "${super.obsidian.desktopItem}/share/applications/"* \
+            -t $out/share/applications/
+
+          for size in 16 24 32 48 64 128 256 512; do
+            mkdir -p $out/share/icons/hicolor/"$size"x"$size"/apps
+            magick -background none ${super.obsidian.icon} -resize "$size"x"$size" $out/share/icons/hicolor/"$size"x"$size"/apps/obsidian.png
+          done
+          runHook postInstall
+        '';
+      };
 }
