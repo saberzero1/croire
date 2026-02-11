@@ -117,6 +117,8 @@ in
               "opencode-ignore"
               "@simonwjackson/opencode-direnv"
               "oh-my-opencode"
+              # "@tarquinen/opencode-dcp@latest"
+              "opencode-mystatus"
             ];
           };
           # opencode.ai/zen/v1/models for models
@@ -281,8 +283,8 @@ in
 
         # OpenCode AI assistant
         oh-my-opencode = {
-          target = ".config/opencode/oh-my-opencode.jsonc";
-          source = "${self}/programs/opencode/oh-my-opencode.jsonc";
+          target = ".config/opencode/oh-my-opencode.json";
+          source = "${self}/programs/opencode/oh-my-opencode.json";
         };
 
         # ───────────────────────────────────────────────────────────────────────
