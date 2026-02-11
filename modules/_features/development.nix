@@ -281,8 +281,8 @@ in
 
         # OpenCode AI assistant
         oh-my-opencode = {
-          target = ".config/opencode/oh-my-opencode.json";
-          source = "${self}/programs/opencode/oh-my-opencode.json";
+          target = ".config/opencode/oh-my-opencode.jsonc";
+          source = "${self}/programs/opencode/oh-my-opencode.jsonc";
         };
 
         # ───────────────────────────────────────────────────────────────────────
