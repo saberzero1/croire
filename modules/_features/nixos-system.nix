@@ -192,12 +192,12 @@ in
             libuuid
 
             # Wine
-            wine
+            # wine
             wine64
             winetricks
-            wineWow64Packages.wine-fonts
-            wineWow64Packages.wine-wow64.waylandFull
-            wineWow64Packages.wine-wow64-yabridge
+            wineWow64Packages.fonts
+            wineWow64Packages.waylandFull
+            wineWow64Packages.yabridge
 
             # Document viewers
             evince
