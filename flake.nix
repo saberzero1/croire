@@ -66,7 +66,7 @@
 
     # Unified Nix sources
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # Pin to nixpkgs-24.11 for Swift packages (Swift broken in unstable with clang-21, issue #461474)
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     # nixpkgs-stable.url = "github:NixOS/nixpkgs";
@@ -191,6 +191,7 @@
     # zed.url = "github:zed-industries/zed";
     opencode = {
       url = "github:anomalyco/opencode?ref=v1.1.64";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     hyprland.url = "github:hyprwm/Hyprland";

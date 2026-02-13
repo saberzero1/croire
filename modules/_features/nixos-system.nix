@@ -192,11 +192,11 @@ in
             libuuid
 
             # Wine
-            wineWowPackages.stable
+            wineWow64Packages.stable
             wine
-            (pkgs.wine.override { wineBuild = "wine64"; })
+            # (pkgs.wine.override { wineBuild = "wine64"; })
             wine64
-            wineWowPackages.staging
+            wineWow64Packages.staging
             winetricks
 
             # Document viewers
