@@ -192,12 +192,12 @@ in
             libuuid
 
             # Wine
-            wineWow64Packages.stable
             wine
-            # (pkgs.wine.override { wineBuild = "wine64"; })
             wine64
-            wineWow64Packages.staging
             winetricks
+            wineWow64Packages.wine-fonts
+            wineWow64Packages.wine-wow64.waylandFull
+            wineWow64Packages.wine-wow64-yabridge
 
             # Document viewers
             evince
