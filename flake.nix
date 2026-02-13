@@ -190,7 +190,7 @@
     };
     # zed.url = "github:zed-industries/zed";
     opencode = {
-      url = "github:anomalyco/opencode?ref=v1.1.64";
+      url = "github:anomalyco/opencode?ref=v1.1.65";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
