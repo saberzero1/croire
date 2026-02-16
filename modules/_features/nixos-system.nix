@@ -424,6 +424,8 @@ in
       # ===========================================
       systemd = {
         packages = with pkgs; [ uwsm ];
+        # Increase file descriptor limits for Nix daemon (fixes "Too many open files" on large fetches)
+        services.nix-daemon.serviceConfig.LimitNOFILE = "1048576";
         user = {
           tmpfiles.rules = [ ];
           services = {
