@@ -56,9 +56,7 @@ in
             #auto_show = true;
             draw = {
               treesitter = [ "lsp" ];
-              columns = [
-                (lua "{ 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 }")
-              ];
+              columns = [ (lua "{ 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 }") ];
               components = {
                 item_idx = {
                   text = lua "function(ctx) return ctx.idx == 10 and '0' or ctx.idx >= 10 and ' ' or tostring(ctx.idx) end";

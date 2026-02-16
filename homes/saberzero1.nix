@@ -11,7 +11,7 @@
   home = {
     username = "saberzero1";
     homeDirectory = "/home/saberzero1";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
 
   # Import home-manager modules via config.flake (available via extraSpecialArgs)

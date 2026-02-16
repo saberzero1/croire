@@ -1,3 +1,1 @@
-{
-  programs.lazyvim.config.autocmds = "";
-}
+{ programs.lazyvim.config.autocmds = ""; }

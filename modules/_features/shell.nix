@@ -154,9 +154,7 @@ in
         "reload-rclone" = "launchctl kickstart -k gui/$(id -u)/rCloneMounts.service";
       };
 
-      linuxAliases = lib.optionalAttrs isLinux {
-        "power-down" = "shutdown --poweroff --no-wall 0";
-      };
+      linuxAliases = lib.optionalAttrs isLinux { "power-down" = "shutdown --poweroff --no-wall 0"; };
 
       allAliases =
         cdAliases

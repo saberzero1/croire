@@ -199,13 +199,9 @@ in
     # These allow running home-manager separately from system rebuild
     homeConfigurations = {
       # Darwin user
-      "emile" = mkHomeConfig "emile" {
-        system = "aarch64-darwin";
-      };
+      "emile" = mkHomeConfig "emile" { system = "aarch64-darwin"; };
       # NixOS user
-      "saberzero1" = mkHomeConfig "saberzero1" {
-        system = "x86_64-linux";
-      };
+      "saberzero1" = mkHomeConfig "saberzero1" { system = "x86_64-linux"; };
     };
   };
 }

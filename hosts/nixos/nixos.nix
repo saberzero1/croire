@@ -75,9 +75,7 @@ in
     };
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/abb6997f-138e-42ad-a312-00c225b18520"; }
-  ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/abb6997f-138e-42ad-a312-00c225b18520"; } ];
 
   hardware = {
     enableRedistributableFirmware = true;

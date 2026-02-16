@@ -16,9 +16,7 @@
       ]
       "cwd"
     ];
-    root_lsp_ignore = [
-      "copilot"
-    ];
+    root_lsp_ignore = [ "copilot" ];
     deprecation_warnings = false;
     trouble_lualine = true;
     markdown_recommended_style = 0;

@@ -40,18 +40,14 @@ in
         # On macOS, espanso is installed via Homebrew to maintain stable accessibility permissions.
         # Nix-installed binaries have changing hashes that cause macOS to revoke accessibility permissions.
         # See: https://github.com/nix-community/home-manager/issues/8179
-        espanso = lib.mkIf isLinux {
-          enable = false;
-        };
+        espanso = lib.mkIf isLinux { enable = false; };
 
         # ===========================================
         # Linux-only Services
         # ===========================================
 
         # Mako - notification daemon (Wayland)
-        mako = lib.mkIf isLinux {
-          enable = true;
-        };
+        mako = lib.mkIf isLinux { enable = true; };
 
         # Wlsunset - automatic color temperature adjustment (Wayland)
         wlsunset = lib.mkIf isLinux {
