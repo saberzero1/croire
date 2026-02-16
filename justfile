@@ -86,7 +86,7 @@ home-list:
 # Lint/format nix files
 [group('Dev')]
 lint:
-  nix fmt
+  fd -e nix --type f | xargs nixfmt --strict --verify
 
 # Check nix flake
 [group('Dev')]
