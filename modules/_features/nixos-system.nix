@@ -191,13 +191,9 @@ in
             webkitgtk_6_0
             libuuid
 
-            # Wine
-            # wine
-            wine64
-            winetricks
-            wineWow64Packages.fonts
+            # Wine (WoW64 — pure 64-bit build with 32-bit Windows app support)
             wineWow64Packages.waylandFull
-            wineWow64Packages.yabridge
+            winetricks
 
             # Document viewers
             evince
