@@ -86,6 +86,23 @@ swiftOverrides
     inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
   sash = inputs.sash.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
+  # comment-checker: Multi-language comment detection hook for Claude Code / OpenCode
+  # Uses tree-sitter via CGo for AST-based comment detection
+  comment-checker = super.buildGoModule {
+    pname = "comment-checker";
+    version = "0.7.0";
+    src = inputs.comment-checker;
+    vendorHash = "sha256-cW/cWo6k7aA/Z2w6+CBAdNKhEiWN1cZiv/hl2Mto6Gw=";
+    subPackages = [ "cmd/comment-checker" ];
+    proxyVendor = true;
+    meta = with super.lib; {
+      description = "Multi-language comment detection hook for Claude Code / OpenCode";
+      homepage = "https://github.com/code-yeongyu/go-claude-code-comment-checker";
+      license = licenses.mit;
+      mainProgram = "comment-checker";
+    };
+  };
+
   # tirith: Terminal security - guards against homograph attacks, ANSI injection, pipe-to-shell attacks
   # Tests disabled: init_bash_output and init_zsh_output require bash/zsh in sandbox
   tirith = super.rustPlatform.buildRustPackage {

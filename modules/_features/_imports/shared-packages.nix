@@ -21,11 +21,14 @@
     sqlfluff
     viu
     chafa
+    comment-checker
     haskellPackages.hoogle
     fh
     bun
     go
     ispell
+    lazynpm
+    lazycli
   ];
 
   # Security & SSH

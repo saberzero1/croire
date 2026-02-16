@@ -115,6 +115,23 @@
         "type": "github"
       }
     },
+    "comment-checker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766901401,
+        "narHash": "sha256-RyZlVPJ+G3Vvt5Mhja7mxSe8bd+BfsYqbbrfqjjCbYE=",
+        "owner": "code-yeongyu",
+        "repo": "go-claude-code-comment-checker",
+        "rev": "3af15e041cf73c94735d2be965f083d4e84093ad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "code-yeongyu",
+        "ref": "v0.7.0",
+        "repo": "go-claude-code-comment-checker",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1758758545,
@@ -2599,6 +2616,7 @@
     },
     "root": {
       "inputs": {
+        "comment-checker": "comment-checker",
         "determinate": "determinate",
         "devenv": "devenv",
         "devour-flake": "devour-flake",

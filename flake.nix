@@ -237,6 +237,12 @@
       url = "github:sheeki03/tirith/v0.1.2";
       flake = false;
     };
+
+    # Comment checker - multi-language comment detection hook for Claude Code / OpenCode
+    comment-checker = {
+      url = "github:code-yeongyu/go-claude-code-comment-checker/v0.7.0";
+      flake = false;
+    };
   };
 
   # Wired using dendritic pattern with flake-parts + import-tree
