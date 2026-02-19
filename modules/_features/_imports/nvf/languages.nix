@@ -73,7 +73,7 @@ in
     odin = {
       enable = true;
       lsp = {
-        enable = true;
+        enable = false; # ols broken: upstream uses disallowed `using` statements with newer Odin compiler
         servers = [ "ols" ];
       };
       treesitter.enable = true;
