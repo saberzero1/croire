@@ -192,8 +192,14 @@ in
             libuuid
 
             # Wine (WoW64 — pure 64-bit build with 32-bit Windows app support)
-            wineWow64Packages.waylandFull
+            # wineWow64Packages.waylandFull
+            wine
+            wine64
             winetricks
+            # wineWowPackages.stable
+            wineWow64Packages.stable
+            # wineWowPackages.waylandFull
+            wineWow64Packages.waylandFull
 
             # Document viewers
             evince
