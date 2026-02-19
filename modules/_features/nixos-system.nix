@@ -193,7 +193,7 @@ in
 
             # Wine (WoW64 — pure 64-bit build with 32-bit Windows app support)
             # wineWow64Packages.waylandFull
-            wine
+            (wine.override { wineBuild = "wine64"; })
             wine64
             winetricks
             # wineWowPackages.stable
