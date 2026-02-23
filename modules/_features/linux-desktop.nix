@@ -831,5 +831,42 @@ in
           recursive = true;
         };
       };
+
+      # ===========================================
+      # Flatpak (declarative management)
+      # ===========================================
+      services.flatpak = {
+        enable = true;
+        remotes = {
+          "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
+          "GeForceNOW" = "https://international.download.nvidia.com/GFNLinux/flatpak/geforcenow.flatpakrepo";
+        };
+        packages = [
+          # "flathub:app/org.onlyoffice.desktopeditors//stable"
+          "flathub:app/org.freedesktop.Platform//24.08"
+          "flathub:app/org.freedesktop.Sdk//24.08"
+          "GeForceNOW:app/com.nvidia.geforcenow//stable"
+        ];
+        overrides = {
+          "global".Context = {
+            sockets = [
+              "wayland"
+              "!x11"
+              "fallback-x11"
+            ];
+          };
+          "com.nvidia.geforcenow" = {
+            Environment = {
+              "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
+            };
+            Context.sockets = [
+              "wayland"
+              "!x11"
+              "!fallback-x11"
+            ];
+          };
+        };
+      };
+
     };
 }

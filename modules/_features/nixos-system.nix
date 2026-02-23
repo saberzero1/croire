@@ -29,7 +29,6 @@ in
       # Import shared fonts
       imports = [
         flake.inputs.determinate.nixosModules.default
-        flake.inputs.declarative-flatpak.nixosModules.default
         (self + /modules/_features/_imports/fonts.nix)
       ];
 
@@ -424,6 +423,11 @@ in
       '';
 
       # ===========================================
+      # Flatpak
+      # ===========================================
+      services.flatpak.enable = true;
+
+      # ===========================================
       # Systemd
       # ===========================================
       systemd = {
@@ -554,42 +558,6 @@ in
 
       powerManagement.cpuFreqGovernor = "performance";
       appstream.enable = true;
-
-      # ===========================================
-      # Flatpak (declarative management)
-      # ===========================================
-      services.flatpak = {
-        enable = true;
-        remotes = {
-          "flathub" = "https://flathub.org/repo/flathub.flatpakrepo";
-          "GeForceNOW" = "https://international.download.nvidia.com/GFNLinux/flatpak/geforcenow.flatpakrepo";
-        };
-        packages = [
-          # "flathub:app/org.onlyoffice.desktopeditors//stable"
-          "flathub:org.freedesktop.Platform//24.08"
-          "flathub:org.freedesktop.Sdk//24.08"
-          "GeForceNOW:app/com.nvidia.geforcenow//stable"
-        ];
-        overrides = {
-          "global".Context = {
-            sockets = [
-              "wayland"
-              "!x11"
-              "fallback-x11"
-            ];
-          };
-          "com.nvidia.geforcenow" = {
-            Environment = {
-              "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
-            };
-            Context.sockets = [
-              "wayland"
-              "!x11"
-              "!fallback-x11"
-            ];
-          };
-        };
-      };
 
       # ===========================================
       # User Activation Scripts

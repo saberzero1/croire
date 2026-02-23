@@ -59,6 +59,7 @@ let
                     # Linux-specific external modules (gaming)
                     inputs.geforce-infinity.homeManagerModules.default
                     inputs.play-nix.homeManagerModules.play
+                    inputs.declarative-flatpak.homeModules.default
                     # User-specific configuration
                     homeConfig
                   ];
