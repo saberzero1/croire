@@ -102,7 +102,7 @@ in
             name = "GeForce NOW (Offloaded)";
             comment = "Cloud Gaming";
             icon = "${config.home.homeDirectory}/AppImages/.icons/geforce_now.png";
-            exec = "nvidia-offload com.nvidia.geforcenow";
+            exec = "nvidia-offload flatpak run com.nvidia.geforcenow";
             categories = [ "Application" ];
             terminal = false;
             mimeType = [ "text/plain" ];
