@@ -567,6 +567,7 @@ in
         packages = [
           # "flathub:app/org.onlyoffice.desktopeditors//stable"
           "flathub:app/org.freedesktop.Platform//24.08"
+          "flathub:app/org.freedesktop.Sdk//24.08"
           "GeForceNOW:app/com.nvidia.geforcenow//stable"
         ];
       };
