@@ -570,6 +570,28 @@ in
           "flathub:app/org.freedesktop.Sdk//24.08"
           "GeForceNOW:app/com.nvidia.geforcenow//stable"
         ];
+        overrides = {
+          "global".Context = {
+            filesystems = [
+              "home"
+            ];
+            sockets = [
+              "wayland"
+              "!x11"
+              "fallback-x11"
+            ];
+          };
+          "com.nvidia.geforcenow" = {
+            Environment = {
+              "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
+            };
+            Context.sockets = [
+              "wayland"
+              "!x11"
+              "!fallback-x11"
+            ];
+          };
+        };
       };
 
       # ===========================================
