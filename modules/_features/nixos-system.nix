@@ -24,6 +24,10 @@ in
           ''
         );
       GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
+      grep = pkgs.gnugrep;
+      desiredFlatpaks = [
+        "org.onlyoffice.desktopeditors"
+      ];
     in
     {
       # Import shared fonts
@@ -567,6 +571,37 @@ in
 
           echo "Setting tmux-sessionizer permissions"
         '';
+        flatpakManagement.text = ''
+          # Ensure the Flathub repo is added
+          ${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub \
+            https://flathub.org/repo/flathub.flatpakrepo
+          flatpak remote-add --if-not-exists GeForceNOW \
+           https://international.download.nvidia.com/GFNLinux/flatpak/geforcenow.flatpakrepo
+
+          # Get currently installed Flatpaks
+          installedFlatpaks=$(${pkgs.flatpak}/bin/flatpak list --app --columns=application)
+
+          # Remove any Flatpaks that are NOT in the desired list
+          for installed in $installedFlatpaks; do
+            if ! echo ${toString desiredFlatpaks} | ${grep}/bin/grep -q $installed; then
+              echo "Removing $installed because it's not in the desiredFlatpaks list."
+              ${pkgs.flatpak}/bin/flatpak uninstall -y --noninteractive $installed
+            fi
+          done
+          flatpak install --user GeForceNOW com.nvidia.geforcenow
+
+          # Install or re-install the Flatpaks you DO want
+          for app in ${toString desiredFlatpaks}; do
+            echo "Ensuring $app is installed."
+            ${pkgs.flatpak}/bin/flatpak install -y flathub $app
+          done
+
+          # Remove unused Flatpaks
+          ${pkgs.flatpak}/bin/flatpak uninstall --unused -y
+
+          # Update all installed Flatpaks
+          ${pkgs.flatpak}/bin/flatpak update -y
+    '';
       };
     };
 }
