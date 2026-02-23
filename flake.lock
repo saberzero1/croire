@@ -161,6 +161,21 @@
         "type": "github"
       }
     },
+    "declarative-flatpak": {
+      "locked": {
+        "lastModified": 1769601081,
+        "narHash": "sha256-J0n+J/qfU3xTf5iaMcQrEK4dA5GSYQcw8XJuhZsM1Pc=",
+        "owner": "in-a-dil-emma",
+        "repo": "declarative-flatpak",
+        "rev": "aba8c5ca67444cf4bcd0b02df284de1c93533a19",
+        "type": "github"
+      },
+      "original": {
+        "owner": "in-a-dil-emma",
+        "repo": "declarative-flatpak",
+        "type": "github"
+      }
+    },
     "determinate": {
       "inputs": {
         "determinate-nixd-aarch64-darwin": "determinate-nixd-aarch64-darwin",
@@ -229,11 +244,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1771672827,
-        "narHash": "sha256-N9oNxNcx/R4WRFTBREr/Q3UAuUng4a3MAKI/jHuXXNw=",
+        "lastModified": 1771848767,
+        "narHash": "sha256-3AT2xn0vmTT8RPUpQOTPzgc12xrFALigojkGWFFLOFg=",
         "owner": "cachix",
         "repo": "devenv",
-        "rev": "6757a742f6393c7070f159eed9a59cbe20690aa3",
+        "rev": "8e42c095b51583993629134d8c0eb3bfdfb4a122",
         "type": "github"
       },
       "original": {
@@ -1155,11 +1170,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1771835133,
-        "narHash": "sha256-XhLfb1tF7PHdRjURZDqH+0t0okBurAMrUh4VwXMfqog=",
+        "lastModified": 1771844177,
+        "narHash": "sha256-RGtpnY+CJ76c5S1sE2awQm0817/rWmg/3crGW+XvV0w=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "540bcea05abb0814df035f803cf258ea9aa3b973",
+        "rev": "56670af827f0ddb5763fe395b7cdc9a7c6b47aad",
         "type": "github"
       },
       "original": {
@@ -1171,11 +1186,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1771840472,
-        "narHash": "sha256-1GBL6fZ4DVWnbmMKE2fZWLzbM8GdcvHZ8Y0Eats9pm4=",
+        "lastModified": 1771847633,
+        "narHash": "sha256-yi2LOCz5fHFcj9pr+7gSvex0zErVQKUujDCHmWDtpss=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "ec5e571afc483567290b2d8123d30b27c7c21369",
+        "rev": "e19ca8b562cc9d2c6ef8dd49b704d364c3848638",
         "type": "github"
       },
       "original": {
@@ -2617,6 +2632,7 @@
     "root": {
       "inputs": {
         "comment-checker": "comment-checker",
+        "declarative-flatpak": "declarative-flatpak",
         "determinate": "determinate",
         "devenv": "devenv",
         "devour-flake": "devour-flake",
