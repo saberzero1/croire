@@ -572,9 +572,6 @@ in
         ];
         overrides = {
           "global".Context = {
-            filesystems = [
-              "home"
-            ];
             sockets = [
               "wayland"
               "!x11"
