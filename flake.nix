@@ -163,7 +163,7 @@
     #   url = "github:wez/wezterm/main?dir=nix";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak";
+    declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak?ref=v4.1.6";
     nix-snapd = {
       url = "https://flakehub.com/f/nix-community/nix-snapd/*";
       # url = "github:nix-community/nix-snapd";
