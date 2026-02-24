@@ -745,7 +745,7 @@ in
           wl-clipboard
 
           # AppImage support
-          gearlever
+          # gearlever
           appimage-run
 
           # System utilities

@@ -50,7 +50,7 @@
         eslint_d
         svelte-language-server
         typescript-language-server
-        sass
+        # sass
         serve
         npm
         vscode-langservers-extracted
