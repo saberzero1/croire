@@ -46,9 +46,6 @@ in
         # Linux-only Services
         # ===========================================
 
-        # Flatpak - application sandboxing and distribution system
-        flatpak = lib.mkIf isLinux { enable = true; };
-
         # Mako - notification daemon (Wayland)
         mako = lib.mkIf isLinux { enable = true; };
 
