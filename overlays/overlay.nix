@@ -137,6 +137,8 @@ swiftOverrides
     ];
   });
 
+  bun = inputs.bun.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+
   # Obsidian: override to 1.11.7 for new CLI features
   # See: https://help.obsidian.md/cli
   # Fix: Wayland flags must come BEFORE app.asar, otherwise they're passed to Obsidian's CLI

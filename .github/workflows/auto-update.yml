@@ -53,7 +53,7 @@ jobs:
         run: |
           # Find all GitHub flake inputs with explicit version tags (?ref=v*)
           # Pattern: github:owner/repo?ref=vX.Y.Z
-          grep -oP 'github:[^/]+/[^?]+\?ref=v[^"]+' flake.nix | sort -u | while read -r input; do
+          grep -oP 'github:[^/]+/[^?]+\?ref=v?[^"]+' flake.nix | sort -u | while read -r input; do
             # Extract owner/repo and current tag
             REPO=$(echo "$input" | sed 's|github:\([^?]*\)?ref=.*|\1|')
             CURRENT_TAG=$(echo "$input" | sed 's|.*?ref=\(.*\)|\1|')
@@ -74,7 +74,7 @@ jobs:
               echo "  Updating: $CURRENT_TAG -> $LATEST_TAG"
               # Escape special characters in the repo path for sed
               ESCAPED_REPO=$(echo "$REPO" | sed 's|/|\\/|g')
-              sed -i "s|github:${ESCAPED_REPO}?ref=v[^\"]*|github:${REPO}?ref=${LATEST_TAG}|" flake.nix
+              sed -i "s|github:${ESCAPED_REPO}?ref=[^\"]*|github:${REPO}?ref=${LATEST_TAG}|" flake.nix
             fi
           done
 
