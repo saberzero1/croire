@@ -193,7 +193,7 @@
       url = "github:anomalyco/opencode?ref=v1.2.15";
     };
     bun = {
-      url = "github:oven-sh/bun?ref=bun-v1.3.9";
+      url = "github:oven-sh/bun?ref=bun-v1.3.10";
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
