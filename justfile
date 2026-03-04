@@ -34,18 +34,18 @@ run:
 [linux]
 build:
   @echo "Building NixOS configuration..."
-  nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel --show-trace
+  nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel --accept-flake-config --show-trace
   @echo "Activating configuration..."
-  sudo nixos-rebuild switch --flake .#$(hostname)
+  sudo nixos-rebuild switch --flake .#$(hostname) --accept-flake-config
 
 # Activate default configuration (macOS)
 [group('Main')]
 [macos]
 build:
   @echo "Building Darwin configuration..."
-  nix build .#darwinConfigurations.$(hostname -s).system --show-trace
+  nix build .#darwinConfigurations.$(hostname -s).system --accept-flake-config --show-trace
   @echo "Activating configuration..."
-  sudo ./result/sw/bin/darwin-rebuild switch --flake .#$(hostname -s)
+  sudo ./result/sw/bin/darwin-rebuild switch --flake .#$(hostname -s) --accept-flake-config
 
 # Pull and build
 [group('Main')]
