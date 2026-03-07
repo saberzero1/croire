@@ -142,7 +142,7 @@ swiftOverrides
   # Fix: Wayland flags must come BEFORE app.asar, otherwise they're passed to Obsidian's CLI
   obsidian =
     let
-      version = "1.11.7";
+      version = "1.12.4";
       src = super.fetchurl {
         url =
           if super.stdenv.hostPlatform.isDarwin then
@@ -151,9 +151,9 @@ swiftOverrides
             "https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz";
         hash =
           if super.stdenv.hostPlatform.isDarwin then
-            "sha256-TRE9ymNtpcp7gEbuuSfJxvYDXLDVNz+o4+RSNyHZgmE="
+            "sha256-etm0JSji5H6EG6jgcie4/QxANsfEJx+zZzHLpFBNu7o="
           else
-            "sha256-HrqeFJ2C5uZw0IBtD9y607V6007fOwnA0KnA83cwWjg=";
+            "sha256-cusm388SP44HvoCD90+gRfQAxx7B/mTlirkdnMCEyN4=";
       };
     in
     if super.stdenv.hostPlatform.isDarwin then
