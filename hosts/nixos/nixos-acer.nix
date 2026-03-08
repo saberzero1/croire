@@ -56,9 +56,16 @@ in
     };
     kernelModules = [
       "kvm-amd"
+      "nvidia"
+      "nvidia_modeset"
       "nvidia_uvm"
+      "nvidia_drm"
     ];
-    kernelParams = [ "usbcore.autosuspend=-1" ];
+    kernelParams = [
+      "usbcore.autosuspend=-1"
+      "nvidia-drm.modeset=1"
+      "nvidia-drm.fbdev=1"
+    ];
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
@@ -119,6 +126,7 @@ in
   };
 
   services = {
+    hardware.bolt.enable = true;
     pulseaudio.enable = false;
     xserver = {
       enable = true;
