@@ -150,6 +150,10 @@ in
               "github@claude-plugins-official" = true;
               "oh-my-claudecode@omc" = true;
             };
+            "statusLine" = {
+              "type" = "command";
+              "command" = "node /home/saberzero1/.claude/hud/omc-hud.mjs";
+            };
           };
           # MCP (Model Context Protocol) servers
           # Claude Code equivalent of OpenCode plugins for external integrations
@@ -174,6 +178,10 @@ in
                 "@upstash/context7-mcp"
               ];
               type = "stdio";
+            };
+            github = {
+              type = "http";
+              url = "https://api.githubcopilot.com/mcp/";
             };
           };
           # Custom commands, rules, and memory can be added here:
