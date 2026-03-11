@@ -29,6 +29,8 @@ in
             ".DS_Store"
             ".direnv/"
             ".envrc"
+            ".claude"
+            ".omc"
           ];
 
           # Git LFS

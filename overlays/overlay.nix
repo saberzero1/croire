@@ -16,7 +16,7 @@ let
   # NOTE: dotnet-sdk is completely broken on Darwin (nixpkgs #450126) - use Homebrew instead
   # Only Swift packages (dockutil, xcodes) are pinned to stable where Swift 5.8 works
   swiftOverrides =
-    if super.stdenv.hostPlatform.isDarwin then
+    if (super ? stdenv) && super.stdenv.hostPlatform.isDarwin then
       {
         # Swift and Swift-dependent packages from stable nixpkgs (clang-21 breaks Swift 5.10.1)
         # These will be removed once Swift is fixed in nixpkgs-unstable

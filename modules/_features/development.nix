@@ -128,6 +128,60 @@ in
           rules = "";
         };
 
+        # claude-code - Anthropic's official AI coding CLI
+        # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.claude-code.enable
+        claude-code = {
+          enable = true;
+          settings = {
+            # Disable auto-updates (managed by Nix)
+            autoUpdaterStatus = "disabled";
+            theme = "dark";
+            includeCoAuthoredBy = false;
+            # Permissions
+            permissions = {
+              # Safer default: allow edits, require approval for commands
+              defaultMode = "acceptEdits";
+              # Prevent bypassing permissions mode
+              disableBypassPermissionsMode = "disable";
+            };
+            # Plugins (from plugin marketplaces)
+            # Format: "plugin-name@marketplace-name" = true/false
+            enabledPlugins = {
+              "github@claude-plugins-official" = true;
+              "oh-my-claudecode@omc" = true;
+            };
+          };
+          # MCP (Model Context Protocol) servers
+          # Claude Code equivalent of OpenCode plugins for external integrations
+          # NOTE: GitHub Copilot MCP and other OAuth-dependent servers are
+          # managed via the plugin system (enabledPlugins in settings above).
+          mcpServers = {
+            # Filesystem MCP - local filesystem access
+            filesystem = {
+              command = "npx";
+              args = [
+                "-y"
+                "@modelcontextprotocol/server-filesystem"
+                config.home.homeDirectory
+              ];
+              type = "stdio";
+            };
+            # Context7 MCP - documentation lookup
+            context7 = {
+              command = "npx";
+              args = [
+                "-y"
+                "@upstash/context7-mcp"
+              ];
+              type = "stdio";
+            };
+          };
+          # Custom commands, rules, and memory can be added here:
+          # commands = { };
+          # rules = { };
+          # memory.text = "";
+        };
+
         # tmux-sessionizer - Tmux session manager
         tmux-sessionizer = {
           enable = true;
@@ -214,6 +268,7 @@ in
         gnumake
         cmake
         pkg-config
+        # nodejs_latest
 
         # File utilities
         fd
@@ -247,6 +302,23 @@ in
       # ─────────────────────────────────────────────────────────────────────────
       # Development configuration files
       # ─────────────────────────────────────────────────────────────────────────
+      # Declarative Claude Code marketplace management
+      # Registers third-party plugin marketplaces (clones repos on first run).
+      # Plugin enablement is handled declaratively via enabledPlugins in settings.
+      # Uses the unwrapped package to avoid --mcp-config flag interference.
+      home.activation.claudeCodeMarketplaces =
+        let
+          claude = "${config.programs.claude-code.package}/bin/claude";
+          # Third-party marketplaces to register (official marketplace is auto-managed)
+          marketplaces = [ "https://github.com/Yeachan-Heo/oh-my-claudecode" ];
+          marketplaceCmds = lib.concatMapStringsSep "\n" (
+            url: ''run ${claude} plugin marketplace add "${url}" 2>/dev/null || true''
+          ) marketplaces;
+        in
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          ${marketplaceCmds}
+        '';
+
       home.file = {
         # File managers
         ranger = {
