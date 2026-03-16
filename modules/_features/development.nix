@@ -276,6 +276,7 @@ in
         gnumake
         cmake
         pkg-config
+        just
         # nodejs_latest
 
         # File utilities
