@@ -28,6 +28,36 @@ in
       home.packages = lib.mkIf isLinux [ espansoPackage ];
 
       # ===========================================
+      # Activation Scripts
+      # ===========================================
+
+      # Install opencode-claude-max-proxy dependencies (cross-platform)
+      # Copies source from Nix store to a mutable directory and runs bun install
+      home.activation.claudeMaxProxyInstall = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        PROXY_DIR="${config.home.homeDirectory}/.local/share/opencode-claude-max-proxy"
+        PROXY_SRC="${flake.inputs.opencode-claude-max-proxy}"
+
+        # Copy source if it changed (compare against a marker)
+        MARKER="$PROXY_DIR/.nix-source-hash"
+        CURRENT_HASH="$(${pkgs.nix}/bin/nix hash path "$PROXY_SRC" 2>/dev/null || echo "unknown")"
+
+        if [ ! -f "$MARKER" ] || [ "$(cat "$MARKER" 2>/dev/null)" != "$CURRENT_HASH" ]; then
+          run mkdir -p "$PROXY_DIR"
+          # Copy source files (preserve node_modules if exists)
+          run ${pkgs.rsync}/bin/rsync -a --delete \
+            --exclude 'node_modules' \
+            --exclude '.nix-source-hash' \
+            "$PROXY_SRC/" "$PROXY_DIR/"
+          # Make files writable (Nix store files are read-only)
+          run chmod -R u+w "$PROXY_DIR"
+          # Install dependencies
+          run ${pkgs.bun}/bin/bun install --cwd "$PROXY_DIR"
+          # Write marker
+          echo "$CURRENT_HASH" > "$PROXY_DIR/.nix-source-hash"
+        fi
+      '';
+
+      # ===========================================
       # Cross-platform Services
       # ===========================================
 
@@ -150,6 +180,73 @@ in
         };
         Install = {
           WantedBy = [ "default.target" ];
+        };
+      };
+
+      # Custom systemd service for opencode-claude-max-proxy
+      # Bridges Claude Max subscription to OpenCode via passthrough mode
+      systemd.user.services.claude-max-proxy = lib.mkIf isLinux {
+        Unit = {
+          Description = "OpenCode Claude Max Proxy (passthrough mode)";
+          After = [ "network.target" ];
+        };
+        Service = {
+          Type = "simple";
+          WorkingDirectory = "${config.home.homeDirectory}/.local/share/opencode-claude-max-proxy";
+          ExecStart = "${pkgs.bun}/bin/bun run proxy";
+          Environment = [
+            "CLAUDE_PROXY_PASSTHROUGH=1"
+            "CLAUDE_PROXY_PORT=7154"
+            "CLAUDE_PROXY_HOST=127.0.0.1"
+            "PATH=${
+              lib.makeBinPath [
+                pkgs.bun
+                pkgs.nodejs_latest
+                pkgs.claude-code
+              ]
+            }:/run/current-system/sw/bin:${config.home.homeDirectory}/.nix-profile/bin"
+          ];
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+        Install = {
+          WantedBy = [ "default.target" ];
+        };
+      };
+
+      # macOS launchd agent for opencode-claude-max-proxy
+      # Darwin equivalent of the systemd service above
+      launchd.agents.claude-max-proxy = lib.mkIf isDarwin {
+        enable = true;
+        config = {
+          Label = "com.opencode.claude-max-proxy";
+          ProgramArguments = [
+            "${pkgs.bun}/bin/bun"
+            "run"
+            "proxy"
+          ];
+          WorkingDirectory = "${config.home.homeDirectory}/.local/share/opencode-claude-max-proxy";
+          EnvironmentVariables = {
+            CLAUDE_PROXY_PASSTHROUGH = "1";
+            CLAUDE_PROXY_PORT = "7154";
+            CLAUDE_PROXY_HOST = "127.0.0.1";
+            PATH = lib.concatStringsSep ":" [
+              "${pkgs.bun}/bin"
+              "${pkgs.nodejs_latest}/bin"
+              "${pkgs.claude-code}/bin"
+              "/opt/homebrew/bin"
+              "/run/current-system/sw/bin"
+              "${config.home.homeDirectory}/.nix-profile/bin"
+              "/usr/bin"
+              "/bin"
+            ];
+          };
+          RunAtLoad = true;
+          KeepAlive = {
+            SuccessfulExit = false;
+          };
+          StandardOutPath = "${config.home.homeDirectory}/Library/Logs/claude-max-proxy.log";
+          StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/claude-max-proxy.error.log";
         };
       };
 

@@ -113,12 +113,24 @@ in
                 "enabled" = true;
               };
             };
+            # Route Anthropic requests through claude-max-proxy (passthrough mode)
+            # Proxy runs at localhost:7154, bridging Claude Max subscription via Agent SDK
+            "provider" = {
+              "anthropic" = {
+                "options" = {
+                  "apiKey" = "dummy";
+                  "baseURL" = "http://127.0.0.1:7154";
+                };
+              };
+            };
             "plugin" = [
               "opencode-ignore"
               "@simonwjackson/opencode-direnv"
               "oh-my-opencode"
               # "@tarquinen/opencode-dcp@latest"
               "opencode-mystatus"
+              # claude-max-proxy session resume plugin (from local install)
+              "${config.home.homeDirectory}/.local/share/opencode-claude-max-proxy/src/plugin/claude-max-headers.ts"
             ];
           };
           # opencode.ai/zen/v1/models for models
@@ -366,7 +378,8 @@ in
         oh-my-opencode = {
           target = ".config/opencode/oh-my-opencode.json";
           # source = "${self}/programs/opencode/oh-my-opencode-zen.json";
-          source = "${self}/programs/opencode/oh-my-opencode.json";
+          # source = "${self}/programs/opencode/oh-my-opencode.json";
+          source = "${self}/programs/opencode/oh-my-opencode-claude.json";
         };
 
         # ───────────────────────────────────────────────────────────────────────

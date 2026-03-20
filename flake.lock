@@ -3041,6 +3041,22 @@
         "type": "github"
       }
     },
+    "opencode-claude-max-proxy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774000150,
+        "narHash": "sha256-7vEW2JpNXgTW8Aly5WLYZSDB/f1MRURXBHuU3CyFmto=",
+        "owner": "rynfar",
+        "repo": "opencode-claude-max-proxy",
+        "rev": "18e10dbe13b01792258766ff04dc7848ff0c8287",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rynfar",
+        "repo": "opencode-claude-max-proxy",
+        "type": "github"
+      }
+    },
     "play-nix": {
       "inputs": {
         "home-manager": "home-manager_4",
@@ -3186,6 +3202,7 @@
         "nvf": "nvf",
         "omnix": "omnix",
         "opencode": "opencode",
+        "opencode-claude-max-proxy": "opencode-claude-max-proxy",
         "play-nix": "play-nix",
         "sash": "sash",
         "sops-nix": "sops-nix",

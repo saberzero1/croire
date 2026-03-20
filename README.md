@@ -20,20 +20,25 @@ croire/
 │   ├── lib.nix           # Exports flake.lib.croire utilities
 │   │
 │   └── _features/        # Feature modules (excluded from auto-import)
-│       ├── _imports/         # Shared imports for feature modules
-│       │   ├── darwin/       # Darwin-specific imports (dock, packages)
-│       │   ├── fonts.nix     # Shared font configuration
-│       │   ├── languages/    # Language toolchains
-│       │   ├── lazyvim/      # LazyVim configuration
-│       │   └── nvf/          # NVF neovim configuration
-│       ├── git.nix           # homeModules.git
-│       ├── shell.nix         # homeModules.shell
-│       ├── editors.nix       # homeModules.editors
-│       ├── terminal.nix      # homeModules.terminal
-│       ├── development.nix   # homeModules.development
-│       ├── services.nix      # homeModules.services
-│       ├── darwin-system.nix # darwinModules.system
-│       └── nixos-system.nix  # nixosModules.system
+│       ├── _imports/             # Shared imports for feature modules
+│       │   ├── binary-caches.nix # Binary cache configuration
+│       │   ├── darwin/           # Darwin-specific imports (dock, packages)
+│       │   ├── fonts.nix         # Shared font configuration
+│       │   ├── languages/        # Language toolchains
+│       │   ├── lazyvim/          # LazyVim configuration
+│       │   ├── nvf/              # NVF neovim configuration
+│       │   └── shared-packages.nix # Shared packages across platforms
+│       ├── git.nix               # homeModules.git
+│       ├── shell.nix             # homeModules.shell
+│       ├── editors.nix           # homeModules.editors
+│       ├── terminal.nix          # homeModules.terminal
+│       ├── development.nix       # homeModules.development
+│       ├── services.nix          # homeModules.services
+│       ├── xdg.nix               # homeModules.xdg
+│       ├── linux-desktop.nix     # homeModules.linuxDesktop
+│       ├── darwin-desktop.nix    # homeModules.darwinDesktop
+│       ├── darwin-system.nix     # darwinModules.system
+│       └── nixos-system.nix      # nixosModules.system
 │
 ├── hosts/                # Host-specific configurations
 │   ├── darwin/           # macOS hosts (e.g., Emiles-MacBook-Pro.nix)
@@ -41,9 +46,13 @@ croire/
 ├── homes/                # Standalone home-manager configurations
 │   ├── emile.nix         # Darwin user
 │   └── saberzero1.nix    # NixOS user
+├── lib/                  # Library documentation (changelog, examples, testing)
+├── assets/               # Static assets
 ├── programs/             # Application-specific dotfiles and configurations
 ├── overlays/             # Nix package overlays
 ├── scripts/              # Helper scripts
+├── om/                   # Omnix configuration
+├── om.yaml               # Omnix project manifest
 ├── flake.nix             # Main flake using flake-parts + import-tree
 └── justfile              # Command definitions
 ```
@@ -122,19 +131,20 @@ just dev
 |---------|-------------|
 | `just build` | Build and activate system configuration |
 | `just switch` | Pull latest changes and activate |
+| `just run` | Activate the configuration via `nix run` |
+| `just pull` | Pull latest changes from remote |
 | `just update` | Update all flake inputs |
+| `just update-with-token` | Update with GitHub token (for rate limiting) |
 | `just check` | Check flake validity |
 | `just check-all` | Check flake for all systems |
 
-### Home Manager (Standalone)
+### Home Manager
 
-```shell
-# Build home-manager configuration
-nix build .#homeConfigurations.emile.activationPackage
-
-# Activate home-manager
-nix run .#homeConfigurations.emile.activationPackage
-```
+| Command | Description |
+|---------|-------------|
+| `just home-build [user]` | Build home-manager configuration (default: `emile`) |
+| `just home-switch [user]` | Build and activate home-manager configuration |
+| `just home-list` | List available home configurations |
 
 ### Development
 
@@ -144,16 +154,39 @@ nix run .#homeConfigurations.emile.activationPackage
 | `just lint` | Format Nix files |
 | `just repl` | Open Nix REPL |
 | `just build-warn` | Build with warnings as errors |
+| `just info` | Show flake info |
+| `just metadata` | Show flake metadata |
 
-### Maintenance
+### Utility
+
+| Command | Description |
+|---------|-------------|
+| `just upp <input>` | Update a single flake input |
+| `just history` | Show system profile history |
+| `just disk` | Show disk usage |
+| `just status` | Check NixOS channel status |
+| `just configs` | List available configurations |
+| `just modules` | List available modules |
+
+### Cleanup
 
 | Command | Description |
 |---------|-------------|
 | `just gc` | Garbage collect unused packages |
 | `just optimize` | Hard-link duplicate store paths |
 | `just clean` | Remove old generations |
+| `just clean-old` | Remove generations older than 7 days |
 | `just clean-all` | Full cleanup (gc + optimize) |
+
+### Maintenance
+
+| Command | Description |
+|---------|-------------|
 | `just repair` | Repair Nix store (slow) |
+| `just verify` | Verify store integrity (fast) |
+| `just pull-dotfiles` | Pull dotfiles repository |
+| `just verify` | Verify store integrity (fast) |
+| `just pull-dotfiles` | Pull dotfiles repository |
 
 ## Dendritic Pattern
 
@@ -252,7 +285,11 @@ This flake uses multiple binary caches for faster builds:
 
 - `cache.nixos.org` - Official NixOS cache
 - `nix-community.cachix.org` - Nix community packages
-- `saberzero1.cachix.org` - Personal builds
-- `hyprland.cachix.org` - Hyprland packages
+- `cachix.cachix.org` - Cachix packages
+- `nixpkgs.cachix.org` - Nixpkgs cache
 - `om.cachix.org` - Omnix packages
+- `cache.flakehub.com` - FlakeHub / Determinate Systems
+- `install.determinate.systems` - Determinate Systems installer
+- `hyprland.cachix.org` - Hyprland packages
+- `saberzero1.cachix.org` - Personal builds
 - `sash.cachix.org` - Sash packages
