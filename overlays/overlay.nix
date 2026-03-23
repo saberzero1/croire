@@ -137,12 +137,12 @@ swiftOverrides
     ];
   });
 
-  # Obsidian: override to 1.11.7 for new CLI features
+  # Obsidian: override to 1.12.7 for new CLI features
   # See: https://help.obsidian.md/cli
   # Fix: Wayland flags must come BEFORE app.asar, otherwise they're passed to Obsidian's CLI
   obsidian =
     let
-      version = "1.12.4";
+      version = "1.12.7";
       src = super.fetchurl {
         url =
           if super.stdenv.hostPlatform.isDarwin then
