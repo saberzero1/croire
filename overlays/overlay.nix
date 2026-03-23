@@ -153,7 +153,7 @@ swiftOverrides
           if super.stdenv.hostPlatform.isDarwin then
             "sha256-etm0JSji5H6EG6jgcie4/QxANsfEJx+zZzHLpFBNu7o="
           else
-            "sha256-cusm388SP44HvoCD90+gRfQAxx7B/mTlirkdnMCEyN4=";
+            "sha256-/L4IsRHZwf2wm5wIlSsG4cgpxiFj66JYTEtOyFm+B50=";
       };
     in
     if super.stdenv.hostPlatform.isDarwin then
