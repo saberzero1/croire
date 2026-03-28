@@ -40,8 +40,29 @@ swiftOverrides
   nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  opencode = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
+  opencode =
+    let
+      pkg = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+    in
+    (pkg.override {
+      node_modules = pkg.node_modules.override {
+        hash = "sha256-5VHEo9GCBP+MeLMoWqSuJLAX/qwGLdFjZe20yatgogM=";
+      };
+    }).overrideAttrs
+      (oldAttrs: {
+        # Upstream doesn't patchShebangs after copying node_modules,
+        # causing /usr/bin/env shebangs to fail in the Nix sandbox.
+        # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
+        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
+        configurePhase = ''
+          runHook preConfigure
+          cp -R $node_modules/. .
+          chmod -R u+w .
+          patchShebangs .
+          runHook postConfigure
+        '';
+      });
+  # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
   # tmux-sessionizer: base package from flake input (no nushell dependency)
   tmux-sessionizer =
