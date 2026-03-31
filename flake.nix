@@ -195,7 +195,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     opencode = {
-      url = "github:anomalyco/opencode";
+      url = "github:anomalyco/opencode?ref=v1.3.8";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     opencode-claude-max-proxy = {
