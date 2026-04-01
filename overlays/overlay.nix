@@ -46,7 +46,7 @@ swiftOverrides
     in
     (pkg.override {
       node_modules = pkg.node_modules.override {
-        hash = "sha256-5w+DwEvUrCly9LHZuTa1yTSD45X56cGJG8sds/N29mU=";
+        hash = "sha256-3GXmqG7yihJ91wS/jlW19qxGI62b1bFJnpGB4LcMlpY=";
       };
     }).overrideAttrs
       (oldAttrs: {
