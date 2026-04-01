@@ -224,6 +224,27 @@ jobs:
             --accept-flake-config \
             --no-update-lock-file \
             --print-build-logs
+      
+      - name: Fix hashes
+        if: failure()
+        id: fix-hashes
+        run: |
+          git pull
+          determinate-nixd fix hashes --auto-apply
+ 
+          if ! git diff --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add --update --ignore-removal .
+            git commit -m "[ci] dependencies: auto-fixed hashes"
+            git push origin "$GITHUB_HEAD_REF"
+          fi
+
+          nix build .#${{ matrix.build_target }} \
+            --accept-flake-config \
+            --no-update-lock-file \
+            --print-build-logs
+
       # - name: Omnix build flakes
       #   env:
       #     FLAKE_ITER_NIX_SYSTEM: ${{ matrix.system }}
