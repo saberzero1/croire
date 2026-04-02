@@ -47,7 +47,7 @@ swiftOverrides
     # Override node_modules hash for current nixpkgs compatibility.
     (pkg.override {
       node_modules = pkg.node_modules.override {
-        hash = "sha256-C7y5FMI1pGEgMw/vcPoBhK9tw5uGg1bk0gPXPUUVhgU=";
+        hash = "sha256-3GXmqG7yihJ91wS/jlW19qxGI62b1bFJnpGB4LcMlpY=";
       };
     }).overrideAttrs
       (oldAttrs: {
