@@ -44,21 +44,25 @@ swiftOverrides
     let
       pkg = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
     in
-    # Upstream PR #8033 fixed platform-specific node_modules filtering,
-    # so we no longer override the hash. We still patch shebangs.
-    pkg.overrideAttrs (oldAttrs: {
-      # Upstream doesn't patchShebangs after copying node_modules,
-      # causing /usr/bin/env shebangs to fail in the Nix sandbox.
-      # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
-      nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
-      configurePhase = ''
-        runHook preConfigure
-        cp -R $node_modules/. .
-        chmod -R u+w .
-        patchShebangs .
-        runHook postConfigure
-      '';
-    });
+    # Override node_modules hash for current nixpkgs compatibility.
+    (pkg.override {
+      node_modules = pkg.node_modules.override {
+        hash = "sha256-C7y5FMI1pGEgMw/vcPoBhK9tw5uGg1bk0gPXPUUVhgU=";
+      };
+    }).overrideAttrs
+      (oldAttrs: {
+        # Upstream doesn't patchShebangs after copying node_modules,
+        # causing /usr/bin/env shebangs to fail in the Nix sandbox.
+        # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
+        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
+        configurePhase = ''
+          runHook preConfigure
+          cp -R $node_modules/. .
+          chmod -R u+w .
+          patchShebangs .
+          runHook postConfigure
+        '';
+      });
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
   # claude-code: bump to 2.1.90 (2.1.88 was yanked from npm registry)
