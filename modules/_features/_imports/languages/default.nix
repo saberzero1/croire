@@ -44,7 +44,7 @@
       # =========================================
       # JavaScript/TypeScript
       # =========================================
-      ++ (with pkgs.nodePackages; [
+      ++ (with pkgs; [
         typescript
         prettier
         eslint_d
@@ -52,10 +52,10 @@
         typescript-language-server
         # sass
         serve
-        npm
+        nodejs # includes npm
         vscode-langservers-extracted
+        bun
       ])
-      ++ (with pkgs; [ bun ])
       # =========================================
       # Java
       # =========================================

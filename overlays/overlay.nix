@@ -44,24 +44,21 @@ swiftOverrides
     let
       pkg = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
     in
-    (pkg.override {
-      node_modules = pkg.node_modules.override {
-        hash = "sha256-3GXmqG7yihJ91wS/jlW19qxGI62b1bFJnpGB4LcMlpY=";
-      };
-    }).overrideAttrs
-      (oldAttrs: {
-        # Upstream doesn't patchShebangs after copying node_modules,
-        # causing /usr/bin/env shebangs to fail in the Nix sandbox.
-        # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
-        configurePhase = ''
-          runHook preConfigure
-          cp -R $node_modules/. .
-          chmod -R u+w .
-          patchShebangs .
-          runHook postConfigure
-        '';
-      });
+    # Upstream PR #8033 fixed platform-specific node_modules filtering,
+    # so we no longer override the hash. We still patch shebangs.
+    pkg.overrideAttrs (oldAttrs: {
+      # Upstream doesn't patchShebangs after copying node_modules,
+      # causing /usr/bin/env shebangs to fail in the Nix sandbox.
+      # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
+      nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
+      configurePhase = ''
+        runHook preConfigure
+        cp -R $node_modules/. .
+        chmod -R u+w .
+        patchShebangs .
+        runHook postConfigure
+      '';
+    });
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
   # tmux-sessionizer: base package from flake input (no nushell dependency)
