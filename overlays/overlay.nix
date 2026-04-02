@@ -61,6 +61,34 @@ swiftOverrides
     });
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
+  # claude-code: bump to 2.1.90 (2.1.88 was yanked from npm registry)
+  claude-code =
+    let
+      version = "2.1.90";
+      src = super.fetchurl {
+        url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
+        hash = "sha256-jknJDrrsVltfsK90S+vFPB/TYmJFPLTzCcEvYSe1VBg=";
+      };
+      lockFile = ./claude-code-package-lock.json;
+    in
+    super.claude-code.overrideAttrs (oldAttrs: {
+      inherit version src;
+      postPatch = ''
+        cp ${lockFile} package-lock.json
+        substituteInPlace cli.js \
+          --replace-fail '#!/bin/sh' '#!/usr/bin/env sh'
+      '';
+      npmDeps = super.fetchNpmDeps {
+        name = "claude-code-${version}-npm-deps";
+        inherit src;
+        sourceRoot = "package";
+        postPatch = ''
+          cp ${lockFile} package-lock.json
+        '';
+        hash = "sha256-kWbbIAoNAQ/BtsICmsabkfnS/1Nta5MQ4iX9+oH7WRw=";
+      };
+    });
+
   # tmux-sessionizer: base package from flake input (no nushell dependency)
   tmux-sessionizer =
     inputs.tmux-sessionizer.packages.${super.stdenv.hostPlatform.system}.tmux-sessionizer;
