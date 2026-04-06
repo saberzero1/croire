@@ -16,7 +16,7 @@ self: super: {
     # Override node_modules hash for current nixpkgs compatibility.
     (pkg.override {
       node_modules = pkg.node_modules.override {
-        hash = "sha256-3GXmqG7yihJ91wS/jlW19qxGI62b1bFJnpGB4LcMlpY=";
+        hash = "sha256-1eZBBLgYVkjg5RYN/etR1Mb5UjU3VelElBB5ug5hQdc=";
       };
     }).overrideAttrs
       (oldAttrs: {
