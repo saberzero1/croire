@@ -12,11 +12,18 @@ self: super: {
   opencode =
     let
       pkg = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+      # Bun-built node_modules hashes vary by platform; keep per-platform hashes
+      # so both Linux (bun bumped in nixpkgs) and macOS builds continue to work.
+      nodeModulesHash =
+        if super.stdenv.hostPlatform.isLinux then
+          "sha256-85wpU1oCWbthPleNIOj5d5AOuuYZ6rM7gMLZR6YJ2WU="
+        else
+          "sha256-5+99gtpIHGygMW3VBAexNhmaORgI8LCxPk/Gf1fW/ds=";
     in
     # Override node_modules hash for current nixpkgs compatibility.
     (pkg.override {
       node_modules = pkg.node_modules.override {
-        hash = "sha256-5+99gtpIHGygMW3VBAexNhmaORgI8LCxPk/Gf1fW/ds=";
+        hash = nodeModulesHash;
       };
     }).overrideAttrs
       (oldAttrs: {
