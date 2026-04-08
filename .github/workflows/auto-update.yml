@@ -126,7 +126,7 @@ jobs:
       contents: write
     runs-on: ${{ matrix.runner }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:
           - runner: ubuntu-latest
@@ -219,6 +219,8 @@ jobs:
             # --results=$HOME/omci.json \
             # -- --accept-flake-config
       - name: Build configuration
+        id: build
+        continue-on-error: true
         run: |
           nix build .#${{ matrix.build_target }} \
             --accept-flake-config \
@@ -226,7 +228,7 @@ jobs:
             --print-build-logs
       
       - name: Fix hashes
-        if: failure()
+        if: steps.build.outcome == 'failure'
         id: fix-hashes
         run: |
           git pull
