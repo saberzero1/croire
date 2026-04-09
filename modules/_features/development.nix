@@ -106,13 +106,6 @@ in
           settings = {
             "autoupdate" = "notify";
             "share" = "disabled";
-            "theme" = "tokyonight";
-            "tui" = {
-              "scroll_speed" = 3;
-              "scroll_acceleration" = {
-                "enabled" = true;
-              };
-            };
             # Route Anthropic requests through claude-max-proxy (passthrough mode)
             # Proxy runs at localhost:7154, bridging Claude Max subscription via Agent SDK
             "provider" = {
@@ -132,6 +125,13 @@ in
               # claude-max-proxy session resume plugin (from local install)
               "${config.home.homeDirectory}/.local/share/meridian/src/plugin/claude-max-headers.ts"
             ];
+          };
+          tui = {
+            "theme" = "tokyonight";
+            "scroll_speed" = 3;
+            "scroll_acceleration" = {
+              "enabled" = true;
+            };
           };
           # opencode.ai/zen/v1/models for models
           agents = { };
