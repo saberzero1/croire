@@ -21,11 +21,8 @@ self: super: {
           "sha256-/Ij3qhGRrcLlMfl9uEacDNnGK5URxhctuQFBW4Njrog=";
     in
     # Override node_modules hash for current nixpkgs compatibility.
-    (pkg.override {
-      node_modules = pkg.node_modules.override {
-        hash = nodeModulesHash;
-      };
-    }).overrideAttrs
+    (pkg.override { node_modules = pkg.node_modules.override { hash = nodeModulesHash; }; })
+    .overrideAttrs
       (oldAttrs: {
         # Upstream doesn't patchShebangs after copying node_modules,
         # causing /usr/bin/env shebangs to fail in the Nix sandbox.

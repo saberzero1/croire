@@ -199,7 +199,7 @@
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     opencode-claude-max-proxy = {
-      url = "github:rynfar/opencode-claude-max-proxy";
+      url = "github:rynfar/meridian";
       flake = false;
     };
 

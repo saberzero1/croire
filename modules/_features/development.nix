@@ -130,7 +130,7 @@ in
               # "@tarquinen/opencode-dcp@latest"
               "opencode-mystatus"
               # claude-max-proxy session resume plugin (from local install)
-              "${config.home.homeDirectory}/.local/share/opencode-claude-max-proxy/src/plugin/claude-max-headers.ts"
+              "${config.home.homeDirectory}/.local/share/meridian/src/plugin/claude-max-headers.ts"
             ];
           };
           # opencode.ai/zen/v1/models for models

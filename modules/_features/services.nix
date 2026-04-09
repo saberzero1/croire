@@ -225,7 +225,7 @@ in
             "run"
             "proxy"
           ];
-          WorkingDirectory = "${config.home.homeDirectory}/.local/share/opencode-claude-max-proxy";
+          WorkingDirectory = "${config.home.homeDirectory}/.local/share/meridian";
           EnvironmentVariables = {
             CLAUDE_PROXY_PASSTHROUGH = "1";
             CLAUDE_PROXY_PORT = "7154";
