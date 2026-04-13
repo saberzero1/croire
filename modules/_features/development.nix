@@ -108,22 +108,23 @@ in
             "share" = "disabled";
             # Route Anthropic requests through claude-max-proxy (passthrough mode)
             # Proxy runs at localhost:7154, bridging Claude Max subscription via Agent SDK
-            "provider" = {
-              "anthropic" = {
-                "options" = {
-                  "apiKey" = "dummy";
-                  "baseURL" = "http://127.0.0.1:7154";
-                };
-              };
-            };
+            # "provider" = {
+            #   "anthropic" = {
+            #     "options" = {
+            #       "apiKey" = "dummy";
+            #       "baseURL" = "http://127.0.0.1:7154";
+            #     };
+            #   };
+            # };
             "plugin" = [
               "opencode-ignore"
               "@simonwjackson/opencode-direnv"
               "oh-my-opencode"
               # "@tarquinen/opencode-dcp@latest"
               "opencode-mystatus"
+              "opencode-claude-auth"
               # claude-max-proxy session resume plugin (from local install)
-              "${config.home.homeDirectory}/.local/share/meridian/src/plugin/claude-max-headers.ts"
+              # "${config.home.homeDirectory}/.local/share/meridian/src/plugin/claude-max-headers.ts"
             ];
           };
           tui = {
@@ -137,7 +138,7 @@ in
           agents = { };
           # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.opencode.commands
           commands = { };
-          rules = "";
+          context = "";
         };
 
         # claude-code - Anthropic's official AI coding CLI

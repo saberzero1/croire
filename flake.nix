@@ -198,10 +198,10 @@
       url = "github:anomalyco/opencode?ref=v1.4.3";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    opencode-claude-max-proxy = {
-      url = "github:rynfar/meridian";
-      flake = false;
-    };
+    # opencode-claude-max-proxy = {
+    #   url = "github:rynfar/meridian";
+    #   flake = false;
+    # };
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {

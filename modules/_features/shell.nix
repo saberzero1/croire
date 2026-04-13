@@ -193,9 +193,9 @@ in
         # Tmux sessionizer settings
         TS_SEARCH_PATHS = "(~/Repos ~/Documents/Repos ~/Work/Repos ~/Work/External/Repos)";
         TS_MAX_DEPTH = "3";
-        CLAUDE_PROXY_PASSTHROUGH = 1;
-        CLAUDE_PROXY_PORT = 7154;
-        CLAUDE_PROXY_HOST = "127.0.0.1";
+        # CLAUDE_PROXY_PASSTHROUGH = 1;
+        # CLAUDE_PROXY_PORT = 7154;
+        # CLAUDE_PROXY_HOST = "127.0.0.1";
       }
       // lib.optionalAttrs isDarwin {
         # Darwin-specific session variables
@@ -477,9 +477,9 @@ in
             SHELL = "${pkgs.nushell}/bin/nu";
             PROMPT_INDICATOR_VI_NORMAL = "";
             PROMPT_INDICATOR_VI_INSERT = "";
-            CLAUDE_PROXY_PASSTHROUGH = 1;
-            CLAUDE_PROXY_PORT = 7154;
-            CLAUDE_PROXY_HOST = "127.0.0.1";
+            # CLAUDE_PROXY_PASSTHROUGH = 1;
+            # CLAUDE_PROXY_PORT = 7154;
+            # CLAUDE_PROXY_HOST = "127.0.0.1";
           };
         };
 
