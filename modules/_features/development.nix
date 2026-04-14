@@ -122,7 +122,7 @@ in
               "oh-my-opencode"
               # "@tarquinen/opencode-dcp@latest"
               "opencode-mystatus"
-              "opencode-claude-auth"
+              "opencode-claude-auth@latest"
               # claude-max-proxy session resume plugin (from local install)
               # "${config.home.homeDirectory}/.local/share/meridian/src/plugin/claude-max-headers.ts"
             ];
