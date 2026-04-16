@@ -88,14 +88,6 @@ in
       treesitter.enable = true;
     };
 
-    tailwind = {
-      enable = true;
-      lsp = {
-        enable = true;
-        servers = [ "tailwindcss" ];
-      };
-    };
-
     terraform = {
       enable = true;
       lsp.enable = true;
@@ -131,7 +123,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "cssls" ];
+        servers = [ "vscode-css-language-server" ];
       };
     };
 
@@ -166,7 +158,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "r_language_server" ];
+        servers = [ "r-languageserver" ];
       };
       treesitter.enable = true;
     };
@@ -199,7 +191,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "bash-ls" ];
+        servers = [ "bash-language-server" ];
       };
       treesitter.enable = true;
     };
@@ -292,7 +284,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "ts_ls" ];
+        servers = [ "typescript-language-server" ];
       };
       treesitter.enable = true;
     };
@@ -334,7 +326,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "elixirls" ];
+        servers = [ "elixir-ls" ];
       };
       treesitter.enable = true;
     };
@@ -480,7 +472,7 @@ in
       enable = false;
       lsp = {
         enable = isLinux;
-        servers = [ "julials" ];
+        servers = [ "julia-languageserver" ];
       };
     };
 
@@ -532,7 +524,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "astro" ];
+        servers = [ "astro-language-server" ];
       };
       treesitter.enable = true;
     };
@@ -541,7 +533,7 @@ in
       enable = false;
       lsp = {
         enable = true;
-        servers = [ "vala_ls" ];
+        servers = [ "vala-language-server" ];
       };
       treesitter.enable = true;
     };

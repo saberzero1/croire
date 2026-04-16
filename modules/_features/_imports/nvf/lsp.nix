@@ -23,6 +23,9 @@
     trouble = {
       enable = true;
     };
+    presets = {
+      tailwindcss-language-server.enable = true;
+    };
     servers = {
       "*" = {
         root_markers = [

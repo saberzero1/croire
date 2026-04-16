@@ -28,6 +28,10 @@ in
         # Development utilities
         # ─────────────────────────────────────────────────────────────────────────
 
+        # Silence home-manager warning: generateCaches has no effect when
+        # programs.man.package is null (e.g. under useGlobalPkgs).
+        man.generateCaches = false;
+
         # Bat - Cat with syntax highlighting
         bat = {
           enable = true;

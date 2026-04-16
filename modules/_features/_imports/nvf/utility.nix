@@ -33,11 +33,6 @@ in
         }
       ];
     };
-    "plenary-nvim" = {
-      enabled = true;
-      package = "plenary-nvim";
-      lazy = false;
-    };
     "yanky-nvim" = {
       enabled = true;
       lazy = true;
