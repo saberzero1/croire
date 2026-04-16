@@ -275,7 +275,7 @@ in
       };
       lsp = {
         enable = true;
-        servers = [ "svelte" ];
+        servers = [ "svelte-language-server" ];
       };
       treesitter.enable = true;
     };
