@@ -131,7 +131,7 @@
         markdown
         mediator_lua
         middleclass
-        neorg
+        # neorg
         nlua
         nui-nvim
         nvim-cmp
