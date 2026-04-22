@@ -33,6 +33,23 @@ self: super: {
           cp -R $node_modules/. .
           chmod -R u+w .
           patchShebangs .
+
+          # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
+          # imports prettier, but prettier is only in the workspace root's
+          # devDependencies.  The bun install in node_modules.nix uses
+          # --filter './packages/opencode' which excludes root deps, so prettier
+          # is absent from node_modules and Bun's bundler can't resolve it.
+          # A minimal stub satisfies the bundler; at runtime the generate command
+          # will use it to return unformatted JSON (functionally equivalent).
+          mkdir -p node_modules/prettier
+          cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
+export const format = (s, _opts) => Promise.resolve(s);
+export default { format: (s, _opts) => Promise.resolve(s) };
+PRETTIER_STUB_EOF
+          cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
+{"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
+PRETTIER_PKG_EOF
+
           runHook postConfigure
         '';
       });
