@@ -16,7 +16,7 @@ self: super: {
       # so both Linux (bun bumped in nixpkgs) and macOS builds continue to work.
       nodeModulesHash =
         if super.stdenv.hostPlatform.isLinux then
-          "sha256-U/LZx/D+5JTT1LHSyZkEuqXP/ky7LkHrEYBW5pcVArk="
+          "sha256-h2T/LnUnISZZDn9ZQkZ/A59P+6+QdfOlrgl4RXK/vgM="
         else
           "sha256-xnd91+WyeAqn06run2ajsekxJvTMiLsnqNPe/rR8VTM=";
     in
@@ -29,28 +29,28 @@ self: super: {
         # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
         nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
         configurePhase = ''
-          runHook preConfigure
-          cp -R $node_modules/. .
-          chmod -R u+w .
-          patchShebangs .
+                    runHook preConfigure
+                    cp -R $node_modules/. .
+                    chmod -R u+w .
+                    patchShebangs .
 
-          # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
-          # imports prettier, but prettier is only in the workspace root's
-          # devDependencies.  The bun install in node_modules.nix uses
-          # --filter './packages/opencode' which excludes root deps, so prettier
-          # is absent from node_modules and Bun's bundler can't resolve it.
-          # A minimal stub satisfies the bundler; at runtime the generate command
-          # will use it to return unformatted JSON (functionally equivalent).
-          mkdir -p node_modules/prettier
-          cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
-export const format = (s, _opts) => Promise.resolve(s);
-export default { format: (s, _opts) => Promise.resolve(s) };
-PRETTIER_STUB_EOF
-          cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
-{"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
-PRETTIER_PKG_EOF
+                    # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
+                    # imports prettier, but prettier is only in the workspace root's
+                    # devDependencies.  The bun install in node_modules.nix uses
+                    # --filter './packages/opencode' which excludes root deps, so prettier
+                    # is absent from node_modules and Bun's bundler can't resolve it.
+                    # A minimal stub satisfies the bundler; at runtime the generate command
+                    # will use it to return unformatted JSON (functionally equivalent).
+                    mkdir -p node_modules/prettier
+                    cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
+          export const format = (s, _opts) => Promise.resolve(s);
+          export default { format: (s, _opts) => Promise.resolve(s) };
+          PRETTIER_STUB_EOF
+                    cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
+          {"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
+          PRETTIER_PKG_EOF
 
-          runHook postConfigure
+                    runHook postConfigure
         '';
       });
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
