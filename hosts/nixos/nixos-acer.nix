@@ -150,6 +150,8 @@ in
         };
       };
     };
+    # Enable trash support for GTK apps (e.g. file managers)
+    gvfs.enable = true;
   };
 
   networking = {
