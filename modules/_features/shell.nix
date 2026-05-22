@@ -420,6 +420,10 @@ in
               # exit_code 0 = allow, exit_code 2 = warn (already printed to stderr)
             }
 
+            # Set external completer
+            $env.config.completions.external.enable = true
+            $env.config.completions.external.completer = $external_completer
+
             # Add pre_execution hook for tirith
             $env.config.hooks.pre_execution = ($env.config.hooks.pre_execution | default [] | append {||
               # Get the current commandline being executed
@@ -462,11 +466,6 @@ in
 
             # Carapace bridges
             $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
-
-            $env.config.completions.external {
-              enable = true
-              completer = $external_completer
-            }
           '';
 
           extraLogin = "";

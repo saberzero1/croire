@@ -77,6 +77,10 @@ in
       play = {
         gamescoperun = {
           enable = true;
+          # Use stable nixpkgs gamescope instead of mix-nix git version
+          # mix-nix's gamescope-git is broken: nixpkgs shaders-path.patch
+          # doesn't apply to the latest git source (GetUsrDir moved files)
+          useGit = false;
           defaultHDR = false;
           defaultWSI = true;
           defaultSystemd = false;
@@ -135,6 +139,7 @@ in
       # ─────────────────────────────────────────────────────────────────────────
       wayland.windowManager.hyprland = {
         enable = true;
+        configType = "hyprlang";
         xwayland.enable = true;
         # Use null to inherit package from NixOS module (programs.hyprland.package)
         # This avoids version mismatches between system and home-manager
@@ -203,7 +208,7 @@ in
           };
 
           dwindle = {
-            pseudotile = true;
+            # pseudotile = true;
             preserve_split = true;
           };
 

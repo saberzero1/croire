@@ -16,7 +16,7 @@ self: super: {
       # so both Linux (bun bumped in nixpkgs) and macOS builds continue to work.
       nodeModulesHash =
         if super.stdenv.hostPlatform.isLinux then
-          "sha256-Ucvyzyq+oYvWglkeowSvb0LgDzkAvaSdq0CdA6jgN6U="
+          "sha256-hIarzU3QNIvkwpfnearfsGaBMCSdovkOWAuvX+EBQI8="
         else
           "sha256-egfIey1y2wVbvxueiI4S9IPl6IvfVpJvvj3h4B2nkxA=";
     in
@@ -28,6 +28,12 @@ self: super: {
         # causing /usr/bin/env shebangs to fail in the Nix sandbox.
         # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
         nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
+        # Relax bun version check: nixpkgs has 1.3.13, opencode wants ^1.3.14
+        postPatch = (oldAttrs.postPatch or "") + ''
+          substituteInPlace packages/script/src/index.ts \
+            --replace-fail "const expectedBunVersionRange = " \
+                           "const expectedBunVersionRange = process.versions.bun; const _unused = "
+        '';
         configurePhase = ''
                     runHook preConfigure
                     cp -R $node_modules/. .
@@ -124,6 +130,7 @@ self: super: {
     inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.proton-cachyos or null;
   procon2-init =
     inputs.play-nix.packages.${self.pkgs.stdenv.hostPlatform.system}.procon2-init or null;
+
   sash = inputs.sash.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
 
   # comment-checker: Multi-language comment detection hook for Claude Code / OpenCode
