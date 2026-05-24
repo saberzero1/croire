@@ -16,7 +16,7 @@ self: super: {
       # so both Linux (bun bumped in nixpkgs) and macOS builds continue to work.
       nodeModulesHash =
         if super.stdenv.hostPlatform.isLinux then
-          "sha256-hIarzU3QNIvkwpfnearfsGaBMCSdovkOWAuvX+EBQI8="
+          "sha256-pbVW7cOLT76Q7f++xaYYrwuN7eS6FRen80xoaVog3M4="
         else
           "sha256-IfIJwgvsonrfjG+btK/5YedzX+MJtf/5bYuLrAmnHvU=";
     in
