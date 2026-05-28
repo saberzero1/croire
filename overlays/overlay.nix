@@ -18,7 +18,7 @@ self: super: {
         if super.stdenv.hostPlatform.isLinux then
           "sha256-pbVW7cOLT76Q7f++xaYYrwuN7eS6FRen80xoaVog3M4="
         else
-          "sha256-IfIJwgvsonrfjG+btK/5YedzX+MJtf/5bYuLrAmnHvU=";
+          "sha256-+oTdR3CuR88Ra3QQsDn7ixNwJf0YjOxySTSiRsPPUOg=";
     in
     # Override node_modules hash for current nixpkgs compatibility.
     (pkg.override { node_modules = pkg.node_modules.override { hash = nodeModulesHash; }; })
