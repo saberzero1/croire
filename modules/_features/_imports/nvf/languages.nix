@@ -239,7 +239,6 @@ in
 
     sql = {
       enable = true;
-      dialect = "ansi";
       extraDiagnostics = {
         enable = true;
         types = [ "sqlfluff" ];
@@ -297,7 +296,7 @@ in
       cHeader = true;
       dap = {
         enable = true;
-        debugger = "lldb-vscode";
+        debugger = [ "lldb" ];
       };
       lsp = {
         enable = true;
@@ -359,7 +358,7 @@ in
       enable = true;
       dap = {
         enable = true;
-        debugger = "debugpy";
+        debugger = [ "debugpy" ];
       };
       format = {
         enable = true;
@@ -407,7 +406,7 @@ in
       enable = true;
       dap = {
         enable = true;
-        debugger = "lldb-vscode";
+        debugger = [ "lldb" ];
       };
       lsp = {
         enable = false;
