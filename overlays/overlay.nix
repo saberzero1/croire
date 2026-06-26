@@ -12,85 +12,29 @@ self: super: {
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
-      # Pin Bun 1.3.14 until nixpkgs catches up with opencode's lockfile format.
-      opencodeBun = super.bun.overrideAttrs (oldAttrs: rec {
-        version = "1.3.14";
-        passthru = (oldAttrs.passthru or { }) // {
-          sources = {
-            "aarch64-darwin" = super.fetchurl {
-              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-darwin-aarch64.zip";
-              hash = "sha256-2LliIYKK1vl6x6wKt+lYcjQa92MAHogD6CZ2UsJlJiA=";
-            };
-            "aarch64-linux" = super.fetchurl {
-              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-aarch64.zip";
-              hash = "sha256-on/7Y6gxA3WDbg1vZorhf6jY0YuIw3yCHGUzGXOhmjs=";
-            };
-            "x86_64-darwin" = super.fetchurl {
-              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-darwin-x64-baseline.zip";
-              hash = "sha256-PjWtb1OXGpg0v55nhuKt9ytfGSHMmpxf3gc9KXKUQHY=";
-            };
-            "x86_64-linux" = super.fetchurl {
-              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64.zip";
-              hash = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
-            };
-          };
-        };
-      });
-      nodeModulesHash =
-        {
-          x86_64-linux = "sha256-oHtoa4nIZM4CS1+Z4wVjDQ5V2aJ5vCRMZ6rVtwOvwfs=";
-          aarch64-linux = "sha256-3SKIjmUPHUZ2TNp+abQvcPT4wZ3qsojzxieW3obgj+g=";
-          aarch64-darwin = "sha256-kA6ouv1tGdMf47AfuJ456iCX49cJw221D9jgKEMQznk=";
-          x86_64-darwin = "sha256-kfOoVu9YvbRaqcTlMrfUaHPux5yzjP7opnBC5XOOoDs=";
-        }
-        .${system};
       pkg = inputs.opencode.packages.${system}.default;
-      node_modules = pkg.node_modules.override {
-        bun = opencodeBun;
-        hash = nodeModulesHash;
-      };
     in
-    (pkg.override {
-      bun = opencodeBun;
-      inherit node_modules;
-    })
-    .overrideAttrs
-      (oldAttrs: {
-        # Upstream doesn't patchShebangs after copying node_modules,
-        # causing /usr/bin/env shebangs to fail in the Nix sandbox.
-        # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
-        # Keep Bun version checks relaxed in case upstream bumps faster than nixpkgs.
-        postPatch = (oldAttrs.postPatch or "") + ''
-          substituteInPlace packages/script/src/index.ts \
-            --replace-fail "const expectedBunVersionRange = " \
-                           "const expectedBunVersionRange = process.versions.bun; const _unused = "
-        '';
-        configurePhase = ''
-                    runHook preConfigure
-                    cp -R $node_modules/. .
-                    chmod -R u+w .
-                    patchShebangs .
-
-                    # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
-                    # imports prettier, but prettier is only in the workspace root's
-                    # devDependencies.  The bun install in node_modules.nix uses
-                    # --filter './packages/opencode' which excludes root deps, so prettier
-                    # is absent from node_modules and Bun's bundler can't resolve it.
-                    # A minimal stub satisfies the bundler; at runtime the generate command
-                    # will use it to return unformatted JSON (functionally equivalent).
-                    mkdir -p node_modules/prettier
-                    cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
-          export const format = (s, _opts) => Promise.resolve(s);
-          export default { format: (s, _opts) => Promise.resolve(s) };
-          PRETTIER_STUB_EOF
-                    cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
-          {"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
-          PRETTIER_PKG_EOF
-
-                    runHook postConfigure
-        '';
-      });
+    pkg.overrideAttrs (oldAttrs: {
+      # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
+      # imports prettier, but prettier is only in the workspace root's
+      # devDependencies.  The bun install in node_modules.nix uses
+      # --filter './packages/opencode' which excludes root deps, so prettier
+      # is absent from node_modules and Bun's bundler can't resolve it.
+      # A minimal stub satisfies the bundler; at runtime the generate command
+      # will use it to return unformatted JSON (functionally equivalent).
+      postConfigure = (oldAttrs.postConfigure or "") + ''
+        if [ ! -f node_modules/prettier/package.json ]; then
+          mkdir -p node_modules/prettier
+          cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
+export const format = (s, _opts) => Promise.resolve(s);
+export default { format: (s, _opts) => Promise.resolve(s) };
+PRETTIER_STUB_EOF
+          cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
+{"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
+PRETTIER_PKG_EOF
+        fi
+      '';
+    });
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
   # claude-code: bump to 2.1.90 (2.1.88 was yanked from npm registry)
