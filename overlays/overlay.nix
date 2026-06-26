@@ -9,63 +9,11 @@ self: super: {
   nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  opencode =
-    let
-      system = self.pkgs.stdenv.hostPlatform.system;
-      # opencode v1.17.x requires bun@1.3.14 (specified in packageManager in package.json).
-      # nixpkgs currently provides bun 1.3.13, which resolves a different lockfile than the
-      # one committed in the opencode source, causing "lockfile had changes, but lockfile is
-      # frozen" when building opencode-node_modules.  Build bun 1.3.14 ourselves.
-      bun_1_3_14 = super.bun.overrideAttrs (_old: {
-        version = "1.3.14";
-        src = super.fetchurl {
-          url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.14/${
-            {
-              "aarch64-darwin" = "bun-darwin-aarch64.zip";
-              "x86_64-darwin" = "bun-darwin-x64-baseline.zip";
-              "aarch64-linux" = "bun-linux-aarch64.zip";
-              "x86_64-linux" = "bun-linux-x64.zip";
-            }.${system}
-          }";
-          hash =
-            {
-              "aarch64-darwin" = "sha256-2LliIYKK1vl6x6wKt+lYcjQa92MAHogD6CZ2UsJlJiA=";
-              "x86_64-darwin" = "sha256-PjWtb1OXGpg0v55nhuKt9ytfGSHMmpxf3gc9KXKUQHY=";
-              "aarch64-linux" = "sha256-on/7Y6gxA3WDbg1vZorhf6jY0YuIw3yCHGUzGXOhmjs=";
-              "x86_64-linux" = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
-            }
-            .${system};
-        };
-      });
-      # Build node_modules with bun 1.3.14 to match the lockfile the opencode team committed.
-      node_modules = self.callPackage "${inputs.opencode}/nix/node_modules.nix" {
-        bun = bun_1_3_14;
-        rev = inputs.opencode.shortRev or "dirty";
-      };
-      # Bring in the upstream opencode package but swap out the node_modules.
-      pkg = (inputs.opencode.packages.${system}.default).override { inherit node_modules; };
-    in
-    pkg.overrideAttrs (oldAttrs: {
-      # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
-      # imports prettier, but prettier is only in the workspace root's
-      # devDependencies.  The bun install in node_modules.nix uses
-      # --filter './packages/opencode' which excludes root deps, so prettier
-      # is absent from node_modules and Bun's bundler can't resolve it.
-      # A minimal stub satisfies the bundler; at runtime the generate command
-      # will use it to return unformatted JSON (functionally equivalent).
-      postConfigure = (oldAttrs.postConfigure or "") + ''
-        if [ ! -f node_modules/prettier/package.json ]; then
-          mkdir -p node_modules/prettier
-          cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
-export const format = (s, _opts) => Promise.resolve(s);
-export default { format: (s, _opts) => Promise.resolve(s) };
-PRETTIER_STUB_EOF
-          cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
-{"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
-PRETTIER_PKG_EOF
-        fi
-      '';
-    });
+  # Use the upstream opencode package directly so its own bun (pinned in the
+  # upstream flake.lock) is used to build node_modules.  Overriding node_modules
+  # with a locally-built bun caused "lockfile had changes, but lockfile is frozen"
+  # because the upstream hashes.json was computed with the upstream's bun, not ours.
+  opencode = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
   # claude-code: bump to 2.1.90 (2.1.88 was yanked from npm registry)
