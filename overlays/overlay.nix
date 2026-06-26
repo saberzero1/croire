@@ -11,24 +11,56 @@ self: super: {
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   opencode =
     let
-      pkg = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-      # Bun-built node_modules hashes vary by platform; keep per-platform hashes
-      # so both Linux (bun bumped in nixpkgs) and macOS builds continue to work.
+      system = self.pkgs.stdenv.hostPlatform.system;
+      # Pin Bun 1.3.14 until nixpkgs catches up with opencode's lockfile format.
+      opencodeBun = super.bun.overrideAttrs (oldAttrs: rec {
+        version = "1.3.14";
+        passthru = (oldAttrs.passthru or { }) // {
+          sources = {
+            "aarch64-darwin" = super.fetchurl {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-darwin-aarch64.zip";
+              hash = "sha256-2LliIYKK1vl6x6wKt+lYcjQa92MAHogD6CZ2UsJlJiA=";
+            };
+            "aarch64-linux" = super.fetchurl {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-aarch64.zip";
+              hash = "sha256-on/7Y6gxA3WDbg1vZorhf6jY0YuIw3yCHGUzGXOhmjs=";
+            };
+            "x86_64-darwin" = super.fetchurl {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-darwin-x64-baseline.zip";
+              hash = "sha256-PjWtb1OXGpg0v55nhuKt9ytfGSHMmpxf3gc9KXKUQHY=";
+            };
+            "x86_64-linux" = super.fetchurl {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${version}/bun-linux-x64.zip";
+              hash = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
+            };
+          };
+        };
+      });
       nodeModulesHash =
-        if super.stdenv.hostPlatform.isLinux then
-          "sha256-nix3Ogrt4nFv+HSZpYZ3VqIQc+g1SdP+DSgu72Yjoqw="
-        else
-          "sha256-ha692TeekwiV0irhIxdwE8/1x1bLKtzSwcjDvetiPqM=";
+        {
+          x86_64-linux = "sha256-oHtoa4nIZM4CS1+Z4wVjDQ5V2aJ5vCRMZ6rVtwOvwfs=";
+          aarch64-linux = "sha256-3SKIjmUPHUZ2TNp+abQvcPT4wZ3qsojzxieW3obgj+g=";
+          aarch64-darwin = "sha256-kA6ouv1tGdMf47AfuJ456iCX49cJw221D9jgKEMQznk=";
+          x86_64-darwin = "sha256-kfOoVu9YvbRaqcTlMrfUaHPux5yzjP7opnBC5XOOoDs=";
+        }
+        .${system};
+      pkg = inputs.opencode.packages.${system}.default;
+      node_modules = pkg.node_modules.override {
+        bun = opencodeBun;
+        hash = nodeModulesHash;
+      };
     in
-    # Override node_modules hash for current nixpkgs compatibility.
-    (pkg.override { node_modules = pkg.node_modules.override { hash = nodeModulesHash; }; })
+    (pkg.override {
+      bun = opencodeBun;
+      inherit node_modules;
+    })
     .overrideAttrs
       (oldAttrs: {
         # Upstream doesn't patchShebangs after copying node_modules,
         # causing /usr/bin/env shebangs to fail in the Nix sandbox.
         # nodejs is needed so patchShebangs can resolve #!/usr/bin/env node.
         nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ super.nodejs ];
-        # Relax bun version check: nixpkgs has 1.3.13, opencode wants ^1.3.14
+        # Keep Bun version checks relaxed in case upstream bumps faster than nixpkgs.
         postPatch = (oldAttrs.postPatch or "") + ''
           substituteInPlace packages/script/src/index.ts \
             --replace-fail "const expectedBunVersionRange = " \
