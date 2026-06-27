@@ -85,22 +85,28 @@ jobs:
           set -euo pipefail
           SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?'
 
-          OPENCODE_REF=$(
-            python - <<'PY'
-            import pathlib
-            import re
+          OPENCODE_INPUT=""
+          set +e
+          OPENCODE_INPUT="$(grep -m1 -oE 'github:anomalyco/opencode\?ref=[^"]+' flake.nix)"
+          GREP_STATUS=$?
+          set -e
 
-            text = pathlib.Path("flake.nix").read_text()
-            match = re.search(
-                r'opencode\s*=\s*\{[^}]*?url\s*=\s*"github:anomalyco/opencode\?ref=([^"]+)"',
-                text,
-                re.S,
-            )
-            print(match.group(1) if match else "")
-            PY
-          )
-          if [ -z "${OPENCODE_REF}" ]; then
+          if [ "${GREP_STATUS}" -gt 1 ]; then
+            echo "Failed to extract opencode ref from flake.nix (grep exit ${GREP_STATUS})"
+            exit "${GREP_STATUS}"
+          fi
+          if [ "${GREP_STATUS}" -eq 1 ]; then
             echo "opencode input with ?ref= not found in flake.nix"
+            exit 1
+          fi
+          if [[ "${OPENCODE_INPUT}" != *"?ref="* ]]; then
+            echo "Matched opencode input is missing ?ref=: ${OPENCODE_INPUT}"
+            exit 1
+          fi
+
+          OPENCODE_REF="${OPENCODE_INPUT##*ref=}"
+          if [ -z "${OPENCODE_REF}" ]; then
+            echo "Failed to extract opencode ref value from matched input: ${OPENCODE_INPUT}"
             exit 1
           fi
 
