@@ -16,7 +16,7 @@ self: super: {
       requiredBunMatch = builtins.match "bun@(.+)" (opencodePackageJson.packageManager or "");
       requiredBunVersion =
         if requiredBunMatch == null then
-          throw "opencode overlay: unable to parse bun version from packageManager='${opencodePackageJson.packageManager or "missing"}'"
+          throw "opencode overlay: unable to parse bun version from packageManager='${opencodePackageJson.packageManager or "missing"}' (expected format: bun@<version>)"
         else
           builtins.elemAt requiredBunMatch 0;
       bunSources = builtins.fromJSON (builtins.readFile ./opencode-bun-sources.json);
@@ -27,7 +27,7 @@ self: super: {
           null;
       bunSource =
         bunSources.sources.${system}
-        or (throw "opencode overlay: missing bun source metadata for system '${system}'");
+        or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: aarch64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux. To add support, update overlays/opencode-bun-sources.json.");
       bunForOpencode = super.bun.overrideAttrs (_old: {
         version = requiredBunVersion;
         src = super.fetchurl {

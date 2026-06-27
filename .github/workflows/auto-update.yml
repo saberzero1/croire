@@ -84,9 +84,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          OPENCODE_REF=$(grep -oP 'github:anomalyco/opencode\?ref=\K[^"]+' flake.nix | head -n1 || true)
+          OPENCODE_REF=$(sed -nE 's/.*github:anomalyco\/opencode\?ref=([^"]+).*/\1/p' flake.nix | head -n1 || true)
           if [ -z "${OPENCODE_REF}" ]; then
             echo "opencode input with ?ref= not found in flake.nix"
+            exit 1
+          fi
+
+          if ! [[ "${OPENCODE_REF}" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+            echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
             exit 1
           fi
 
@@ -122,7 +127,15 @@ jobs:
 
             echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
             curl -fsSL "${URL}" -o "${FILE_PATH}"
-            HASH="$(nix hash file --type sha256 --sri "${FILE_PATH}")"
+            if [ ! -s "${FILE_PATH}" ]; then
+              echo "Downloaded Bun asset is empty or missing: ${FILE_PATH}"
+              exit 1
+            fi
+
+            if ! HASH="$(nix hash file --type sha256 --sri "${FILE_PATH}")"; then
+              echo "Failed to hash Bun asset for ${SYSTEM}: ${FILE_PATH}"
+              exit 1
+            fi
 
             jq \
               --arg system "${SYSTEM}" \
