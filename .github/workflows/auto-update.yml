@@ -103,13 +103,14 @@ jobs:
             exit 1
           fi
 
-          if ! [[ "${OPENCODE_REF}" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+          if ! [[ "${OPENCODE_REF}" =~ ^[A-Za-z0-9._-]+$ ]]; then
             echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
             exit 1
           fi
 
           PACKAGE_MANAGER=$(
-            gh api "repos/anomalyco/opencode/contents/package.json?ref=${OPENCODE_REF}" \
+            gh api "repos/anomalyco/opencode/contents/package.json" \
+              -f ref="${OPENCODE_REF}" \
               --jq '.content' \
               | base64 -d \
               | jq -r '.packageManager'
@@ -139,7 +140,7 @@ jobs:
             FILE_PATH="${TMP_DIR}/${ASSET}"
 
             echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
-            curl -fsSL "${URL}" -o "${FILE_PATH}" || {
+            curl --fail --silent --show-error --location --max-redirs 3 --proto '=https' "${URL}" -o "${FILE_PATH}" || {
               echo "Failed to download Bun asset from ${URL}"
               exit 1
             }
