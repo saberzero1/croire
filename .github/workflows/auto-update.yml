@@ -78,6 +78,153 @@ jobs:
             fi
           done
 
+      - name: Refresh OpenCode Bun metadata
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?'
+
+          OPENCODE_REF=$(
+            python - <<'PY'
+            import pathlib
+            import re
+
+            text = pathlib.Path("flake.nix").read_text()
+            match = re.search(
+                r'opencode\s*=\s*\{[^}]*?url\s*=\s*"github:anomalyco/opencode\?ref=([^"]+)"',
+                text,
+                re.S,
+            )
+            print(match.group(1) if match else "")
+            PY
+          )
+          if [ -z "${OPENCODE_REF}" ]; then
+            echo "opencode input with ?ref= not found in flake.nix"
+            exit 1
+          fi
+
+          if ! [[ "${OPENCODE_REF}" =~ ^v${SEMVER_REGEX}$ ]]; then
+            echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
+            exit 1
+          fi
+
+          PACKAGE_MANAGER=$(
+            gh api "repos/anomalyco/opencode/contents/package.json" \
+              -f ref="${OPENCODE_REF}" \
+              --jq '.content' \
+              | base64 -d \
+              | jq -r '.packageManager'
+          )
+
+          if ! [[ "${PACKAGE_MANAGER}" =~ ^bun@${SEMVER_REGEX}$ ]]; then
+            echo "Unsupported opencode packageManager value: ${PACKAGE_MANAGER}"
+            exit 1
+          fi
+          BUN_VERSION="${PACKAGE_MANAGER#bun@}"
+
+          declare -A BUN_ASSETS=(
+            ["aarch64-darwin"]="bun-darwin-aarch64.zip"
+            ["x86_64-darwin"]="bun-darwin-x64-baseline.zip"
+            ["aarch64-linux"]="bun-linux-aarch64.zip"
+            ["x86_64-linux"]="bun-linux-x64.zip"
+          )
+          BUN_SYSTEMS=(
+            "aarch64-darwin"
+            "x86_64-darwin"
+            "aarch64-linux"
+            "x86_64-linux"
+          )
+
+          TMP_DIR="$(mktemp -d)"
+          trap 'rm -rf "${TMP_DIR}"' EXIT
+          SOURCES_JSON="${TMP_DIR}/sources.json"
+          BUN_RELEASE_JSON="${TMP_DIR}/bun-release.json"
+          echo '{}' > "${SOURCES_JSON}"
+          gh api "repos/oven-sh/bun/releases/tags/bun-v${BUN_VERSION}" > "${BUN_RELEASE_JSON}"
+
+          for SYSTEM in "${BUN_SYSTEMS[@]}"; do
+            ASSET="${BUN_ASSETS[$SYSTEM]}"
+            URL="https://github.com/oven-sh/bun/releases/download/bun-v${BUN_VERSION}/${ASSET}"
+            FILE_PATH="${TMP_DIR}/${ASSET}"
+
+            echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
+            curl \
+              --fail \
+              --silent \
+              --show-error \
+              --location \
+              --max-redirs 3 \
+              --proto '=https' \
+              --tlsv1.2 \
+              --max-time 300 \
+              "${URL}" \
+              -o "${FILE_PATH}" || {
+              echo "Failed to download Bun asset from ${URL}"
+              exit 1
+            }
+            if [ ! -s "${FILE_PATH}" ]; then
+              echo "Downloaded Bun asset is empty or missing: ${FILE_PATH}"
+              exit 1
+            fi
+
+            if ! HASH="$(nix hash file --type sha256 --sri "${FILE_PATH}")"; then
+              echo "Failed to hash Bun asset for ${SYSTEM}: ${FILE_PATH}"
+              exit 1
+            fi
+
+            ASSET_MATCH_COUNT="$(jq -r --arg asset "${ASSET}" '[.assets[] | select(.name == $asset)] | length' "${BUN_RELEASE_JSON}")"
+            if [ "${ASSET_MATCH_COUNT}" -ne 1 ]; then
+              echo "Expected exactly one Bun asset named ${ASSET}, found ${ASSET_MATCH_COUNT}"
+              exit 1
+            fi
+
+            EXPECTED_DIGEST="$(jq -r --arg asset "${ASSET}" '.assets[] | select(.name == $asset) | .digest // empty' "${BUN_RELEASE_JSON}")"
+            if [ -z "${EXPECTED_DIGEST}" ]; then
+              echo "Missing expected digest for Bun asset ${ASSET} in GitHub release metadata"
+              exit 1
+            fi
+
+            if command -v sha256sum >/dev/null 2>&1; then
+              if ! LOCAL_SHA="$(sha256sum "${FILE_PATH}" | awk '{print $1}')"; then
+                echo "Failed to compute digest for ${FILE_PATH}"
+                exit 1
+              fi
+            elif command -v shasum >/dev/null 2>&1; then
+              if ! LOCAL_SHA="$(shasum -a 256 "${FILE_PATH}" | awk '{print $1}')"; then
+                echo "Failed to compute digest for ${FILE_PATH}"
+                exit 1
+              fi
+            else
+              echo "No SHA-256 command found (sha256sum/shasum)"
+              exit 1
+            fi
+
+            if [ -z "${LOCAL_SHA}" ]; then
+              echo "Failed to compute digest for ${FILE_PATH}"
+              exit 1
+            fi
+            LOCAL_DIGEST="sha256:${LOCAL_SHA}"
+            if [ "${LOCAL_DIGEST}" != "${EXPECTED_DIGEST}" ]; then
+              echo "Digest mismatch for ${ASSET}: expected ${EXPECTED_DIGEST}, got ${LOCAL_DIGEST}"
+              exit 1
+            fi
+
+            jq \
+              --arg system "${SYSTEM}" \
+              --arg asset "${ASSET}" \
+              --arg hash "${HASH}" \
+              '. + {($system): {asset: $asset, sha256: $hash}}' \
+              "${SOURCES_JSON}" > "${SOURCES_JSON}.tmp"
+            mv "${SOURCES_JSON}.tmp" "${SOURCES_JSON}"
+          done
+
+          jq \
+            --arg bunVersion "${BUN_VERSION}" \
+            --slurpfile sources "${SOURCES_JSON}" \
+            '{bunVersion: $bunVersion, sources: $sources[0]}' \
+            > overlays/opencode-bun-sources.json
+
       - name: Omnix update flakes
         # run: om --accept-flake-config ci run .#update
         # run: om ci run .#update \
@@ -94,7 +241,7 @@ jobs:
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          file_pattern: "flake.nix flake.lock programs/nvim/lazy-lock.json"
+          file_pattern: "flake.nix flake.lock overlays/opencode-bun-sources.json programs/nvim/lazy-lock.json"
           skip_checkout: false
           skip_dirty_check: false
           skip_fetch: false
@@ -312,4 +459,3 @@ jobs:
           visibility: "private"
           include-output-paths: true
           # github-token: ${{ secrets.GITHUB_TOKEN }}
-

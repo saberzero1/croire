@@ -12,34 +12,55 @@ self: super: {
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
-      # opencode v1.17.x requires bun@1.3.14 (specified in packageManager in package.json).
-      # nixpkgs currently provides bun 1.3.13, which resolves a different lockfile than the
-      # one committed in the opencode source, causing "lockfile had changes, but lockfile is
-      # frozen" when building opencode-node_modules.  Build bun 1.3.14 ourselves.
-      bun_1_3_14 = super.bun.overrideAttrs (_old: {
-        version = "1.3.14";
+      opencodePackageJsonPath = "${inputs.opencode}/package.json";
+      opencodePackageJsonResult =
+        builtins.tryEval (builtins.fromJSON (builtins.readFile opencodePackageJsonPath));
+      opencodePackageJson =
+        if !(builtins.pathExists opencodePackageJsonPath) then
+          throw "opencode overlay: missing ${opencodePackageJsonPath}"
+        else if opencodePackageJsonResult.success then
+          opencodePackageJsonResult.value
+        else
+          throw "opencode overlay: invalid JSON in ${opencodePackageJsonPath}";
+      packageManagerRaw = opencodePackageJson.packageManager or "missing";
+      # Keep bunSemverPattern in sync with SEMVER_REGEX in .github/workflows/auto-update.yml.
+      bunSemverPattern =
+        "[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?";
+      requiredBunMatch =
+        builtins.match
+          "bun@(${bunSemverPattern})"
+          packageManagerRaw;
+      requiredBunVersion =
+        if requiredBunMatch == null then
+          throw "opencode overlay: unable to parse bun version from packageManager='${packageManagerRaw}' (expected format: bun@<version>)"
+        else
+          builtins.elemAt requiredBunMatch 0;
+      bunSourcesPath = ./opencode-bun-sources.json;
+      bunSourcesResult = builtins.tryEval (builtins.fromJSON (builtins.readFile bunSourcesPath));
+      bunSources =
+        if !(builtins.pathExists bunSourcesPath) then
+          throw "opencode overlay: missing overlays/opencode-bun-sources.json"
+        else if bunSourcesResult.success then
+          bunSourcesResult.value
+        else
+          throw "opencode overlay: invalid JSON in overlays/opencode-bun-sources.json";
+      supportedSystems = builtins.concatStringsSep ", " (builtins.attrNames bunSources.sources);
+      bunSource =
+        if bunSources.bunVersion != requiredBunVersion then
+          throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})"
+        else
+        bunSources.sources.${system}
+        or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: ${supportedSystems}. To add support, update overlays/opencode-bun-sources.json.");
+      bunForOpencode = super.bun.overrideAttrs (_old: {
+        version = requiredBunVersion;
         src = super.fetchurl {
-          url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.14/${
-            {
-              "aarch64-darwin" = "bun-darwin-aarch64.zip";
-              "x86_64-darwin" = "bun-darwin-x64-baseline.zip";
-              "aarch64-linux" = "bun-linux-aarch64.zip";
-              "x86_64-linux" = "bun-linux-x64.zip";
-            }.${system}
-          }";
-          hash =
-            {
-              "aarch64-darwin" = "sha256-2LliIYKK1vl6x6wKt+lYcjQa92MAHogD6CZ2UsJlJiA=";
-              "x86_64-darwin" = "sha256-PjWtb1OXGpg0v55nhuKt9ytfGSHMmpxf3gc9KXKUQHY=";
-              "aarch64-linux" = "sha256-on/7Y6gxA3WDbg1vZorhf6jY0YuIw3yCHGUzGXOhmjs=";
-              "x86_64-linux" = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
-            }
-            .${system};
+          url = "https://github.com/oven-sh/bun/releases/download/bun-v${requiredBunVersion}/${bunSource.asset}";
+          hash = bunSource.sha256;
         };
       });
-      # Build node_modules with bun 1.3.14 to match the lockfile the opencode team committed.
+      # Build node_modules with opencode-required bun to match committed lockfile.
       node_modules = self.callPackage "${inputs.opencode}/nix/node_modules.nix" {
-        bun = bun_1_3_14;
+        bun = bunForOpencode;
         rev = inputs.opencode.shortRev or "dirty";
       };
       # Bring in the upstream opencode package but swap out the node_modules.
@@ -48,7 +69,7 @@ self: super: {
     pkg.overrideAttrs (oldAttrs: {
       # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
       # imports prettier, but prettier is only in the workspace root's
-      # devDependencies.  The bun install in node_modules.nix uses
+      # devDependencies. The bun install in node_modules.nix uses
       # --filter './packages/opencode' which excludes root deps, so prettier
       # is absent from node_modules and Bun's bundler can't resolve it.
       # A minimal stub satisfies the bundler; at runtime the generate command
