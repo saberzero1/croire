@@ -95,10 +95,14 @@ jobs:
             echo "Failed to extract opencode ref from flake.nix (grep exit ${GREP_STATUS})"
             exit "${GREP_STATUS}"
           fi
+          if [ "${GREP_STATUS}" -eq 1 ]; then
+            echo "opencode input with ?ref= not found in flake.nix"
+            exit 1
+          fi
 
           OPENCODE_REF="${OPENCODE_INPUT##*ref=}"
           if [ -z "${OPENCODE_REF}" ]; then
-            echo "opencode input with ?ref= not found in flake.nix"
+            echo "Failed to extract opencode ref value from matched input: ${OPENCODE_INPUT}"
             exit 1
           fi
 
