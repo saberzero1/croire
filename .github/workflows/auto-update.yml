@@ -103,7 +103,7 @@ jobs:
             exit 1
           fi
 
-          if ! [[ "${OPENCODE_REF}" =~ ^v[0-9]+([.][0-9]+)*([.-][A-Za-z0-9]+)*$ ]]; then
+          if ! [[ "${OPENCODE_REF}" =~ ^v[0-9]+([.][0-9]+)*([.-][A-Za-z0-9]+)?$ ]]; then
             echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
             exit 1
           fi
@@ -156,9 +156,9 @@ jobs:
               exit 1
             fi
 
-            DIGEST_MATCH_COUNT="$(jq -r --arg asset "${ASSET}" '[.assets[] | select(.name == $asset)] | length' "${BUN_RELEASE_JSON}")"
-            if [ "${DIGEST_MATCH_COUNT}" -ne 1 ]; then
-              echo "Expected exactly one Bun asset named ${ASSET}, found ${DIGEST_MATCH_COUNT}"
+            ASSET_MATCH_COUNT="$(jq -r --arg asset "${ASSET}" '[.assets[] | select(.name == $asset)] | length' "${BUN_RELEASE_JSON}")"
+            if [ "${ASSET_MATCH_COUNT}" -ne 1 ]; then
+              echo "Expected exactly one Bun asset named ${ASSET}, found ${ASSET_MATCH_COUNT}"
               exit 1
             fi
 

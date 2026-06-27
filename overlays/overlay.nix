@@ -22,10 +22,11 @@ self: super: {
           opencodePackageJsonResult.value
         else
           throw "opencode overlay: invalid JSON in ${opencodePackageJsonPath}";
-      requiredBunMatch = builtins.match "bun@(.+)" (opencodePackageJson.packageManager or "");
+      packageManagerRaw = opencodePackageJson.packageManager or "missing";
+      requiredBunMatch = builtins.match "bun@(.+)" packageManagerRaw;
       requiredBunVersion =
         if requiredBunMatch == null then
-          throw "opencode overlay: unable to parse bun version from packageManager='${opencodePackageJson.packageManager or "missing"}' (expected format: bun@<version>)"
+          throw "opencode overlay: unable to parse bun version from packageManager='${packageManagerRaw}' (expected format: bun@<version>)"
         else
           builtins.elemAt requiredBunMatch 0;
       bunSourcesPath = ./opencode-bun-sources.json;
