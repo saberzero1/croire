@@ -23,9 +23,12 @@ self: super: {
         else
           throw "opencode overlay: invalid JSON in ${opencodePackageJsonPath}";
       packageManagerRaw = opencodePackageJson.packageManager or "missing";
+      # Keep bunSemverPattern in sync with SEMVER_REGEX in .github/workflows/auto-update.yml.
+      bunSemverPattern =
+        "[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?";
       requiredBunMatch =
         builtins.match
-          "bun@([0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?)"
+          "bun@(${bunSemverPattern})"
           packageManagerRaw;
       requiredBunVersion =
         if requiredBunMatch == null then

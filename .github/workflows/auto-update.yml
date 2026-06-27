@@ -83,6 +83,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+          SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?'
 
           OPENCODE_REF=$(
             python - <<'PY'
@@ -103,7 +104,7 @@ jobs:
             exit 1
           fi
 
-          if ! [[ "${OPENCODE_REF}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?$ ]]; then
+          if ! [[ "${OPENCODE_REF}" =~ ^v${SEMVER_REGEX}$ ]]; then
             echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
             exit 1
           fi
@@ -116,11 +117,11 @@ jobs:
               | jq -r '.packageManager'
           )
 
-          BUN_VERSION="${PACKAGE_MANAGER#bun@}"
-          if [ "${BUN_VERSION}" = "${PACKAGE_MANAGER}" ] || [ -z "${BUN_VERSION}" ]; then
+          if ! [[ "${PACKAGE_MANAGER}" =~ ^bun@${SEMVER_REGEX}$ ]]; then
             echo "Unsupported opencode packageManager value: ${PACKAGE_MANAGER}"
             exit 1
           fi
+          BUN_VERSION="${PACKAGE_MANAGER#bun@}"
 
           declare -A BUN_ASSETS=(
             ["aarch64-darwin"]="bun-darwin-aarch64.zip"
@@ -148,7 +149,17 @@ jobs:
             FILE_PATH="${TMP_DIR}/${ASSET}"
 
             echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
-            curl --fail --silent --show-error --location --max-redirs 3 --proto '=https' --tlsv1.2 --max-time 300 "${URL}" -o "${FILE_PATH}" || {
+            curl \
+              --fail \
+              --silent \
+              --show-error \
+              --location \
+              --max-redirs 3 \
+              --proto '=https' \
+              --tlsv1.2 \
+              --max-time 300 \
+              "${URL}" \
+              -o "${FILE_PATH}" || {
               echo "Failed to download Bun asset from ${URL}"
               exit 1
             }
