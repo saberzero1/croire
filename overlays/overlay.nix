@@ -12,20 +12,28 @@ self: super: {
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
-      opencodePackageJson = builtins.fromJSON (builtins.readFile "${inputs.opencode}/package.json");
+      opencodePackageJsonResult =
+        builtins.tryEval (builtins.fromJSON (builtins.readFile "${inputs.opencode}/package.json"));
+      opencodePackageJson =
+        if opencodePackageJsonResult.success then
+          opencodePackageJsonResult.value
+        else
+          throw "opencode overlay: failed to read or parse ${inputs.opencode}/package.json";
       requiredBunMatch = builtins.match "bun@(.+)" (opencodePackageJson.packageManager or "");
       requiredBunVersion =
         if requiredBunMatch == null then
           throw "opencode overlay: unable to parse bun version from packageManager='${opencodePackageJson.packageManager or "missing"}' (expected format: bun@<version>)"
         else
           builtins.elemAt requiredBunMatch 0;
-      bunSources = builtins.fromJSON (builtins.readFile ./opencode-bun-sources.json);
-      _bunVersionCheck =
-        if bunSources.bunVersion != requiredBunVersion then
-          throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})"
+      bunSourcesResult = builtins.tryEval (builtins.fromJSON (builtins.readFile ./opencode-bun-sources.json));
+      bunSources =
+        if bunSourcesResult.success then
+          bunSourcesResult.value
         else
-          null;
+          throw "opencode overlay: failed to read or parse overlays/opencode-bun-sources.json";
       bunSource =
+        assert bunSources.bunVersion == requiredBunVersion
+          || throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})";
         bunSources.sources.${system}
         or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: aarch64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux. To add support, update overlays/opencode-bun-sources.json.");
       bunForOpencode = super.bun.overrideAttrs (_old: {

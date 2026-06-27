@@ -84,7 +84,20 @@ jobs:
         run: |
           set -euo pipefail
 
-          OPENCODE_REF=$(sed -nE 's/.*github:anomalyco\/opencode\?ref=([^"]+).*/\1/p' flake.nix | head -n1 || true)
+          OPENCODE_REF=$(
+            python - <<'PY'
+            import pathlib
+            import re
+
+            text = pathlib.Path("flake.nix").read_text()
+            match = re.search(
+                r'opencode\s*=\s*\{[^}]*?url\s*=\s*"github:anomalyco/opencode\?ref=([^"]+)"',
+                text,
+                re.S,
+            )
+            print(match.group(1) if match else "")
+            PY
+          )
           if [ -z "${OPENCODE_REF}" ]; then
             echo "opencode input with ?ref= not found in flake.nix"
             exit 1
@@ -126,7 +139,10 @@ jobs:
             FILE_PATH="${TMP_DIR}/${ASSET}"
 
             echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
-            curl -fsSL "${URL}" -o "${FILE_PATH}"
+            curl -fsSL "${URL}" -o "${FILE_PATH}" || {
+              echo "Failed to download Bun asset from ${URL}"
+              exit 1
+            }
             if [ ! -s "${FILE_PATH}" ]; then
               echo "Downloaded Bun asset is empty or missing: ${FILE_PATH}"
               exit 1
