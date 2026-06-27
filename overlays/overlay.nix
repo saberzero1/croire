@@ -25,7 +25,7 @@ self: super: {
       packageManagerRaw = opencodePackageJson.packageManager or "missing";
       requiredBunMatch =
         builtins.match
-          "bun@([0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?)"
+          "bun@([0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?)"
           packageManagerRaw;
       requiredBunVersion =
         if requiredBunMatch == null then
