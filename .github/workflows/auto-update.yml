@@ -103,7 +103,7 @@ jobs:
             exit 1
           fi
 
-          if ! [[ "${OPENCODE_REF}" =~ ^v[0-9]+([.][0-9]+)*([.-][A-Za-z0-9]+)?$ ]]; then
+          if ! [[ "${OPENCODE_REF}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?$ ]]; then
             echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
             exit 1
           fi
@@ -142,7 +142,7 @@ jobs:
             FILE_PATH="${TMP_DIR}/${ASSET}"
 
             echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
-            curl --fail --silent --show-error --location --max-redirs 3 --proto '=https' --tlsv1.2 "${URL}" -o "${FILE_PATH}" || {
+            curl --fail --silent --show-error --location --max-redirs 3 --proto '=https' --tlsv1.2 --max-time 300 "${URL}" -o "${FILE_PATH}" || {
               echo "Failed to download Bun asset from ${URL}"
               exit 1
             }
@@ -168,7 +168,22 @@ jobs:
               exit 1
             fi
 
-            if ! LOCAL_SHA="$(sha256sum "${FILE_PATH}" | awk '{print $1}')"; then
+            if command -v sha256sum >/dev/null 2>&1; then
+              if ! LOCAL_SHA="$(sha256sum "${FILE_PATH}" | awk '{print $1}')"; then
+                echo "Failed to compute digest for ${FILE_PATH}"
+                exit 1
+              fi
+            elif command -v shasum >/dev/null 2>&1; then
+              if ! LOCAL_SHA="$(shasum -a 256 "${FILE_PATH}" | awk '{print $1}')"; then
+                echo "Failed to compute digest for ${FILE_PATH}"
+                exit 1
+              fi
+            else
+              echo "No SHA-256 command found (sha256sum/shasum)"
+              exit 1
+            fi
+
+            if [ -z "${LOCAL_SHA}" ]; then
               echo "Failed to compute digest for ${FILE_PATH}"
               exit 1
             fi
