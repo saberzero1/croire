@@ -142,7 +142,7 @@ jobs:
             FILE_PATH="${TMP_DIR}/${ASSET}"
 
             echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
-            curl --fail --silent --show-error --location --max-redirs 3 --proto '=https' "${URL}" -o "${FILE_PATH}" || {
+            curl --fail --silent --show-error --location --max-redirs 3 --proto '=https' --tlsv1.2 "${URL}" -o "${FILE_PATH}" || {
               echo "Failed to download Bun asset from ${URL}"
               exit 1
             }
@@ -156,15 +156,23 @@ jobs:
               exit 1
             fi
 
-            EXPECTED_DIGEST="$(
-              jq -r --arg asset "${ASSET}" '.assets[] | select(.name == $asset) | .digest // empty' "${BUN_RELEASE_JSON}" | head -n1
-            )"
+            DIGEST_MATCH_COUNT="$(jq -r --arg asset "${ASSET}" '[.assets[] | select(.name == $asset)] | length' "${BUN_RELEASE_JSON}")"
+            if [ "${DIGEST_MATCH_COUNT}" -ne 1 ]; then
+              echo "Expected exactly one Bun asset named ${ASSET}, found ${DIGEST_MATCH_COUNT}"
+              exit 1
+            fi
+
+            EXPECTED_DIGEST="$(jq -r --arg asset "${ASSET}" '.assets[] | select(.name == $asset) | .digest // empty' "${BUN_RELEASE_JSON}")"
             if [ -z "${EXPECTED_DIGEST}" ]; then
               echo "Missing expected digest for Bun asset ${ASSET} in GitHub release metadata"
               exit 1
             fi
 
-            LOCAL_DIGEST="sha256:$(sha256sum "${FILE_PATH}" | awk '{print $1}')"
+            if ! LOCAL_SHA="$(sha256sum "${FILE_PATH}" | awk '{print $1}')"; then
+              echo "Failed to compute digest for ${FILE_PATH}"
+              exit 1
+            fi
+            LOCAL_DIGEST="sha256:${LOCAL_SHA}"
             if [ "${LOCAL_DIGEST}" != "${EXPECTED_DIGEST}" ]; then
               echo "Digest mismatch for ${ASSET}: expected ${EXPECTED_DIGEST}, got ${LOCAL_DIGEST}"
               exit 1

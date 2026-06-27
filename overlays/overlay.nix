@@ -12,25 +12,31 @@ self: super: {
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
+      opencodePackageJsonPath = "${inputs.opencode}/package.json";
       opencodePackageJsonResult =
-        builtins.tryEval (builtins.fromJSON (builtins.readFile "${inputs.opencode}/package.json"));
+        builtins.tryEval (builtins.fromJSON (builtins.readFile opencodePackageJsonPath));
       opencodePackageJson =
-        if opencodePackageJsonResult.success then
+        if !(builtins.pathExists opencodePackageJsonPath) then
+          throw "opencode overlay: missing ${opencodePackageJsonPath}"
+        else if opencodePackageJsonResult.success then
           opencodePackageJsonResult.value
         else
-          throw "opencode overlay: failed to read or parse ${inputs.opencode}/package.json";
+          throw "opencode overlay: invalid JSON in ${opencodePackageJsonPath}";
       requiredBunMatch = builtins.match "bun@(.+)" (opencodePackageJson.packageManager or "");
       requiredBunVersion =
         if requiredBunMatch == null then
           throw "opencode overlay: unable to parse bun version from packageManager='${opencodePackageJson.packageManager or "missing"}' (expected format: bun@<version>)"
         else
           builtins.elemAt requiredBunMatch 0;
-      bunSourcesResult = builtins.tryEval (builtins.fromJSON (builtins.readFile ./opencode-bun-sources.json));
+      bunSourcesPath = ./opencode-bun-sources.json;
+      bunSourcesResult = builtins.tryEval (builtins.fromJSON (builtins.readFile bunSourcesPath));
       bunSources =
-        if bunSourcesResult.success then
+        if !(builtins.pathExists bunSourcesPath) then
+          throw "opencode overlay: missing overlays/opencode-bun-sources.json"
+        else if bunSourcesResult.success then
           bunSourcesResult.value
         else
-          throw "opencode overlay: failed to read or parse overlays/opencode-bun-sources.json";
+          throw "opencode overlay: invalid JSON in overlays/opencode-bun-sources.json";
       supportedSystems = builtins.concatStringsSep ", " (builtins.attrNames bunSources.sources);
       bunSource =
         if bunSources.bunVersion != requiredBunVersion then
