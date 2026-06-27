@@ -12,7 +12,8 @@ self: super: {
   opencode = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
-  # claude-code: pull from nixpkgs-unstable to avoid stale/default-channel lag.
+  # claude-code: keep this on nixpkgs-unstable because the default nixpkgs input
+  # can lag behind upstream claude-code releases that are frequently yanked/replaced.
   claude-code = inputs.nixpkgs-unstable.legacyPackages.${self.pkgs.stdenv.hostPlatform.system}.claude-code;
 
   # tmux-sessionizer: base package from flake input (no nushell dependency)
