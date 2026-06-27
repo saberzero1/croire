@@ -85,20 +85,11 @@ jobs:
           set -euo pipefail
           SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?'
 
-          OPENCODE_REF=$(
-            python - <<'PY'
-            import pathlib
-            import re
-
-            text = pathlib.Path("flake.nix").read_text()
-            match = re.search(
-                r'opencode\s*=\s*\{[^}]*?url\s*=\s*"github:anomalyco/opencode\?ref=([^"]+)"',
-                text,
-                re.S,
-            )
-            print(match.group(1) if match else "")
-            PY
-          )
+          OPENCODE_REF="$(
+            grep -oE 'github:anomalyco/opencode\?ref=[^"]+' flake.nix \
+              | head -n1 \
+              | sed 's|.*ref=||'
+          )"
           if [ -z "${OPENCODE_REF}" ]; then
             echo "opencode input with ?ref= not found in flake.nix"
             exit 1
