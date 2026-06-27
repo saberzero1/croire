@@ -128,6 +128,12 @@ jobs:
             ["aarch64-linux"]="bun-linux-aarch64.zip"
             ["x86_64-linux"]="bun-linux-x64.zip"
           )
+          BUN_SYSTEMS=(
+            "aarch64-darwin"
+            "x86_64-darwin"
+            "aarch64-linux"
+            "x86_64-linux"
+          )
 
           TMP_DIR="$(mktemp -d)"
           trap 'rm -rf "${TMP_DIR}"' EXIT
@@ -136,7 +142,7 @@ jobs:
           echo '{}' > "${SOURCES_JSON}"
           gh api "repos/oven-sh/bun/releases/tags/bun-v${BUN_VERSION}" > "${BUN_RELEASE_JSON}"
 
-          for SYSTEM in "${!BUN_ASSETS[@]}"; do
+          for SYSTEM in "${BUN_SYSTEMS[@]}"; do
             ASSET="${BUN_ASSETS[$SYSTEM]}"
             URL="https://github.com/oven-sh/bun/releases/download/bun-v${BUN_VERSION}/${ASSET}"
             FILE_PATH="${TMP_DIR}/${ASSET}"
