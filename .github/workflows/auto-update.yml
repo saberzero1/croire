@@ -116,10 +116,16 @@ jobs:
           fi
 
           PACKAGE_MANAGER=$(
-            gh api "repos/anomalyco/opencode/contents/package.json" \
-              -f ref="${OPENCODE_REF}" \
-              --jq '.content' \
-              | base64 -d \
+            curl \
+              --fail \
+              --silent \
+              --show-error \
+              --location \
+              --max-redirs 3 \
+              --proto '=https' \
+              --tlsv1.2 \
+              --max-time 30 \
+              "https://raw.githubusercontent.com/anomalyco/opencode/${OPENCODE_REF}/package.json" \
               | jq -r '.packageManager'
           )
 
