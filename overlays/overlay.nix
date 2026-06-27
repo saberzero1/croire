@@ -12,34 +12,32 @@ self: super: {
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
-      # opencode v1.17.x requires bun@1.3.14 (specified in packageManager in package.json).
-      # nixpkgs currently provides bun 1.3.13, which resolves a different lockfile than the
-      # one committed in the opencode source, causing "lockfile had changes, but lockfile is
-      # frozen" when building opencode-node_modules. Build bun 1.3.14 ourselves.
-      bun_1_3_14 = super.bun.overrideAttrs (_old: {
-        version = "1.3.14";
+      opencodePackageJson = builtins.fromJSON (builtins.readFile "${inputs.opencode}/package.json");
+      requiredBunMatch = builtins.match "bun@(.+)" (opencodePackageJson.packageManager or "");
+      requiredBunVersion =
+        if requiredBunMatch == null then
+          throw "opencode overlay: unable to parse bun version from packageManager='${opencodePackageJson.packageManager or "missing"}'"
+        else
+          builtins.elemAt requiredBunMatch 0;
+      bunSources = builtins.fromJSON (builtins.readFile ./opencode-bun-sources.json);
+      _bunVersionCheck =
+        if bunSources.bunVersion != requiredBunVersion then
+          throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})"
+        else
+          null;
+      bunSource =
+        bunSources.sources.${system}
+        or (throw "opencode overlay: missing bun source metadata for system '${system}'");
+      bunForOpencode = super.bun.overrideAttrs (_old: {
+        version = requiredBunVersion;
         src = super.fetchurl {
-          url = "https://github.com/oven-sh/bun/releases/download/bun-v1.3.14/${
-            {
-              "aarch64-darwin" = "bun-darwin-aarch64.zip";
-              "x86_64-darwin" = "bun-darwin-x64-baseline.zip";
-              "aarch64-linux" = "bun-linux-aarch64.zip";
-              "x86_64-linux" = "bun-linux-x64.zip";
-            }.${system}
-          }";
-          hash =
-            {
-              "aarch64-darwin" = "sha256-2LliIYKK1vl6x6wKt+lYcjQa92MAHogD6CZ2UsJlJiA=";
-              "x86_64-darwin" = "sha256-PjWtb1OXGpg0v55nhuKt9ytfGSHMmpxf3gc9KXKUQHY=";
-              "aarch64-linux" = "sha256-on/7Y6gxA3WDbg1vZorhf6jY0YuIw3yCHGUzGXOhmjs=";
-              "x86_64-linux" = "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8=";
-            }
-            .${system};
+          url = "https://github.com/oven-sh/bun/releases/download/bun-v${requiredBunVersion}/${bunSource.asset}";
+          hash = bunSource.sha256;
         };
       });
-      # Build node_modules with bun 1.3.14 to match the lockfile the opencode team committed.
+      # Build node_modules with opencode-required bun to match committed lockfile.
       node_modules = self.callPackage "${inputs.opencode}/nix/node_modules.nix" {
-        bun = bun_1_3_14;
+        bun = bunForOpencode;
         rev = inputs.opencode.shortRev or "dirty";
       };
       # Bring in the upstream opencode package but swap out the node_modules.

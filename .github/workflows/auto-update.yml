@@ -78,6 +78,67 @@ jobs:
             fi
           done
 
+      - name: Refresh OpenCode Bun metadata
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          OPENCODE_REF=$(grep -oP 'github:anomalyco/opencode\?ref=\K[^"]+' flake.nix | head -n1 || true)
+          if [ -z "${OPENCODE_REF}" ]; then
+            echo "opencode input with ?ref= not found in flake.nix"
+            exit 1
+          fi
+
+          PACKAGE_MANAGER=$(
+            gh api "repos/anomalyco/opencode/contents/package.json?ref=${OPENCODE_REF}" \
+              --jq '.content' \
+              | base64 -d \
+              | jq -r '.packageManager'
+          )
+
+          BUN_VERSION="${PACKAGE_MANAGER#bun@}"
+          if [ "${BUN_VERSION}" = "${PACKAGE_MANAGER}" ] || [ -z "${BUN_VERSION}" ]; then
+            echo "Unsupported opencode packageManager value: ${PACKAGE_MANAGER}"
+            exit 1
+          fi
+
+          declare -A BUN_ASSETS=(
+            ["aarch64-darwin"]="bun-darwin-aarch64.zip"
+            ["x86_64-darwin"]="bun-darwin-x64-baseline.zip"
+            ["aarch64-linux"]="bun-linux-aarch64.zip"
+            ["x86_64-linux"]="bun-linux-x64.zip"
+          )
+
+          TMP_DIR="$(mktemp -d)"
+          trap 'rm -rf "${TMP_DIR}"' EXIT
+          SOURCES_JSON="${TMP_DIR}/sources.json"
+          echo '{}' > "${SOURCES_JSON}"
+
+          for SYSTEM in "${!BUN_ASSETS[@]}"; do
+            ASSET="${BUN_ASSETS[$SYSTEM]}"
+            URL="https://github.com/oven-sh/bun/releases/download/bun-v${BUN_VERSION}/${ASSET}"
+            FILE_PATH="${TMP_DIR}/${ASSET}"
+
+            echo "Fetching Bun ${BUN_VERSION} asset for ${SYSTEM}: ${ASSET}"
+            curl -fsSL "${URL}" -o "${FILE_PATH}"
+            HASH="$(nix hash file --type sha256 --sri "${FILE_PATH}")"
+
+            jq \
+              --arg system "${SYSTEM}" \
+              --arg asset "${ASSET}" \
+              --arg hash "${HASH}" \
+              '. + {($system): {asset: $asset, sha256: $hash}}' \
+              "${SOURCES_JSON}" > "${SOURCES_JSON}.tmp"
+            mv "${SOURCES_JSON}.tmp" "${SOURCES_JSON}"
+          done
+
+          jq \
+            --arg bunVersion "${BUN_VERSION}" \
+            --slurpfile sources "${SOURCES_JSON}" \
+            '{bunVersion: $bunVersion, sources: $sources[0]}' \
+            > overlays/opencode-bun-sources.json
+
       - name: Omnix update flakes
         # run: om --accept-flake-config ci run .#update
         # run: om ci run .#update \
@@ -94,7 +155,7 @@ jobs:
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          file_pattern: "flake.nix flake.lock programs/nvim/lazy-lock.json"
+          file_pattern: "flake.nix flake.lock overlays/opencode-bun-sources.json programs/nvim/lazy-lock.json"
           skip_checkout: false
           skip_dirty_check: false
           skip_fetch: false
@@ -312,4 +373,3 @@ jobs:
           visibility: "private"
           include-output-paths: true
           # github-token: ${{ secrets.GITHUB_TOKEN }}
-
