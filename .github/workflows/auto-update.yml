@@ -88,7 +88,8 @@ jobs:
           OPENCODE_REF="$(
             grep -oE 'github:anomalyco/opencode\?ref=[^"]+' flake.nix \
               | head -n1 \
-              | sed 's|.*ref=||'
+              | sed 's|.*ref=||' \
+              || true
           )"
           if [ -z "${OPENCODE_REF}" ]; then
             echo "opencode input with ?ref= not found in flake.nix"
