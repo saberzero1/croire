@@ -85,12 +85,18 @@ jobs:
           set -euo pipefail
           SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+([.][0-9A-Za-z-]+)*)?'
 
-          OPENCODE_REF="$(
-            grep -oE 'github:anomalyco/opencode\?ref=[^"]+' flake.nix \
-              | head -n1 \
-              | sed 's|.*ref=||' \
-              || true
-          )"
+          OPENCODE_INPUT=""
+          set +e
+          OPENCODE_INPUT="$(grep -m1 -oE 'github:anomalyco/opencode\?ref=[^"]+' flake.nix)"
+          GREP_STATUS=$?
+          set -e
+
+          if [ "${GREP_STATUS}" -gt 1 ]; then
+            echo "Failed to extract opencode ref from flake.nix (grep exit ${GREP_STATUS})"
+            exit "${GREP_STATUS}"
+          fi
+
+          OPENCODE_REF="${OPENCODE_INPUT##*ref=}"
           if [ -z "${OPENCODE_REF}" ]; then
             echo "opencode input with ?ref= not found in flake.nix"
             exit 1
