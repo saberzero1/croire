@@ -31,12 +31,13 @@ self: super: {
           bunSourcesResult.value
         else
           throw "opencode overlay: failed to read or parse overlays/opencode-bun-sources.json";
+      supportedSystems = builtins.concatStringsSep ", " (builtins.attrNames bunSources.sources);
       bunSource =
         if bunSources.bunVersion != requiredBunVersion then
           throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})"
         else
         bunSources.sources.${system}
-        or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: aarch64-darwin, x86_64-darwin, aarch64-linux, x86_64-linux. To add support, update overlays/opencode-bun-sources.json.");
+        or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: ${supportedSystems}. To add support, update overlays/opencode-bun-sources.json.");
       bunForOpencode = super.bun.overrideAttrs (_old: {
         version = requiredBunVersion;
         src = super.fetchurl {

@@ -103,7 +103,7 @@ jobs:
             exit 1
           fi
 
-          if ! [[ "${OPENCODE_REF}" =~ ^[A-Za-z0-9._-]+$ ]]; then
+          if ! [[ "${OPENCODE_REF}" =~ ^v[0-9]+([.][0-9]+)*([.-][A-Za-z0-9]+)*$ ]]; then
             echo "Invalid opencode ref extracted from flake.nix: ${OPENCODE_REF}"
             exit 1
           fi
@@ -132,7 +132,9 @@ jobs:
           TMP_DIR="$(mktemp -d)"
           trap 'rm -rf "${TMP_DIR}"' EXIT
           SOURCES_JSON="${TMP_DIR}/sources.json"
+          BUN_RELEASE_JSON="${TMP_DIR}/bun-release.json"
           echo '{}' > "${SOURCES_JSON}"
+          gh api "repos/oven-sh/bun/releases/tags/bun-v${BUN_VERSION}" > "${BUN_RELEASE_JSON}"
 
           for SYSTEM in "${!BUN_ASSETS[@]}"; do
             ASSET="${BUN_ASSETS[$SYSTEM]}"
@@ -151,6 +153,20 @@ jobs:
 
             if ! HASH="$(nix hash file --type sha256 --sri "${FILE_PATH}")"; then
               echo "Failed to hash Bun asset for ${SYSTEM}: ${FILE_PATH}"
+              exit 1
+            fi
+
+            EXPECTED_DIGEST="$(
+              jq -r --arg asset "${ASSET}" '.assets[] | select(.name == $asset) | .digest // empty' "${BUN_RELEASE_JSON}" | head -n1
+            )"
+            if [ -z "${EXPECTED_DIGEST}" ]; then
+              echo "Missing expected digest for Bun asset ${ASSET} in GitHub release metadata"
+              exit 1
+            fi
+
+            LOCAL_DIGEST="sha256:$(sha256sum "${FILE_PATH}" | awk '{print $1}')"
+            if [ "${LOCAL_DIGEST}" != "${EXPECTED_DIGEST}" ]; then
+              echo "Digest mismatch for ${ASSET}: expected ${EXPECTED_DIGEST}, got ${LOCAL_DIGEST}"
               exit 1
             fi
 
