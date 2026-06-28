@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Install Determinate Nix
-        uses: DeterminateSystems/determinate-nix-action@main
+        uses: DeterminateSystems/determinate-nix-action@v3.21.2
         with:
           github-token: ${{ github.token }}
 
@@ -29,16 +29,23 @@ jobs:
           mkdir -p "$HOME/.local/bin"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Install just and nixfmt
+      - name: Install just
         run: |
-          cargo install just --locked --root "$HOME/.local"
-          cargo install nixfmt_rs --locked --root "$HOME/.local"
+          curl -fsSL \
+            https://github.com/casey/just/releases/download/1.54.0/just-1.54.0-x86_64-unknown-linux-musl.tar.gz \
+            -o /tmp/just.tar.gz
+          tar -xzf /tmp/just.tar.gz -C "$HOME/.local/bin" just
 
       - name: Install fd
         run: |
-          sudo apt-get update
-          sudo apt-get install -y fd-find
-          ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd"
+          curl -fsSL \
+            https://github.com/sharkdp/fd/releases/download/v10.4.2/fd_10.4.2_amd64.deb \
+            -o /tmp/fd.deb
+          sudo dpkg -i /tmp/fd.deb
+
+      - name: Install nixfmt
+        run: |
+          cargo install nixfmt_rs --locked --root "$HOME/.local"
 
       - name: Verify toolchain
         run: |
