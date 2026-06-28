@@ -34,6 +34,7 @@ jobs:
           curl -fsSL \
             https://github.com/casey/just/releases/download/1.54.0/just-1.54.0-x86_64-unknown-linux-musl.tar.gz \
             -o /tmp/just.tar.gz
+          echo "193e2b04bac8ff3568ff81cf62f8c9db08f8083e16665e28d400dd35bac47ffd  /tmp/just.tar.gz" | sha256sum -c -
           tar -xzf /tmp/just.tar.gz -C "$HOME/.local/bin" just
 
       - name: Install fd
@@ -41,6 +42,7 @@ jobs:
           curl -fsSL \
             https://github.com/sharkdp/fd/releases/download/v10.4.2/fd_10.4.2_amd64.deb \
             -o /tmp/fd.deb
+          echo "0e44eb5fca93f09bc6f5430b90acdf44c8e069d0a903700aeb4820629337b67b  /tmp/fd.deb" | sha256sum -c -
           sudo dpkg -i /tmp/fd.deb
 
       - name: Install nixfmt
