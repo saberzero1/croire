@@ -12,7 +12,59 @@ self: super: {
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
-      pkg = inputs.opencode.packages.${system}.default;
+      opencodePackageJsonPath = "${inputs.opencode}/package.json";
+      opencodePackageJsonResult =
+        builtins.tryEval (builtins.fromJSON (builtins.readFile opencodePackageJsonPath));
+      opencodePackageJson =
+        if !(builtins.pathExists opencodePackageJsonPath) then
+          throw "opencode overlay: missing ${opencodePackageJsonPath}"
+        else if opencodePackageJsonResult.success then
+          opencodePackageJsonResult.value
+        else
+          throw "opencode overlay: invalid JSON in ${opencodePackageJsonPath}";
+      packageManagerRaw = opencodePackageJson.packageManager or "missing";
+      # Keep bunSemverPattern in sync with SEMVER_REGEX in .github/workflows/auto-update.yml.
+      bunSemverPattern =
+        "[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?";
+      requiredBunMatch =
+        builtins.match
+          "bun@(${bunSemverPattern})"
+          packageManagerRaw;
+      requiredBunVersion =
+        if requiredBunMatch == null then
+          throw "opencode overlay: unable to parse bun version from packageManager='${packageManagerRaw}' (expected format: bun@<version>)"
+        else
+          builtins.elemAt requiredBunMatch 0;
+      bunSourcesPath = ./opencode-bun-sources.json;
+      bunSourcesResult = builtins.tryEval (builtins.fromJSON (builtins.readFile bunSourcesPath));
+      bunSources =
+        if !(builtins.pathExists bunSourcesPath) then
+          throw "opencode overlay: missing overlays/opencode-bun-sources.json"
+        else if bunSourcesResult.success then
+          bunSourcesResult.value
+        else
+          throw "opencode overlay: invalid JSON in overlays/opencode-bun-sources.json";
+      supportedSystems = builtins.concatStringsSep ", " (builtins.attrNames bunSources.sources);
+      bunSource =
+        if bunSources.bunVersion != requiredBunVersion then
+          throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})"
+        else
+          bunSources.sources.${system}
+          or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: ${supportedSystems}. To add support, update overlays/opencode-bun-sources.json.");
+      bunForOpencode = super.bun.overrideAttrs (_old: {
+        version = requiredBunVersion;
+        src = super.fetchurl {
+          url = "https://github.com/oven-sh/bun/releases/download/bun-v${requiredBunVersion}/${bunSource.asset}";
+          hash = bunSource.sha256;
+        };
+      });
+      # Build node_modules with opencode-required bun to match committed lockfile.
+      node_modules = self.callPackage "${inputs.opencode}/nix/node_modules.nix" {
+        bun = bunForOpencode;
+        rev = inputs.opencode.shortRev or "dirty";
+      };
+      # Bring in the upstream opencode package but swap out the node_modules.
+      pkg = (inputs.opencode.packages.${system}.default).override { inherit node_modules; };
     in
     pkg.overrideAttrs (oldAttrs: {
       # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
