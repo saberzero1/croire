@@ -1,0 +1,48 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 59
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Determinate Nix
+        uses: DeterminateSystems/determinate-nix-action@main
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Prepare local bin directory
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Install just and nixfmt
+        run: |
+          cargo install just --locked --root "$HOME/.local"
+          cargo install nixfmt_rs --locked --root "$HOME/.local"
+
+      - name: Install fd
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fd-find
+          ln -sf /usr/bin/fdfind "$HOME/.local/bin/fd"
+
+      - name: Verify toolchain
+        run: |
+          nix --version
+          just --version
+          fd --version
+          nixfmt --version
