@@ -231,7 +231,7 @@ jobs:
             mv "${SOURCES_JSON}.tmp" "${SOURCES_JSON}"
           done
 
-          jq \
+          jq -n \
             --arg bunVersion "${BUN_VERSION}" \
             --slurpfile sources "${SOURCES_JSON}" \
             '{bunVersion: $bunVersion, sources: $sources[0]}' \
