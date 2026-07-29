@@ -1,7 +1,6 @@
 # Shared system packages for Darwin and NixOS
 # Returns attribute sets that can be used with `environment.systemPackages`
-{ pkgs }:
-{
+{ pkgs }: {
   # Kubernetes tools
   kubernetes = with pkgs; [
     k9s

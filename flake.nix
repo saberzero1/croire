@@ -219,10 +219,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.mix-nix.follows = "mix-nix";
     };
-    geforce-infinity = {
-      url = "github:saberzero1/GeForce-Infinity/copilot/add-nix-flake-support";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Dotfiles
     totten = {

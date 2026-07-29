@@ -137,14 +137,14 @@ in
         hadolint
 
         # Elixir
-        elixir
+        beamPackages.elixir
         elixir-ls
 
         # Elm
         elmPackages.elm-format
 
         # Erlang
-        erlang
+        beamPackages.erlang
 
         # Git
         git

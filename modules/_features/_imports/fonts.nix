@@ -1,7 +1,6 @@
 # Shared font configuration for Darwin and NixOS
 # Import this module in darwin-system.nix and nixos-system.nix
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   fonts.packages = with pkgs; [
     # Fira Code
     fira-code

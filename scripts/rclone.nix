@@ -1,6 +1,5 @@
 # https://discourse.nixos.org/t/rclone-automount-all-locally-configured-drives/52821
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   home = {
     packages = [ pkgs.rclone ];
     shellAliases = {

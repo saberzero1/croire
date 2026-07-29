@@ -1,7 +1,6 @@
 # Programming Language Toolchains - Consolidated
 # Development packages for various programming languages
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: {
   home = {
     packages =
       # =========================================
@@ -37,7 +36,7 @@
       # =========================================
       # Elixir
       # =========================================
-      ++ (with pkgs; [
+      ++ (with pkgs.beamPackages; [
         elixir
         erlang
       ])

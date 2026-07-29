@@ -1,7 +1,6 @@
 # Dendritic pattern: Per-system configuration
 # Defines perSystem options (packages, devShells, formatter, etc.)
-{ inputs, config, ... }:
-{
+{ inputs, config, ... }: {
   perSystem =
     {
       self',

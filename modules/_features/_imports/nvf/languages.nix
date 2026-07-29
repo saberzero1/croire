@@ -154,7 +154,7 @@ in
       enable = true;
       format = {
         enable = true;
-        type = [ "format_r" ];
+        type = [ "format-r" ];
       };
       lsp = {
         enable = true;
@@ -381,15 +381,7 @@ in
       };
       lsp = {
         enable = true;
-        opts = ''
-          ['rust-analyzer'] = {
-            cargo = {allFeature = true},
-            checkOnSave = true,
-            procMacro = {
-              enable = true,
-            },
-          },
-        '';
+        servers = [ "rust-analyzer" ];
       };
       treesitter.enable = true;
     };
@@ -484,8 +476,7 @@ in
       };
       format = {
         enable = true;
-        extraFiletypes = [ "mdx" ];
-        type = [ "prettierd" ];
+        type = [ "prettier" ];
       };
       lsp = {
         enable = !isDarwin;

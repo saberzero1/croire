@@ -13,8 +13,9 @@ self: super: {
     let
       system = self.pkgs.stdenv.hostPlatform.system;
       opencodePackageJsonPath = "${inputs.opencode}/package.json";
-      opencodePackageJsonResult =
-        builtins.tryEval (builtins.fromJSON (builtins.readFile opencodePackageJsonPath));
+      opencodePackageJsonResult = builtins.tryEval (
+        builtins.fromJSON (builtins.readFile opencodePackageJsonPath)
+      );
       opencodePackageJson =
         if !(builtins.pathExists opencodePackageJsonPath) then
           throw "opencode overlay: missing ${opencodePackageJsonPath}"
@@ -24,12 +25,8 @@ self: super: {
           throw "opencode overlay: invalid JSON in ${opencodePackageJsonPath}";
       packageManagerRaw = opencodePackageJson.packageManager or "missing";
       # Keep bunSemverPattern in sync with SEMVER_REGEX in .github/workflows/auto-update.yml.
-      bunSemverPattern =
-        "[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?";
-      requiredBunMatch =
-        builtins.match
-          "bun@(${bunSemverPattern})"
-          packageManagerRaw;
+      bunSemverPattern = "[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?(\\+[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?";
+      requiredBunMatch = builtins.match "bun@(${bunSemverPattern})" packageManagerRaw;
       requiredBunVersion =
         if requiredBunMatch == null then
           throw "opencode overlay: unable to parse bun version from packageManager='${packageManagerRaw}' (expected format: bun@<version>)"
@@ -49,8 +46,8 @@ self: super: {
         if bunSources.bunVersion != requiredBunVersion then
           throw "opencode overlay: bun metadata version (${bunSources.bunVersion}) does not match opencode requirement (${requiredBunVersion})"
         else
-        bunSources.sources.${system}
-        or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: ${supportedSystems}. To add support, update overlays/opencode-bun-sources.json.");
+          bunSources.sources.${system}
+            or (throw "opencode overlay: missing bun source metadata for system '${system}'. Supported systems: ${supportedSystems}. To add support, update overlays/opencode-bun-sources.json.");
       bunForOpencode = super.bun.overrideAttrs (_old: {
         version = requiredBunVersion;
         src = super.fetchurl {
@@ -75,16 +72,17 @@ self: super: {
       # A minimal stub satisfies the bundler; at runtime the generate command
       # will use it to return unformatted JSON (functionally equivalent).
       postConfigure = (oldAttrs.postConfigure or "") + ''
-        if [ ! -f node_modules/prettier/package.json ]; then
-          mkdir -p node_modules/prettier
-          cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
-export const format = (s, _opts) => Promise.resolve(s);
-export default { format: (s, _opts) => Promise.resolve(s) };
-PRETTIER_STUB_EOF
-          cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
-{"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
-PRETTIER_PKG_EOF
-        fi
+                if [ ! -f node_modules/prettier/package.json ]; then
+                  chmod u+w node_modules
+                  mkdir -p node_modules/prettier
+                  cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
+        export const format = (s, _opts) => Promise.resolve(s);
+        export default { format: (s, _opts) => Promise.resolve(s) };
+        PRETTIER_STUB_EOF
+                  cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
+        {"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
+        PRETTIER_PKG_EOF
+                fi
       '';
     });
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;

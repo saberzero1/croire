@@ -93,7 +93,7 @@ in
       ssh_config
       svelte
       sway
-      tmux
+      # tmux
       toml
       tsx
       typescript
