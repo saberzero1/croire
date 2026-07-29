@@ -2,31 +2,31 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "anthropic/claude-opus-4-6"
+      "model": "anthropic/claude-opus-4-7"
     },
     "hephaestus": {
-      "model": "opencode/gpt-5.2-codex"
+      "model": "opencode/gpt-5.5"
     },
     "oracle": {
-      "model": "opencode/gpt-5.2"
+      "model": "opencode/gpt-5.5"
     },
     "librarian": {
-      "model": "opencode/big-pickle"
+      "model": "opencode/claude-haiku-4-5"
     },
     "explore": {
       "model": "opencode/claude-haiku-4-5"
     },
     "multimodal-looker": {
-      "model": "opencode/gemini-3-flash"
+      "model": "opencode/gpt-5.5"
     },
     "prometheus": {
-      "model": "anthropic/claude-opus-4-6"
+      "model": "anthropic/claude-opus-4-7"
     },
     "metis": {
-      "model": "anthropic/claude-opus-4-6"
+      "model": "anthropic/claude-sonnet-4-6"
     },
     "momus": {
-      "model": "opencode/gpt-5.2"
+      "model": "opencode/gpt-5.5"
     },
     "atlas": {
       "model": "anthropic/claude-sonnet-4-6"
@@ -34,28 +34,28 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "opencode/gemini-3-pro"
+      "model": "opencode/gemini-3.1-pro"
     },
     "ultrabrain": {
-      "model": "opencode/gpt-5.2-codex"
+      "model": "opencode/gpt-5.6-sol"
     },
     "deep": {
-      "model": "opencode/gpt-5.2-codex"
+      "model": "opencode/gpt-5.6-terra"
     },
     "artistry": {
-      "model": "opencode/gemini-3-pro"
+      "model": "opencode/gemini-3.1-pro"
     },
     "quick": {
-      "model": "anthropic/claude-haiku-4-6"
+      "model": "opencode/gpt-5.4-mini"
     },
     "unspecified-low": {
-      "model": "anthropic/claude-sonnet-4-6"
+      "model": "opencode/gpt-5.6-luna"
     },
     "unspecified-high": {
-      "model": "anthropic/claude-opus-4-6"
+      "model": "anthropic/claude-opus-4-7"
     },
     "writing": {
-      "model": "opencode/gemini-3-flash"
+      "model": "opencode/kimi-k2.5"
     }
   },
   "git_master": {
