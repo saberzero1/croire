@@ -99,10 +99,10 @@ lib.checkListOfEnum "${pname}: colorVariants" colorVariantList colorVariants lib
       mkdir -p $out/share/themes
       cd themes
       ./install.sh -n Tokyonight \
-      ${lib.optionalString (colorVariants != [ ]) "-c " + toString colorVariants} \
-      ${lib.optionalString (sizeVariants != [ ]) "-s " + toString sizeVariants} \
-      ${lib.optionalString (themeVariants != [ ]) "-t " + toString themeVariants} \
-      ${lib.optionalString (tweakVariants != [ ]) "--tweaks " + toString tweakVariants} \
+      ${lib.optionalString (colorVariants != [ ]) ("-c " + toString colorVariants)} \
+      ${lib.optionalString (sizeVariants != [ ]) ("-s " + toString sizeVariants)} \
+      ${lib.optionalString (themeVariants != [ ]) ("-t " + toString themeVariants)} \
+      ${lib.optionalString (tweakVariants != [ ]) ("--tweaks " + toString tweakVariants)} \
       -d "$out/share/themes"
       cd ../icons
       ${lib.optionalString (iconVariants != [ ]) ''
