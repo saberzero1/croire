@@ -17,6 +17,11 @@ in
     let
       inherit (pkgs.stdenv) isDarwin isLinux;
       inherit (flake) inputs;
+      tokyonightGtk = pkgs.tokyonight-gtk-theme.override {
+        colorVariants = [ "dark" ];
+        tweakVariants = [ "storm" ];
+        iconVariants = [ "Dark" ];
+      };
     in
     lib.mkIf isLinux {
       # ─────────────────────────────────────────────────────────────────────────
@@ -26,12 +31,12 @@ in
         enable = true;
         colorScheme = "dark";
         iconTheme = {
-          name = "Dark";
-          package = pkgs.tokyonight-gtk-theme;
+          name = "Tokyonight-Dark";
+          package = tokyonightGtk;
         };
         theme = {
-          name = "storm";
-          package = pkgs.tokyonight-gtk-theme;
+          name = "Tokyonight-Dark-Storm";
+          package = tokyonightGtk;
         };
       };
 
@@ -782,8 +787,6 @@ in
           alacritty
           dmenu
           wofi
-          gtk-engine-murrine
-          gtk_engines
           gsettings-desktop-schemas
           lxappearance
           kdePackages.dragon

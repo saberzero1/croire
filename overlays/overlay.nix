@@ -9,6 +9,7 @@ self: super: {
   nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  tokyonight-gtk-theme = self.callPackage ./pkgs/tokyonight-gtk-theme/package.nix { };
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;
