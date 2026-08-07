@@ -96,20 +96,11 @@
     # determinate-nix.url = "github:DeterminateSystems/nix-src";
     fh.url = "https://flakehub.com/f/DeterminateSystems/fh/*";
 
-    # Doom Emacs
-    # nix-doom-emacs-unstraightened = {
-    #   url = "github:marienz/nix-doom-emacs-unstraightened";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     # CI
     devour-flake = {
       url = "github:srid/devour-flake";
       flake = false;
     };
-
-    # WSL-specific
-    # nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     # Darwin-specific
     nix-darwin = {
@@ -159,10 +150,6 @@
     };
     lazyvim.url = "github:saberzero1/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # wezterm = {
-    #   url = "github:wez/wezterm/main?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak";
     nix-snapd = {
       url = "https://flakehub.com/f/nix-community/nix-snapd/*";
@@ -177,10 +164,6 @@
     nix-alien.url = "https://flakehub.com/f/thiagokokada/nix-alien/*";
     # nix-alien.url = "github:thiagokokada/nix-alien";
     ghostty.url = "github:ghostty-org/ghostty";
-    # gitbutler = {
-    #   url = "github:gitbutlerapp/gitbutler";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     helix = {
       url = "https://flakehub.com/f/helix-editor/helix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -189,24 +172,19 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # zed.url = "github:zed-industries/zed";
-    # bun = {
-    #   url = "github:saberzero1/nix-bun";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     opencode = {
       url = "github:anomalyco/opencode?ref=v1.18.15";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    # opencode-claude-max-proxy = {
-    #   url = "github:rynfar/meridian";
-    #   flake = false;
-    # };
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+    };
+
+    herdr = {
+      url = "github:herdrdev/herdr/v0.8.0";
     };
 
     # Gaming

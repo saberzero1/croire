@@ -1,7 +1,7 @@
 # Dendritic feature module: Shell configuration
 # Provides unified shell configuration across all platforms (Darwin, NixOS)
 # Exports: homeModules.shell (includes zsh, nushell, starship)
-{ inputs, lib, ... }:
+{ inputs, ... }:
 let
   inherit (inputs) self;
 in
@@ -286,6 +286,9 @@ in
 
             # tmux sessionizer keybinding
             bindkey -s "^F" "tmux-sessionizer\n"
+
+            # Herdr completions
+            eval "$(herdr completion zsh 2>/dev/null || true)"
           '';
 
           plugins = [
@@ -307,7 +310,7 @@ in
             {
               name = "zsh-you-should-use";
               src = pkgs.zsh-you-should-use;
-              file = "share/zsh-you-should-use/zsh-vi-mode.plugin.zsh";
+              file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
             }
           ];
         };

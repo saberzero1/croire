@@ -127,7 +127,7 @@ in
       # ─────────────────────────────────────────────────────────────────────────
       wayland.windowManager.hyprland = {
         enable = true;
-        configType = "hyprlang";
+        configType = "lua";
         xwayland.enable = true;
         # Use null to inherit package from NixOS module (programs.hyprland.package)
         # This avoids version mismatches between system and home-manager
@@ -136,198 +136,179 @@ in
         # Disable Home Manager's systemd integration - UWSM handles this
         # (programs.hyprland.withUWSM = true in nixos-system.nix)
         systemd.enable = false;
+        # Most config goes through extraConfig with correct Lua API syntax.
+        # HM's settings renderer generates hl.<name>() calls that don't always
+        # match Hyprland's actual Lua API (e.g. hl.animations() doesn't exist).
+        # Keep config blocks in settings (they map to hl.config()), move
+        # everything else to extraConfig.
         settings = {
-          monitor = ",preferred,auto,1";
-
-          exec-once = [
-            # Import environment variables for systemd user services
-            "systemctl --user import-environment"
-            # Notification services
-            "avizo-service"
-            "mako"
-            # Authentication agents
-            "eval $(ssh-agent -s)"
-            "eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
-          ];
-
-          env = [
-            "XCURSOR_SIZE,24"
-            "QT_QPA_PLATFORMTHEME,qt6ct"
-            "QT_QPA_PLATFORM,wayland"
-          ];
-
-          input = {
-            kb_layout = "us";
-            follow_mouse = 1;
-            touchpad.natural_scroll = false;
-            sensitivity = 0;
-          };
-
-          general = {
-            gaps_in = 5;
-            gaps_out = 10;
-            border_size = 1;
-            "col.active_border" = "rgba(7aa2f7ee)";
-            "col.inactive_border" = "rgba(414868aa)";
-            layout = "dwindle";
-            allow_tearing = false;
-          };
-
-          decoration = {
-            rounding = 5;
-            blur = {
+          config = {
+            input = {
+              kb_layout = "us";
+              follow_mouse = 1;
+              sensitivity = 0;
+              touchpad = {
+                natural_scroll = false;
+              };
+            };
+            general = {
+              gaps_in = 5;
+              gaps_out = 10;
+              border_size = 1;
+              col = {
+                active_border = "rgba(7aa2f7ee)";
+                inactive_border = "rgba(414868aa)";
+              };
+              layout = "dwindle";
+              allow_tearing = false;
+            };
+            decoration = {
+              rounding = 5;
+              blur = {
+                enabled = true;
+                size = 3;
+                passes = 1;
+              };
+            };
+            animations = {
               enabled = true;
-              size = 3;
-              passes = 1;
+            };
+            dwindle = {
+              preserve_split = true;
+            };
+            master = {
+              new_status = "master";
+            };
+            misc = {
+              force_default_wallpaper = 0;
             };
           };
-
-          animations = {
-            enabled = true;
-            bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-            animation = [
-              "windows, 1, 7, myBezier"
-              "windowsOut, 1, 7, default, popin 80%"
-              "border, 1, 10, default"
-              "borderangle, 1, 8, default"
-              "fade, 1, 7, default"
-              "workspaces, 1, 6, default"
-            ];
-          };
-
-          dwindle = {
-            # pseudotile = true;
-            preserve_split = true;
-          };
-
-          master.new_status = "master";
-          misc.force_default_wallpaper = 0;
-
-          # Window rules (v3 syntax - Hyprland 0.48+)
-          # Format: "match:class <regex>, <effect> <value>"
-          windowrule = [
-            "match:class ^(ghostty)$, workspace 1"
-            "match:class ^(wezterm)$, workspace 1"
-            "match:class ^(obsidian)$, workspace 2"
-            "match:class ^(zen)$, workspace 3"
-            "match:class ^(zed)$, workspace 4"
-            "match:class ^(codium-url-handler)$, workspace 4"
-            "match:class ^(wine)$, workspace 4"
-            "match:class ^(discord)$, workspace 5"
-            "match:class ^(com.github.finefindus.eyedropper)$, float on"
-          ];
-
-          # Keybindings
-          "$mod" = "SUPER_ALT";
-          "$mod2" = "SUPER_ALT_CTRL";
-
-          bind = [
-            # Applications
-            "$mod, t, exec, ghostty"
-            "$mod, g, exec, ghostty"
-            "$mod, n, exec, obsidian"
-            "$mod, w, exec, zen"
-            "$mod, z, exec, zed"
-            "$mod, d, exec, discord"
-
-            # Window management
-            "$mod, q, killactive,"
-            "$mod, c, exec, hyprctl reload"
-            "$mod, f, fullscreen,"
-            "$mod2, space, togglefloating,"
-
-            # Launcher
-            "$mod, o, exec, wofi --show drun"
-            "$mod2, o, exec, wofi --show drun"
-
-            # Screenshots
-            ", Print, exec, grimblast copy area"
-            "SHIFT, Print, exec, grimblast save area ~/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')"
-
-            # Lock screen
-            "SUPER, l, exec, hyprlock"
-
-            # Focus movement
-            "$mod, h, movefocus, l"
-            "$mod, l, movefocus, r"
-            "$mod, k, movefocus, u"
-            "$mod, j, movefocus, d"
-            "$mod, left, movefocus, l"
-            "$mod, right, movefocus, r"
-            "$mod, up, movefocus, u"
-            "$mod, down, movefocus, d"
-
-            # Window movement
-            "$mod2, h, movewindow, l"
-            "$mod2, l, movewindow, r"
-            "$mod2, k, movewindow, u"
-            "$mod2, j, movewindow, d"
-            "$mod2, left, movewindow, l"
-            "$mod2, right, movewindow, r"
-            "$mod2, up, movewindow, u"
-            "$mod2, down, movewindow, d"
-
-            # Workspace switching
-            "$mod, 1, workspace, 1"
-            "$mod, 2, workspace, 2"
-            "$mod, 3, workspace, 3"
-            "$mod, 4, workspace, 4"
-            "$mod, 5, workspace, 5"
-            "$mod, 6, workspace, 6"
-            "$mod, 7, workspace, 7"
-            "$mod, 8, workspace, 8"
-            "$mod, 9, workspace, 9"
-            "$mod, 0, workspace, 10"
-
-            # Move to workspace
-            "$mod2, 1, movetoworkspace, 1"
-            "$mod2, 2, movetoworkspace, 2"
-            "$mod2, 3, movetoworkspace, 3"
-            "$mod2, 4, movetoworkspace, 4"
-            "$mod2, 5, movetoworkspace, 5"
-            "$mod2, 6, movetoworkspace, 6"
-            "$mod2, 7, movetoworkspace, 7"
-            "$mod2, 8, movetoworkspace, 8"
-            "$mod2, 9, movetoworkspace, 9"
-            "$mod2, 0, movetoworkspace, 10"
-
-            # Splitting
-            "$mod, minus, layoutmsg, splitv"
-            "$mod, backslash, layoutmsg, splith"
-          ];
-
-          bindm = [
-            "$mod, mouse:272, movewindow"
-            "$mod, mouse:273, resizewindow"
-          ];
-
-          binde = [
-            # Media keys
-            ", XF86MonBrightnessUp, exec, lightctl up"
-            ", XF86MonBrightnessDown, exec, lightctl down"
-            ", XF86AudioRaiseVolume, exec, volumectl -u up"
-            ", XF86AudioLowerVolume, exec, volumectl -u down"
-            ", XF86AudioMute, exec, volumectl toggle-mute"
-            ", XF86AudioMicMute, exec, volumectl -m toggle-mute"
-          ];
         };
 
         extraConfig = ''
-          # Resize submap
-          bind = $mod, r, submap, resize
+          -- Monitor
+          hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "1" })
 
-          submap = resize
-          bind = , h, resizeactive, -10 0
-          bind = , l, resizeactive, 10 0
-          bind = , k, resizeactive, 0 -10
-          bind = , j, resizeactive, 0 10
-          bind = , left, resizeactive, -10 0
-          bind = , right, resizeactive, 10 0
-          bind = , up, resizeactive, 0 -10
-          bind = , down, resizeactive, 0 10
-          bind = , escape, submap, reset
-          bind = , return, submap, reset
-          submap = reset
+          -- Autostart
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("systemctl --user import-environment")
+            hl.exec_cmd("avizo-service")
+            hl.exec_cmd("mako")
+            hl.exec_cmd("eval $(ssh-agent -s)")
+            hl.exec_cmd("eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)")
+          end)
+
+          -- Environment variables
+          hl.env("XCURSOR_SIZE", "24")
+          hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+          hl.env("QT_QPA_PLATFORM", "wayland")
+
+          -- Bezier curve and animations
+          hl.curve("myBezier", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.05} } })
+          hl.animation({ leaf = "windows",     enabled = true, speed = 7,  bezier = "myBezier" })
+          hl.animation({ leaf = "windowsOut",  enabled = true, speed = 7,  bezier = "default",  style = "popin 80%" })
+          hl.animation({ leaf = "border",      enabled = true, speed = 10, bezier = "default" })
+          hl.animation({ leaf = "borderangle", enabled = true, speed = 8,  bezier = "default" })
+          hl.animation({ leaf = "fade",        enabled = true, speed = 7,  bezier = "default" })
+          hl.animation({ leaf = "workspaces",  enabled = true, speed = 6,  bezier = "default" })
+
+          -- Window rules
+          hl.window_rule({ match = { class = "ghostty" },                                 workspace = "1" })
+          hl.window_rule({ match = { class = "wezterm" },                                  workspace = "1" })
+          hl.window_rule({ match = { class = "obsidian" },                                 workspace = "2" })
+          hl.window_rule({ match = { class = "zen" },                                      workspace = "3" })
+          hl.window_rule({ match = { class = "^(zed)$" },                              workspace = "4" })
+          hl.window_rule({ match = { class = "^(codium%-url%-handler)$" },             workspace = "4" })
+          hl.window_rule({ match = { class = "^(wine)$" },                             workspace = "4" })
+          hl.window_rule({ match = { class = "^(discord)$" },                          workspace = "5" })
+          hl.window_rule({ match = { class = "^(com%.github%.finefindus%.eyedropper)$" }, float = true })
+
+          -- Modifier keys
+          local mod  = "SUPER + ALT"
+          local mod2 = "SUPER + ALT + CTRL"
+
+          -- Application binds
+          hl.bind(mod .. " + t", hl.dsp.exec_cmd("ghostty"))
+          hl.bind(mod .. " + g", hl.dsp.exec_cmd("ghostty"))
+          hl.bind(mod .. " + n", hl.dsp.exec_cmd("obsidian"))
+          hl.bind(mod .. " + w", hl.dsp.exec_cmd("zen"))
+          hl.bind(mod .. " + z", hl.dsp.exec_cmd("zed"))
+          hl.bind(mod .. " + d", hl.dsp.exec_cmd("discord"))
+
+          -- Window management
+          hl.bind(mod .. " + q", hl.dsp.window.close())
+          hl.bind(mod .. " + c", hl.dsp.exec_cmd("hyprctl reload"))
+          hl.bind(mod .. " + f", hl.dsp.window.fullscreen())
+          hl.bind(mod2 .. " + space", hl.dsp.window.float({ action = "toggle" }))
+
+          -- Launcher
+          hl.bind(mod .. " + o", hl.dsp.exec_cmd("wofi --show drun"))
+          hl.bind(mod2 .. " + o", hl.dsp.exec_cmd("wofi --show drun"))
+
+          -- Screenshots
+          hl.bind("Print", hl.dsp.exec_cmd("grimblast copy area"))
+          hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grimblast save area ~/Pictures/Screenshots/Screenshot-$(date +'%Y-%m-%d-%H%M%S.png')"))
+
+          -- Lock screen
+          hl.bind("SUPER + l", hl.dsp.exec_cmd("hyprlock"))
+
+          -- Focus movement
+          hl.bind(mod .. " + h",     hl.dsp.focus({ direction = "left" }))
+          hl.bind(mod .. " + l",     hl.dsp.focus({ direction = "right" }))
+          hl.bind(mod .. " + k",     hl.dsp.focus({ direction = "up" }))
+          hl.bind(mod .. " + j",     hl.dsp.focus({ direction = "down" }))
+          hl.bind(mod .. " + left",  hl.dsp.focus({ direction = "left" }))
+          hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
+          hl.bind(mod .. " + up",    hl.dsp.focus({ direction = "up" }))
+          hl.bind(mod .. " + down",  hl.dsp.focus({ direction = "down" }))
+
+          -- Window movement
+          hl.bind(mod2 .. " + h",     hl.dsp.window.move({ direction = "left" }))
+          hl.bind(mod2 .. " + l",     hl.dsp.window.move({ direction = "right" }))
+          hl.bind(mod2 .. " + k",     hl.dsp.window.move({ direction = "up" }))
+          hl.bind(mod2 .. " + j",     hl.dsp.window.move({ direction = "down" }))
+          hl.bind(mod2 .. " + left",  hl.dsp.window.move({ direction = "left" }))
+          hl.bind(mod2 .. " + right", hl.dsp.window.move({ direction = "right" }))
+          hl.bind(mod2 .. " + up",    hl.dsp.window.move({ direction = "up" }))
+          hl.bind(mod2 .. " + down",  hl.dsp.window.move({ direction = "down" }))
+
+          -- Workspace switching + move to workspace
+          for i = 1, 10 do
+            local key = i % 10
+            hl.bind(mod .. " + " .. key,  hl.dsp.focus({ workspace = i }))
+            hl.bind(mod2 .. " + " .. key, hl.dsp.window.move({ workspace = i }))
+          end
+
+          -- Layout splitting
+          hl.bind(mod .. " + minus",     hl.dsp.layout("splitv"))
+          hl.bind(mod .. " + backslash", hl.dsp.layout("splith"))
+
+          -- Mouse binds
+          hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+          hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+          -- Media keys
+          hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("lightctl up"))
+          hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("lightctl down"))
+          hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("volumectl -u up"))
+          hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("volumectl -u down"))
+          hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("volumectl toggle-mute"))
+          hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("volumectl -m toggle-mute"))
+
+          -- Resize submap
+          hl.bind(mod .. " + r", hl.dsp.submap("resize"))
+          hl.define_submap("resize", function()
+            hl.bind("h",      hl.dsp.window.resize({ x = -10, y = 0, relative = true }))
+            hl.bind("l",      hl.dsp.window.resize({ x = 10,  y = 0, relative = true }))
+            hl.bind("k",      hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
+            hl.bind("j",      hl.dsp.window.resize({ x = 0,   y = 10, relative = true }))
+            hl.bind("left",   hl.dsp.window.resize({ x = -10, y = 0, relative = true }))
+            hl.bind("right",  hl.dsp.window.resize({ x = 10,  y = 0, relative = true }))
+            hl.bind("up",     hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
+            hl.bind("down",   hl.dsp.window.resize({ x = 0,   y = 10, relative = true }))
+            hl.bind("escape", hl.dsp.submap("reset"))
+            hl.bind("return", hl.dsp.submap("reset"))
+          end)
         '';
       };
 
@@ -777,8 +758,8 @@ in
           vscodium.fhs
 
           # Hyprland ecosystem
-          hyprlock
-          hypridle
+          # hyprlock — managed by programs.hyprlock.enable
+          # hypridle — managed by services.hypridle.enable
           wf-recorder
           grimblast
           mako
@@ -786,7 +767,7 @@ in
           slurp
           alacritty
           dmenu
-          wofi
+          # wofi — managed by programs.wofi.enable
           gsettings-desktop-schemas
           lxappearance
           kdePackages.dragon
@@ -800,7 +781,7 @@ in
           pulseaudioFull
           avizo
           libnotify
-          fuzzel
+          # fuzzel — managed by programs.fuzzel.enable
 
           # Gaming / Entertainment
           steam

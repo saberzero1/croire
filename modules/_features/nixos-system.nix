@@ -278,7 +278,7 @@ in
       # ===========================================
       console = {
         enable = true;
-        font = "Monaspace Neon";
+        font = "${pkgs.terminus_font}/share/consolefonts/ter-v16n.psf.gz";
         packages = with pkgs; [
           monaspace
           terminus_font

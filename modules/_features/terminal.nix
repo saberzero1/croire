@@ -1,7 +1,7 @@
 # Dendritic feature module: Terminal configuration
 # Provides unified terminal configuration across all platforms
 # Exports: homeModules.terminal (tmux, ghostty, wezterm)
-{ inputs, lib, ... }:
+{ inputs, ... }:
 let
   inherit (inputs) self;
 in
@@ -11,10 +11,12 @@ in
       pkgs,
       config,
       lib,
+      flake,
       ...
     }:
     let
       inherit (pkgs.stdenv) isDarwin isLinux;
+      _ = config.home.homeDirectory;
 
       # Ghostty font features
       fontFeatures = [
@@ -147,6 +149,56 @@ in
               exec tmux -S "''$PRJ".tmux attach
           '';
         })
+
+        # Herdr - Terminal multiplexer for AI agents
+        flake.inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+        # Bootstrap a Herdr workspace with named tabs (mirrors tmux layout)
+        # Note: Unlike tmux, Herdr tabs are persistent shells. Exiting nvim/lazygit
+        # returns to the shell prompt (the tab stays open). Tab indices are contiguous
+        # and shift when a tab is closed (no fixed numbering like tmux).
+        (pkgs.writeShellApplication {
+          name = "herdr-bootstrap";
+          runtimeInputs = [
+            flake.inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
+            pkgs.jq
+          ];
+          text = ''
+            CWD="''${1:-$(pwd)}"
+
+            # Rename the default first tab to 'scratch'
+            FIRST_TAB=$(herdr tab list 2>/dev/null | jq -r '.result.tabs[0].tab_id // empty')
+            if [ -n "$FIRST_TAB" ]; then
+              herdr tab rename "$FIRST_TAB" "scratch" >/dev/null 2>&1 || true
+            fi
+
+            # Helper: create tab and launch command as foreground process
+            create_tab() {
+              local label="$1" cwd="$2" cmd="''${3:-}"
+              local json pane_id
+              json=$(herdr tab create --label "$label" --cwd "$cwd" 2>/dev/null) || return
+              if [ -n "$cmd" ]; then
+                pane_id=$(echo "$json" | jq -r '.result.root_pane.pane_id // empty')
+                if [ -n "$pane_id" ]; then
+                  sleep 0.2
+                  # Send command as keystrokes so it runs as foreground process
+                  herdr pane send-text "$pane_id" "$cmd" >/dev/null 2>&1 || true
+                  herdr pane send-keys "$pane_id" enter >/dev/null 2>&1 || true
+                fi
+              fi
+            }
+
+            create_tab "editor"  "$CWD" "nvim"
+            create_tab "watcher" "$CWD"
+            create_tab "agent"   "$CWD" "opencode"
+            create_tab "git"     "$CWD" "lazygit"
+
+            # Focus back on the first tab
+            if [ -n "$FIRST_TAB" ]; then
+              herdr tab focus "$FIRST_TAB" >/dev/null 2>&1 || true
+            fi
+          '';
+        })
       ];
 
       # ─────────────────────────────────────────────────────────────────────────
@@ -163,6 +215,76 @@ in
           source = "${self}/programs/ghostty";
           recursive = true;
         };
+        # Herdr agent integrations (declarative)
+        # Managed by Nix instead of `herdr integration install`.
+        # Re-run `herdr integration install <target>` to get updated versions,
+        # then copy the content here.
+        herdr-claude-integration = {
+          target = ".claude/hooks/herdr-agent-state.sh";
+          executable = true;
+          source = "${self}/programs/herdr/claude-integration.sh";
+        };
+        herdr-opencode-integration = {
+          target = ".config/opencode/plugins/herdr-agent-state.js";
+          source = "${self}/programs/herdr/opencode-integration.js";
+        };
+        herdr-config = {
+          target = ".config/herdr/config.toml";
+          text = ''
+            onboarding = false
+
+            [theme]
+            name = "tokyo-night"
+
+            [terminal]
+            default_shell = "${pkgs.nushell}/bin/nu"
+            shell_mode = "login"
+            new_cwd = "follow"
+
+            [keys]
+            prefix = "ctrl+a"
+            split_vertical = "prefix+|"
+            split_horizontal = "prefix+-"
+            new_tab = "prefix+c"
+            close_tab = "prefix+shift+x"
+            close_pane = "prefix+x"
+            switch_tab = "prefix+1..9"
+            zoom = "prefix+z"
+            resize_mode = "prefix+r"
+            copy_mode = "prefix+["
+            detach = "prefix+q"
+            help = "prefix+?"
+
+            # Pane navigation (vim-style)
+            focus_pane_left = "prefix+h"
+            focus_pane_down = "prefix+j"
+            focus_pane_up = "prefix+k"
+            focus_pane_right = "prefix+l"
+
+            # Lazygit popup
+            [[keys.command]]
+            key = "prefix+g"
+            type = "popup"
+            command = "lazygit"
+            width = "90%"
+            height = "90%"
+
+            [ui]
+            mouse_capture = true
+            tab_bar_position = "top"
+            prompt_new_tab_name = false
+
+            [ui.toast]
+            delivery = "herdr"
+
+            [session]
+            resume_agents_on_restore = true
+
+            [advanced]
+            scrollback_limit_bytes = 50000000
+          '';
+        };
+
       };
     };
 }
