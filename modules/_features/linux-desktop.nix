@@ -657,6 +657,7 @@ in
           commandLineArgs = [
             "--enable-features=UseOzonePlatform"
             "--ozone-platform=wayland"
+            "--no-default-browser-check"
           ];
         };
       };
