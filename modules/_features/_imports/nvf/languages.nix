@@ -150,8 +150,10 @@ in
       treesitter.enable = true;
     };
 
+    # R disabled: upstream nixpkgs bug — r-ps has disallowed reference to gcc-15.3.0
+    # Re-enable when fixed upstream
     r = {
-      enable = true;
+      enable = false;
       format = {
         enable = true;
         type = [ "format-r" ];
