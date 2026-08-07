@@ -52,6 +52,4 @@ title = "5: git (lazygit)"
 contexts = ["workspace"]
 command = ["bash", "switch.sh"]
 
-[[events]]
-on = "workspace.created"
-command = ["bash", "layout.sh"]
+

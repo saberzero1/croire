@@ -28,7 +28,8 @@ tab_id=$("$HERDR" tab list 2>/dev/null | jq -r ".result.tabs[] | select(.label =
 if [ -n "$tab_id" ]; then
   "$HERDR" tab focus "$tab_id" >/dev/null 2>&1
 else
-  json=$("$HERDR" tab create --label "$LABEL" 2>/dev/null) || exit 0
+  FOCUSED_CWD=$("$HERDR" pane current 2>/dev/null | jq -r '.result.pane.cwd // empty' 2>/dev/null || true)
+  json=$("$HERDR" tab create --label "$LABEL" ${FOCUSED_CWD:+--cwd "$FOCUSED_CWD"} 2>/dev/null) || exit 0
   new_tab_id=$(echo "$json" | jq -r '.result.tab.tab_id // empty' 2>/dev/null || true)
 
   if [ -n "$COMMAND" ]; then

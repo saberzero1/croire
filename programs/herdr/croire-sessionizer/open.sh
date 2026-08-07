@@ -64,9 +64,11 @@ label=$(basename "$selected")
 existing=$("$HERDR" workspace list 2>/dev/null | jq -r ".result.workspaces[] | select(.label == \"$label\") | .workspace_id" 2>/dev/null || true)
 
 if [ -n "$existing" ]; then
-  # Focus existing workspace
   "$HERDR" workspace focus "$existing" >/dev/null 2>&1
 else
-  # Create new workspace — the layout.sh event hook will bootstrap tabs
-  "$HERDR" workspace create --label "$label" --cwd "$selected" --focus >/dev/null 2>&1
+  json=$("$HERDR" workspace create --label "$label" --cwd "$selected" --focus 2>/dev/null)
+  ws_id=$(echo "$json" | jq -r '.result.workspace.workspace_id // empty' 2>/dev/null || true)
+  if [ -n "$ws_id" ]; then
+    CROIRE_CWD="$selected" HERDR_WORKSPACE_ID="$ws_id" bash "$(dirname "$0")/layout.sh"
+  fi
 fi

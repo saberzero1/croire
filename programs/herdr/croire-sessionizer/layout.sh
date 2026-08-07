@@ -14,11 +14,10 @@ if [ -z "$WORKSPACE" ]; then
   exit 0
 fi
 
-get_workspace_cwd() {
-  "$HERDR" workspace get "$WORKSPACE" 2>/dev/null | jq -r '.result.workspace.cwd // empty' 2>/dev/null || pwd
-}
-
-CWD=$(get_workspace_cwd)
+CWD="${CROIRE_CWD:-}"
+if [ -z "$CWD" ]; then
+  CWD=$(pwd)
+fi
 
 tabs=$("$HERDR" tab list --workspace "$WORKSPACE" 2>/dev/null | jq -r '.result.tabs | length' 2>/dev/null || echo "0")
 if [ "$tabs" -gt 1 ]; then
