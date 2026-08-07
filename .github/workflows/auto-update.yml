@@ -231,10 +231,12 @@ jobs:
             mv "${SOURCES_JSON}.tmp" "${SOURCES_JSON}"
           done
 
+          EXISTING_NM_HASHES="$(jq -c '.nodeModulesHashes // {}' overlays/opencode-bun-sources.json)"
           jq -n \
             --arg bunVersion "${BUN_VERSION}" \
             --slurpfile sources "${SOURCES_JSON}" \
-            '{bunVersion: $bunVersion, sources: $sources[0]}' \
+            --argjson nodeModulesHashes "${EXISTING_NM_HASHES}" \
+            '{bunVersion: $bunVersion, sources: $sources[0], nodeModulesHashes: $nodeModulesHashes}' \
             > overlays/opencode-bun-sources.json
 
       - name: Omnix update flakes
