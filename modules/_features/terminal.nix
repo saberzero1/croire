@@ -207,11 +207,12 @@ in
             new_tab = "prefix+c"
             close_tab = "prefix+shift+x"
             close_pane = "prefix+x"
-            switch_tab = "prefix+6..9"
+            switch_tab = ""
             zoom = "prefix+z"
             resize_mode = "prefix+r"
             copy_mode = "prefix+["
-            detach = "prefix+q"
+            detach = "prefix+d"
+            close_workspace = "prefix+q"
             help = "prefix+?"
 
             # Pane navigation (vim-style)
@@ -264,6 +265,27 @@ in
             key = "prefix+5"
             type = "plugin_action"
             command = "croire.sessionizer.slot-5"
+
+            # Extra tab switching (6-9)
+            [[keys.command]]
+            key = "prefix+6"
+            type = "shell"
+            command = "herdr tab focus $(herdr tab list 2>/dev/null | jq -r '.result.tabs[5].tab_id // empty') 2>/dev/null"
+
+            [[keys.command]]
+            key = "prefix+7"
+            type = "shell"
+            command = "herdr tab focus $(herdr tab list 2>/dev/null | jq -r '.result.tabs[6].tab_id // empty') 2>/dev/null"
+
+            [[keys.command]]
+            key = "prefix+8"
+            type = "shell"
+            command = "herdr tab focus $(herdr tab list 2>/dev/null | jq -r '.result.tabs[7].tab_id // empty') 2>/dev/null"
+
+            [[keys.command]]
+            key = "prefix+9"
+            type = "shell"
+            command = "herdr tab focus $(herdr tab list 2>/dev/null | jq -r '.result.tabs[8].tab_id // empty') 2>/dev/null"
 
             [ui]
             mouse_capture = true
