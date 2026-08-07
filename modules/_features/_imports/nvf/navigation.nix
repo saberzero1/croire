@@ -41,10 +41,10 @@
           enabled = true;
         };
         notifier = {
-          enabled = true;
+          enabled = false;
         };
         notify = {
-          enabled = true;
+          enabled = false;
         };
         scope = {
           enabled = true;
@@ -62,9 +62,7 @@
           enabled = true;
         };
         picker = {
-          enabled = true;
-          ui_select = true;
-          db.sqlite3_path = "${pkgs.sqlite}/bin/sqlite3";
+          enabled = false;
         };
       };
     };

@@ -153,52 +153,6 @@ in
         # Herdr - Terminal multiplexer for AI agents
         flake.inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-        # Bootstrap a Herdr workspace with named tabs (mirrors tmux layout)
-        # Note: Unlike tmux, Herdr tabs are persistent shells. Exiting nvim/lazygit
-        # returns to the shell prompt (the tab stays open). Tab indices are contiguous
-        # and shift when a tab is closed (no fixed numbering like tmux).
-        (pkgs.writeShellApplication {
-          name = "herdr-bootstrap";
-          runtimeInputs = [
-            flake.inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
-            pkgs.jq
-          ];
-          text = ''
-            CWD="''${1:-$(pwd)}"
-
-            # Rename the default first tab to 'scratch'
-            FIRST_TAB=$(herdr tab list 2>/dev/null | jq -r '.result.tabs[0].tab_id // empty')
-            if [ -n "$FIRST_TAB" ]; then
-              herdr tab rename "$FIRST_TAB" "scratch" >/dev/null 2>&1 || true
-            fi
-
-            # Helper: create tab and launch command as foreground process
-            create_tab() {
-              local label="$1" cwd="$2" cmd="''${3:-}"
-              local json pane_id
-              json=$(herdr tab create --label "$label" --cwd "$cwd" 2>/dev/null) || return
-              if [ -n "$cmd" ]; then
-                pane_id=$(echo "$json" | jq -r '.result.root_pane.pane_id // empty')
-                if [ -n "$pane_id" ]; then
-                  sleep 0.2
-                  # Send command as keystrokes so it runs as foreground process
-                  herdr pane send-text "$pane_id" "$cmd" >/dev/null 2>&1 || true
-                  herdr pane send-keys "$pane_id" enter >/dev/null 2>&1 || true
-                fi
-              fi
-            }
-
-            create_tab "editor"  "$CWD" "nvim"
-            create_tab "watcher" "$CWD"
-            create_tab "agent"   "$CWD" "opencode"
-            create_tab "git"     "$CWD" "lazygit"
-
-            # Focus back on the first tab
-            if [ -n "$FIRST_TAB" ]; then
-              herdr tab focus "$FIRST_TAB" >/dev/null 2>&1 || true
-            fi
-          '';
-        })
       ];
 
       # ─────────────────────────────────────────────────────────────────────────
@@ -228,6 +182,11 @@ in
           target = ".config/opencode/plugins/herdr-agent-state.js";
           source = "${self}/programs/herdr/opencode-integration.js";
         };
+        croire-sessionizer = {
+          target = ".config/herdr/croire-sessionizer";
+          source = "${self}/programs/herdr/croire-sessionizer";
+          recursive = true;
+        };
         herdr-config = {
           target = ".config/herdr/config.toml";
           text = ''
@@ -248,7 +207,7 @@ in
             new_tab = "prefix+c"
             close_tab = "prefix+shift+x"
             close_pane = "prefix+x"
-            switch_tab = "prefix+1..9"
+            switch_tab = "prefix+6..9"
             zoom = "prefix+z"
             resize_mode = "prefix+r"
             copy_mode = "prefix+["
@@ -269,6 +228,43 @@ in
             width = "90%"
             height = "90%"
 
+            # Croire Sessionizer plugin
+            [[keys.command]]
+            key = "prefix+f"
+            type = "plugin_action"
+            command = "croire.sessionizer.open"
+
+            [[keys.command]]
+            key = "prefix+shift+l"
+            type = "plugin_action"
+            command = "croire.sessionizer.layout"
+
+            # Named tab slots (prefix+1..5 → focus-by-label, auto-recreate)
+            [[keys.command]]
+            key = "prefix+1"
+            type = "plugin_action"
+            command = "croire.sessionizer.slot-1"
+
+            [[keys.command]]
+            key = "prefix+2"
+            type = "plugin_action"
+            command = "croire.sessionizer.slot-2"
+
+            [[keys.command]]
+            key = "prefix+3"
+            type = "plugin_action"
+            command = "croire.sessionizer.slot-3"
+
+            [[keys.command]]
+            key = "prefix+4"
+            type = "plugin_action"
+            command = "croire.sessionizer.slot-4"
+
+            [[keys.command]]
+            key = "prefix+5"
+            type = "plugin_action"
+            command = "croire.sessionizer.slot-5"
+
             [ui]
             mouse_capture = true
             tab_bar_position = "top"
@@ -286,5 +282,14 @@ in
         };
 
       };
+
+      home.activation.linkHerdrPlugins = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        HERDR="${flake.inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/herdr"
+        PLUGIN_PATH="${config.home.homeDirectory}/.config/herdr/croire-sessionizer"
+        if [ -d "$PLUGIN_PATH" ] && [ -f "$PLUGIN_PATH/herdr-plugin.toml" ]; then
+          run "$HERDR" plugin unlink croire.sessionizer 2>/dev/null || true
+          run "$HERDR" plugin link "$PLUGIN_PATH" --enabled 2>/dev/null || true
+        fi
+      '';
     };
 }

@@ -5,8 +5,7 @@
     maplocalleader = "\\";
     autoformat = true;
     snacks_animate = true;
-    lazyvim_picker = "telescope";
-    lazyvim_cmp = "blink.cmp";
+
     ai_cmp = true;
     root_spec = [
       "lsp"

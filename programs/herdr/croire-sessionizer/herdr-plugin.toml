@@ -1,0 +1,57 @@
+id = "croire.sessionizer"
+name = "Croire Sessionizer"
+version = "0.1.0"
+min_herdr_version = "0.8.0"
+description = "tmux-sessionizer workflow for Herdr: FZF project picker, 5-slot named tabs with auto-recreate, layout bootstrap"
+
+[[panes]]
+id = "picker"
+title = "Project Picker"
+placement = "overlay"
+command = ["bash", "open.sh"]
+
+[[actions]]
+id = "open"
+title = "Open project picker"
+contexts = ["workspace"]
+command = ["bash", "-c", "$HERDR_BIN_PATH plugin pane open --plugin croire.sessionizer --entrypoint picker"]
+
+[[actions]]
+id = "layout"
+title = "Bootstrap workspace layout"
+contexts = ["workspace"]
+command = ["bash", "layout.sh"]
+
+[[actions]]
+id = "slot-1"
+title = "1: scratch"
+contexts = ["workspace"]
+command = ["bash", "switch.sh"]
+
+[[actions]]
+id = "slot-2"
+title = "2: editor (nvim)"
+contexts = ["workspace"]
+command = ["bash", "switch.sh"]
+
+[[actions]]
+id = "slot-3"
+title = "3: watcher"
+contexts = ["workspace"]
+command = ["bash", "switch.sh"]
+
+[[actions]]
+id = "slot-4"
+title = "4: agent (opencode)"
+contexts = ["workspace"]
+command = ["bash", "switch.sh"]
+
+[[actions]]
+id = "slot-5"
+title = "5: git (lazygit)"
+contexts = ["workspace"]
+command = ["bash", "switch.sh"]
+
+[[events]]
+on = "workspace.created"
+command = ["bash", "layout.sh"]

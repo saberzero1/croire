@@ -8,7 +8,7 @@ in
     config = {
       signs = true;
       underline = true;
-      update_in_insert = true; # INFO this might be a performace hit
+      update_in_insert = false;
     };
     nvim-lint = {
       enable = true;

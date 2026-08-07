@@ -4,8 +4,7 @@
       enable = true;
     };
     indent-blankline = {
-      enable = true;
-      #char = "┊";
+      enable = false;
     };
     nvim-cursorline = {
       enable = true;

@@ -10,6 +10,19 @@ self: super: {
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   tokyonight-gtk-theme = self.callPackage ./pkgs/tokyonight-gtk-theme/package.nix { };
+  # Waybar from git — v0.15.0 release is missing Hyprland Lua IPC fix (PR #5013)
+  waybar = super.waybar.overrideAttrs (old: {
+    src = self.fetchFromGitHub {
+      owner = "Alexays";
+      repo = "Waybar";
+      rev = "084d87401d0a91182c16aa7e5f674a7dde767185";
+      hash = "sha256-POvwObPOp6O14n6KYWNLp2Y3paunA5f8U1NCaodNFcc=";
+    };
+    version = "0.15.0-unstable-2026-08-07";
+    buildInputs = (old.buildInputs or [ ]) ++ [ self.modemmanager ];
+    mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dcava=disabled" ];
+    doInstallCheck = false;
+  });
   opencode =
     let
       system = self.pkgs.stdenv.hostPlatform.system;

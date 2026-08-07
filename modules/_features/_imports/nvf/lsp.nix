@@ -16,7 +16,6 @@
         diagnostic_update_event = [
           "BufWritePost"
           "InsertLeave"
-          "TextChanged"
         ];
       };
     };

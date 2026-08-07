@@ -4,7 +4,7 @@
     setupOpts = {
       default_format_opts = {
         timeout_ms = 3000;
-        async = false;
+        async = true;
         quiet = false;
         lsp_format = "fallback";
       };

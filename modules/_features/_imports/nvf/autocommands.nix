@@ -43,7 +43,6 @@ in
     (mkAuGroup "wrap_spell")
     (mkAuGroup "json_conceal")
     (mkAuGroup "auto_create_dir")
-    (mkAuGroup "bufferline")
   ];
   programs.nvf.settings.vim.autocmds = [
     (mkAutoCommand {
@@ -187,21 +186,6 @@ in
           end
           local file = vim.uv.fs_realpath(event.match) or event.match
           vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-        end
-      '';
-    })
-    # Bufferline.nvim
-    (mkAutoCommand {
-      event = [
-        "BufAdd"
-        "BufDelete"
-      ];
-      group = "bufferline";
-      callback = ''
-        function()
-          vim.schedule(function()
-            pcall(nvim_bufferline)
-          end)
         end
       '';
     })
