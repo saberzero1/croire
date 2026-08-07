@@ -250,6 +250,38 @@ jobs:
       #   run: |
       #     om run update
 
+      - name: Refresh OpenCode node_modules hash
+        run: |
+          set -euo pipefail
+          SYSTEM="x86_64-linux"
+          SOURCES_FILE="overlays/opencode-bun-sources.json"
+
+          BUILD_LOG="$(mktemp)"
+          if nix build --impure \
+            --expr '(builtins.getFlake (toString ./.)).nixosConfigurations.nixos-acer.pkgs.opencode.node_modules' \
+            --no-link \
+            --accept-flake-config \
+            --no-update-lock-file 2>"${BUILD_LOG}"; then
+            echo "node_modules hash is up to date"
+            rm -f "${BUILD_LOG}"
+          else
+            GOT_HASH="$(grep -oP '^\s+got:\s+\Ksha256-[A-Za-z0-9+/]+=*' "${BUILD_LOG}" | head -1 || true)"
+            rm -f "${BUILD_LOG}"
+
+            if [ -z "${GOT_HASH}" ]; then
+              echo "Build failed but no hash mismatch found — cannot auto-fix"
+              echo "This may be a non-hash build error; the build-flakes job will handle it"
+              exit 0
+            fi
+
+            echo "Updating node_modules hash for ${SYSTEM}: ${GOT_HASH}"
+            jq --arg system "${SYSTEM}" \
+               --arg hash "${GOT_HASH}" \
+               '.nodeModulesHashes[$system] = $hash' \
+               "${SOURCES_FILE}" > "${SOURCES_FILE}.tmp"
+            mv "${SOURCES_FILE}.tmp" "${SOURCES_FILE}"
+          fi
+
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

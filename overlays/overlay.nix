@@ -57,9 +57,16 @@ self: super: {
         };
       });
       # Build node_modules with opencode-required bun to match committed lockfile.
+      # Hash override: upstream hashes.json was generated with nixpkgs bun, but we
+      # use the exact GitHub-release bun binary, which produces a different FOD hash.
+      # Our CI computes the correct hash and stores it in opencode-bun-sources.json.
+      nodeModulesHash =
+        bunSources.nodeModulesHashes.${system}
+          or (throw "opencode overlay: missing node_modules hash for system '${system}' in overlays/opencode-bun-sources.json. Run the CI or manually compute the hash.");
       node_modules = self.callPackage "${inputs.opencode}/nix/node_modules.nix" {
         bun = bunForOpencode;
         rev = inputs.opencode.shortRev or "dirty";
+        hash = nodeModulesHash;
       };
       # Bring in the upstream opencode package but swap out the node_modules.
       pkg = (inputs.opencode.packages.${system}.default).override { inherit node_modules; };
