@@ -233,12 +233,12 @@ self: super: {
     ];
   });
 
-  # Obsidian: override to 1.12.7 for new CLI features
+  # Obsidian: override to 1.13.4 for new CLI features
   # See: https://help.obsidian.md/cli
   # Fix: Wayland flags must come BEFORE app.asar, otherwise they're passed to Obsidian's CLI
   obsidian =
     let
-      version = "1.12.7";
+      version = "1.13.4";
       src = super.fetchurl {
         url =
           if super.stdenv.hostPlatform.isDarwin then
@@ -247,9 +247,9 @@ self: super: {
             "https://github.com/obsidianmd/obsidian-releases/releases/download/v${version}/obsidian-${version}.tar.gz";
         hash =
           if super.stdenv.hostPlatform.isDarwin then
-            "sha256-etm0JSji5H6EG6jgcie4/QxANsfEJx+zZzHLpFBNu7o="
+            "sha256-6EuVlaul5QIhyX5D0+P0N0Fu379MSoTDeUYecPhU148="
           else
-            "sha256-/L4IsRHZwf2wm5wIlSsG4cgpxiFj66JYTEtOyFm+B50=";
+            "sha256-66wkn5SbaJSBn7tLxWV+yIkvAGzv7ZVdNKbB/+Ji8Ws=";
       };
     in
     if super.stdenv.hostPlatform.isDarwin then
