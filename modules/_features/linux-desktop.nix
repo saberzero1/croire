@@ -17,6 +17,10 @@ in
     let
       inherit (pkgs.stdenv) isDarwin isLinux;
       inherit (flake) inputs;
+      pkgsStable = import inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
       tokyonightGtk = pkgs.tokyonight-gtk-theme.override {
         colorVariants = [ "dark" ];
         tweakVariants = [ "storm" ];
@@ -194,6 +198,7 @@ in
             hl.exec_cmd("systemctl --user import-environment")
             hl.exec_cmd("avizo-service")
             hl.exec_cmd("mako")
+            hl.exec_cmd("qs")
             hl.exec_cmd("eval $(ssh-agent -s)")
             hl.exec_cmd("eval $(/run/wrappers/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)")
           end)
@@ -373,10 +378,10 @@ in
           };
         };
 
-        # Waybar - status bar
+        # Waybar - status bar (disabled — replaced by Quickshell bar)
         waybar = {
-          enable = true;
-          systemd.enable = true;
+          enable = false;
+          systemd.enable = false;
           settings = [
             {
               position = "top";
@@ -761,7 +766,7 @@ in
           # Hyprland ecosystem
           # hyprlock — managed by programs.hyprlock.enable
           # hypridle — managed by services.hypridle.enable
-          wf-recorder
+          pkgsStable.wf-recorder
           grimblast
           mako
           grim

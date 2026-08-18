@@ -1,0 +1,17 @@
+{
+    "theme": "tokyonight-storm",
+    "bar": {
+        "position": "top",
+        "height": 38,
+        "margin": 5,
+        "marginOuter": 10,
+        "radius": 5,
+        "padding": 10,
+        "spacing": 10
+    },
+    "idle": {
+        "lockTimeout": 36000,
+        "dpmsTimeout": 36030,
+        "suspendTimeout": 72000
+    }
+}

@@ -17,9 +17,6 @@
       minimap-vim = {
         enable = false;
       };
-      codewindow = {
-        enable = false;
-      };
     };
     utility.snacks-nvim = {
       enable = true;

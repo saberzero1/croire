@@ -15,6 +15,8 @@ let
     # Platform-specific desktop environments
     linuxDesktop = import ./_features/linux-desktop.nix { inherit inputs lib; };
     darwinDesktop = import ./_features/darwin-desktop.nix { inherit inputs lib; };
+    # Shell toolkit (Quickshell)
+    quickshell = import ./_features/quickshell.nix { inherit inputs lib; };
   };
 in
 {
@@ -30,5 +32,7 @@ in
     # Platform-specific desktop environments
     inherit (featureModules.linuxDesktop.flake.homeModules) linuxDesktop;
     inherit (featureModules.darwinDesktop.flake.homeModules) darwinDesktop;
+    # Shell toolkit (Quickshell)
+    inherit (featureModules.quickshell.flake.homeModules) quickshell;
   };
 }

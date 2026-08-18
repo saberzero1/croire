@@ -24,6 +24,10 @@ in
           ''
         );
       GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
+      pkgsStable = import flake.inputs.nixpkgs-stable {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config.allowUnfree = true;
+      };
     in
     {
       # Import shared fonts
@@ -234,7 +238,7 @@ in
             libsoup_3
 
             # Graphics
-            wf-recorder
+            pkgsStable.wf-recorder
             inkscape-with-extensions
             vscodium.fhs
             vscode-extensions.asvetliakov.vscode-neovim
@@ -393,6 +397,9 @@ in
       # ===========================================
       # Services
       # ===========================================
+      # UPower — battery/power status (required by Quickshell battery widget)
+      services.upower.enable = true;
+
       # Greetd display manager with tuigreet (Tokyo Night themed)
       # Theme style based on docs screenshot, mapped to Tokyo Night palette:
       # docs:   border=magenta; text=cyan;    prompt=green;  time=red;     action=blue;   button=yellow; container=black; input=red

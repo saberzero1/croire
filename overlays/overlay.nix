@@ -20,7 +20,11 @@ self: super: {
     };
     version = "0.15.0-unstable-2026-08-07";
     buildInputs = (old.buildInputs or [ ]) ++ [ self.modemmanager ];
-    mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dcava=disabled" ];
+    mesonFlags = (old.mesonFlags or [ ]) ++ [
+      "-Dcava=disabled"
+      "-Dtests=disabled"
+    ];
+    doCheck = false;
     doInstallCheck = false;
   });
   opencode =

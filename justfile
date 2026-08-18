@@ -37,6 +37,9 @@ build:
   nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel --accept-flake-config --show-trace
   @echo "Activating configuration..."
   sudo nixos-rebuild switch --flake .#$(hostname)
+  @echo "Restarting Quickshell..."
+  -qs kill 2>/dev/null
+  qs > /dev/null 2>&1 &
 
 # Activate default configuration (macOS)
 [group('Main')]

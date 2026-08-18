@@ -56,6 +56,8 @@ let
                     config.flake.homeModules.xdg
                     # Platform-specific desktop environment
                     config.flake.homeModules.linuxDesktop
+                    # Shell toolkit (Quickshell)
+                    config.flake.homeModules.quickshell
                     # Linux-specific external modules (gaming)
                     inputs.play-nix.homeManagerModules.play
                     inputs.declarative-flatpak.homeModules.default
