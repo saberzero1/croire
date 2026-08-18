@@ -793,11 +793,11 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
-        "lastModified": 1786999167,
-        "narHash": "sha256-n4kXAaoUw0MCeLMubUnmjJT6up72Wi8AEeanWs4dkQ0=",
+        "lastModified": 1787076365,
+        "narHash": "sha256-Jk6SkzJvNV3kRd2GpVh8vB8qD0nQhg2/Ouf0fni3Q6M=",
         "owner": "ghostty-org",
         "repo": "ghostty",
-        "rev": "12967b68f7d46bdbfb2cfffb6768332fb9db68c0",
+        "rev": "55dac8fc47c239c54540fa30f3bea882d359d07f",
         "type": "github"
       },
       "original": {
@@ -1036,11 +1036,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1787020370,
-        "narHash": "sha256-W83+pl/cR6463QElNbup9Fbr0jjoEb4x/GlZl0KAGa8=",
+        "lastModified": 1787073421,
+        "narHash": "sha256-K7XSiUH90tODZ3CgrCkkJMCbL2gdIn/k4g9AMRc2M0o=",
         "owner": "Homebrew",
         "repo": "homebrew-cask",
-        "rev": "b373a83e88582a112ec360c13e4bde8bd97f70b6",
+        "rev": "40d013d5821acba021397b3f0b241483e2fce737",
         "type": "github"
       },
       "original": {
@@ -1052,11 +1052,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1787024106,
-        "narHash": "sha256-ue8tLPcdHIN2ApnDonxFTWlTMTLqcL1E32/8CDenUyU=",
+        "lastModified": 1787076480,
+        "narHash": "sha256-k8OfXZu3W20+Oz2qYRDQemuTOHNg9wIoZxuf31oFLk0=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "1e28f39556cb571b8d7752f4ca6c86ba1ce4f39c",
+        "rev": "7db0958ce44d59e4dfcc0cc92ad8a71e1c1dea35",
         "type": "github"
       },
       "original": {
@@ -1172,11 +1172,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1786998364,
-        "narHash": "sha256-egMnyO7618cG4qcvsTwUkYHoxPFNSe1IThXfDrl43l4=",
+        "lastModified": 1787072640,
+        "narHash": "sha256-qqV/8Pl8JP3s/kVM7vMMKfCOlaXF0+5k1nrahc61cdM=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "af0d014cb26f536d8cb7cab2b9d5784f69767c8a",
+        "rev": "0e737901cd4f206d4abed0bcf5cfee4cdd6c23b9",
         "type": "github"
       },
       "original": {
@@ -1248,11 +1248,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786227627,
-        "narHash": "sha256-bc4jNVx0agB40xwxJ0r7hAAk5tk5Lm0uKtwP5rNyvZQ=",
+        "lastModified": 1787071735,
+        "narHash": "sha256-1DDAvYcJ7q1x4JdhoXU+PTQWxAUcv53gSNmmi9pBVuU=",
         "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "faf5ef1bd5916051ed3252463697dd2ae479f629",
+        "rev": "83ce4b2a70d3c1a6ed8dc6db7f1fac17db2215b1",
         "type": "github"
       },
       "original": {
@@ -2099,11 +2099,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1786963906,
-        "narHash": "sha256-3tkeMWSvHPo3tYljfXbPC/TgknikU1GvdVr/DkdfvE0=",
+        "lastModified": 1787022431,
+        "narHash": "sha256-Kly49ipfBSEIKPFcKUUjlL6yzNAnFetwKAehc9P1h4I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f4b6996c4e8b9ee06ce147ec344c885f51071b14",
+        "rev": "f165e44f135784a494bca3d4ab4834c139f0b37d",
         "type": "github"
       },
       "original": {
@@ -2162,12 +2162,12 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1786862985,
-        "narHash": "sha256-FBJRXmbGXiSUDvYEbfLYRkckayyZ6SK1UEqhCrIZ2Cs=",
-        "rev": "e5bdc4a41d4c072fe1e3787eaa0320a384741d44",
-        "revCount": 1055335,
+        "lastModified": 1787001381,
+        "narHash": "sha256-Ue1Yo8gfHdD4TMtNewhA4tkSYeFqXThju0nCyJc3ALo=",
+        "rev": "ec2d622de0773551768cf98f3fc50cbcc003b9c5",
+        "revCount": 1057119,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.1055335%2Brev-e5bdc4a41d4c072fe1e3787eaa0320a384741d44/01a00b4f-3e29-7710-a380-5250182df9df/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.1057119%2Brev-ec2d622de0773551768cf98f3fc50cbcc003b9c5/01a014ce-3abc-7631-b3d6-6bb3caf57af2/source.tar.gz"
       },
       "original": {
         "type": "tarball",
