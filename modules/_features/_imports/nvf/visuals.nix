@@ -1,5 +1,8 @@
 {
   programs.nvf.settings.vim.visuals = {
+    fidget-nvim = {
+      enable = true;
+    };
     highlight-undo = {
       enable = true;
     };

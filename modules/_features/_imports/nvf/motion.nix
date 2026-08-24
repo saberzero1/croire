@@ -53,7 +53,17 @@
           "x"
         ];
         key = "<c-space>";
-        action = "<cmd>lua function() require('flash').treesitter({ actions = { ['<c-space>'] = 'next', ['<BS>'] = 'prev' } }) end<cr>";
+        action = ''
+          function()
+            require('flash').treesitter({
+              actions = {
+                ['<c-space>'] = 'next',
+                ['<BS>'] = 'prev',
+              },
+            })
+          end
+        '';
+        lua = true;
         desc = "Flash: Treesitter Incremental Selection";
       }
     ];

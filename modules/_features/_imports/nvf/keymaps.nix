@@ -303,45 +303,52 @@ in
     }
     # Diagnostics
     {
-      action = "<cmd>vim.diagnostic.open_float<CR>";
+      action = "function() vim.diagnostic.open_float() end";
       key = "<leader>cd";
       mode = "n";
+      lua = true;
       desc = "Line Diagnostics";
     }
     {
-      action = "<cmd>vim.diagnostic.goto_next()<CR>";
+      action = "function() vim.diagnostic.goto_next() end";
       key = "]d";
       mode = "n";
+      lua = true;
       desc = "Next Diagnostic";
     }
     {
-      action = "<cmd>vim.diagnostic.goto_prev()<CR>";
+      action = "function() vim.diagnostic.goto_prev() end";
       key = "[d";
       mode = "n";
+      lua = true;
       desc = "Prev Diagnostic";
     }
     {
-      action = "<cmd>vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>";
+      action = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end";
       key = "]e";
       mode = "n";
+      lua = true;
       desc = "Next Error";
     }
     {
-      action = "<cmd>vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>";
+      action = "function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end";
       key = "[e";
       mode = "n";
+      lua = true;
       desc = "Prev Error";
     }
     {
-      action = "<cmd>vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })<CR>";
+      action = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN }) end";
       key = "]w";
       mode = "n";
+      lua = true;
       desc = "Next Warning";
     }
     {
-      action = "<cmd>vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })<CR>";
+      action = "function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN }) end";
       key = "[w";
       mode = "n";
+      lua = true;
       desc = "Prev Warning";
     }
     # Lazygit

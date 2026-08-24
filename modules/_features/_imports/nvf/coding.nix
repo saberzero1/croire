@@ -12,7 +12,7 @@ in
         "TodoTrouble"
         "TodoTelescope"
       ];
-      setupModule = "ts-comments.nvim";
+      setupModule = "ts-comments";
       setupOpts = { };
       keys = [
         {
@@ -49,18 +49,7 @@ in
           action = "<cmd>Trouble todo toggle filter={tag={TODO,FIX,FIXME}}<cr>";
           desc = "Todo/Fix/Fixme (Trouble)";
         }
-        {
-          key = "<leader>st";
-          mode = "n";
-          action = "<cmd>TodoTelescope<cr>";
-          desc = "Todo";
-        }
-        {
-          key = "<leader>sT";
-          mode = "n";
-          action = "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>";
-          desc = "Todo/Fix/Fixme";
-        }
+        # <leader>st and <leader>sT are defined in filetree.nix (fzf-lua) to avoid duplicates
       ];
     };
     "mini-surround" = {

@@ -1,6 +1,11 @@
 {
   programs.nvf.settings.vim = {
     mini.icons.enable = true;
+    # Breadcrumbs (migrated from vim.ui.breadcrumbs → vim.statusline.lualine.integrations)
+    statusline.lualine.integrations.breadcrumbs = {
+      nvim-navic.enable = true;
+      navbuddy.enable = true;
+    };
     ui = {
       borders = {
         enable = true;
@@ -11,12 +16,7 @@
           };
         };
       };
-      breadcrumbs = {
-        enable = true;
-        navbuddy = {
-          enable = true;
-        };
-      };
+      # breadcrumbs relocated to statusline.lualine.integrations in nvf 26.12
       colorizer = {
         enable = true;
       };
@@ -33,7 +33,7 @@
             override = {
               "vim.lsp.util.convert_input_to_markdown_lines" = true;
               "vim.lsp.util.stylize_markdown" = true;
-              "cmp.entry.get_documentation" = true;
+              # "cmp.entry.get_documentation" = true; # Dead with blink-cmp (nvim-cmp specific)
             };
             signature = {
               enabled = true;

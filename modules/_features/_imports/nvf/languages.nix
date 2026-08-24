@@ -502,6 +502,37 @@ in
     };
 
     # =========================================
+    # Languages split from existing modules (26.07)
+    # =========================================
+    tsx = {
+      enable = true;
+      lsp = {
+        enable = true;
+        servers = [ "typescript-language-server" ];
+      };
+      treesitter.enable = true;
+    };
+
+    scss = {
+      enable = true;
+      format = {
+        enable = true;
+        type = [ "prettier" ];
+      };
+      lsp = {
+        enable = true;
+        servers = [ "some-sass-language-server" ];
+      };
+      treesitter.enable = true;
+    };
+
+    zsh = {
+      enable = true;
+      lsp.enable = true;
+      treesitter.enable = true;
+    };
+
+    # =========================================
     # Disabled languages
     # =========================================
     astro = {

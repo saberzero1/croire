@@ -4,10 +4,10 @@
       harpoon = {
         enable = true;
         mappings = {
-          file1 = "<C-j>";
-          file2 = "<C-k>";
-          file3 = "<C-l>";
-          file4 = "<C-;>";
+          file1 = "<leader>1";
+          file2 = "<leader>2";
+          file3 = "<leader>3";
+          file4 = "<leader>4";
           listMarks = "<C-e>";
           markFile = "<leader>a";
         };
