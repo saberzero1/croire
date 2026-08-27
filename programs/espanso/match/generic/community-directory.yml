@@ -1,0 +1,10 @@
+matches:
+  - trigger: ":cd-fixed"
+    replace: "The reported issue appears to be already resolved. Feel free to create a new request if you run into further issues."
+    label: "CD: Fixed"
+  - trigger: ":cd-fork"
+    replace: "Your plugin appears to be a fork of another plugin. This is not allowed per the developer policies. Your plugin has been archived for now. See https://docs.obsidian.md/community-directory/developer-policies#Forks for details."
+    label: "CD: Fork policy violation"
+  - trigger: ":cd-install"
+    replace: "Your plugin appears to be able to install other plugins. This is not allowed. Your plugin has been archived. Please remove the ability to install other plugins from your plugin and create a new release before unarchiving."
+    label: "CD: Plugin installs other plugins"
