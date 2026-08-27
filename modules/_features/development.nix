@@ -345,6 +345,11 @@ in
           ${marketplaceCmds}
         '';
 
+      # Force-overwrite the generated opencode.json to prevent Home Manager
+      # backup collisions (opencode.json.backup already exists → activation fails).
+      # Safe because this file is fully declarative (generated from settings above).
+      xdg.configFile."opencode/opencode.json".force = true;
+
       home.file = {
         # File managers
         ranger = {
