@@ -1,0 +1,22 @@
+global_vars:
+  - name: url_linkedin
+    type: echo
+    params:
+      echo: "https://www.linkedin.com/in/emilebangma/"
+  - name: url_github
+    type: echo
+    params:
+      echo: "https://github.com/saberzero1"
+  - name: url_resume_en
+    type: echo
+    params:
+      echo: "https://rxresu.me/saberzero1/curriculum-vitae-english"
+  - name: url_resume_nl
+    type: echo
+    params:
+      echo: "https://rxresu.me/saberzero1/curriculum-vitae-dutch"
+  - name: url_portfolio
+    type: echo
+    params:
+      echo: "https://emilebangma.com"
+

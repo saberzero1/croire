@@ -1,0 +1,19 @@
+matches:
+  - trigger: ":ip"
+    replace: "{{output}}"
+    label: "Public IP Address"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl ifconfig.me"
+
+  - trigger: ":ip"
+    replace: "{{output}}"
+    label: "Public IP Address (Windows)"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl ifconfig.me"
+          shell: cmd

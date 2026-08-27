@@ -1,0 +1,5 @@
+global_vars:
+  - name: greet
+    type: echo
+    params:
+      echo: Hey

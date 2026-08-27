@@ -161,10 +161,12 @@ in
       # Service Configuration Files
       # ===========================================
 
-      # Espanso text expansion config (from totten flake input)
-      # Using mkOutOfStoreSymlink to create a direct symlink to the totten repo,
-      # avoiding the empty file issue that occurs with recursive source copying.
-      xdg.configFile."espanso".source = config.lib.file.mkOutOfStoreSymlink "${flake.inputs.totten}";
+      # Espanso text expansion config
+      # Deploy as a single directory symlink to the live repo.
+      # mkOutOfStoreSymlink with a literal path creates a mutable symlink
+      # that enables espanso hot-reload on file save.
+      xdg.configFile."espanso".source =
+        config.lib.file.mkOutOfStoreSymlink "/home/saberzero1/Repos/croire/programs/espanso";
 
       # Custom systemd service for Espanso (since home-manager module is disabled)
       systemd.user.services.espanso = lib.mkIf isLinux {

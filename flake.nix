@@ -198,12 +198,6 @@
       inputs.mix-nix.follows = "mix-nix";
     };
 
-    # Dotfiles
-    totten = {
-      url = "github:saberzero1/totten/master";
-      flake = false;
-    };
-
     # Omnix
     omnix.url = "github:juspay/omnix";
     tmux-sessionizer = {

@@ -2534,7 +2534,6 @@
         "systems": "systems_8",
         "tirith": "tirith",
         "tmux-sessionizer": "tmux-sessionizer",
-        "totten": "totten",
         "zen-browser": "zen-browser"
       }
     },
@@ -2891,23 +2890,6 @@
       "original": {
         "owner": "saberzero1",
         "repo": "tmux-sessionizer",
-        "type": "github"
-      }
-    },
-    "totten": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1729797630,
-        "narHash": "sha256-hBX67Zii4I3Rw43xEo5Iz+0fcsxcC/ws3uA+UNxn9aw=",
-        "owner": "saberzero1",
-        "repo": "totten",
-        "rev": "549366c1074c6ff804c91ed7cbf7c3d83a2e318f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "saberzero1",
-        "ref": "master",
-        "repo": "totten",
         "type": "github"
       }
     },

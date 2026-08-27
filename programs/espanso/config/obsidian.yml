@@ -1,0 +1,5 @@
+filter_exec: Obsidian
+enable: true
+
+extra_includes:
+  - "../match/overrides/obsidian/*.yml"

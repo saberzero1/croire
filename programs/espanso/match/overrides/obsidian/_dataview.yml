@@ -1,0 +1,11 @@
+matches:
+  - trigger: :index
+    word: true
+    markdown: |
+      ```dataview
+      LIST WITHOUT ID file.link
+      WHERE file.folder = this.file.folder
+      WHERE file != this.file
+      SORT file.name ASC
+      ```
+    label: "Dataview Index"
