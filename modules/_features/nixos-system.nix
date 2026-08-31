@@ -395,6 +395,62 @@ in
       };
 
       # ===========================================
+      # OpenSSH (key-only, no password auth)
+      # ===========================================
+      services.openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          PermitRootLogin = "prohibit-password";
+        };
+      };
+
+      # ===========================================
+      # Mosh (UDP transport for mobile SSH resilience)
+      # ===========================================
+      programs.mosh.enable = true;
+      networking.firewall.allowedUDPPortRanges = [
+        {
+          from = 60000;
+          to = 61000;
+        }
+      ];
+
+      # ===========================================
+      # Tailscale
+      # ===========================================
+      services.tailscale = {
+        enable = true;
+        openFirewall = true;
+      };
+
+      # Trust the Tailscale interface for unrestricted access between nodes
+      networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
+      # ===========================================
+      # DNS: systemd-resolved + dnscrypt-proxy + Tailscale MagicDNS
+      # ===========================================
+      # Architecture:
+      #   systemd-resolved (central resolver, stub on 127.0.0.53)
+      #     ├── Tailscale MagicDNS (split DNS for *.ts.net, injected via resolved)
+      #     └── dnscrypt-proxy (upstream for everything else, on 127.0.0.1:53)
+      services.resolved = {
+        enable = true;
+        # Point resolved at dnscrypt-proxy for regular queries;
+        # Tailscale will inject per-link DNS for *.ts.net automatically.
+        settings.Resolve = {
+          DNS = [
+            "127.0.0.1"
+            "::1"
+          ];
+          # DNSSEC=false because dnscrypt-proxy already handles DNSSEC validation.
+          # Running DNSSEC in both resolved AND dnscrypt-proxy causes double-validation failures.
+          DNSSEC = false;
+        };
+      };
+
+      # ===========================================
       # Services
       # ===========================================
       # UPower — battery/power status (required by Quickshell battery widget)

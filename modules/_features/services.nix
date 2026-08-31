@@ -1,6 +1,7 @@
 # Dendritic feature module: Home services configuration
 # Provides unified home services across platforms (Darwin, NixOS)
-# Includes: espanso (text expansion), emacs daemon, mako (notifications), wlsunset (screen temp)
+# Includes: espanso (text expansion), emacs daemon, mako (notifications), wlsunset (screen temp),
+#           moshi-hook (mobile agent integration)
 # Exports: homeModules.services
 { inputs, lib, ... }:
 let
@@ -20,12 +21,17 @@ in
     in
     let
       espansoPackage = pkgs.espanso-wayland;
+      moshiHookPackage =
+        flake.inputs.moshi-hook.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in
     {
       # ===========================================
       # Packages
       # ===========================================
-      home.packages = lib.mkIf isLinux [ espansoPackage ];
+      home.packages = lib.mkIf isLinux [
+        espansoPackage
+        moshiHookPackage
+      ];
 
       # ===========================================
       # Activation Scripts
@@ -56,6 +62,21 @@ in
       #     echo "$CURRENT_HASH" > "$PROXY_DIR/.nix-source-hash"
       #   fi
       # '';
+
+      # ===========================================
+      # Activation Scripts
+      # ===========================================
+
+      # Re-install moshi-hook agent integrations on every home-manager activation.
+      # Keeps hooks in sync after moshi-hook or agent upgrades without manual intervention.
+      # Skips gracefully if moshi-hook is not yet paired (fresh install).
+      home.activation.moshiHookInstall = lib.mkIf isLinux (
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          if ${moshiHookPackage}/bin/moshi-hook status 2>/dev/null | grep -q "paired"; then
+            run ${moshiHookPackage}/bin/moshi-hook install 2>/dev/null || true
+          fi
+        ''
+      );
 
       # ===========================================
       # Cross-platform Services
@@ -179,6 +200,27 @@ in
           ExecStart = "${espansoPackage}/bin/espanso daemon";
           Restart = "on-failure";
           RestartSec = 3;
+        };
+        Install = {
+          WantedBy = [ "default.target" ];
+        };
+      };
+
+      # Moshi-hook — mobile agent integration daemon
+      # Serves the local gateway on 127.0.0.1:24543, maintains WebSocket to Moshi app,
+      # and provides agent hooks for Claude Code, Codex, OpenCode, and Herdr.
+      # After rebuild: pair with `moshi-hook pair --token <token>` then `moshi-hook install`
+      systemd.user.services.moshi-hook = lib.mkIf isLinux {
+        Unit = {
+          Description = "Moshi host integration daemon";
+          After = [ "network-online.target" ];
+          Wants = [ "network-online.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${moshiHookPackage}/bin/moshi-hook serve";
+          Restart = "on-failure";
+          RestartSec = 5;
         };
         Install = {
           WantedBy = [ "default.target" ];

@@ -186,6 +186,10 @@
     herdr = {
       url = "github:herdrdev/herdr/v0.8.0";
     };
+    moshi-hook = {
+      url = "github:takeaship/moshi-hook-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Gaming
     mix-nix = {

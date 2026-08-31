@@ -156,16 +156,17 @@ in
 
   networking = {
     hostName = "nixos-acer";
+    # Point only at dnscrypt-proxy; resolved uses these as global upstream.
+    # Public resolvers (8.8.8.8 etc.) removed to prevent bypassing dnscrypt-proxy.
     nameservers = [
-      "8.8.8.8"
-      "8.8.4.4"
       "127.0.0.1"
       "::1"
     ];
     networkmanager = {
       enable = true;
       wifi.backend = "wpa_supplicant";
-      dns = "none";
+      # Integrate NM with systemd-resolved for clean Tailscale MagicDNS split-DNS
+      dns = "systemd-resolved";
     };
     useDHCP = false;
     dhcpcd.extraConfig = "nohook resolv.conf";
