@@ -21,8 +21,7 @@ in
     in
     let
       espansoPackage = pkgs.espanso-wayland;
-      moshiHookPackage =
-        flake.inputs.moshi-hook.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      moshiHookPackage = flake.inputs.moshi-hook.packages.${pkgs.stdenv.hostPlatform.system}.default;
     in
     {
       # ===========================================

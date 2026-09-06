@@ -123,7 +123,7 @@ in
             "plugin" = [
               "opencode-ignore"
               "@simonwjackson/opencode-direnv"
-              "oh-my-opencode"
+              "oh-my-openagent"
               # "@tarquinen/opencode-dcp@latest"
               "opencode-mystatus"
               "opencode-claude-auth@latest"
@@ -165,11 +165,6 @@ in
             # Format: "plugin-name@marketplace-name" = true/false
             enabledPlugins = {
               "github@claude-plugins-official" = true;
-              "oh-my-claudecode@omc" = true;
-            };
-            "statusLine" = {
-              "type" = "command";
-              "command" = "node /home/saberzero1/.claude/hud/omc-hud.mjs";
             };
           };
           # MCP (Model Context Protocol) servers
@@ -328,23 +323,6 @@ in
       # ─────────────────────────────────────────────────────────────────────────
       # Development configuration files
       # ─────────────────────────────────────────────────────────────────────────
-      # Declarative Claude Code marketplace management
-      # Registers third-party plugin marketplaces (clones repos on first run).
-      # Plugin enablement is handled declaratively via enabledPlugins in settings.
-      # Uses the unwrapped package to avoid --mcp-config flag interference.
-      home.activation.claudeCodeMarketplaces =
-        let
-          claude = "${config.programs.claude-code.package}/bin/claude";
-          # Third-party marketplaces to register (official marketplace is auto-managed)
-          marketplaces = [ "https://github.com/Yeachan-Heo/oh-my-claudecode" ];
-          marketplaceCmds = lib.concatMapStringsSep "\n" (
-            url: ''run ${claude} plugin marketplace add "${url}" 2>/dev/null || true''
-          ) marketplaces;
-        in
-        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          ${marketplaceCmds}
-        '';
-
       # Force-overwrite the generated opencode.json to prevent Home Manager
       # backup collisions (opencode.json.backup already exists → activation fails).
       # Safe because this file is fully declarative (generated from settings above).
