@@ -335,11 +335,18 @@ in
               partial = true;
               algorithm = "fuzzy";
               sort = "smart";
+              # Cache completion results keyed by the text before the cursor, so
+              # repeated Tab presses don't re-run carapace/fish or rescan the fs.
+              cache_size = 100;
               external = {
                 enable = true;
                 max_results = 100;
               };
             };
+            # Inline ghost text from history (reedline CwdAwareHinter).
+            # Accept with Right arrow / Ctrl+F / End. Defaults true upstream;
+            # set explicitly so a default change can't silently remove it.
+            show_hints = true;
             buffer_editor = "nvim";
             edit_mode = "vi";
             cursor_shape = {
@@ -426,6 +433,53 @@ in
             # Set external completer
             $env.config.completions.external.enable = true
             $env.config.completions.external.completer = $external_completer
+
+            # ───────────────────────────────────────────────────────────────────────────
+            # IDE-style completion menu
+            # Redefines the built-in `completion_menu` (bound to Tab in emacs/vi_normal/
+            # vi_insert) to use the `ide` layout instead of the default `columnar` one.
+            # This surfaces the `description` field that carapace already emits in its
+            # nushell JSON output, which the columnar layout discards.
+            # Ctrl+Space keeps the stock `ide_completion_menu` untouched.
+            # ───────────────────────────────────────────────────────────────────────────
+            $env.config.menus = (
+              $env.config.menus
+              | where name != "completion_menu"
+              | append {
+                name: completion_menu
+                only_buffer_difference: false
+                marker: "| "
+                type: {
+                  layout: ide
+                  min_completion_width: 0
+                  max_completion_width: 50
+                  max_completion_height: 10
+                  padding: 0
+                  border: true
+                  cursor_offset: 0
+                  # Prefer the description pane on the right, fall back to left
+                  # when the terminal is too narrow.
+                  description_mode: "prefer_right"
+                  min_description_width: 15
+                  max_description_width: 50
+                  max_description_height: 10
+                  description_offset: 1
+                  correct_cursor_pos: false
+                }
+                style: {
+                  text: green
+                  selected_text: { attr: r }
+                  description_text: yellow
+                  # Underline the substring that matched the fuzzy query.
+                  match_text: { attr: u }
+                  selected_match_text: { attr: ur }
+                }
+              }
+            )
+
+            # Dim the inline history ghost text so it reads as a suggestion
+            # rather than as typed input.
+            $env.config.color_config.hints = "dark_gray"
 
             # Add pre_execution hook for tirith
             $env.config.hooks.pre_execution = ($env.config.hooks.pre_execution | default [] | append {||
