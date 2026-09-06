@@ -55,7 +55,10 @@
       "sash.cachix.org-1:O4mYArEPtU859GLhV67RWcs9sdAa0mLyS+CBzDHGLNs="
     ];
 
-    extra-experimental-features = "nix-command flakes";
+    extra-experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     extra-nix-path = "nixpkgs=flake:nixpkgs";
     # lazy-trees = true;
     # eval-cores = 0; # Use all available CPU cores for evaluation

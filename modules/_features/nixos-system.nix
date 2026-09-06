@@ -188,7 +188,7 @@ in
             libusb1
             wally-cli
             zsa-udev-rules
-            qmk
+            # qmk # Disabled: PyQt5 ABI v12 incompatibility with Python 3.14 (nixpkgs upstream issue)
 
             # GTK & webkit
             gtk3
@@ -541,7 +541,7 @@ in
       # ===========================================
       hardware = {
         keyboard = {
-          qmk.enable = true;
+          # qmk.enable = true; # Disabled: PyQt5 ABI v12 incompatibility with Python 3.14 (nixpkgs upstream issue)
           zsa.enable = true;
         };
         nvidia = {
@@ -595,7 +595,10 @@ in
           in
           {
             eval-cores = 0;
-            experimental-features = "nix-command flakes";
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
             extra-nix-path = "nixpkgs=flake:nixpkgs";
             trusted-users = [
               "root"

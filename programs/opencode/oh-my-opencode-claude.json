@@ -2,60 +2,60 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "anthropic/claude-opus-4-7"
+      "model": "anthropic/claude-opus-5"
     },
     "hephaestus": {
-      "model": "opencode/gpt-5.5"
+      "model": "opencode/gpt-5.6-sol"
     },
     "oracle": {
-      "model": "opencode/gpt-5.5"
+      "model": "opencode/gpt-5.6-sol"
     },
     "librarian": {
-      "model": "opencode/claude-haiku-4-5"
+      "model": "opencode/gpt-5.6-luna"
     },
     "explore": {
-      "model": "opencode/claude-haiku-4-5"
+      "model": "opencode/gpt-5.6-luna"
     },
     "multimodal-looker": {
-      "model": "opencode/gpt-5.5"
+      "model": "opencode/gpt-5.6-sol"
     },
     "prometheus": {
-      "model": "anthropic/claude-opus-4-7"
+      "model": "anthropic/claude-fable-5-1"
     },
     "metis": {
-      "model": "anthropic/claude-sonnet-4-6"
+      "model": "anthropic/claude-opus-5"
     },
     "momus": {
-      "model": "opencode/gpt-5.5"
+      "model": "opencode/gpt-6-astra"
     },
     "atlas": {
-      "model": "anthropic/claude-sonnet-4-6"
+      "model": "anthropic/claude-sonnet-5"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "opencode/gemini-3.1-pro"
+      "model": "anthropic/claude-fable-5-1"
     },
     "ultrabrain": {
-      "model": "opencode/gpt-5.6-sol"
+      "model": "opencode/gpt-6-astra"
     },
     "deep": {
-      "model": "opencode/gpt-5.6-terra"
+      "model": "opencode/gpt-6-astra"
     },
     "artistry": {
-      "model": "opencode/gemini-3.1-pro"
+      "model": "anthropic/claude-fable-5-1"
     },
     "quick": {
-      "model": "opencode/gpt-5.4-mini"
+      "model": "opencode/gpt-5.4-nano"
     },
     "unspecified-low": {
-      "model": "opencode/gpt-5.6-luna"
+      "model": "opencode/grok-4.6"
     },
     "unspecified-high": {
-      "model": "anthropic/claude-opus-4-7"
+      "model": "opencode/gpt-6-astra"
     },
     "writing": {
-      "model": "opencode/kimi-k2.5"
+      "model": "anthropic/claude-fable-5-1"
     }
   },
   "git_master": {

@@ -106,7 +106,7 @@ in
     };
 
     keyboard = {
-      qmk.enable = true;
+      # qmk.enable = true; # Disabled: PyQt5 ABI v12 incompatibility with Python 3.14 (nixpkgs upstream issue)
       zsa.enable = true;
     };
   };

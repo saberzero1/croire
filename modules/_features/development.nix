@@ -385,8 +385,8 @@ in
         };
 
         # OpenCode AI assistant
-        oh-my-opencode = {
-          target = ".config/opencode/oh-my-opencode.json";
+        oh-my-openagent = {
+          target = ".config/opencode/oh-my-openagent.json";
           # source = "${self}/programs/opencode/oh-my-opencode-zen.json";
           # source = "${self}/programs/opencode/oh-my-opencode.json";
           source = "${self}/programs/opencode/oh-my-opencode-claude.json";
