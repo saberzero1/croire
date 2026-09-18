@@ -33,24 +33,10 @@ in
         }
       ];
     };
+    # yanky itself is configured through nvf's native module below (that is
+    # what pulls in sqlite-lua); only the keymaps are attached here, since the
+    # nvf module deliberately ships none.
     "yanky-nvim" = {
-      enabled = true;
-      lazy = true;
-      package = "yanky-nvim";
-      setupModule = "yanky";
-      setupOpts = {
-        ring.storage = "sqlite";
-        highlight = {
-          on_put = true;
-          on_yank = true;
-          timer = 150;
-        };
-        picker = {
-          telescope = {
-            use_default_mappings = true;
-          };
-        };
-      };
       keys = [
         {
           key = "<leader>p";
@@ -126,99 +112,49 @@ in
           action = "<Plug>(YankyCycleBackward)";
           desc = "Cycle Backward Through Yank History";
         }
-        {
-          key = "]p";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentAfterLinewise)";
-          desc = "Put Indented After Cursor (Linewise)";
-        }
-        {
-          key = "[p";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentBeforeLinewise)";
-          desc = "Put Indented Before Cursor (Linewise)";
-        }
-        {
-          key = "]P";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentAfterLinewise)";
-          desc = "Put Indented After Cursor (Linewise)";
-        }
-        {
-          key = "[P";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentBeforeLinewise)";
-          desc = "Put Indented Before Cursor (Linewise)";
-        }
-        {
-          key = ">p";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentAfterShiftRight)";
-          desc = "Put and Indent Right";
-        }
-        {
-          key = "<p";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentAfterShiftLeft)";
-          desc = "Put and Indent Left";
-        }
-        {
-          key = ">P";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentBeforeShiftRight)";
-          desc = "Put Before and Indent Right";
-        }
-        {
-          key = "<P";
-          mode = "n";
-          action = "<Plug>(YankyPutIndentBeforeShiftLeft)";
-          desc = "Put Before and Indent Left";
-        }
-        {
-          key = "=p";
-          mode = "n";
-          action = "<Plug>(YankyPutAfterFilter)";
-          desc = "Put After Applying a Filter";
-        }
-        {
-          key = "=P";
-          mode = "n";
-          action = "<Plug>(YankyPutBeforeFilter)";
-          desc = "Put Before Applying a Filter";
-        }
       ];
     };
   };
+
+  # Native nvf module: setting ring.storage = "sqlite" makes nvf add
+  # pkgs.vimPlugins.sqlite-lua to startPlugins automatically. The previous
+  # hand-rolled lazy.plugins entry bypassed that, which is exactly why sqlite
+  # was configured but the dependency was never installed.
+  #
+  # sqlite over shada because multiple concurrent nvim instances are the norm
+  # here: shada rewrites the whole vim.g.YANKY_HISTORY global on exit, so
+  # last-writer-wins and one instance's yanks are silently discarded. shada
+  # also caps the ENTIRE history at the 'shada' s-flag (default s10 = 10 KiB)
+  # and drops all of it once exceeded. sqlite INSERTs per yank into a shared
+  # db (stdpath("data")/databases/yanky.db), so instances accumulate correctly,
+  # there is no size cliff, and yanks survive a crash rather than only a clean
+  # exit.
+  programs.nvf.settings.vim.utility.yanky-nvim = {
+    enable = true;
+    setupOpts = {
+      ring.storage = "sqlite";
+      highlight = {
+        on_put = true;
+        on_yank = true;
+        timer = 150;
+      };
+      picker.telescope.use_default_mappings = true;
+    };
+  };
+
   programs.nvf.settings.vim.utility = {
-    direnv = {
-      enable = false;
-    };
-    motion = {
-      hop = {
-        enable = false;
-      };
-      leap = {
-        enable = false;
-      };
-      precognition = {
-        enable = true;
-        setupOpts = {
-          disabled_fts = [
-            "alpha"
-            "dashboard"
-            "ministarter"
-            "snacks_dashboard"
-            "startify"
-          ];
-        };
-      };
-    };
-    multicursors = {
-      enable = false;
-    };
-    surround = {
-      enable = true;
-    };
+    # direnv dropped: nvf wires every LSP/formatter by absolute Nix store path,
+    # so Neovim's PATH is irrelevant to tooling and direnv.vim bought nothing.
+    #
+    # motion: flash-nvim (motion.nix) is the jump plugin -- hop and leap were
+    # never enabled, and precognition's hint virtual-text was visual noise
+    # (hardtime-nvim was already off for the same reason).
+    #
+    # multicursors: evaluated and dropped.
+    #
+    # surround dropped: mini.surround (coding.nix) owns gsa/gsd/gsr/gsf/gsF/
+    # gsh/gsn and has a `gs` which-key group. Enabling this too installed
+    # nvim-surround alongside it, giving two implementations on cs/ys/ds.
     undotree = {
       enable = true;
     };
