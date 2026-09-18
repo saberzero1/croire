@@ -1,113 +1,66 @@
 {
-  # Add filetype associations for LSP servers that use non-standard filetypes
-  # These resolve the "Unknown filetype" warnings from :checkhealth vim.lsp
+  # Filetype registrations.
   #
-  # The warnings indicate that LSP servers are configured to handle filetypes
-  # that Neovim doesn't recognize by default. We register these filetypes
-  # so that:
-  # 1. Files with certain extensions get the correct filetype
-  # 2. The filetype names themselves are valid in Neovim
+  # Two jobs here:
+  #
+  # 1. Silence `:checkhealth vim.lsp` "Unknown filetype" warnings. An LSP server
+  #    that advertises a filetype Neovim has never heard of triggers one warning
+  #    each. The culprits are both servers we keep:
+  #      - tailwindcss-language-server (lsp.nix preset) advertises essentially
+  #        every template-engine filetype: aspnetcorerazor, astro-markdown,
+  #        django-html, edge, ejs, erb, gohtml, gohtmltmpl, hbs, html-eex, jade,
+  #        leaf, njk, nunjucks, postcss, reason, slim, sugarss
+  #      - bash-language-server advertises the `ash` and `dash` shell dialects
+  #    Registering the names makes them known. (Tailwind is genuinely used here
+  #    -- 5 tailwind.config.* files across the repos -- so the preset stays.)
+  #
+  # 2. Genuine detection Neovim lacks by default (MDX, compose/gitlab YAML).
+  #
+  # Filetypes for languages that are no longer configured (cue, edn, fsharp,
+  # eelixir, menhir, ocamlinterface, ocamllex, terraform-vars, gowork, helm
+  # values, ...) were dropped along with their servers.
+  #
+  # KNOWN REMAINING (pre-existing, also present before this cleanup): 'gohtml'
+  # and 'django-html' still warn. Neovim resolves `filename` > `pattern` >
+  # `extension`, so the `.*%.gohtml` -> gohtmltmpl pattern shadows the gohtml
+  # extension entry, and django-html is only produced by a content-sniffing
+  # pattern function. Neither filetype is ever actually reached, so the warning
+  # can't be cleared without giving up gohtmltmpl/django-html detection. Purely
+  # cosmetic; both are only advertised by tailwindcss-language-server.
   programs.nvf.settings.vim.luaConfigRC.filetype = ''
     vim.filetype.add({
       extension = {
-        -- Clojure EDN files - register as 'edn' filetype (not 'clojure')
-        edn = "edn",
+        -- Shell dialects advertised by bash-language-server
+        ash = "ash",
+        dash = "dash",
 
-        -- CUE language
-        cue = "cue",
-
-        -- Elixir templates
-        eex = "eelixir",
-        leex = "eelixir",
-
-        -- F#
-        fs = "fsharp",
-        fsi = "fsharp",
-        fsx = "fsharp",
-        fsscript = "fsharp",
-
-        -- Go
-        tmpl = "gotmpl",
-
-        -- OCaml family
-        mly = "menhir",
-        mli = "ocamlinterface",
-        mll = "ocamllex",
-        re = "reason",
-        rei = "reason",
-
-        -- HTML variants
-        shtml = "shtml",
-        htm = "htm",
-
-        -- WebGPU Shading Language
-        wgsl = "wgsl",
-
-        -- Terraform
-        tfvars = "terraform-vars",
-
-        -- MDX
-        mdx = "mdx",
-
-        -- Template engines and frontend frameworks
-        astro = "astro",
-        blade = "blade",
+        -- Template engines advertised by tailwindcss-language-server
         edge = "edge",
         ejs = "ejs",
         erb = "erb",
         hbs = "hbs",
-        handlebars = "handlebars",
         jade = "jade",
         pug = "jade",
         leaf = "leaf",
-        mustache = "mustache",
         njk = "njk",
         nunjucks = "nunjucks",
-        razor = "razor",
-        cshtml = "aspnetcorerazor",
         slim = "slim",
+        gohtml = "gohtml",
+        cshtml = "aspnetcorerazor",
+        re = "reason",
+        rei = "reason",
         pcss = "postcss",
         sss = "sugarss",
-        templ = "templ",
 
-        -- Twig
-        twig = "twig",
-
-        -- Go HTML templates
-        gohtml = "gohtml",
+        -- MDX (markdown superset, not detected by default)
+        mdx = "mdx",
       },
       pattern = {
-        -- Go work files
-        ["go%.work"] = "gowork",
-        ["go%.work%.sum"] = "gowork",
-
-        -- Go templates
-        [".*%.go%.tmpl"] = "gotmpl",
-        [".*%.gotmpl"] = "gotmpl",
+        -- Remaining tailwind filetypes that need pattern matching
         [".*%.gohtml"] = "gohtmltmpl",
-
-        -- YAML variants
-        [".*/docker%-compose[^/]*%.ya?ml$"] = "yaml.docker-compose",
-        [".*/compose[^/]*%.ya?ml$"] = "yaml.docker-compose",
-        [".*/%.gitlab%-ci%.ya?ml$"] = "yaml.gitlab",
-        [".*/%.gitlab/[^/]*%.ya?ml$"] = "yaml.gitlab",
-
-        -- Helm values files
-        [".*/values[^/]*%.ya?ml$"] = function(path, bufnr)
-          local dir = vim.fn.fnamemodify(path, ":h")
-          if vim.fn.filereadable(dir .. "/Chart.yaml") == 1 or
-             vim.fn.filereadable(dir .. "/../Chart.yaml") == 1 then
-            return "yaml.helm-values"
-          end
-          return nil
-        end,
-
-        -- MDX files
-        [".*%.mdx$"] = "mdx",
-        [".*%.markdown%.mdx$"] = "markdown.mdx",
-
-        -- Django templates
-        [".*/templates/.*%.html$"] = function(path, bufnr)
+        [".*%.eex$"] = "html-eex",
+        [".*%.astro%.md$"] = "astro-markdown",
+        [".*/templates/.*%.html$"] = function(path, _)
           local lines = vim.fn.readfile(path, "", 50)
           local content = table.concat(lines, "\n")
           if content:match("{%%") or content:match("{{") then
@@ -116,29 +69,17 @@
           return nil
         end,
 
-        -- Elixir templates in Phoenix projects
-        [".*%.html%.eex$"] = "eelixir",
-        [".*%.html%.leex$"] = "eelixir",
-        [".*%.html%.heex$"] = "heex",
+        -- YAML variants: give yaml-language-server the right schema
+        [".*/docker%-compose[^/]*%.ya?ml$"] = "yaml.docker-compose",
+        [".*/compose[^/]*%.ya?ml$"] = "yaml.docker-compose",
+        [".*/%.gitlab%-ci%.ya?ml$"] = "yaml.gitlab",
+        [".*/%.gitlab/[^/]*%.ya?ml$"] = "yaml.gitlab",
 
-        -- HTML EEx
-        [".*%.eex$"] = "html-eex",
-
-        -- ASP.NET Razor
-        [".*%.cshtml$"] = "aspnetcorerazor",
-        [".*%.razor$"] = "razor",
-
-        -- Astro markdown
-        [".*%.astro%.md$"] = "astro-markdown",
-
-        -- Blade templates
-        [".*%.blade%.php$"] = "blade",
+        -- MDX
+        [".*%.mdx$"] = "mdx",
+        [".*%.markdown%.mdx$"] = "markdown.mdx",
       },
       filename = {
-        -- Go
-        ["go.work"] = "gowork",
-        ["go.work.sum"] = "gowork",
-
         -- Docker Compose
         ["docker-compose.yml"] = "yaml.docker-compose",
         ["docker-compose.yaml"] = "yaml.docker-compose",
