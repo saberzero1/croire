@@ -151,7 +151,6 @@
       url = "github:NotAShelf/nvf/main";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    lazyvim.url = "github:saberzero1/lazyvim-nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak";
     nix-snapd = {

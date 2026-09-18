@@ -1,6 +1,6 @@
 # Dendritic feature module: Editor configuration
 # Provides unified editor configuration across all platforms
-# Exports: homeModules.editors (nvf, lazyvim, helix, emacs)
+# Exports: homeModules.editors (nvf, helix, emacs)
 { inputs, lib, ... }:
 let
   inherit (inputs) self;
@@ -22,10 +22,6 @@ in
         # NVF (Neovim via nvf)
         inputs.nvf.homeManagerModules.default
         (self + /modules/_features/_imports/nvf)
-
-        # LazyVim (disabled by default)
-        inputs.lazyvim.homeManagerModules.default
-        (self + /modules/_features/_imports/lazyvim)
       ];
 
       programs = {
@@ -49,22 +45,6 @@ in
               undoFile.enable = true;
             };
           };
-        };
-
-        # ─────────────────────────────────────────────────────────────────────────
-        # LazyVim - Alternative Neovim configuration (disabled)
-        # ─────────────────────────────────────────────────────────────────────────
-        lazyvim = {
-          enable = false;
-          pluginSource = "latest";
-          extraPackages = with pkgs; [
-            curl
-            fd
-            fzf
-            git
-            lazygit
-            ripgrep
-          ];
         };
 
         # ─────────────────────────────────────────────────────────────────────────
