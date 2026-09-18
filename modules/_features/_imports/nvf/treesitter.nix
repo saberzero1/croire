@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 let
   lua = lib.mkLuaInline;
 in
@@ -6,144 +6,68 @@ in
   programs.nvf.settings.vim.treesitter = {
     enable = true;
     autotagHtml = true;
-    addDefaultGrammars = true;
+    # Grammars come from the per-language modules in languages.nix via their
+    # `treesitter.enable`. Previously this file also carried a hand-maintained
+    # 90-entry grammar list AND `addDefaultGrammars = true`, so grammars were
+    # declared three separate ways and 106 parsers were installed.
     context = {
       enable = true;
     };
     fold = true;
-    grammars = with pkgs.vimPlugins.nvim-treesitter.grammarPlugins; [
-      asm
-      astro
-      bash
-      blade
-      #c
-      c_sharp
-      clojure
-      comment
-      cmake
-      cpp
-      css
-      csv
-      cuda
-      cue
-      dart
-      diff
-      dockerfile
-      editorconfig
-      elixir
-      elm
-      erlang
-      fish
-      fsharp
-      git_config
-      git_rebase
-      gitattributes
-      gitcommit
-      gitignore
-      gleam
-      go
-      gpg
-      haskell
-      hcl
-      helm
-      hlsl
-      html
-      http
-      hyprlang
-      java
-      javascript
-      jinja
-      jinja_inline
-      jsdoc
-      json
-      json5
-      # jsonc
-      julia
-      just
-      kotlin
-      latex
-      llvm
-      #lua
-      #luadoc
-      luap
-      make
-      #markdown
-      #markdown_inline
-      nim
-      nim_format_string
-      nix
-      nu
-      ocaml
-      odin
-      passwd
-      php
-      phpdoc
-      powershell
-      python
-      #query
-      r
-      readline
-      requirements
-      regex
-      ruby
-      rust
-      scala
-      scss
-      sql
-      ssh_config
-      svelte
-      sway
-      # tmux
-      toml
-      tsx
-      typescript
-      typst
-      udev
-      vala
-      #vim
-      #vimdoc
-      vue
-      wgsl
-      xml
-      yaml
-      zig
-    ];
     highlight = {
       enable = true;
-    };
-    textobjects = {
-      enable = false;
-      setupOpts = {
-        move = {
-          enable = true;
-          goto_next_start = {
-            "]f" = "@function.outer";
-            "]c" = "@class.outer";
-            "]a" = "@parameter.inner";
-          };
-          goto_next_end = {
-            "]F" = "@function.outer";
-            "]C" = "@class.outer";
-            "]A" = "@parameter.inner";
-          };
-          goto_previous_start = {
-            "[f" = "@function.outer";
-            "[c" = "@class.outer";
-            "[a" = "@parameter.inner";
-          };
-          goto_previous_end = {
-            "[F" = "@function.outer";
-            "[C" = "@class.outer";
-            "[A" = "@parameter.inner";
-          };
-        };
-
-      };
     };
     indent = {
       enable = true;
     };
+    # Required, not optional: mini.ai's `o`/`f`/`c` textobjects below call
+    # gen_spec.treesitter(), which resolves captures from the `textobjects`
+    # query group. That group ships with nvim-treesitter-textobjects, so with
+    # this disabled `daf`/`dac`/`dao` were silently no-ops.
+    textobjects = {
+      enable = true;
+      # setupOpts intentionally empty. nvim-treesitter here is the `main`
+      # branch (require("nvim-treesitter.configs") no longer exists), and on
+      # main the textobjects `move` table is NOT read to create keymaps -- the
+      # old `move.goto_next_start = { ... }` form silently bound nothing. The
+      # motions are declared explicitly below against the main-branch API.
+      setupOpts = { };
+    };
   };
+
+  # Treesitter function motions, using the main-branch
+  # nvim-treesitter-textobjects.move API.
+  #
+  # ]f/[f are free because unimpaired (which bound them to directory/qflist
+  # navigation) has been removed.
+  #
+  # Deliberately NO ]c/[c/]C/[C: those are Vim's native diff-mode
+  # next/prev-change motions, and gitsigns' ]h/[h handlers delegate to them
+  # when vim.wo.diff is set. Parameter motions are skipped too -- ]a/[a are
+  # already taken by other mappings.
+  programs.nvf.settings.vim.keymaps =
+    let
+      motion = key: fn: capture: desc: {
+        inherit key desc;
+        mode = [
+          "n"
+          "x"
+          "o"
+        ];
+        lua = true;
+        action = ''
+          function()
+            require("nvim-treesitter-textobjects.move").${fn}("${capture}", "textobjects")
+          end
+        '';
+      };
+    in
+    [
+      (motion "]f" "goto_next_start" "@function.outer" "Next Function Start")
+      (motion "[f" "goto_previous_start" "@function.outer" "Prev Function Start")
+      (motion "]F" "goto_next_end" "@function.outer" "Next Function End")
+      (motion "[F" "goto_previous_end" "@function.outer" "Prev Function End")
+    ];
   programs.nvf.settings.vim.mini.ai = {
     enable = true;
     setupOpts = {
@@ -180,12 +104,11 @@ in
             "^().*()$",
           }
         '';
-        # g = LazyVim.mini.ai_buffer, -- buffer
         u = lua ''
           require("mini.ai").gen_spec.function_call() -- u for "Usage"
         '';
         U = lua ''
-          require("mini.ai").gen_spec.function_call({ name_pattern = "[%w_]" }) -- without dot in function name 
+          require("mini.ai").gen_spec.function_call({ name_pattern = "[%w_]" }) -- without dot in function name
         '';
       };
     };
