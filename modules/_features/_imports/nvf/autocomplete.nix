@@ -4,7 +4,8 @@ let
 in
 {
   programs.nvf.settings.vim.autocomplete = {
-    enableSharedCmpSources = true;
+    # enableSharedCmpSources is not set here: nvf's blink-cmp module already
+    # forces it true whenever blink is enabled, so declaring it was a no-op.
     blink-cmp = {
       enable = true;
       friendly-snippets = {
@@ -119,24 +120,17 @@ in
           "<A-9>" = [ (lua "function(cmp) cmp.accept({ index = 9 }) end") ];
           "<A-0>" = [ (lua "function(cmp) cmp.accept({ index = 10 }) end") ];
         };
-        sources = {
-          default = [
-            "lsp"
-            "path"
-            "snippets"
-            "buffer"
-            "copilot"
-          ];
-          providers = {
-            copilot = {
-              name = "copilot";
-              module = "blink-copilot";
-              # kind = "Copilot";
-              score_offset = 100;
-              async = true;
-            };
-          };
-        };
+        # NOTE: sources.default and sources.providers are deliberately NOT set
+        # here. nvf generates both from `sourcePlugins` above, and its list is
+        # CONCATENATED with anything declared here rather than replacing it.
+        # Declaring them produced sources.default with 10 entries --
+        # lsp/path/snippets/buffer each listed twice -- plus Copilot registered
+        # under two provider names ("copilot" at score_offset 100 and
+        # "blink-copilot" at default), so every source was queried twice and
+        # Copilot could surface duplicate entries at different ranks.
+        #
+        # Score boosting for Copilot now goes on the nvf-generated provider:
+        sources.providers.blink-copilot.score_offset = 100;
         snippets = {
           preset = "luasnip";
         };
