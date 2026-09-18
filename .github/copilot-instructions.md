@@ -40,7 +40,6 @@ croire/
 │       │   ├── darwin/       # Darwin-specific (dock, homebrew packages)
 │       │   ├── fonts.nix     # Shared font configuration
 │       │   ├── languages/    # Language toolchains (python, rust, go, etc.)
-│       │   ├── lazyvim/      # LazyVim configuration
 │       │   └── nvf/          # NVF neovim configuration
 │       ├── git.nix           # homeModules.git
 │       ├── shell.nix         # homeModules.shell
@@ -92,7 +91,7 @@ croire/
 |--------|-------------|
 | `homeModules.git` | Git, lazygit, gh, diff-so-fancy |
 | `homeModules.shell` | Zsh, nushell, starship, zoxide, direnv, fzf |
-| `homeModules.editors` | Neovim (nvf/lazyvim), helix, emacs |
+| `homeModules.editors` | Neovim (nvf), helix, emacs |
 | `homeModules.terminal` | Tmux, ghostty, wezterm |
 | `homeModules.development` | Languages, bat, eza, ripgrep, yazi, btop |
 | `homeModules.services` | Espanso, emacs daemon, mako, wlsunset |
@@ -178,7 +177,6 @@ Reusable configurations live in `modules/_features/_imports/`:
 - **darwin/** - Darwin-specific imports (dock, homebrew packages)
 - **languages/** - Language toolchain packages
 - **nvf/** - NVF neovim language configs
-- **lazyvim/** - LazyVim language configs
 
 ### Nix Code Style
 

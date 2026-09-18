@@ -25,7 +25,6 @@ croire/
 │       │   ├── darwin/           # Darwin-specific imports (dock, packages)
 │       │   ├── fonts.nix         # Shared font configuration
 │       │   ├── languages/        # Language toolchains
-│       │   ├── lazyvim/          # LazyVim configuration
 │       │   ├── nvf/              # NVF neovim configuration
 │       │   └── shared-packages.nix # Shared packages across platforms
 │       ├── git.nix               # homeModules.git
@@ -91,7 +90,7 @@ Feature-based modules that work across Darwin and NixOS:
 |--------|-------------|
 | `homeModules.git` | Git, lazygit, gh, diff-so-fancy |
 | `homeModules.shell` | Zsh, nushell, starship, zoxide, direnv, fzf, carapace |
-| `homeModules.editors` | Neovim (nvf/lazyvim), helix, emacs |
+| `homeModules.editors` | Neovim (nvf), helix, emacs |
 | `homeModules.terminal` | Tmux, ghostty, wezterm |
 | `homeModules.development` | Languages, bat, eza, ripgrep, yazi, btop |
 | `homeModules.services` | Espanso, emacs daemon, mako, wlsunset |
