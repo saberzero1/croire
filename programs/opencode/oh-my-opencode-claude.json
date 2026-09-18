@@ -1,65 +1,67 @@
 {
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
-  "agents": {
-    "sisyphus": {
-      "model": "anthropic/claude-opus-5"
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/omo.schema.json",
+  "[opencode]": {
+    "agents": {
+      "sisyphus": {
+        "model": "anthropic/claude-opus-5"
+      },
+      "hephaestus": {
+        "model": "opencode/gpt-5.6-sol"
+      },
+      "oracle": {
+        "model": "opencode/gpt-5.6-sol"
+      },
+      "librarian": {
+        "model": "opencode/gpt-5.6-luna"
+      },
+      "explore": {
+        "model": "opencode/gpt-5.6-luna"
+      },
+      "multimodal-looker": {
+        "model": "opencode/gpt-5.6-sol"
+      },
+      "prometheus": {
+        "model": "anthropic/claude-fable-5-1"
+      },
+      "metis": {
+        "model": "anthropic/claude-opus-5"
+      },
+      "momus": {
+        "model": "opencode/gpt-6-astra"
+      },
+      "atlas": {
+        "model": "anthropic/claude-sonnet-5"
+      }
     },
-    "hephaestus": {
-      "model": "opencode/gpt-5.6-sol"
+    "categories": {
+      "visual-engineering": {
+        "model": "anthropic/claude-fable-5-1"
+      },
+      "ultrabrain": {
+        "model": "opencode/gpt-6-astra"
+      },
+      "deep": {
+        "model": "opencode/gpt-5.6-sol"
+      },
+      "artistry": {
+        "model": "anthropic/claude-fable-5-1"
+      },
+      "quick": {
+        "model": "opencode/gpt-5.4-nano"
+      },
+      "unspecified-low": {
+        "model": "opencode/grok-4.6"
+      },
+      "unspecified-high": {
+        "model": "anthropic/claude-opus-5"
+      },
+      "writing": {
+        "model": "anthropic/claude-fable-5-1"
+      }
     },
-    "oracle": {
-      "model": "opencode/gpt-5.6-sol"
-    },
-    "librarian": {
-      "model": "opencode/gpt-5.6-luna"
-    },
-    "explore": {
-      "model": "opencode/gpt-5.6-luna"
-    },
-    "multimodal-looker": {
-      "model": "opencode/gpt-5.6-sol"
-    },
-    "prometheus": {
-      "model": "anthropic/claude-fable-5-1"
-    },
-    "metis": {
-      "model": "anthropic/claude-opus-5"
-    },
-    "momus": {
-      "model": "opencode/gpt-6-astra"
-    },
-    "atlas": {
-      "model": "anthropic/claude-sonnet-5"
+    "git_master": {
+      "commit_footer": false,
+      "include_co_authored_by": false
     }
-  },
-  "categories": {
-    "visual-engineering": {
-      "model": "anthropic/claude-fable-5-1"
-    },
-    "ultrabrain": {
-      "model": "opencode/gpt-6-astra"
-    },
-    "deep": {
-      "model": "opencode/gpt-5.6-sol"
-    },
-    "artistry": {
-      "model": "anthropic/claude-fable-5-1"
-    },
-    "quick": {
-      "model": "opencode/gpt-5.4-nano"
-    },
-    "unspecified-low": {
-      "model": "opencode/grok-4.6"
-    },
-    "unspecified-high": {
-      "model": "anthropic/claude-opus-5"
-    },
-    "writing": {
-      "model": "anthropic/claude-fable-5-1"
-    }
-  },
-  "git_master": {
-    "commit_footer": false,
-    "include_co_authored_by": false
   }
 }

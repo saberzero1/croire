@@ -362,9 +362,9 @@ in
           source = "${self}/programs/just/justfile";
         };
 
-        # OpenCode AI assistant
+        # Oh-My-OpenAgent unified config (omo.jsonc)
         oh-my-openagent = {
-          target = ".config/opencode/oh-my-openagent.json";
+          target = ".omo/omo.jsonc";
           # source = "${self}/programs/opencode/oh-my-opencode-zen.json";
           # source = "${self}/programs/opencode/oh-my-opencode.json";
           source = "${self}/programs/opencode/oh-my-opencode-claude.json";
