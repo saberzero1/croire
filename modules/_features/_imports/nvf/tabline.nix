@@ -53,19 +53,9 @@ in
                 return vim.trim(ret)
               end
             '';
+            # NvimTree was never installed and neo-tree has been dropped, so
+            # only the snacks layout box remains.
             offsets = [
-              {
-                filetype = "NvimTree";
-                highlight = "Directory";
-                separator = true;
-                text = "File Explorer";
-              }
-              {
-                filetype = "neo-tree";
-                highlight = "Directory";
-                separator = true;
-                text = "File Explorer";
-              }
               {
                 filetype = "snacks_layout_box";
                 highlight = "Directory";
@@ -78,11 +68,12 @@ in
         };
       };
     };
+    # nvf's bufferline module registers <leader>bm / <leader>bs / <leader>bsi
+    # which-key groups for its Move/Sort mappings. Those mappings are nulled
+    # above, so without these the groups would show as labels for keys that
+    # don't exist. The <leader>b and <leader>s groups themselves are declared
+    # once in binds.nix.
     binds.whichKey.register = {
-      # Handled by hydra.nvim
-      "<leader>b" = "+Buffer";
-      "<leader>s" = "+Search";
-      "<leader>sn" = "+noice";
       "<leader>bm" = null;
       "<leader>bs" = null;
       "<leader>bsi" = null;
