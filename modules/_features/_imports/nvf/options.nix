@@ -10,7 +10,9 @@ in
       clipboard = lua ''
         vim.env.SSH_TTY and "" or "unnamedplus"
       '';
-      cmdheight = 3;
+      # noice renders the cmdline as a float (command_palette/bottom_search
+      # presets), so reserving rows here would only waste screen space.
+      cmdheight = 0;
       completeopt = "menu,menuone,noselect";
       conceallevel = 2;
       confirm = true;
@@ -49,18 +51,14 @@ in
       splitbelow = true;
       splitkeep = "screen";
       splitright = true;
-      # statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]];
       tabstop = 2;
       termguicolors = true;
-      # undofile = true;
       undolevels = 10000;
       updatetime = 200;
       virtualedit = "block";
       wildmode = "longest:full,full";
       winminwidth = 5;
       wrap = false;
-      # timeoutlen = 300;
-      # tm = 300;
     };
     preventJunkFiles = true;
     searchCase = "smart";
