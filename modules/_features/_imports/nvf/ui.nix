@@ -1,11 +1,19 @@
 {
   programs.nvf.settings.vim = {
     mini.icons.enable = true;
-    # Breadcrumbs (migrated from vim.ui.breadcrumbs → vim.statusline.lualine.integrations)
-    statusline.lualine.integrations.breadcrumbs = {
-      nvim-navic.enable = true;
-      navbuddy.enable = true;
-    };
+    # nvf's alpha and bufferline modules pull in nvim-web-devicons regardless,
+    # so both icon providers load. Routing web-devicons through mini.icons gives
+    # one icon table instead of two independent ones.
+    luaConfigRC.mini-icons-mock = ''
+      require("mini.icons").mock_nvim_web_devicons()
+    '';
+
+    # Breadcrumbs (nvim-navic + navbuddy) removed. They render into nvf's
+    # lualine module, but vim.statusline.lualine.enable defaults to false and
+    # is never set here -- the real statusline is the hand-rolled lualine lazy
+    # plugin in statusline.nix, which has no navic component. Net result was
+    # nvim-navic, nvim-navbuddy and nui-nvim installed with no reachable UI and
+    # no keybind to open :Navbuddy. Trouble symbols on <leader>cs covers this.
     ui = {
       borders = {
         enable = true;
@@ -16,7 +24,6 @@
           };
         };
       };
-      # breadcrumbs relocated to statusline.lualine.integrations in nvf 26.12
       colorizer = {
         enable = true;
       };
