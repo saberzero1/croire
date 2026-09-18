@@ -4,53 +4,25 @@ let
 in
 {
   programs.nvf.settings.vim.lazy.plugins = {
+    # ts-comments fixes `commentstring` per language so Neovim 0.10+'s built-in
+    # gc/gcc comment the right way in mixed-language files. It was previously
+    # lazy-loaded on `cmd = ["TodoTrouble" "TodoTelescope"]` with keys that
+    # called require("todo-comments") -- a different plugin entirely -- so
+    # commentstring fixes only kicked in after running a Todo command. Loading
+    # on BufReadPost/BufNewFile is what it actually wants.
+    #
+    # Comment.nvim was dropped alongside this: Neovim 0.12 has native gc/gcc,
+    # and ts-comments is designed to enhance exactly that.
     "${plugin.ts-comments-nvim.pname}" = {
       enabled = true;
       lazy = true;
       package = plugin.ts-comments-nvim;
-      cmd = [
-        "TodoTrouble"
-        "TodoTelescope"
+      event = [
+        "BufReadPost"
+        "BufNewFile"
       ];
       setupModule = "ts-comments";
       setupOpts = { };
-      keys = [
-        {
-          key = "]t";
-          mode = "n";
-          action = ''
-            function()
-              require("todo-comments").jump_next()
-            end
-          '';
-          lua = true;
-          desc = "Next Todo Comment";
-        }
-        {
-          key = "[t";
-          mode = "n";
-          action = ''
-            function()
-              require("todo-comments").jump_prev()
-            end
-          '';
-          lua = true;
-          desc = "Previous Todo Comment";
-        }
-        {
-          key = "<leader>xt";
-          mode = "n";
-          action = "<cmd>Trouble todo toggle<cr>";
-          desc = "Todo (Trouble)";
-        }
-        {
-          key = "<leader>xT";
-          mode = "n";
-          action = "<cmd>Trouble todo toggle filter={tag={TODO,FIX,FIXME}}<cr>";
-          desc = "Todo/Fix/Fixme (Trouble)";
-        }
-        # <leader>st and <leader>sT are defined in filetree.nix (fzf-lua) to avoid duplicates
-      ];
     };
     "mini-surround" = {
       enabled = true;
