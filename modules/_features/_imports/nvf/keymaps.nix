@@ -1,7 +1,3 @@
-{ pkgs, ... }:
-let
-  plugin = pkgs.vimPlugins;
-in
 {
   programs.nvf.settings.vim.keymaps = [
     # Better up/down
@@ -309,43 +305,46 @@ in
       lua = true;
       desc = "Line Diagnostics";
     }
+    # vim.diagnostic.goto_next/goto_prev are deprecated on Neovim 0.11+ and
+    # emit a warning on every use; vim.diagnostic.jump replaces both via the
+    # sign of `count`.
     {
-      action = "function() vim.diagnostic.goto_next() end";
+      action = "function() vim.diagnostic.jump({ count = 1 }) end";
       key = "]d";
       mode = "n";
       lua = true;
       desc = "Next Diagnostic";
     }
     {
-      action = "function() vim.diagnostic.goto_prev() end";
+      action = "function() vim.diagnostic.jump({ count = -1 }) end";
       key = "[d";
       mode = "n";
       lua = true;
       desc = "Prev Diagnostic";
     }
     {
-      action = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end";
+      action = "function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) end";
       key = "]e";
       mode = "n";
       lua = true;
       desc = "Next Error";
     }
     {
-      action = "function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end";
+      action = "function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) end";
       key = "[e";
       mode = "n";
       lua = true;
       desc = "Prev Error";
     }
     {
-      action = "function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN }) end";
+      action = "function() vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN }) end";
       key = "]w";
       mode = "n";
       lua = true;
       desc = "Next Warning";
     }
     {
-      action = "function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN }) end";
+      action = "function() vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN }) end";
       key = "[w";
       mode = "n";
       lua = true;
@@ -376,44 +375,18 @@ in
       lua = true;
       desc = "Lazygit (cwd)";
     }
+    # These four previously called require("snacks").picker.*, but snacks'
+    # picker module is disabled (navigation.nix), so they errored on use.
+    # git_log_file has a distinct Telescope equivalent and is repointed;
+    # git_log / git_log_line did not, and their functions are already reachable:
+    #   <leader>gl, <leader>gL (git log)   -> <leader>gc  Telescope git_commits
+    #   <leader>gb  (blame line)           -> <leader>ghb gitsigns blame_line
+    # so they are dropped rather than duplicated onto new keys.
     {
-      action = ''function() require("snacks").picker.git_log_file() end'';
+      action = "<cmd>Telescope git_bcommits<cr>";
       key = "<leader>gf";
       mode = "n";
-      lua = true;
       desc = "Git Current File History";
-    }
-    {
-      action = ''
-        function()
-          local function get()
-            local root = vim.fn.expand('%:h')
-            local git_root = vim.fs.find(".git", { path = root, upward = true })[1]
-            local ret = git_root and vim.fn.fnamemodify(git_root, ":h") or root
-            return ret
-          end
-          require("snacks").picker.git_log({ cwd = get() })
-        end
-      '';
-      key = "<leader>gl";
-      mode = "n";
-      lua = true;
-      desc = "Git Log";
-    }
-    {
-      action = ''function() require("snacks").picker.git_log() end'';
-      key = "<leader>gL";
-      mode = "n";
-      lua = true;
-      desc = "Git Log (cwd)";
-    }
-    # Git
-    {
-      action = ''function() require("snacks").picker.git_log_line() end'';
-      key = "<leader>gb";
-      mode = "n";
-      lua = true;
-      desc = "Git Blame Line";
     }
     {
       action = ''function() require("snacks").gitbrowse() end'';
@@ -573,49 +546,8 @@ in
       lua = true;
     }
   ];
-  programs.nvf.settings.vim.lazy.plugins = {
-    "${plugin.unimpaired-nvim.pname}" = {
-      enabled = true;
-      package = plugin.unimpaired-nvim;
-      setupModule = "unimpaired";
-      setupOpts = {
-        keymaps = {
-          # space
-          blank_above = false;
-          blank_below = false;
-          # a, A, ^A
-          next = false;
-          previous = false;
-          first = false;
-          last = false;
-          # b, B, ^B
-          bnext = false;
-          bprevious = false;
-          bfirst = false;
-          blast = false;
-          # q, Q, ^Q
-          cnext = false;
-          cprevious = false;
-          cfirst = false;
-          clast = false;
-          cnfile = false;
-          cpfile = false;
-          # l, L, ^L
-          lnext = false;
-          lprevious = false;
-          lfirst = false;
-          llast = false;
-          lnfile = false;
-          lpfile = false;
-          # t, t, ^T
-          tnext = false;
-          tprevious = false;
-          tfirst = false;
-          tlast = false;
-          ptnext = false;
-          ptprevious = false;
-        };
-      };
-    };
-  };
+  # unimpaired.nvim removed. After the disables above it contributed only
+  # [n/]n (conflict markers) and [f/]f (directory/qflist nav); everything
+  # else was overridden by yanky ([p/]p, [y/]y) or the diagnostics keymaps
+  # ([e/]e). [f/]f now belong to treesitter function motions (treesitter.nix).
 }
