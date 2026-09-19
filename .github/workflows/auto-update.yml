@@ -12,7 +12,7 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
- 
+
 env:
   NIXPKGS_ALLOW_UNFREE: 1
   OMNIX_SOURCE: github:juspay/omnix
@@ -242,8 +242,8 @@ jobs:
       - name: Omnix update flakes
         # run: om --accept-flake-config ci run .#update
         # run: om ci run .#update \
-            # --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
-            # --accept-flake-config
+        # --extra-access-tokens ${{ secrets.GITHUB_TOKEN }} \
+        # --accept-flake-config
         run: nix flake update --flake . --option extra-access-tokens "${{ secrets.GITHUB_TOKEN }}" --accept-flake-config
 
       # - name: Omnix update flakes
@@ -287,7 +287,7 @@ jobs:
       - name: Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          file_pattern: "flake.nix flake.lock overlays/opencode-bun-sources.json programs/nvim/lazy-lock.json"
+          file_pattern: "flake.nix flake.lock overlays/opencode-bun-sources.json"
           skip_checkout: false
           skip_dirty_check: false
           skip_fetch: false
@@ -354,7 +354,7 @@ jobs:
         uses: wimpysworld/nothing-but-nix@main
         if: runner.os == 'Linux'
         with:
-          hatchet-protocol: 'rampage'
+          hatchet-protocol: "rampage"
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -409,8 +409,8 @@ jobs:
       #       --systems "$FLAKE_ITER_NIX_SYSTEM" \
       #       --include-all-dependencies \
       #       -- --accept-flake-config
-            # --results=$HOME/omci.json \
-            # -- --accept-flake-config
+      # --results=$HOME/omci.json \
+      # -- --accept-flake-config
       - name: Build configuration
         id: build
         continue-on-error: true
@@ -419,7 +419,7 @@ jobs:
             --accept-flake-config \
             --no-update-lock-file \
             --print-build-logs
-      
+
       - name: Fix hashes
         if: steps.build.outcome == 'failure'
         id: fix-hashes
@@ -450,7 +450,7 @@ jobs:
           fi
 
           determinate-nixd fix hashes --auto-apply
- 
+
           if ! git diff --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -477,8 +477,8 @@ jobs:
       #       --github-output \
       #       --no-ui \
       #       --verbose 4
-            # --include-all-dependencies \
-            # -- --accept-flake-config
+      # --include-all-dependencies \
+      # -- --accept-flake-config
 
   flakehub-push:
     permissions:
