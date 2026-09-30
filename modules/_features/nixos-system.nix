@@ -196,15 +196,21 @@ in
             libuuid
 
             # Wine (WoW64 — pure 64-bit build with 32-bit Windows app support)
-            # wineWow64Packages.waylandFull
-            # (wine.override { wineBuild = "wine64"; })
-            wine-wayland
-            # wine64
-            winetricks
-            # wineWowPackages.stable
+            #
+            # Install EXACTLY ONE wine package. Every wine derivation ships
+            # bin/wine, bin/winecfg and lib/wine/{i386,x86_64}-{unix,windows},
+            # so installing several makes environment.systemPackages merge them
+            # into a single mixed tree and the winner of each file collision is
+            # arbitrary across rebuilds. A silent flip between builds leaves the
+            # ~/.wine prefix stale, which surfaces as winecfg dying instantly on
+            # "module not found for forward 'cryptbase.SystemFunction036'".
+            #
+            # wineWow64Packages.stable is the superset: it ships BOTH
+            # winex11.drv and winewayland.drv. wine-wayland and
+            # wineWow64Packages.waylandFull are Wayland-only (no winex11.drv),
+            # so they break XWayland if they ever win the collision.
             wineWow64Packages.stable
-            # wineWowPackages.waylandFull
-            wineWow64Packages.waylandFull
+            winetricks
 
             # Document viewers
             evince
