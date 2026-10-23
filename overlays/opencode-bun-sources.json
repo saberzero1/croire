@@ -1,24 +1,24 @@
 {
-  "bunVersion": "1.3.14",
+  "bunVersion": "1.4.4",
   "sources": {
     "aarch64-darwin": {
       "asset": "bun-darwin-aarch64.zip",
-      "sha256": "sha256-2LliIYKK1vl6x6wKt+lYcjQa92MAHogD6CZ2UsJlJiA="
+      "sha256": "sha256-wkDX8My5DCY6hJ/NsJt+5iYw2SE0jtaq/ahrnVd7xRA="
     },
     "x86_64-darwin": {
       "asset": "bun-darwin-x64-baseline.zip",
-      "sha256": "sha256-PjWtb1OXGpg0v55nhuKt9ytfGSHMmpxf3gc9KXKUQHY="
+      "sha256": "sha256-1KFVrfv9CRVes7oFyeOlRPOSl9emhhbTx3WfZ6tcR9w="
     },
     "aarch64-linux": {
       "asset": "bun-linux-aarch64.zip",
-      "sha256": "sha256-on/7Y6gxA3WDbg1vZorhf6jY0YuIw3yCHGUzGXOhmjs="
+      "sha256": "sha256-uqa7NvUdblhWHgK76oJQOKnfRU9nPW13bou/hvjHhQ4="
     },
     "x86_64-linux": {
       "asset": "bun-linux-x64.zip",
-      "sha256": "sha256-lR7iruhV8IWVruxiJSJqKY0/6oOj3NZGXAnLzN9+hI8="
+      "sha256": "sha256-v4zL+ysLgBWeD5ptFcVTF63YB3U028YTCj7bUvzLOVw="
     }
   },
   "nodeModulesHashes": {
-    "x86_64-linux": "sha256-QJ7QKDNkTPxuJE8ZJmnDL60TT4Zm/fxzYa7DfFVS2zU="
+    "x86_64-linux": "sha256-YhjrbwC9JNjdRAj5pfDQCLogbDyMObwAcKOTFljSYZk="
   }
 }
