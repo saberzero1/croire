@@ -267,7 +267,15 @@ jobs:
             echo "node_modules hash is up to date"
             rm -f "${BUILD_LOG}"
           else
-            GOT_HASH="$(grep -oP '^\s+got:\s+\Ksha256-[A-Za-z0-9+/]+=*' "${BUILD_LOG}" | head -1 || true)"
+            GOT_HASH="$(awk '
+              /hash mismatch in fixed-output derivation/ {
+                opencode = /-opencode-node_modules-/
+              }
+              opencode && /^[[:space:]]+got:[[:space:]]+sha256-[A-Za-z0-9+\/]+=*[[:space:]]*$/ {
+                print $2
+                exit
+              }
+            ' "${BUILD_LOG}")"
             rm -f "${BUILD_LOG}"
 
             if [ -z "${GOT_HASH}" ]; then
@@ -358,6 +366,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
 
       # - name: Install Determinate Nix
       #   uses: DeterminateSystems/determinate-nix-action@v3
@@ -437,7 +447,15 @@ jobs:
             --no-update-lock-file \
             --print-build-logs 2>"${BUILD_LOG}" || true
 
-          GOT_HASH="$(grep -oP '^\s+got:\s+\Ksha256-[A-Za-z0-9+/]+=*' "${BUILD_LOG}" | head -1 || true)"
+          GOT_HASH="$(awk '
+            /hash mismatch in fixed-output derivation/ {
+              opencode = /-opencode-node_modules-/
+            }
+            opencode && /^[[:space:]]+got:[[:space:]]+sha256-[A-Za-z0-9+\/]+=*[[:space:]]*$/ {
+              print $2
+              exit
+            }
+          ' "${BUILD_LOG}")"
           rm -f "${BUILD_LOG}"
 
           if [ -n "${GOT_HASH}" ]; then
@@ -507,6 +525,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.ref_name }}
           persist-credentials: false
 
       - name: Set up Determinate Nix

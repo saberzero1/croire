@@ -52,7 +52,6 @@ in
       luks.devices."luks-32b0cce0-aa62-475b-ab71-4fb3a3d7c980" = {
         device = "/dev/disk/by-uuid/32b0cce0-aa62-475b-ab71-4fb3a3d7c980";
       };
-      systemd.enable = true;
     };
     kernelModules = [
       "kvm-amd"
