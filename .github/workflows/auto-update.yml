@@ -374,6 +374,9 @@ jobs:
         if: runner.os == 'Linux'
         with:
           hatchet-protocol: "rampage"
+          # /mnt can share the root filesystem; reserve space at both allocation stages.
+          root-safe-haven: "8192"
+          mnt-safe-haven: "8192"
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -387,6 +390,7 @@ jobs:
         uses: DeterminateSystems/determinate-nix-action@main
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          extra-conf: ${{ runner.os == 'Linux' && 'build-dir = /nix/build' || '' }}
 
       # - name: Set up GitHub Actions cache
       #   uses: DeterminateSystems/magic-nix-cache-action@main
