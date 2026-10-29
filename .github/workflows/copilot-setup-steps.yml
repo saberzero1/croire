@@ -1,0 +1,34 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      NIXPKGS_ALLOW_UNFREE: 1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Determinate Nix
+        uses: DeterminateSystems/determinate-nix-action@main
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Install just
+        run: nix profile add nixpkgs#just
+
+      - name: Verify tools
+        run: |
+          nix --version
+          just --version
