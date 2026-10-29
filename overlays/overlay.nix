@@ -91,6 +91,9 @@ self: super: {
       pkg = (inputs.opencode.packages.${system}.default).override { inherit node_modules; };
     in
     pkg.overrideAttrs (oldAttrs: {
+      # build.ts re-signs the darwin binary with `codesign`, which is absent in the sandbox.
+      nativeBuildInputs =
+        (oldAttrs.nativeBuildInputs or [ ]) ++ super.lib.optionals super.stdenv.hostPlatform.isDarwin [ super.sigtool ];
       # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
       # imports prettier, but prettier is only in the workspace root's
       # devDependencies. The bun install in node_modules.nix uses
