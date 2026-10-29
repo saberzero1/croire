@@ -87,34 +87,11 @@ self: super: {
         rev = inputs.opencode.shortRev or "dirty";
         hash = nodeModulesHash;
       };
-      # Bring in the upstream opencode package but swap out the node_modules.
-      pkg = (inputs.opencode.packages.${system}.default).override { inherit node_modules; };
     in
-    pkg.overrideAttrs (oldAttrs: {
-      # build.ts re-signs the darwin binary with `codesign`, which is absent in the sandbox.
-      nativeBuildInputs =
-        (oldAttrs.nativeBuildInputs or [ ]) ++ super.lib.optionals super.stdenv.hostPlatform.isDarwin [ super.darwin.sigtool ];
-      # prettier stub: generate.ts (bundled into the opencode CLI) dynamically
-      # imports prettier, but prettier is only in the workspace root's
-      # devDependencies. The bun install in node_modules.nix uses
-      # --filter './packages/opencode' which excludes root deps, so prettier
-      # is absent from node_modules and Bun's bundler can't resolve it.
-      # A minimal stub satisfies the bundler; at runtime the generate command
-      # will use it to return unformatted JSON (functionally equivalent).
-      postConfigure = (oldAttrs.postConfigure or "") + ''
-                if [ ! -f node_modules/prettier/package.json ]; then
-                  chmod u+w node_modules
-                  mkdir -p node_modules/prettier
-                  cat > node_modules/prettier/index.js << 'PRETTIER_STUB_EOF'
-        export const format = (s, _opts) => Promise.resolve(s);
-        export default { format: (s, _opts) => Promise.resolve(s) };
-        PRETTIER_STUB_EOF
-                  cat > node_modules/prettier/package.json << 'PRETTIER_PKG_EOF'
-        {"name":"prettier","version":"0.0.0","type":"module","exports":{".":"./index.js","./plugins/babel":"./index.js","./plugins/estree":"./index.js"}}
-        PRETTIER_PKG_EOF
-                fi
-      '';
-    });
+    (inputs.opencode.packages.${system}.default).override {
+      inherit node_modules;
+      bun = bunForOpencode;
+    };
   # opencode-desktop = inputs.opencode.packages.${self.pkgs.stdenv.hostPlatform.system}.desktop;
 
   # claude-code: bump to 2.1.90 (2.1.88 was yanked from npm registry)
@@ -149,8 +126,7 @@ self: super: {
   tmux-sessionizer =
     inputs.tmux-sessionizer.packages.${super.stdenv.hostPlatform.system}.tmux-sessionizer;
 
-  # tmux-sessionizer-nu: rebuild locally to use our nushell (with doCheck=false)
-  # The flake's prebuilt package uses its own nushell which fails to build
+  # Keep the wrapper on our unmodified, cacheable nixpkgs Nushell.
   tmux-sessionizer-nu = super.stdenv.mkDerivation {
     pname = "tmux-sessionizer-nu";
     version = "0.1.0";
@@ -229,16 +205,6 @@ self: super: {
       mainProgram = "tirith";
     };
   };
-
-  # Nushell: skip tests that fail in Nix sandbox (permission denied in path_is_a_list_in_repl)
-  nushell = super.nushell.overrideAttrs (oldAttrs: {
-    doCheck = false;
-    checkPhase = "";
-    cargoTestFlags = [
-      "--skip"
-      "this_test_does_not_exist"
-    ];
-  });
 
   # Obsidian: override to 1.12.7 for new CLI features
   # See: https://help.obsidian.md/cli
