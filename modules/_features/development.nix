@@ -131,13 +131,6 @@ in
               # "${config.home.homeDirectory}/.local/share/meridian/src/plugin/claude-max-headers.ts"
             ];
           };
-          tui = {
-            "theme" = "tokyonight";
-            "scroll_speed" = 3;
-            "scroll_acceleration" = {
-              "enabled" = true;
-            };
-          };
           # opencode.ai/zen/v1/models for models
           agents = { };
           # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.opencode.commands
@@ -207,7 +200,7 @@ in
           enable = true;
           enableNushell = true;
           package = pkgs.tmux-sessionizer;
-          # Use our rebuilt tmux-sessionizer-nu from overlay (uses our nushell with doCheck=false)
+          # Use the local wrapper with the same cacheable Nushell as the login shell.
           nushellPackage = pkgs.tmux-sessionizer-nu;
           searchPaths = [
             "~/Repos"
@@ -327,6 +320,14 @@ in
       # backup collisions (opencode.json.backup already exists → activation fails).
       # Safe because this file is fully declarative (generated from settings above).
       xdg.configFile."opencode/opencode.json".force = true;
+      xdg.configFile."opencode/cli.json".source = (pkgs.formats.json { }).generate "opencode-cli.json" {
+        "$schema" = "https://opencode.ai/v2/cli.json";
+        theme.name = "tokyonight";
+        scroll = {
+          speed = 3;
+          acceleration = true;
+        };
+      };
 
       home.file = {
         # File managers

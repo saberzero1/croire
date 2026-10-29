@@ -147,6 +147,16 @@ just dev
 
 ### Development
 
+OpenCode is pinned to the v2 release line. The dependency updater selects stable
+v2 releases explicitly because upstream also publishes v1 releases. Its Nix
+package uses the Bun version declared upstream and the dependency hashes in
+`overlays/opencode-bun-sources.json`.
+Terminal appearance and scrolling are managed in v2's `opencode/cli.json`.
+
+Nushell uses the unmodified nixpkgs package so it can be substituted from binary
+caches rather than rebuilt for a local test override. The tmux-sessionizer
+wrapper uses that same package.
+
 | Command | Description |
 |---------|-------------|
 | `just dev` | Enter development shell |
