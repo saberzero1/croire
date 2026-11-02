@@ -98,7 +98,8 @@ in
         type = [ "prettier" ];
       };
       lsp = {
-        enable = true;
+        # some-sass-language-server fails to build on Darwin (keytar/node-addon-api)
+        enable = !isDarwin;
         servers = [ "some-sass-language-server" ];
       };
       treesitter.enable = true;
