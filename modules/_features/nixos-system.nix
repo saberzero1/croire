@@ -158,7 +158,6 @@ in
             freerdp
 
             # Wayland & Hyprland
-            albert
             wlsunset
             uwsm
             mako
