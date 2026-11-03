@@ -5,7 +5,12 @@
 self: super: {
   devour-flake = self.callPackage inputs.devour-flake { };
   fh = inputs.fh.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
-  ghostty = inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
+  # Linux uses the cached nixpkgs build; compiling the flake input from source exhausts the CI runner
+  ghostty =
+    if self.pkgs.stdenv.hostPlatform.isLinux then
+      super.ghostty
+    else
+      inputs.ghostty.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nix-direnv = inputs.nix-direnv.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   nixgl = inputs.nixgl.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
   omnix = inputs.omnix.packages.${self.pkgs.stdenv.hostPlatform.system}.default;
