@@ -228,7 +228,12 @@ clean-caches:
   if command -v npm >/dev/null; then npm cache clean --force; fi
   if command -v yarn >/dev/null; then yarn cache clean; fi
   if command -v pnpm >/dev/null; then pnpm store prune; fi
-  if command -v bun >/dev/null; then bun pm cache rm; fi
+  # `bun pm cache rm` refuses to run without a package.json, even though the cache is
+  # global, so run it from a throwaway directory that has one.
+  if command -v bun >/dev/null; then
+    tmp=$(mktemp -d) && echo '{}' > "$tmp/package.json" && (cd "$tmp" && bun pm cache rm)
+    rm -rf "$tmp"
+  fi
 
 # Hard link duplicate nix store entries
 [group('Clean')]
