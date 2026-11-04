@@ -257,6 +257,8 @@ in
           NSGlobalDomain = {
             # Disable natural scrolling
             "com.apple.swipescrolldirection" = false;
+            # Dark mode; no cross-app auto-switching is applied
+            AppleInterfaceStyle = "Dark";
           };
 
           spaces = {
