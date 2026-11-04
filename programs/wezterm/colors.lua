@@ -1,6 +1,9 @@
 local wezterm = require("wezterm")
-local color_scheme = wezterm.color.get_builtin_schemes()["tokyonight_storm"]
-local colors = wezterm.color.get_builtin_schemes()["tokyonight_storm"]
+-- Follow system appearance, dark by default
+local appearance = wezterm.gui and wezterm.gui.get_appearance() or "Dark"
+local scheme_name = appearance:find("Light") and "tokyonight_day" or "tokyonight_storm"
+local color_scheme = wezterm.color.get_builtin_schemes()[scheme_name]
+local colors = wezterm.color.get_builtin_schemes()[scheme_name]
 colors.tab_bar.new_tab.bg_color = color_scheme.tab_bar.inactive_tab.bg_color
 colors.tab_bar.background = color_scheme.background
 colors.tab_bar.active_tab.fg_color = color_scheme.tab_bar.active_tab.bg_color
