@@ -208,7 +208,6 @@ in
         TERM = "xterm-ghostty";
         DL_VIDEODRIVER = "wayland";
         QT_QPA_PLATFORM = "wayland";
-        QT_QPA_PLATFORMTHEME = "qt5ct";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         _JAVA_AWT_WM_NONREPARENTING = "1";
         MOZ_ENABLE_WAYLAND = "1";
@@ -573,6 +572,17 @@ in
         fzf = {
           enable = true;
           enableZshIntegration = true;
+          # Tokyo Night accents only; backgrounds follow the terminal theme
+          colors = {
+            hl = "#7aa2f7";
+            "hl+" = "#7dcfff";
+            info = "#e0af68";
+            marker = "#9ece6a";
+            pointer = "#bb9af7";
+            prompt = "#7aa2f7";
+            spinner = "#bb9af7";
+            header = "#f7768e";
+          };
         };
 
         carapace = {

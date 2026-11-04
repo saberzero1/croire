@@ -57,4 +57,3 @@
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; Theme
-(package! catppuccin-theme)

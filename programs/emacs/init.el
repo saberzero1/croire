@@ -1262,29 +1262,17 @@
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup)) ;; Setup icons in the marginalia mode for enhanced completion display.
 
 
-;;; CATPPUCCIN THEME
-;; The `catppuccin-theme' package provides a visually pleasing color theme
-;; for Emacs that is inspired by the popular Catppuccin color palette.
-;; This theme aims to create a comfortable and aesthetic coding environment
-;; with soft colors that are easy on the eyes.
-(use-package catppuccin-theme
+;;; TOKYO NIGHT THEME
+;; `doom-themes' provides `doom-tokyo-night', matching the rest of the setup.
+(use-package doom-themes
   :ensure t
   :straight t
   :config
+  (load-theme 'doom-tokyo-night :no-confirm)
   (custom-set-faces
-   ;; Set the color for changes in the diff highlighting to blue.
-   `(diff-hl-change ((t (:background unspecified :foreground ,(catppuccin-get-color 'blue))))))
-
-  (custom-set-faces
-   ;; Set the color for deletions in the diff highlighting to red.
-   `(diff-hl-delete ((t (:background unspecified :foreground ,(catppuccin-get-color 'red))))))
-
-  (custom-set-faces
-   ;; Set the color for insertions in the diff highlighting to green.
-   `(diff-hl-insert ((t (:background unspecified :foreground ,(catppuccin-get-color 'green))))))
-
-  ;; Load the Catppuccin theme without prompting for confirmation.
-  (load-theme 'catppuccin :no-confirm))
+   `(diff-hl-change ((t (:background unspecified :foreground ,(doom-color 'blue)))))
+   `(diff-hl-delete ((t (:background unspecified :foreground ,(doom-color 'red)))))
+   `(diff-hl-insert ((t (:background unspecified :foreground ,(doom-color 'green)))))))
 
 
 ;;; UTILITARY FUNCTION TO INSTALL EMACS-KICK

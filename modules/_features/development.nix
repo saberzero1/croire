@@ -36,7 +36,9 @@ in
         bat = {
           enable = true;
           config = {
-            theme = "tokyonight_storm";
+            theme = "auto";
+            theme-dark = "tokyonight_storm";
+            theme-light = "tokyonight_day";
             pager = "less -FR";
           };
         };
@@ -90,6 +92,11 @@ in
           enable = true;
           enableZshIntegration = true;
           enableNushellIntegration = true;
+          # No light flavor is bundled; dark for both
+          theme.flavor = {
+            dark = "tokyo-night";
+            light = "tokyo-night";
+          };
         };
 
         # btop - System monitor

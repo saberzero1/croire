@@ -54,7 +54,12 @@ in
           enable = true;
           package = pkgs.evil-helix;
           settings = {
-            theme = "tokyonight";
+            # Follows terminal light/dark preference; dark when undetected
+            theme = {
+              dark = "tokyonight_storm";
+              light = "tokyonight_day";
+              fallback = "tokyonight_storm";
+            };
             editor = {
               auto-format = true;
               color-modes = true;
