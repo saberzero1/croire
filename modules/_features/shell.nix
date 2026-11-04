@@ -572,6 +572,17 @@ in
         fzf = {
           enable = true;
           enableZshIntegration = true;
+          # Tokyo Night accents only; backgrounds follow the terminal theme
+          colors = {
+            hl = "#7aa2f7";
+            "hl+" = "#7dcfff";
+            info = "#e0af68";
+            marker = "#9ece6a";
+            pointer = "#bb9af7";
+            prompt = "#7aa2f7";
+            spinner = "#bb9af7";
+            header = "#f7768e";
+          };
         };
 
         carapace = {
