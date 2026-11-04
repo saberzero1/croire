@@ -68,12 +68,12 @@ pull:
 
 # Build home-manager configuration
 [group('Home')]
-home-build user="emile":
+home-build user=env("USER"):
   nix build .#homeConfigurations.{{user}}.activationPackage
 
 # Activate home-manager configuration
 [group('Home')]
-home-switch user="emile":
+home-switch user=env("USER"):
   nix build .#homeConfigurations.{{user}}.activationPackage
   ./result/activate
 
@@ -194,7 +194,7 @@ gc:
   sudo nh clean all || nix-collect-garbage -d
   nh clean all || nix-collect-garbage -d
 
-# Remove old generations
+# Remove old generations, unused Docker data and package manager caches
 [group('Clean')]
 [unix]
 clean:
@@ -202,8 +202,33 @@ clean:
   @df -h / | tail -1
   nh clean all || nix-collect-garbage -d
   nix-collect-garbage -d
+  just clean-docker
+  just clean-caches
   @echo "After cleanup:"
   @df -h / | tail -1
+
+# Prune Docker: stopped containers and build cache unused for 30 days, untagged images (volumes are kept)
+[group('Clean')]
+[unix]
+clean-docker:
+  #!/usr/bin/env bash
+  if ! docker info >/dev/null 2>&1; then
+    echo "Docker is not running, skipping"
+    exit 0
+  fi
+  docker container prune --force --filter "until=720h"
+  docker image prune --force
+  docker builder prune --all --force --filter "until=720h"
+
+# Clear the npm, yarn, pnpm and bun caches (pnpm keeps packages a project still uses)
+[group('Clean')]
+[unix]
+clean-caches:
+  #!/usr/bin/env bash
+  if command -v npm >/dev/null; then npm cache clean --force; fi
+  if command -v yarn >/dev/null; then yarn cache clean; fi
+  if command -v pnpm >/dev/null; then pnpm store prune; fi
+  if command -v bun >/dev/null; then bun pm cache rm; fi
 
 # Hard link duplicate nix store entries
 [group('Clean')]

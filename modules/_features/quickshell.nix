@@ -32,9 +32,9 @@ in
       # Deploy QML config as a single directory symlink to the live repo.
       # QML's "import qs" module resolution requires a coherent directory tree —
       # per-file symlinks from recursive=true break singleton resolution across
-      # subdirectories. mkOutOfStoreSymlink with a literal path creates a mutable
-      # symlink that also enables Quickshell hot-reload on file save.
+      # subdirectories. mkOutOfStoreSymlink with a path string (not a Nix path)
+      # creates a mutable symlink that also enables Quickshell hot-reload on file save.
       xdg.configFile."quickshell".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/saberzero1/Repos/croire/programs/quickshell";
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Repos/croire/programs/quickshell";
     };
 }

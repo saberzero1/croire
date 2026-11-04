@@ -183,10 +183,11 @@ in
 
       # Espanso text expansion config
       # Deploy as a single directory symlink to the live repo.
-      # mkOutOfStoreSymlink with a literal path creates a mutable symlink
-      # that enables espanso hot-reload on file save.
+      # mkOutOfStoreSymlink with a path string (not a Nix path) creates a mutable
+      # symlink that enables espanso hot-reload on file save. The home directory
+      # comes from the config, as this module also runs on macOS (/Users/emile).
       xdg.configFile."espanso".source =
-        config.lib.file.mkOutOfStoreSymlink "/home/saberzero1/Repos/croire/programs/espanso";
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Repos/croire/programs/espanso";
 
       # Custom systemd service for Espanso (since home-manager module is disabled)
       systemd.user.services.espanso = lib.mkIf isLinux {

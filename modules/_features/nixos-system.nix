@@ -379,11 +379,13 @@ in
 
         npm = {
           enable = true;
+          # XDG layout: the cache in ~/.cache/npm, global packages in ~/.local with their
+          # binaries in ~/.local/bin, which is on PATH. npm expands ${HOME} itself; the
+          # '' before it stops Nix from interpolating it.
           npmrc = ''
-            '''
-              prefix = '''''${config.home.homeDirectory}/.npm
-              color=true
-            '''
+            cache=''${HOME}/.cache/npm
+            prefix=''${HOME}/.local
+            color=true
           '';
         };
 
@@ -502,6 +504,11 @@ in
         packages = with pkgs; [ uwsm ];
         # Increase file descriptor limits for Nix daemon (fixes "Too many open files" on large fetches)
         services.nix-daemon.serviceConfig.LimitNOFILE = "1048576";
+        # Remove anything in /tmp not created or changed for 30 days. /tmp is on disk and
+        # survives reboots. systemd's stock rule (tmp.conf, 10d) also counts access time,
+        # which something refreshes daily, so nothing ever aged out; bcmBCM leaves access
+        # time out for files and directories. 00-nixos.conf sorts first, so this rule wins.
+        tmpfiles.rules = [ "q /tmp 1777 root root bcmBCM:30d" ];
         user = {
           tmpfiles.rules = [ ];
           services = {
