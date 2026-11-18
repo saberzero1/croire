@@ -175,7 +175,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     opencode = {
-      url = "github:anomalyco/opencode?ref=v2.3.0";
+      url = "github:anomalyco/opencode?ref=v2.3.2";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
